@@ -1,0 +1,28 @@
+---
+layout: page
+title: Secciones
+permalink: /sections/
+---
+
+- [Java](#java)
+
+- [Javascript](#javascript)
+
+- [Python](#python)
+
+- [Sistemas](#sistemas)
+
+---
+
+### Java
+- [Log4j desde cero]({{ site.baseurl }}/tutorial-log4j-from-zero/){:target="blank"}
+- [Ordenar HashMap por key o value]({{ site.baseurl }}/sort-hashmap-by-key-or-value/){:target="_blank"}
+
+### Javascript
+- [ReactJS I. Intalar React en Windows]({{ site.baseurl }}/ReactJS-i-install-react-on-windows/){:target="_blank"}
+
+### Python
+- [Crear barra de progreso en la terminal]({{ site.baseurl }}/barra-progreso-terminal-python/){:target="_blank"}
+
+### Sistemas
+- [Sincronizar carpetas externas en OneDrive]({{ site.baseurl }}/sync-onedrive-external-folders/){:target="_blank"}
