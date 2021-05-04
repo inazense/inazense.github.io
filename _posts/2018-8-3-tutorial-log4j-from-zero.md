@@ -43,7 +43,7 @@ Voy a explicar como montar un sistema logging básico con Log4j que nos muestra 
 
 La explicación la voy a realizar con un proyecto **Maven**, así que lo primero que haremos será agregar la dependencia de **Log4j** a nuestro **pom**. La podemos encontrar en [Maven Repository](https://mvnrepository.com/artifact/log4j/log4j){:target="_blank"}.<br>
 
-Si no sabes de que te estoy hablando puedes ver mi anterior entrada sobre **Maven** o bajarte el **.jar** y configurarla manualmente desde el mismo enlace.
+Si no sabes de que te estoy hablando puedes ver mi [anterior entrada sobre **Maven**]({{ site.baseurl }}/tutorial-maven-eclipse/){:target="blank"} o bajarte el **.jar** y configurarla manualmente desde el mismo enlace.
 
 ### Creando y configurando el archivo log4j.properties
 
