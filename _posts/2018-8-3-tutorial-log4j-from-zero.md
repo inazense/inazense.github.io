@@ -134,3 +134,66 @@ En la siguiente indicamos el nombre (con ruta incluida) que queremos que tenga n
 Con **MaxFileSize** establecemos el tamaño máximo que tendrá nuestro fichero, y con **MaxBackupIndex** indicamos cuantos archivos podemos tener usando el mismo **log**. A partir de llegar al máximo, comenzarán a sobrescribirse empezando por el más antiguo.<br>
 
 Y por último, al igual que por consola, indicamos que plantilla tendrán nuestros mensajes. De nuevo puedes ver la ayuda que proporciona **Oracle** sobre esto en su página oficial.
+
+### Código Java para Log4j
+
+La forma que me resulta más fácil de trabajar es crearme una clase independiente que funcione como un **handler** para **Log4j**.
+<br><br>
+
+Lo primero es definirme un **enum** con los tipos de **log** que puedo tener. En un alarde de originalidad lo podemos llamar... no sé, TipoLog.java.
+
+{% highlight java %}
+public enum TipoLog {
+	DEBUG, ERROR, FATAL, INFO, WARNING
+}
+{% endhighlight %}
+
+Son las opciones de log que os conté en la sección **Niveles de prioridad**.<br>
+
+La siguiente parte es crear la clase Java, tal que así
+
+{% highlight java %}
+private static Logger log = Logger.getLogger(UtilesLog.class);
+
+@SuppressWarnings("rawtypes")
+public static void registrarInfo(Class clase, TipoLog tipo, String mensaje)
+{
+	log = LogManager.getLogger(clase);
+	
+	switch (tipo) 
+	{
+		case DEBUG:
+			log.debug(mensaje);
+			break;
+		case ERROR:
+			log.error(mensaje);
+			break;
+		case FATAL:
+			log.fatal(mensaje);
+			break;
+		case INFO:
+			log.info(mensaje);
+			break;
+		case WARNING:
+			log.warn(mensaje);
+	}
+}
+{% endhighlight %}
+
+En esta clase tenemos una propiedad privada estática configurada por defecto para ser el **Logger** de la clase que lo contiene, UtilesLog. Podéis poner el nombre que deseéis por supuesto.<br>
+
+Esto se hace porque la clase **Logger** tiene que estar apuntando siempre a una clase sobre la que se crearán los mensajes, así que en vez de tener que declarar este **Logger** en todas y cada una de las clases de nuestro proyecto, podemos manejarlo en un único fichero de éste modo.<br>
+
+¿Y como mandamos el **logger** entonces? Con el método que tenemos debajo, registrarInfo.<br>
+
+Si te das cuenta tiene tres parámetros. La clase sobre la que queremos generar los mensajes, el tipo de mensaje y el contenido del mismo.<br>
+
+Lo que hacemos simplemente es establecer el **Logger** para la clase pasada como parámetro y, dependiendo del tipo de log, enviar un tipo de mensaje u otro.
+<br><br>
+
+Y ¡listo!, ya tenemos nuestro sistema de **logging** con **Log4j** creado y completamente funcional.<br>
+
+Puedes visitar el código completo en mi [repositorio de **Github**](https://github.com/inazense/scripts/tree/master/scripts/java/ManejadorLog4j){:target="blank"}.
+<br><br>
+
+**¡Salud y coding!**
