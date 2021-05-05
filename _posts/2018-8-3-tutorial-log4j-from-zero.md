@@ -52,7 +52,7 @@ Podríamos configurarlo a través de código o con la configuración básica por
 
 Para ello nos iremos, dentro de nuestro proyecto, a la carpeta src/main/resources y creamos un fichero nuevo que se llame **log4j.properties**.
 
-![_config.yml]({{ site.baseurl }}/images/posts/log4j.properties.png)
+![log4j.properties]({{ site.baseurl }}/images/posts/log4j.properties.png)
 
 Lo abrimos y escribimos lo siguiente:
 

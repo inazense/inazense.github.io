@@ -51,7 +51,7 @@ Una vez que esa parte nos funciona, lo siguiente será hacer la instalación de 
 <br><br>
 Escribiremos el siguiente comando
 
-![_config.yml]({{ site.baseurl }}/images/posts/create-react-app.png)
+![create react app]({{ site.baseurl }}/images/posts/create-react-app.png)
 
 ¡Conseguido! Estamos listos para el último paso, crear un nuevo proyecto de ReactJS
 
@@ -66,7 +66,7 @@ create-react-app my-app
 Este comando generará todo lo necesario para poder empezar a usar la nueva aplicación de **ReactJS**.
 Veremos lo siguiente por consola
 
-![_config.yml]({{ site.baseurl }}/images/posts/create-react-app my-app.png)
+![create-react-app my-app]({{ site.baseurl }}/images/posts/create-react-app my-app.png)
 
 Al final de la imagen podemos ver que nos dan las instrucciones necesarias para arrancar nuestra aplicación de **ReactJS**, así comprobamos que todo está funcionando como debiera.<br>
 Ejecutamos los siguientes **comandos**
@@ -78,7 +78,7 @@ npm start
 
 Y en nuestro navegador por defecto se abrirá la siguiente web
 
-![_config.yml]({{ site.baseurl }}/images/posts/reactjs-localhost.png)
+![reactjs localhost deploy]({{ site.baseurl }}/images/posts/reactjs-localhost.png)
 
 Eso sería todo de momento, en futuras entregar iremos ampliando con más cositas.
 <br><br>

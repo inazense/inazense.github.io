@@ -50,4 +50,6 @@ Pero en nuestro caso vamos a usar la comodidad que nos da Eclipse con las herram
 
 Lo primero será crear un nuevo proyecto **Maven** yendo a __File → New → Other__.
 
+![eclipse new maven project]({{ site.baseurl }}/images/posts/eclipse-new-maven-project-1.png)
+
 **¡Salud y coding!**
