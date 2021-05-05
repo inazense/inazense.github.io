@@ -74,4 +74,80 @@ Pulsamos __Finish__ y ya tendremos nuestro proyecto. La estructura quedará tal 
 
 ## Usando Maven
 
+Ahora que ya tenemos nuestro **proyecto Maven** creado es hora de configurar el **POM** para hacerlo funcionar. Para ello hacemos doble click en el archivo pom.xml y en la pestaña inferior elegimos la sección **pom.xml** para poder ver el **código XML** "a pelo".
+<br><br>
+
+![pom.xml overview]({{ site.baseurl }}/images/posts/pom-xml-overview.png)
+
+Cuando entremos veremos un **archivo XML** similar a este
+
+{% highlight xml %}
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.programandoapasitos</groupId>
+	<artifactId>nombrePrueba</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	
+	<name>nombrePrueba</name>
+	<url>http://maven.apache.org</url>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+</project>
+{% endhighlight %}
+
+De este código hay trozos que podemos intuir bastante bien con lo mencionado anteriormente. Del resto, el tag de **properties** indicará las propiedades de nuestro proyecto. Por ejemplo la codificación de los ficheros en **UTF-8** como vemos en esa línea.<br>
+
+Y luego tenemos **dependencies**, que es la sección donde gestionaremos... ¿adivinas qué? Exacto, nuestras dependencias. Pero eso lo retomaremos más adelante.<br><br>
+
+De momento lo que tenemos que conseguir es que **Maven** se encargue por nosotros de gestionar el JRE. Esto se hace incluyendo un nuevo plugin en este archivo. Así que nos ponemos debajo de **\<dependencies\>** y escribimos lo siguiente:
+
+{% highlight xml %}
+<build>
+	<pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</pluginManagement>
+</build>
+{% endhighlight %}
+
+¿Qué hemos hecho?<br>
+
+Dentro de **build** hemos creado la etiqueta **pluginManagement** para gestionar los **plugins** de **Maven**. Y dentro de eso hemos creado una llamada **plugins** que será la que los contendrá.<br>
+
+Después hemos procedido a añadir un nuevo **plugin**, en este caso **maven-compiler-plugin**. Y luego le hemos indicado, en su configuración, que el **source** y el **target** apunten a la versión que tengamos del **JRE** en nuestro dispositivo. En mi caso, el 1.8.<br><br>
+
+Ahora guardamos el fichero y no te preocupes si ves un error en el explorador de proyectos, en el siguiente paso se solucionará.<br>
+
+Vamos al proyecto **Maven** y pulsamos **botón derecho → Maven → Update Project**...
+
+![maven update project]({{ site.baseurl }}/images/posts/maven-update-project.png)
+
+En la ventana que se abrirá marcamos con un check nuestro proyecto dejando la siguiente configuración
+
+![maven update project 2]({{ site.baseurl }}/images/posts/maven-update-project-2.png)
+
+
+
+
 **¡Salud y coding!**
