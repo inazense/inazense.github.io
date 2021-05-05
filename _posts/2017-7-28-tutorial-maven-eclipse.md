@@ -52,4 +52,26 @@ Lo primero será crear un nuevo proyecto **Maven** yendo a __File → New → Ot
 
 ![eclipse new maven project]({{ site.baseurl }}/images/posts/eclipse-new-maven-project-1.png)
 
+Elegimos __**Maven** → **Maven Project**__ y pulsamos Next.
+
+![eclipse new maven project 2]({{ site.baseurl }}/images/posts/eclipse-new-maven-project-2.png)
+
+Ahora deberemos elegir la configuración de nuestro proyecto Maven. En la siguiente ventana podemos marcar el check de __Create a simple Project (skip archetype selection)__, lo que nos creará un proyecto completamente simple sin más configuración, o bien podemos desmarcarla, que será nuestro caso, y elegiremos un arquetipo de las opciones que nos muestre el asistente.
+
+![eclipse new maven project 3]({{ site.baseurl }}/images/posts/eclipse-new-maven-project-3.png)
+
+En la nueva ventana puedes seleccionar un arquetipo del listado o cargar uno desde una ubicación. En nuestro caso seleccionaremos el de **groupId** __org.apache.maven.archetypes__ y **Artifact id** __maven-archetype-quickstart__ y pulsamos Next.
+
+![eclipse new maven project 4]({{ site.baseurl }}/images/posts/eclipse-new-maven-project-4.png)
+
+Y ahora, por último paso del asistente, tendremos que indicar nuestro propio **groupId** y el **artifactId**. Esto se hace porque los que vimos en la anterior pantalla eran los que usaron los creadores del artefacto. Sobrescribiéndolos lo establecemos como queremos y aparte de la personalización, si algún día se convierte en arquetipo lo podrán buscar con nuestros datos, y reemplazarlos con los suyos.
+
+![eclipse new maven project 5]({{ site.baseurl }}/images/posts/eclipse-new-maven-project-5.png)
+
+Pulsamos __Finish__ y ya tendremos nuestro proyecto. La estructura quedará tal que así
+
+![eclipse new maven project 6]({{ site.baseurl }}/images/posts/eclipse-new-maven-project-6.png)
+
+## Usando Maven
+
 **¡Salud y coding!**
