@@ -147,7 +147,123 @@ En la ventana que se abrirá marcamos con un check nuestro proyecto dejando la s
 
 ![maven update project 2]({{ site.baseurl }}/images/posts/maven-update-project-2.png)
 
+Cuando acabe el proceso de actualización veremos como desaparece el error de nuestro proyecto.
+<br><br>
 
+Hecho esto, vamos a lanzar por primera vez nuestro proyecto **Maven** y aprovecharemos para ver los ciclos de vida posibles que tiene.<br>
+Hacemos clic con el botón derecho sobre nuestro proyecto y vamos a **Run As**. Ahí nos aparecerán diversas opciones
 
+![Maven run as]({{ site.baseurl }}/images/posts/maven-run-as.png)
+
+¿Qué hace cada una de ellas?
+
+- **Maven build** → Compila el código del proyecto
+- **Maven clean** → Elimina todos los ficheros hechos por los builds anteriores
+- **Maven generate-sources** → Genera código para incluirlo en la compilación
+- **Maven install** → Instala los paquetes de la biblioteca en un repositorio local, compila el proyecto y lo comprueba.
+
+Así que para nuestra prueba, vamos a elegir la opción de **Maven install**.<br>
+Se nos mostrará una ventana de consola con el proceso actual de dicha acción.
+
+![Maven run build success]({{ site.baseurl }}/images/posts/maven-run-build-success.png)
+
+Si vemos un mensaje de **BUILD SUCCESS** como en la imagen de arriba significa que el proceso se ha completado con éxito.
+<br><br>
+
+Es posible que, en vez de un mensaje de éxito, veamos lo siguiente:
+
+{% highlight txt %}
+No compiler is provided in this environment. Perhaps you are running on a JRE rather than a JDK
+{% endhighlight %}
+
+Y nos esté dando un error. Esto quiere decir que tenemos mal configurada la ruta al **JDK** en el workspace de **Eclipse**.
+<br><br>
+
+Para solucionarlo hay que ir a **Window → Preferences → Java → Installed JRE**. Lo que debe aparecer es la versión de **JDK**, como en esta imagen
+
+![Eclipse change jre jdk]({{ site.baseurl }}/images/posts/eclipse-change-jdk-jre.png)
+
+Si en vez de eso tenemos el **JRE** es el motivo de que veamos ese error. Para subsanarlo pulsamos sobre **Add → Standard VM → Directory** y elegimos la carpeta de instalación de nuestro **JDK**
+
+![Eclipse jdk standard vm]({{ site.baseurl }}/images/posts/eclipse-standard-vm.png)
+
+![Eclipse JDK directory]({{ site.baseurl }}/images/posts/eclipse-jdk-directory.png)
+
+Aplicamos los cambios, aceptamos y ya podemos repetir el proceso del **Maven install** habiendo corregido ese error
+
+## Dependencias
+
+Para gestionar las dependencias, dentro del **POM** deberemos fijarnos en el tag *dependencies*.<br>
+
+Por defecto tenemos cargada la librería de **junit**, que nos servirá para ver un ejemplo de cómo añadir más librerías.<br><br>
+
+Tenemos, al igual que con los **plugin**, los tag de **groupId** y **artifactId**. Aparte de eso, lo que nos interesa también es el tercer tag, version, que nos permitirá indicar la versión de la librería y, en caso de tener que modificarla, bastará con cambiar ese valor y volver a hacer un install.<br><br>
+
+Así pues... ¿de dónde podemos conseguir las dependencias?<br>
+Bien, hay varios sitios y **Google** lo sabe todo, pero así más concretamente hay una página web llamada MVN Repository que cuenta con un amplio abanico de dependencias organizadas por temas que es de lo mejorcito que podemos encontrar.<br><br>
+
+Simplemente entraremos en la dependencia que nos interese, por ejemplo el conector **JDBC** de **MySQL**, elegiremos la versión que queramos cargar en nuestro proyecto y en la parte inferior de la página nos aparecerá el código XML de Maven que deberemos copiar en el POM.
+
+![Maven repository mysql connector]({{ site.baseurl }}/images/posts/mavenrepository-mysql-connector.png)
+
+De ese modo nuestro **POM** quedaría tal que así
+
+{% highlight xml %}
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.programandoapasitos</groupId>
+	<artifactId>nombrePrueba</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	
+	<name>nombrePrueba</name>
+	<url>http://maven.apache.org</url>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.6</version>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>
+{% endhighlight %}
+
+Y después de hacer un **Maven install** ya estaremos en disposición de usar nuestra nueva dependencia.
+
+---
+
+Hasta aquí mi pequeño tutorial para empezar a desenvolverte en **Maven**. Sin duda hay muchísima más chicha que aprender, por eso te recomiendo que para profundizar mucho más en el tema visites los siguientes enlaces
+
+- [Java2S Maven tutorial](http://www.java2s.com/Tutorials/Java/Maven_Tutorial/index.htm){:target="blank"}
+- [Apache Maven POM](http://maven.apache.org/pom.html){:target="blank"}
 
 **¡Salud y coding!**
