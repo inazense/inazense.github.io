@@ -20,6 +20,7 @@ permalink: /sections/
 - [Maven en Eclipse I]({{ site.baseurl }}/tutorial-maven-eclipse/){:target="blank"}
 - [Maven en Eclipse II. Generar jar]({{ site.baseurl }}/tutorial-maven-eclipse-ii-generate-jar/){:target="blank"}
 - [Ordenar HashMap por key o value]({{ site.baseurl }}/sort-hashmap-by-key-or-value/){:target="_blank"}
+- [Resolver Sudoku]({{ site.baseurl }}/solve-sudoku-java/){:target="blank"}
 
 ### Javascript
 - [ReactJS I. Intalar React en Windows]({{ site.baseurl }}/ReactJS-i-install-react-on-windows/){:target="_blank"}
