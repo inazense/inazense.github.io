@@ -1,0 +1,137 @@
+---
+layout: post
+title: Envío de mails en Python
+---
+
+Os pongo en situación. A partir de hoy en el trabajo debemos fichar diariamente a base de enviar un correo electrónico cuando empecemos cada jornada, tanto por la mañana como por la tarde. Los mails deberán llevar como cabecera nuestro nombre de usuario, la fecha actual en formato DDMMAA y la letra M o T dependiendo si es por la mañana o por la tarde, y en el cuerpo del mensaje deberá llevar un texto en concreto.
+<br><br>
+
+Bien, el caso es que soy un poco perro y, como pretendo quedarme bastante tiempo en esta empresa, no me apetece mucho tener que estar escribiendo todos los días, dos veces al día, el mismo correo. Es una tarea repetitiva que se puede automatizar fácilmente.
+<br><br>
+
+Y aprovechando que estoy intentando aprender Python, ¿qué lenguaje mejor para programar ese **script** que el de la serpiente? Leyendo un poquito vi que **enviar mails con Python** es tremendamente sencillo, enseguida lo veréis.
+<br><br>
+
+El **script** debía constar de dos partes, una que extrajera la fecha del sistema y la formateara como yo quisiera, y la segunda que creara un **mail** y lo mandase.
+<br><br>
+
+El código completo es el siguiente:
+
+{% highlight python %}
+# -*- coding: utf-8 -*-
+import smtplib
+import time
+
+'''
+Calcular la hora
+'''
+if (time.strftime("%p") == "AM"):
+	tipoHora = "M"
+else:
+	tipoHora = "T"
+
+'''
+Crear datos de envío
+'''
+remitente   = "Inazio <remitente@mail.com>"
+destinatario  = "destinatario@mail.com"
+asunto    = "xxxxxxxxxx" + time.strftime("%d%m%y") + tipoHora
+mensaje   = "Aquí va el contenido de nuestro mensaje"
+
+'''
+Preparo el mail y agrego campos
+'''
+email = """From: %s 
+To: %s 
+MIME-Version: 1.0 
+Content-type: text/html 
+Subject: %s 
+ 
+%s
+""" % (remitente, destinatario, asunto, mensaje)
+
+try:
+	smtp = smtplib.SMTP('smtp.mail.com')
+	smtp.login('inazio.claver@mail.com', '*******')
+	smtp.sendmail(remitente, destinatario, email)
+	smtp.quit()
+except Exception as e:
+	print(e)
+{% endhighlight %}
+
+Vamos a verlo paso a paso para comprender bien lo que hace.
+<br><br>
+
+**¿Qué información necesitamos conocer?**
+<br><br>
+
+Antes de nada, debemos tener claro qué es lo que necesitamos.
+- Correo electrónico del remitente
+- Correo electrónico del destinatario
+- Dirección del servidor SMTP para envíar el mensaje
+- Asunto y cuerpo de nuestro mensaje
+
+Sabiendo eso, lo primero que haremos será importar las librerías necesarias, que afortunadamente se incluyen en el paquete por defecto. Son **time** para trabajar con tiempos, y **smtplib** para envío de correos electrónicos. Además agregaremos nuestra consabida cabecera de **utf-8**
+
+{% highlight python %}
+# -*- coding: utf-8 -*-
+import smtplib
+import time
+{% endhighlight %}
+
+Ahora viene la parte en la que trabajaremos con la fecha y hora.<br>
+
+La hora se captura con la función __time.strftime()__ pudiendo pasarle varios parámetros para imprimirla en cadena de texto como deseemos. A saber:
+
+![Directivas timestamp python]({{ site.baseurl }}/images/posts/timestamp-directiva-python.png)
+
+Por lo tanto, como quiero construir una cadena que sea DDMMAA y si es por la tarde o por el día, primero averiguaré si es AM o PM y luego concatenaré el resultado en un String.
+
+{% highlight python %}
+if (time.strftime("%p") == "AM"):
+	tipoHora = "M"
+else:
+	tipoHora = "T"
+
+'''
+El asunto debe ser mi nombre de usuario, más la fecha y si es mañana o tarde. Ej: xxxxxxxxxxxx201216M
+'''
+asunto    = "xxxxxxxxxx" + time.strftime("%d%m%y") + tipoHora
+{% endhighlight %}
+
+Solo nos queda crear la información que insertaremos en el mail. Lo podemos hacer de la siguiente manera, a través de la sustitución de parámetros indicados en una cadena de texto.
+
+{% highlight python %}
+email = """From: %s 
+To: %s 
+MIME-Version: 1.0 
+Content-type: text/html 
+Subject: %s
+ 
+%s
+""" % (remitente, destinatario, asunto, mensaje)
+{% endhighlight %}
+
+Y ahora trabajaremos configurando nuestro servidor, siempre dentro de una sección try / except.
+
+{% highlight python %}
+try:
+	smtp = smtplib.SMTP('smtp.mail.com')
+	smtp.login('ignacio.claver@movicoders.com', 'G62iji3@')
+	smtp.sendmail(remitente, destinatario, email)
+	smtp.quit()
+except Exception as e:
+	print(e)
+{% endhighlight %}
+
+Lo primero es establecer la **dirección de nuestro servidor SMTP** que vamos a utilizar. Después nos loguearemos usando el correo electrónico y la contraseña, y posteriormente usamos la función **sendmail** pasandole los parámetros de remitente, destinatario y el **email** a enviar, que establecimos anteriormente.
+Nota: Según la configuración del **servidor SMTP** a veces no es necesario establecer usuario y contraseña.
+
+Con todo eso ya estamos listos para generar el mail. Bastará con lanzar la aplicación desde la consola de **Python** e ir a revisarlo a nuestro cliente de correo electrónico. Si ha habido algún error se mostrará en la consola desde la que hemos lanzado el programa.
+
+![Mail Python example]({{ site.baseurl }}/images/posts/mail-python-example.png)
+
+Si a vosotros no os llega a la bandeja de entrada deberíais revisar la sección de SPAM.
+<br><br>
+
+**¡Salud y coding!**

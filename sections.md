@@ -28,6 +28,7 @@ permalink: /sections/
 
 ### Python
 - [Crear barra de progreso en la terminal]({{ site.baseurl }}/barra-progreso-terminal-python/){:target="_blank"}
+- [Enviar email]({{ site.baseurl }}/send-mail-with-python/){:target="blank"}
 
 ### Sistemas
 - [Configurar virtual host Apache en Ubuntu]({{ site.baseurl }}/configure-virtual-host-apache-ubuntu/){:target="blank"}
