@@ -30,4 +30,5 @@ permalink: /sections/
 - [Crear barra de progreso en la terminal]({{ site.baseurl }}/barra-progreso-terminal-python/){:target="_blank"}
 
 ### Sistemas
+- [Configurar virtual host Apache en Ubuntu]({{ site.baseurl }}/configure-virtual-host-apache-ubuntu/){:target="blank"}
 - [Sincronizar carpetas externas en OneDrive]({{ site.baseurl }}/sync-onedrive-external-folders/){:target="_blank"}
