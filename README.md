@@ -8,7 +8,7 @@ Este repositorio existe gracias a la creación de la increíble herramienta [Jek
 
 Jekyll-now hace mucho más sencillo el crear un blog basado en Jekyll, eliminando un montón de configuraciones tediosas.
 
-## Incio rápido
+### Incio rápido
 
 Para agregar nuevos posts debemos generar un nuevo fichero en la carpeta ___posts__, y esta deberá comenzar con la fecha que deseemos para ordenarla de más reciente a más antigua. Un ejemplo sería ```2021-05-28-new-entry.md```.
 <br>
@@ -17,7 +17,7 @@ Posteriormente, en __sections.md__ referenciaremos la entrada al índice de la s
 
 ```- [New entry]({{ site.baseurl }}/new-entry/){:target="blank"}```
 
-## Despliegue en localhost
+### Despliegue en localhost
 
 1. Installar Jekyll y el plugin github pages. Esto copiará los plugins usados por Github Pages en tu máquina local, incluyendo Jekyll, Sass, etc.
 
@@ -32,7 +32,7 @@ Posteriormente, en __sections.md__ referenciaremos la entrada al índice de la s
 
 <br><br>
 
-## Credits
+### Credits
 
 - [Jekyll-now](https://github.com/barryclark/jekyll-now) - The genius creator of Jekyll-now
 - [Jekyll](https://github.com/jekyll/jekyll) - Thanks to its creators, contributors and maintainers.
