@@ -11,32 +11,27 @@ Jekyll-now hace mucho más sencillo el crear un blog basado en Jekyll, eliminand
 ## Incio rápido
 ### Step 3) Publish your first blog post
 
-Para agregar nuevos posts debemos generar un nuevo fichero en la carpeta ___posts__, y esta deberá comenzar con la fecha que deseemos para ordenarla de más reciente a más antigua. Un ejemplo sería {% highlight markdown %}2021-05-28-new-entry.md{% endhighlight %}.
+Para agregar nuevos posts debemos generar un nuevo fichero en la carpeta ___posts__, y esta deberá comenzar con la fecha que deseemos para ordenarla de más reciente a más antigua. Un ejemplo sería ```2021-05-28-new-entry.md```.
 <br>
 
 Posteriormente, en __sections.md__ referenciaremos la entrada al índice de la siguiente manera:
 
-{% highlight markdown %}
-- [New entry]({{ site.baseurl }}/new-entry/){:target="blank"}
-{% endhighlight %}
+```- [New entry]({{ site.baseurl }}/new-entry/){:target="blank"}```
 
 ## Despliegue en localhost
 
 1. Installar Jekyll y el plugin github pages. Esto copiará los plugins usados por Github Pages en tu máquina local, incluyendo Jekyll, Sass, etc.
 
-{% highlight ruby %}
-gem install github-pages
-{% endhighlight %}
+```gem install github-pages```
 
 2. Clona el repositorio
 3. Sirve el sitio para cargar los cambios de markup/sass con 
 
-{% highlight ruby %}
-jekyll serve
-{% endhighlight %}
+```jekyll serve```
 
 4. Visita el sitio en https://127.0.0.1:4000/
 
+<br><br>
 
 ## Credits
 
