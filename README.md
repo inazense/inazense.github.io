@@ -30,8 +30,6 @@ Posteriormente, en __sections.md__ referenciaremos la entrada al índice de la s
 
 4. Visita el sitio en https://127.0.0.1:4000/
 
-<br><br>
-
 ### Creditos
 
 - [Jekyll-now](https://github.com/barryclark/jekyll-now) - Gracias al creador de Jekyl-now por la facilidad de uso y la explicación del proyecto tan bien documentada
