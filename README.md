@@ -9,7 +9,6 @@ Este repositorio existe gracias a la creación de la increíble herramienta [Jek
 Jekyll-now hace mucho más sencillo el crear un blog basado en Jekyll, eliminando un montón de configuraciones tediosas.
 
 ## Incio rápido
-### Step 3) Publish your first blog post
 
 Para agregar nuevos posts debemos generar un nuevo fichero en la carpeta ___posts__, y esta deberá comenzar con la fecha que deseemos para ordenarla de más reciente a más antigua. Un ejemplo sería ```2021-05-28-new-entry.md```.
 <br>
