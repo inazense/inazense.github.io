@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Envío de mails en Python
+categories: Python
 ---
 
 Os pongo en situación. A partir de hoy en el trabajo debemos fichar diariamente a base de enviar un correo electrónico cuando empecemos cada jornada, tanto por la mañana como por la tarde. Los mails deberán llevar como cabecera nuestro nombre de usuario, la fecha actual en formato DDMMAA y la letra M o T dependiendo si es por la mañana o por la tarde, y en el cuerpo del mensaje deberá llevar un texto en concreto.

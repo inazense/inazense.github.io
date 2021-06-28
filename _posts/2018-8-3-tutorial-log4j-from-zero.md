@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Tutorial Java. Log4j desde cero
+categories: Java
 ---
 
 En el trabajo me ha surgido la necesidad de trabajar con la librería Log4j en un proyecto y como me

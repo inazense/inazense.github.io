@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Crear una barra de progreso en la terminal con Python
+categories: Python
 ---
 
 Cuando trabajamos con **Python** pintando resultados en la **terminal**, puede quedar un poco feo dejar el cursor esperando mientras procesamos ciertas acciones que van a tardar un tiempo en completarse. Esto es así aquí y en la China. El cursor parpadeando pone nervioso a todo el mundo.

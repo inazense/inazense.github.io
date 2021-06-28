@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Resolver sudokus en Java
+categories: Java
 ---
 
 El otro día estaba haciendo el **sudoku** del periódico y me plantee la siguiente duda. ¿Cómo sería un **programa que te resolviese el sudoku** automáticamente?<br><br>

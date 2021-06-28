@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Configurar Virtual Host Apache en Ubuntu
+categories: Sistemas
 ---
 
 Hace poco tiempo se estropeo mi ordenador y decidí que era el momento idóneo para dar el salto a una plataforma **Linux**. He tonteado mucho con ello pero nunca lo había tomado realmente en serio y, por considerarme 'primerizo' opté por la última **versión LTS de Ubuntu**, la **16.04**.

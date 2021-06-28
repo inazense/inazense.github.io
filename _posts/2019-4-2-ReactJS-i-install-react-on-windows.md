@@ -1,6 +1,7 @@
 ---
 layout: post
 title: ReactJS I. Instalar React en Windows
+categories: React
 ---
 
 **ReactJS** (o **React** a secas) es una **librería Javascript** de **código abierto** creada por **Facebook** para diseñar interfaces de usuario en aplicaciones de una sola página. No os voy a aburrir con más teoría porque eso es muy fácil de encontrar, así que os enlazo directamente con pensada el artículo de Wikipedia y si os apetece podéis leerlo tranquilamente.

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Tutorial Maven en Eclipse II. Generar un jar
+categories: Java
 ---
 
 En la [anterior entrada del **Tutorial Maven en Eclipse**]({{ site.baseurl }}/tutorial-maven-eclipse/){:target="blank"} aprendimos **qué es Maven**, como **crear un proyecto Maven en Eclipse**, a configurarlo y a manejar las **dependencias de librerías**.

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Sincronizar carpetas externas en OneDrive
+categories: Sistemas
 ---
 
 Esta será una entrada cortita pero creo que bastante útil.<br>

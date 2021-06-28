@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Tutorial Maven en Eclipse
+categories: Java
 ---
-
 De normal, cuando realizamos un proyecto Java si es pequeño nosotros mismos podemos hacer las actividades típicas de la construcción de software.
 
 - Instalar las librerías necesarias para nuestro proyecto en el classpath

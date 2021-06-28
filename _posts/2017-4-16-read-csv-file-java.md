@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Cómo leer ficheros CSV en Java
+categories: Java
 ---
 
 Un **CSV** es un fichero de texto plano que consta de varios valores separados por comas (o punto y coma, según el caso), de modo que para procesar este tipo de **ficheros** en **Java** en principio debería bastar con leer el archivo línea a línea y partir las **cadenas de texto** por el separador correspondiente.

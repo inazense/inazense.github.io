@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Leer ficheros properties en Java
+categories: Java
 ---
 
 Una práctica habitual en **Java** es guardar **parámetros de configuración** en un **archivo de propiedades**, que es básicamente un fichero de texto plano con la extensión **.properties** con su contenido almacenado como una **pareja clave=valor** y con el símbolo # para indicar línea de comentario.

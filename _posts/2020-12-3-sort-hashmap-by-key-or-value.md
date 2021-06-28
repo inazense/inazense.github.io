@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Java. Ordernar un HashMap por key o value
+categories: Java
 ---
 
 Hace demasiado tiempo que no actualizo este blog, vamos a quitarle las telarañas con una entrada corta, didáctica y que puede ser útil en más de una ocasión.<br><br>
