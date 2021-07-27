@@ -59,4 +59,4 @@ def __init__(self, x=0, y=0)
 
 Así ahora mismo podemos instanciar objetos de nuestra clase sin tener que indicarle valores a día y mes. Y si ahora imprimimos por pantalla esos valores, veremos que valen exactamente 0. ¿No es genial?
 
-**¡Saludo y coding!**
+**¡Salud y coding!**
