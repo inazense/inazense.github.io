@@ -15,7 +15,7 @@ El código completo del ejemplo puedes bajartelo en [mi repositorio de Github](h
 
 Lo primero es definir la estructura de nuestro proyecto. La mía la podéis ver en la siguiente imagen.
 
-![Gallery project structure]({{ site.baseurl }}/images/posts/gallery-structure.png)
+![Gallery project structure]({{ site.baseurl }}/images/posts/gallery-structure-tree.png)
 
 - En la carpeta **assets** dejo las imagenes que voy a mostrar en la **galería**.
 - En **css** almaceno los **framework** necesarios (bootstrap y magnific popup) y en la subcarpeta estilos cargaré las hojas de estilo propias.
