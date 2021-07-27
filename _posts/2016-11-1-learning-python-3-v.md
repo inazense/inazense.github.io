@@ -57,8 +57,11 @@ __console__.NombreDeLaClase object at 0x026CAB70
 
 Lo que nos dirá de qué clase de objetos se trata y el espacio de memoria donde están alojados.<br><br>
 
-**- Puedo instanciar e imprimir objetos, vale. Pero… vaya mierda de clase has creado, ¿no?**<br>
+**- Puedo instanciar e imprimir objetos, vale. Pero… vaya mierda de clase has creado, ¿no?**
+<br>
+
 **- Hombre, pues un poco de razón sí que tienes, sí. Vamos a meterle algo de chicha en ese caso…**
+<br>
 
 Vamos a empezar con los **atributos de las clases**. Para asignar **atributos en Python** no es necesario declararlos en la definición de la **clase**, sino que podemos asignarlos directamente en las **instancias**, a través de la **notación de punto**. Es decir objeto.atributo = valor.<br><br>
 
@@ -124,9 +127,12 @@ Obteniendo el mismo resultado que anteriormente.<br><br>
 Básicamente nos indica que cuando llamamos al **método** no estamos pasando ningún argumento<br><br>
 
 **- ¡Ajá! Sigue siendo cutrecillo, pero ya va mejorando la cosa.**<br>
+
 **- Te lo dije, solo debías esperar**<br>
+
 **- Y… ¿si quiero pasarle más de un parámetro como lo haría?**<br>
-**- Fácil, ahora lo vemos**<br>
+
+**- Fácil, ahora lo vemos**
 
 <br><br>
 
