@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Galería web responsive con Magnific Popup
-categories: HTML, Javascript, PHP
+categories: HTML Javascript PHP
 ---
 
 Realizando una página web me surgió la necesidad de crear una sección que sirviera de **galería** para que el cliente pueda mostrar todos sus trabajos.<br>
