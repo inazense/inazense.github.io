@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Galería web responsive con Magnific Popup
-categories: HTML Javascript PHP
+title: Aprendiendo Python 3 (IV). Primeros ejercicios
+categories: Python
 ---
 
 Como primeros **ejercicios** en **Python** para familiarizarnos con la **sintaxis** propongo que realicemos los mismos problemas que cuando, hace dos años, comencé a estudiar programación en el **lenguaje C**. Tal vez no sean los más afinados para empezar con este **lenguaje**, pero creo que nos darán cierta soltura a la hora de prácticar **Python**.<br><br>
