@@ -31,8 +31,6 @@ La idea última es realizar un ejemplo muy sencillo de galería que al ampliar l
 
 ![Gallery popup 1]({{ site.baseurl }}/images/posts/gallery-magnific-popup-1.png)
 
-<br>
-
 ![Gallery popup 1]({{ site.baseurl }}/images/posts/gallery-magnific-popup-2.png)
 
 ## ¡A por el código!
