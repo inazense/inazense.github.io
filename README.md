@@ -19,7 +19,7 @@ Posteriormente, en __sections.html__ referenciaremos la entrada al índice de la
 
 ### Despliegue en localhost
 
-1. Installar Jekyll y el plugin github pages. Esto copiará los plugins usados por Github Pages en tu máquina local, incluyendo Jekyll, Sass, etc.
+1. Instalar Jekyll y el plugin github pages. Esto copiará los plugins usados por Github Pages en tu máquina local, incluyendo Jekyll, Sass, etc.
 
 ```gem install github-pages```
 
@@ -29,6 +29,21 @@ Posteriormente, en __sections.html__ referenciaremos la entrada al índice de la
 ```jekyll serve```
 
 4. Visita el sitio en https://127.0.0.1:4000/
+
+### Posibles errores
+
+Usando Ruby en versión 3.0 o superior, webrick ya no es bundled gem. Según la documentación oficial en (https://www.ruby-lang.org/en/news/2020/12/25/ruby-3-0-0-released/):
+
+>The following libraries are no longer bundled gems or standard libraries. Install the corresponding gems to use these features.
+>
+>sdbm
+>
+>webrick
+>
+>net-telnet
+>
+>xmlrpc
+
 
 ### Creditos
 
