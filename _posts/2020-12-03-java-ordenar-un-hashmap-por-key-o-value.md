@@ -4,7 +4,10 @@ description: Tutorial
 author: inazense
 date: 2020-12-03 11:57:00 +0100
 categories: [Java]
-tags: [java, hashmaps, sorting, algorithms]    # TAG names should always be lowercase
+tags: [java, hashmaps, sorting, algorithms]
+image:
+  path: /assets/pictures/posts/java_logo.jpeg
+  alt: Java post
 ---
 
 Hace DEMASIADO tiempo que no actualizo este blog, vamos a quitarle las telarañas con una entrada corta, didáctica y que puede ser útil en más de una ocasión.
