@@ -1,6 +1,6 @@
 ---
 title: Instalar React en Windows
-description: Tutorial 
+description: Instalación de React JS en Windows y generación de proyecto nuevo
 author: inazense
 date: 2019-04-02 11:52:00 +0100
 categories: [React JS]

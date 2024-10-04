@@ -1,6 +1,6 @@
 ---
 title: Python. Crear una barra de progreso en la terminal
-description: Tutorial 
+description: Generar una barra de progreso desde cero 
 author: inazense
 date: 2019-11-04 14:04:00 +0100
 categories: [Python]

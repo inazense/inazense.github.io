@@ -1,6 +1,6 @@
 ---
 title: Java. Ordenar un HashMap por key o value
-description: Tutorial 
+description: Uso de streams para ordenar un HashMap 
 author: inazense
 date: 2020-12-03 11:57:00 +0100
 categories: [Java]
