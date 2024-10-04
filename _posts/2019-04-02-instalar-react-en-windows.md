@@ -1,5 +1,5 @@
 ---
-title: Python. Crear una barra de progreso en la terminal
+title: Instalar React en Windows
 description: Tutorial 
 author: inazense
 date: 2019-04-02 11:52:00 +0100
