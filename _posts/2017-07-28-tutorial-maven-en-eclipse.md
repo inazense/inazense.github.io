@@ -258,7 +258,7 @@ Y después de hacer un Maven install ya estaremos en disposición de usar nuestr
 
 Hasta aquí mi pequeño tutorial para empezar a desenvolverte en **Maven**. Sin duda hay muchísima más chicha que aprender, por eso te recomiendo que para profundizar mucho más en el tema visites los siguientes enlaces
 
-- [Java2S Maven Tutorial](http://www.java2s.com/Tutorials/Java/Maven_Tutorial/index.htm)
+- [Java2S Maven Tutorial](https://www.java2s.com/Tutorials/Java/Maven_Tutorial/index.htm)
 - [Apache Maven POM](https://maven.apache.org/pom.html)
 
 **¡Salud y coding!**

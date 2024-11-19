@@ -87,7 +87,7 @@ help(NombreDeLaClase)
 
 y veremos como automaticamente nos aparece un documento con los comentarios que hemos creado
 
-![Python docstrings](/assets/pictures/posts/python_learning_docstrings.png)
+![Python docstrings](/assets/pictures/posts/python_learning_docstrings.PNG)
 
 Al poder crearse tan sencillamente, incluso podemos crearnos un script que con cada actualización nos genere la documentación de nuestro proyecto, para tenerlo constantemente actualizado.
 
