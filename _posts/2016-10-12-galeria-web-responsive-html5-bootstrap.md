@@ -2,7 +2,7 @@
 title: Galería web responsive. HTML5 + Bootstrap + PHP + Magnific Popup
 description: Tutoria de como implementar magnifinc popup desde cero
 author: inazense
-date: 2016-11-01 16:03:00 +0100
+date: 2016-10-12 23:45:00 +0100
 categories: [Javascript]
 tags: [html, bootstrap, css, web, php, jQuery]
 image:
@@ -34,9 +34,9 @@ Lo primero es definir la estructura de nuestro proyecto. La mía la podéis ver 
 
 La idea última es realizar un ejemplo muy sencillo de galería que al ampliar la imagen se muestre el 100% de la misma en pantalla, permita interactuar cargando imagenes a izquierda a derecha y que todo ello se mantenga en otros dispositivos. En la versión de ordenador, por ejemplo, se nos vería tal que así.
 
-![jQuery project structure](/assets/pictures/posts/magnific_popup_2.png)
+![magnific popup example](/assets/pictures/posts/magnific_popup_2.png)
 
-![jQuery project structure](/assets/pictures/posts/magnific_popup_3.png)
+![magnific popup example](/assets/pictures/posts/magnific_popup_3.png)
 
 ## ¡A por el código!
 
@@ -253,6 +253,6 @@ Y por último, simplemente un poco de estilo para dejar nuestra página más pre
 
 Y ya tenemos nuestro ejemplo en pleno funcionamiento. Realmente, con coger la sección de HTML donde vemos como llamar a las imágenes y el script en jQuery ya podemos montarnos nuestra propia galería. El resto es pura paja para presentarlo más bonito.
 
-![jQuery project structure](/assets/pictures/posts/magnific_popup_4.png)
+![magnific popup example](/assets/pictures/posts/magnific_popup_4.png)
 
 **¡Salud y coding!**
