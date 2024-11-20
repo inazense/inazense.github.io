@@ -21,7 +21,7 @@ El código completo del ejemplo puedes bajartelo desde [mi repositorio de Github
 
 Lo primero es definir la estructura de nuestro proyecto. La mía la podéis ver en la siguiente imagen.
 
-![jQuery project structure](/assets/pictures/posts/magnific_popup_1.png)
+![jQuery project structure](/assets/pictures/posts/magnific_popup.png)
 
 - En la carpeta **assets** dejo las imagenes que voy a mostrar en la galería.
 - En **css** almaceno los framework necesarios (bootstrap y magnific popup) y en la subcarpeta estilos cargaré las hojas de estilo propias.
