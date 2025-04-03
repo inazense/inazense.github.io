@@ -1,1 +1,63 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://inazense.github.io/feed.xml" rel="self" type="application/atom+xml"/><link href="https://inazense.github.io/" rel="alternate" type="text/html" hreflang="es"/><updated>2025-04-03T12:14:22+00:00</updated><id>https://inazense.github.io/feed.xml</id><title type="html">Programando a pasitos</title><subtitle>No es un bug, es una característica no documentada </subtitle></feed>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://inazense.github.io/feed.xml" rel="self" type="application/atom+xml"/><link href="https://inazense.github.io/" rel="alternate" type="text/html" hreflang="es"/><updated>2025-04-03T13:52:03+00:00</updated><id>https://inazense.github.io/feed.xml</id><title type="html">Programando a pasitos</title><subtitle>No es un bug, es una característica no documentada </subtitle><entry><title type="html">Java. Ordenar un HashMap por key o value</title><link href="https://inazense.github.io/blog/2020/java-ordenar-un-hashmap-por-key-o-value/" rel="alternate" type="text/html" title="Java. Ordenar un HashMap por key o value"/><published>2020-12-03T11:57:00+00:00</published><updated>2020-12-03T11:57:00+00:00</updated><id>https://inazense.github.io/blog/2020/java-ordenar-un-hashmap-por-key-o-value</id><content type="html" xml:base="https://inazense.github.io/blog/2020/java-ordenar-un-hashmap-por-key-o-value/"><![CDATA[<p>En esta ocasión vamos a ver cómo llevar a cabo una de las cosas más tontas del mundo, ordenar algo. Pero que puede ser un poco enrevesado según lo que te toque hacer.</p> <h2 id="qué-es-un-map-o-hashmap-en-java">¿Qué es un Map o HashMap en Java?</h2> <p>Antes vamos con una breve introducción. Básicamente, un <strong>Map</strong> o <strong>mapa</strong> en <strong>Java</strong> es una interfaz que nos va a permitir representar una <strong>estructura de datos</strong> que <strong>almacene información</strong> usando un <strong>par de “clave - valor”</strong>.</p> <p>Es decir, que es la forma en la que vamos a poder tener la información guardada tal que así:</p> <p>{“Nombre”: “Inazio”, “Profesión”: “Bordador de calcetines personalizados”, …}</p> <p>¿Y <strong>HashMap</strong> entonces que es? <strong>HashMap</strong> es la <strong>implementación de la interfaz Map</strong>, ni más ni menos.</p> <h2 id="cómo-ordenar-un-hashmap-en-java">Cómo ordenar un HashMap en Java</h2> <p>Para ordenar un <strong>HashMap</strong> en Java vamos a utilizar el siguiente código, que iré explicando paso a paso.</p> <p>Lo primero, va a ser crear un <strong>Map</strong> que ordenar, que si no es como plantar judías para recoger melones, un sinsentido</p> <figure class="highlight"><pre><code class="language-java" data-lang="java"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashMap</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">&gt;();</span>
+		
+<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">15</span><span class="o">);</span>
+<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">12</span><span class="o">);</span>
+<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">30</span><span class="o">);</span>
+<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">5</span><span class="o">);</span>
+<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span> <span class="mi">22</span><span class="o">);</span>
+<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="mi">27</span><span class="o">);</span>
+<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">6</span><span class="o">,</span> <span class="mi">4</span><span class="o">);</span>
+<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">7</span><span class="o">,</span> <span class="mi">87</span><span class="o">);</span>
+</pre></td></tr></tbody></table></code></pre></figure> <p>Una vez que tengamos eso hecho, vamos a generar un método que nos devolverá el <strong>mapa ordenado</strong>, tal que así</p> <figure class="highlight"><pre><code class="language-java" data-lang="java"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="code"><pre><span class="kd">private</span> <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">&gt;</span> <span class="nf">sortMapByValue</span><span class="o">(</span><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">)</span>
+<span class="o">{</span>
+    <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">sortedMap</span> <span class="o">=</span>  <span class="n">map</span><span class="o">.</span><span class="na">entrySet</span><span class="o">().</span><span class="na">stream</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">sorted</span><span class="o">(</span><span class="n">comparingInt</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">e</span><span class="o">.</span><span class="na">getValue</span><span class="o">()</span> <span class="o">))</span>
+            <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">toMap</span><span class="o">(</span>
+                    <span class="nc">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">::</span><span class="n">getKey</span><span class="o">,</span>
+                    <span class="nc">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">::</span><span class="n">getValue</span><span class="o">,</span>
+                    <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span> <span class="k">throw</span> <span class="k">new</span> <span class="nc">AssertionError</span><span class="o">();},</span>
+                    <span class="nl">LinkedHashMap:</span><span class="o">:</span><span class="k">new</span>
+            <span class="o">));</span>
+    <span class="k">return</span> <span class="n">sortedMap</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></figure> <p>Veamos en más detalle este código. Nuestra primera parada es esta</p> <figure class="highlight"><pre><code class="language-java" data-lang="java"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+</pre></td><td class="code"><pre><span class="n">map</span><span class="o">.</span><span class="na">entrySet</span><span class="o">().</span><span class="na">stream</span><span class="o">()</span>
+</pre></td></tr></tbody></table></code></pre></figure> <p><strong>entrySet()</strong> nos va a devolver el mapa en formato de <strong>colección</strong>, que es lo que necesitamos para permitir su ordenación y <strong>stream()</strong> lo que nos va a permitir es obtener un <strong>punto de entrada</strong> a esa <strong>colección</strong>.</p> <figure class="highlight"><pre><code class="language-java" data-lang="java"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+</pre></td><td class="code"><pre><span class="n">sorted</span><span class="o">(</span><span class="n">comparingInt</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">e</span><span class="o">.</span><span class="na">getValue</span><span class="o">()))</span>
+</pre></td></tr></tbody></table></code></pre></figure> <p>Este <strong>método</strong> nos va a permitir realizar la ordenación, comparando los valores de nuestro <strong>Map</strong> de forma descendente gracias al valor -1. Si quisiéramos hacerlo de forma ascendente debemos reemplazar este valor con un 1. Si quisiesemos ordenar por <strong>key</strong> simplemente reemplazaríamos <strong>e.getValue()</strong> por <strong>e.getKey()</strong>.</p> <figure class="highlight"><pre><code class="language-java" data-lang="java"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre><span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">toMap</span><span class="o">(</span>
+        <span class="nc">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">::</span><span class="n">getKey</span><span class="o">,</span>
+        <span class="nc">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">::</span><span class="n">getValue</span><span class="o">,</span>
+        <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span> <span class="k">throw</span> <span class="k">new</span> <span class="nc">AssertionError</span><span class="o">();},</span>
+        <span class="nl">LinkedHashMap:</span><span class="o">:</span><span class="k">new</span>
+<span class="o">));</span> 
+</pre></td></tr></tbody></table></code></pre></figure> <p>Por último, este <strong>método</strong> nos procesa la información y la almacena en un <strong>contenedor de resultados mutables</strong>, y en este caso le indicamos que realiza un <strong>parseo</strong> a objeto <strong>Map</strong>.</p> <p>Después de eso ya solo queda devolver nuestro <strong>Map</strong> y podremos pintar el resultado ordenado.</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Input: {0 : 15, 1 : 12, 2 : 30, 3 : 5, 4 : 22, 5 : 27, 6 : 4, 7 : 87,}
+Output: {7 : 87, 2 : 30, 5 : 27, 4 : 22, 0 : 15, 1 : 12, 3 : 5, 6 : 4}
+</code></pre></div></div> <p><strong>¡Salud y coding!</strong></p>]]></content><author><name></name></author><category term="java"/><summary type="html"><![CDATA[Uso de streams para ordenar un HashMap]]></summary></entry></feed>

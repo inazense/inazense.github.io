@@ -30,7 +30,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{
+        },{id: "post-java-ordenar-un-hashmap-por-key-o-value",
+        
+          title: "Java. Ordenar un HashMap por key o value",
+        
+        description: "Uso de streams para ordenar un HashMap",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/java-ordenar-un-hashmap-por-key-o-value/";
+          
+        },
+      },{
         id: 'social-email',
         title: 'email',
         section: 'Socials',
