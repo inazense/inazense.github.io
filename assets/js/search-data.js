@@ -38,18 +38,7 @@ ninja.data = [{
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/blog/2020/java-ordenar-un-hashmap-por-key-o-value/";
-          
-        },
-      },{id: "post-python-crear-una-barra-de-progreso-en-la-terminal",
-        
-          title: "Python. Crear una barra de progreso en la terminal",
-        
-        description: "Generar una barra de progreso desde cero",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/blog/2019/crear-barra-de-progreso-terminal-python-tqdm/";
+            window.location.href = "/blog/2025/java-ordenar-un-hashmap-por-key-o-value/";
           
         },
       },{
