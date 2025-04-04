@@ -9,14 +9,9 @@ nav_order: 2
 
 Aunque tal vez se ha quedado un poco anticuada esta sección, ya que ha pasado tiempo desde que finalicé mis estudios, me gustaría mantenerla porque evoca recuedos interesantes.
 
-La idea nació con la premisa de demostrar que no todo es estudiar y que las filosofadas que tienen los docentes pueden entretener y educar a partes iguales. De ahí nació la sección
-
-<div style="text-align: center; margin-top: 5%; margin-bottom: 5%;">
-	<h1>Lo dijo el profe</h1>
-</div>
+La idea nació con la premisa de demostrar que no todo es estudiar y que las filosofadas que tienen los docentes pueden entretener y educar a partes iguales. De ahí nació la sección **Lo dijo el profe**. Leamos las perlas de mis educadores.
 
 ### Programación
-<br>
 
 - "Primero piensa, luego escribe"
 
