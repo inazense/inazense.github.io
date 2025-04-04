@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Java. Ordenar un HashMap por key o value
-date: 2020-12-03 11:57:00
+date: 2025-04-04 11:57:00
 description: Uso de streams para ordenar un HashMap 
 categories: java
 ---
