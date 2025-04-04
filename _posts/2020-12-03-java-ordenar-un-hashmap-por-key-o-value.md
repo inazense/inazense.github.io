@@ -24,6 +24,8 @@ Para ordenar un **HashMap** en Java vamos a utilizar el siguiente código, que i
 
 Lo primero, va a ser crear un **Map** que ordenar, que si no es como plantar judías para recoger melones, un sinsentido
 
+<br>
+
 {% highlight java linenos %}
 
 Map<Integer, Integer> map = new HashMap<Integer, Integer>();
@@ -39,7 +41,11 @@ map.put(7, 87);
 
 {% endhighlight %}
 
+<br>
+
 Una vez que tengamos eso hecho, vamos a generar un método que nos devolverá el **mapa ordenado**, tal que así
+
+<br>
 
 {% highlight java linenos %}
 
@@ -58,6 +64,8 @@ private Map<Integer, Integer> sortMapByValue(Map<Integer, Integer> map)
 
 {% endhighlight %}
 
+<br>
+
 Veamos en más detalle este código. Nuestra primera parada es esta
 
 {% highlight java linenos %}
@@ -72,6 +80,8 @@ sorted(comparingInt(e -> -1 * e.getValue()))
 
 Este **método** nos va a permitir realizar la ordenación, comparando los valores de nuestro **Map** de forma descendente gracias al valor -1. Si quisiéramos hacerlo de forma ascendente debemos reemplazar este valor con un 1. Si quisiesemos ordenar por **key** simplemente reemplazaríamos **e.getValue()** por **e.getKey()**.
 
+<br>
+
 {% highlight java linenos %}
 
 .collect(toMap(
@@ -83,13 +93,19 @@ Este **método** nos va a permitir realizar la ordenación, comparando los valor
 
 {% endhighlight %}
 
+<br>
+
 Por último, este **método** nos procesa la información y la almacena en un **contenedor de resultados mutables**, y en este caso le indicamos que realiza un **parseo** a objeto **Map**.
 
 Después de eso ya solo queda devolver nuestro **Map** y podremos pintar el resultado ordenado.
+
+<br>
 
 ```
 Input: {0 : 15, 1 : 12, 2 : 30, 3 : 5, 4 : 22, 5 : 27, 6 : 4, 7 : 87,}
 Output: {7 : 87, 2 : 30, 5 : 27, 4 : 22, 0 : 15, 1 : 12, 3 : 5, 6 : 4}
 ````
+
+<br>
 
 **¡Salud y coding!**
