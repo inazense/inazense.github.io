@@ -1,10 +1,12 @@
 # Programando a pasitos
 
 <div align="center">
+    <a href="https://inazense.github.io">
+        <img src="readme_preview/programandoapasitoslogo.png" alt="Logo Programando a pasitos" width="200">
+    </a>
+    <br><br>
 
-[![Logo Programando a pasitos](readme_preview/programandoapasitoslogo.png)](https://inazense.github.io)
-
-**Nuevo lugar del blog [Programando a pasitos](https://programandoapasitos.blogspot.com/).**
+**Nuevo lugar del blog [Programando a pasitos](https://programandoapasitos.blogspot.com/).**<br>
 Implementado sobre [al-folio](https://github.com/alshedivat/al-folio), un tema de [Jekyll](https://jekyllrb.com/) sencillo, limpio y responsive.
 
 </div>
