@@ -2,7 +2,7 @@
 
 <div align="center">
     <a href="https://inazense.github.io">
-        <img src="readme_preview/programandoapasitoslogo.png" alt="Logo Programando a pasitos" width="200">
+        <img src="readme_preview/programandoapasitoslogo.png" alt="Logo Programando a pasitos" width="400">
     </a>
     <br><br>
 
