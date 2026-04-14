@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Procesos y servicios. Procesos concurrentes | Programando a Pasitos</title>
+<meta name="description" content="Requisitos de exclusión mutua, algoritmos de Dekker y Peterson para sincronización de procesos concurrentes, con ejercicio práctico en Java.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Procesos y servicios. Procesos concurrentes | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Procesos y servicios. Procesos concurrentes" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Requisitos de exclusión mutua, algoritmos de Dekker y Peterson para sincronización de procesos concurrentes, con ejercicio práctico en Java." />
+<meta property="og:description" content="Requisitos de exclusión mutua, algoritmos de Dekker y Peterson para sincronización de procesos concurrentes, con ejercicio práctico en Java." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/12/15/procesos-y-servicios-procesos-concurrentes/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/12/15/procesos-y-servicios-procesos-concurrentes/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-12-15T05:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Procesos y servicios. Procesos concurrentes" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-12-15T05:00:00+01:00","datePublished":"2015-12-15T05:00:00+01:00","description":"Requisitos de exclusión mutua, algoritmos de Dekker y Peterson para sincronización de procesos concurrentes, con ejercicio práctico en Java.","headline":"Procesos y servicios. Procesos concurrentes","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/12/15/procesos-y-servicios-procesos-concurrentes/"},"url":"http://localhost:4000/posts/2015/12/15/procesos-y-servicios-procesos-concurrentes/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Procesos y servicios. Procesos concurrentes</h1>
+    <div class="post-meta">
+      <time datetime="2015-12-15T05:00:00+01:00">15 Dec 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#java" class="post-category">Java</a>, 
+        
+          <a href="/categories/#programación-de-servicios-y-procesos" class="post-category">Programación de servicios y procesos</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Requisitos de exclusión mutua, algoritmos de Dekker y Peterson para sincronización de procesos concurrentes, con ejercicio práctico en Java.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="requisitos-para-la-exclusión-mutua">Requisitos para la exclusión mutua</h2>
+
+<p>Todo mecanismo de exclusión mutua debe cumplir seis requisitos fundamentales:</p>
+
+<ol>
+  <li>Solo un proceso puede estar en su sección crítica para un recurso compartido en un instante dado.</li>
+  <li>Un proceso interrumpido fuera de su sección crítica no debe afectar a otros procesos.</li>
+  <li>Hay que evitar el interbloqueo y la inanición indefinida.</li>
+  <li>Un proceso debe poder acceder sin demora cuando ningún otro está en su sección crítica.</li>
+  <li>No se deben hacer suposiciones sobre las velocidades relativas de los procesos.</li>
+  <li>Un proceso debe permanecer en su sección crítica solo un tiempo finito.</li>
+</ol>
+
+<h2 id="exclusión-mutua-soluciones-por-software">Exclusión mutua: Soluciones por software</h2>
+
+<p>Las soluciones software son implementables en máquinas mono y multiprocesador con memoria compartida, asumiendo exclusión mutua elemental en el acceso a memoria.</p>
+
+<h3 id="algoritmo-de-dekker">Algoritmo de Dekker</h3>
+
+<p>Dijkstra presentó este algoritmo desarrollado en etapas, ilustrando los errores comunes que se van cometiendo y corrigiendo:</p>
+
+<p><strong>Primer intento:</strong> Una variable <code class="language-plaintext highlighter-rouge">turno</code> de tipo 0..1 controla el acceso. Metáfora del iglú: solo una persona puede entrar a la vez y escribir en la pizarra. Problema: provoca alternancia forzada y bloqueo permanente si un proceso falla.</p>
+
+<p><img src="/img/posts/20151215_1.jpg" alt="Metáfora del iglú para la exclusión mutua" /></p>
+
+<p><strong>Segundo intento:</strong> Array <code class="language-plaintext highlighter-rouge">señal: array[0..1] of booleano</code>, donde cada proceso tiene su propia “cabaña” y puede observar el estado del otro. Problema: no garantiza exclusión mutua (ambos pueden entrar simultáneamente).</p>
+
+<p><img src="/img/posts/20151215_2.png" alt="Segundo intento - array de señales" /></p>
+
+<p><img src="/img/posts/20151215_3.png" alt="Metáfora del segundo intento con dos cabañas" /></p>
+
+<p><strong>Tercer intento:</strong> Se intercambian las líneas de asignación. Problema: provoca interbloqueo.</p>
+
+<p><img src="/img/posts/20151215_4.jpg" alt="Cuarto intento - metáfora con árbitro" /></p>
+
+<p><strong>Cuarto intento:</strong> Los procesos pueden ceder la preferencia. Problema: la “cortesía mutua” provoca un ciclo indefinido sin interbloqueo formal.</p>
+
+<p><img src="/img/posts/20151215_5.png" alt="Tercer intento con señales modificadas" /></p>
+
+<p><img src="/img/posts/20151215_6.png" alt="Cuarto intento con cesión de preferencia" /></p>
+
+<p><strong>Solución correcta de Dekker:</strong> Combina la variable <code class="language-plaintext highlighter-rouge">señal</code> con la variable <code class="language-plaintext highlighter-rouge">turno</code>. Cuando un proceso activa su señal, el otro no puede entrar. Si ambos desean acceder, la variable <code class="language-plaintext highlighter-rouge">turno</code> determina la prioridad.</p>
+
+<p><img src="/img/posts/20151215_7.jpg" alt="Solución correcta con árbitro y variable turno" /></p>
+
+<p><img src="/img/posts/20151215_8.png" alt="Algoritmo de Dekker completo en pseudocódigo" /></p>
+
+<h3 id="algoritmo-de-peterson">Algoritmo de Peterson</h3>
+
+<p>Solución más simple y elegante que la de Dekker. Utiliza dos variables:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">señal</code>: indica la posición del proceso</li>
+  <li><code class="language-plaintext highlighter-rouge">turno</code>: resuelve los conflictos cuando ambos procesos quieren acceder</li>
+</ul>
+
+<p>La demostración garantiza:</p>
+<ul>
+  <li><strong>Exclusión mutua</strong>: después de activar su señal, el otro proceso no puede acceder.</li>
+  <li><strong>Sin bloqueo mutuo</strong>: el análisis exhaustivo de casos demuestra que siempre hay liberación.</li>
+</ul>
+
+<p><img src="/img/posts/20151215_9.png" alt="Algoritmo de Peterson en pseudocódigo" /></p>
+
+<h2 id="ejercicio-práctico">Ejercicio práctico</h2>
+
+<p>Implementar un sistema de gestión de cuenta bancaria con acceso concurrente desde varios hilos.</p>
+
+<h3 id="cuentajava">Cuenta.java</h3>
+
+<p>Clase que gestiona el saldo aplicando el algoritmo de Peterson para el acceso a la sección crítica:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Cuenta</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">MAXIMO</span> <span class="o">=</span> <span class="mi">10000</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">MINIMO</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">saldo</span> <span class="o">=</span> <span class="mi">5000</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">boolean</span><span class="o">[]</span> <span class="n">bandera</span> <span class="o">=</span> <span class="o">{</span><span class="kc">false</span><span class="o">,</span> <span class="kc">false</span><span class="o">};</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">turno</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">ingresar</span><span class="o">(</span><span class="kt">int</span> <span class="n">cantidad</span><span class="o">,</span> <span class="kt">int</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">bandera</span><span class="o">[</span><span class="n">id</span><span class="o">]</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="n">turno</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">id</span><span class="o">;</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">bandera</span><span class="o">[</span><span class="mi">1</span> <span class="o">-</span> <span class="n">id</span><span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="n">turno</span> <span class="o">==</span> <span class="o">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">id</span><span class="o">))</span> <span class="o">{}</span>  <span class="c1">// espera activa</span>
+        <span class="c1">// sección crítica</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">saldo</span> <span class="o">+</span> <span class="n">cantidad</span> <span class="o">&lt;=</span> <span class="no">MAXIMO</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">saldo</span> <span class="o">+=</span> <span class="n">cantidad</span><span class="o">;</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Ingreso: "</span> <span class="o">+</span> <span class="n">cantidad</span> <span class="o">+</span> <span class="s">" | Saldo: "</span> <span class="o">+</span> <span class="n">saldo</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="n">bandera</span><span class="o">[</span><span class="n">id</span><span class="o">]</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">retirar</span><span class="o">(</span><span class="kt">int</span> <span class="n">cantidad</span><span class="o">,</span> <span class="kt">int</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">bandera</span><span class="o">[</span><span class="n">id</span><span class="o">]</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="n">turno</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">id</span><span class="o">;</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">bandera</span><span class="o">[</span><span class="mi">1</span> <span class="o">-</span> <span class="n">id</span><span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="n">turno</span> <span class="o">==</span> <span class="o">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">id</span><span class="o">))</span> <span class="o">{}</span>  <span class="c1">// espera activa</span>
+        <span class="c1">// sección crítica</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">saldo</span> <span class="o">-</span> <span class="n">cantidad</span> <span class="o">&gt;=</span> <span class="no">MINIMO</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">saldo</span> <span class="o">-=</span> <span class="n">cantidad</span><span class="o">;</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Retirada: "</span> <span class="o">+</span> <span class="n">cantidad</span> <span class="o">+</span> <span class="s">" | Saldo: "</span> <span class="o">+</span> <span class="n">saldo</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Error: saldo insuficiente"</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="n">bandera</span><span class="o">[</span><span class="n">id</span><span class="o">]</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="personajava">Persona.java</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Persona</span> <span class="kd">extends</span> <span class="nc">Thread</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">CANTIDADMAX</span> <span class="o">=</span> <span class="mi">1000</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">CANTIDADMIN</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">TIEMPOMAX</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">TIEMPOMIN</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">PORCENTAJE_AHORRADOR</span> <span class="o">=</span> <span class="mi">60</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nc">Cuenta</span> <span class="n">cuenta</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">id</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Persona</span><span class="o">(</span><span class="nc">Cuenta</span> <span class="n">cuenta</span><span class="o">,</span> <span class="kt">int</span> <span class="n">id</span><span class="o">,</span> <span class="nc">String</span> <span class="n">nombre</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">nombre</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">cuenta</span> <span class="o">=</span> <span class="n">cuenta</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">cantidad</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)(</span><span class="nc">Math</span><span class="o">.</span><span class="na">random</span><span class="o">()</span> <span class="o">*</span> <span class="o">(</span><span class="no">CANTIDADMAX</span> <span class="o">-</span> <span class="no">CANTIDADMIN</span><span class="o">)</span> <span class="o">+</span> <span class="no">CANTIDADMIN</span><span class="o">);</span>
+            <span class="kt">int</span> <span class="n">tiempo</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)(</span><span class="nc">Math</span><span class="o">.</span><span class="na">random</span><span class="o">()</span> <span class="o">*</span> <span class="o">(</span><span class="no">TIEMPOMAX</span> <span class="o">-</span> <span class="no">TIEMPOMIN</span><span class="o">)</span> <span class="o">+</span> <span class="no">TIEMPOMIN</span><span class="o">)</span> <span class="o">*</span> <span class="mi">1000</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">porcentaje</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)(</span><span class="nc">Math</span><span class="o">.</span><span class="na">random</span><span class="o">()</span> <span class="o">*</span> <span class="mi">100</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">porcentaje</span> <span class="o">&lt;</span> <span class="no">PORCENTAJE_AHORRADOR</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">cuenta</span><span class="o">.</span><span class="na">ingresar</span><span class="o">(</span><span class="n">cantidad</span><span class="o">,</span> <span class="n">id</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">cuenta</span><span class="o">.</span><span class="na">retirar</span><span class="o">(</span><span class="n">cantidad</span><span class="o">,</span> <span class="n">id</span><span class="o">);</span>
+            <span class="o">}</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="n">sleep</span><span class="o">(</span><span class="mi">300</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="mainjava">Main.java</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Cuenta</span> <span class="n">cuenta</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Cuenta</span><span class="o">();</span>
+        <span class="nc">Persona</span> <span class="n">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Persona</span><span class="o">(</span><span class="n">cuenta</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="s">"Inazio"</span><span class="o">);</span>
+        <span class="nc">Persona</span> <span class="n">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Persona</span><span class="o">(</span><span class="n">cuenta</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="s">"Claver"</span><span class="o">);</span>
+        <span class="n">p1</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+        <span class="n">p2</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#java</span>
+        
+          <span class="tag">#concurrencia</span>
+        
+          <span class="tag">#exclusion-mutua</span>
+        
+          <span class="tag">#dekker</span>
+        
+          <span class="tag">#peterson</span>
+        
+          <span class="tag">#hilos</span>
+        
+          <span class="tag">#sincronizacion</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

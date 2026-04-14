@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acceso a datos. JDBC (I). Introducción | Programando a Pasitos</title>
+<meta name="description" content="Introducción a JDBC, la API de Java para acceder a bases de datos SQL, incluyendo arquitectura, configuración del driver MySQL, y ejemplo completo de conexión y consulta.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Acceso a datos. JDBC (I). Introducción | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Acceso a datos. JDBC (I). Introducción" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Introducción a JDBC, la API de Java para acceder a bases de datos SQL, incluyendo arquitectura, configuración del driver MySQL, y ejemplo completo de conexión y consulta." />
+<meta property="og:description" content="Introducción a JDBC, la API de Java para acceder a bases de datos SQL, incluyendo arquitectura, configuración del driver MySQL, y ejemplo completo de conexión y consulta." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/10/24/acceso-datos-jdbc-i-introduccion/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/10/24/acceso-datos-jdbc-i-introduccion/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-10-24T06:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Acceso a datos. JDBC (I). Introducción" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-10-24T06:00:00+02:00","datePublished":"2015-10-24T06:00:00+02:00","description":"Introducción a JDBC, la API de Java para acceder a bases de datos SQL, incluyendo arquitectura, configuración del driver MySQL, y ejemplo completo de conexión y consulta.","headline":"Acceso a datos. JDBC (I). Introducción","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/10/24/acceso-datos-jdbc-i-introduccion/"},"url":"http://localhost:4000/posts/2015/10/24/acceso-datos-jdbc-i-introduccion/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Acceso a datos. JDBC (I). Introducción</h1>
+    <div class="post-meta">
+      <time datetime="2015-10-24T06:00:00+02:00">24 Oct 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#java" class="post-category">Java</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Introducción a JDBC, la API de Java para acceder a bases de datos SQL, incluyendo arquitectura, configuración del driver MySQL, y ejemplo completo de conexión y consulta.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <p><strong>JDBC</strong> (<em>Java DataBase Connectivity</em>) es la interfaz orientada a objetos de Java para SQL. Permite a las aplicaciones enviar sentencias SQL a sistemas gestores de bases de datos (SGBD). La API no mejora ni limita las capacidades de SQL: el desarrollador sigue escribiendo las consultas SQL directamente.</p>
+
+<h2 id="arquitectura-jdbc">Arquitectura JDBC</h2>
+
+<p>JDBC emplea un <strong>Driver Manager</strong> que actúa de intermediario entre la aplicación y los drivers específicos de cada base de datos, proporcionando transparencia al desarrollador respecto al sistema de base de datos subyacente.</p>
+
+<p><img src="/img/posts/20151024_1.png" alt="Arquitectura JDBC con Driver Manager" /></p>
+
+<h2 id="configuración-con-mysql">Configuración con MySQL</h2>
+
+<p>Para usar JDBC con MySQL hay que añadir el conector al proyecto:</p>
+
+<ul>
+  <li><strong>Fichero:</strong> <code class="language-plaintext highlighter-rouge">mysql-connector-java-x.x.x-bin.jar</code></li>
+  <li><strong>Eclipse:</strong> añadir a Build Path del proyecto</li>
+  <li><strong>CLASSPATH:</strong> o añadir a la variable de entorno del sistema</li>
+</ul>
+
+<p>Datos de configuración:</p>
+<ul>
+  <li><strong>Driver class:</strong> <code class="language-plaintext highlighter-rouge">com.mysql.jdbc.Driver</code></li>
+  <li><strong>URL de conexión:</strong> <code class="language-plaintext highlighter-rouge">jdbc:mysql://localhost:3306/nombre_base_datos</code></li>
+</ul>
+
+<h2 id="clases-principales">Clases principales</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Clase/Interfaz</th>
+      <th>Descripción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Connection</code></td>
+      <td>Representa el enlace físico entre cliente y servidor</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Statement</code></td>
+      <td>Ejecuta sentencias SQL</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ResultSet</code></td>
+      <td>Contiene los resultados de una consulta; gestiona un cursor sobre las filas</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="el-cursor-de-resultset">El cursor de ResultSet</h3>
+
+<p><img src="/img/posts/20151024_2.png" alt="Cursor del ResultSet" /></p>
+
+<p>El cursor se posiciona antes de la primera fila. El método <code class="language-plaintext highlighter-rouge">next()</code> avanza una posición y devuelve <code class="language-plaintext highlighter-rouge">false</code> cuando no hay más filas.</p>
+
+<h2 id="proceso-de-conexión-5-pasos">Proceso de conexión (5 pasos)</h2>
+
+<ol>
+  <li>Cargar el driver JDBC con <code class="language-plaintext highlighter-rouge">Class.forName()</code></li>
+  <li>Establecer la conexión con <code class="language-plaintext highlighter-rouge">DriverManager.getConnection()</code></li>
+  <li>Ejecutar consultas SQL y procesar resultados</li>
+  <li>Liberar recursos llamando a <code class="language-plaintext highlighter-rouge">close()</code></li>
+  <li>Manejar excepciones: <code class="language-plaintext highlighter-rouge">ClassNotFoundException</code> y <code class="language-plaintext highlighter-rouge">SQLException</code></li>
+</ol>
+
+<h2 id="ejemplo-completo">Ejemplo completo</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.sql.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HolaMundoBaseDatos</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="nc">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">"com.mysql.jdbc.Driver"</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">catch</span><span class="o">(</span><span class="nc">ClassNotFoundException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"El driver no se encuentra"</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(-</span><span class="mi">1</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="nc">Connection</span> <span class="n">conn</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">conn</span> <span class="o">=</span> <span class="nc">DriverManager</span><span class="o">.</span><span class="na">getConnection</span><span class="o">(</span>
+                <span class="s">"jdbc:mysql://localhost:3306/sample"</span><span class="o">,</span>
+                <span class="s">"root"</span><span class="o">,</span>
+                <span class="s">"password"</span><span class="o">);</span>
+
+            <span class="nc">Statement</span> <span class="n">stmt</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="na">createStatement</span><span class="o">();</span>
+            <span class="nc">ResultSet</span> <span class="n">rs</span> <span class="o">=</span> <span class="n">stmt</span><span class="o">.</span><span class="na">executeQuery</span><span class="o">(</span>
+                <span class="s">"SELECT titulo, precio FROM Libros WHERE precio &gt; 2"</span><span class="o">);</span>
+
+            <span class="k">while</span><span class="o">(</span><span class="n">rs</span><span class="o">.</span><span class="na">next</span><span class="o">())</span> <span class="o">{</span>
+                <span class="nc">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">"titulo"</span><span class="o">);</span>
+                <span class="kt">float</span> <span class="n">price</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="na">getFloat</span><span class="o">(</span><span class="s">"precio"</span><span class="o">);</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">name</span> <span class="o">+</span> <span class="s">"\t"</span> <span class="o">+</span> <span class="n">price</span><span class="o">);</span>
+            <span class="o">}</span>
+
+            <span class="n">rs</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+            <span class="n">stmt</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="k">catch</span><span class="o">(</span><span class="nc">SQLException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Error en la base de datos: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="k">finally</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">conn</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">try</span> <span class="o">{</span>
+                    <span class="n">conn</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                <span class="o">}</span>
+                <span class="k">catch</span><span class="o">(</span><span class="nc">SQLException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="nc">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Error al cerrar la conexión: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>El bloque <code class="language-plaintext highlighter-rouge">finally</code> garantiza que la conexión se cierra siempre, independientemente de si hubo excepción o no.</p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#java</span>
+        
+          <span class="tag">#acceso-a-datos</span>
+        
+          <span class="tag">#jdbc</span>
+        
+          <span class="tag">#mysql</span>
+        
+          <span class="tag">#sql</span>
+        
+          <span class="tag">#base-de-datos</span>
+        
+          <span class="tag">#connection</span>
+        
+          <span class="tag">#resultset</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

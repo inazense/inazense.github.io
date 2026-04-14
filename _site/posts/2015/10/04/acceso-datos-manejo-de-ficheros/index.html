@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acceso a datos. Manejo de ficheros | Programando a Pasitos</title>
+<meta name="description" content="Manejo de ficheros en Java con el paquete java.io, incluyendo streams de bytes y caracteres, FileInputStream, FileOutputStream, FileReader, FileWriter, BufferedReader, DataInputStream y DataOutputStream.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Acceso a datos. Manejo de ficheros | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Acceso a datos. Manejo de ficheros" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Manejo de ficheros en Java con el paquete java.io, incluyendo streams de bytes y caracteres, FileInputStream, FileOutputStream, FileReader, FileWriter, BufferedReader, DataInputStream y DataOutputStream." />
+<meta property="og:description" content="Manejo de ficheros en Java con el paquete java.io, incluyendo streams de bytes y caracteres, FileInputStream, FileOutputStream, FileReader, FileWriter, BufferedReader, DataInputStream y DataOutputStream." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/10/04/acceso-datos-manejo-de-ficheros/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/10/04/acceso-datos-manejo-de-ficheros/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-10-04T06:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Acceso a datos. Manejo de ficheros" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver","url":"https://github.com/inazense"},"dateModified":"2015-10-04T06:00:00+02:00","datePublished":"2015-10-04T06:00:00+02:00","description":"Manejo de ficheros en Java con el paquete java.io, incluyendo streams de bytes y caracteres, FileInputStream, FileOutputStream, FileReader, FileWriter, BufferedReader, DataInputStream y DataOutputStream.","headline":"Acceso a datos. Manejo de ficheros","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/10/04/acceso-datos-manejo-de-ficheros/"},"url":"http://localhost:4000/posts/2015/10/04/acceso-datos-manejo-de-ficheros/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Acceso a datos. Manejo de ficheros</h1>
+    <div class="post-meta">
+      <time datetime="2015-10-04T06:00:00+02:00">04 Oct 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#java" class="post-category">Java</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Manejo de ficheros en Java con el paquete java.io, incluyendo streams de bytes y caracteres, FileInputStream, FileOutputStream, FileReader, FileWriter, BufferedReader, DataInputStream y DataOutputStream.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="entrada--salida-estándar">Entrada / salida estándar</h2>
+
+<p>La clase <code class="language-plaintext highlighter-rouge">java.lang.System</code> proporciona tres flujos estándar:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Campo</th>
+      <th>Clase</th>
+      <th>Descripción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">System.in</code></td>
+      <td><code class="language-plaintext highlighter-rouge">InputStream</code></td>
+      <td>Entrada estándar (teclado)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">System.out</code></td>
+      <td><code class="language-plaintext highlighter-rouge">PrintStream</code></td>
+      <td>Salida estándar</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">System.err</code></td>
+      <td><code class="language-plaintext highlighter-rouge">PrintStream</code></td>
+      <td>Salida de errores</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Métodos de <code class="language-plaintext highlighter-rouge">System.out</code>:</strong> <code class="language-plaintext highlighter-rouge">print()</code>, <code class="language-plaintext highlighter-rouge">println()</code>, <code class="language-plaintext highlighter-rouge">flush()</code></p>
+
+<p><strong>Métodos de <code class="language-plaintext highlighter-rouge">System.in</code>:</strong> <code class="language-plaintext highlighter-rouge">read()</code>, <code class="language-plaintext highlighter-rouge">skip(n)</code>, <code class="language-plaintext highlighter-rouge">available()</code></p>
+
+<h3 id="ejemplo-contar-caracteres-con-systemin">Ejemplo: contar caracteres con System.in</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">CuentaCaracteres</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span> <span class="n">args</span><span class="o">[])</span> <span class="kd">throws</span> <span class="nc">IOException</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">contador</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="k">while</span> <span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">.</span><span class="na">read</span><span class="o">()</span> <span class="o">!=</span> <span class="sc">'\n'</span><span class="o">)</span>
+            <span class="n">contador</span><span class="o">++;</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Tecleados: "</span> <span class="o">+</span> <span class="n">contador</span> <span class="o">+</span> <span class="s">" caracteres"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="ejemplo-contar-caracteres-con-scanner">Ejemplo: contar caracteres con Scanner</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">CuentaCaracteres2</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span> <span class="n">args</span><span class="o">[])</span> <span class="kd">throws</span> <span class="nc">IOException</span> <span class="o">{</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Introduzca una cadena"</span><span class="o">);</span>
+        <span class="nc">String</span> <span class="n">teclado</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Tecleados "</span> <span class="o">+</span> <span class="n">teclado</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">+</span> <span class="s">" caracteres"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="streams">Streams</h2>
+
+<p>Un stream representa un flujo de información: una secuencia ordenada de datos procedente de una fuente (teclado, fichero, memoria, red, etc.). Todas las clases de stream se encuentran en el paquete <code class="language-plaintext highlighter-rouge">java.io</code>.</p>
+
+<p><strong>Clasificación de streams:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Criterio</th>
+      <th>Tipos</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Por representación</td>
+      <td>Bytes / Caracteres</td>
+    </tr>
+    <tr>
+      <td>Por propósito</td>
+      <td>Entrada (<code class="language-plaintext highlighter-rouge">InputStream</code>, <code class="language-plaintext highlighter-rouge">Reader</code>) / Salida (<code class="language-plaintext highlighter-rouge">OutputStream</code>, <code class="language-plaintext highlighter-rouge">Writer</code>) / E-S (<code class="language-plaintext highlighter-rouge">RandomAccessFile</code>)</td>
+    </tr>
+    <tr>
+      <td>Por acceso</td>
+      <td>Secuencial / Directo (<code class="language-plaintext highlighter-rouge">RandomAccessFile</code>)</td>
+    </tr>
+    <tr>
+      <td>Por operación</td>
+      <td>Transferencia de datos / Transformación (buffering, conversiones, filtrado)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="streams-de-bytes-sobre-ficheros">Streams de bytes sobre ficheros</h2>
+
+<h3 id="fileinputstream--lectura-de-bytes">FileInputStream — lectura de bytes</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EjemploLecturaByte</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">FileInputStream</span> <span class="n">fis</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">aux</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">fis</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="s">"C:\\eclipse\\readme\\readme_eclipse.html"</span><span class="o">);</span>
+            <span class="k">while</span> <span class="o">((</span><span class="n">aux</span> <span class="o">=</span> <span class="n">fis</span><span class="o">.</span><span class="na">read</span><span class="o">())</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">aux</span> <span class="o">+</span> <span class="s">" - "</span> <span class="o">+</span> <span class="o">(</span><span class="kt">char</span><span class="o">)</span> <span class="n">aux</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">FileNotFoundException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="n">fis</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="fileoutputstream--escritura-de-bytes">FileOutputStream — escritura de bytes</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EjemploEscrituraByte</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">FileOutputStream</span> <span class="n">fos</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">fos</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileOutputStream</span><span class="o">(</span><span class="s">"D:\\Prueba.txt"</span><span class="o">);</span>
+            <span class="n">fos</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="mi">67</span><span class="o">);</span> <span class="n">fos</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="mi">76</span><span class="o">);</span> <span class="n">fos</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="mi">67</span><span class="o">);</span> <span class="n">fos</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="mi">32</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">FileNotFoundException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="n">fos</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="bytearrayinputstream--stream-sobre-array-de-bytes">ByteArrayInputStream — stream sobre array de bytes</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EjemploFlujoArray</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span> <span class="o">{</span>
+        <span class="kt">byte</span><span class="o">[]</span> <span class="n">byteArr1</span> <span class="o">=</span> <span class="o">{</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">9</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mi">11</span><span class="o">};</span>
+        <span class="nc">ByteArrayInputStream</span> <span class="n">flujoArrByte1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ByteArrayInputStream</span><span class="o">(</span><span class="n">byteArr1</span><span class="o">);</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">flujoArrByte1</span><span class="o">.</span><span class="na">available</span><span class="o">()</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">byte</span> <span class="n">leido</span> <span class="o">=</span> <span class="o">(</span><span class="kt">byte</span><span class="o">)</span> <span class="n">flujoArrByte1</span><span class="o">.</span><span class="na">read</span><span class="o">();</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">leido</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="n">flujoArrByte1</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="copia-de-ficheros">Copia de ficheros</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Copia</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">FileInputStream</span> <span class="n">origen</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="nc">FileOutputStream</span> <span class="n">destino</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">origen</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span>
+            <span class="n">destino</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileOutputStream</span><span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="mi">1</span><span class="o">],</span> <span class="kc">true</span><span class="o">);</span>
+            <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">origen</span><span class="o">.</span><span class="na">read</span><span class="o">();</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">destino</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+                <span class="n">i</span> <span class="o">=</span> <span class="n">origen</span><span class="o">.</span><span class="na">read</span><span class="o">();</span>
+            <span class="o">}</span>
+            <span class="n">origen</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+            <span class="n">destino</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Error de ficheros"</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="streams-de-caracteres-sobre-ficheros">Streams de caracteres sobre ficheros</h2>
+
+<p><code class="language-plaintext highlighter-rouge">InputStreamReader</code> convierte un <code class="language-plaintext highlighter-rouge">InputStream</code> en un <code class="language-plaintext highlighter-rouge">Reader</code> (soporte Unicode). <code class="language-plaintext highlighter-rouge">OutputStreamWriter</code> convierte un <code class="language-plaintext highlighter-rouge">OutputStream</code> en un <code class="language-plaintext highlighter-rouge">Writer</code>.</p>
+
+<h3 id="filereader--lectura-de-caracteres">FileReader — lectura de caracteres</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EjemploLecturaChar</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">FileReader</span> <span class="n">fr</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">aux</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">fr</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileReader</span><span class="o">(</span><span class="s">"C:\\eclipse\\readme\\readme_eclipse.html"</span><span class="o">);</span>
+            <span class="k">while</span> <span class="o">((</span><span class="n">aux</span> <span class="o">=</span> <span class="n">fr</span><span class="o">.</span><span class="na">read</span><span class="o">())</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">((</span><span class="kt">char</span><span class="o">)</span> <span class="n">aux</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">FileNotFoundException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="n">fr</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="filewriter--escritura-de-caracteres">FileWriter — escritura de caracteres</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EjemploEscrituraChar</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">FileWriter</span> <span class="n">fw</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">fw</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileWriter</span><span class="o">(</span><span class="s">"D:\\Prueba.txt"</span><span class="o">);</span>
+            <span class="n">fw</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="sc">'A'</span><span class="o">);</span> <span class="n">fw</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="sc">'A'</span><span class="o">);</span> <span class="n">fw</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="sc">' '</span><span class="o">);</span>
+            <span class="n">fw</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="sc">'d'</span><span class="o">);</span> <span class="n">fw</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="sc">'S'</span><span class="o">);</span> <span class="n">fw</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="sc">'1'</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">FileNotFoundException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="n">fw</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="bufferedreader--lectura-por-líneas">BufferedReader — lectura por líneas</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EjemploFiltro</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">nombreArchivo</span> <span class="o">=</span> <span class="s">"D:\\prueba.txt"</span><span class="o">;</span>
+        <span class="nc">FileReader</span> <span class="n">fr</span><span class="o">;</span>
+        <span class="nc">BufferedReader</span> <span class="n">filtro</span><span class="o">;</span>
+        <span class="nc">String</span> <span class="n">linea</span><span class="o">;</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">fr</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileReader</span><span class="o">(</span><span class="n">nombreArchivo</span><span class="o">);</span>
+            <span class="n">filtro</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="n">fr</span><span class="o">);</span>
+            <span class="n">linea</span> <span class="o">=</span> <span class="n">filtro</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">linea</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">linea</span><span class="o">);</span>
+                <span class="n">linea</span> <span class="o">=</span> <span class="n">filtro</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
+            <span class="o">}</span>
+            <span class="n">filtro</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+            <span class="n">fr</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"No se puede abrir el archivo"</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="filtros-de-streams--encriptado">Filtros de streams — encriptado</h2>
+
+<p><code class="language-plaintext highlighter-rouge">FilterOutputStream</code> permite crear filtros que transforman los datos en el momento de escribirlos:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EncriptadoStream</span> <span class="kd">extends</span> <span class="nc">FilterOutputStream</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nf">EncriptadoStream</span><span class="o">(</span><span class="nc">OutputStream</span> <span class="n">out</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">out</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">write</span><span class="o">(</span><span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">b</span> <span class="o">==</span> <span class="mi">255</span><span class="o">)</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="k">else</span>
+            <span class="n">b</span><span class="o">++;</span>
+        <span class="n">out</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">b</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span> <span class="o">{</span>
+        <span class="nc">FileInputStream</span> <span class="n">entrada</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="s">"D:\\entrada.txt"</span><span class="o">);</span>
+        <span class="nc">EncriptadoStream</span> <span class="n">salida</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">EncriptadoStream</span><span class="o">(</span>
+            <span class="k">new</span> <span class="nf">FileOutputStream</span><span class="o">(</span><span class="s">"D:\\salida.txt"</span><span class="o">));</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">entrada</span><span class="o">.</span><span class="na">available</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span>
+            <span class="n">salida</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">entrada</span><span class="o">.</span><span class="na">read</span><span class="o">());</span>
+        <span class="n">entrada</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+        <span class="n">salida</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="lectura-de-teclado-con-inputstreamreader-y-bufferedreader">Lectura de teclado con InputStreamReader y BufferedReader</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EntradaTeclado</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span> <span class="o">{</span>
+        <span class="nc">InputStreamReader</span> <span class="n">isr</span><span class="o">;</span>
+        <span class="nc">BufferedReader</span> <span class="n">teclado</span><span class="o">;</span>
+        <span class="nc">String</span> <span class="n">linea</span><span class="o">;</span>
+        <span class="kt">byte</span> <span class="n">b</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">i</span><span class="o">;</span>
+        <span class="kt">double</span> <span class="n">d</span><span class="o">;</span>
+        <span class="kt">boolean</span> <span class="n">leido</span><span class="o">;</span>
+
+        <span class="n">isr</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">InputStreamReader</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+        <span class="n">teclado</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="n">isr</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Introduzca un byte: "</span><span class="o">);</span>
+        <span class="n">linea</span> <span class="o">=</span> <span class="n">teclado</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="nc">Byte</span><span class="o">.</span><span class="na">parseByte</span><span class="o">(</span><span class="n">linea</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Byte introducido: "</span> <span class="o">+</span> <span class="n">b</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Introduzca un entero: "</span><span class="o">);</span>
+        <span class="n">linea</span> <span class="o">=</span> <span class="n">teclado</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">linea</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Entero introducido: "</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Introduzca un real: "</span><span class="o">);</span>
+        <span class="n">linea</span> <span class="o">=</span> <span class="n">teclado</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="nc">Double</span><span class="o">.</span><span class="na">parseDouble</span><span class="o">(</span><span class="n">linea</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Real introducido: "</span> <span class="o">+</span> <span class="n">d</span><span class="o">);</span>
+
+        <span class="k">do</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Introduzca un entero: "</span><span class="o">);</span>
+                <span class="n">linea</span> <span class="o">=</span> <span class="n">teclado</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
+                <span class="n">i</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">linea</span><span class="o">);</span>
+                <span class="n">leido</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">NumberFormatException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Entero no correcto"</span><span class="o">);</span>
+                <span class="n">leido</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">while</span> <span class="o">(!</span><span class="n">leido</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Entero introducido: "</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="printwriter--escritura-con-formato">PrintWriter — escritura con formato</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EscribirFichero</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="nc">FileOutputStream</span> <span class="n">fos</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileOutputStream</span><span class="o">(</span><span class="s">"salida.txt"</span><span class="o">);</span>
+            <span class="nc">PrintWriter</span> <span class="n">pw</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PrintWriter</span><span class="o">(</span><span class="n">fos</span><span class="o">);</span>
+            <span class="n">pw</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Escribimos una cadena y un entero: "</span> <span class="o">+</span> <span class="mi">5</span><span class="o">);</span>
+            <span class="n">pw</span><span class="o">.</span><span class="na">flush</span><span class="o">();</span>
+            <span class="n">pw</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+            <span class="n">fos</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">FileNotFoundException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="lectura-de-fichero-a-buffer">Lectura de fichero a buffer</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">LectorFichero</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">byte</span><span class="o">[]</span> <span class="n">buffer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="mi">80</span><span class="o">];</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="nc">FileInputStream</span> <span class="n">fichero</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="s">"Leeme.txt"</span><span class="o">);</span>
+            <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">fichero</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">buffer</span><span class="o">);</span>
+            <span class="nc">String</span> <span class="n">s</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="n">buffer</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">FileNotFoundException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="datainputstream-y-dataoutputstream">DataInputStream y DataOutputStream</h2>
+
+<p>Permiten transmitir tipos primitivos a través de un stream de forma portable.</p>
+
+<p><strong>Escritura:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">FileOutputStream</span> <span class="n">fos</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileOutputStream</span><span class="o">(</span><span class="s">"salida.dat"</span><span class="o">);</span>
+<span class="nc">DataOutputStream</span> <span class="n">dos</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DataOutputStream</span><span class="o">(</span><span class="n">fos</span><span class="o">);</span>
+<span class="n">dos</span><span class="o">.</span><span class="na">writeInt</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p><strong>Lectura:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">FileInputStream</span> <span class="n">fis</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="s">"salida.dat"</span><span class="o">);</span>
+<span class="nc">DataInputStream</span> <span class="n">dis</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DataInputStream</span><span class="o">(</span><span class="n">fis</span><span class="o">);</span>
+<span class="kt">int</span> <span class="n">entero</span> <span class="o">=</span> <span class="n">dis</span><span class="o">.</span><span class="na">readInt</span><span class="o">();</span>
+</code></pre></div></div>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#java</span>
+        
+          <span class="tag">#ficheros</span>
+        
+          <span class="tag">#streams</span>
+        
+          <span class="tag">#io</span>
+        
+          <span class="tag">#acceso-a-datos</span>
+        
+          <span class="tag">#fileInputStream</span>
+        
+          <span class="tag">#bufferedreader</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Procesos y servicios. Programación de Sockets (I) | Programando a Pasitos</title>
+<meta name="description" content="Introducción a la programación de sockets TCP en Java con las clases ServerSocket y Socket, incluyendo ejemplos de servidor y cliente con DataInputStream y DataOutputStream.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Procesos y servicios. Programación de Sockets (I) | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Procesos y servicios. Programación de Sockets (I)" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Introducción a la programación de sockets TCP en Java con las clases ServerSocket y Socket, incluyendo ejemplos de servidor y cliente con DataInputStream y DataOutputStream." />
+<meta property="og:description" content="Introducción a la programación de sockets TCP en Java con las clases ServerSocket y Socket, incluyendo ejemplos de servidor y cliente con DataInputStream y DataOutputStream." />
+<link rel="canonical" href="http://localhost:4000/posts/2016/01/20/procesos-y-servicios-programacion-de-sockets-i/" />
+<meta property="og:url" content="http://localhost:4000/posts/2016/01/20/procesos-y-servicios-programacion-de-sockets-i/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-01-20T06:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Procesos y servicios. Programación de Sockets (I)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver","url":"https://github.com/inazense"},"dateModified":"2016-01-20T06:00:00+01:00","datePublished":"2016-01-20T06:00:00+01:00","description":"Introducción a la programación de sockets TCP en Java con las clases ServerSocket y Socket, incluyendo ejemplos de servidor y cliente con DataInputStream y DataOutputStream.","headline":"Procesos y servicios. Programación de Sockets (I)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2016/01/20/procesos-y-servicios-programacion-de-sockets-i/"},"url":"http://localhost:4000/posts/2016/01/20/procesos-y-servicios-programacion-de-sockets-i/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Procesos y servicios. Programación de Sockets (I)</h1>
+    <div class="post-meta">
+      <time datetime="2016-01-20T06:00:00+01:00">20 Jan 2016</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#java" class="post-category">Java</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Introducción a la programación de sockets TCP en Java con las clases ServerSocket y Socket, incluyendo ejemplos de servidor y cliente con DataInputStream y DataOutputStream.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="qué-son-los-sockets">¿Qué son los sockets?</h2>
+
+<p>Un <strong>socket</strong> es la abstracción que proporcionan los protocolos TCP y UDP para los puntos extremos de la comunicación entre aplicaciones. Cada socket necesita:</p>
+
+<ul>
+  <li>La dirección IP del host.</li>
+  <li>Un número de puerto local que identifique el proceso.</li>
+</ul>
+
+<p>El cliente solicita conexión al servidor a través de un socket en un puerto concreto. El servidor acepta la conexión y crea un nuevo socket para comunicarse con ese cliente, quedando libre para seguir aceptando nuevas conexiones.</p>
+
+<p>El rango de puertos es de <strong>0 a 65535</strong>. Los puertos del 0 al 1023 están reservados para servicios privilegiados. Para aplicaciones propias se deben usar puertos del <strong>1024 al 65535</strong>.</p>
+
+<h2 id="clase-serversocket">Clase ServerSocket</h2>
+
+<p>Implementa el extremo servidor de la comunicación.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Constructor / Método</th>
+      <th>Descripción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ServerSocket(int port)</code></td>
+      <td>Crea un socket escuchando en el puerto indicado</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ServerSocket(int port, int backlog)</code></td>
+      <td>Con longitud de cola de conexiones</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ServerSocket(int port, int backlog, InetAddress bindAddr)</code></td>
+      <td>Enlaza a una dirección específica</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Socket accept()</code></td>
+      <td>Espera y devuelve una conexión de cliente</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">void close()</code></td>
+      <td>Cierra el socket servidor</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">int getLocalPort()</code></td>
+      <td>Devuelve el puerto de escucha</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">InetAddress getInetAddress()</code></td>
+      <td>Devuelve la dirección enlazada</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="clase-socket">Clase Socket</h2>
+
+<p>Implementa el extremo cliente de la comunicación.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Constructor / Método</th>
+      <th>Descripción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Socket(String host, int port)</code></td>
+      <td>Conecta al host y puerto remotos</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Socket(InetAddress address, int port)</code></td>
+      <td>Conecta usando una dirección IP</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">InputStream getInputStream()</code></td>
+      <td>Obtiene el flujo de entrada</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">OutputStream getOutputStream()</code></td>
+      <td>Obtiene el flujo de salida</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">int getPort()</code></td>
+      <td>Devuelve el puerto remoto</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">int getLocalPort()</code></td>
+      <td>Devuelve el puerto local</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">InetAddress getInetAddress()</code></td>
+      <td>Devuelve la dirección remota</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">void close()</code></td>
+      <td>Cierra la conexión</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="gestión-de-sockets-tcp">Gestión de sockets TCP</h2>
+
+<p>La comunicación bidireccional se realiza mediante:</p>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">InputStream</code></strong> / <strong><code class="language-plaintext highlighter-rouge">DataInputStream</code></strong>: para recibir datos.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">OutputStream</code></strong> / <strong><code class="language-plaintext highlighter-rouge">DataOutputStream</code></strong>: para enviar datos.</li>
+</ul>
+
+<h2 id="ejemplo-servidor-y-cliente-tcp">Ejemplo: servidor y cliente TCP</h2>
+
+<h3 id="ejemplo1servidorjava">Ejemplo1Servidor.java</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Ejemplo1Servidor</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">arg</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">numeroPuerto</span> <span class="o">=</span> <span class="mi">6000</span><span class="o">;</span>
+        <span class="nc">ServerSocket</span> <span class="n">servidor</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ServerSocket</span><span class="o">(</span><span class="n">numeroPuerto</span><span class="o">);</span>
+        <span class="nc">Socket</span> <span class="n">clienteConectado</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Esperando al cliente....."</span><span class="o">);</span>
+        <span class="n">clienteConectado</span> <span class="o">=</span> <span class="n">servidor</span><span class="o">.</span><span class="na">accept</span><span class="o">();</span>
+
+        <span class="nc">InputStream</span> <span class="n">entrada</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="n">entrada</span> <span class="o">=</span> <span class="n">clienteConectado</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">();</span>
+        <span class="nc">DataInputStream</span> <span class="n">flujoEntrada</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DataInputStream</span><span class="o">(</span><span class="n">entrada</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Recibiendo del CLIENTE: \n\t"</span> <span class="o">+</span> <span class="n">flujoEntrada</span><span class="o">.</span><span class="na">readUTF</span><span class="o">());</span>
+
+        <span class="nc">OutputStream</span> <span class="n">salida</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="n">salida</span> <span class="o">=</span> <span class="n">clienteConectado</span><span class="o">.</span><span class="na">getOutputStream</span><span class="o">();</span>
+        <span class="nc">DataOutputStream</span> <span class="n">flujoSalida</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DataOutputStream</span><span class="o">(</span><span class="n">salida</span><span class="o">);</span>
+
+        <span class="n">flujoSalida</span><span class="o">.</span><span class="na">writeUTF</span><span class="o">(</span><span class="s">"Saludos al cliente del servidor"</span><span class="o">);</span>
+
+        <span class="n">entrada</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+        <span class="n">flujoEntrada</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+        <span class="n">salida</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+        <span class="n">flujoSalida</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+        <span class="n">clienteConectado</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+        <span class="n">servidor</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="ejemplo1clientejava">Ejemplo1Cliente.java</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Ejemplo1Cliente</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="nc">Host</span> <span class="o">=</span> <span class="s">"localhost"</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="nc">Puerto</span> <span class="o">=</span> <span class="mi">6000</span><span class="o">;</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"PROGRAMA CLIENTE INICIADO...."</span><span class="o">);</span>
+        <span class="nc">Socket</span> <span class="nc">Cliente</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Socket</span><span class="o">(</span><span class="nc">Host</span><span class="o">,</span> <span class="nc">Puerto</span><span class="o">);</span>
+
+        <span class="nc">DataOutputStream</span> <span class="n">flujoSalida</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DataOutputStream</span><span class="o">(</span><span class="nc">Cliente</span><span class="o">.</span><span class="na">getOutputStream</span><span class="o">());</span>
+        <span class="n">flujoSalida</span><span class="o">.</span><span class="na">writeUTF</span><span class="o">(</span><span class="s">"SaludOS al SERVIDOR DESDE EL CLIENTE"</span><span class="o">);</span>
+
+        <span class="nc">DataInputStream</span> <span class="n">flujoEntrada</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DataInputStream</span><span class="o">(</span><span class="nc">Cliente</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">());</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Recibiendo del SERVIDOR: \n\t"</span> <span class="o">+</span> <span class="n">flujoEntrada</span><span class="o">.</span><span class="na">readUTF</span><span class="o">());</span>
+
+        <span class="n">flujoEntrada</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+        <span class="n">flujoSalida</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+        <span class="nc">Cliente</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="flujo-de-ejecución">Flujo de ejecución</h2>
+
+<ol>
+  <li>Arrancar primero el servidor (<code class="language-plaintext highlighter-rouge">Ejemplo1Servidor</code>). Quedará en espera en <code class="language-plaintext highlighter-rouge">servidor.accept()</code>.</li>
+  <li>Arrancar el cliente (<code class="language-plaintext highlighter-rouge">Ejemplo1Cliente</code>). Se conectará al servidor en <code class="language-plaintext highlighter-rouge">localhost:6000</code>.</li>
+  <li>El cliente envía un mensaje al servidor y espera respuesta.</li>
+  <li>El servidor recibe el mensaje, lo imprime y responde.</li>
+  <li>Ambos cierran sus conexiones.</li>
+</ol>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#java</span>
+        
+          <span class="tag">#sockets</span>
+        
+          <span class="tag">#tcp</span>
+        
+          <span class="tag">#programacion-de-servicios-y-procesos</span>
+        
+          <span class="tag">#serversocket</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

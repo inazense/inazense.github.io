@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programación. Recursividad (I) | Programando a Pasitos</title>
+<meta name="description" content="Introducción a la recursividad en programación. Algoritmos recursivos lineales y múltiples, casos triviales, ley de recurrencia y ejemplos de factorial y MCD.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Programación. Recursividad (I) | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Programación. Recursividad (I)" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Introducción a la recursividad en programación. Algoritmos recursivos lineales y múltiples, casos triviales, ley de recurrencia y ejemplos de factorial y MCD." />
+<meta property="og:description" content="Introducción a la recursividad en programación. Algoritmos recursivos lineales y múltiples, casos triviales, ley de recurrencia y ejemplos de factorial y MCD." />
+<link rel="canonical" href="http://localhost:4000/posts/2014/12/11/programacion-recursividad-i/" />
+<meta property="og:url" content="http://localhost:4000/posts/2014/12/11/programacion-recursividad-i/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2014-12-11T11:26:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Programación. Recursividad (I)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2014-12-11T11:26:00+01:00","datePublished":"2014-12-11T11:26:00+01:00","description":"Introducción a la recursividad en programación. Algoritmos recursivos lineales y múltiples, casos triviales, ley de recurrencia y ejemplos de factorial y MCD.","headline":"Programación. Recursividad (I)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2014/12/11/programacion-recursividad-i/"},"url":"http://localhost:4000/posts/2014/12/11/programacion-recursividad-i/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Programación. Recursividad (I)</h1>
+    <div class="post-meta">
+      <time datetime="2014-12-11T11:26:00+01:00">11 Dec 2014</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#programación" class="post-category">Programación</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Introducción a la recursividad en programación. Algoritmos recursivos lineales y múltiples, casos triviales, ley de recurrencia y ejemplos de factorial y MCD.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="ejercicio-introductorio">Ejercicio introductorio</h2>
+
+<p>Escribe una función en notación algorítmica que devuelva el factorial de un número natural introducido como parámetro.</p>
+
+<p><strong>Solución iterativa:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>funcion factorial(n:entero) devuelve entero
+{Pre: n&gt;0}
+Variables
+    resultado:entero;
+    indice:entero;
+Principio
+    resultado:=1;
+    para indice:=2; indice&lt;=n; indice++
+        resultado:=resultado*indice;
+    devuelve resultado
+Fin
+</code></pre></div></div>
+
+<h2 id="otra-manera">¿Otra manera?</h2>
+
+<p>¿Existe otra manera cualitativamente distinta de hacer lo que nos han pedido, que suponga al mismo tiempo una forma distinta de pensar en algoritmo para dar solución a problemas?</p>
+
+<p>Sí, existe otra forma, que además es más intuitiva, y hace que podamos resolver problemas con algoritmos que nos resultan más sencillos de pensar.</p>
+
+<p><strong>Solución recursiva:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>funcion factorial(n:entero) devuelve entero
+{Pre: n&gt;0}
+Principio
+    si n=1
+        entonces
+            devolver(1);
+        si no
+            devolver(n*factorial(n-1));
+    fsi
+Fin
+</code></pre></div></div>
+
+<p>Hasta ahora conocíamos violaciones de segmento, ahora podemos generar desbordamiento de pila (por cierto, nombre de un muy buen foro de programación: http://stackoverflow.com).</p>
+
+<p>Las llamadas recursivas se desarrollarían así:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>n*factorial(n-1)
+(n-1)*factorial(n-2)
+(n-1)*factorial(n-3)
+…
+3*factorial(2)
+2*factorial(1)
+1
+</code></pre></div></div>
+
+<h2 id="ejercicio">Ejercicio</h2>
+
+<p>Escribe una función que calcule el máximo común divisor (mcd) de dos números naturales, a y b, sabiendo que <code class="language-plaintext highlighter-rouge">mcd(a,b)=mcd(b, a MOD b)</code> si a&gt;=b, y en caso contrario, <code class="language-plaintext highlighter-rouge">mcd(a,b)=mcd(a, b MOD a)</code>. Da una solución recursiva.</p>
+
+<p>Ejemplo: <code class="language-plaintext highlighter-rouge">mcd(60, 45) = mcd(45, 15) = mcd(15, 0)</code></p>
+
+<p><strong>Solución:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>funcion mcd(a, b:entero) devuelve entero
+{Pre: a&gt;=0, b&gt;=0}
+Principio
+    si a=0
+        entonces devolver(b);
+        si no
+            si b=0
+                entonces devolver(a);
+                si no
+                    si a&gt;b
+                        entonces devolver(mcd(b, a MOD b));
+                        si no devolver(mcd(a, b MOD a));
+                    fsi
+            fsi
+    fsi
+fin
+</code></pre></div></div>
+
+<h2 id="algoritmo-recursivo">Algoritmo recursivo</h2>
+
+<p>Un algoritmo recursivo debe tener:</p>
+
+<ul>
+  <li>
+    <p><strong>Un tratamiento de todos los casos triviales</strong> que puedan darse en el problema a resolver. Dicho tratamiento no puede hacer llamadas recursivas y sí tiene que dar una solución inmediata a esos casos triviales.</p>
+  </li>
+  <li>
+    <p><strong>Un tratamiento del caso no trivial.</strong> Dicho tratamiento hará uso de una ley de recurrencia que mediante una fórmula o conjunto de acciones u operaciones resolverá el caso no trivial mediante llamadas a la propia función (o procedimiento) con parámetros “más pequeños” que converjan a uno de los casos triviales.</p>
+  </li>
+</ul>
+
+<p>Para que el caso sea válido y funcione, cada llamada recursiva debe de hacer que la siguiente llamada se aproxime más a un caso trivial de forma que al final se llegue a dicho caso.</p>
+
+<h2 id="tipos-de-algoritmos-recursivos">Tipos de algoritmos recursivos</h2>
+
+<p><strong>Lineales.</strong> Cada invocación genera una nueva invocación y sólo una (excepto la última, claro). El factorial es un ejemplo.</p>
+
+<ul>
+  <li><strong>Final.</strong> Lo último que hace el algoritmo es precisamente esa invocación.</li>
+  <li><strong>No final.</strong> Tras la invocación aún hay que hacer algún cálculo en el resultado de la invocación. El ejercicio de factorial sería no final, ya que tras la invocación hay que hacer la multiplicación.</li>
+</ul>
+
+<p><strong>Múltiples.</strong> Una misma invocación puede generar más de una invocación, por ejemplo, el cálculo de Fibonacci.</p>
+
+<h2 id="inconvenientes">Inconvenientes</h2>
+
+<p>En general las soluciones recursivas son:</p>
+
+<ul>
+  <li>Menos eficientes que las iterativas.</li>
+  <li>Más claras y sencillas que las iterativas.</li>
+</ul>
+
+<p>Lo bueno es pensar en recursivo e implementar en iterativo.</p>
+
+<p>Podemos transformar en muchos casos los algoritmos recursivos en iterativos con más o menos dificultad.</p>
+
+<p><strong>¡Salud y coding!</strong></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#programacion</span>
+        
+          <span class="tag">#c</span>
+        
+          <span class="tag">#recursividad</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

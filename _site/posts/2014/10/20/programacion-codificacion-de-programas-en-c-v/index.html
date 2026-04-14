@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programación. Codificación de programas en C (V) | Programando a Pasitos</title>
+<meta name="description" content="Blog de programación por Inazio Claver">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Programación. Codificación de programas en C (V) | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Programación. Codificación de programas en C (V)" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Tipos escalares definidos por enumeración" />
+<meta property="og:description" content="Tipos escalares definidos por enumeración" />
+<link rel="canonical" href="http://localhost:4000/posts/2014/10/20/programacion-codificacion-de-programas-en-c-v/" />
+<meta property="og:url" content="http://localhost:4000/posts/2014/10/20/programacion-codificacion-de-programas-en-c-v/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2014-10-20T12:23:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Programación. Codificación de programas en C (V)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver","url":"https://github.com/inazense"},"dateModified":"2014-10-20T12:23:00+02:00","datePublished":"2014-10-20T12:23:00+02:00","description":"Tipos escalares definidos por enumeración","headline":"Programación. Codificación de programas en C (V)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2014/10/20/programacion-codificacion-de-programas-en-c-v/"},"url":"http://localhost:4000/posts/2014/10/20/programacion-codificacion-de-programas-en-c-v/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Programación. Codificación de programas en C (V)</h1>
+    <div class="post-meta">
+      <time datetime="2014-10-20T12:23:00+02:00">20 Oct 2014</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#programacion" class="post-category">programacion</a>
+        
+      
+    </div>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="tipos-escalares-definidos-por-enumeración">Tipos escalares definidos por enumeración</h2>
+
+<p>Hasta ahora hemos utilizado tipos primitivos que estaban totalmente definidos tanto en estructura como en el dominio de valores que podían tomar.</p>
+
+<p>Existe la posibilidad de definir tipos en C, de manera que podemos establecer cual es tanto la estructura como el dominio de valores.</p>
+
+<p>Alterar la estructura lo dejamos para más adelante. De momento vamos a ver el caso más sencillo: establecer el dominio de valores. Para ello usamos tipos definidos por enumeración.</p>
+
+<p>Esto en C se hace utilizando la palabra reservada “enum”.</p>
+
+<p>Ejemplos:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">enum</span> <span class="nf">DIA</span><span class="p">(</span><span class="n">lunes</span><span class="p">,</span><span class="n">martes</span><span class="p">,</span><span class="n">mi</span><span class="err">é</span><span class="n">rcoles</span><span class="p">,</span><span class="n">jueves</span><span class="p">,</span><span class="n">viernes</span><span class="p">,</span><span class="n">s</span><span class="err">á</span><span class="n">bado</span><span class="p">,</span><span class="n">domingo</span><span class="p">);</span>
+
+<span class="k">enum</span> <span class="nf">COLORES_SEMAFORO</span><span class="p">(</span><span class="n">rojo</span><span class="p">,</span><span class="n">ambar</span><span class="p">,</span><span class="n">verde</span><span class="p">);</span>
+
+<span class="k">enum</span> <span class="nf">COLORES</span><span class="p">(</span><span class="n">blanco</span><span class="p">,</span><span class="n">amarillo</span><span class="p">,</span><span class="n">azul</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Puedo definir junto con el tipo una variable que sea de ese tipo (la variable estado en el siguiente ejemplo):</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">enum</span> <span class="n">COLORES_SEMAFORO</span><span class="p">(</span><span class="n">rojo</span><span class="p">,</span><span class="n">ambar</span><span class="p">,</span><span class="n">verde</span><span class="p">)</span> <span class="n">estado</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>C internamente lo que hace es asignarle un valor entero a cada uno de esos valores por orden y guarda ese valor.</p>
+
+<p>Lo normal, ya que he definido el tipo, es usar los valores que yo he puesto, pero podrían usar su correspondencia entera, ya que se asocia un 0 con el primer elemento, un 1 con el segundo y así sucesivamente hasta el último.</p>
+
+<p>Se puede alterar la asociación de números, pero siempre manteniendo el orden para evitar problemas. Incluso se le puede definir un mismo valor entero a dos valores del tipo:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">enum</span> <span class="n">DAY</span><span class="p">(</span><span class="n">Saturday</span><span class="p">,</span><span class="n">Sunday</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">Monday</span><span class="p">,</span><span class="n">Tuesday</span><span class="p">,</span><span class="n">Wednesday</span><span class="p">,</span><span class="n">Thursday</span><span class="p">,</span><span class="n">Friday</span><span class="p">)</span> <span class="n">workday</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>En este ejemplo, Saturday tiene valor 0 porque se asocia implícitamente. Sunday tiene el mismo valor 0 porque se asocia explícitamente y el resto de los días, consecutivamente, los valores 1-5.</p>
+
+<h2 id="tipos-definidos-por-enumeración-ejemplo">Tipos definidos por enumeración. Ejemplo</h2>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">enum</span> <span class="n">Days</span><span class="p">(</span><span class="n">Sunday</span><span class="p">,</span><span class="n">Monday</span><span class="p">,</span><span class="n">Tuesday</span><span class="p">,</span><span class="n">Wednesday</span><span class="p">,</span><span class="n">Thursday</span><span class="p">,</span><span class="n">Friday</span><span class="p">,</span><span class="n">Saturday</span><span class="p">)</span><span class="n">TheDay</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Please enter the day of the week (0 to 6) </span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span><span class="o">&amp;</span><span class="n">j</span><span class="p">);</span>
+    <span class="n">TheDay</span><span class="p">(</span><span class="n">enumDays</span><span class="p">)</span><span class="n">j</span><span class="p">;</span> <span class="cm">/* Según compiladores se puede poner también Days(j) o directamente j */</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">TheDay</span><span class="o">==</span><span class="n">Sunday</span> <span class="o">||</span> <span class="n">TheDay</span><span class="o">==</span><span class="n">Saturday</span><span class="p">)</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Hurray, it is the weekend </span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="k">else</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Curses still at work </span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="librería-mathh">Librería math.h</h2>
+
+<p>Para poder compilar programas con la librería math.h, al final del gcc hay que añadir –lm.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc –o 9 9.c –lm
+</code></pre></div></div>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#programacion</span>
+        
+          <span class="tag">#c</span>
+        
+          <span class="tag">#enum</span>
+        
+          <span class="tag">#tipos</span>
+        
+          <span class="tag">#math</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

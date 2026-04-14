@@ -1,0 +1,2145 @@
+[
+  
+  {
+    "title": "Java. Ordenar un HashMap por key o value",
+    "url": "/posts/2020/12/03/java-ordenar-un-hashmap-por-key-o-value/",
+    "date": "03 Dec 2020",
+    "categories": "Java",
+    "tags": "java, hashmap, map, ordenacion, streams, sorting, collections",
+    "excerpt": "Aprende a ordenar HashMap en Java por clave o valor con streams y lambdas. Tutorial completo con código paso a..."
+  },
+  
+  {
+    "title": "Crear una barra de progreso en la terminal con Python",
+    "url": "/posts/2019/11/04/crear-una-barra-de-progreso-en-la-terminal-con-python/",
+    "date": "04 Nov 2019",
+    "categories": "Python",
+    "tags": "python, tqdm, barra-progreso, terminal, cli, progress-bar",
+    "excerpt": "Aprende a crear barras de progreso en la terminal con Python usando tqdm. Tutorial completo paso a paso sobre instalación,..."
+  },
+  
+  {
+    "title": "ReactJS I. Instalar React en Windows",
+    "url": "/posts/2019/04/04/instalar-react-en-windows/",
+    "date": "04 Apr 2019",
+    "categories": "JavaScript",
+    "tags": "react, reactjs, javascript, windows, nodejs, npm, create-react-app, instalacion",
+    "excerpt": "Guía completa para instalar React en Windows 10 paso a paso: descarga Node.js, configuración de npm, instalación de create-react-app y..."
+  },
+  
+  {
+    "title": "Sincronizar carpetas externas en OneDrive",
+    "url": "/posts/2019/02/15/sincronizar-carpetas-externas-en-onedrive/",
+    "date": "15 Feb 2019",
+    "categories": "Sistemas",
+    "tags": "onedrive, windows, enlaces-simbolicos, mklink, sincronizacion, backup, cloud",
+    "excerpt": "Aprende a sincronizar carpetas externas en OneDrive con enlaces simbólicos usando mklink. Tutorial paso a paso para crear backup automático..."
+  },
+  
+  {
+    "title": "Tutorial Java - Log4j desde cero",
+    "url": "/posts/2018/08/03/tutorial-java-log4j-desde-cero/",
+    "date": "03 Aug 2018",
+    "categories": "Java",
+    "tags": "java, log4j, logging, appenders, configuracion, maven, properties",
+    "excerpt": "Aprende a ordenar HashMap en Java por clave o valor con streams y lambdas. Tutorial completo con código paso a..."
+  },
+  
+  {
+    "title": "Leer ficheros properties en Java",
+    "url": "/posts/2017/12/12/leer-ficheros-properties-en-java/",
+    "date": "12 Dec 2017",
+    "categories": "Java",
+    "tags": "java, properties, configuracion, fileReader, getProperty, enumeration",
+    "excerpt": "Aprende a leer archivos properties en Java con la clase Properties. Tutorial completo paso a paso sobre getProperty, Enumeration, carga..."
+  },
+  
+  {
+    "title": "Tutorial Maven en Eclipse (II). Generar un JAR",
+    "url": "/posts/2017/11/27/tutorial-maven-en-eclipse-ii-generar-un-jar/",
+    "date": "27 Nov 2017",
+    "categories": "Java",
+    "tags": "java, maven, eclipse, jar, maven-resources-plugin, build, pom",
+    "excerpt": "Aprende a generar archivos JAR con Maven en Eclipse y copiar recursos automáticamente. Tutorial completo sobre maven-resources-plugin, configuración del POM,..."
+  },
+  
+  {
+    "title": "Tutorial Maven en Eclipse I",
+    "url": "/posts/2017/07/28/tutorial-maven-en-eclipse/",
+    "date": "28 Jul 2017",
+    "categories": "Java",
+    "tags": "java, maven, eclipse, pom, dependencias, plugins, arquetipos, jdk",
+    "excerpt": "Aprende a usar Maven en Eclipse desde cero paso a paso. Tutorial completo sobre creación de proyectos, configuración del POM.xml,..."
+  },
+  
+  {
+    "title": "Resolver sudokus en Java",
+    "url": "/posts/2017/07/19/resolver-sudokus-con-java/",
+    "date": "19 Jul 2017",
+    "categories": "Java",
+    "tags": "java, sudoku, algoritmos, backtracking, swing, interfaz-grafica, recursividad",
+    "excerpt": "Aprende a crear un programa que resuelve sudokus automáticamente en Java con algoritmo de backtracking. Tutorial completo paso a paso..."
+  },
+  
+  {
+    "title": "Cómo leer ficheros CSV con Java",
+    "url": "/posts/2017/04/16/como-leer-ficheros-csv-con-java/",
+    "date": "16 Apr 2017",
+    "categories": "Java",
+    "tags": "java, csv, opencsv, bufferedreader, archivos, parsing, delimitadores",
+    "excerpt": "Aprende a leer archivos CSV en Java con BufferedReader y OpenCSV. Tutorial completo paso a paso para procesar CSV simples..."
+  },
+  
+  {
+    "title": "Configurar Virtual Host Apache en Ubuntu",
+    "url": "/posts/2017/02/26/configurar-virtual-host-apache-en-ubuntu/",
+    "date": "26 Feb 2017",
+    "categories": "Sistemas",
+    "tags": "apache, ubuntu, virtual-host, linux, dns, servidor-web, configuracion",
+    "excerpt": "Guía completa paso a paso para configurar Virtual Host de Apache en Ubuntu 16.04. Aprende a crear múltiples sitios web..."
+  },
+  
+  {
+    "title": "Envío de emails en Python",
+    "url": "/posts/2016/12/20/envio-de-emails-en-python/",
+    "date": "20 Dec 2016",
+    "categories": "Python",
+    "tags": "python, emails, smtplib, automatizacion, smtp, scripting",
+    "excerpt": "Aprende a enviar emails automáticamente con Python usando smtplib. Tutorial completo con código para automatizar correos electrónicos, formatear fechas, configurar..."
+  },
+  
+  {
+    "title": "Aprendiendo Python (VII). Docstrings",
+    "url": "/posts/2016/12/13/aprendiendo-python-vii-docstrings/",
+    "date": "13 Dec 2016",
+    "categories": "Python",
+    "tags": "python, docstrings, documentacion, api, poo, help",
+    "excerpt": "Aprende a crear documentación automática en Python usando docstrings. Tutorial completo sobre cómo documentar clases, funciones y métodos con ejemplos..."
+  },
+  
+  {
+    "title": "Aprendiendo Python (VI). Orientado a objetos (II). Inicialización",
+    "url": "/posts/2016/12/10/aprendiendo-python-3-vi-orientado-a-objetos-ii-inicializacion/",
+    "date": "10 Dec 2016",
+    "categories": "Python",
+    "tags": "python, poo, __init__, constructores, inicializacion, none",
+    "excerpt": "Aprende a usar el método __init__ en Python para inicializar objetos. Tutorial completo sobre constructores, parámetros por defecto, valores None..."
+  },
+  
+  {
+    "title": "Aprendiendo Python (V). Orientado a objetos",
+    "url": "/posts/2016/11/01/aprendiendo-python-3-v-orientado-a-objetos/",
+    "date": "01 Nov 2016",
+    "categories": "Python",
+    "tags": "python, poo, clases, objetos, metodos, self, orientado-objetos",
+    "excerpt": "Aprende programación orientada a objetos en Python desde cero. Tutorial completo sobre clases, objetos, métodos, atributos y self con ejemplos..."
+  },
+  
+  {
+    "title": "Galería web responsive. HTML5 + Bootstrap + PHP + Magnific Popup",
+    "url": "/posts/2016/10/12/galeria-web-responsive-html5-bootstrap/",
+    "date": "12 Oct 2016",
+    "categories": "Web",
+    "tags": "html5, bootstrap, php, magnific-popup, galeria-responsive, lightbox, jquery, web",
+    "excerpt": "Crea una galería web responsive con HTML5, Bootstrap, PHP y Magnific Popup. Tutorial completo paso a paso con código para..."
+  },
+  
+  {
+    "title": "Aprendiendo Python (IV). Primeros ejercicios",
+    "url": "/posts/2016/10/07/aprendiendo-python-3-iv-primeros-ejercicios/",
+    "date": "07 Oct 2016",
+    "categories": "Python",
+    "tags": "python, ejercicios, principiantes, algoritmos, bucles, funciones, codigo",
+    "excerpt": "Colección de 30 ejercicios prácticos de Python para principiantes con soluciones completas. Aprende programación básica, estructuras de control, bucles, funciones..."
+  },
+  
+  {
+    "title": "Aprendiendo Python (III). Sentencias y bucles",
+    "url": "/posts/2016/09/25/aprendiendo-python-3-iii-sentencias-y-bucles/",
+    "date": "25 Sep 2016",
+    "categories": "Python",
+    "tags": "python, control-flujo, bucles, if-else, while, for, range, input",
+    "excerpt": "Aprende sentencias condicionales if-elif-else y bucles while-for en Python 3. Tutorial completo con ejemplos prácticos sobre control de flujo, captura..."
+  },
+  
+  {
+    "title": "Aprendiendo Python (II). Tipos de datos y operadores",
+    "url": "/posts/2016/09/24/aprendiendo-python-3-ii-tipos-de-datos-e-operadores/",
+    "date": "24 Sep 2016",
+    "categories": "Python",
+    "tags": "python, tipos-datos, operadores, strings, listas, tuplas, booleanos",
+    "excerpt": "Aprende tipos de datos fundamentales en Python 3: números, strings, listas, tuplas y booleanos. Tutorial completo con operadores aritméticos, manipulación..."
+  },
+  
+  {
+    "title": "Aprendiendo Python (I). Introducción e instalación",
+    "url": "/posts/2016/09/19/aprendiendo-python-3-i-introduccion-e-instalacion/",
+    "date": "19 Sep 2016",
+    "categories": "Python",
+    "tags": "python, instalacion, principiantes, python3, tutorial, hola-mundo",
+    "excerpt": "Guía completa para principiantes sobre Python 3: instalación paso a paso en Windows, Linux y Mac, configuración del intérprete, primer..."
+  },
+  
+  {
+    "title": "Zen coding con Emmet",
+    "url": "/posts/2016/09/19/zen-coding-con-emmet/",
+    "date": "19 Sep 2016",
+    "categories": "Web",
+    "tags": "emmet, zen-coding, html, css, productividad",
+    "excerpt": "Aprende Zen Coding con Emmet para acelerar el desarrollo web. Tutorial completo sobre abreviaturas HTML y CSS, instalación en editores,..."
+  },
+  
+  {
+    "title": "Instalación y configuración de Git en Windows",
+    "url": "/posts/2016/08/21/instalacion-y-configuracion-de-git-en-windows/",
+    "date": "21 Aug 2016",
+    "categories": "Git",
+    "tags": "git, windows, instalacion, configuracion, control-versiones, git-config",
+    "excerpt": "Guía completa para instalar y configurar Git en Windows paso a paso. Aprende a descargar Git, configurar usuario, email, editor..."
+  },
+  
+  {
+    "title": "VirtualBox, Lubuntu y sus Guest Additions",
+    "url": "/posts/2016/07/06/virtualbox-lubuntu-y-sus-guest-additions/",
+    "date": "06 Jul 2016",
+    "categories": "Linux",
+    "tags": "virtualbox, lubuntu, guest-additions, linux, virtualizacion, gcc, make",
+    "excerpt": "Guía paso a paso para instalar Guest Additions en VirtualBox con Lubuntu. Aprende a solucionar problemas de resolución, instalar gcc..."
+  },
+  
+  {
+    "title": "Java y MySQL. Patrón Singleton",
+    "url": "/posts/2016/07/04/java-y-mysql-patron-singleton/",
+    "date": "04 Jul 2016",
+    "categories": "Java",
+    "tags": "java, mysql, singleton, patrones-diseño, jdbc, base-datos",
+    "excerpt": "Aprende a implementar el patrón Singleton en Java para conexiones MySQL. Tutorial completo con código paso a paso sobre patrones..."
+  },
+  
+  {
+    "title": "Geocodificación con Google Maps API y PHP",
+    "url": "/posts/2016/06/19/geocodificacion-con-google-maps-api-y-php/",
+    "date": "19 Jun 2016",
+    "categories": "PHP",
+    "tags": "php, google-maps-api, geocodificacion, coordenadas, json, latitud-longitud",
+    "excerpt": "Aprende a convertir direcciones en coordenadas con Google Maps API y PHP. Tutorial completo sobre geocodificación paso a paso con..."
+  },
+  
+  {
+    "title": "Head First. Excelente metodología de aprendizaje",
+    "url": "/posts/2016/06/19/head-first-excelente-metodologia-de-aprendizaje/",
+    "date": "19 Jun 2016",
+    "categories": "Libros",
+    "tags": "libros, head-first, oreilly, programacion, aprendizaje, java, patrones-diseño",
+    "excerpt": "Descubre la metodología Head First de O'Reilly para aprender programación de forma visual y práctica. Reseña completa de libros técnicos..."
+  },
+  
+  {
+    "title": "Procesos y servicios. Programación segura V. Comunicación segura con Java",
+    "url": "/posts/2016/03/26/procesos-y-servicios-programacion-segura-v-comunicacion-segura-con-java/",
+    "date": "26 Mar 2016",
+    "categories": "Java",
+    "tags": "java, jsse, jaas, ssl, tls, seguridad, autenticacion, autorizacion, certificados",
+    "excerpt": "Aprende programación segura en Java con JSSE y JAAS. Tutorial completo sobre SSL/TLS, autenticación, autorización, certificados digitales y comunicación segura..."
+  },
+  
+  {
+    "title": "Procesos y servicios. Programación segura IV. Criptografía con Java",
+    "url": "/posts/2016/03/25/procesos-y-servicios-programacion-segura-iv-criptografia-con-java/",
+    "date": "25 Mar 2016",
+    "categories": "Java",
+    "tags": "procesos-servicios, teoria, java, criptografia, jca, jce, seguridad, cifrado, rsa, aes",
+    "excerpt": "Aprende criptografía avanzada en Java con JCA y JCE. Tutorial completo sobre cifrado simétrico/asimétrico, firmas digitales, certificados, claves RSA/AES y..."
+  },
+  
+  {
+    "title": "Procesos y servicios. Programación segura III. Seguridad en entornos Java",
+    "url": "/posts/2016/03/24/procesos-y-servicios-programacion-segura-iii-seguridad-en-entornos-java/",
+    "date": "24 Mar 2016",
+    "categories": "Java",
+    "tags": "procesos-servicios, java, teoria, seguridad, jvm, jca, jsse, jaas, policy, permisos",
+    "excerpt": "Aprende seguridad en entornos Java con JVM, gestores de seguridad y políticas. Tutorial completo sobre JCA, JSSE, JAAS, verificación de..."
+  },
+  
+  {
+    "title": "Procesos y servicios. Programación segura II",
+    "url": "/posts/2016/03/18/procesos-y-servicios-programacion-segura-ii/",
+    "date": "18 Mar 2016",
+    "categories": "Java",
+    "tags": "procesos-servicios, java, teoria, criptografia, seguridad, algoritmos, certificados, rsa, aes, autenticacion",
+    "excerpt": "Aprende criptografía y seguridad informática: algoritmos simétricos/asimétricos, firmas digitales, certificados X.509 y control de acceso. Guía completa sobre DES, AES,..."
+  },
+  
+  {
+    "title": "Procesos y servicios. Programación segura I. Buenas prácticas en programación",
+    "url": "/posts/2016/03/17/procesos-y-servicios-programacion-segura-i-buenas-practicas-en-programacion/",
+    "date": "17 Mar 2016",
+    "categories": "Java",
+    "tags": "procesos-servicios, java, teoria, programacion-segura, buenas-practicas, validacion-datos, seguridad, codigo-limpio",
+    "excerpt": "Aprende buenas prácticas en programación segura: validación de datos, revisión de código, control de acceso y prevención de vulnerabilidades. Guía..."
+  },
+  
+  {
+    "title": "Acceso a datos. Neodatis",
+    "url": "/posts/2016/03/06/acceso-a-datos-neodatis/",
+    "date": "06 Mar 2016",
+    "categories": "Java",
+    "tags": "acceso-datos, neodatis, odbms, bases-datos, persistencia, poo",
+    "excerpt": "Tutorial completo de Neodatis ODB: base de datos orientada a objetos para Java. Aprende instalación, configuración, inserción, consultas, modificación y..."
+  },
+  
+  {
+    "title": "Procesos y servicios. RMI (III). El ejercicio de la hipoteca",
+    "url": "/posts/2016/03/04/procesos-y-servicios-rmi-iii-el-ejercicio-de-la-hipoteca/",
+    "date": "04 Mar 2016",
+    "categories": "Java, Programación de servicios y procesos",
+    "tags": "java, rmi, procesos, servicios, distribuido, hipoteca, ejercicio",
+    "excerpt": "Implementación completa de una aplicación RMI para calcular la cuota mensual de una hipoteca, con interfaz remota, objeto remoto, servidor..."
+  },
+  
+  {
+    "title": "Procesos y servicios. RMI (II)",
+    "url": "/posts/2016/03/04/procesos-y-servicios-rmi-ii/",
+    "date": "04 Mar 2016",
+    "categories": "Java, Programación de servicios y procesos",
+    "tags": "java, rmi, procesos, servicios, distribuido, serializable",
+    "excerpt": "Elementos de una aplicación RMI, interfaces remotas, stubs, serialización, servicio rmiregistry y ejemplo completo con interfaz, servidor y cliente."
+  },
+  
+  {
+    "title": "Acceso a datos. Bases de datos orientadas a objetos",
+    "url": "/posts/2016/03/03/acceso-datos-bases-de-datos-orientadas-a-objetos/",
+    "date": "03 Mar 2016",
+    "categories": "Acceso a datos, Java",
+    "tags": "java, bases-de-datos, oo, hibernate, orm, dao, odmg, oql",
+    "excerpt": "Orígenes de los SGBDOO, estándar ODMG-93, lenguajes ODL y OQL, consultas con Criteria y Nativas, ORM con Hibernate y el..."
+  },
+  
+  {
+    "title": "Acceso a datos. Oracle Database. Ejercicios",
+    "url": "/posts/2016/02/25/acceso-datos-oracle-database-ejercicios/",
+    "date": "25 Feb 2016",
+    "categories": "Acceso a datos, Bases de datos",
+    "tags": "oracle, sql, plsql, bases-de-datos, objetos, herencia, varray, ref",
+    "excerpt": "21 ejercicios prácticos sobre Oracle Database con tipos de objetos, herencia, referencias REF y colecciones VARRAY."
+  },
+  
+  {
+    "title": "Acceso a datos. Oracle Database. Sintaxis y ejemplos",
+    "url": "/posts/2016/02/23/acceso-datos-oracle-database-sintaxis-y-ejemplos/",
+    "date": "23 Feb 2016",
+    "categories": "Acceso a datos, Bases de datos",
+    "tags": "oracle, sql, plsql, bases-de-datos, objetos, herencia",
+    "excerpt": "Sintaxis de Oracle Database para tipos de objetos, métodos, tablas de objetos, varrays y herencia de tipos con ejemplos prácticos...."
+  },
+  
+  {
+    "title": "Acceso a datos. Oracle Database. Instalación de Oracle Database Express Edition y SQL Developer",
+    "url": "/posts/2016/02/12/acceso-datos-oracle-database/",
+    "date": "12 Feb 2016",
+    "categories": "Acceso a datos, Bases de datos",
+    "tags": "oracle, sql, bases-de-datos, sql-developer",
+    "excerpt": "Guía de instalación de Oracle Database Express Edition y SQL Developer para empezar a trabajar con bases de datos Oracle...."
+  },
+  
+  {
+    "title": "Acceso a datos. Hibernate. Ejercicios",
+    "url": "/posts/2016/02/12/acceso-datos-hibernate-ejercicios/",
+    "date": "12 Feb 2016",
+    "categories": "Acceso a datos, Java",
+    "tags": "java, hibernate, mysql, swing, crud, hql",
+    "excerpt": "Dos ejercicios prácticos de Hibernate con Java y MySQL trabajando con las tablas EMPLEADOS y DEPARTAMENTOS."
+  },
+  
+  {
+    "title": "Instalar WindowBuilder en Eclipse",
+    "url": "/posts/2016/02/07/instalar-windowbuilder-en-eclipse/",
+    "date": "07 Feb 2016",
+    "categories": "Java",
+    "tags": "java, eclipse, windowbuilder, swing, gui",
+    "excerpt": "Guía paso a paso para instalar el plugin WindowBuilder en Eclipse para desarrollar interfaces gráficas Java de forma visual."
+  },
+  
+  {
+    "title": "Procesos y servicios. RMI (I)",
+    "url": "/posts/2016/01/30/procesos-y-servicios-rmi-i/",
+    "date": "30 Jan 2016",
+    "categories": "Java",
+    "tags": "java, rmi, remote-method-invocation, programacion-de-servicios-y-procesos, sockets",
+    "excerpt": "Introducción a RMI (Remote Method Invocation) en Java para invocar métodos de objetos remotos entre distintos equipos, con los pasos..."
+  },
+  
+  {
+    "title": "Procesos y servicios. Programación de sockets (III)",
+    "url": "/posts/2016/01/30/procesos-y-servicios-programacion-de-sockets-iii/",
+    "date": "30 Jan 2016",
+    "categories": "Java",
+    "tags": "java, sockets, tcp, serializacion, objectinputstream, programacion-de-servicios-y-procesos",
+    "excerpt": "Transmisión de objetos Java serializables a través de sockets TCP usando ObjectInputStream y ObjectOutputStream, con un ejemplo práctico de intercambio..."
+  },
+  
+  {
+    "title": "Instalación y configuración de Hibernate en Eclipse",
+    "url": "/posts/2016/01/26/instalacion-y-configuracion-de-hibernate-en-eclipse/",
+    "date": "26 Jan 2016",
+    "categories": "Java",
+    "tags": "java, hibernate, eclipse, orm, mysql, acceso-a-datos, jboss",
+    "excerpt": "Guía completa para instalar y configurar Hibernate ORM en Eclipse, incluyendo el plugin de JBoss Tools, el driver de MySQL,..."
+  },
+  
+  {
+    "title": "Procesos y servicios. Programación de Sockets (II)",
+    "url": "/posts/2016/01/21/procesos-y-servicios-programacion-de-sockets-ii/",
+    "date": "21 Jan 2016",
+    "categories": "Java",
+    "tags": "java, sockets, udp, tcp, multicast, hilos, programacion-de-servicios-y-procesos",
+    "excerpt": "Programación avanzada de sockets en Java con soporte para múltiples clientes mediante hilos, comunicación UDP con DatagramSocket y DatagramPacket, y..."
+  },
+  
+  {
+    "title": "Procesos y servicios. Programación de Sockets (I)",
+    "url": "/posts/2016/01/20/procesos-y-servicios-programacion-de-sockets-i/",
+    "date": "20 Jan 2016",
+    "categories": "Java",
+    "tags": "java, sockets, tcp, programacion-de-servicios-y-procesos, serversocket",
+    "excerpt": "Introducción a la programación de sockets TCP en Java con las clases ServerSocket y Socket, incluyendo ejemplos de servidor y..."
+  },
+  
+  {
+    "title": "Procesos y servicios. Programación en red",
+    "url": "/posts/2016/01/20/procesos-y-servicios-programacion-en-red/",
+    "date": "20 Jan 2016",
+    "categories": "Java",
+    "tags": "java, redes, programacion-de-servicios-y-procesos, inetaddress, url, urlconnection",
+    "excerpt": "Introducción a la programación en red con Java usando el paquete java.net, incluyendo las clases InetAddress, URL y URLConnection con..."
+  },
+  
+  {
+    "title": "Programación multimedia. Intents implícitos",
+    "url": "/posts/2016/01/19/programacion-multimedia-intents-implicitos/",
+    "date": "19 Jan 2016",
+    "categories": "Android",
+    "tags": "android, intents, programacion-multimedia, java, action-view, action-call",
+    "excerpt": "Tutorial de Android para implementar intents implícitos y acceder a funcionalidades del sistema operativo como el navegador, el teléfono, la..."
+  },
+  
+  {
+    "title": "Programación multimedia. Configurar GenyMotion para Android Studio",
+    "url": "/posts/2016/01/16/programacion-multimedia-configurar-genymotion-para-android-studio/",
+    "date": "16 Jan 2016",
+    "categories": "Android",
+    "tags": "android, genymotion, android-studio, emulador, programacion-multimedia",
+    "excerpt": "Tutorial paso a paso para instalar y configurar GenyMotion como emulador de Android alternativo al de Android Studio, con integración..."
+  },
+  
+  {
+    "title": "Acceso a datos. Aplicaciones web servidor. PHP (Ejercicio)",
+    "url": "/posts/2016/01/11/acceso-datos-aplicaciones-web-servidor-php-ejercicio/",
+    "date": "11 Jan 2016",
+    "categories": "PHP",
+    "tags": "acceso-a-datos, php, pdo, crud, mysql",
+    "excerpt": "Ejercicio práctico de acceso a bases de datos en PHP usando PDO, con operaciones CRUD sobre una tabla de items...."
+  },
+  
+  {
+    "title": "Procesos y servicios. Procesos concurrentes",
+    "url": "/posts/2015/12/15/procesos-y-servicios-procesos-concurrentes/",
+    "date": "15 Dec 2015",
+    "categories": "Java, Programación de servicios y procesos",
+    "tags": "java, concurrencia, exclusion-mutua, dekker, peterson, hilos, sincronizacion",
+    "excerpt": "Requisitos de exclusión mutua, algoritmos de Dekker y Peterson para sincronización de procesos concurrentes, con ejercicio práctico en Java."
+  },
+  
+  {
+    "title": "Procesos y servicios. Prioridad de los hilos",
+    "url": "/posts/2015/12/14/procesos-y-servicios-prioridad-de-los-hilos/",
+    "date": "14 Dec 2015",
+    "categories": "Java, Programación de servicios y procesos",
+    "tags": "java, hilos, threads, concurrencia, productor-consumidor, prioridad",
+    "excerpt": "Explicación de la prioridad de hilos en Java con setPriority() y getPriority(), y cuatro ejercicios del problema productor-consumidor."
+  },
+  
+  {
+    "title": "Acceso a datos. Aplicaciones web servidor. JSP. Ejercicios",
+    "url": "/posts/2015/12/09/acceso-datos-aplicaciones-web-servidor-jsp-ejercicios/",
+    "date": "09 Dec 2015",
+    "categories": "Acceso a datos, Web",
+    "tags": "java, jsp, web, mysql, jdbc, ejercicios",
+    "excerpt": "12 ejercicios prácticos de JSP que van desde mostrar información del servidor hasta sistemas CRUD completos con base de datos...."
+  },
+  
+  {
+    "title": "Acceso a datos. Aplicaciones web servidor. JSP. Ejemplos (II)",
+    "url": "/posts/2015/12/09/acceso-datos-aplicaciones-web-servidor-jsp-ejemplos-ii/",
+    "date": "09 Dec 2015",
+    "categories": "Acceso a datos, Web",
+    "tags": "java, jsp, web, sesiones, cookies, mysql, jdbc",
+    "excerpt": "Ejemplos prácticos de JSP con includes, sesiones, cookies y acceso a base de datos con MySQL."
+  },
+  
+  {
+    "title": "Acceso a datos. Aplicaciones web servidor. JSP. Ejemplos",
+    "url": "/posts/2015/11/22/acceso-datos-aplicaciones-web-servidor-jsp-ejemplos/",
+    "date": "22 Nov 2015",
+    "categories": "Java",
+    "tags": "java, jsp, acceso-a-datos, web, ejemplos, scriptlet, expresiones",
+    "excerpt": "Colección de ejemplos prácticos de JSP, desde el Hola Mundo hasta el manejo de parámetros, expresiones, scriptlets, comentarios, contador de..."
+  },
+  
+  {
+    "title": "Acceso a datos. Configurando Eclipse para JSP",
+    "url": "/posts/2015/11/22/acceso-datos-configurando-eclipse-para-jsp/",
+    "date": "22 Nov 2015",
+    "categories": "Java",
+    "tags": "java, jsp, eclipse, tomcat, acceso-a-datos, web, servlet",
+    "excerpt": "Configuración de Eclipse con Apache Tomcat para desarrollar aplicaciones JSP, incluyendo la instalación del servidor, el plugin de desarrollo web..."
+  },
+  
+  {
+    "title": "Acceso a datos. Aplicaciones web servidor. JSP",
+    "url": "/posts/2015/11/22/acceso-datos-aplicaciones-web-servidor-jsp/",
+    "date": "22 Nov 2015",
+    "categories": "Java",
+    "tags": "java, jsp, acceso-a-datos, javabeans, web, servlet",
+    "excerpt": "Introducción a JavaServer Pages (JSP), sus elementos de script, objetos implícitos, acciones con JavaBeans y librerías de tags personalizadas."
+  },
+  
+  {
+    "title": "Programación multimedia. Menús",
+    "url": "/posts/2015/11/09/programacion-multimedia-menus/",
+    "date": "09 Nov 2015",
+    "categories": "Android",
+    "tags": "android, menus, menu-contextual, programacion-multimedia, actionbar",
+    "excerpt": "Implementación de menús en Android, tipos de menú (principal, submenú y contextual), definición en XML y gestión en Java con..."
+  },
+  
+  {
+    "title": "Gestión empresarial. Configurar Eclipse para OpenERP",
+    "url": "/posts/2015/11/04/gestion-empresarial-configurar-eclipse-para-openerp/",
+    "date": "04 Nov 2015",
+    "categories": "Python",
+    "tags": "openerp, eclipse, pydev, python, xml, gestion-empresarial",
+    "excerpt": "Pasos para configurar Eclipse con PyDev, herramientas XML y plantillas para desarrollar módulos de OpenERP en Python y XML."
+  },
+  
+  {
+    "title": "Procesos y servicios. Programación multihilo",
+    "url": "/posts/2015/11/04/procesos-y-servicios-programacion-multihilo/",
+    "date": "04 Nov 2015",
+    "categories": "Java",
+    "tags": "java, hilos, threads, programacion-de-servicios-y-procesos, concurrencia, runnable",
+    "excerpt": "Ciclo de vida de los hilos en Java, estados New, Runnable, Dead y Blocked, y ejemplos prácticos con Thread, join,..."
+  },
+  
+  {
+    "title": "Acceso a datos. Introducción a los JavaBeans",
+    "url": "/posts/2015/11/03/acceso-datos-introduccion-los-javabeans/",
+    "date": "03 Nov 2015",
+    "categories": "Java",
+    "tags": "java, javabeans, componentes, serializable, eventos, acceso-a-datos",
+    "excerpt": "Introducción a los componentes JavaBeans en Java, sus características, tipos de propiedades, eventos, empaquetamiento en JAR y creación con NetBeans...."
+  },
+  
+  {
+    "title": "Acceso a datos. Introducción a los JavaBeans",
+    "url": "/posts/2015/11/03/acceso-datos-introduccion-a-los-javabeans/",
+    "date": "03 Nov 2015",
+    "categories": "Java",
+    "tags": "java, javabeans, componentes, propiedades, eventos, acceso-a-datos, serializable",
+    "excerpt": "Introducción a los componentes JavaBeans en Java, sus características, tipos de propiedades, eventos, y cómo crear y empaquetar beans con..."
+  },
+  
+  {
+    "title": "Programación multimedia. ListView personalizados",
+    "url": "/posts/2015/11/03/programacion-multimedia-listview/",
+    "date": "03 Nov 2015",
+    "categories": "Android",
+    "tags": "android, listview, adapter, programacion-multimedia, arrayadapter",
+    "excerpt": "Cómo crear un ListView personalizado en Android con iconos en cada ítem usando un layout propio y ArrayAdapter, con gestión..."
+  },
+  
+  {
+    "title": "Programación multimedia. ListView personalizados",
+    "url": "/posts/2015/11/03/programacion-multimedia-listview-personalizados/",
+    "date": "03 Nov 2015",
+    "categories": "Android",
+    "tags": "android, listview, adapter, programacion-multimedia, layout",
+    "excerpt": "Cómo personalizar un ListView en Android añadiendo iconos a cada ítem de la lista mediante un layout personalizado y ArrayAdapter...."
+  },
+  
+  {
+    "title": "Programación multimedia. Mejoras en diseño",
+    "url": "/posts/2015/11/03/programacion-multimedia-mejoras-en-disenyo/",
+    "date": "03 Nov 2015",
+    "categories": "Android",
+    "tags": "android, disenyo, tabhost, iconos, actionbar, programacion-multimedia",
+    "excerpt": "Elementos para mejorar el diseño de aplicaciones Android, incluyendo iconos del sistema, barra de acción, pestañas con TabHost y recursos..."
+  },
+  
+  {
+    "title": "Programación multimedia. Mejoras en diseño",
+    "url": "/posts/2015/11/03/programacion-multimedia-mejoras-en-diseno/",
+    "date": "03 Nov 2015",
+    "categories": "Android",
+    "tags": "android, diseno, tabhost, iconos, programacion-multimedia",
+    "excerpt": "Elementos para mejorar el diseño de aplicaciones Android, iconos del sistema, recursos gráficos, y creación de una interfaz con pestañas..."
+  },
+  
+  {
+    "title": "Programación multimedia. Procesos",
+    "url": "/posts/2015/11/03/programacion-multimedia-procesos/",
+    "date": "03 Nov 2015",
+    "categories": "Android",
+    "tags": "android, procesos, ciclo-de-vida, activity, programacion-multimedia",
+    "excerpt": "Gestión de procesos en Android y ciclo de vida de las actividades, con los siete métodos del ciclo de vida..."
+  },
+  
+  {
+    "title": "Acceso a datos. Ejercicios (V). JDBC",
+    "url": "/posts/2015/11/01/acceso-datos-ejercicios-v-jdbc/",
+    "date": "01 Nov 2015",
+    "categories": "Java",
+    "tags": "java, jdbc, mysql, acceso-a-datos, preparedstatement, transacciones, databasemetadata",
+    "excerpt": "Ejercicios prácticos de JDBC sobre la base de datos demodb, incluyendo consultas, sentencias preparadas, transacciones, procedimientos almacenados y metadatos con..."
+  },
+  
+  {
+    "title": "Procesos y servicios. Hilos. Applets",
+    "url": "/posts/2015/10/27/procesos-y-servicios-hilos-applets/",
+    "date": "27 Oct 2015",
+    "categories": "Java",
+    "tags": "java, procesos-y-servicios, hilos, threads, applet, runnable, awt",
+    "excerpt": "Creación de Applets Java con hilos usando Runnable e inner classes Thread, con ejemplos de reloj analógico, contador con botones..."
+  },
+  
+  {
+    "title": "Programación multimedia. Comunicación entre Activities",
+    "url": "/posts/2015/10/25/programacion-multimedia-comunicacion-entre-activities/",
+    "date": "25 Oct 2015",
+    "categories": "Android",
+    "tags": "android, java, programacion-multimedia, intent, bundle, webview, activity",
+    "excerpt": "Cómo comunicar dos Activities en Android usando Intent explícito e implícito, pasar datos con Bundle y putExtra, y cargar páginas..."
+  },
+  
+  {
+    "title": "Acceso a datos. JDBC (V). Uso del ResultSet",
+    "url": "/posts/2015/10/24/acceso-datos-jdbc-v-uso-del-resultset/",
+    "date": "24 Oct 2015",
+    "categories": "Java",
+    "tags": "java, acceso-a-datos, jdbc, mysql, resultset, sql",
+    "excerpt": "Uso avanzado del objeto ResultSet en JDBC para navegar, actualizar, insertar y eliminar filas mediante el cursor y los modos..."
+  },
+  
+  {
+    "title": "Acceso a datos. JDBC (IV). Transacciones",
+    "url": "/posts/2015/10/24/acceso-datos-jdbc-iv-transacciones/",
+    "date": "24 Oct 2015",
+    "categories": "Java",
+    "tags": "java, acceso-a-datos, jdbc, mysql, transacciones, sql",
+    "excerpt": "Introducción a las transacciones en JDBC, su importancia para garantizar la integridad de los datos y los métodos setAutoCommit, commit,..."
+  },
+  
+  {
+    "title": "Acceso a datos. JDBC (III). Conexiones y sentencias SQL",
+    "url": "/posts/2015/10/24/acceso-datos-jdbc-iii-conexiones-y-sentencias-sql/",
+    "date": "24 Oct 2015",
+    "categories": "Java",
+    "tags": "java, acceso-a-datos, jdbc, mysql, statement, preparedstatement, callablestatement, sql",
+    "excerpt": "Los tres métodos de conexión JDBC con MySQL y los tres tipos de sentencias SQL en Java (Statement, PreparedStatement y..."
+  },
+  
+  {
+    "title": "Acceso a datos. JDBC (II). Diseño de una aplicación con BD",
+    "url": "/posts/2015/10/24/acceso-datos-jdbc-ii-diseno-de-una-aplicacion-con-bd/",
+    "date": "24 Oct 2015",
+    "categories": "Java",
+    "tags": "java, acceso-a-datos, jdbc, mysql, dao, patron-diseno, base-de-datos",
+    "excerpt": "Diseño de una aplicación Java con base de datos aplicando el patrón DAO (Data Access Object) para separar la lógica..."
+  },
+  
+  {
+    "title": "Acceso a datos. JDBC (I). Introducción",
+    "url": "/posts/2015/10/24/acceso-datos-jdbc-i-introduccion/",
+    "date": "24 Oct 2015",
+    "categories": "Java",
+    "tags": "java, acceso-a-datos, jdbc, mysql, sql, base-de-datos, connection, resultset",
+    "excerpt": "Introducción a JDBC, la API de Java para acceder a bases de datos SQL, incluyendo arquitectura, configuración del driver MySQL,..."
+  },
+  
+  {
+    "title": "Añadir spoilers vistosos a Blogger",
+    "url": "/posts/2015/10/23/anadir-spoilers-vistosos-a-blogger/",
+    "date": "23 Oct 2015",
+    "categories": "CMS",
+    "tags": "blogger, jquery, html, css, spoiler, cms",
+    "excerpt": "Cómo implementar botones mostrar/ocultar (spoilers) en Blogger usando jQuery para mejorar la legibilidad de entradas largas con mucho código."
+  },
+  
+  {
+    "title": "Procesos y servicios. Hilos",
+    "url": "/posts/2015/10/22/procesos-y-servicios-hilos/",
+    "date": "22 Oct 2015",
+    "categories": "Java",
+    "tags": "java, hilos, threads, runnable, concurrencia, procesos-y-servicios",
+    "excerpt": "Concepto de hilo en Java, diferencias con los procesos, implementación extendiendo Thread o implementando Runnable, y métodos principales como start(),..."
+  },
+  
+  {
+    "title": "Acceso a datos. Ejercicios (IV). Ficheros XML",
+    "url": "/posts/2015/10/22/acceso-datos-ejercicios-iv-ficheros-xml/",
+    "date": "22 Oct 2015",
+    "categories": "Java",
+    "tags": "java, acceso-a-datos, xml, dom, sax, xstream, jdom, serializable, ejercicios",
+    "excerpt": "Ejercicios prácticos de manipulación de ficheros XML en Java con DOM, SAX, XStream y JDOM, combinando serialización binaria y generación..."
+  },
+  
+  {
+    "title": "Programación multimedia. Botones personalizados",
+    "url": "/posts/2015/10/18/programacion-multimedia-botones-personalizados/",
+    "date": "18 Oct 2015",
+    "categories": "Android",
+    "tags": "android, android-studio, button, drawable, selector, estados, programacion-multimedia",
+    "excerpt": "Cómo crear botones personalizados en Android usando imágenes y un selector XML con estados (normal, pulsado, con foco) para dar..."
+  },
+  
+  {
+    "title": "Programación multimedia. Controles de selección",
+    "url": "/posts/2015/10/18/programacion-multimedia-controles-de-seleccion/",
+    "date": "18 Oct 2015",
+    "categories": "Android",
+    "tags": "android, android-studio, spinner, listview, arrayadapter, listadapter, programacion-multimedia",
+    "excerpt": "Controles de selección en Android (Spinner, ListView, GridView, Gallery) y uso de adaptadores como ArrayAdapter para vincular datos con listas...."
+  },
+  
+  {
+    "title": "Programación multimedia. Estilos",
+    "url": "/posts/2015/10/18/programacion-multimedia-estilos/",
+    "date": "18 Oct 2015",
+    "categories": "Android",
+    "tags": "android, android-studio, estilos, styles, herencia, programacion-multimedia",
+    "excerpt": "Cómo crear y aplicar estilos personalizados en Android Studio editando styles.xml, incluyendo herencia de estilos para reutilizar propiedades visuales."
+  },
+  
+  {
+    "title": "Programación multimedia. Recursos alternativos. Internacionalización",
+    "url": "/posts/2015/10/18/programacion-multimedia-recursos-alternativos-internacionalizacion/",
+    "date": "18 Oct 2015",
+    "categories": "Android",
+    "tags": "android, android-studio, internacionalizacion, i18n, strings, recursos, programacion-multimedia",
+    "excerpt": "Cómo gestionar la internacionalización en Android creando ficheros strings.xml alternativos por idioma y región, y vincularlos a los elementos de..."
+  },
+  
+  {
+    "title": "Programación multimedia. Recursos alternativos. Orientación",
+    "url": "/posts/2015/10/18/programacion-multimedia-recursos-alternativos-orientacion/",
+    "date": "18 Oct 2015",
+    "categories": "Android",
+    "tags": "android, android-studio, orientacion, layout, landscape, portrait, programacion-multimedia",
+    "excerpt": "Cómo crear layouts alternativos en Android para que la interfaz se adapte automáticamente al cambiar la orientación del dispositivo entre..."
+  },
+  
+  {
+    "title": "Programación multimedia. Segunda aplicación. Transparentando una imagen",
+    "url": "/posts/2015/10/18/programacion-multimedia-segunda-aplicacion-transparencia/",
+    "date": "18 Oct 2015",
+    "categories": "Android",
+    "tags": "android, android-studio, imageview, transparencia, alpha, color, programacion-multimedia",
+    "excerpt": "Aplicación Android que modifica la transparencia de una imagen a partir de un porcentaje introducido por el usuario, y cambia..."
+  },
+  
+  {
+    "title": "Programación multimedia. Primera aplicación. Conversor de euros - dólares",
+    "url": "/posts/2015/10/18/programacion-multimedia-primera-aplicacion-conversor-euros-dolares/",
+    "date": "18 Oct 2015",
+    "categories": "Android",
+    "tags": "android, android-studio, aplicacion, conversor, edittext, button, programacion-multimedia",
+    "excerpt": "Primera aplicación Android completa, un conversor de euros a dólares y viceversa, con botones de conversión y cierre y manejo..."
+  },
+  
+  {
+    "title": "Programación multimedia. Vistas de entrada de texto",
+    "url": "/posts/2015/10/18/programacion-multimedia-vistas-de-entrada-de-texto/",
+    "date": "18 Oct 2015",
+    "categories": "Android",
+    "tags": "android, android-studio, textfield, edittext, teclado, programacion-multimedia",
+    "excerpt": "Componentes de entrada de texto en Android Studio (TextFields), sus tipos y cómo el teclado se adapta según el tipo..."
+  },
+  
+  {
+    "title": "Programación multimedia. Conociendo el entorno gráfico",
+    "url": "/posts/2015/10/18/programacion-multimedia-conociendo-el-entorno-grafico/",
+    "date": "18 Oct 2015",
+    "categories": "Android",
+    "tags": "android, android-studio, interfaz-grafica, layouts, widgets, programacion-multimedia",
+    "excerpt": "Guía del entorno gráfico de Android Studio para empezar el desarrollo multimedia, incluyendo la paleta de componentes, el editor visual,..."
+  },
+  
+  {
+    "title": "Acceso a datos. Ficheros XML",
+    "url": "/posts/2015/10/17/acceso-datos-ficheros-xml/",
+    "date": "17 Oct 2015",
+    "categories": "Java",
+    "tags": "java, acceso-a-datos, xml, dom, jaxp, documentbuilder",
+    "excerpt": "Manejo de ficheros XML en Java usando DOM (Document Object Model) y JAXP, con ejemplos de lectura, recorrido, modificación y..."
+  },
+  
+  {
+    "title": "Procesos y servicios. Programación concurrente",
+    "url": "/posts/2015/10/13/procesos-y-servicios-programacion-concurrente/",
+    "date": "13 Oct 2015",
+    "categories": "Sistemas",
+    "tags": "procesos, concurrencia, paralelismo, distribuido, sockets, rpc, rmi",
+    "excerpt": "Conceptos de programación concurrente, paralela y distribuida, con sus ventajas, inconvenientes y modelos de comunicación entre procesos."
+  },
+  
+  {
+    "title": "Procesos y servicios. Señales y sincronización",
+    "url": "/posts/2015/10/13/procesos-y-servicios-senales-y-sincronizacion/",
+    "date": "13 Oct 2015",
+    "categories": "Sistemas",
+    "tags": "c, procesos, senales, sincronizacion, linux, fork, kill",
+    "excerpt": "Concepto de señales en sistemas operativos como mecanismo de comunicación entre procesos, funciones C para manejo de señales y sincronización..."
+  },
+  
+  {
+    "title": "Acceso a datos. Ejercicios (III). Persistencia",
+    "url": "/posts/2015/10/13/acceso-datos-ejercicios-iii-persistencia/",
+    "date": "13 Oct 2015",
+    "categories": "Java",
+    "tags": "java, acceso-a-datos, persistencia, serializacion, serializable, externalizable, ejercicios",
+    "excerpt": "Dos ejercicios prácticos sobre persistencia de objetos en Java usando Serializable y Externalizable para almacenar datos de vehículos."
+  },
+  
+  {
+    "title": "Acceso a datos. Persistencia",
+    "url": "/posts/2015/10/12/acceso-datos-persistencia/",
+    "date": "12 Oct 2015",
+    "categories": "Java",
+    "tags": "java, acceso-a-datos, persistencia, serializacion, serializable, externalizable",
+    "excerpt": "Conceptos de persistencia y serialización de objetos en Java, incluyendo la interfaz Serializable, el modificador transient, herencia serializable y la..."
+  },
+  
+  {
+    "title": "Programación multimedia. Configuración de smartphone para Android Studio",
+    "url": "/posts/2015/10/10/programacion-multimedia-configuracion-de-smartphone-para-android-studio/",
+    "date": "10 Oct 2015",
+    "categories": "Android",
+    "tags": "android, android-studio, smartphone, depuracion-usb, programacion-multimedia",
+    "excerpt": "Cómo conectar un smartphone físico Android a Android Studio para ejecutar aplicaciones directamente en el dispositivo en lugar de usar..."
+  },
+  
+  {
+    "title": "Acceso a datos. Ejercicios (II). Clases File y RandomAccessFile",
+    "url": "/posts/2015/10/07/acceso-datos-ejercicios-ii-clases-file-y-randomaccessfile/",
+    "date": "07 Oct 2015",
+    "categories": "Java",
+    "tags": "java, acceso-a-datos, file, randomaccessfile, ficheros, ejercicios",
+    "excerpt": "Siete ejercicios prácticos sobre manipulación de archivos y directorios en Java usando las clases File y RandomAccessFile."
+  },
+  
+  {
+    "title": "Acceso a datos. Clases File y RandomAccessFile",
+    "url": "/posts/2015/10/07/acceso-datos-clases-file-y-randomaccessfile/",
+    "date": "07 Oct 2015",
+    "categories": "Java",
+    "tags": "java, acceso-a-datos, file, randomaccessfile, ficheros, io",
+    "excerpt": "Uso de las clases File y RandomAccessFile en Java para manejo de archivos y directorios, incluyendo filtros de archivos y..."
+  },
+  
+  {
+    "title": "Servicios y procesos. Servicios en C (III). FIFOs",
+    "url": "/posts/2015/10/05/servicios-y-procesos-servicios-en-c-iii/",
+    "date": "05 Oct 2015",
+    "categories": "Linux",
+    "tags": "c, linux, fifo, pipes, ipc, programacion-de-servicios-y-procesos",
+    "excerpt": "Comunicación entre procesos mediante FIFOs (tuberías con nombre) en C sobre Linux, con ejemplos de programa lector y escritor usando..."
+  },
+  
+  {
+    "title": "Acceso a datos. Manejo de ficheros",
+    "url": "/posts/2015/10/04/acceso-datos-manejo-de-ficheros/",
+    "date": "04 Oct 2015",
+    "categories": "Java",
+    "tags": "java, ficheros, streams, io, acceso-a-datos, fileInputStream, bufferedreader",
+    "excerpt": "Manejo de ficheros en Java con el paquete java.io, incluyendo streams de bytes y caracteres, FileInputStream, FileOutputStream, FileReader, FileWriter, BufferedReader,..."
+  },
+  
+  {
+    "title": "Servicios y procesos. Procesos en C (II). PIPE",
+    "url": "/posts/2015/09/30/servicios-y-procesos-procesos-en-c-ii-pipe/",
+    "date": "30 Sep 2015",
+    "categories": "Programación",
+    "tags": "c, procesos, pipe, servicios-y-procesos",
+    "excerpt": "Comunicación entre procesos padre e hijo en C mediante tuberías (PIPE), incluyendo un ejercicio con tres procesos (abuelo, padre e..."
+  },
+  
+  {
+    "title": "Servicios y procesos. Procesos y C (I)",
+    "url": "/posts/2015/09/29/servicios-y-procesos-procesos-y-c-i/",
+    "date": "29 Sep 2015",
+    "categories": "Programación",
+    "tags": "c, procesos, servicios-y-procesos, linux",
+    "excerpt": "Introducción a los procesos en sistemas operativos y cómo trabajar con ellos en C bajo Linux, usando execl, system, fork,..."
+  },
+  
+  {
+    "title": "Desarrollo de interfaces. Instalación de Visual Studio 2012",
+    "url": "/posts/2015/09/26/desarrollo-de-interfaces-instalacion-de-visual-studio-2012/",
+    "date": "26 Sep 2015",
+    "categories": "Entornos de desarrollo",
+    "tags": "visual-studio, visual-basic, desarrollo-de-interfaces",
+    "excerpt": "Guía de instalación de Visual Studio 2012 para el módulo de Desarrollo de interfaces, con el que programaremos en Visual..."
+  },
+  
+  {
+    "title": "Programación multimedia. Instalación y configuración de Android Studio",
+    "url": "/posts/2015/09/26/programacion-multimedia-instalacion-y-configuracion-de-android-studio/",
+    "date": "26 Sep 2015",
+    "categories": "Programación",
+    "tags": "android, android-studio, programacion-multimedia, emulador",
+    "excerpt": "Guía paso a paso para instalar y configurar Android Studio, crear un emulador Android y optimizar el rendimiento con Intel..."
+  },
+  
+  {
+    "title": "Acceso a datos. Preparación de los equipos",
+    "url": "/posts/2015/09/23/acceso-datos-preparacion-de-los-equipos/",
+    "date": "23 Sep 2015",
+    "categories": "Bases de datos",
+    "tags": "acceso-a-datos, xampp, mysql, jdk, eclipse, netbeans",
+    "excerpt": "Lista de herramientas necesarias para el módulo de Acceso a datos, con instrucciones de instalación para XAMPP, MySQL Workbench, JDK,..."
+  },
+  
+  {
+    "title": "Segundas partes nunca fueron buenas",
+    "url": "/posts/2015/09/23/segundas-partes-nunca-fueron-buenas/",
+    "date": "23 Sep 2015",
+    "categories": "Varios",
+    "tags": "varios",
+    "excerpt": "Inicio del segundo año del ciclo de Desarrollo de Aplicaciones Multiplataforma. Presentación del blog para el nuevo curso."
+  },
+  
+  {
+    "title": "Programación. Manual completo del módulo",
+    "url": "/posts/2015/06/12/programacion-manual-completo-del-modulo/",
+    "date": "12 Jun 2015",
+    "categories": "Programación",
+    "tags": "programacion, ada, c, java, manual",
+    "excerpt": "Manual completo del módulo de Programación, con teoría y práctica de C, ADA y Java, disponible para descarga."
+  },
+  
+  {
+    "title": "Lenguajes de marcas. Prácticas y teoría (TODO COMPLETO)",
+    "url": "/posts/2015/06/11/lenguajes-de-marcas-practicas-y-teoria-todo-completo/",
+    "date": "11 Jun 2015",
+    "categories": "Lenguajes de marcas",
+    "tags": "html5, css3, php, javascript, jquery, ajax, xml",
+    "excerpt": "Recopilación completa de apuntes y prácticas del módulo de Lenguajes de marcas y del certificado de creación de páginas web,..."
+  },
+  
+  {
+    "title": "Sistemas informáticos. Apuntes 3 evaluación. Segundo exámen",
+    "url": "/posts/2015/05/27/sistemas-informaticos-apuntes-3-evaluacion-segundo-examen/",
+    "date": "27 May 2015",
+    "categories": "Sistemas informáticos",
+    "tags": "sistemas-informaticos, windows-server, active-directory, ubuntu-server, dhcp, dns, apache, lamp",
+    "excerpt": "Apuntes del segundo examen de la tercera evaluación de sistemas informáticos sobre Windows Server 2008, Active Directory, DHCP, DNS, LAMP..."
+  },
+  
+  {
+    "title": "Sistemas informáticos. Apuntes 3 evaluación. Primer exámen",
+    "url": "/posts/2015/05/25/sistemas-informaticos-apuntes-3-evaluacion-primer-examen/",
+    "date": "25 May 2015",
+    "categories": "Sistemas informáticos",
+    "tags": "sistemas-informaticos, redes, tcp-ip, seguridad, vpn, iptables",
+    "excerpt": "Apuntes del primer examen de la tercera evaluación de sistemas informáticos sobre redes, protocolos TCP/IP, dispositivos de interconexión y seguridad...."
+  },
+  
+  {
+    "title": "Bases de datos. SQL programado (XVII). Examen de la tercera evaluación",
+    "url": "/posts/2015/05/25/bases-de-datos-sql-programado-xvii/",
+    "date": "25 May 2015",
+    "categories": "Bases de datos",
+    "tags": "bases-de-datos, sql, mysql, procedimientos, triggers, transacciones, sql-dinamico",
+    "excerpt": "Examen práctico del tercer trimestre de bases de datos con SQL dinámico, procedimientos con transacciones y triggers en MySQL."
+  },
+  
+  {
+    "title": "Entornos de desarrollo. Modelo - Vista - Controlador (con ejemplo de conversor)",
+    "url": "/posts/2015/05/20/entornos-de-desarrollo-modelo-vista-controlador/",
+    "date": "20 May 2015",
+    "categories": "Entornos de desarrollo, Java",
+    "tags": "entornos-de-desarrollo, java, mvc, modelo-vista-controlador, swing",
+    "excerpt": "Explicación del patrón de arquitectura MVC implementado en Java con un ejemplo práctico de conversor de divisas."
+  },
+  
+  {
+    "title": "Bases de datos. Teoría",
+    "url": "/posts/2015/05/13/bases-de-datos-teoria/",
+    "date": "13 May 2015",
+    "categories": "Bases de datos",
+    "tags": "bases-de-datos, teoría, ficheros, sgbd, arquitectura",
+    "excerpt": "Apuntes teóricos de bases de datos sobre tipos de ficheros, organización, arquitectura ANSI/X3/SPARC y comparativa de SGBD libres y comerciales...."
+  },
+  
+  {
+    "title": "Bases de datos. SQL programado (XVI). Ejercicios (VII)",
+    "url": "/posts/2015/05/12/bases-de-datos-sql-programado-xvi/",
+    "date": "12 May 2015",
+    "categories": "Bases de datos",
+    "tags": "bases-de-datos, sql, mysql, procedimientos, funciones, triggers, transacciones",
+    "excerpt": "Examen de práctica del tercer trimestre de bases de datos con funciones, procedimientos con transacciones y triggers en MySQL."
+  },
+  
+  {
+    "title": "Bases de datos. SQL programado (XV). Ejercicios (VI)",
+    "url": "/posts/2015/05/06/bases-de-datos-sql-programado-xv/",
+    "date": "06 May 2015",
+    "categories": "Bases de datos",
+    "tags": "bases-de-datos, sql, mysql, procedimientos, cursores, transacciones",
+    "excerpt": "Ejercicios avanzados de SQL programado en MySQL con cursores de actualización, transacciones, manejadores de error y estrategia optimista."
+  },
+  
+  {
+    "title": "Programación. GUIs en Java",
+    "url": "/posts/2015/05/05/programacion-guis-en-java/",
+    "date": "05 May 2015",
+    "categories": "Java, Programación",
+    "tags": "java, programación, swing, awt, gui",
+    "excerpt": "Introducción al desarrollo de interfaces gráficas en Java con AWT y Swing, incluyendo layouts, eventos y look and feel."
+  },
+  
+  {
+    "title": "Entornos de desarrollo. SVN en Ubuntu. Subversion",
+    "url": "/posts/2015/05/05/entornos-de-desarrollo-svn-en-ubuntu/",
+    "date": "05 May 2015",
+    "categories": "Entornos de desarrollo",
+    "tags": "entornos-de-desarrollo, svn, subversion, ubuntu, control-de-versiones",
+    "excerpt": "Cómo usar Subversion (SVN) en Ubuntu para gestionar el control de versiones de un proyecto con Assembla."
+  },
+  
+  {
+    "title": "Entornos de desarrollo. SVN con Assembla y Tortoise",
+    "url": "/posts/2015/04/29/entornos-de-desarrollo-svn-con-assembla-y-tortoise/",
+    "date": "29 Apr 2015",
+    "categories": "Entornos de desarrollo",
+    "tags": "entornos-de-desarrollo, svn, control-de-versiones, assembla, tortoisesvn",
+    "excerpt": "Introducción a SVN como sistema de control de versiones, con tutorial paso a paso para crear un repositorio en Assembla..."
+  },
+  
+  {
+    "title": "Bases de datos. SQL programado (XIV). Abrazo mortal",
+    "url": "/posts/2015/04/27/bases-de-datos-sql-programado-xiv-abrazo-mortal/",
+    "date": "27 Apr 2015",
+    "categories": "Bases de datos",
+    "tags": "bases-de-datos, sql, mysql, deadlock, transacciones, cursor",
+    "excerpt": "Explicación del DeadLock o abrazo mortal en MySQL y cómo evitarlo usando cursores de actualización CURSOR FOR UPDATE."
+  },
+  
+  {
+    "title": "Entornos de desarrollo. UML Designer en Eclipse",
+    "url": "/posts/2015/04/22/entornos-de-desarrollo-uml-designer-en-eclipse/",
+    "date": "22 Apr 2015",
+    "categories": "Entornos de desarrollo",
+    "tags": "entornos-de-desarrollo, eclipse, uml, diagramas, clases",
+    "excerpt": "Cómo instalar y usar el plugin UML Designer en Eclipse para crear diagramas de clases UML, con explicación de asociaciones,..."
+  },
+  
+  {
+    "title": "Programación. Desarrollo de software orientado a objetos (II)",
+    "url": "/posts/2015/04/19/programacion-desarrollo-de-software-orientado-a-objetos-ii/",
+    "date": "19 Apr 2015",
+    "categories": "Programación",
+    "tags": "programacion, java, ficheros, serializacion, colecciones, orientado-a-objetos",
+    "excerpt": "Manejo de ficheros en Java con FileReader, FileWriter, DataInputStream y serialización de objetos. Introducción al framework Collection."
+  },
+  
+  {
+    "title": "Lenguaje de marcas. DTD",
+    "url": "/posts/2015/04/17/lenguaje-de-marcas-dtd/",
+    "date": "17 Apr 2015",
+    "categories": "Lenguajes de marcas",
+    "tags": "lenguajes-de-marcas, xml, dtd",
+    "excerpt": "Introducción al DTD (Definición de Tipo de Documento) para validar la estructura de documentos XML, con ejemplos de elementos, atributos..."
+  },
+  
+  {
+    "title": "Bases de datos. SQL programado (XIII). Transacciones (II)",
+    "url": "/posts/2015/04/17/bases-de-datos-sql-programado-xiii-transacciones-ii/",
+    "date": "17 Apr 2015",
+    "categories": "Bases de datos",
+    "tags": "bases-de-datos, sql, mysql, transacciones, commit, rollback, savepoint",
+    "excerpt": "Instrucciones de manejo de transacciones en MySQL&#58; START TRANSACTION, COMMIT, ROLLBACK, SAVEPOINT y LOCK TABLES, con ejemplos prácticos."
+  },
+  
+  {
+    "title": "Programación. Desarrollo de software orientado a objetos (I)",
+    "url": "/posts/2015/04/14/programacion-desarrollo-de-software-orientado-a-objetos-i/",
+    "date": "14 Apr 2015",
+    "categories": "Java, Programación",
+    "tags": "java, programación, orientado-a-objetos, mvc, streams, api, calendar",
+    "excerpt": "Arquitectura en capas, ingeniería del software orientada a objetos, la API de Java con Calendar, clases envoltorio de tipos primitivos..."
+  },
+  
+  {
+    "title": "Programación. Control de errores. Las excepciones",
+    "url": "/posts/2015/04/14/programacion-control-de-errores-las-excepciones/",
+    "date": "14 Apr 2015",
+    "categories": "Java, Programación",
+    "tags": "java, programación, excepciones, try-catch, finally, errores",
+    "excerpt": "Manejo de excepciones en Java con try/catch/finally, excepciones comprobadas y no comprobadas, propagación y creación de excepciones de usuario."
+  },
+  
+  {
+    "title": "Bases de datos. SQL programado (XII). Transacciones",
+    "url": "/posts/2015/04/14/bases-de-datos-sql-programado-xii-transacciones/",
+    "date": "14 Apr 2015",
+    "categories": "Bases de datos",
+    "tags": "bases-de-datos, sql, mysql, transacciones, acid, commit, rollback",
+    "excerpt": "Introducción a las transacciones en MySQL con el principio ACID, niveles de aislamiento, COMMIT y ROLLBACK con ejemplos prácticos por..."
+  },
+  
+  {
+    "title": "Bases de datos. SQL programado (XI). Ejercicios (VI)",
+    "url": "/posts/2015/04/13/bases-de-datos-sql-programado-xi-ejercicios-vi/",
+    "date": "13 Apr 2015",
+    "categories": "Bases de datos",
+    "tags": "bases-de-datos, sql, mysql, triggers, ejercicios",
+    "excerpt": "Ejercicios de triggers en MySQL para sincronizar tablas réplica y realizar auditorías de operaciones INSERT, UPDATE y DELETE."
+  },
+  
+  {
+    "title": "Sistemas informáticos. Windows Server 2008. Primeras configuraciones",
+    "url": "/posts/2015/04/08/sistemas-informaticos-windows-server-2008-primeras-configuraciones/",
+    "date": "08 Apr 2015",
+    "categories": "Sistemas informáticos",
+    "tags": "sistemas-informaticos, windows-server, red, configuracion, netbios",
+    "excerpt": "Configuraciones básicas de red en Windows Server 2008 recién instalado, incluyendo zona horaria, IPv4 estática y nombre NetBIOS."
+  },
+  
+  {
+    "title": "Sistemas informáticos. Windows Server 2008. Instalación",
+    "url": "/posts/2015/04/08/sistemas-informaticos-windows-server-2008-instalacion/",
+    "date": "08 Apr 2015",
+    "categories": "Sistemas informáticos",
+    "tags": "sistemas-informaticos, windows-server, virtualizacion, instalacion",
+    "excerpt": "Guía paso a paso para crear una máquina virtual con Windows Virtual PC e instalar Windows Server 2008 Enterprise."
+  },
+  
+  {
+    "title": "Bases de datos. SQL programado (XI). Triggers",
+    "url": "/posts/2015/04/07/bases-de-datos-sql-programado-xi-triggers/",
+    "date": "07 Apr 2015",
+    "categories": "Bases de datos",
+    "tags": "bases-de-datos, sql, mysql, triggers",
+    "excerpt": "Introducción a los triggers en MySQL con ejemplos de INSERT, DELETE y UPDATE sobre tablas sincronizadas y de auditoría."
+  },
+  
+  {
+    "title": "Programación. Interacción entre clases (II)",
+    "url": "/posts/2015/03/31/programacion-interaccion-entre-clases-ii/",
+    "date": "31 Mar 2015",
+    "categories": "Java, Programación",
+    "tags": "java, programacion, poo, herencia, polimorfismo, interfaces, abstract",
+    "excerpt": "Sobreescritura de métodos, herencia de constructores, instanceof, equals, toString, modificadores final y abstract, castings, polimorfismo e interfaces en Java."
+  },
+  
+  {
+    "title": "Bases de datos. SQL programado (X). Ejercicios (V)",
+    "url": "/posts/2015/03/29/bases-de-datos-sql-programado-x/",
+    "date": "29 Mar 2015",
+    "categories": "Bases de datos",
+    "tags": "bases-de-datos, sql, mysql, funciones, ejercicios",
+    "excerpt": "Ejercicios 23 y 24 de SQL programado en MySQL, creando funciones para comprobar existencia de departamentos y calcular suma de..."
+  },
+  
+  {
+    "title": "Bases de datos. SQL programado (IX). Ejercicios (IV)",
+    "url": "/posts/2015/03/26/bases-de-datos-sql-programado-ix/",
+    "date": "26 Mar 2015",
+    "categories": "Bases de datos",
+    "tags": "bases-de-datos, sql, mysql, procedimientos, errores, ejercicios",
+    "excerpt": "Ejercicios 21 y 22 de SQL programado en MySQL, con manejadores de errores definidos por el usuario mediante condiciones nombradas...."
+  },
+  
+  {
+    "title": "Bases de datos. SQL programado (VIII). Ejercicios (III)",
+    "url": "/posts/2015/03/23/bases-de-datos-sql-programado-viii/",
+    "date": "23 Mar 2015",
+    "categories": "Bases de datos",
+    "tags": "bases-de-datos, sql, mysql, cursores, procedimientos, ejercicios, transacciones",
+    "excerpt": "Ejercicios 19 y 20 de SQL programado en MySQL, con cursores para listar empleados y actualizar salarios en transacciones."
+  },
+  
+  {
+    "title": "Programación. Clases, objetos y paquetes (II)",
+    "url": "/posts/2015/03/21/programacion-clases-objetos-y-paquetes-ii/",
+    "date": "21 Mar 2015",
+    "categories": "Java, Programación",
+    "tags": "java, programacion, clases, encapsulamiento, paquetes, static",
+    "excerpt": "Ocultación y encapsulamiento, getters y setters, referencia this, sobrecarga, modificador static y paquetes en Java."
+  },
+  
+  {
+    "title": "Programación. Interacción entre clases",
+    "url": "/posts/2015/03/21/programacion-interaccion-entre-clases/",
+    "date": "21 Mar 2015",
+    "categories": "Java, Programación",
+    "tags": "java, programacion, poo, herencia, asociacion, composicion",
+    "excerpt": "Dependencia, asociación, multiplicidad, composición, agregación y herencia entre clases en Java orientado a objetos."
+  },
+  
+  {
+    "title": "Bases de datos. SQL programado (VII). Ejercicios (II)",
+    "url": "/posts/2015/03/17/bases-de-datos-sql-programado-vii/",
+    "date": "17 Mar 2015",
+    "categories": "Bases de datos",
+    "tags": "bases-de-datos, sql, mysql, procedimientos, ejercicios",
+    "excerpt": "Ejercicios del 9 al 18 de procedimientos almacenados en MySQL, usando subconsultas, cursores, sentencias preparadas y validación de errores."
+  },
+  
+  {
+    "title": "Bases de datos. SQL programado (VI). Cursores",
+    "url": "/posts/2015/03/16/bases-de-datos-sql-programado-vi/",
+    "date": "16 Mar 2015",
+    "categories": "Bases de datos",
+    "tags": "bases-de-datos, sql, mysql, cursores, procedimientos",
+    "excerpt": "Uso de cursores en MySQL para recorrer conjuntos de resultados fila a fila, con control de errores y cursores anidados...."
+  },
+  
+  {
+    "title": "Programación. Java. Clases, objetos y paquetes",
+    "url": "/posts/2015/03/15/programacion-java-clases-objetos-y-paquetes/",
+    "date": "15 Mar 2015",
+    "categories": "Java, Programación",
+    "tags": "java, programacion, clases, objetos, constructores",
+    "excerpt": "Definición de clases y métodos en Java, constructores, instanciación de objetos y el método main."
+  },
+  
+  {
+    "title": "Programación. Presentación del lenguaje Java y del entorno de desarrollo Eclipse (II)",
+    "url": "/posts/2015/03/15/programacion-presentacion-del-lenguaje-java-y-del-entorno-de-desarrollo-eclipse-ii/",
+    "date": "15 Mar 2015",
+    "categories": "Java, Programación",
+    "tags": "java, programacion, eclipse, tipos-de-datos, operadores, estructuras-de-control",
+    "excerpt": "Elementos básicos de Java: comentarios, variables, tipos de datos primitivos, operadores y estructuras de control."
+  },
+  
+  {
+    "title": "Programación. Presentación del lenguaje Java y del entorno de desarrollo Eclipse (I)",
+    "url": "/posts/2015/03/15/programacion-presentacion-del-lenguaje-java-y-del-entorno-de-desarrollo-eclipse-i/",
+    "date": "15 Mar 2015",
+    "categories": "Java, Programación",
+    "tags": "java, programacion, eclipse, jvm, jdk, jre",
+    "excerpt": "Características principales de Java, motivos de su éxito y descripción de la plataforma de desarrollo Java SE con Eclipse."
+  },
+  
+  {
+    "title": "Programación. ADA. Tipos abstractos de datos (II)",
+    "url": "/posts/2015/03/14/programacion-ada-tipos-abstractos-de-datos-ii/",
+    "date": "14 Mar 2015",
+    "categories": "Programación",
+    "tags": "programacion, ada, arboles, grafos, estructuras-de-datos",
+    "excerpt": "Implementación estática y dinámica de árboles binarios, n-arios y de búsqueda, y representación de grafos."
+  },
+  
+  {
+    "title": "Programación. Introducción a la programación orientada a objetos",
+    "url": "/posts/2015/03/14/programacion-introduccion-a-la-programacion-orientada-a-objetos/",
+    "date": "14 Mar 2015",
+    "categories": "Programación",
+    "tags": "programacion, poo, objetos, uml, java",
+    "excerpt": "Deficiencias de la programación estructurada, los cuatro principios de la POO, diagramas UML y arquitectura en tres capas."
+  },
+  
+  {
+    "title": "Bases de datos. SQL programado (V)",
+    "url": "/posts/2015/03/10/bases-de-datos-sql-programado-v/",
+    "date": "10 Mar 2015",
+    "categories": "Bases de datos",
+    "tags": "bases-de-datos, sql, mysql, procedimientos, errores",
+    "excerpt": "Control de errores en procedimientos almacenados en MySQL, con validación de datos antes de realizar inserciones."
+  },
+  
+  {
+    "title": "Bases de datos. SQL programado (IV) - Ejercicios",
+    "url": "/posts/2015/03/09/practica-1-de-la-hoja-56-1/",
+    "date": "09 Mar 2015",
+    "categories": "Bases de datos",
+    "tags": "bases-de-datos, sql, mysql, procedimientos, ejercicios",
+    "excerpt": "Ocho ejercicios prácticos de procedimientos almacenados en MySQL, desde operaciones básicas hasta desglose de moneda."
+  },
+  
+  {
+    "title": "Bases de datos. SQL programado (III)",
+    "url": "/posts/2015/03/09/bases-de-datos-sql-programado-iii/",
+    "date": "09 Mar 2015",
+    "categories": "Bases de datos",
+    "tags": "bases-de-datos, sql, mysql, procedimientos",
+    "excerpt": "Sentencias preparadas y SQL dinámico en MySQL para mejorar el rendimiento y prevenir inyecciones SQL."
+  },
+  
+  {
+    "title": "Lenguaje de marcas. RSS",
+    "url": "/posts/2015/03/06/lenguaje-de-marcas-rss/",
+    "date": "06 Mar 2015",
+    "categories": "Lenguaje de marcas",
+    "tags": "lenguaje-de-marcas, rss, xml",
+    "excerpt": "Introducción a RSS (Really Simple Syndication), formato XML para distribuir contenido web actualizado, con sus versiones, estructura y elementos principales...."
+  },
+  
+  {
+    "title": "Bases de datos. SQL programado (II)",
+    "url": "/posts/2015/03/06/bases-de-datos-sql-programado-ii/",
+    "date": "06 Mar 2015",
+    "categories": "Bases de datos",
+    "tags": "bases-de-datos, sql, mysql, procedimientos",
+    "excerpt": "Estructura detallada de los procedimientos almacenados en MySQL, con cláusulas opcionales, SELECT INTO y uso de parámetros."
+  },
+  
+  {
+    "title": "Sistemas informáticos. Cisco Packet Tracer (II)",
+    "url": "/posts/2015/03/03/sistemas-informaticos-cisco-packet-tracer-ii/",
+    "date": "03 Mar 2015",
+    "categories": "Sistemas informáticos",
+    "tags": "sistemas-informaticos, cisco, redes, dhcp, subnetting",
+    "excerpt": "Práctica de subnetting y configuración de DHCP relay en Cisco Packet Tracer con cinco redes conectadas a través de un..."
+  },
+  
+  {
+    "title": "Entornos de desarrollo. NetBeans. Creación de web PHP en servidor remoto (práctica)",
+    "url": "/posts/2015/03/02/entornos-de-desarrollo-netbeans/",
+    "date": "02 Mar 2015",
+    "categories": "Entornos de desarrollo",
+    "tags": "entornos-de-desarrollo, netbeans, php",
+    "excerpt": "Práctica de creación de web PHP en servidor remoto con NetBeans, con vídeo demostrativo realizado en máquina virtual."
+  },
+  
+  {
+    "title": "Bases de datos. Consultas SQL (Examen)",
+    "url": "/posts/2015/03/02/bases-de-datos-consultas-sql-examen/",
+    "date": "02 Mar 2015",
+    "categories": "Bases de datos",
+    "tags": "bases-de-datos, sql, mysql",
+    "excerpt": "Corrección del examen de consultas SQL con ejercicios de ALTER TABLE, SELECT, UPDATE, vistas, índices y gestión de usuarios."
+  },
+  
+  {
+    "title": "Bases de datos. SQL programado (I)",
+    "url": "/posts/2015/02/23/bases-de-datos-sql-programado-i/",
+    "date": "23 Feb 2015",
+    "categories": "Bases de datos",
+    "tags": "bases-de-datos, sql, mysql",
+    "excerpt": "Introducción al SQL programado en MySQL, con procedimientos, funciones, triggers y declaración de variables."
+  },
+  
+  {
+    "title": "Programación. ADA. Tipos abstractos de datos",
+    "url": "/posts/2015/02/22/programacion-ada-tipos-abstractos-de-datos/",
+    "date": "22 Feb 2015",
+    "categories": "Programación",
+    "tags": "programacion, ada",
+    "excerpt": "Concepto de abstracción, encapsulación, diseño modular y tipos abstractos de datos (TAD) en ADA, con ejemplos de ordenación genérica, pilas..."
+  },
+  
+  {
+    "title": "Bases de datos. SQL (XI)",
+    "url": "/posts/2015/02/16/bases-de-datos-sql-xi/",
+    "date": "16 Feb 2015",
+    "categories": "Bases de datos",
+    "tags": "bases-de-datos, sql, mysql",
+    "excerpt": "Práctica 12 sobre índices en MySQL, creando tablas con distintos tipos de índices y eliminándolos posteriormente."
+  },
+  
+  {
+    "title": "Bases de datos. SQL (X). Índices",
+    "url": "/posts/2015/02/16/bases-de-datos-sql-x-indices/",
+    "date": "16 Feb 2015",
+    "categories": "Bases de datos",
+    "tags": "bases-de-datos, sql, mysql",
+    "excerpt": "Tipos de índices en MySQL y las distintas formas de crearlos y eliminarlos."
+  },
+  
+  {
+    "title": "Bases de datos. Consultas SQL (IX) - Gestión de usuarios (II)",
+    "url": "/posts/2015/02/16/bases-de-datos-consultas-sql-ix-gestion-de-usuarios-ii/",
+    "date": "16 Feb 2015",
+    "categories": "Bases de datos",
+    "tags": "bases-de-datos, sql, mysql",
+    "excerpt": "Continuación de la gestión de usuarios en SQL con ejemplos de permisos a nivel de columna, creación de usuarios, cambio..."
+  },
+  
+  {
+    "title": "Programación. Introducción a ADA",
+    "url": "/posts/2015/02/13/programacion-introduccion-ada/",
+    "date": "13 Feb 2015",
+    "categories": "Programación",
+    "tags": "programacion, ada",
+    "excerpt": "Introducción al lenguaje de programación ADA, sus características, tipos de datos, estructuras de control y vectores."
+  },
+  
+  {
+    "title": "Lenguaje de marcas. Blog",
+    "url": "/posts/2015/02/13/lenguaje-de-marcas-blog/",
+    "date": "13 Feb 2015",
+    "categories": "Lenguajes de marcas",
+    "tags": "lenguajes-de-marcas, php, html, blog",
+    "excerpt": "Ejercicio de creación de un blog dinámico con PHP y PHPMyAdmin."
+  },
+  
+  {
+    "title": "Bases de datos. Consultas SQL (VIII) - Gestión de usuarios (I)",
+    "url": "/posts/2015/02/10/bases-de-datos-sql-viii-gestion-de-usuarios-i/",
+    "date": "10 Feb 2015",
+    "categories": "Bases de datos",
+    "tags": "sql, bases de datos, usuarios, privilegios, mysql",
+    "excerpt": "Sentencias SQL para la gestión de usuarios y privilegios en MySQL."
+  },
+  
+  {
+    "title": "Bases de datos. Consultas SQL (VII)",
+    "url": "/posts/2015/02/10/bases-de-datos-consultas-sql-vii/",
+    "date": "10 Feb 2015",
+    "categories": "Bases de datos",
+    "tags": "sql, bases de datos, consultas, vistas, subconsultas",
+    "excerpt": "Hoja de ejercicios 10 de la unidad 3. Consultas dentro de otras instrucciones, creación de tablas, vistas y actualización de..."
+  },
+  
+  {
+    "title": "Sistemas informáticos. Cisco Packet Tracert",
+    "url": "/posts/2015/02/09/sistemas-informaticos-cisco-packet-tracert/",
+    "date": "09 Feb 2015",
+    "categories": "Sistemas informáticos",
+    "tags": "cisco, packet tracer, redes, router, switch",
+    "excerpt": "Introducción al uso de Cisco Packet Tracer para hacer planeamientos de red con switches, hosts y routers."
+  },
+  
+  {
+    "title": "Lenguajes de marcas. Formularios HTML5+PHP+BD",
+    "url": "/posts/2015/02/06/lenguajes-de-marcas-formularios-html5-php-bd/",
+    "date": "06 Feb 2015",
+    "categories": "Lenguajes de marcas",
+    "tags": "html5, php, formularios, mysql",
+    "excerpt": "Cómo crear formularios HTML5 conectados a PHP y a una base de datos MySQL mediante mysqli, usando los métodos GET..."
+  },
+  
+  {
+    "title": "Entornos de desarrollo. PHP con NetBeans",
+    "url": "/posts/2015/02/04/entornos-de-desarrollo-php-con-netbeans/",
+    "date": "04 Feb 2015",
+    "categories": "Entornos de desarrollo",
+    "tags": "php, netbeans, mysql, mysqli",
+    "excerpt": "Cómo crear una primera página PHP con NetBeans conectada a un servidor remoto y a una base de datos MySQL..."
+  },
+  
+  {
+    "title": "Entornos de desarrollo. Conexiones remotas en Eclipse",
+    "url": "/posts/2015/02/03/entornos-de-desarrollo-conexiones-remotas-en-eclipse/",
+    "date": "03 Feb 2015",
+    "categories": "Entornos de desarrollo",
+    "tags": "eclipse, netbeans, ssh",
+    "excerpt": "Cómo configurar conexiones remotas SSH en Eclipse y NetBeans mediante plugins"
+  },
+  
+  {
+    "title": "Bases de datos. Consultas SQL (VI)",
+    "url": "/posts/2015/02/03/bases-de-datos-consultas-sql-vi/",
+    "date": "03 Feb 2015",
+    "categories": "Bases de datos",
+    "tags": "sql, bases de datos, consultas, multitabla",
+    "excerpt": "Hoja de ejercicios 9 de la unidad 3. Consultas multitabla con las tablas EMPLEADOS, DEPARTAMENTOS, PEDIDOS, PRODUCTOS y CLIENTES."
+  },
+  
+  {
+    "title": "Lenguajes de marcas. PHP (I)",
+    "url": "/posts/2015/01/30/lenguajes-de-marcas-php-i/",
+    "date": "30 Jan 2015",
+    "categories": "Lenguajes de marcas",
+    "tags": "lenguajes-de-marcas, php, mysql, linux",
+    "excerpt": "Introducción a PHP. Instalación de LAMP y WAMP, variables, echo, estructuras de control (if, while, for, foreach) y arrays."
+  },
+  
+  {
+    "title": "Programación. Punteros en C (IV)",
+    "url": "/posts/2015/01/30/programacion-punteros-en-c-iv/",
+    "date": "30 Jan 2015",
+    "categories": "Programación",
+    "tags": "programacion, c",
+    "excerpt": "Introducción a los árboles como EDD no lineal. Árboles binarios, operaciones habituales y recorridos inorden, preorden y postorden."
+  },
+  
+  {
+    "title": "Bases de datos. Consultas SQL (V)",
+    "url": "/posts/2015/01/26/bases-de-datos-consultas-sql-v/",
+    "date": "26 Jan 2015",
+    "categories": "Bases de datos",
+    "tags": "bases-de-datos, sql, mysql",
+    "excerpt": "Ejercicios de subconsultas SQL sobre las tablas de empleados, departamentos, pedidos, productos y clientes."
+  },
+  
+  {
+    "title": "Entornos de desarrollo. Diagramas de flujo (II)",
+    "url": "/posts/2015/01/21/entornos-de-desarrollo-diagramas-de-flujo-ii/",
+    "date": "21 Jan 2015",
+    "categories": "Entornos de desarrollo",
+    "tags": "entornos-de-desarrollo, libreoffice",
+    "excerpt": "Cómo crear diagramas de flujo con LibreOffice Draw, usando conectores, figuras y la función de exportación a imagen."
+  },
+  
+  {
+    "title": "Entornos de desarrollo. Resolución de dependencias",
+    "url": "/posts/2015/01/21/entornos-de-desarrollo-amsn/",
+    "date": "21 Jan 2015",
+    "categories": "Entornos de desarrollo",
+    "tags": "entornos-de-desarrollo, linux, make, c",
+    "excerpt": "Cómo instalar un programa compilándolo en la máquina virtual (aMSN) y cómo crear ficheros Makefile para gestionar dependencias de compilación..."
+  },
+  
+  {
+    "title": "Programación. Punteros en C (III)",
+    "url": "/posts/2015/01/19/programacion-punteros-en-c-iii/",
+    "date": "19 Jan 2015",
+    "categories": "Programación",
+    "tags": "programacion, c",
+    "excerpt": "Pilas y colas como estructuras de datos dinámicas especiales. Operaciones, aplicaciones y notación postfija."
+  },
+  
+  {
+    "title": "Bases de datos. Consultas SQL (IV)",
+    "url": "/posts/2015/01/19/bases-de-datos-consultas-sql-iv/",
+    "date": "19 Jan 2015",
+    "categories": "Bases de datos",
+    "tags": "bases-de-datos, sql, mysql",
+    "excerpt": "Ejercicios de manipulación de datos en SQL con sentencias INSERT, UPDATE y DELETE sobre las tablas de compradores, artículos, facturas..."
+  },
+  
+  {
+    "title": "Programación. Punteros en C (II)",
+    "url": "/posts/2015/01/16/programacion-punteros-en-c-ii/",
+    "date": "16 Jan 2015",
+    "categories": "Programación",
+    "tags": "programacion, c",
+    "excerpt": "Estructuras de datos dinámicas en C. Implementación de listas enlazadas con operaciones de inserción, borrado, búsqueda y cálculo de tamaño...."
+  },
+  
+  {
+    "title": "Entornos de desarrollo. Instalación de Eclipse y NetBeans",
+    "url": "/posts/2015/01/16/entornos-de-desarrollo-instalacion-de-eclipse-y-netbeans/",
+    "date": "16 Jan 2015",
+    "categories": "Entornos de desarrollo",
+    "tags": "entornos-de-desarrollo, eclipse, netbeans",
+    "excerpt": "Enlace a los apuntes de instalación de Eclipse y NetBeans, dos entornos de desarrollo integrado (IDE) para Java."
+  },
+  
+  {
+    "title": "Programación. Punteros en C",
+    "url": "/posts/2015/01/14/programacion-punteros-en-c/",
+    "date": "14 Jan 2015",
+    "categories": "Programación",
+    "tags": "programacion, c",
+    "excerpt": "Introducción a los punteros en C, operadores de dirección e indirección, gestión dinámica de memoria y uso con vectores, matrices..."
+  },
+  
+  {
+    "title": "Bases de datos. Consultas SQL (III)",
+    "url": "/posts/2015/01/13/bases-de-datos-consultas-sql-iii/",
+    "date": "13 Jan 2015",
+    "categories": "Bases de datos",
+    "tags": "bases-de-datos, sql, mysql",
+    "excerpt": "Ejercicios de creación y modificación de tablas en SQL con restricciones, claves primarias, foráneas y restricciones CHECK."
+  },
+  
+  {
+    "title": "Lenguajes de marcas. CSS (IV)",
+    "url": "/posts/2015/01/09/lenguajes-de-marcas-css-iv/",
+    "date": "09 Jan 2015",
+    "categories": "Lenguajes de marcas",
+    "tags": "css, lenguajes-de-marcas",
+    "excerpt": "Cómo incrustar fuentes personalizadas en páginas web usando la regla @font-face de CSS."
+  },
+  
+  {
+    "title": "Entornos de desarrollo. PHPMyAdmin",
+    "url": "/posts/2014/12/17/entornos-de-desarrollo-phpmyadmin/",
+    "date": "17 Dec 2014",
+    "categories": "Entornos de desarrollo",
+    "tags": "entornos-de-desarrollo, phpmyadmin, mysql, c",
+    "excerpt": "Creación de base de datos en PHPMyAdmin para el proyecto Conecta4. Tablas Partida y Movimientos, inserción de datos con NOW()..."
+  },
+  
+  {
+    "title": "Entornos de desarrollo. Conexiones a servidor",
+    "url": "/posts/2014/12/16/entornos-de-desarrollo-conexiones-a-servidor/",
+    "date": "16 Dec 2014",
+    "categories": "Entornos de desarrollo",
+    "tags": "entornos-de-desarrollo, putty, winscp, ssh, sftp",
+    "excerpt": "Conexión SSH a servidor con PuTTY y transferencia de archivos con WinSCP. Cambio de contraseña y verificación de permisos de..."
+  },
+  
+  {
+    "title": "Bases de datos. Consultas SQL (II)",
+    "url": "/posts/2014/12/15/bases-de-datos-consultas-sql-ii/",
+    "date": "15 Dec 2014",
+    "categories": "Bases de datos",
+    "tags": "bases-de-datos, sql, mysql",
+    "excerpt": "Ejercicios de consultas SQL con agrupamiento y funciones de grupo. GROUP BY, HAVING, COUNT, AVG, SUM, MIN, MAX sobre las..."
+  },
+  
+  {
+    "title": "Programación. Recursividad (I)",
+    "url": "/posts/2014/12/11/programacion-recursividad-i/",
+    "date": "11 Dec 2014",
+    "categories": "Programación",
+    "tags": "programacion, c, recursividad",
+    "excerpt": "Introducción a la recursividad en programación. Algoritmos recursivos lineales y múltiples, casos triviales, ley de recurrencia y ejemplos de factorial..."
+  },
+  
+  {
+    "title": "Entornos de desarrollo. PHPMyAdmin (II)",
+    "url": "/posts/2014/12/10/entornos-de-desarrollo-phpmyadmin-ii/",
+    "date": "10 Dec 2014",
+    "categories": "Entornos de desarrollo",
+    "tags": "entornos-de-desarrollo, phpmyadmin, mysql, c, ubuntu",
+    "excerpt": "Conexión a base de datos MySQL desde C en Ubuntu con CodeBlocks y libmysqlclient-dev. Código completo con mysql_init, mysql_real_connect, mysql_query..."
+  },
+  
+  {
+    "title": "Entornos de desarrollo / Lenguaje de marcas. PHPMyAdmin (I)",
+    "url": "/posts/2014/12/09/entornos-de-desarrollo-lenguaje-de-marcas-phpmyadmin-i/",
+    "date": "09 Dec 2014",
+    "categories": "Entornos de desarrollo",
+    "tags": "entornos-de-desarrollo, phpmyadmin, mysql, c, ubuntu",
+    "excerpt": "Configuración inicial de PHPMyAdmin en Hostinger y Ubuntu. Creación de base de datos MySQL, importación de datos y conexión desde..."
+  },
+  
+  {
+    "title": "Bases de datos. Consultas SQL (I)",
+    "url": "/posts/2014/12/09/bases-de-datos-consultas-sql/",
+    "date": "09 Dec 2014",
+    "categories": "Bases de datos",
+    "tags": "bases-de-datos, sql, mysql",
+    "excerpt": "Ejercicios de consultas SQL sencillas sobre las tablas EMPLEADOS, DEPARTAMENTOS, CLIENTES, PRODUCTOS y PEDIDOS. Includes el script de creación e..."
+  },
+  
+  {
+    "title": "Bases de datos. Teoría de la normalización (II)",
+    "url": "/posts/2014/11/29/bases-de-datos-teoria-de-la-normalizacion-ii/",
+    "date": "29 Nov 2014",
+    "categories": "Bases de datos",
+    "tags": "bases-de-datos, normalizacion",
+    "excerpt": "Dependencias funcionales en bases de datos. Concepto de dependencia funcional y descomposición de tablas para eliminar redundancias."
+  },
+  
+  {
+    "title": "Programación. Ficheros en C",
+    "url": "/posts/2014/11/29/programacion-ficheros-en-c/",
+    "date": "29 Nov 2014",
+    "categories": "Programación",
+    "tags": "programacion, c, ficheros",
+    "excerpt": "Operaciones sobre ficheros en C. fopen, fprintf, fscanf, fread, fwrite, fclose y feof con ejemplos de código y ejercicios resueltos...."
+  },
+  
+  {
+    "title": "Programación. Ficheros",
+    "url": "/posts/2014/11/29/programacion-ficheros/",
+    "date": "29 Nov 2014",
+    "categories": "Programación",
+    "tags": "programacion, c, ficheros",
+    "excerpt": "Teoría sobre ficheros secuenciales y ficheros de texto en programación. Operadores elementales, comunicación con el sistema de ficheros y algoritmos..."
+  },
+  
+  {
+    "title": "Lenguaje de marcas. CSS(III)",
+    "url": "/posts/2014/11/28/lenguaje-de-marcas-cssiii/",
+    "date": "28 Nov 2014",
+    "categories": "Lenguaje de marcas",
+    "tags": "css, lenguaje-de-marcas",
+    "excerpt": "Creación de botones redondeados, efectos hover, transiciones CSS y estilos para tablas con ejemplos de código HTML y CSS."
+  },
+  
+  {
+    "title": "Sistemas informáticos. Resumen temario para examen teórico",
+    "url": "/posts/2014/11/26/sistemas-informaticos-resumen-temario/",
+    "date": "26 Nov 2014",
+    "categories": "Sistemas informáticos",
+    "tags": "sistemas-informaticos",
+    "excerpt": "Resumen del temario teórico de sistemas informáticos. Arquitectura Von Neumann, disco duro, tipos de ordenadores, ciclo de vida de procesos,..."
+  },
+  
+  {
+    "title": "Huelga (la segunda de momento)",
+    "url": "/posts/2014/11/23/huelga-la-segunda-de-momento/",
+    "date": "23 Nov 2014",
+    "categories": "Varios",
+    "tags": "varios",
+    "excerpt": "Reflexión sobre la huelga del 20 de noviembre y las palabras del profesor el día anterior."
+  },
+  
+  {
+    "title": "Me cago en todo lo cagable",
+    "url": "/posts/2014/11/19/me-cago-en-todo-lo-cagable/",
+    "date": "19 Nov 2014",
+    "categories": "Varios",
+    "tags": "varios",
+    "excerpt": "Sobre ficheros corrompidos y estrategias de backup."
+  },
+  
+  {
+    "title": "Lenguaje de marcas. CSS (II)",
+    "url": "/posts/2014/11/19/lenguaje-de-marcas-css-ii/",
+    "date": "19 Nov 2014",
+    "categories": "Lenguaje de marcas",
+    "tags": "css, lenguaje-de-marcas",
+    "excerpt": "Atributo position en CSS (static, absolute, relative, fixed) y z-index para controlar la profundidad de los elementos en la página...."
+  },
+  
+  {
+    "title": "Programación. Ficheros (I)",
+    "url": "/posts/2014/11/15/programacion-ficheros-i/",
+    "date": "15 Nov 2014",
+    "categories": "programacion",
+    "tags": "programacion, ficheros, ficheros secuenciales, ficheros de texto",
+    "excerpt": "Uso de ficheros\n\n"
+  },
+  
+  {
+    "title": "Programación. Estructura de datos estáticos (III)",
+    "url": "/posts/2014/11/15/programacion-estructura-de-datos-estaticos-iii/",
+    "date": "15 Nov 2014",
+    "categories": "programacion",
+    "tags": "programacion, matrices, determinante, adjunta, inversa, sarrus",
+    "excerpt": "Operaciones con matrices\n\n"
+  },
+  
+  {
+    "title": "Entornos de desarrollo. Diagramas de flujo",
+    "url": "/posts/2014/11/11/entornos-de-desarrollo-diagramas-de-flujo/",
+    "date": "11 Nov 2014",
+    "categories": "entornos de desarrollo",
+    "tags": "entornos de desarrollo, diagramas de flujo, algoritmos",
+    "excerpt": "Los diagramas de flujo son una representación gráfica de un algoritmo que permite visualizarlo con mayor claridad. Se construyen usando..."
+  },
+  
+  {
+    "title": "Programación. Codificación de programas en C (VI)",
+    "url": "/posts/2014/11/11/programacion-codificacion-de-programas-en-c-vi/",
+    "date": "11 Nov 2014",
+    "categories": "programacion",
+    "tags": "programacion, c, variables, visibilidad, variables globales, variables locales",
+    "excerpt": "Visibilidad de variables\n\n"
+  },
+  
+  {
+    "title": "Lenguaje de marcas. Menús desplegables",
+    "url": "/posts/2014/11/09/lenguaje-de-marcas-menus-desplegables/",
+    "date": "09 Nov 2014",
+    "categories": "lenguajes de marcas",
+    "tags": "html, css, menus desplegables, lenguaje de marcas",
+    "excerpt": "Con CSS3 podemos crear menús desplegables sin necesidad de JavaScript ni jQuery. La idea es ocultar los submenús por defecto..."
+  },
+  
+  {
+    "title": "Entornos de desarrollo. Proyectos",
+    "url": "/posts/2014/11/04/entornos-de-desarrollo-proyectos/",
+    "date": "04 Nov 2014",
+    "categories": "entornos de desarrollo",
+    "tags": "entornos de desarrollo, codeblocks, c, proyectos, gcc",
+    "excerpt": "Estamos creando un proyecto en CodeBlocks, el juego de Conecta 4. Posteriormente subiré el código completo, pero ahora voy a..."
+  },
+  
+  {
+    "title": "Estructuras de datos dinámicas en C (IV)",
+    "url": "/posts/2014/11/04/estructuras-de-datos-dinamicas-en-c-iv/",
+    "date": "04 Nov 2014",
+    "categories": "programacion",
+    "tags": "programacion, c, estructuras de datos, registros, vectores",
+    "excerpt": "Vectores con registros. Registros con vectores\n\n"
+  },
+  
+  {
+    "title": "Estructuras de datos dinámicas en C (III)",
+    "url": "/posts/2014/11/04/estructuras-de-datos-dinamicas-en-c-iii/",
+    "date": "04 Nov 2014",
+    "categories": "programacion",
+    "tags": "programacion, c, estructuras de datos, registros, numeros complejos",
+    "excerpt": "Ejercicios con números complejos\n\n"
+  },
+  
+  {
+    "title": "Bases de datos. Teoría de la normalización (I)",
+    "url": "/posts/2014/11/02/bases-de-datos-teoria-de-la-normalizacion-i/",
+    "date": "02 Nov 2014",
+    "categories": "bases de datos",
+    "tags": "bases de datos, normalizacion, 1fn",
+    "excerpt": "La teoría de la normalización sirve para verificar si las tablas están correctamente diseñadas para soportar la información.\n\n"
+  },
+  
+  {
+    "title": "Programación. Estructuras de datos dinámicas en C (II)",
+    "url": "/posts/2014/10/30/programacion-estructuras-de-datos-dinamicas-en-c-ii/",
+    "date": "30 Oct 2014",
+    "categories": "programacion",
+    "tags": "programacion, c, cadenas, registros, structs, ctype",
+    "excerpt": "Cadenas de caracteres en C\n\n"
+  },
+  
+  {
+    "title": "Programación. Estructuras de datos dinámicas en C (I)",
+    "url": "/posts/2014/10/29/programacion-estructuras-de-datos-dinamicas-en-c-i/",
+    "date": "29 Oct 2014",
+    "categories": "programacion",
+    "tags": "programacion, c, vectores, arrays, cadenas",
+    "excerpt": "Vectores en C\n\n"
+  },
+  
+  {
+    "title": "Programación. Estructura de datos estáticos (II)",
+    "url": "/posts/2014/10/29/programacion-estructura-de-datos-estaticos-ii/",
+    "date": "29 Oct 2014",
+    "categories": "programacion",
+    "tags": "programacion, vectores, matrices, datos estaticos, pseudocodigo",
+    "excerpt": "Ejercicios\n\n"
+  },
+  
+  {
+    "title": "Programación. Estructura de datos estáticos (I)",
+    "url": "/posts/2014/10/28/programacion-estructura-de-datos-estaticos-i/",
+    "date": "28 Oct 2014",
+    "categories": "programacion",
+    "tags": "programacion, c, vectores, arrays, datos estaticos, macros, printf",
+    "excerpt": "Macros\n\n"
+  },
+  
+  {
+    "title": "¡Huelga!",
+    "url": "/posts/2014/10/23/huelga/",
+    "date": "23 Oct 2014",
+    "categories": "varios",
+    "tags": "huelga, educacion",
+    "excerpt": "\n\n"
+  },
+  
+  {
+    "title": "Entornos de desarrollo. Desarrollo de software (V)",
+    "url": "/posts/2014/10/21/entornos-de-desarrollo-desarrollo-de-software-v/",
+    "date": "21 Oct 2014",
+    "categories": "entornos de desarrollo",
+    "tags": "entornos de desarrollo, codeblocks, c, debugger, proyectos",
+    "excerpt": "Proyectos en Code Blocks\n\n"
+  },
+  
+  {
+    "title": "Programación. Codificación de programas en C (V)",
+    "url": "/posts/2014/10/20/programacion-codificacion-de-programas-en-c-v/",
+    "date": "20 Oct 2014",
+    "categories": "programacion",
+    "tags": "programacion, c, enum, tipos, math",
+    "excerpt": "Tipos escalares definidos por enumeración\n\n"
+  },
+  
+  {
+    "title": "Programación. Resolución de problemas (V)",
+    "url": "/posts/2014/10/20/programacion-resolucion-de-problemas-v/",
+    "date": "20 Oct 2014",
+    "categories": "programacion",
+    "tags": "programacion, algoritmos, invariante, bucle",
+    "excerpt": "Evitando errores. Invariante del bucle\n\n"
+  },
+  
+  {
+    "title": "Lenguaje de marcas. CSS (I)",
+    "url": "/posts/2014/10/18/lenguaje-de-marcas-css-i/",
+    "date": "18 Oct 2014",
+    "categories": "lenguaje de marcas",
+    "tags": "lenguaje de marcas, css, selectores, html, margin, padding",
+    "excerpt": "Visibilidad de los elementos\n\n"
+  },
+  
+  {
+    "title": "Programación. Codificación de programas en C (IV)",
+    "url": "/posts/2014/10/17/programacion-codificacion-de-programas-en-c-iv/",
+    "date": "17 Oct 2014",
+    "categories": "programacion",
+    "tags": "programacion, c, funciones, parametros, punteros, subprogramas",
+    "excerpt": "Subprogramas en C\n\n"
+  },
+  
+  {
+    "title": "Programación. Diseño de la programación (II)",
+    "url": "/posts/2014/10/17/programacion-diseno-de-la-programacion-ii/",
+    "date": "17 Oct 2014",
+    "categories": "programacion",
+    "tags": "programacion, subprogramas, funciones, procedimientos, parametros, pseudocodigo",
+    "excerpt": "Algoritmo primoEntreDosNumeros\n\n"
+  },
+  
+  {
+    "title": "Programación. Resolución de problemas (IV)",
+    "url": "/posts/2014/10/17/programacion-resolucion-de-problemas-iv/",
+    "date": "17 Oct 2014",
+    "categories": "programacion",
+    "tags": "programacion, algoritmos, pseudocodigo, raiz cuadrada",
+    "excerpt": "Planteamiento de resolución para raíces cuadradas.\n\n"
+  },
+  
+  {
+    "title": "Lenguaje de marcas. Etiquetas (III)",
+    "url": "/posts/2014/10/15/lenguaje-de-marcas-etiquetas-iii/",
+    "date": "15 Oct 2014",
+    "categories": "lenguaje de marcas",
+    "tags": "lenguaje de marcas, html, html5, audio, video, etiquetas",
+    "excerpt": "Etiqueta &lt;audio&gt; → HTML5\n\n"
+  },
+  
+  {
+    "title": "Entornos de desarrollo. Desarrollo de software (IV)",
+    "url": "/posts/2014/10/15/entornos-de-desarrollo-desarrollo-de-software-iv/",
+    "date": "15 Oct 2014",
+    "categories": "entornos de desarrollo",
+    "tags": "entornos de desarrollo, codeblocks, c, compilacion, compilador, gcc",
+    "excerpt": "Compilaciones\n\n"
+  },
+  
+  {
+    "title": "Lenguaje de marcas. Estructuras",
+    "url": "/posts/2014/10/14/lenguaje-de-marcas-estructuras/",
+    "date": "14 Oct 2014",
+    "categories": "lenguaje de marcas",
+    "tags": "lenguaje de marcas, html, html5, estructura, css, javascript, php",
+    "excerpt": "Estructura general HTML\n\n"
+  },
+  
+  {
+    "title": "Bases de datos. WorkBench",
+    "url": "/posts/2014/10/14/bases-de-datos-workbench/",
+    "date": "14 Oct 2014",
+    "categories": "bases de datos",
+    "tags": "bases de datos, workbench, mysql",
+    "excerpt": "¿Cómo usar MySQL WorkBench? Primeros pasos\n\n"
+  },
+  
+  {
+    "title": "Bases de datos. Modelo relacional (V)",
+    "url": "/posts/2014/10/14/bases-de-datos-modelo-relacional-v/",
+    "date": "14 Oct 2014",
+    "categories": "bases de datos",
+    "tags": "bases de datos, modelo relacional, entidades, interrelaciones",
+    "excerpt": "Dependencia en existencia\n\n"
+  },
+  
+  {
+    "title": "Programación. Diseño de la programación (I)",
+    "url": "/posts/2014/10/14/programacion-diseno-de-la-programacion-i/",
+    "date": "14 Oct 2014",
+    "categories": "programacion",
+    "tags": "programacion, c, subprogramas, funciones, procedimientos, parametros",
+    "excerpt": "Diseño descendente\n\n"
+  },
+  
+  {
+    "title": "Programación. Resolución de problemas (III)",
+    "url": "/posts/2014/10/14/programacion-resolucion-de-problemas-iii/",
+    "date": "14 Oct 2014",
+    "categories": "programacion",
+    "tags": "programacion, c, tipos-datos, reales, pseudocodigo, algoritmos",
+    "excerpt": "Tipo real\n\n"
+  },
+  
+  {
+    "title": "Entornos de desarrollo. Desarrollo de software (III)",
+    "url": "/posts/2014/10/13/entornos-de-desarrollo-desarrollo-de-software-iii/",
+    "date": "13 Oct 2014",
+    "categories": "Entornos de desarrollo",
+    "tags": "desarrollo-software, compiladores, java, jvm, mingw, path, windows, gcc, entornos-desarrollo",
+    "excerpt": "Lenguajes compilados vs interpretados, Java y la JVM, instalación de MinGW para compilar C en Windows, y configuración de la..."
+  },
+  
+  {
+    "title": "Sistemas informáticos. Dispositivos de almacenamiento (I)",
+    "url": "/posts/2014/10/13/sistemas-informaticos-dispositivos-de-almacenamiento-i/",
+    "date": "13 Oct 2014",
+    "categories": "Sistemas informáticos",
+    "tags": "sistemas-informaticos, almacenamiento, disco-duro, tarjetas-perforadas, cintas-magneticas",
+    "excerpt": "Introducción a los dispositivos de almacenamiento, evolución histórica desde las tarjetas perforadas y cintas magnéticas hasta el disco duro, y..."
+  },
+  
+  {
+    "title": "Programación. Resolución de problemas (II)",
+    "url": "/posts/2014/10/13/programacion-resolucion-de-problemas-ii/",
+    "date": "13 Oct 2014",
+    "categories": "programacion",
+    "tags": "programacion, c, tipos-datos, reales, binario, coma-flotante, mantisa",
+    "excerpt": "El tipo real en programación, representación binaria de decimales, coma fija, coma flotante (mantisa-exponente), operaciones y funciones de biblioteca para..."
+  },
+  
+  {
+    "title": "Lenguaje de marcas. Etiquetas (II)",
+    "url": "/posts/2014/10/11/lenguaje-de-marcas-etiquetas-ii/",
+    "date": "11 Oct 2014",
+    "categories": "Lenguaje de marcas",
+    "tags": "html, etiquetas, tablas, lenguaje-marcas",
+    "excerpt": "Estructura básica de la etiqueta HTML con sus secciones thead, tbody y tfoot, y las etiquetas tr, th y td...."
+  },
+  
+  {
+    "title": "Bases de datos. Modelo relacional (IV)",
+    "url": "/posts/2014/10/11/bases-de-datos-modelo-relacional-iv/",
+    "date": "11 Oct 2014",
+    "categories": "Bases de datos",
+    "tags": "bases-de-datos, modelo-relacional, entidad-relacion, cardinalidad, atributos",
+    "excerpt": "Introducción al modelo entidad-relación básico: entidades regulares y débiles, tipos de relaciones, cardinalidad, roles y atributos con ejemplos visuales."
+  },
+  
+  {
+    "title": "Bases de datos. Modelo relacional (III)",
+    "url": "/posts/2014/10/11/bases-de-datos-modelo-relacional-iii/",
+    "date": "11 Oct 2014",
+    "categories": "Bases de datos",
+    "tags": "bases-de-datos, modelo-relacional, claves-ajenas, entidad-relacion, sql",
+    "excerpt": "Parámetros de claves ajenas (Restrict, Cascade, SET_NULL, SET DEFAULT) e introducción al modelo entidad-relación con entidades y atributos."
+  },
+  
+  {
+    "title": "Programación. Codificación de Programas en C (III)",
+    "url": "/posts/2014/10/11/programacion-codificacion-de-programas-en-c-iii/",
+    "date": "11 Oct 2014",
+    "categories": "programacion",
+    "tags": "programacion, c, printf, scanf, switch, for, do-while, caracteres, cadenas, linux",
+    "excerpt": "Profundiza en printf y scanf, compilación en Linux, estructuras de control switch/for/do-while, tipos carácter y cadena, con ejemplos de algoritmos..."
+  },
+  
+  {
+    "title": "Lenguaje de marcas. Etiquetas (I)",
+    "url": "/posts/2014/10/11/lenguaje-de-marcas-etiquetas-i/",
+    "date": "11 Oct 2014",
+    "categories": "Lenguaje de marcas",
+    "tags": "html, etiquetas, hipervinculos, lenguaje-marcas",
+    "excerpt": "Introducción a la etiqueta HTML para la creación de hipervínculos, con sus atributos href, target y title, y ejemplos de..."
+  },
+  
+  {
+    "title": "Sistemas Informáticos. Sistemas Numéricos",
+    "url": "/posts/2014/10/11/sistemas-informaticos-sistemas-numericos/",
+    "date": "11 Oct 2014",
+    "categories": "Sistemas informáticos",
+    "tags": "sistemas-informaticos, sistemas-numericos, binario, complemento, coma-flotante, representacion-informacion",
+    "excerpt": "Complementación de binarios\n\n"
+  },
+  
+  {
+    "title": "Entornos de desarrollo. Desarrollo de software II",
+    "url": "/posts/2014/10/11/entornos-de-desarrollo-desarrollo-de-software-ii/",
+    "date": "11 Oct 2014",
+    "categories": "Entornos de desarrollo",
+    "tags": "desarrollo-software, licencias, gpl, lenguajes-programacion, entornos-desarrollo, vim",
+    "excerpt": "Aprende sobre distribución de software (shareware, freeware, adware), tipos de licencias (libre, propietario, dominio público), licencias GPL y clasificación de..."
+  },
+  
+  {
+    "title": "Programación. Codificación de Programas en C (II)",
+    "url": "/posts/2014/10/10/programacion-codificacion-de-programas-en-c-ii/",
+    "date": "10 Oct 2014",
+    "categories": "programacion",
+    "tags": "programacion, c, operadores, estructuras-control, funciones, entrada-salida",
+    "excerpt": "Operadores\n\n"
+  },
+  
+  {
+    "title": "Programación. Codificación de Programas en C (I)",
+    "url": "/posts/2014/10/09/programacion-codificacion-de-programas-en-c-i/",
+    "date": "09 Oct 2014",
+    "categories": "programacion",
+    "tags": "programacion, c, tipos-de-datos, variables, conversion-tipos",
+    "excerpt": "Advertencias\n\n"
+  },
+  
+  {
+    "title": "Bases de datos. Modelo relacional (II)",
+    "url": "/posts/2014/10/09/modelo-relacional-ii/",
+    "date": "09 Oct 2014",
+    "categories": "Bases de datos",
+    "tags": "bases-datos, modelo-relacional, dominios, relaciones, valor-nulo, integridad-referencial, claves",
+    "excerpt": "Dominios\n\n"
+  },
+  
+  {
+    "title": "Programación. Resolución de problemas I",
+    "url": "/posts/2014/10/09/programacion-resolucion-de-problemas-i/",
+    "date": "09 Oct 2014",
+    "categories": "programacion",
+    "tags": "programacion",
+    "excerpt": "Elementos de un programa\n\n"
+  },
+  
+  {
+    "title": "Lenguaje de marcas. Introducción (II)",
+    "url": "/posts/2014/10/09/lenguaje-de-marcas-introduccion-ii/",
+    "date": "09 Oct 2014",
+    "categories": "Lenguajes de marcas",
+    "tags": "lenguajes-marcas, xml, html, etiquetas, atributos, sintaxis, markup",
+    "excerpt": "Los lenguajes de marcas son aquellos que “contienen la información, generalmente textual, de un documento y anotaciones en forma de..."
+  },
+  
+  {
+    "title": "Programación. Introducción",
+    "url": "/posts/2014/10/08/programacion-introduccion/",
+    "date": "08 Oct 2014",
+    "categories": "programacion",
+    "tags": "programacion, introduccion, algoritmos, compilacion, interpretacion, sistemas-operativos, paradigmas, fundamentos",
+    "excerpt": "Guía introductoria a la programación para principiantes: conceptos clave, algoritmos, compilación vs interpretación, ciclo de vida del software y paradigmas..."
+  },
+  
+  {
+    "title": "Lenguaje de marcas. Introducción",
+    "url": "/posts/2014/10/08/lenguaje-de-marcas-introduccion/",
+    "date": "08 Oct 2014",
+    "categories": "Lenguajes de marcas",
+    "tags": "lenguajes-marcas, xml, html, etiquetas, atributos, sintaxis, markup",
+    "excerpt": "Los lenguajes de marcas son adaptables a nuestras necesidades. Yo puedo generar un lenguaje de marcas adaptado a mis necesidades...."
+  },
+  
+  {
+    "title": "Entornos de desarrollo. Desarrollo de software I",
+    "url": "/posts/2014/10/08/entornos-de-desarrollo-desarrollo-de-software-i/",
+    "date": "08 Oct 2014",
+    "categories": "Entornos de desarrollo",
+    "tags": "desarrollo-software, tipos-software, php, programacion, entornos-desarrollo, principiantes",
+    "excerpt": "Aprende los fundamentos del desarrollo de software: tipos de software (sistema, aplicación, programación), arquitectura hardware-software, estándares y primeros pasos con..."
+  },
+  
+  {
+    "title": "Entornos de desarrollo. Principios de la informática y la programación",
+    "url": "/posts/2014/10/07/entornos-de-desarrollo-principios-de-la-informatica-y-la-programacion/",
+    "date": "07 Oct 2014",
+    "categories": "Entornos de desarrollo",
+    "tags": "informatica, von-neumann, arquitectura, operaciones-logicas, programacion, entornos-desarrollo",
+    "excerpt": "Aprende los fundamentos de la informática: máquina de Von Neumann, arquitectura de computadoras, operaciones lógicas AND/OR/NOT, registros, memoria y componentes..."
+  },
+  
+  {
+    "title": "Bases de datos. Modelo relacional (I)",
+    "url": "/posts/2014/10/07/bases-de-datos-modelo-relacional-i/",
+    "date": "07 Oct 2014",
+    "categories": "Bases de datos",
+    "tags": "bases-datos, modelo-relacional, sql, tablas, claves-primarias, codd",
+    "excerpt": "Aprende el modelo relacional de bases de datos: tablas, tuplas, atributos y claves primarias. Guía completa sobre teoría de Codd,..."
+  },
+  
+  {
+    "title": "Sistemas informáticos. Explotación de sistemas informáticos I",
+    "url": "/posts/2014/10/07/sistemas-informaticos-explotacion-de-sistemas-informaticos-i/",
+    "date": "07 Oct 2014",
+    "categories": "Sistemas informáticos",
+    "tags": "arquitectura, procesador, memoria, buses, sistemas-informaticos, hardware",
+    "excerpt": "Aprende arquitectura de computadoras: procesador, memoria, buses y periféricos. Guía completa sobre UC, ALU, registros, canales de comunicación, tipos de..."
+  },
+  
+  {
+    "title": "Nuevo curso, nuevas ganas",
+    "url": "/posts/2014/10/06/nuevo-curso-nuevas-ganas/",
+    "date": "06 Oct 2014",
+    "categories": "Java",
+    "tags": "varios",
+    "excerpt": "Presentación oficial del blog"
+  }
+  
+]

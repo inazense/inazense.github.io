@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programación. Estructura de datos estáticos (I) | Programando a Pasitos</title>
+<meta name="description" content="Blog de programación por Inazio Claver">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Programación. Estructura de datos estáticos (I) | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Programación. Estructura de datos estáticos (I)" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Macros" />
+<meta property="og:description" content="Macros" />
+<link rel="canonical" href="http://localhost:4000/posts/2014/10/28/programacion-estructura-de-datos-estaticos-i/" />
+<meta property="og:url" content="http://localhost:4000/posts/2014/10/28/programacion-estructura-de-datos-estaticos-i/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2014-10-28T16:16:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Programación. Estructura de datos estáticos (I)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver","url":"https://github.com/inazense"},"dateModified":"2014-10-28T16:16:00+01:00","datePublished":"2014-10-28T16:16:00+01:00","description":"Macros","headline":"Programación. Estructura de datos estáticos (I)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2014/10/28/programacion-estructura-de-datos-estaticos-i/"},"url":"http://localhost:4000/posts/2014/10/28/programacion-estructura-de-datos-estaticos-i/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Programación. Estructura de datos estáticos (I)</h1>
+    <div class="post-meta">
+      <time datetime="2014-10-28T16:16:00+01:00">28 Oct 2014</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#programacion" class="post-category">programacion</a>
+        
+      
+    </div>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="macros">Macros</h2>
+
+<p>Con la directiva <code class="language-plaintext highlighter-rouge">#define</code> podemos definir macros en las primeras líneas del fichero.</p>
+
+<p>Antes de compilar el programa, en una primera pasada, el compilador sustituirá la macro por su valor en todos los sitios que aparezca.</p>
+
+<p>Podemos usar las macros para definir constantes:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#define FALSO 0 </span><span class="cm">/* Valores constantes en mayúsculas */</span><span class="cp">
+#define PI 3,141592
+</span></code></pre></div></div>
+
+<p>Las podemos usar para casos más complicados:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#define MAX(a,b)(a&gt;b?a:b)
+</span></code></pre></div></div>
+
+<h2 id="cadenas-printf">Cadenas printf</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">c</code> → Caracter → ‘a’</li>
+  <li><code class="language-plaintext highlighter-rouge">d</code> → Decimal entero con signo → 382</li>
+  <li><code class="language-plaintext highlighter-rouge">e</code> → Notación científica (mantisa/exponente) → 3.9865e+2</li>
+  <li><code class="language-plaintext highlighter-rouge">E</code> → Notación científica (mantisa/exponente) → 3.9865E+2</li>
+  <li><code class="language-plaintext highlighter-rouge">f</code> → Decimal en coma flotante → 392,65</li>
+  <li><code class="language-plaintext highlighter-rouge">g</code> → Usa el privilegio de %e o %f → 392,65</li>
+  <li><code class="language-plaintext highlighter-rouge">G</code> → Usa el privilegio de %E o %F → 392,65</li>
+  <li><code class="language-plaintext highlighter-rouge">o</code> → Octal → 610</li>
+  <li><code class="language-plaintext highlighter-rouge">s</code> → Secuencia de caracteres → ‘sample’</li>
+  <li><code class="language-plaintext highlighter-rouge">u</code> → Decimal entero sin signo → 7235</li>
+  <li><code class="language-plaintext highlighter-rouge">x</code> → Hexadecimal sin signo → 7fa</li>
+  <li><code class="language-plaintext highlighter-rouge">X</code> → Hexadecimal sin signo → 7FA</li>
+  <li><code class="language-plaintext highlighter-rouge">p</code> → Dirección de puntero → B8600000</li>
+</ul>
+
+<h2 id="precisión">Precisión</h2>
+
+<p>Añadiendo entre el % y la letra un . y a continuación un número, especifico la precisión que deseo, cuyo significado depende del tipo de datos y la letra empleada.</p>
+
+<ul>
+  <li>Para enteros (<code class="language-plaintext highlighter-rouge">d</code>, <code class="language-plaintext highlighter-rouge">i</code>, <code class="language-plaintext highlighter-rouge">o</code>, <code class="language-plaintext highlighter-rouge">u</code>, <code class="language-plaintext highlighter-rouge">x</code>, <code class="language-plaintext highlighter-rouge">X</code>) → Especifica el número mínimo de dígitos que pueden ser escritos. Si el dado es más largo no será contado. Si es más corto se rellenará con ceros.</li>
+  <li>Para reales (<code class="language-plaintext highlighter-rouge">e</code>, <code class="language-plaintext highlighter-rouge">E</code>, <code class="language-plaintext highlighter-rouge">f</code>) → Especifica el número de dígitos decimales que saldrán</li>
+  <li>Para reales (<code class="language-plaintext highlighter-rouge">g</code>, <code class="language-plaintext highlighter-rouge">G</code>) → Especifica el número máximo de dígitos decimales que saldrán</li>
+  <li>Para cadenas → Número máximo de caracteres a ser escritos. Por defecto se escriben todos los que tienen la cadena antes del carácter nulo</li>
+  <li>Caracter nulo → <code class="language-plaintext highlighter-rouge">\0</code></li>
+</ul>
+
+<h2 id="ejemplo">Ejemplo</h2>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/* printf example */</span>
+
+<span class="cp">#include</span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Characters: %c, %c </span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="sc">'a'</span><span class="p">,</span><span class="mi">65</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Decimals: %d, %d </span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="mi">1977</span><span class="p">,</span><span class="mi">6500001</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Procedy with blants: %.10d </span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="mi">1977</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Procedy with blants: %010d </span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="mi">1977</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Blue differents redixes: %d,%x,o,%#X,%#o </span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Width triels: %*d </span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="tipos-definidos-por-el-usuario">Tipos definidos por el usuario</h2>
+
+<p>En ocasiones los tipos que ofrece un lenguaje de programación como tipos predefinidos se le quedan cortos al programador para almacenar en ellos la información que tiene que manejar.</p>
+
+<p>Los lenguajes de programación ofrecen mecanismos para que el programador puede definirse tipos.</p>
+
+<p>Concretamente, es raro que un lenguaje de programación no ofrezca la posibilidad de hacer uso de <strong>vectores</strong> y <strong>registros</strong></p>
+
+<h2 id="definición-de-tipos">Definición de tipos</h2>
+
+<p>Antes de declarar una variable de un tipo de datos definido por el usuario, será necesario declarar el tipo de datos en cuestión. Hay lenguajes de programación (C por ejemplo) donde esto no es necesario.</p>
+
+<h2 id="estructura-del-algoritmo">Estructura del algoritmo</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Algoritmo ejemplo
+{comentarios}
+"Declaración de constantes"
+"Declaración de tipos"
+"Declaración de variables"
+
+Principio
+    "instrucción 1"
+    "instrucción 2"
+    …
+    "instrucción n"
+Fin
+</code></pre></div></div>
+
+<h2 id="vectores">Vectores</h2>
+
+<p>Un vector es un tipo de datos que nos permite guardar una secuencia de datos de un tipo determinado.</p>
+
+<p>Hay problemas en los que tengo que guardar una secuencia de datos de un mismo tipo y donde el orden podría ser importante, incluso el poder acceder directamente a un elemento determinado de una secuencia.</p>
+
+<p>Por ejemplo, yo con lo que conozco hasta ahora no podría resolver problemas como este:</p>
+
+<p>“Pedir una secuencia de datos por teclado terminada en 0 (de longitud desconocida pero finita y acotable), e invertirla mostrando por pantalla la secuencia en orden inverso.”</p>
+
+<p>Disponía hasta ahora de variables enteras, pero no de una forma de poder almacenar 20, 50 o 100 enteros y poderlos manipular a mi antojo.</p>
+
+<p>Otro ejemplo podría ser el siguiente:</p>
+
+<p>“Contar el número de apariciones de una letra del alfabeto de un texto que es introducido una sola vez en el computador”</p>
+
+<h2 id="vectores-definición-formal">Vectores. Definición formal</h2>
+
+<p>Un vector v es una aplicación de un conjunto finito I de valores escalares, ordenados y consecutivos, denominado conjunto de índices del vector, en otro conjunto D de datos variables de un mismo tipo, conjunto de base del vector.</p>
+
+<p>Los valores escalares del conjunto I podrían ser de un tipo entero, caracter o definido por enumeración. Se puede poner el tipo completo (si es definido por enumeración) o un subgrupo.</p>
+
+<p>El tipo de datos para los datos variables, podría ser cualquiera.</p>
+
+<p>Ejemplos:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vector[1,15] de real;
+vector['A','Z'] de real;
+vector[tipoDias] de caracter (siendo tipoDias=(lunes,martes,miércoles,jueves,viernes,sábado,domingo)
+</code></pre></div></div>
+
+<h2 id="definición-de-vectores">Definición de vectores</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Algoritmo vectores
+Tipos
+    vectorReales=vector[1..20] de real;
+    vectorFrecuencias=vector['a'..'z'] de entero;
+variables
+    v:vectorReales;
+    w:vectorReales;
+    f:vectorFrecuencias;
+principio
+    …
+Fin
+</code></pre></div></div>
+
+<h2 id="uso-de-vectores">Uso de vectores</h2>
+
+<p>Una variable de tipo vector es una estructura de datos compuesta de un número fijo de componentes del tipo de datos del vector.</p>
+
+<p>Cada componente puede denotarse explícitamente y puede accederse a su valor, escribiendo el nombre de la variable de tipo vector, seguido del valor de su índice, encerrado entre corchetes.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;nombre vector&gt;[&lt;expresión&gt;]
+</code></pre></div></div>
+
+<p>La evaluación de <code class="language-plaintext highlighter-rouge">&lt;expresión&gt;</code> da como resultado el valor del índice del elemento considerado.</p>
+
+<p>Una componente de un vector puede usarse exactamente igual que una variable de ese mismo tipo, y puede aparecer en cualquier expresión del mismo modo.</p>
+
+<p>Ejemplos:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>v[17]:=14.1;
+w[i]:=w[i-1]+1;
+f['a']:=f['b']+f[chr(ord('c')+9)]-7;
+si (v[i]&gt;v[i+1]) entonces…
+</code></pre></div></div>
+
+<h2 id="vectores-representación-interna">Vectores. Representación interna</h2>
+
+<p>La representación interna de un dato de tipo vector se realiza de forma contigua en memoria, es decir, representando una tras otra todas las componentes del vector.</p>
+
+<p>Por consiguiente lo que el vector ocupará en memoria dependerá del tipo del que sean las componentes y el número de componentes.</p>
+
+<p>El tiempo de acceso a cualquiera de las componentes será lógicamente el mismo, y podemos acceder directamente a las componentes que nos interesen.</p>
+
+<h2 id="vectores-operaciones">Vectores. Operaciones</h2>
+
+<p><strong>Asignación.</strong> Al igual que con cualquier variable podemos asignarle a un vector otro vector que sea exactamente del mismo tipo.</p>
+
+<p>El resultado de la instrucción de asignación, a todas y cada una de las componentes del vector del lado izquierdo, de todos los valores de las componentes del vector del lado derecho.</p>
+
+<p><strong>Recorrido del vector:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>para indice:=&lt;valor inicial&gt; hasta &lt;valor final&gt; hacer
+    &lt;acción afectando a la componente índice&gt;
+fpara
+</code></pre></div></div>
+
+<h2 id="ejemplo-invertirsecuencia">Ejemplo: invertirSecuencia</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Algoritmo invertirSecuencia
+{Lee una secuencia de datos del tipo entero, terminada con un 0, y la escribes en orden inverso. La secuencia será de longitud menor que 1000}
+
+Constantes
+    N=1000;
+Tipos
+    tvec=vector[1..N]de entero;
+Variables
+    v:tvec;
+    cont,num,i:entero;
+
+principio
+    cont:=0;
+    leerEntero(teclado,numero);
+    mientras que numero &lt;&gt;0 hacer
+        cont:=cont+1;
+        v[cont]:=numero;
+        leerEntero(teclado,numero);
+    fmq
+    para i:=cont descendiendo hasta 1 hacer
+        escribirEntero(pantalla,v[i]);
+    fpara
+fin
+</code></pre></div></div>
+
+<h2 id="ejercicios">Ejercicios</h2>
+
+<p><strong>Ejercicio 1:</strong> Escribe un procedimiento que lea de teclado una secuencia de caracteres y los almacene en el vector secuencia de tipo tsec. N y secuencia son parámetros del procedimiento.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Algoritmo almacenarCaracteres
+
+Constantes
+    maxN=1000;
+Tipos
+    tsec:=vector[1..maxN] de caracter;
+
+procedimiento leerSecuencia (E N:entero, S secuencia:tsec)
+variables
+    indice:entero;
+principio
+    para indice:=1 hasta N hacer
+        leerCaracter(teclado,secuencia[indice])
+    fpara
+fin
+</code></pre></div></div>
+
+<p><strong>Ejercicio 2:</strong> Escriba un procedimiento que escriba por pantalla los N primeros elementos del vector secuencia</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Procedimiento escribirSecuencia(E N:entero, E secuencia:tsec)
+
+    variables
+        indice:entero;
+    principio
+        para indice:=1 hasta N hacer
+            escribirCaracter(pantalla,secuencia[indice])
+        fpara
+    fin
+</code></pre></div></div>
+
+<h2 id="vectores-multidimensionales">Vectores multidimensionales</h2>
+
+<p>Una estructura de datos multi-indexada puede ser construida a partir de mecanismos de definición de vectores (con un único índice) presentado anteriormente.</p>
+
+<p>Así, por ejemplo, una matriz de dimensión nxm puede ser declarada como un vector de vectores:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Constantes
+    N=150;
+    M=50;
+Tipos
+    fila=vector[1..N] de entero;
+    columna=vector[1..M] de fila;
+Variables
+    m:matriz;
+</code></pre></div></div>
+
+<p>El dato declarado y sus elementos pueden ser accedidos de la forma:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">m</code> → Dato de tipo matriz</li>
+  <li><code class="language-plaintext highlighter-rouge">m[i]</code> → Dato de tipo fila</li>
+  <li><code class="language-plaintext highlighter-rouge">m[i][j]</code> → Dato de tipo entero</li>
+</ul>
+
+<p>También se puede definir (ya que la forma anterior puede resultar algo pesada) un vector con varios índices.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Tipos
+    matriz=vector[1..N,1..M] de entero;
+    estadoCasilla=(agua,barco);
+    planoNaval=vector['A'..'J',1..10] de estadoCasilla;
+
+Variables
+    m:matriz;
+    miPlano:planoNaval;
+</code></pre></div></div>
+
+<p>Para acceder a los elementos:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">m</code> → Dato de tipo matriz</li>
+  <li><code class="language-plaintext highlighter-rouge">m[i,j]</code> → Dato de tipo entero</li>
+  <li><code class="language-plaintext highlighter-rouge">miPlano</code> → Dato de tipo plano</li>
+  <li><code class="language-plaintext highlighter-rouge">miPlano['C',7]</code> → Dato de tipo estado</li>
+</ul>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#programacion</span>
+        
+          <span class="tag">#c</span>
+        
+          <span class="tag">#vectores</span>
+        
+          <span class="tag">#arrays</span>
+        
+          <span class="tag">#datos estaticos</span>
+        
+          <span class="tag">#macros</span>
+        
+          <span class="tag">#printf</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

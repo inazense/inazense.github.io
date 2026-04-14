@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programación. Clases, objetos y paquetes (II) | Programando a Pasitos</title>
+<meta name="description" content="Ocultación y encapsulamiento, getters y setters, referencia this, sobrecarga, modificador static y paquetes en Java.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Programación. Clases, objetos y paquetes (II) | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Programación. Clases, objetos y paquetes (II)" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Ocultación y encapsulamiento, getters y setters, referencia this, sobrecarga, modificador static y paquetes en Java." />
+<meta property="og:description" content="Ocultación y encapsulamiento, getters y setters, referencia this, sobrecarga, modificador static y paquetes en Java." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/03/21/programacion-clases-objetos-y-paquetes-ii/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/03/21/programacion-clases-objetos-y-paquetes-ii/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-03-21T12:06:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Programación. Clases, objetos y paquetes (II)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-03-21T12:06:00+01:00","datePublished":"2015-03-21T12:06:00+01:00","description":"Ocultación y encapsulamiento, getters y setters, referencia this, sobrecarga, modificador static y paquetes en Java.","headline":"Programación. Clases, objetos y paquetes (II)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/03/21/programacion-clases-objetos-y-paquetes-ii/"},"url":"http://localhost:4000/posts/2015/03/21/programacion-clases-objetos-y-paquetes-ii/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Programación. Clases, objetos y paquetes (II)</h1>
+    <div class="post-meta">
+      <time datetime="2015-03-21T12:06:00+01:00">21 Mar 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#java" class="post-category">Java</a>, 
+        
+          <a href="/categories/#programación" class="post-category">Programación</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Ocultación y encapsulamiento, getters y setters, referencia this, sobrecarga, modificador static y paquetes en Java.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="la-ocultación-y-el-encapsulamiento">La ocultación y el encapsulamiento</h2>
+
+<p>Permitir acceso directo a las propiedades de un objeto es peligroso: se podrían modificar estados sin respetar las reglas de validación. La solución es declarar las propiedades como <code class="language-plaintext highlighter-rouge">private</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Bombilla</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">potencia</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">numEncendidos</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Boolean</span> <span class="n">encendida</span><span class="o">,</span> <span class="n">fundida</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Se introduce entonces el concepto de <strong>getters</strong> (métodos de consulta) y <strong>setters</strong> (métodos modificadores):</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">obtenerNumEncendido</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">numEncendidos</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">establecerPotencia</span><span class="o">(</span><span class="kt">int</span> <span class="n">nuevaPotencia</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">nuevaPotencia</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span>
+        <span class="n">potencia</span> <span class="o">=</span> <span class="n">nuevaPotencia</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Eclipse puede generar automáticamente getters y setters mediante <strong>Source → Generate Getters and Setters</strong>.</p>
+
+<h2 id="el-objeto-en-primera-persona-referencia-this">El objeto en primera persona. Referencia <code class="language-plaintext highlighter-rouge">this</code></h2>
+
+<p><code class="language-plaintext highlighter-rouge">this</code> hace referencia al propio objeto y sirve para resolver conflictos de nombres entre parámetros y propiedades:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">establecerPotencia</span><span class="o">(</span><span class="kt">int</span> <span class="n">potencia</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">potencia</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">potencia</span> <span class="o">=</span> <span class="n">potencia</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="sobrecarga-de-métodos">Sobrecarga de métodos</h2>
+
+<p>Reglas para sobrecargar métodos:</p>
+<ul>
+  <li>Mismo nombre y tipo de retorno.</li>
+  <li>Se distinguen por número y/o tipo de parámetros.</li>
+  <li>La visibilidad no sirve para distinguirlos.</li>
+</ul>
+
+<p><img src="/img/posts/20150321_1.png" alt="Ejemplo de sobrecarga en constructores y métodos" /></p>
+
+<h2 id="el-modificador-static">El modificador <code class="language-plaintext highlighter-rouge">static</code></h2>
+
+<p>Las propiedades y métodos <code class="language-plaintext highlighter-rouge">static</code> pertenecen a la clase, no a los objetos individuales. Son compartidos por todas las instancias:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Bombilla</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">consumoTotal</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getConsumoTotalBombillas</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">consumoTotal</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Se accede a través del nombre de la clase:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">Bombilla</span><span class="o">.</span><span class="na">getConsumoTotalBombillas</span><span class="o">()</span> <span class="o">+</span> <span class="s">"W"</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>La clase <code class="language-plaintext highlighter-rouge">Math</code> de la librería estándar y <code class="language-plaintext highlighter-rouge">System.out.println</code> son ejemplos habituales de uso de métodos estáticos.</p>
+
+<h2 id="concepto-y-notación-uml-de-paquetes">Concepto y notación UML de paquetes</h2>
+
+<p>Los paquetes agrupan clases relacionadas. Por ejemplo, un paquete <code class="language-plaintext highlighter-rouge">electrodomesticos</code> podría contener las clases <code class="language-plaintext highlighter-rouge">Bombilla</code>, <code class="language-plaintext highlighter-rouge">Televisor</code>, <code class="language-plaintext highlighter-rouge">Video</code> y <code class="language-plaintext highlighter-rouge">MandoUniversal</code>.</p>
+
+<p><img src="/img/posts/20150321_2.jpg" alt="Diagrama UML de paquetes" /></p>
+
+<h2 id="declaración-de-un-paquete">Declaración de un paquete</h2>
+
+<p>La declaración de paquete debe ser la primera línea del fichero:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">nombreDelPaquete</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p><strong>Reglas de nombrado:</strong></p>
+<ul>
+  <li>Minúsculas, sin espacios.</li>
+  <li>Comenzar con letra, <code class="language-plaintext highlighter-rouge">$</code> o <code class="language-plaintext highlighter-rouge">_</code>.</li>
+  <li>No pueden ser palabras reservadas.</li>
+  <li>Paquetes anidados separados por puntos.</li>
+</ul>
+
+<p><strong>Ejemplos correctos:</strong> <code class="language-plaintext highlighter-rouge">utilidades</code>, <code class="language-plaintext highlighter-rouge">gestionClientes</code>, <code class="language-plaintext highlighter-rouge">utilidades.graficos</code>, <code class="language-plaintext highlighter-rouge">utilidades.sonidos</code></p>
+
+<p><strong>Ejemplos incorrectos:</strong> <code class="language-plaintext highlighter-rouge">12meses</code>, <code class="language-plaintext highlighter-rouge">static</code>, <code class="language-plaintext highlighter-rouge">future-soft</code>, <code class="language-plaintext highlighter-rouge">double.number</code></p>
+
+<h2 id="el-espacio-de-nombres">El espacio de nombres</h2>
+
+<p>Los paquetes evitan conflictos de nombres: dos clases pueden tener el mismo nombre si pertenecen a paquetes distintos.</p>
+
+<p>La convención de nombres usa el dominio inverso de la empresa:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">www.endesa.com</code> → <code class="language-plaintext highlighter-rouge">com.endesa.servicios</code>, <code class="language-plaintext highlighter-rouge">com.endesa.facturacion</code></li>
+  <li><code class="language-plaintext highlighter-rouge">www.sadiel.es</code> → <code class="language-plaintext highlighter-rouge">es.sadiel.servicios</code>, <code class="language-plaintext highlighter-rouge">es.sadiel.facturacion</code></li>
+</ul>
+
+<h2 id="la-estructura-de-carpetas-asociada">La estructura de carpetas asociada</h2>
+
+<p>Hay una relación directa entre paquetes y carpetas: cada paquete corresponde a una carpeta, y cada clase a un fichero <code class="language-plaintext highlighter-rouge">.java</code>.</p>
+
+<p><img src="/img/posts/20150321_3.jpg" alt="Estructura de carpetas correspondiente a los paquetes" /></p>
+
+<h2 id="clases-visibles-dentro-y-fuera-de-un-paquete">Clases visibles dentro y fuera de un paquete</h2>
+
+<p>Las clases declaradas con <code class="language-plaintext highlighter-rouge">public</code> son visibles dentro y fuera del paquete. Sin modificador de acceso, solo son visibles dentro del paquete.</p>
+
+<p><strong>Visibilidad amigable o de paquete:</strong> Sin <code class="language-plaintext highlighter-rouge">public</code> ni <code class="language-plaintext highlighter-rouge">private</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">codigoCliente</span><span class="o">;</span>
+<span class="kt">boolean</span> <span class="n">propietario</span><span class="o">;</span>
+<span class="kt">void</span> <span class="nf">imprimeCliente</span><span class="o">()</span> <span class="o">{</span> <span class="err">…</span> <span class="o">}</span>
+</code></pre></div></div>
+
+<p>En UML se denota sin símbolo de visibilidad.</p>
+
+<p><img src="/img/posts/20150321_4.jpg" alt="Niveles de acceso entre clases del mismo paquete" /></p>
+
+<h2 id="sentencias-de-importación">Sentencias de importación</h2>
+
+<p>Para usar clases de otros paquetes se usa <code class="language-plaintext highlighter-rouge">import</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">utilidades.Teclado</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">utilidades.graficos.*</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p>Eclipse puede conectarse con la documentación estándar de Java para ofrecer información contextual durante el desarrollo.</p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#java</span>
+        
+          <span class="tag">#programacion</span>
+        
+          <span class="tag">#clases</span>
+        
+          <span class="tag">#encapsulamiento</span>
+        
+          <span class="tag">#paquetes</span>
+        
+          <span class="tag">#static</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

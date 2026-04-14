@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entornos de desarrollo / Lenguaje de marcas. PHPMyAdmin (I) | Programando a Pasitos</title>
+<meta name="description" content="Configuración inicial de PHPMyAdmin en Hostinger y Ubuntu. Creación de base de datos MySQL, importación de datos y conexión desde C con la API de MySQL.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Entornos de desarrollo / Lenguaje de marcas. PHPMyAdmin (I) | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Entornos de desarrollo / Lenguaje de marcas. PHPMyAdmin (I)" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Configuración inicial de PHPMyAdmin en Hostinger y Ubuntu. Creación de base de datos MySQL, importación de datos y conexión desde C con la API de MySQL." />
+<meta property="og:description" content="Configuración inicial de PHPMyAdmin en Hostinger y Ubuntu. Creación de base de datos MySQL, importación de datos y conexión desde C con la API de MySQL." />
+<link rel="canonical" href="http://localhost:4000/posts/2014/12/09/entornos-de-desarrollo-lenguaje-de-marcas-phpmyadmin-i/" />
+<meta property="og:url" content="http://localhost:4000/posts/2014/12/09/entornos-de-desarrollo-lenguaje-de-marcas-phpmyadmin-i/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2014-12-09T06:34:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Entornos de desarrollo / Lenguaje de marcas. PHPMyAdmin (I)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2014-12-09T06:34:00+01:00","datePublished":"2014-12-09T06:34:00+01:00","description":"Configuración inicial de PHPMyAdmin en Hostinger y Ubuntu. Creación de base de datos MySQL, importación de datos y conexión desde C con la API de MySQL.","headline":"Entornos de desarrollo / Lenguaje de marcas. PHPMyAdmin (I)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2014/12/09/entornos-de-desarrollo-lenguaje-de-marcas-phpmyadmin-i/"},"url":"http://localhost:4000/posts/2014/12/09/entornos-de-desarrollo-lenguaje-de-marcas-phpmyadmin-i/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Entornos de desarrollo / Lenguaje de marcas. PHPMyAdmin (I)</h1>
+    <div class="post-meta">
+      <time datetime="2014-12-09T06:34:00+01:00">09 Dec 2014</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#entornos-de-desarrollo" class="post-category">Entornos de desarrollo</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Configuración inicial de PHPMyAdmin en Hostinger y Ubuntu. Creación de base de datos MySQL, importación de datos y conexión desde C con la API de MySQL.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <p>Vamos a ver como conectar una base de datos con un programa hecho en C. Pero primero, necesitamos algunos pasos previos.</p>
+
+<h2 id="configuración-en-hostinger">Configuración en Hostinger</h2>
+
+<p>Lo primero que haremos será ingresar en nuestro panel de administración del sitio web, en mi caso montado en Hostinger.</p>
+
+<p><img src="/img/posts/20141209_1.png" alt="Panel de administración de Hostinger" /></p>
+
+<p>Veremos entre otras, estas opciones.</p>
+
+<p><img src="/img/posts/20141209_2.png" alt="Opciones del panel" /></p>
+
+<p>Bajamos hasta la sección de bases de datos y seleccionamos MySQL Bases de datos de MySQL.</p>
+
+<p><img src="/img/posts/20141209_3.png" alt="Sección bases de datos MySQL" /></p>
+
+<p>Iremos a la siguiente página, donde crearemos una nueva base de datos. En mi caso, con4, con usuario con4 (la contraseña no la digo, desolé).</p>
+
+<p><img src="/img/posts/20141209_4.png" alt="Creación de nueva base de datos" /></p>
+
+<p>Pulsamos en Crear y veremos que en el panel lateral izquierdo, en la sección de bases de datos, tenemos una categoría llamada phpMyAdmin. Pulsamos sobre ella.</p>
+
+<p><img src="/img/posts/20141209_5.png" alt="phpMyAdmin en el panel lateral" /></p>
+
+<p>Nos llevará a la sección del administrador de PHP de nuestro host, y pulsamos en Ingresar phpMyAdmin.</p>
+
+<p><img src="/img/posts/20141209_6.png" alt="Ingresar phpMyAdmin" /></p>
+
+<p>Después de lo cual veremos esta pantalla.</p>
+
+<p><img src="/img/posts/20141209_7.png" alt="Pantalla del administrador phpMyAdmin" /></p>
+
+<p>Esto es el panel de administración. ¡Al tajo!</p>
+
+<p><img src="/img/posts/20141209_8.png" alt="Panel de administración phpMyAdmin" /></p>
+
+<p>Ya estamos aquí. Vamos a importar y subimos un <code class="language-plaintext highlighter-rouge">.sql</code> para poder trabajar usando un ejemplo. He usado el archivo <code class="language-plaintext highlighter-rouge">.sql</code> del post anterior.</p>
+
+<p>Para importar, pulsaremos ¿adivinas? Importar.</p>
+
+<p><img src="/img/posts/20141209_9.png" alt="Sección Importar" /></p>
+
+<p>Importamos, y si ha sido correcta saldrá el siguiente mensaje.</p>
+
+<p><img src="/img/posts/20141209_10.png" alt="Mensaje de importación correcta" /></p>
+
+<p>Si por un casual queremos hacer consultas, vamos a la sección de SQL.</p>
+
+<p><img src="/img/posts/20141209_11.png" alt="Sección SQL" /></p>
+
+<p>Y si te das cuenta, en el menú lateral izquierdo vemos las tablas creadas.</p>
+
+<p><img src="/img/posts/20141209_12.png" alt="Menú lateral con tablas creadas" /></p>
+
+<h2 id="conexión-desde-c-a-mysql">Conexión desde C a MySQL</h2>
+
+<p>Bien, una vez hecho esto, tenemos que saber ciertas cosas. Para conectarnos a una base de datos desde C, necesitaremos la API de C para MySQL, con lo que deberemos cargar ciertas librerías, y usar determinadas funciones.</p>
+
+<p>Las librerías a incluir son:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;my_global.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;mysql.h&gt;</span><span class="cp">
+</span></code></pre></div></div>
+
+<p><strong>Funciones:</strong></p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">mysql_init()</code></strong> — Inicializa los parámetros para poder conectarse a la base de datos.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">mysql_real_connect()</code></strong> — Nos conecta a la base de datos. Deberemos pasarle, como parámetros, un nombre de host, un usuario y una contraseña, como obligatorios, más luego X parámetros voluntarios, como puerto, por ejemplo.</p>
+
+<h2 id="configuración-en-ubuntu">Configuración en Ubuntu</h2>
+
+<p>Ahora, para comenzar practicando, lo haremos desde Ubuntu.</p>
+
+<p>Deberíamos instalar el LAMP, para tener Apache y demás, pero realmente sólo necesitamos estos dos paquetes:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">build-essential</code></li>
+  <li><code class="language-plaintext highlighter-rouge">mysql-server</code></li>
+</ul>
+
+<p>Cuando instalemos <code class="language-plaintext highlighter-rouge">mysql-server</code>, nos pedirá una contraseña. Por defecto, yo he elegido la misma para todas, root.</p>
+
+<p><img src="/img/posts/20141209_13.png" alt="Instalación de build-essential y mysql-server" /></p>
+
+<p><img src="/img/posts/20141209_14.png" alt="Contraseña de mysql-server" /></p>
+
+<p>Una vez instalados estos dos paquetes, instalaremos el administrador de PHP:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">phpmyadmin</code></li>
+</ul>
+
+<p>Marcamos apache como servidor predeterminado.</p>
+
+<p><img src="/img/posts/20141209_15.png" alt="Selección de Apache como servidor" /></p>
+
+<p><img src="/img/posts/20141209_16.png" alt="Confirmación de selección" /></p>
+
+<p>Accedemos a que se configure la base de datos por defecto para empezar a trabajar.</p>
+
+<p><img src="/img/posts/20141209_17.png" alt="Configuración de base de datos" /></p>
+
+<p>Y volvemos a escribir las contraseñas de usuario, root, para variar.</p>
+
+<p><img src="/img/posts/20141209_18.png" alt="Contraseña de usuario" /></p>
+
+<p><img src="/img/posts/20141209_19.png" alt="Confirmación de contraseña" /></p>
+
+<p><img src="/img/posts/20141209_20.png" alt="Instalación completada" /></p>
+
+<p>Hasta aquí nos hemos quedado. Mañana seguiremos ya una vez que tenemos la configuración inicial.</p>
+
+<p><strong>¡Salud y coding!</strong></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#entornos-de-desarrollo</span>
+        
+          <span class="tag">#phpmyadmin</span>
+        
+          <span class="tag">#mysql</span>
+        
+          <span class="tag">#c</span>
+        
+          <span class="tag">#ubuntu</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

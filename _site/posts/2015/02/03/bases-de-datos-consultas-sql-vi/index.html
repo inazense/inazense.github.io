@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bases de datos. Consultas SQL (VI) | Programando a Pasitos</title>
+<meta name="description" content="Hoja de ejercicios 9 de la unidad 3. Consultas multitabla con las tablas EMPLEADOS, DEPARTAMENTOS, PEDIDOS, PRODUCTOS y CLIENTES.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bases de datos. Consultas SQL (VI) | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bases de datos. Consultas SQL (VI)" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Hoja de ejercicios 9 de la unidad 3. Consultas multitabla con las tablas EMPLEADOS, DEPARTAMENTOS, PEDIDOS, PRODUCTOS y CLIENTES." />
+<meta property="og:description" content="Hoja de ejercicios 9 de la unidad 3. Consultas multitabla con las tablas EMPLEADOS, DEPARTAMENTOS, PEDIDOS, PRODUCTOS y CLIENTES." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/02/03/bases-de-datos-consultas-sql-vi/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/02/03/bases-de-datos-consultas-sql-vi/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-02-03T05:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bases de datos. Consultas SQL (VI)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-02-03T05:00:00+01:00","datePublished":"2015-02-03T05:00:00+01:00","description":"Hoja de ejercicios 9 de la unidad 3. Consultas multitabla con las tablas EMPLEADOS, DEPARTAMENTOS, PEDIDOS, PRODUCTOS y CLIENTES.","headline":"Bases de datos. Consultas SQL (VI)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/02/03/bases-de-datos-consultas-sql-vi/"},"url":"http://localhost:4000/posts/2015/02/03/bases-de-datos-consultas-sql-vi/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Bases de datos. Consultas SQL (VI)</h1>
+    <div class="post-meta">
+      <time datetime="2015-02-03T05:00:00+01:00">03 Feb 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#bases-de-datos" class="post-category">Bases de datos</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Hoja de ejercicios 9 de la unidad 3. Consultas multitabla con las tablas EMPLEADOS, DEPARTAMENTOS, PEDIDOS, PRODUCTOS y CLIENTES.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <p>Hoja de ejercicios 9 de la unidad 3</p>
+
+<h2 id="consultas-multitabla-ejercicios">CONSULTAS MULTITABLA. EJERCICIOS</h2>
+
+<p>Tablas utilizadas: EMPLEADOS, DEPARTAMENTOS, PEDIDOS, PRODUCTOS y CLIENTES.</p>
+
+<ol>
+  <li>Obtener una lista de los pedidos con la descripción del producto y el nombre del cliente clasificados por el número del cliente.</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">pe</span><span class="p">.</span><span class="o">*</span><span class="p">,</span> <span class="n">descripcion</span><span class="p">,</span> <span class="n">nombre</span>
+<span class="k">from</span> <span class="n">pedidos</span> <span class="n">pe</span><span class="p">,</span> <span class="n">productos</span> <span class="n">pr</span><span class="p">,</span> <span class="n">clientes</span> <span class="n">cl</span>
+<span class="k">where</span> <span class="n">pe</span><span class="p">.</span><span class="n">producto_no</span> <span class="o">=</span> <span class="n">pr</span><span class="p">.</span><span class="n">producto_no</span>
+<span class="k">and</span> <span class="n">pe</span><span class="p">.</span><span class="n">CLIENTE_NO</span> <span class="o">=</span> <span class="n">cl</span><span class="p">.</span><span class="n">cliente_no</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Obtener los nombres de los empleados y los nombres de sus departamentos, para aquellos empleados que no son del departamento VENTAS y que entraron en la empresa después del 1 de enero de 82.</li>
+</ol>
+
+<p>Mi solución:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">APELLIDO</span><span class="p">,</span> <span class="n">DNOMBRE</span>
+<span class="k">from</span> <span class="n">empleados</span> <span class="n">e</span><span class="p">,</span> <span class="n">departamentos</span> <span class="n">d</span>
+<span class="k">where</span> <span class="n">d</span><span class="p">.</span><span class="n">DEP_NO</span> <span class="o">=</span> <span class="p">(</span>
+     <span class="k">select</span> <span class="n">dep_no</span>
+     <span class="k">from</span> <span class="n">departamentos</span>
+     <span class="k">where</span> <span class="n">dnombre</span> <span class="k">like</span> <span class="s1">'VENTAS'</span>
+<span class="p">)</span>
+<span class="k">AND</span> <span class="n">fecha_alta</span> <span class="o">&gt;</span> <span class="s1">'1982-01-01'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Solución profesor:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">em</span><span class="p">.</span><span class="n">apellido</span><span class="p">,</span> <span class="n">de</span><span class="p">.</span><span class="n">dnombre</span>
+<span class="k">from</span> <span class="n">empleados</span> <span class="n">em</span><span class="p">,</span> <span class="n">departamentos</span> <span class="n">de</span>
+<span class="k">where</span> <span class="n">em</span><span class="p">.</span><span class="n">dep_no</span> <span class="o">=</span> <span class="n">de</span><span class="p">.</span><span class="n">DEP_NO</span>
+<span class="k">and</span> <span class="n">de</span><span class="p">.</span><span class="n">DNOMBRE</span> <span class="o">!=</span> <span class="nv">"VENTAS"</span>
+<span class="k">and</span> <span class="n">em</span><span class="p">.</span><span class="n">FECHA_ALTA</span> <span class="o">&gt;</span> <span class="nv">"1982-01-01"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Obtener una lista de los apellidos de los vendedores con el importe acumulado de sus pedidos.</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">EMPLEADOS</span><span class="p">.</span><span class="n">APELLIDO</span><span class="p">,</span> <span class="k">SUM</span><span class="p">(</span><span class="n">UNIDADES</span><span class="o">*</span><span class="n">PRECIO_ACTUAL</span><span class="p">)</span> <span class="k">AS</span> <span class="s1">'TOTAL PEDIDO'</span>
+<span class="k">FROM</span> <span class="n">PEDIDOS</span><span class="p">,</span> <span class="n">PRODUCTOS</span><span class="p">,</span> <span class="n">CLIENTES</span><span class="p">,</span> <span class="n">EMPLEADOS</span>
+<span class="k">WHERE</span> <span class="n">PEDIDOS</span><span class="p">.</span><span class="n">PRODUCTO_NO</span> <span class="o">=</span> <span class="n">PRODUCTOS</span><span class="p">.</span><span class="n">PRODUCTO_NO</span>
+<span class="k">AND</span> <span class="n">PEDIDOS</span><span class="p">.</span><span class="n">CLIENTE_NO</span> <span class="o">=</span> <span class="n">CLIENTES</span><span class="p">.</span><span class="n">CLIENTE_NO</span>
+<span class="k">AND</span> <span class="n">CLIENTES</span><span class="p">.</span><span class="n">VENDEDOR_NO</span> <span class="o">=</span> <span class="n">EMPLEADOS</span><span class="p">.</span><span class="n">EMP_NO</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">APELLIDO</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Obtener los nombre de los empleados del departamento 30 que son jefes directos de algún empleado de la empresa, indicando de cuantos empleados son jefes.</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">e1</span><span class="p">.</span><span class="n">apellido</span><span class="p">,</span> <span class="k">count</span><span class="p">(</span><span class="n">e1</span><span class="p">.</span><span class="n">director</span><span class="p">)</span>
+<span class="k">from</span> <span class="n">empleados</span> <span class="n">e1</span><span class="p">,</span> <span class="n">empleados</span> <span class="n">e2</span>
+<span class="k">where</span> <span class="n">e1</span><span class="p">.</span><span class="n">emp_no</span><span class="o">=</span><span class="n">e2</span><span class="p">.</span><span class="n">director</span>
+<span class="k">and</span> <span class="n">e1</span><span class="p">.</span><span class="n">DEP_NO</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="k">group</span> <span class="k">by</span> <span class="n">e1</span><span class="p">.</span><span class="n">director</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Realizar un listado de los empleados cuyo oficio es EMPLEADO, que incluirá los números de empleado, los apellidos y los salarios anuales (salario multiplicado por 14), e incluyendo el nombre del director del empleado.</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">e1</span><span class="p">.</span><span class="n">emp_no</span><span class="p">,</span> <span class="n">e1</span><span class="p">.</span><span class="n">apellido</span><span class="p">,</span> <span class="n">e1</span><span class="p">.</span><span class="n">salario</span><span class="o">*</span><span class="mi">14</span> <span class="k">AS</span> <span class="s1">'SALARIO ANUAL'</span><span class="p">,</span> <span class="n">e2</span><span class="p">.</span><span class="n">apellido</span> <span class="k">AS</span> <span class="s1">'Director'</span>
+<span class="k">from</span> <span class="n">empleados</span> <span class="n">e1</span><span class="p">,</span> <span class="n">empleados</span> <span class="n">e2</span>
+<span class="k">where</span> <span class="n">e1</span><span class="p">.</span><span class="n">oficio</span> <span class="k">like</span> <span class="s1">'EMPLEADO'</span>
+<span class="k">AND</span> <span class="n">E1</span><span class="p">.</span><span class="n">DIRECTOR</span> <span class="o">=</span> <span class="n">E2</span><span class="p">.</span><span class="n">EMP_NO</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Visualizar los productos con el número total de pedidos, las unidades totales vendidas, y el precio unidad de cada uno de ellos incluyendo los que no tienen pedidos (en este caso se mostrará un 0 en el total unidades vendidas).</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">pr</span><span class="p">.</span><span class="n">PRODUCTO_NO</span><span class="p">,</span> <span class="n">pr</span><span class="p">.</span><span class="n">DESCRIPCION</span><span class="p">,</span>
+<span class="k">count</span><span class="p">(</span><span class="n">pe</span><span class="p">.</span><span class="n">PRODUCTO_NO</span><span class="p">)</span> <span class="k">AS</span> <span class="s1">'Numero de pedido'</span><span class="p">,</span> <span class="n">ifnull</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">pe</span><span class="p">.</span><span class="n">unidades</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span> <span class="k">AS</span> <span class="s1">'Total de pedidos'</span><span class="p">,</span> <span class="n">pr</span><span class="p">.</span><span class="n">precio_actual</span>
+<span class="k">from</span> <span class="n">productos</span> <span class="n">pr</span>
+<span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">pedidos</span> <span class="n">pe</span>
+<span class="k">ON</span> <span class="n">pr</span><span class="p">.</span><span class="n">PRODUCTO_NO</span> <span class="o">=</span> <span class="n">pe</span><span class="p">.</span><span class="n">PRODUCTO_NO</span>
+<span class="k">group</span> <span class="k">by</span> <span class="n">pr</span><span class="p">.</span><span class="n">PRODUCTO_NO</span><span class="p">,</span> <span class="n">pr</span><span class="p">.</span><span class="n">DESCRIPCION</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<ol>
+  <li>Obtener un listado de clientes, indicando el número de cliente y su nombre, y el número y nombre de sus vendedores.</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">CLIENTE_NO</span><span class="p">,</span> <span class="n">NOMBRE</span><span class="p">,</span> <span class="n">VENDEDOR_NO</span><span class="p">,</span> <span class="n">APELLIDO</span>
+<span class="k">from</span> <span class="n">clientes</span><span class="p">,</span> <span class="n">empleados</span>
+<span class="k">where</span> <span class="n">VENDEDOR_NO</span> <span class="o">=</span> <span class="n">EMP_NO</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Listar todos los pedidos realizados con la descripción del producto y el nombre del cliente en lugar de sus números.</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">PEDIDO_NO</span> <span class="k">AS</span> <span class="s1">'PEDIDO'</span><span class="p">,</span> <span class="n">DESCRIPCION</span><span class="p">,</span> <span class="n">NOMBRE</span><span class="p">,</span> <span class="n">Unidades</span><span class="p">,</span> <span class="n">FECHA_PEDIDO</span> <span class="k">AS</span> <span class="s1">'FECHA'</span>
+<span class="k">from</span> <span class="n">pedidos</span> <span class="n">pe</span><span class="p">,</span> <span class="n">clientes</span> <span class="n">cl</span><span class="p">,</span> <span class="n">productos</span> <span class="n">pr</span>
+<span class="k">where</span> <span class="n">pe</span><span class="p">.</span><span class="n">CLIENTE_NO</span> <span class="o">=</span> <span class="n">cl</span><span class="p">.</span><span class="n">CLIENTE_NO</span>
+<span class="k">and</span> <span class="n">pe</span><span class="p">.</span><span class="n">PRODUCTO_NO</span> <span class="o">=</span> <span class="n">pr</span><span class="p">.</span><span class="n">PRODUCTO_NO</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Obtener una lista de los pedidos con la descripción del producto y el nombre del cliente de los clientes de MADRID.</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">PEDIDO_NO</span> <span class="k">AS</span> <span class="s1">'PEDIDO'</span><span class="p">,</span> <span class="n">DESCRIPCION</span><span class="p">,</span> <span class="n">NOMBRE</span><span class="p">,</span> <span class="n">Unidades</span><span class="p">,</span> <span class="n">FECHA_PEDIDO</span> <span class="k">AS</span> <span class="s1">'FECHA'</span>
+<span class="k">from</span> <span class="n">pedidos</span> <span class="n">pe</span><span class="p">,</span> <span class="n">clientes</span> <span class="n">cl</span><span class="p">,</span> <span class="n">productos</span> <span class="n">pr</span>
+<span class="k">where</span> <span class="n">pe</span><span class="p">.</span><span class="n">CLIENTE_NO</span> <span class="o">=</span> <span class="n">cl</span><span class="p">.</span><span class="n">CLIENTE_NO</span>
+<span class="k">and</span> <span class="n">pe</span><span class="p">.</span><span class="n">PRODUCTO_NO</span> <span class="o">=</span> <span class="n">pr</span><span class="p">.</span><span class="n">PRODUCTO_NO</span>
+<span class="k">and</span> <span class="n">cl</span><span class="p">.</span><span class="n">localidad</span> <span class="k">like</span> <span class="s1">'MADRID'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Visualizar el nombre del departamento, la fecha de alta, el apellido, el oficio y el nombre de localidad de aquellos trabajadores que están en un departamento ubicado en una localidad que no contenga ninguna C en su nombre.</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">DNOMBRE</span><span class="p">,</span> <span class="n">FECHA_ALTA</span><span class="p">,</span> <span class="n">APELLIDO</span><span class="p">,</span> <span class="n">OFICIO</span><span class="p">,</span> <span class="n">LOCALIDAD</span>
+<span class="k">from</span> <span class="n">empleados</span> <span class="n">em</span><span class="p">,</span> <span class="n">departamentos</span> <span class="n">de</span>
+<span class="k">where</span> <span class="n">em</span><span class="p">.</span><span class="n">DEP_NO</span> <span class="o">=</span> <span class="n">de</span><span class="p">.</span><span class="n">DEP_NO</span>
+<span class="k">and</span> <span class="n">localidad</span> <span class="k">not</span> <span class="k">like</span> <span class="s1">'%C%'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Obtener una lista de los nombres de los clientes con el importe acumulado de sus pedidos.</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">NOMBRE</span><span class="p">,</span> <span class="k">SUM</span><span class="p">(</span><span class="n">UNIDADES</span> <span class="o">*</span> <span class="n">PRECIO_ACTUAL</span><span class="p">)</span> <span class="nv">"TOTAL_PEDIDOS"</span>
+<span class="k">FROM</span> <span class="n">PEDIDOS</span><span class="p">,</span> <span class="n">PRODUCTOS</span><span class="p">,</span> <span class="n">CLIENTES</span>
+<span class="k">WHERE</span> <span class="n">PEDIDOS</span><span class="p">.</span><span class="n">PRODUCTO_NO</span> <span class="o">=</span> <span class="n">PRODUCTOS</span><span class="p">.</span><span class="n">PRODUCTO_NO</span>
+<span class="k">AND</span> <span class="n">PEDIDOS</span><span class="p">.</span><span class="n">CLIENTE_NO</span> <span class="o">=</span> <span class="n">CLIENTES</span><span class="p">.</span><span class="n">CLIENTE_NO</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">NOMBRE</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Obtener el número de pedidos por producto, visualizando el número de producto, su descripción y el número de pedidos correspondiente.</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">pr</span><span class="p">.</span><span class="n">producto_no</span><span class="p">,</span> <span class="n">DESCRIPCION</span><span class="p">,</span> <span class="k">count</span><span class="p">(</span><span class="n">pe</span><span class="p">.</span><span class="n">producto_no</span><span class="p">)</span>
+<span class="k">from</span> <span class="n">productos</span> <span class="n">pr</span>
+<span class="k">left</span> <span class="k">join</span> <span class="n">pedidos</span> <span class="n">pe</span>
+<span class="k">on</span> <span class="n">pr</span><span class="p">.</span><span class="n">producto_no</span> <span class="o">=</span> <span class="n">pe</span><span class="p">.</span><span class="n">PRODUCTO_NO</span>
+<span class="k">group</span> <span class="k">by</span> <span class="n">pr</span><span class="p">.</span><span class="n">producto_no</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Obtener los clientes que no pertenezcan a las localidades de sus vendedores.</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">NOMBRE</span> <span class="k">as</span> <span class="s1">'Cliente'</span><span class="p">,</span> <span class="n">cl</span><span class="p">.</span><span class="n">localidad</span> <span class="k">as</span> <span class="s1">'Localidad Cliente'</span><span class="p">,</span> <span class="n">apellido</span> <span class="k">as</span> <span class="s1">'Vendedor'</span><span class="p">,</span> <span class="n">de</span><span class="p">.</span><span class="n">localidad</span> <span class="k">as</span> <span class="s1">'Localidad Vendedor'</span>
+<span class="k">from</span> <span class="n">clientes</span> <span class="n">cl</span><span class="p">,</span> <span class="n">empleados</span> <span class="n">em</span><span class="p">,</span> <span class="n">departamentos</span> <span class="n">de</span>
+<span class="k">where</span> <span class="n">vendedor_no</span> <span class="o">=</span> <span class="n">emp_no</span>
+<span class="k">and</span> <span class="n">em</span><span class="p">.</span><span class="n">dep_no</span> <span class="o">=</span> <span class="n">de</span><span class="p">.</span><span class="n">dep_no</span>
+<span class="k">and</span> <span class="n">cl</span><span class="p">.</span><span class="n">localidad</span> <span class="k">not</span> <span class="k">like</span> <span class="n">de</span><span class="p">.</span><span class="n">localidad</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Obtener los empleados que tienen un jefe que está en el departamento 30, mostrando el nombre del empleado y de su jefe.</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">e1</span><span class="p">.</span><span class="n">apellido</span> <span class="k">as</span> <span class="s1">'Empleado'</span><span class="p">,</span> <span class="n">e2</span><span class="p">.</span><span class="n">apellido</span> <span class="k">as</span> <span class="s1">'Director'</span>
+<span class="k">from</span> <span class="n">empleados</span> <span class="n">e1</span><span class="p">,</span> <span class="n">empleados</span> <span class="n">e2</span>
+<span class="k">where</span> <span class="n">e1</span><span class="p">.</span><span class="n">director</span> <span class="o">=</span> <span class="n">e2</span><span class="p">.</span><span class="n">EMP_NO</span>
+<span class="k">and</span> <span class="n">e2</span><span class="p">.</span><span class="n">DEP_NO</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Visualizar los datos de los departamentos con el nombre del departamento, el salario total (salario + comision) anual (14 pagas) y la comisión anual total de sus trabajadores, incluyendo todos los departamentos. Si la comisión total anual es nula se mostrará un cero.</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">DNOMBRE</span><span class="p">,</span> <span class="n">LOCALIDAD</span><span class="p">,</span> <span class="k">sum</span><span class="p">(</span><span class="n">salario</span><span class="o">+</span><span class="n">ifnull</span><span class="p">(</span><span class="n">comision</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="mi">14</span><span class="p">)</span> <span class="k">as</span> <span class="s1">'SALARIO TOTAL'</span><span class="p">,</span>
+<span class="k">sum</span><span class="p">(</span><span class="n">ifnull</span><span class="p">(</span><span class="n">comision</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span> <span class="k">as</span> <span class="s1">'COMISION'</span>
+<span class="k">from</span> <span class="n">empleados</span> <span class="n">em</span><span class="p">,</span> <span class="n">departamentos</span> <span class="n">de</span>
+<span class="k">where</span> <span class="n">em</span><span class="p">.</span><span class="n">DEP_NO</span> <span class="o">=</span> <span class="n">de</span><span class="p">.</span><span class="n">DEP_NO</span>
+<span class="k">group</span> <span class="k">by</span> <span class="n">em</span><span class="p">.</span><span class="n">dep_no</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Visualizar los nombres de los clientes y la cantidad de pedidos realizados, incluyendo los que no hayan realizado ningún pedido.</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">cl</span><span class="p">.</span><span class="n">cliente_no</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="k">count</span><span class="p">(</span><span class="n">pe</span><span class="p">.</span><span class="n">PEDIDO_NO</span><span class="p">)</span> <span class="k">AS</span> <span class="s1">'Pedidos'</span>
+<span class="k">from</span> <span class="n">clientes</span> <span class="n">cl</span>
+<span class="k">left</span> <span class="k">join</span> <span class="n">pedidos</span> <span class="n">pe</span>
+<span class="k">on</span> <span class="n">cl</span><span class="p">.</span><span class="n">CLIENTE_NO</span> <span class="o">=</span> <span class="n">pe</span><span class="p">.</span><span class="n">CLIENTE_NO</span>
+<span class="k">group</span> <span class="k">by</span> <span class="n">cl</span><span class="p">.</span><span class="n">cliente_no</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Realizar un listado de todos los productos con su descripción y el importe total (unidades totales por el precio unidad) de cada uno de ellos. Deben mostrarse todos los productos incluidos los que no tienen pedidos y en este caso el importe total se mostrará un 0.</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">descripcion</span><span class="p">,</span> <span class="n">pr</span><span class="p">.</span><span class="n">PRECIO_ACTUAL</span><span class="o">*</span><span class="n">ifnull</span><span class="p">(</span><span class="n">UNIDADES</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="k">as</span> <span class="s1">'importe total'</span>
+<span class="k">from</span> <span class="n">productos</span> <span class="n">pr</span>
+<span class="k">left</span> <span class="k">join</span> <span class="n">pedidos</span> <span class="n">pe</span>
+<span class="k">on</span> <span class="n">pr</span><span class="p">.</span><span class="n">producto_no</span> <span class="o">=</span> <span class="n">pe</span><span class="p">.</span><span class="n">PRODUCTO_NO</span>
+<span class="k">group</span> <span class="k">by</span> <span class="n">pr</span><span class="p">.</span><span class="n">PRODUCTO_NO</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Visualizar los apellidos de los empleados y el número de clientes que tienen, visualizando todos los empleados de la empresa tengan o no clientes asignados.</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">APELLIDO</span><span class="p">,</span> <span class="k">count</span><span class="p">(</span><span class="n">cl</span><span class="p">.</span><span class="n">vendedor_no</span><span class="p">)</span> <span class="k">as</span> <span class="s1">'CLIENTES'</span>
+<span class="k">from</span> <span class="n">empleados</span> <span class="n">em</span>
+<span class="k">left</span> <span class="k">join</span> <span class="n">clientes</span> <span class="n">cl</span>
+<span class="k">on</span> <span class="n">cl</span><span class="p">.</span><span class="n">VENDEDOR_NO</span> <span class="o">=</span> <span class="n">em</span><span class="p">.</span><span class="n">EMP_NO</span>
+<span class="k">group</span> <span class="k">by</span> <span class="n">em</span><span class="p">.</span><span class="n">EMP_NO</span>
+</code></pre></div></div>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#sql</span>
+        
+          <span class="tag">#bases de datos</span>
+        
+          <span class="tag">#consultas</span>
+        
+          <span class="tag">#multitabla</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

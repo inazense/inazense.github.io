@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entornos de desarrollo. UML Designer en Eclipse | Programando a Pasitos</title>
+<meta name="description" content="Cómo instalar y usar el plugin UML Designer en Eclipse para crear diagramas de clases UML, con explicación de asociaciones, herencia, atributos y métodos.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Entornos de desarrollo. UML Designer en Eclipse | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Entornos de desarrollo. UML Designer en Eclipse" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Cómo instalar y usar el plugin UML Designer en Eclipse para crear diagramas de clases UML, con explicación de asociaciones, herencia, atributos y métodos." />
+<meta property="og:description" content="Cómo instalar y usar el plugin UML Designer en Eclipse para crear diagramas de clases UML, con explicación de asociaciones, herencia, atributos y métodos." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/04/22/entornos-de-desarrollo-uml-designer-en-eclipse/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/04/22/entornos-de-desarrollo-uml-designer-en-eclipse/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-04-22T06:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Entornos de desarrollo. UML Designer en Eclipse" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-04-22T06:00:00+02:00","datePublished":"2015-04-22T06:00:00+02:00","description":"Cómo instalar y usar el plugin UML Designer en Eclipse para crear diagramas de clases UML, con explicación de asociaciones, herencia, atributos y métodos.","headline":"Entornos de desarrollo. UML Designer en Eclipse","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/04/22/entornos-de-desarrollo-uml-designer-en-eclipse/"},"url":"http://localhost:4000/posts/2015/04/22/entornos-de-desarrollo-uml-designer-en-eclipse/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Entornos de desarrollo. UML Designer en Eclipse</h1>
+    <div class="post-meta">
+      <time datetime="2015-04-22T06:00:00+02:00">22 Apr 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#entornos-de-desarrollo" class="post-category">Entornos de desarrollo</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Cómo instalar y usar el plugin UML Designer en Eclipse para crear diagramas de clases UML, con explicación de asociaciones, herencia, atributos y métodos.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <p>Para trabajar con diagramas UML en Eclipse necesitaremos instalar el plugin UML Designer. Enlace al marketplace: http://marketplace.eclipse.org/content/uml-designer-eclipse-luna-version</p>
+
+<p>Arrastramos el botón Install hacia Eclipse y comenzará la instalación.</p>
+
+<p><img src="/img/posts/20150422_1.png" alt="Instalación de UML Designer desde Eclipse Marketplace" /></p>
+
+<p>Nos pedirá reiniciar Eclipse.</p>
+
+<p><img src="/img/posts/20150422_2.png" alt="Ventana tras reiniciar Eclipse" /></p>
+
+<h2 id="crear-un-proyecto-uml">Crear un proyecto UML</h2>
+
+<p>Para crear un nuevo proyecto: <strong>File &gt; New &gt; Project &gt; UML Designer &gt; UML Project</strong>.</p>
+
+<p><img src="/img/posts/20150422_3.png" alt="Nuevo proyecto UML en Eclipse" /></p>
+
+<p>Se abre el Dashboard del proyecto.</p>
+
+<p><img src="/img/posts/20150422_4.png" alt="Dashboard de UML Designer" /></p>
+
+<p>Elegimos <strong>Class Diagram</strong>.</p>
+
+<p><img src="/img/posts/20150422_5.png" alt="Selección de Class Diagram" /></p>
+
+<p>Los elementos UML se arrastran desde el menú de la derecha.</p>
+
+<p><img src="/img/posts/20150422_6.png" alt="Menú de elementos UML" /></p>
+
+<h2 id="tipos-de-elementos">Tipos de elementos</h2>
+
+<ul>
+  <li><strong>Types</strong>: paquete, interfaz, clase…</li>
+  <li><strong>Features</strong>: configuraciones de los tipos</li>
+</ul>
+
+<h3 id="association">Association</h3>
+
+<p>La sección <strong>Association</strong> contiene las distintas relaciones entre clases.</p>
+
+<p><img src="/img/posts/20150422_7.png" alt="Opciones de Association" /></p>
+
+<p>Incluye <strong>Composition</strong> y <strong>Aggregation</strong>. La diferencia entre ambas:</p>
+
+<p><img src="/img/posts/20150422_8.png" alt="Diferencia entre Aggregation y Composition" /></p>
+
+<p>Más información en: http://www.seas.es/blog/informatica/agregacion-vs-composicion-en-diagramas-de-clases-uml/</p>
+
+<ul>
+  <li><strong>Association Class</strong>: clase intermedia entre dos clases relacionadas.</li>
+</ul>
+
+<h3 id="generalization">Generalization</h3>
+
+<p>La <strong>Generalization</strong> se usa para las herencias entre clases.</p>
+
+<p><img src="/img/posts/20150422_9.png" alt="Generalization en UML" /></p>
+
+<h2 id="configurar-una-clase">Configurar una clase</h2>
+
+<p>Al hacer doble clic sobre una clase importada se abre la ventana de configuración.</p>
+
+<p><img src="/img/posts/20150422_10.png" alt="Ventana de configuración de clase" /></p>
+
+<h3 id="attributes">Attributes</h3>
+
+<p>En la pestaña <strong>Attributes</strong> configuramos las propiedades de la clase.</p>
+
+<p><img src="/img/posts/20150422_11.png" alt="Pestaña Attributes" /></p>
+
+<p>Pulsamos <code class="language-plaintext highlighter-rouge">+</code> para añadir un atributo nuevo.</p>
+
+<p><img src="/img/posts/20150422_12.png" alt="Añadir atributo" /></p>
+
+<p>La estructura de un atributo es: <code class="language-plaintext highlighter-rouge">nombreDelAtributo: TipoDelAtributo</code></p>
+
+<h3 id="operations">Operations</h3>
+
+<p>En la pestaña <strong>Operations</strong> configuramos los métodos de la clase.</p>
+
+<p><img src="/img/posts/20150422_13.png" alt="Pestaña Operations" /></p>
+
+<p>Pulsamos <code class="language-plaintext highlighter-rouge">+</code> para añadir un método nuevo.</p>
+
+<p><img src="/img/posts/20150422_14.png" alt="Añadir método" /></p>
+
+<h2 id="visibilidad">Visibilidad</h2>
+
+<p>La visibilidad de los atributos y métodos se indica en el diagrama con los siguientes símbolos:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">-</code> : private</li>
+  <li><code class="language-plaintext highlighter-rouge">+</code> : public</li>
+  <li><code class="language-plaintext highlighter-rouge">#</code> : protected</li>
+</ul>
+
+<p>Ejemplo de clase completamente configurada:</p>
+
+<p><img src="/img/posts/20150422_15.png" alt="Ejemplo de clase finalizada en UML" /></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#entornos-de-desarrollo</span>
+        
+          <span class="tag">#eclipse</span>
+        
+          <span class="tag">#uml</span>
+        
+          <span class="tag">#diagramas</span>
+        
+          <span class="tag">#clases</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

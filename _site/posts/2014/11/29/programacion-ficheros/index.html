@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programación. Ficheros | Programando a Pasitos</title>
+<meta name="description" content="Teoría sobre ficheros secuenciales y ficheros de texto en programación. Operadores elementales, comunicación con el sistema de ficheros y algoritmos de ejemplo en pseudocódigo.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Programación. Ficheros | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Programación. Ficheros" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Teoría sobre ficheros secuenciales y ficheros de texto en programación. Operadores elementales, comunicación con el sistema de ficheros y algoritmos de ejemplo en pseudocódigo." />
+<meta property="og:description" content="Teoría sobre ficheros secuenciales y ficheros de texto en programación. Operadores elementales, comunicación con el sistema de ficheros y algoritmos de ejemplo en pseudocódigo." />
+<link rel="canonical" href="http://localhost:4000/posts/2014/11/29/programacion-ficheros/" />
+<meta property="og:url" content="http://localhost:4000/posts/2014/11/29/programacion-ficheros/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2014-11-29T15:31:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Programación. Ficheros" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2014-11-29T15:31:00+01:00","datePublished":"2014-11-29T15:31:00+01:00","description":"Teoría sobre ficheros secuenciales y ficheros de texto en programación. Operadores elementales, comunicación con el sistema de ficheros y algoritmos de ejemplo en pseudocódigo.","headline":"Programación. Ficheros","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2014/11/29/programacion-ficheros/"},"url":"http://localhost:4000/posts/2014/11/29/programacion-ficheros/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Programación. Ficheros</h1>
+    <div class="post-meta">
+      <time datetime="2014-11-29T15:31:00+01:00">29 Nov 2014</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#programación" class="post-category">Programación</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Teoría sobre ficheros secuenciales y ficheros de texto en programación. Operadores elementales, comunicación con el sistema de ficheros y algoritmos de ejemplo en pseudocódigo.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="uso-de-ficheros">Uso de ficheros</h2>
+
+<p>Los ficheros surgen de la necesidad de almacenar información una vez que termina el programa y poder usarla en ejecuciones futuras de ese mismo programa o de otros.</p>
+
+<p>Es el único mecanismo que tenemos para guardar información cuando nos quedamos sin suministro eléctrico y poder recuperarla después.</p>
+
+<p>El acceder a la información de los ficheros supone acceder a dispositivos que al lado de la memoria de un ordenador resultan excesivamente lentos, ya que supone el desplazamiento mecánico de cabezas lectoras y eso supone un retraso importante en el acceso a la información.</p>
+
+<h2 id="tipos-básicos-de-ficheros">Tipos básicos de ficheros</h2>
+
+<h3 id="ficheros-secuenciales">Ficheros secuenciales</h3>
+
+<p>Almacenan una secuencia de datos de cualquier tipo (pero todos del mismo tipo). Por ejemplo, puedo tener un fichero que almacena una secuencia de enteros, de reales, de vectores de lo que sea, de registros de cualquier tipo, etc.</p>
+
+<p>No los podemos editar con un editor de textos (o bueno, podemos pero no vamos a entender nada).</p>
+
+<p>Para crearlos, acceder a la información, o modificarlos lo habitual es hacerlo por programa.</p>
+
+<h3 id="ficheros-de-texto">Ficheros de texto</h3>
+
+<p>Almacenan únicamente caracteres codificados en ASCII.</p>
+
+<p>Por consiguiente, para acceder a la información o modificarlos, podría hacer uso indistintamente de un programa o un editor de textos (aunque desde el editor tendré problemas con los caracteres no representables).</p>
+
+<p>Si nos damos cuenta, tanto el uno como el otro son exactamente lo mismo (muchos bytes uno detrás de otro). Por lo tanto, lo único que varía entre un fichero secuencial binario y uno de texto, es su contenido lógico. Un fichero sea del tipo que sea podemos luego interpretarlo como queramos. Es decir, ¿puedo coger un fichero secuencial que contiene datos del tipo que sea y abrirlo como si fuera un fichero de texto, y viceversa?</p>
+
+<p>Bueno, con ciertas matizaciones, por ejemplo, que el número de bytes que contiene sea múltiplo del tipo de fichero secuencial, si es de texto y resulta incomprensible.</p>
+
+<h2 id="ficheros-secuenciales-1">Ficheros secuenciales</h2>
+
+<p>Cuando me refiero a un fichero, la palabra secuencial tiene que ver con el tipo de acceso a la información de que dispongo, en este caso, un acceso secuencial.</p>
+
+<p>Un fichero secuencial de datos de tipo “tpDato” es una estructura de datos cuyo dominio de valores son las secuencias finitas de datos del tipo “tpDato”, con un conjunto restringido de operadores, que fundamentalmente permiten sólo el acceso secuencial a sus componentes.</p>
+
+<p>Lo que significa y supone el acceso secuencial es que, en un momento dado, sólo puede accederse de forma inmediata a uno de los componentes del fichero, y para acceder a un elemento es preciso haber accedido antes a todos los elementos anteriores.</p>
+
+<p>Es decir, con un vector por ejemplo, yo puedo acceder directamente a la componente 1000 del vector si es justo el dato que necesito.</p>
+
+<p>Con un fichero secuencial, si yo quiero el dato 1000 tengo que acceder primero a los 999 anteriores. Por tanto los accesos son mucho más lentos, debido a dos razones diferentes:</p>
+
+<ul>
+  <li>El dispositivo de almacenamiento es más lento (los discos duros son más lentos que las memorias).</li>
+  <li>El acceso en el caso del fichero es secuencial, mientras que en memoria el acceso es directo.</li>
+</ul>
+
+<p>Es útil para guardar y recuperar información, pero bastante inútil para buscar de manera eficiente información en él.</p>
+
+<h2 id="operadores-elementales-sobre-ficheros-secuenciales-escritura">Operadores elementales sobre ficheros secuenciales. Escritura</h2>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">iniciarEscritura(f)</code></strong>: Procedimiento para la creación del fichero como una secuencia vacía.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">escribir(f, expresión)</code></strong>: Procedimiento para la adición (escritura) de un dato al fichero f.</li>
+</ul>
+
+<h2 id="operadores-elementales-sobre-ficheros-secuenciales-lectura">Operadores elementales sobre ficheros secuenciales. Lectura</h2>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">iniciarLectura(f)</code></strong>: Proceso para iniciar el proceso de inspección.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">siguienteDato(f)</code></strong>: Función para consultar el siguiente dato a acceder (sin avanzar a él). Muchos lenguajes no lo tienen disponible.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">avanzar(f)</code></strong>: Procedimiento para avanzar al siguiente dato almacenado en el fichero f. Se usa junto con <code class="language-plaintext highlighter-rouge">siguienteDato(f)</code> y tampoco está definido en muchos lenguajes.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">leer(f, variable)</code></strong>: Procedimiento para la lectura del siguiente dato almacenado en el fichero f. Lo lee, lo guarda en la variable y avanza (<code class="language-plaintext highlighter-rouge">siguienteDato</code> + <code class="language-plaintext highlighter-rouge">avanzar</code>, todo en uno).</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">finFichero(f)</code></strong>: Función para consultar si se ha accedido al final del fichero f. Valdrá VERDAD cuándo se haya leído el último dato de f.</li>
+</ul>
+
+<h2 id="operadores-comunicación-de-un-algoritmo-con-el-sistema-de-ficheros-del-so">Operadores: Comunicación de un algoritmo con el sistema de ficheros del S.O.</h2>
+
+<ul>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">asociar(f, nombre)</code></strong>: Establece la conexión lógica entre un fichero interno (variable <em>f</em> en este caso, que es la que utilizaremos en nuestro algoritmo) y el correspondiente fichero externo (el fichero que tenga el nombre indicado, que es lo que quedará en el sistema de ficheros cuándo nuestro programa termine). La sintaxis de este nombre se ajustará a las reglas definidas por el S.O.</p>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">disociar(f)</code></strong>: Deshace la conexión lógica entre la variable del algoritmo y el fichero del nombre que se indicó, de tal manera que la variable quede libre para poder ser utilizado sobre ese u otros ficheros, y se garantiza que se han realizado todas las operaciones realmente sobre el fichero (a veces, cuando escribimos sobre el fichero, no se fuerza su escritura sobre el fichero real. Si no disociamos un fichero antes de terminar el programa, podríamos no haber escrito realmente datos que hemos dado las instrucciones para que se escriban).</p>
+  </li>
+</ul>
+
+<h2 id="algoritmo-crearficherosenteros">Algoritmo crearFicherosEnteros</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{Almacenar en un fichero "números.dat" los N números naturales. N es obtenido de forma interactiva}
+
+Tipos
+     tpFichero:=fichero de entero;
+
+variables
+     f:tpFichero;
+     N:entero {Máximo número a almacenar};
+     contador:entero;
+
+principio
+     escribirCadena(pantalla,"¿Números a almacenar en el fichero?");
+     leerEntero(teclado,N);
+     asociar(f,"numeros.dat");
+     iniciarEscritura(f);
+     contador:=1;
+     mientras que contador&lt;=N hacer
+          escribir(f,contador);
+          contador:=contador+1;
+     fmq;
+     disociar(f);
+fin;
+</code></pre></div></div>
+
+<h2 id="algoritmo-mostrarficherosenteros">Algoritmo mostrarFicherosEnteros</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{Visualizar los datos en un fichero "numeros.dat" de datos enteros}
+
+Tipos
+     tpFichero:=fichero de entero;
+
+variables
+     f:tpFichero;
+     num:entero;
+
+principio
+     asociar(f,"numeros.dat");
+     iniciarLectura(f);
+     mientras que NOT finFichero(f) hacer
+          leer(f,num);
+          escribirEntero(pantalla,num);
+     fmq;
+     disociar(f);
+fin
+</code></pre></div></div>
+
+<h2 id="algoritmo-separarimpares">Algoritmo separarImpares</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{Separa los números pares e impares del fichero "datos.dat" guardándolos respectivamente en los ficheros "pares.dat" e "impares.dat"}
+
+Tipos
+     tpFichero:=fichero de entero
+
+variables
+     f, i, p:tpFichero;
+     dato:entero;
+
+principio
+     asociar(f,"datos.dat");
+     asociar(i,"impares.dat");
+     asociar(p,"pares.dat");
+     iniciarLectura(f);
+     iniciarEscritura(i);
+     iniciarEscritura(p);
+
+     mientras que NOT finFichero(f) hacer
+          leer(f,dato);
+          si dato MOD 2=0
+                    entonces
+                               escribir(p,dato);
+                    si no
+                               escribir(i,dato);
+          fsi
+     fmq
+     disociar(f);
+     disociar(i);
+     disociar(p);
+fin
+</code></pre></div></div>
+
+<h2 id="ficheros-de-texto-1">Ficheros de texto</h2>
+
+<p>Los ficheros de texto son simples ficheros secuenciales de caracteres. No obstante, dada la importancia de su uso, los vemos en mayor profundidad de forma específica.</p>
+
+<p>Funcionan a todos los efectos como cualquier fichero secuencial de cualquier tipo de dato, aunque hay algunas operaciones especiales pensadas específicamente para ellos.</p>
+
+<p>Los lenguajes de programación suelen tratarlos de un modo especial, incluso algunos traen predefinidos un tipo fichero de texto.</p>
+
+<h3 id="algoritmo-contarvocales">Algoritmo contarVocales</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{Cuenta el número de vocales que tiene un fichero de texto "a.txt"}
+
+Variables
+     f:texto;
+     c:caracter;
+     contador:entero;
+
+principio
+     asociar(f,"a.txt");
+     iniciarLectura(f);
+     contador:=0;
+     mientras que NOT finFichero hacer
+          leer(f,c);
+          si (c='A' or c='E' or c='I' or c='O' or c='U' or c='a' or c='e' or c='i' or c='o' or c='u')
+                    entonces
+                               contador:=contador+1;
+          fsi
+     fmq
+     escribirCadena(pantalla,"Número de vocales");
+     escribirEntero(pantalla,contador);
+     disociar(f);
+fin
+</code></pre></div></div>
+
+<h2 id="operadores-para-trabajar-con-líneas">Operadores para trabajar con líneas</h2>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">acabarLinea(f)</code></strong>: Procedimiento que da por concluida la línea en curso en el fichero f cuándo estoy escribiendo en él.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">avanzarLinea(f)</code></strong>: Procedimiento que salta los caracteres que pueden estar pendientes de ser leídos en la línea en curso del fichero f y dispone al ordenador para leer el primer carácter de la siguiente línea (cuando estoy leyendo del fichero).</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">finLinea(f)</code></strong>: Función que devuelve VERDAD si ha terminado con todos los caracteres de la línea en curso y FALSO en caso contrario. Cuando acaba la línea pasará a la siguiente haciendo uso del procedimiento <code class="language-plaintext highlighter-rouge">avanzarLinea</code>.</li>
+</ul>
+
+<h3 id="creación-de-un-fichero-de-texto">Creación de un fichero de texto</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+asociar(f,"fichero.txt");
+iniciarEscritura(f);
+mientras que "haya líneas que añadir" hacer
+     mientras que "haya caracteres que añadir en la línea actual" hacer
+          "obtener el caracter C";
+          escribir(f,c);
+     fmq
+     acabarLinea(f);
+fmq
+disociar(f);
+…
+</code></pre></div></div>
+
+<h3 id="lectura-de-un-fichero-de-texto">Lectura de un fichero de texto</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>…
+asociar(f,"fichero.txt");
+iniciarLectura(f);
+mientras que NOT finFichero(f) hacer
+     mientras que NOT finLinea(f) hacer
+          leer(f,c);
+          "tratar el caracter c";
+     fmq
+     avanzarLinea(f);
+fmq
+disociar(f);
+…
+</code></pre></div></div>
+
+<p><strong>¡Salud y coding!</strong></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#programacion</span>
+        
+          <span class="tag">#c</span>
+        
+          <span class="tag">#ficheros</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

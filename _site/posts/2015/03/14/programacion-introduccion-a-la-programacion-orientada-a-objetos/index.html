@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programación. Introducción a la programación orientada a objetos | Programando a Pasitos</title>
+<meta name="description" content="Deficiencias de la programación estructurada, los cuatro principios de la POO, diagramas UML y arquitectura en tres capas.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Programación. Introducción a la programación orientada a objetos | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Programación. Introducción a la programación orientada a objetos" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Deficiencias de la programación estructurada, los cuatro principios de la POO, diagramas UML y arquitectura en tres capas." />
+<meta property="og:description" content="Deficiencias de la programación estructurada, los cuatro principios de la POO, diagramas UML y arquitectura en tres capas." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/03/14/programacion-introduccion-a-la-programacion-orientada-a-objetos/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/03/14/programacion-introduccion-a-la-programacion-orientada-a-objetos/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-03-14T05:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Programación. Introducción a la programación orientada a objetos" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-03-14T05:00:00+01:00","datePublished":"2015-03-14T05:00:00+01:00","description":"Deficiencias de la programación estructurada, los cuatro principios de la POO, diagramas UML y arquitectura en tres capas.","headline":"Programación. Introducción a la programación orientada a objetos","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/03/14/programacion-introduccion-a-la-programacion-orientada-a-objetos/"},"url":"http://localhost:4000/posts/2015/03/14/programacion-introduccion-a-la-programacion-orientada-a-objetos/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Programación. Introducción a la programación orientada a objetos</h1>
+    <div class="post-meta">
+      <time datetime="2015-03-14T05:00:00+01:00">14 Mar 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#programación" class="post-category">Programación</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Deficiencias de la programación estructurada, los cuatro principios de la POO, diagramas UML y arquitectura en tres capas.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="deficiencias-de-la-programación-estructurada">Deficiencias de la programación estructurada</h2>
+
+<p>Un poco de historia:</p>
+
+<ul>
+  <li><strong>1968:</strong> Crisis del software. Nace la programación estructurada.</li>
+  <li><strong>1985:</strong> C++ se posiciona en el mercado como lenguaje orientado a objetos.</li>
+  <li><strong>1996:</strong> Lanzamiento de Java al mercado.</li>
+</ul>
+
+<p>En el desarrollo de software estructurado, el ladrillo es la subrutina y el módulo agrupa las subrutinas. Un <strong>módulo</strong> es el conjunto de subrutinas y declaraciones de tipos y constantes.</p>
+
+<p><img src="/img/posts/20150314_1.png" alt="Esquema del desarrollo de software estructurado" /></p>
+
+<p>Los datos pasan por distintas subrutinas que los procesan, con total independencia entre datos y procesos.</p>
+
+<p><strong>Deficiencias del enfoque estructurado:</strong></p>
+
+<ul>
+  <li>Requiere traducir los problemas al pensamiento de máquina (datos y procesos separados).</li>
+  <li>El ser humano piensa en objetos que tienen propiedades y comportamientos, no en datos y procesos separados.</li>
+  <li>Limita la comunicación entre cliente y equipo de desarrollo.</li>
+  <li>Reduce la capacidad de abstracción y reutilización.</li>
+</ul>
+
+<h2 id="principios-de-la-poo">Principios de la POO</h2>
+
+<h3 id="primer-principio-todo-es-un-objeto">Primer principio: Todo es un objeto</h3>
+
+<p>Cualquier problema puede modelarse como un conjunto de objetos. Un objeto tiene:</p>
+
+<ul>
+  <li><strong>Propiedades (atributos):</strong> color, tamaño, longitud, peso…</li>
+  <li><strong>Comportamientos (métodos):</strong> escribir, rotar, encender, aterrizar…</li>
+</ul>
+
+<p>Ejemplos:</p>
+
+<ul>
+  <li>Mechero BIC: propiedades (longitud 5 cm, peso, cantidad de gas) y comportamientos (encender, apagar).</li>
+  <li>Boeing 747: propiedades (peso, potencia, número de pasajeros) y comportamientos (despegar, aterrizar).</li>
+</ul>
+
+<h3 id="segundo-principio-todo-objeto-es-de-algún-tipo">Segundo principio: Todo objeto es de algún tipo</h3>
+
+<p>Una <strong>clase</strong> es la abstracción de las propiedades y comportamientos de un conjunto de objetos. La clase es el molde; los objetos son las instancias.</p>
+
+<p><img src="/img/posts/20150314_2.png" alt="Representación de clase en UML" /></p>
+
+<p>Distinción clave:</p>
+
+<ul>
+  <li><strong>Clases:</strong> Sin existencia real, estáticas, son el molde.</li>
+  <li><strong>Objetos:</strong> Con existencia real, dinámicos, son instancias de una clase.</li>
+</ul>
+
+<h3 id="tercer-principio-los-objetos-se-comunican-mediante-mensajes">Tercer principio: Los objetos se comunican mediante mensajes</h3>
+
+<p>Los mensajes son las peticiones que un objeto realiza a otro para que este último ejecute alguno de sus comportamientos.</p>
+
+<p><img src="/img/posts/20150314_3.png" alt="Comunicación entre objetos mediante mensajes" /></p>
+
+<h3 id="cuarto-principio">Cuarto principio</h3>
+
+<p>Una aplicación orientada a objetos es una comunidad de objetos que nacen, interactúan entre sí y mueren.</p>
+
+<h2 id="diagramas-uml">Diagramas UML</h2>
+
+<p>Representación de una clase:</p>
+
+<p><img src="/img/posts/20150314_4.jpg" alt="Diagrama UML de clase" /></p>
+
+<p>Representación de un objeto:</p>
+
+<p><img src="/img/posts/20150314_5.jpg" alt="Diagrama UML de objeto" /></p>
+
+<h2 id="arquitectura-basada-en-tres-capas">Arquitectura basada en tres capas</h2>
+
+<p><img src="/img/posts/20150314_6.jpg" alt="Arquitectura de tres capas" /></p>
+
+<ul>
+  <li><strong>Capa de persistencia:</strong> Almacenamiento e interacción con la base de datos.</li>
+  <li><strong>Capa de negocio:</strong> Operaciones del sistema.</li>
+  <li><strong>Capa de presentación:</strong> Interfaz de usuario y diseño.</li>
+</ul>
+
+<p>Flujo típico: el usuario solicita un servicio a la capa de presentación → la capa de negocio lo resuelve → la capa de persistencia gestiona los datos en la base de datos.</p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#programacion</span>
+        
+          <span class="tag">#poo</span>
+        
+          <span class="tag">#objetos</span>
+        
+          <span class="tag">#uml</span>
+        
+          <span class="tag">#java</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

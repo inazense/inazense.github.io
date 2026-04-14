@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programación multimedia. Recursos alternativos. Internacionalización | Programando a Pasitos</title>
+<meta name="description" content="Cómo gestionar la internacionalización en Android creando ficheros strings.xml alternativos por idioma y región, y vincularlos a los elementos de la interfaz.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Programación multimedia. Recursos alternativos. Internacionalización | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Programación multimedia. Recursos alternativos. Internacionalización" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Cómo gestionar la internacionalización en Android creando ficheros strings.xml alternativos por idioma y región, y vincularlos a los elementos de la interfaz." />
+<meta property="og:description" content="Cómo gestionar la internacionalización en Android creando ficheros strings.xml alternativos por idioma y región, y vincularlos a los elementos de la interfaz." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/10/18/programacion-multimedia-recursos-alternativos-internacionalizacion/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/10/18/programacion-multimedia-recursos-alternativos-internacionalizacion/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-10-18T17:16:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Programación multimedia. Recursos alternativos. Internacionalización" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-10-18T17:16:00+02:00","datePublished":"2015-10-18T17:16:00+02:00","description":"Cómo gestionar la internacionalización en Android creando ficheros strings.xml alternativos por idioma y región, y vincularlos a los elementos de la interfaz.","headline":"Programación multimedia. Recursos alternativos. Internacionalización","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/10/18/programacion-multimedia-recursos-alternativos-internacionalizacion/"},"url":"http://localhost:4000/posts/2015/10/18/programacion-multimedia-recursos-alternativos-internacionalizacion/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Programación multimedia. Recursos alternativos. Internacionalización</h1>
+    <div class="post-meta">
+      <time datetime="2015-10-18T17:16:00+02:00">18 Oct 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#android" class="post-category">Android</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Cómo gestionar la internacionalización en Android creando ficheros strings.xml alternativos por idioma y región, y vincularlos a los elementos de la interfaz.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <p>Android utiliza sufijos de directorio para gestionar recursos alternativos según la orientación del dispositivo, el idioma, la región, la densidad de píxeles y otros parámetros. En esta entrada vemos cómo aplicarlo a la internacionalización de cadenas de texto.</p>
+
+<h2 id="estructura-de-directorios">Estructura de directorios</h2>
+
+<p>Para internacionalizar una aplicación se crean varios ficheros <code class="language-plaintext highlighter-rouge">strings.xml</code> en carpetas con el sufijo del idioma:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Carpeta</th>
+      <th>Idioma</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">res/values/strings.xml</code></td>
+      <td>Español (predeterminado)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">res/values-en/strings.xml</code></td>
+      <td>Inglés</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">res/values-fr/strings.xml</code></td>
+      <td>Francés</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>También es posible especificar regiones concretas dentro de un idioma:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Carpeta</th>
+      <th>Idioma y región</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">res/values-en-rUS/strings.xml</code></td>
+      <td>Inglés (EE.UU.)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">res/values-en-rUK/strings.xml</code></td>
+      <td>Inglés (Reino Unido)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="paso-1-crear-las-carpetas-de-idioma">Paso 1: Crear las carpetas de idioma</h2>
+
+<p>Dentro de <code class="language-plaintext highlighter-rouge">res/</code>, se crean las carpetas <code class="language-plaintext highlighter-rouge">values-en</code> y <code class="language-plaintext highlighter-rouge">values-fr</code> con su correspondiente <code class="language-plaintext highlighter-rouge">strings.xml</code>.</p>
+
+<p><img src="/img/posts/20151018_42.png" alt="Estructura de carpetas de recursos por idioma" /></p>
+
+<p><img src="/img/posts/20151018_43.png" alt="Carpeta values con strings.xml en español" /></p>
+
+<h2 id="paso-2-definir-las-cadenas-traducidas">Paso 2: Definir las cadenas traducidas</h2>
+
+<p>En cada fichero <code class="language-plaintext highlighter-rouge">strings.xml</code> se definen las etiquetas con el atributo <code class="language-plaintext highlighter-rouge">name</code>, que es el identificador que se usará en el código. El valor de cada etiqueta varía según el idioma del fichero.</p>
+
+<p><strong>res/values/strings.xml (español):</strong></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;resources&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"app_name"</span><span class="nt">&gt;</span>MiApp<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"saludo"</span><span class="nt">&gt;</span>Hola<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"despedida"</span><span class="nt">&gt;</span>Adiós<span class="nt">&lt;/string&gt;</span>
+<span class="nt">&lt;/resources&gt;</span>
+</code></pre></div></div>
+
+<p><strong>res/values-en/strings.xml (inglés):</strong></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;resources&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"app_name"</span><span class="nt">&gt;</span>MiApp<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"saludo"</span><span class="nt">&gt;</span>Hello<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"despedida"</span><span class="nt">&gt;</span>Goodbye<span class="nt">&lt;/string&gt;</span>
+<span class="nt">&lt;/resources&gt;</span>
+</code></pre></div></div>
+
+<p><strong>res/values-fr/strings.xml (francés):</strong></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;resources&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"app_name"</span><span class="nt">&gt;</span>MiApp<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"saludo"</span><span class="nt">&gt;</span>Bonjour<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"despedida"</span><span class="nt">&gt;</span>Au revoir<span class="nt">&lt;/string&gt;</span>
+<span class="nt">&lt;/resources&gt;</span>
+</code></pre></div></div>
+
+<p><img src="/img/posts/20151018_44.png" alt="Edición del strings.xml en inglés" /></p>
+
+<p><img src="/img/posts/20151018_45.png" alt="Edición del strings.xml en francés" /></p>
+
+<h2 id="paso-3-vincular-las-cadenas-a-los-elementos-ui">Paso 3: Vincular las cadenas a los elementos UI</h2>
+
+<p>Al seleccionar un elemento en el editor de layouts y editar su propiedad <code class="language-plaintext highlighter-rouge">text</code>, se puede referenciar una cadena del fichero <code class="language-plaintext highlighter-rouge">strings.xml</code> usando la sintaxis <code class="language-plaintext highlighter-rouge">@string/nombre_etiqueta</code>.</p>
+
+<p><img src="/img/posts/20151018_46.png" alt="Asignar referencia a string desde el panel de propiedades" /></p>
+
+<p><img src="/img/posts/20151018_47.png" alt="Selección de la cadena traducida" /></p>
+
+<h2 id="paso-4-probar-la-internacionalización">Paso 4: Probar la internacionalización</h2>
+
+<p>En el editor de layouts, el desplegable de idioma permite seleccionar el idioma de la previsualización para comprobar cómo quedan los textos en cada idioma sin necesidad de ejecutar la aplicación.</p>
+
+<p><img src="/img/posts/20151018_48.png" alt="Previsualización en español" /></p>
+
+<p><img src="/img/posts/20151018_49.png" alt="Previsualización en inglés" /></p>
+
+<p>Android selecciona automáticamente el fichero <code class="language-plaintext highlighter-rouge">strings.xml</code> adecuado según el idioma configurado en el dispositivo del usuario.</p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#android</span>
+        
+          <span class="tag">#android-studio</span>
+        
+          <span class="tag">#internacionalizacion</span>
+        
+          <span class="tag">#i18n</span>
+        
+          <span class="tag">#strings</span>
+        
+          <span class="tag">#recursos</span>
+        
+          <span class="tag">#programacion-multimedia</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programación. Java. Clases, objetos y paquetes | Programando a Pasitos</title>
+<meta name="description" content="Definición de clases y métodos en Java, constructores, instanciación de objetos y el método main.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Programación. Java. Clases, objetos y paquetes | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Programación. Java. Clases, objetos y paquetes" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Definición de clases y métodos en Java, constructores, instanciación de objetos y el método main." />
+<meta property="og:description" content="Definición de clases y métodos en Java, constructores, instanciación de objetos y el método main." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/03/15/programacion-java-clases-objetos-y-paquetes/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/03/15/programacion-java-clases-objetos-y-paquetes/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-03-15T08:35:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Programación. Java. Clases, objetos y paquetes" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-03-15T08:35:00+01:00","datePublished":"2015-03-15T08:35:00+01:00","description":"Definición de clases y métodos en Java, constructores, instanciación de objetos y el método main.","headline":"Programación. Java. Clases, objetos y paquetes","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/03/15/programacion-java-clases-objetos-y-paquetes/"},"url":"http://localhost:4000/posts/2015/03/15/programacion-java-clases-objetos-y-paquetes/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Programación. Java. Clases, objetos y paquetes</h1>
+    <div class="post-meta">
+      <time datetime="2015-03-15T08:35:00+01:00">15 Mar 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#java" class="post-category">Java</a>, 
+        
+          <a href="/categories/#programación" class="post-category">Programación</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Definición de clases y métodos en Java, constructores, instanciación de objetos y el método main.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="definición-de-una-clase">Definición de una clase</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">NombreClase</span> <span class="o">{</span>
+    <span class="c1">// Declaración de las propiedades</span>
+    <span class="c1">// Declaración de los comportamientos</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>El nombre de la clase comienza con mayúscula y se capitaliza el inicio de cada palabra. Ejemplos: <code class="language-plaintext highlighter-rouge">Persona</code>, <code class="language-plaintext highlighter-rouge">VentanaTipoA</code>, <code class="language-plaintext highlighter-rouge">ImpresoraLaser</code>.</p>
+
+<h2 id="declaración-de-las-propiedades">Declaración de las propiedades</h2>
+
+<p>Las propiedades constituyen el conjunto de características atribuibles a la clase, denominadas variables miembro o campos:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Empleado</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="n">nombre</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="n">apellido1</span><span class="o">,</span> <span class="n">apellido2</span><span class="o">,</span> <span class="n">cargo</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="n">salario</span> <span class="o">=</span> <span class="mi">1000</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="nc">Date</span> <span class="n">fechaAlta</span><span class="o">,</span> <span class="n">fechaBaja</span><span class="o">,</span> <span class="n">fechaNacim</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="nc">Boolean</span> <span class="n">estaDeBaja</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="declaración-de-los-comportamientos">Declaración de los comportamientos</h2>
+
+<p>Los métodos definen los comportamientos de una clase. Requieren nombre, parámetros de entrada (0 a N) y parámetro de salida (0 a 1). Se nombran en minúsculas capitalizando el inicio de cada palabra excepto la primera:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">cambioDeCargo</span><span class="o">(</span><span class="nc">String</span> <span class="n">nuevoCargo</span><span class="o">)</span> <span class="o">{</span> <span class="err">…</span> <span class="o">}</span>
+<span class="kd">public</span> <span class="nc">String</span> <span class="nf">obtenerCargo</span><span class="o">()</span> <span class="o">{</span> <span class="err">…</span> <span class="o">}</span>
+</code></pre></div></div>
+
+<p>Ejemplo completo con la clase <code class="language-plaintext highlighter-rouge">Bombilla</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Bombilla</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="n">encendida</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="n">potencia</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="n">numEncendidos</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">encender</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">encendida</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="n">numEncendidos</span><span class="o">++;</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Bombilla de "</span> <span class="o">+</span> <span class="n">potencia</span> <span class="o">+</span> <span class="s">" vatios encendida"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">apagar</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">encendida</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Bombilla de "</span> <span class="o">+</span> <span class="n">potencia</span> <span class="o">+</span> <span class="s">" vatios apagada"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><img src="/img/posts/20150315_3.png" alt="Clase Bombilla en Eclipse" /></p>
+
+<h2 id="características-de-las-clases">Características de las clases</h2>
+
+<ul>
+  <li><strong>Abstracción:</strong> Todas las clases abstraen propiedades y comportamientos de conjuntos de objetos.</li>
+  <li><strong>Estado:</strong> Las clases poseen propiedades capaces de almacenar el estado de un objeto, que evoluciona con el tiempo.</li>
+  <li><strong>Responsabilidad:</strong> Deben garantizar que los objetos permanezcan siempre en un estado coherente.</li>
+</ul>
+
+<h2 id="constructores">Constructores</h2>
+
+<p>Los constructores son métodos especiales que permiten crear objetos, garantizando la inicialización de propiedades a valores coherentes:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nf">NombreDeLaClase</span><span class="o">(</span><span class="n">lista</span> <span class="n">de</span> <span class="n">parámetros</span><span class="o">)</span> <span class="o">{</span>
+    <span class="err">…</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Características:</p>
+<ul>
+  <li>Se llaman exactamente igual que la clase.</li>
+  <li>No requieren tipo de retorno.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Bombilla</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="n">potencia</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="n">numEncendidos</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="n">encendida</span><span class="o">,</span> <span class="n">fundida</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Bombilla</span><span class="o">(</span><span class="kt">int</span> <span class="n">potenciaInicial</span><span class="o">,</span> <span class="kt">int</span> <span class="n">numEncendidosInicial</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">encendida</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="n">fundida</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="n">potencia</span> <span class="o">=</span> <span class="n">potenciaInicial</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">potencia</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">)</span>
+            <span class="n">potencia</span> <span class="o">=</span> <span class="mi">20</span><span class="o">;</span>
+        <span class="n">numEncendidos</span> <span class="o">=</span> <span class="n">numEncendidosInicial</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">numEncendidos</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span>
+            <span class="n">numEncendidos</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">encender</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">encendida</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="n">numEncendidos</span><span class="o">++;</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Bombilla de "</span> <span class="o">+</span> <span class="n">potencia</span> <span class="o">+</span> <span class="s">" vatios encendida"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">apagar</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">encendida</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Bombilla de "</span> <span class="o">+</span> <span class="n">potencia</span> <span class="o">+</span> <span class="s">" vatios apagada"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>El compilador añade automáticamente inicializaciones antes de ejecutar el constructor: números y <code class="language-plaintext highlighter-rouge">char</code> a cero, lógicos a <code class="language-plaintext highlighter-rouge">false</code>, referencias a <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+<p>Si no se escribe un constructor, el compilador genera uno por defecto (público, sin parámetros ni código).</p>
+
+<h2 id="instanciación-y-utilización-de-objetos">Instanciación y utilización de objetos</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Bombilla</span> <span class="n">b</span><span class="o">;</span>
+<span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Bombilla</span><span class="o">(</span><span class="mi">100</span><span class="o">,</span> <span class="mi">5</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>O en una sola línea:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Bombilla</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Bombilla</span><span class="o">(</span><span class="mi">100</span><span class="o">,</span> <span class="mi">5</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>Usando los objetos:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Bombilla</span> <span class="n">b1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Bombilla</span><span class="o">(</span><span class="mi">100</span><span class="o">,</span> <span class="mi">5</span><span class="o">);</span>
+<span class="nc">Bombilla</span> <span class="n">b2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Bombilla</span><span class="o">(</span><span class="mi">60</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">b1</span><span class="o">.</span><span class="na">fundida</span> <span class="o">==</span> <span class="kc">false</span><span class="o">)</span>
+    <span class="n">b1</span><span class="o">.</span><span class="na">encender</span><span class="o">();</span>
+<span class="n">b2</span><span class="o">.</span><span class="na">encender</span><span class="o">();</span>
+<span class="n">b1</span><span class="o">.</span><span class="na">apagar</span><span class="o">();</span>
+</code></pre></div></div>
+
+<h2 id="el-método-main">El método main</h2>
+
+<p>Es el punto de comienzo de un programa orientado a objetos. Siempre se incluye en una clase con el prototipo:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+    <span class="err">…</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>El parámetro <code class="language-plaintext highlighter-rouge">args</code> recibe los argumentos pasados desde la línea de comandos.</p>
+
+<p><img src="/img/posts/20150315_4.png" alt="Clase PruebaBombilla con el método main" /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PruebaBombilla</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">i</span><span class="o">;</span>
+        <span class="nc">Bombilla</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Bombilla</span><span class="o">();</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">1000</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">b</span><span class="o">.</span><span class="na">encender</span><span class="o">();</span>
+            <span class="n">b</span><span class="o">.</span><span class="na">apagar</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="n">b</span><span class="o">.</span><span class="na">encender</span><span class="o">();</span>
+        <span class="n">b</span><span class="o">.</span><span class="na">apagar</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><img src="/img/posts/20150315_5.png" alt="Salida del programa en Eclipse" /></p>
+
+<h2 id="características-de-los-objetos">Características de los objetos</h2>
+
+<ul>
+  <li>Poseen espacio de memoria propio.</li>
+  <li>Cada objeto tiene identidad propia y conserva su estado interno.</li>
+  <li>Deben mantener siempre un estado interno coherente; esta responsabilidad recae en la clase.</li>
+</ul>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#java</span>
+        
+          <span class="tag">#programacion</span>
+        
+          <span class="tag">#clases</span>
+        
+          <span class="tag">#objetos</span>
+        
+          <span class="tag">#constructores</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

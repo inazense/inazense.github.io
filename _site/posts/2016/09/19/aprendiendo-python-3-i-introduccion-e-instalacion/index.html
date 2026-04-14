@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aprendiendo Python (I). Introducción e instalación | Programando a Pasitos</title>
+<meta name="description" content="Guía completa para principiantes sobre Python 3: instalación paso a paso en Windows, Linux y Mac, configuración del intérprete, primer programa Hola Mundo y diferencias entre Python 2 y 3.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Aprendiendo Python (I). Introducción e instalación | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Aprendiendo Python (I). Introducción e instalación" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Guía completa para principiantes sobre Python 3: instalación paso a paso en Windows, Linux y Mac, configuración del intérprete, primer programa Hola Mundo y diferencias entre Python 2 y 3." />
+<meta property="og:description" content="Guía completa para principiantes sobre Python 3: instalación paso a paso en Windows, Linux y Mac, configuración del intérprete, primer programa Hola Mundo y diferencias entre Python 2 y 3." />
+<link rel="canonical" href="http://localhost:4000/posts/2016/09/19/aprendiendo-python-3-i-introduccion-e-instalacion/" />
+<meta property="og:url" content="http://localhost:4000/posts/2016/09/19/aprendiendo-python-3-i-introduccion-e-instalacion/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-09-19T06:10:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Aprendiendo Python (I). Introducción e instalación" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2016-09-19T06:10:00+02:00","datePublished":"2016-09-19T06:10:00+02:00","description":"Guía completa para principiantes sobre Python 3: instalación paso a paso en Windows, Linux y Mac, configuración del intérprete, primer programa Hola Mundo y diferencias entre Python 2 y 3.","headline":"Aprendiendo Python (I). Introducción e instalación","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2016/09/19/aprendiendo-python-3-i-introduccion-e-instalacion/"},"url":"http://localhost:4000/posts/2016/09/19/aprendiendo-python-3-i-introduccion-e-instalacion/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Aprendiendo Python (I). Introducción e instalación</h1>
+    <div class="post-meta">
+      <time datetime="2016-09-19T06:10:00+02:00">19 Sep 2016</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#python" class="post-category">Python</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Guía completa para principiantes sobre Python 3: instalación paso a paso en Windows, Linux y Mac, configuración del intérprete, primer programa Hola Mundo y diferencias entre Python 2 y 3.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <p>Antes de nada más que un <strong>tutorial sobre Python</strong> esto va a ser un diario de aprendizaje. Iremos conociendo este lenguaje de la mano, intentaré explicar todo que vaya aprendiendo y espero que os resulte productivo.</p>
+
+<p><strong>Python</strong> es un lenguaje interpretado y multiparadigma, ya que soporta orientación a objetos, programación funcional y programación imperativa, además de contar con licencia abierta. Y por si fuese poco todo esto, también es multiplataforma. ¿Que más podemos pedir?</p>
+
+<p>El nombre del lenguaje no tiene nada que ver con el tipo de serpientes que te vendrán a la cabeza, sino con los <strong>Monty Python</strong>. Su creador, <strong>Guido van Rossum</strong>, era un gran aficionado a los británicos y decidió homenajearlos poniéndole este nombre. Ni pintado le salió al hombre…</p>
+
+<p><img src="/img/posts/20160919_1.jpg" alt="Monty Python guido van rossum" /></p>
+
+<p><strong>Python</strong> se está alzando ultimamente como el lenguaje más usado para iniciarse en la programación porque no requiere ni aprender una sintaxis compleja, ni emplear llaves, ni siquiera punto y coma. Hasta hay libros para niños que les permite aprender <strong>Python</strong>. Yo me inicié con <strong>C</strong> puro y duro, y desde luego en ese lenguaje dudo que encuentre algo “orientado para niños”…</p>
+
+<p>Bueno, hasta ahora hemos hecho un breve repaso a las características de <strong>Python</strong> y estamos deseosos de ponernos a programar con él. Notamos un subidón por las venas, los dedos ansían teclear… Solo nos queda en que <strong>Python</strong> programar.</p>
+
+<p>¿En qué <strong>Python</strong>? Sí, como lo oyes. A día de hoy contamos con dos intérpretes de <strong>Python</strong>, dos vertientes, la 2.7.x y la 3.5.x. Las diferencias son sustanciales, partiendo porque no todas las bibliotecas que están operativas para la versión 2.7.x estarán traducidas para la 3.5.x, pero cada vez se está trabajando más en ello y la eliminación de <strong>Python 2</strong> está siendo gradual. Eso es uno de los motivos que me ha llevado a aprender la tecnología de la versión 3. Otra es que aunque yo programe en <strong>Windows</strong> ahora mismo, me encanta emplear <strong>distros de Linux</strong> (tengo pendiente saber desenvolverme bien en <strong>Kali Linux</strong>, por cierto) y en muchas ya viene por defecto la última versión de <strong>Python</strong>. Y la última basicamente es porque es lo que me apetece. Si el programa que quiera desarrollar lo puedo hacer en la versión 3, genial, si no siempre podré consultar y bajarme la 2.7 para realizar una tarea específica.</p>
+
+<p>Entonces, vamos a instalar nuestro intérprete. Si eres usuario de <strong>Linux</strong> lo más seguro es que ya lo tengas instalado (puedes comprobarlo escribiendo en la terminal <code class="language-plaintext highlighter-rouge">python -V</code>). Si no es tu caso puedes instalarlo desde la misma consola escribiendo <code class="language-plaintext highlighter-rouge">sudo apt-get install python</code>. Para <strong>Windows</strong> (mi caso) o <strong>Mac</strong>, deberemos ir a la web oficial y descargarnos el ejecutable.</p>
+
+<p>Puedes acceder pulsando <a href="https://www.python.org/downloads/">aquí</a>.</p>
+
+<p>Ya lo tenemos descargado, ahora simplemente lo ejecutamos y veremos una pantalla como esta</p>
+
+<p><img src="/img/posts/20160919_2.png" alt="instalación de python paso a paso 1" /></p>
+
+<p>Marca la casilla de <code class="language-plaintext highlighter-rouge">Add Python 3.5 to PATH</code> y elige <code class="language-plaintext highlighter-rouge">Install Now</code>. El proceso se completará automáticamente, momento en el que veremos la siguiente ventana.</p>
+
+<p><img src="/img/posts/20160919_3.png" alt="instalación de python paso a paso 1" /></p>
+
+<p>Ahora vamos a comprobar si nos funciona correctamente. Puedes abrir una terminal, escribir <code class="language-plaintext highlighter-rouge">python</code> y pulsar Enter, o bien abrir la aplicación <strong>Python 3.5</strong>. El resultado deberá ser el mismo, ver la siguiente terminal</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Python 3.5.2 <span class="o">(</span>v3.5.2:4def2a2901a5<span class="o">)</span>, Jun 25 2016, 22:01:18 <span class="o">[</span>MSC v.1900 32 vit <span class="o">(</span>Intel<span class="o">)]</span> on win32
+Type <span class="s2">"help"</span>, <span class="s2">"copyright"</span>, <span class="s2">"credits"</span> or <span class="s2">"license"</span> <span class="k">for </span>more information.
+<span class="o">&gt;&gt;&gt;</span>
+</code></pre></div></div>
+
+<p>Más adelante pasaré a comentar en más profundidad la consola de comandos, pero por el momento nos basta con escribir el siguiente texto</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"Hola mundo!"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Y al pulsar Enter habremos generado nuestro primer Hola mundo. Esto nos indica que funciona correctamente.</p>
+
+<p>Por cierto, si quieres cerrar la terminal basta con escribir</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">exit</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>Esto ha sido todo por la primera entrega. Simplemente hemos preparado nuestro entorno para ejecutar <strong>Python</strong>. Como estamos aprendiendo el lenguaje yo recomiendo usar cualquier editor de texto sin corrección ni autocompletado. <strong>Gedit</strong> es perfecto para linuxeros, en Windows puedes tirar de <strong>Notepad++</strong>, <strong>Atom</strong>, <strong>Sublime Text</strong>… a tu elección. Más adelante ya habrá tiempo de usar un <strong>IDE</strong> completo pero ahora es lo mejor para hacerte con los entresijos del lenguaje.</p>
+
+<p><strong>¡Salud y coding!</strong></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#python</span>
+        
+          <span class="tag">#instalacion</span>
+        
+          <span class="tag">#principiantes</span>
+        
+          <span class="tag">#python3</span>
+        
+          <span class="tag">#tutorial</span>
+        
+          <span class="tag">#hola-mundo</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

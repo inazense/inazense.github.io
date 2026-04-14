@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bases de datos. Modelo relacional (IV) | Programando a Pasitos</title>
+<meta name="description" content="Introducción al modelo entidad-relación básico: entidades regulares y débiles, tipos de relaciones, cardinalidad, roles y atributos con ejemplos visuales.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bases de datos. Modelo relacional (IV) | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bases de datos. Modelo relacional (IV)" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Introducción al modelo entidad-relación básico: entidades regulares y débiles, tipos de relaciones, cardinalidad, roles y atributos con ejemplos visuales." />
+<meta property="og:description" content="Introducción al modelo entidad-relación básico: entidades regulares y débiles, tipos de relaciones, cardinalidad, roles y atributos con ejemplos visuales." />
+<link rel="canonical" href="http://localhost:4000/posts/2014/10/11/bases-de-datos-modelo-relacional-iv/" />
+<meta property="og:url" content="http://localhost:4000/posts/2014/10/11/bases-de-datos-modelo-relacional-iv/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2014-10-11T09:41:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bases de datos. Modelo relacional (IV)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver","url":"https://github.com/inazense"},"dateModified":"2014-10-11T09:41:00+02:00","datePublished":"2014-10-11T09:41:00+02:00","description":"Introducción al modelo entidad-relación básico: entidades regulares y débiles, tipos de relaciones, cardinalidad, roles y atributos con ejemplos visuales.","headline":"Bases de datos. Modelo relacional (IV)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2014/10/11/bases-de-datos-modelo-relacional-iv/"},"url":"http://localhost:4000/posts/2014/10/11/bases-de-datos-modelo-relacional-iv/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Bases de datos. Modelo relacional (IV)</h1>
+    <div class="post-meta">
+      <time datetime="2014-10-11T09:41:00+02:00">11 Oct 2014</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#bases-de-datos" class="post-category">Bases de datos</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Introducción al modelo entidad-relación básico: entidades regulares y débiles, tipos de relaciones, cardinalidad, roles y atributos con ejemplos visuales.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="modelo-entidad-relación-básico">Modelo entidad-relación básico</h2>
+
+<p><strong>Mundo real</strong> → Problema a informatizar/mecanizar</p>
+
+<h3 id="entidades">Entidades</h3>
+
+<p>Representadas en una caja. Todo aquello de lo que se quiere guardar información.</p>
+
+<p>Todo aquel objeto del que quiero guardar información, almacenando sus propiedades. Suelen ser sustantivos comunes.</p>
+
+<p>Según ANSI SPARC: “Una persona, lugar, cosa, concepto, suceso, real o abstracto, de interés por la empresa.”</p>
+
+<p><strong>Ejemplo — Base de datos de un colegio:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Entidad</th>
+      <th>Atributos</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Alumno</td>
+      <td>DNI, nombre, apellidos</td>
+    </tr>
+    <tr>
+      <td>Asignatura</td>
+      <td>Código, nombre, dirección</td>
+    </tr>
+    <tr>
+      <td>Profesor</td>
+      <td>DNI, nombre, …</td>
+    </tr>
+    <tr>
+      <td>Notas</td>
+      <td>Alumno, Asignatura, 1_trimestre, 2_trimestre, 3_trimestre</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><img src="/img/posts/20141011_5.png" alt="Representación de entidades" /></p>
+
+<h4 id="tipos-de-entidades">Tipos de entidades</h4>
+
+<p><strong>Entidad regular:</strong> Aquella que tiene existencia por sí misma. Ejemplos: empleados, alumnos, asignaturas.</p>
+
+<p><strong>Entidad débil:</strong> Aquella que no tiene existencia si no es dependiendo de otra entidad. Ejemplo: un cuidador requiere de un enfermo.</p>
+
+<h3 id="relaciones-interrelaciones">Relaciones (Interrelaciones)</h3>
+
+<p>Asociación de varias entidades.</p>
+
+<h4 id="grado-de-una-relación">Grado de una relación</h4>
+
+<p><strong>Interrelación binaria:</strong> Relaciona dos entidades.</p>
+
+<p><strong>Reflexivos:</strong> Entidades relacionadas consigo mismas.</p>
+
+<p><img src="/img/posts/20141011_6.png" alt="Grado reflexivo" /></p>
+
+<p><strong>Ternarios:</strong> Grado mayor a dos.</p>
+
+<p><img src="/img/posts/20141011_7.png" alt="Grado ternario" /></p>
+
+<h4 id="cardinalidad-máxima-tipo-de-correspondencia">Cardinalidad máxima (Tipo de correspondencia)</h4>
+
+<p><strong>1 a 1</strong></p>
+
+<p><img src="/img/posts/20141011_8.png" alt="Cardinalidad 1 a 1" /></p>
+
+<p><strong>1 a N</strong></p>
+
+<p><img src="/img/posts/20141011_9.png" alt="Cardinalidad 1 a N" /></p>
+
+<p><strong>N a M</strong></p>
+
+<p><img src="/img/posts/20141011_10.png" alt="Cardinalidad N a M" /></p>
+
+<h4 id="papel-o-rol">Papel o rol</h4>
+
+<p>Función que cada una de las entidades realiza en la interrelación.</p>
+
+<p><img src="/img/posts/20141011_11.png" alt="Roles" /></p>
+
+<h3 id="atributos">Atributos</h3>
+
+<p>Los campos de las relaciones. Se representan con piruletas.</p>
+
+<p>Clasificación por color:</p>
+
+<ul>
+  <li><strong>Negras:</strong> Clave primaria.</li>
+  <li><strong>Blanca y negra:</strong> Clave alternativa.</li>
+  <li><strong>Blanca:</strong> Resto de campos.</li>
+</ul>
+
+<p><img src="/img/posts/20141011_12.png" alt="Atributos por color" /></p>
+
+<p><strong>Atributos compuestos:</strong> Descomponibles en subatributos.</p>
+
+<p><img src="/img/posts/20141011_13.png" alt="Subatributos" /></p>
+
+<p><strong>Atributos multivaluados:</strong> Aquellos que pueden tomar varios valores.</p>
+
+<p><img src="/img/posts/20141011_14.png" alt="Atributos multivaluados" /></p>
+
+<p><strong>¡Salud y coding!</strong></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#bases-de-datos</span>
+        
+          <span class="tag">#modelo-relacional</span>
+        
+          <span class="tag">#entidad-relacion</span>
+        
+          <span class="tag">#cardinalidad</span>
+        
+          <span class="tag">#atributos</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

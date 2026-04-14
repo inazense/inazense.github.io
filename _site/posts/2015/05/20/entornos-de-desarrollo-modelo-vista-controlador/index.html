@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entornos de desarrollo. Modelo - Vista - Controlador (con ejemplo de conversor) | Programando a Pasitos</title>
+<meta name="description" content="Explicación del patrón de arquitectura MVC implementado en Java con un ejemplo práctico de conversor de divisas.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Entornos de desarrollo. Modelo - Vista - Controlador (con ejemplo de conversor) | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Entornos de desarrollo. Modelo - Vista - Controlador (con ejemplo de conversor)" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Explicación del patrón de arquitectura MVC implementado en Java con un ejemplo práctico de conversor de divisas." />
+<meta property="og:description" content="Explicación del patrón de arquitectura MVC implementado en Java con un ejemplo práctico de conversor de divisas." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/05/20/entornos-de-desarrollo-modelo-vista-controlador/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/05/20/entornos-de-desarrollo-modelo-vista-controlador/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-05-20T06:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Entornos de desarrollo. Modelo - Vista - Controlador (con ejemplo de conversor)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-05-20T06:00:00+02:00","datePublished":"2015-05-20T06:00:00+02:00","description":"Explicación del patrón de arquitectura MVC implementado en Java con un ejemplo práctico de conversor de divisas.","headline":"Entornos de desarrollo. Modelo - Vista - Controlador (con ejemplo de conversor)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/05/20/entornos-de-desarrollo-modelo-vista-controlador/"},"url":"http://localhost:4000/posts/2015/05/20/entornos-de-desarrollo-modelo-vista-controlador/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Entornos de desarrollo. Modelo - Vista - Controlador (con ejemplo de conversor)</h1>
+    <div class="post-meta">
+      <time datetime="2015-05-20T06:00:00+02:00">20 May 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#entornos-de-desarrollo" class="post-category">Entornos de desarrollo</a>, 
+        
+          <a href="/categories/#java" class="post-category">Java</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Explicación del patrón de arquitectura MVC implementado en Java con un ejemplo práctico de conversor de divisas.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <p>El <strong>modelo–vista–controlador (MVC)</strong> es un patrón de arquitectura de software que separa los datos y la lógica de negocio de una aplicación de la interfaz de usuario y el módulo encargado de gestionar los eventos y las comunicaciones.</p>
+
+<ul>
+  <li><strong>El Modelo:</strong> Representa y gestiona la información, implementando la lógica de negocio. Envía a la vista la información solicitada.</li>
+  <li><strong>El Controlador:</strong> Responde a eventos del usuario e invoca peticiones al modelo. Hace de intermediario entre vista y modelo.</li>
+  <li><strong>La Vista:</strong> Presenta el modelo en un formato adecuado para la interacción del usuario.</li>
+</ul>
+
+<p><img src="/img/posts/20150520_1.jpg" alt="Diagrama MVC" /></p>
+
+<p>Vamos a realizar en Java un <strong>conversor de divisas</strong> implementando MVC.</p>
+
+<p><img src="/img/posts/20150520_2.png" alt="Captura de la aplicación conversor de divisas" /></p>
+
+<p><img src="/img/posts/20150520_3.png" alt="Estructura de paquetes y clases del proyecto" /></p>
+
+<p>El código a programar quedaría así:</p>
+
+<h2 id="archivo-conversordivisasjava-paquete-conversormodelo">ARCHIVO ConversorDivisas.java (paquete <code class="language-plaintext highlighter-rouge">conversorModelo</code>)</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">conversorModelo</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ConversorDivisas</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Hashtable</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Double</span><span class="o">&gt;</span> <span class="n">tablaConversion</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Hashtable</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Double</span><span class="o">&gt;();</span>
+
+    <span class="kd">public</span> <span class="nf">ConversorDivisas</span><span class="o">(){</span>
+        <span class="n">insertarDivisa</span><span class="o">(</span><span class="s">"EUR"</span><span class="o">,</span> <span class="mf">1.0</span><span class="o">);</span>
+        <span class="n">insertarDivisa</span><span class="o">(</span><span class="s">"USD"</span><span class="o">,</span> <span class="mf">1.180</span><span class="o">);</span>
+        <span class="n">insertarDivisa</span><span class="o">(</span><span class="s">"JPY"</span><span class="o">,</span> <span class="mf">134.86</span><span class="o">);</span>
+        <span class="n">insertarDivisa</span><span class="o">(</span><span class="s">"BGN"</span><span class="o">,</span> <span class="mf">1.958</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">insertarDivisa</span><span class="o">(</span><span class="nc">String</span> <span class="n">codigo</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">tipoCambio</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">tablaConversion</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">codigo</span><span class="o">,</span> <span class="n">tipoCambio</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">double</span> <span class="nf">obtenerDivisa</span><span class="o">(</span><span class="nc">String</span> <span class="n">codigoDivisa</span><span class="o">){</span>
+        <span class="k">return</span> <span class="n">tablaConversion</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">codigoDivisa</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Double</span> <span class="nf">convertir</span><span class="o">(</span><span class="nc">String</span> <span class="n">codDivOrigen</span><span class="o">,</span> <span class="nc">String</span> <span class="n">codDivDestino</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">importe</span><span class="o">){</span>
+        <span class="nc">Double</span> <span class="n">euros</span> <span class="o">=</span> <span class="n">importe</span> <span class="o">/</span> <span class="n">obtenerDivisa</span><span class="o">(</span><span class="n">codDivOrigen</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">euros</span> <span class="o">*</span> <span class="n">obtenerDivisa</span><span class="o">(</span><span class="n">codDivDestino</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Enumeration</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="nf">obtenerCodigosDivisa</span><span class="o">(){</span>
+        <span class="k">return</span> <span class="n">tablaConversion</span><span class="o">.</span><span class="na">keys</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="archivo-ventanaprincipaljava-paquete-conversorvista">ARCHIVO VentanaPrincipal.java (paquete <code class="language-plaintext highlighter-rouge">conversorVista</code>)</h2>
+
+<p>Clase que extiende <code class="language-plaintext highlighter-rouge">JFrame</code>. Contiene:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">JTextField txtImporte</code></li>
+  <li><code class="language-plaintext highlighter-rouge">JButton btnConvertir</code></li>
+  <li>Dos <code class="language-plaintext highlighter-rouge">JComboBox&lt;String&gt;</code> (divisa origen y destino)</li>
+  <li><code class="language-plaintext highlighter-rouge">JLabel lblResultado</code></li>
+</ul>
+
+<p>Métodos: <code class="language-plaintext highlighter-rouge">arrancar()</code>, <code class="language-plaintext highlighter-rouge">obtenerImporte()</code>, <code class="language-plaintext highlighter-rouge">obtenerDivisaOrigen()</code>, <code class="language-plaintext highlighter-rouge">obtenerDivisaDestino()</code>, <code class="language-plaintext highlighter-rouge">actualizarResultado(String importe)</code>, <code class="language-plaintext highlighter-rouge">setComboDivisas(Enumeration&lt;String&gt;)</code>, <code class="language-plaintext highlighter-rouge">conectarControlador(ControladorConversor controlador)</code>. El botón conecta al controlador con <code class="language-plaintext highlighter-rouge">addActionListener</code>.</p>
+
+<h2 id="archivo-controladorconversorjava-paquete-conversorcontrolador">ARCHIVO ControladorConversor.java (paquete <code class="language-plaintext highlighter-rouge">conversorControlador</code>)</h2>
+
+<p>Implementa <code class="language-plaintext highlighter-rouge">ActionListener</code>. El constructor recibe una <code class="language-plaintext highlighter-rouge">VentanaPrincipal</code> y un <code class="language-plaintext highlighter-rouge">ConversorDivisas</code>. En <code class="language-plaintext highlighter-rouge">actionPerformed</code> obtiene el importe, las divisas origen y destino de la vista, llama a <code class="language-plaintext highlighter-rouge">modelo.convertir(...)</code> y actualiza la vista con <code class="language-plaintext highlighter-rouge">DecimalFormat("#,###.##")</code>.</p>
+
+<h2 id="archivo-programaprincipaljava-paquete-programaprincipal">ARCHIVO ProgramaPrincipal.java (paquete <code class="language-plaintext highlighter-rouge">programaPrincipal</code>)</h2>
+
+<p>Instancia <code class="language-plaintext highlighter-rouge">ConversorDivisas modelo</code>, <code class="language-plaintext highlighter-rouge">VentanaPrincipal vista</code> y <code class="language-plaintext highlighter-rouge">ControladorConversor controlador</code>, llama a <code class="language-plaintext highlighter-rouge">vista.conectarControlador(controlador)</code> y <code class="language-plaintext highlighter-rouge">vista.arrancar()</code>.</p>
+
+<p><img src="/img/posts/20150520_4.png" alt="Resultado final de la aplicación funcionando" /></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#entornos-de-desarrollo</span>
+        
+          <span class="tag">#java</span>
+        
+          <span class="tag">#mvc</span>
+        
+          <span class="tag">#modelo-vista-controlador</span>
+        
+          <span class="tag">#swing</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+---
+layout: default
+---
+<div class="post-list">
+  {% for post in paginator.posts %}
+    {% include post-card.html post=post %}
+    {% unless forloop.last %}<hr class="post-divider">{% endunless %}
+  {% endfor %}
+</div>
+
+{% if paginator.total_pages > 1 %}
+<nav class="pagination" aria-label="Paginación">
+  {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path | relative_url }}" class="btn-page">&larr; Más recientes</a>
+  {% else %}
+    <span class="btn-page btn-page--disabled">&larr; Más recientes</span>
+  {% endif %}
+
+  <span class="page-count">Página {{ paginator.page }} de {{ paginator.total_pages }}</span>
+
+  {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path | relative_url }}" class="btn-page">Más antiguas &rarr;</a>
+  {% else %}
+    <span class="btn-page btn-page--disabled">Más antiguas &rarr;</span>
+  {% endif %}
+</nav>
+{% endif %}

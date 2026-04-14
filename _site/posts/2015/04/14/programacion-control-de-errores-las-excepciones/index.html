@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programación. Control de errores. Las excepciones | Programando a Pasitos</title>
+<meta name="description" content="Manejo de excepciones en Java con try/catch/finally, excepciones comprobadas y no comprobadas, propagación y creación de excepciones de usuario.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Programación. Control de errores. Las excepciones | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Programación. Control de errores. Las excepciones" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Manejo de excepciones en Java con try/catch/finally, excepciones comprobadas y no comprobadas, propagación y creación de excepciones de usuario." />
+<meta property="og:description" content="Manejo de excepciones en Java con try/catch/finally, excepciones comprobadas y no comprobadas, propagación y creación de excepciones de usuario." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/04/14/programacion-control-de-errores-las-excepciones/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/04/14/programacion-control-de-errores-las-excepciones/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-04-14T06:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Programación. Control de errores. Las excepciones" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-04-14T06:00:00+02:00","datePublished":"2015-04-14T06:00:00+02:00","description":"Manejo de excepciones en Java con try/catch/finally, excepciones comprobadas y no comprobadas, propagación y creación de excepciones de usuario.","headline":"Programación. Control de errores. Las excepciones","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/04/14/programacion-control-de-errores-las-excepciones/"},"url":"http://localhost:4000/posts/2015/04/14/programacion-control-de-errores-las-excepciones/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Programación. Control de errores. Las excepciones</h1>
+    <div class="post-meta">
+      <time datetime="2015-04-14T06:00:00+02:00">14 Apr 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#java" class="post-category">Java</a>, 
+        
+          <a href="/categories/#programación" class="post-category">Programación</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Manejo de excepciones en Java con try/catch/finally, excepciones comprobadas y no comprobadas, propagación y creación de excepciones de usuario.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="concepto">Concepto</h2>
+
+<p>Cuando programamos en un lenguaje escribimos instrucciones destinadas a:</p>
+
+<ul>
+  <li>Implementar la solución a nuestro problema.</li>
+  <li>Detectar y resolver las posibles situaciones excepcionales que se puedan dar (no se encuentra un fichero, el usuario se equivoca al escribir, fallos de red o de bases de datos…)</li>
+</ul>
+
+<p>Es como si nuestro programa pudiera recorrer dos caminos bien distintos: el “normal” y el “excepcional”.</p>
+
+<p>Para tratar las situaciones atípicas Java usa siempre el mismo protocolo de actuación, basado en el uso de las excepciones.</p>
+
+<p>Una <strong>excepción</strong> es un evento, que ocurre durante la ejecución del programa, y que interrumpe el flujo “normal” del mismo.</p>
+
+<p>Ejemplo de excepciones:</p>
+
+<ul>
+  <li>No se encuentra un fichero o no se puede abrir, leer…</li>
+  <li>Una operación divide por cero o accede a una posición inexistente de una tabla.</li>
+  <li>Fallos de hardware (disco duro, tarjeta de red, video…)</li>
+</ul>
+
+<p>Veamos el siguiente trozo de código:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Linterna</span><span class="o">{</span>
+
+   <span class="kd">private</span> <span class="nc">Bombilla</span> <span class="n">b</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+
+   <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">encendida</span><span class="o">;</span>
+
+   <span class="kd">private</span> <span class="kt">double</span> <span class="n">porcentajeCargaPilas</span><span class="o">;</span>
+
+   <span class="kd">public</span> <span class="nf">Linterna</span><span class="o">(){</span>
+
+     <span class="c1">// Olvidamos crear la bombilla</span>
+
+     <span class="n">porcentajeCargaPilas</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span>
+
+   <span class="o">}</span>
+
+   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">encender</span><span class="o">(){</span>
+
+     <span class="n">b</span><span class="o">.</span><span class="na">encender</span><span class="o">();</span>
+
+     <span class="n">encendida</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+
+   <span class="o">}</span>
+
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PruebaLinterna</span><span class="o">{</span>
+
+   <span class="kd">public</span> <span class="kd">class</span> <span class="nc">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span> <span class="n">args</span><span class="o">[]){</span>
+
+     <span class="nc">Linterna</span> <span class="n">lin</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Linterna</span><span class="o">();</span>
+
+     <span class="n">lin</span><span class="o">.</span><span class="na">encender</span><span class="o">();</span> <span class="c1">// Provoca la excepción siguiente</span>
+
+   <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Este código provocará el siguiente error: <code class="language-plaintext highlighter-rouge">EXCEPTION IN THREAD MAIN JAVA LANG NULLPOINTEREXCEPTION</code></p>
+
+<h2 id="protocolo-de-actuación">Protocolo de actuación</h2>
+
+<p>Cuando ocurre algún problema en la ejecución de un método se realiza lo siguiente:</p>
+
+<ol>
+  <li><strong>Se lanza una excepción:</strong>
+    <ul>
+      <li>Se detiene el camino “normal” de la ejecución del programa.</li>
+      <li>El método en el que se produjo el problema crea un objeto (objeto excepción) que contiene toda la información sobre el error y el estado del programa cuando éste ocurrió.</li>
+      <li>El objeto creado es enviado (lanzado) a un módulo de la MVJ que actúa como gestor de la ejecución y toma el control del programa.</li>
+    </ul>
+  </li>
+  <li><strong>Se intenta capturar la excepción lanzada:</strong>
+    <ul>
+      <li>El Gestor de la Ejecución busca algún trozo de código capaz de manejar el error producido.</li>
+      <li>Primero busca el código manejador en el método que lanzó la excepción. Si lo encuentra, trata el error y devuelve el control al programa. Si no, busca en el método que llamó al que provocó el error.</li>
+      <li>De esta forma la excepción se va prolongando por la cadena de métodos hasta que encuentra alguno que solucione el problema.</li>
+      <li>Si el objeto excepción llega al método <code class="language-plaintext highlighter-rouge">main</code> y tampoco es capaz de manejarlo, se cierra el programa y se imprime la información de lo ocurrido.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>En nuestro ejemplo ocurrió lo siguiente:</p>
+
+<p><img src="/img/posts/20150414_4.jpg" alt="Diagrama del protocolo de actuación ante una excepción" /></p>
+
+<p>Resumiendo:</p>
+
+<ul>
+  <li>El método en el que se produce el error crea y lanza un objeto excepción al gestor de ejecución.</li>
+  <li>El gestor de ejecución tiene que capturar la excepción lanzada encontrando un trozo de código capaz de manejarla en la cadena de métodos llamados (propagación de la excepción).</li>
+</ul>
+
+<h2 id="la-jerarquía-de-objetos-lanzables">La jerarquía de objetos “lanzables”</h2>
+
+<p>Los problemas que provocan que se lance una excepción los podemos clasificar en dos grupos:</p>
+
+<ul>
+  <li>
+    <p><strong>Predecibles.</strong> Hay algunas instrucciones que por su naturaleza el compilador las considera peligrosas, en el sentido de que se pueden lanzar una excepción. Ej: Las instrucciones que intentan abrir un fichero pueden lanzar una excepción porque no se encuentre el fichero o no tengamos permiso.</p>
+  </li>
+  <li>
+    <p><strong>No predecibles.</strong> Son problemas que el compilador no puede prever porque ocurren durante la ejecución. Se deben a:</p>
+    <ul>
+      <li>Fallos de programación: se accede a un puntero nulo, se divide por cero un entero, se accede a una posición inexistente de una tabla…</li>
+      <li>Fallos del software o del hardware del sistema: falla la máquina virtual Java o el disco duro…</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Java proporciona la siguiente jerarquía de clases:</p>
+
+<p><img src="/img/posts/20150414_5.jpg" alt="Jerarquía de clases de excepciones en Java" /></p>
+
+<h2 id="tratamiento-de-una-excepción">Tratamiento de una excepción</h2>
+
+<p>El siguiente código no compila:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ListaDeNumeros</span><span class="o">{</span>
+
+   <span class="kd">private</span> <span class="kt">int</span> <span class="n">vector</span><span class="o">[];</span>
+
+   <span class="kd">private</span> <span class="kt">int</span> <span class="n">tamanio</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+
+   <span class="kd">public</span> <span class="nf">ListaDeNumeros</span><span class="o">(){</span>
+
+     <span class="n">vector</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">tamanio</span><span class="o">];</span>
+
+     <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">tamanio</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+
+         <span class="n">vector</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
+
+   <span class="o">}</span>
+
+   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">escribeLista</span><span class="o">(){</span>
+
+     <span class="nc">PrintWriter</span> <span class="n">fichTexto</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PrintWriter</span><span class="o">(</span><span class="s">"Lista.txt"</span><span class="o">);</span>
+
+     <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">tamanio</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+
+         <span class="n">fichTexto</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"El valor de "</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s">" = "</span> <span class="o">+</span> <span class="n">vector</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+
+     <span class="n">fichTexto</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+
+   <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>El compilador nos dice: <code class="language-plaintext highlighter-rouge">&lt;&lt; Tipo de excepción FileNotFoundException no manejada &gt;&gt;</code></p>
+
+<p>El compilador ha identificado un problema potencial (o predecible) en el método <code class="language-plaintext highlighter-rouge">escribeLista</code> y nos obliga a elegir entre:</p>
+
+<ul>
+  <li><strong>Afrontar el problema.</strong> Capturar la excepción escribiendo un trozo de código que la maneje.</li>
+  <li><strong>Ignorar el problema.</strong> No escribimos código para capturar la excepción, simplemente dejamos que se propague al siguiente método de la cadena de llamadas.</li>
+</ul>
+
+<p><strong>Si elegimos afrontar el problema</strong> entonces tenemos que capturar la excepción. Para ello hay que encerrar la instrucción peligrosa en un bloque <code class="language-plaintext highlighter-rouge">try</code> (intentar) y su solución en un bloque <code class="language-plaintext highlighter-rouge">catch</code> (capturar):</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="o">{</span>
+
+   <span class="err">…</span>
+
+   <span class="nc">Instrucción</span> <span class="n">peligrosa</span>
+
+   <span class="err">…</span>
+
+<span class="o">}</span>
+
+<span class="k">catch</span><span class="o">(</span><span class="nc">TipoDeExcepción</span> <span class="n">e</span><span class="o">){</span>
+
+   <span class="n">tratamiento</span> <span class="n">del</span> <span class="n">problema</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>En nuestro ejemplo, ahora modificamos <code class="language-plaintext highlighter-rouge">escribeLista</code> para que capture la excepción:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">escribeLista</span><span class="o">(){</span>
+
+   <span class="k">try</span><span class="o">{</span>
+
+     <span class="nc">PrintWriter</span> <span class="n">fichTexto</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PrintWriter</span><span class="o">(</span><span class="s">"lista.txt"</span><span class="o">);</span>
+
+     <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">tamanio</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+
+         <span class="n">fichTexto</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"El valor de "</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s">" = "</span> <span class="o">+</span> <span class="n">vector</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+
+     <span class="n">fichTexto</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+
+   <span class="o">}</span>
+
+   <span class="k">catch</span><span class="o">(</span><span class="nc">FileNotFoundException</span> <span class="n">e</span><span class="o">){</span>
+
+     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Error al abrir el fichero lista.txt"</span><span class="o">);</span>
+
+     <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span> <span class="c1">// Saca los errores por consola de Java</span>
+
+   <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Si elegimos ignorarlo</strong> debemos saber que para que un método ignore una excepción hay que indicarlo en su prototipo:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">escribeLista</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">FileNotFoundException</span><span class="o">{</span>
+
+   <span class="nc">PrintWriter</span> <span class="n">fichTexto</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PrintWriter</span><span class="o">(</span><span class="s">"lista.txt"</span><span class="o">);</span>
+
+   <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">tamanio</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+
+     <span class="n">fichTexto</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"El valor de "</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s">" = "</span> <span class="o">+</span> <span class="n">vector</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+
+   <span class="n">fichTexto</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="excepciones-comprobadas-y-no-comprobadas">Excepciones comprobadas y no comprobadas</h2>
+
+<p>El compilador sólo nos obliga a elegir entre capturar o ignorar una excepción si ésta se corresponde con un problema predecible. Esto divide las excepciones en dos grupos:</p>
+
+<ul>
+  <li>Las comprobadas por el compilador (<em>checked exceptions</em>)</li>
+  <li>Las no comprobadas (<em>unchecked exceptions</em>)</li>
+</ul>
+
+<p>Las excepciones no comprobadas se producen en tiempo de ejecución y son muy variadas y numerosas; si el compilador nos obligara a tratarlas se reduciría mucho la claridad del código.</p>
+
+<h2 id="tratamiento-de-varias-excepciones">Tratamiento de varias excepciones</h2>
+
+<p>Java permite ignorar varias excepciones comprobadas siempre que las especifiquemos en el prototipo del método:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">modVisib</span> <span class="n">tipoRetorno</span> <span class="nf">nombre</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">exc1</span><span class="o">,</span> <span class="n">exc2</span><span class="o">,</span> <span class="err">…</span><span class="o">{</span> <span class="err">…</span> <span class="o">}</span>
+</code></pre></div></div>
+
+<p>Para capturar varias excepciones podemos escribir varios bloques <code class="language-plaintext highlighter-rouge">catch</code> para un mismo <code class="language-plaintext highlighter-rouge">try</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="o">{</span>
+
+   <span class="c1">// Bloque de instrucciones que puede lanzar varias excepciones</span>
+
+<span class="o">}</span>
+
+<span class="k">catch</span><span class="o">(</span><span class="nc">ClaseExcepcion1</span> <span class="n">excep1</span><span class="o">){</span>
+
+   <span class="c1">// Tratamiento excep1</span>
+
+<span class="o">}</span>
+
+<span class="k">catch</span><span class="o">(</span><span class="nc">ClaseExcepcion2</span> <span class="n">excep2</span><span class="o">){</span>
+
+   <span class="c1">// Tratamiento excep2</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Veamos un ejemplo:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ManejaFicheroTexto</span><span class="o">{</span>
+
+   <span class="kd">private</span> <span class="nc">FileReader</span> <span class="n">manejadorFichero</span><span class="o">;</span>
+
+   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">visualiza</span><span class="o">(</span><span class="nc">String</span> <span class="n">nombreFichero</span><span class="o">){</span>
+
+     <span class="kt">int</span> <span class="n">caracter</span><span class="o">;</span>
+
+     <span class="k">try</span><span class="o">{</span>
+
+         <span class="n">manejadorFichero</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileReader</span><span class="o">(</span><span class="n">nombreFichero</span><span class="o">);</span>
+
+         <span class="n">caracter</span> <span class="o">=</span> <span class="n">manejadorFichero</span><span class="o">.</span><span class="na">read</span><span class="o">();</span>
+
+         <span class="k">while</span><span class="o">(</span><span class="n">caracter</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="o">){</span>
+
+              <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">caracter</span><span class="o">);</span>
+
+              <span class="n">caracter</span> <span class="o">=</span> <span class="n">manejadorFichero</span><span class="o">.</span><span class="na">read</span><span class="o">();</span>
+
+         <span class="o">}</span>
+
+         <span class="n">manejadorFichero</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+
+     <span class="o">}</span>
+
+     <span class="k">catch</span><span class="o">(</span><span class="nc">FileNotFoundException</span> <span class="n">e</span><span class="o">){</span>
+
+         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Error al abrir el fichero "</span> <span class="o">+</span> <span class="n">nombreFichero</span><span class="o">);</span>
+
+     <span class="o">}</span>
+
+     <span class="k">catch</span><span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">){</span>
+
+         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Error al leer o cerrar el fichero "</span> <span class="o">+</span> <span class="n">nombreFichero</span><span class="o">);</span>
+
+         <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+
+     <span class="o">}</span>
+
+   <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Si se produce una excepción, el Gestor de Ejecución comprueba los bloques <code class="language-plaintext highlighter-rouge">catch</code> por orden de aparición.</p>
+
+<p><strong>Regla del orden de los bloques catch:</strong> Debemos capturar las excepciones de las más concretas a las más generales.</p>
+
+<p><img src="/img/posts/20150414_6.png" alt="Jerarquía de clases de IOException" /></p>
+
+<p><img src="/img/posts/20150414_7.png" alt="Orden correcto de bloques catch" /></p>
+
+<h2 id="el-bloque-finally">El bloque finally</h2>
+
+<p>El bloque <code class="language-plaintext highlighter-rouge">finally</code> acompaña al bloque <code class="language-plaintext highlighter-rouge">try</code> y se escribe al final de los bloques <code class="language-plaintext highlighter-rouge">catch</code> (si existen). Se ejecutará siempre que se ejecute el bloque <code class="language-plaintext highlighter-rouge">try</code>, se produzca o no una excepción.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="o">{</span>
+
+   <span class="err">…</span>
+
+<span class="o">}</span>
+
+<span class="k">catch</span><span class="o">(</span><span class="n">tipoExcepcion</span> <span class="n">e1</span><span class="o">){</span>
+
+   <span class="err">…</span>
+
+<span class="o">}</span>
+
+<span class="k">finally</span><span class="o">{</span>
+
+   <span class="err">…</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Es útil cuando queremos cerrar recursos (ficheros, conexiones a una base de datos):</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">visualiza</span><span class="o">(</span><span class="nc">String</span> <span class="n">nombreFichero</span><span class="o">){</span>
+
+   <span class="kt">int</span> <span class="n">caracter</span><span class="o">;</span>
+
+   <span class="k">try</span><span class="o">{</span>
+
+     <span class="n">manejadorFichero</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileReader</span><span class="o">(</span><span class="n">nombreFichero</span><span class="o">);</span>
+
+     <span class="n">caracter</span> <span class="o">=</span> <span class="n">manejadorFichero</span><span class="o">.</span><span class="na">read</span><span class="o">();</span>
+
+     <span class="k">while</span> <span class="o">(</span><span class="n">caracter</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="o">){</span>
+
+         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">caracter</span><span class="o">);</span>
+
+         <span class="n">caracter</span> <span class="o">=</span> <span class="n">manejadorFichero</span><span class="o">.</span><span class="na">read</span><span class="o">();</span>
+
+     <span class="o">}</span>
+
+   <span class="o">}</span>
+
+   <span class="k">catch</span><span class="o">(</span><span class="nc">FileNotFoundException</span> <span class="n">e</span><span class="o">){</span>
+
+     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Error al leer el fichero "</span> <span class="o">+</span> <span class="n">nombreFichero</span><span class="o">);</span>
+
+   <span class="o">}</span>
+
+   <span class="k">catch</span><span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">){</span>
+
+     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Error al leer o cerrar el fichero "</span> <span class="o">+</span> <span class="n">nombreFichero</span><span class="o">);</span>
+
+     <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+
+   <span class="o">}</span>
+
+   <span class="k">finally</span><span class="o">{</span>
+
+     <span class="k">if</span><span class="o">(</span><span class="n">manejadorFichero</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+
+         <span class="n">manejadorFichero</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+
+   <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="la-creación-de-excepciones-de-usuario">La creación de excepciones de usuario</h2>
+
+<p>Java permite crear y lanzar excepciones propias simplemente heredando de <code class="language-plaintext highlighter-rouge">Exception</code> o de alguna de sus subclases.</p>
+
+<p>Pasos a seguir:</p>
+
+<ol>
+  <li><strong>Identificar las excepciones que necesitamos.</strong></li>
+  <li><strong>Escoger un nombre significativo.</strong> Las excepciones de usuario se suelen terminar con la palabra <code class="language-plaintext highlighter-rouge">Exception</code>. Ejemplos: <code class="language-plaintext highlighter-rouge">NumeroTarjetaInvalidoException</code>, <code class="language-plaintext highlighter-rouge">DniIncorrectoException</code>, <code class="language-plaintext highlighter-rouge">CocheSinCombustibleException</code>…</li>
+  <li><strong>Elegir la clase de la que vamos a heredar</strong> y crear la nueva clase excepción.</li>
+  <li><strong>Crear el objeto excepción y lanzarlo:</strong></li>
+</ol>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">throw</span> <span class="k">new</span> <span class="nc">DniIncorrectoException</span><span class="o">{</span> <span class="err">…</span> <span class="o">};</span>
+</code></pre></div></div>
+
+<p>Ejemplo con la clase <code class="language-plaintext highlighter-rouge">Bombilla</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BombillaFundidaException</span> <span class="kd">extends</span> <span class="nc">Exception</span><span class="o">{</span>
+
+   <span class="kd">public</span> <span class="nf">BombillaFundidaException</span><span class="o">(){}</span>
+
+   <span class="kd">public</span> <span class="nf">BombillaFundidaException</span><span class="o">(</span><span class="nc">String</span> <span class="n">mensaje</span><span class="o">){</span>
+
+     <span class="kd">super</span><span class="o">(</span><span class="n">mensaje</span><span class="o">);</span>
+
+   <span class="o">}</span>
+
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Bombilla</span><span class="o">{</span>
+
+   <span class="kd">private</span> <span class="kt">int</span> <span class="n">potencia</span><span class="o">;</span>
+
+   <span class="kd">private</span> <span class="kt">int</span> <span class="n">numEncendidos</span><span class="o">;</span>
+
+   <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">encendida</span><span class="o">;</span>
+
+   <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">fundida</span><span class="o">;</span>
+
+   <span class="kd">public</span> <span class="nf">Bombilla</span><span class="o">(</span><span class="kt">int</span> <span class="n">potencia</span><span class="o">){</span>
+
+     <span class="k">this</span><span class="o">.</span><span class="na">potencia</span> <span class="o">=</span> <span class="n">potencia</span><span class="o">;</span>
+
+   <span class="o">}</span>
+
+   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">apagar</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">BombillaFundidaException</span><span class="o">{</span>
+
+     <span class="k">if</span> <span class="o">(</span><span class="n">fundida</span> <span class="o">==</span> <span class="kc">true</span><span class="o">)</span>
+
+         <span class="k">throw</span> <span class="k">new</span> <span class="nf">BombillaFundidaException</span><span class="o">();</span>
+
+     <span class="k">else</span>
+
+         <span class="n">encendida</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+
+   <span class="o">}</span>
+
+   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">encender</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">BombillaFundidaException</span><span class="o">{</span>
+
+     <span class="k">if</span> <span class="o">(</span><span class="n">fundida</span> <span class="o">==</span> <span class="kc">true</span><span class="o">)</span>
+
+         <span class="k">throw</span> <span class="k">new</span> <span class="nf">BombillaFundidaException</span><span class="o">();</span>
+
+     <span class="k">else</span><span class="o">{</span>
+
+         <span class="k">if</span> <span class="o">(</span><span class="n">encendida</span> <span class="o">==</span> <span class="kc">false</span><span class="o">){</span>
+
+              <span class="n">numEncendidos</span><span class="o">++;</span>
+
+              <span class="k">if</span> <span class="o">(</span><span class="n">numEncendidos</span> <span class="o">==</span> <span class="mi">1000</span><span class="o">){</span>
+
+                   <span class="n">fundida</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+
+                   <span class="n">encendida</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+
+                   <span class="k">throw</span> <span class="k">new</span> <span class="nf">BombillaFundidaException</span><span class="o">(</span><span class="s">"Recien fundida"</span><span class="o">);</span>
+
+              <span class="o">}</span>
+
+         <span class="o">}</span>
+
+     <span class="o">}</span>
+
+   <span class="o">}</span>
+
+   <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">estaFundida</span><span class="o">(){</span>
+
+     <span class="k">return</span> <span class="n">fundida</span><span class="o">;</span>
+
+   <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Ahora al usar los métodos “peligrosos” el compilador nos obligará a capturar la excepción o ignorarla:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PruebaBombilla</span><span class="o">{</span>
+
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span> <span class="n">args</span><span class="o">[]){</span>
+
+     <span class="nc">Bombilla</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Bombilla</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+
+     <span class="k">try</span><span class="o">{</span>
+
+         <span class="n">b</span><span class="o">.</span><span class="na">encender</span><span class="o">();</span>
+
+         <span class="n">b</span><span class="o">.</span><span class="na">apagar</span><span class="o">();</span>
+
+     <span class="o">}</span>
+
+     <span class="k">catch</span><span class="o">(</span><span class="nc">BombillaFundidaException</span> <span class="n">e</span><span class="o">){</span>
+
+         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Bombilla fundida"</span><span class="o">);</span>
+
+     <span class="o">}</span>
+
+   <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="ventajas-del-uso-de-excepciones">Ventajas del uso de excepciones</h2>
+
+<ul>
+  <li>Permite separar el código normal del código de manejo de errores, mejorando la legibilidad y comprensión del código.</li>
+  <li>Se agrupan los errores en una jerarquía de clases que permite la captura y tratamiento por grupos.</li>
+  <li>Se evita el diseño y uso de los códigos de error, que es un mecanismo bastante tedioso y propenso a fallos.</li>
+  <li>La propagación de una excepción por la cadena de llamadas permite capturarla en el método que queramos.</li>
+  <li>Permite al usuario crear sus propias excepciones mediante la herencia, estandarizando la forma de tratar los errores para cualquier clase.</li>
+</ul>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#java</span>
+        
+          <span class="tag">#programación</span>
+        
+          <span class="tag">#excepciones</span>
+        
+          <span class="tag">#try-catch</span>
+        
+          <span class="tag">#finally</span>
+        
+          <span class="tag">#errores</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

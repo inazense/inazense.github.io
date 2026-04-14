@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programación. Codificación de programas en C (IV) | Programando a Pasitos</title>
+<meta name="description" content="Blog de programación por Inazio Claver">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Programación. Codificación de programas en C (IV) | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Programación. Codificación de programas en C (IV)" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Subprogramas en C" />
+<meta property="og:description" content="Subprogramas en C" />
+<link rel="canonical" href="http://localhost:4000/posts/2014/10/17/programacion-codificacion-de-programas-en-c-iv/" />
+<meta property="og:url" content="http://localhost:4000/posts/2014/10/17/programacion-codificacion-de-programas-en-c-iv/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2014-10-17T15:34:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Programación. Codificación de programas en C (IV)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver","url":"https://github.com/inazense"},"dateModified":"2014-10-17T15:34:00+02:00","datePublished":"2014-10-17T15:34:00+02:00","description":"Subprogramas en C","headline":"Programación. Codificación de programas en C (IV)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2014/10/17/programacion-codificacion-de-programas-en-c-iv/"},"url":"http://localhost:4000/posts/2014/10/17/programacion-codificacion-de-programas-en-c-iv/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Programación. Codificación de programas en C (IV)</h1>
+    <div class="post-meta">
+      <time datetime="2014-10-17T15:34:00+02:00">17 Oct 2014</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#programacion" class="post-category">programacion</a>
+        
+      
+    </div>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="subprogramas-en-c">Subprogramas en C</h2>
+
+<p>En C no existen ni los procedimientos ni las funciones tal cual vistas.</p>
+
+<p>¿Qué existe pues? La gran chapuza desde un punto de vista formal. Las funciones procedimentales (todo en uno, a partir de ahora llamadas funciones) que es un instrumento de lo más flexible para escribir subprogramas.</p>
+
+<ul>
+  <li>Devuelven un valor (como las funciones)</li>
+  <li>Admiten parámetros E, S o E/S (como los procedimientos)</li>
+</ul>
+
+<h2 id="funciones-en-programas">Funciones en programas</h2>
+
+<p>Un programa en C consta de una o más funciones.</p>
+
+<p>Tiene que tener necesariamente la función main</p>
+
+<p><code class="language-plaintext highlighter-rouge">void main()</code></p>
+
+<p>Puede tener otras funciones declaradas que serán usadas por main o por otras funciones que sean usadas en main o en funciones que son usadas por funciones que son usadas en main, o…</p>
+
+<p>Es conveniente declarar una función antes de usarla, para que el compilador la reconozca cuando se encuentre una invocación a ella.</p>
+
+<p>Una función (en sentido estricto) en C:</p>
+
+<p><code class="language-plaintext highlighter-rouge">int factorial(int n)</code></p>
+
+<p>Un procedimiento en C:</p>
+
+<p><code class="language-plaintext highlighter-rouge">void intercambiar (int *a,int *b) /*Si es de entrada, sin asteriscos */</code></p>
+
+<p>También admite además de las funciones que hayamos podido declarar en el fichero, funciones que haya en librerías.</p>
+
+<ul>
+  <li>Librerías del propio compilador: stdio.h, string.h, ctype.h, math.h, stdlib.h, time.h…
+    <ul>
+      <li>Para usarlas: <code class="language-plaintext highlighter-rouge">#include&lt;librería&gt;</code></li>
+    </ul>
+  </li>
+  <li>Librerías creadas por el usuario.
+    <ul>
+      <li>Para usarlas: <code class="language-plaintext highlighter-rouge">#include"librería"</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="declaración-de-una-función-en-c">Declaración de una función en C</h2>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="n">tipo</span> <span class="n">funci</span><span class="err">ó</span><span class="n">n</span><span class="o">&gt;&lt;</span><span class="n">nombre</span> <span class="n">funci</span><span class="err">ó</span><span class="n">n</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&lt;</span><span class="n">lista</span> <span class="n">par</span><span class="err">á</span><span class="n">metros</span> <span class="n">formales</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
+       <span class="cm">/* Declaración de variables locales */</span>
+       <span class="cm">/* Instrucciones */</span>
+       <span class="k">return</span><span class="p">(</span><span class="n">expresi</span><span class="err">ó</span><span class="n">n</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Como tipo función sirve cualquier tipo que se os pueda ocurrir (y otros que todavía no conocéis) más el tipo void que indica que la función no devuelve nada.</p>
+
+<p>Return sólo hay que usarlo si el tipo no es void</p>
+
+<h2 id="parámetros-en-funciones">Parámetros en funciones</h2>
+
+<p>Tenemos tres tipos de parámetros: E, S y E/S</p>
+
+<p>C y otros lenguajes de programación sólo disponen de dos mecanismos para pasar parámetros.</p>
+
+<ul>
+  <li>Por valor → Sirve para parámetros de entrada</li>
+  <li>Por referencia → Sirve para parámetros de salida o entrada/salida</li>
+</ul>
+
+<h2 id="paso-de-parámetros-por-valor">Paso de parámetros por valor</h2>
+
+<p>El valor de la variable que se pasa como parámetros o el resultado de evaluar la expresión que se ha puesto (parámetro actual) es copiado a una variable local de la función C.</p>
+
+<p>Como esa variable local muere cuando termina de ejecutarse la función, no sirve para devolver nada.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">mi_funcion</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">){</span>
+       <span class="err">…</span>
+       <span class="n">n</span><span class="o">=</span><span class="mi">30</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+       <span class="err">…</span>
+       <span class="n">a</span><span class="o">=</span><span class="mi">7</span><span class="p">;</span>
+       <span class="n">f</span><span class="o">=</span><span class="n">mi_funcion</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+<span class="err">…</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="paso-de-parámetros-por-referencia">Paso de parámetros por referencia</h2>
+
+<p>En vez de pasar el valor de la variable, se copia la dirección de la variable que contiene el valor.</p>
+
+<p>Para hacer esto, obsérvese que como parámetro actual ponemos delante de la variable correspondiente el símbolo <code class="language-plaintext highlighter-rouge">&amp;</code> y en la función invocada, como parámetro formal, aparecer delante un <code class="language-plaintext highlighter-rouge">*</code> cada vez que nos referimos a él.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">mi_proc</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">n</span><span class="p">){</span>
+       <span class="err">…</span>
+       <span class="o">*</span><span class="n">n</span><span class="o">=</span><span class="mi">30</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+       <span class="err">…</span>
+       <span class="n">a</span><span class="o">=</span><span class="mi">7</span><span class="p">;</span>
+       <span class="n">f</span><span class="o">=</span><span class="n">mi_proc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">);</span>
+       <span class="err">…</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="ejercicio">Ejercicio</h2>
+
+<p>Hacer válida una fecha. Crear una función que pasándole día, mes y año diga si es correcta</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">fecha_correcta</span><span class="p">(</span><span class="kt">int</span> <span class="n">dia</span><span class="p">,</span> <span class="n">mes</span><span class="p">,</span> <span class="n">agno</span><span class="p">)</span>
+       <span class="k">return</span><span class="p">(</span><span class="n">dia_correcto</span><span class="p">(</span><span class="n">dia</span><span class="p">,</span><span class="n">mes</span><span class="p">,</span><span class="n">agno</span><span class="p">)</span><span class="o">&amp;&amp;</span><span class="n">mes_correcto</span><span class="p">(</span><span class="n">mes</span><span class="p">));</span>
+
+<span class="kt">int</span> <span class="nf">mes_correcto</span><span class="p">(</span><span class="kt">int</span> <span class="n">mes</span><span class="p">)</span>
+       <span class="k">return</span><span class="p">(</span><span class="n">mes</span><span class="o">&lt;</span><span class="mi">0</span> <span class="o">&amp;&amp;</span><span class="n">mes</span><span class="o">&gt;</span><span class="mi">13</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">dia_correcto</span><span class="p">(</span><span class="kt">int</span> <span class="n">dia</span><span class="p">,</span> <span class="kt">int</span> <span class="n">mes</span><span class="p">,</span> <span class="kt">int</span> <span class="n">agno</span><span class="p">)</span>
+       <span class="k">return</span><span class="p">(</span><span class="n">dia</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&amp;&amp;</span><span class="n">dia</span><span class="o">&lt;=</span><span class="n">dias_mes</span><span class="p">(</span><span class="n">mes</span><span class="p">,</span><span class="n">agno</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">bisiesto</span><span class="p">(</span><span class="kt">int</span> <span class="n">agno</span><span class="p">)</span>
+       <span class="k">return</span><span class="p">(</span><span class="n">agno</span><span class="o">%</span><span class="mi">4</span><span class="o">==</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">agno</span><span class="o">%</span><span class="mi">100</span><span class="o">!=</span><span class="mi">0</span> <span class="o">||</span> <span class="n">agno</span><span class="o">%</span><span class="mi">400</span><span class="o">==</span><span class="mi">0</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">dias_mes</span><span class="p">(</span><span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a</span><span class="p">){</span>
+       <span class="k">switch</span> <span class="n">m</span><span class="p">{</span>
+            <span class="k">case</span> <span class="mi">1</span>
+            <span class="k">case</span> <span class="mi">3</span>
+            <span class="k">case</span> <span class="mi">5</span>
+            <span class="k">case</span> <span class="mi">7</span>
+            <span class="k">case</span> <span class="mi">8</span>
+            <span class="k">case</span> <span class="mi">10</span>
+            <span class="k">case</span> <span class="mi">12</span><span class="p">:</span> <span class="k">return</span><span class="p">(</span><span class="mi">31</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="mi">4</span>
+            <span class="k">case</span> <span class="mi">6</span>
+            <span class="k">case</span> <span class="mi">9</span>
+            <span class="k">case</span> <span class="mi">11</span><span class="p">:</span> <span class="k">return</span><span class="p">(</span><span class="mi">30</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="mi">2</span><span class="p">:</span> <span class="k">if</span> <span class="p">(</span><span class="n">bisiesto</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+                                   <span class="k">return</span><span class="p">(</span><span class="mi">29</span><span class="p">);</span>
+                        <span class="k">else</span>
+                                   <span class="k">return</span><span class="p">(</span><span class="mi">28</span><span class="p">);</span>
+                        <span class="k">break</span><span class="p">;</span>
+            <span class="nl">default:</span> <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+       <span class="err">}</span>
+<span class="err">}</span>
+
+<span class="n">main</span><span class="p">()</span>
+<span class="err">{</span>
+       <span class="err">…</span>
+       <span class="n">pedir_fecha</span><span class="p">(</span><span class="err">…</span><span class="p">)</span><span class="cm">/* Pon lo necesario para que esa función pida al usuario día, mes y año guardándolos en las variables oportunas */</span>
+       <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">fecha_correcta</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">a</span><span class="p">))</span>
+            <span class="n">pedir_fecha</span><span class="p">(</span><span class="err">…</span><span class="p">);</span>
+<span class="err">}</span>
+</code></pre></div></div>
+
+<h2 id="números-aleatorios">Números aleatorios</h2>
+
+<p>Incluir <code class="language-plaintext highlighter-rouge">&lt;stdlib.h&gt;</code> y <code class="language-plaintext highlighter-rouge">&lt;time.h&gt;</code></p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">srand</span><span class="p">((</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">)</span><span class="n">time</span><span class="p">(</span><span class="nb">NULL</span><span class="p">));</span> <span class="cm">/*forma CORRECTA de realizarlo */</span>
+<span class="n">random</span><span class="o">=</span><span class="n">rand</span><span class="p">()</span><span class="o">%</span><span class="mi">26</span> <span class="cm">/*Con este ejemplo los números serán del 0 al 25 */</span>
+</code></pre></div></div>
+
+<h2 id="tamaño-de-los-tipos-sizeof">Tamaño de los tipos: sizeof()</h2>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span>
+<span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+       <span class="kt">long</span> <span class="kt">double</span> <span class="n">tipo</span><span class="p">;</span>
+       <span class="n">printf</span><span class="p">(</span><span class="s">"El tamaño del tipo long double es: %d bytes </span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">tipo</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="selección-múltiple-sintaxis-y-semántica">Selección múltiple: Sintaxis y semántica</h2>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">switch</span> <span class="p">(</span><span class="n">variable</span><span class="p">){</span>
+       <span class="k">case</span> <span class="n">valor1</span><span class="p">:</span> <span class="err">…</span> <span class="k">break</span><span class="p">;</span>
+       <span class="k">case</span> <span class="n">valor2</span><span class="p">:</span> <span class="err">…</span> <span class="k">break</span><span class="p">;</span>
+       <span class="err">…</span>
+       <span class="nl">default:</span> <span class="err">…</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>El default es obligatorio.</p>
+
+<p>En cuanto el valor de las variables coincide con el valor, se ejecutan TODAS las instrucciones que se encuentran a continuación HASTA QUE APAREZCA UN break.</p>
+
+<h2 id="composición-iterativa-indexada">Composición iterativa indexada</h2>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span><span class="p">(</span><span class="err">…</span><span class="p">;</span><span class="err">…</span><span class="p">;</span><span class="err">…</span><span class="p">)</span> <span class="p">{</span><span class="err">…</span><span class="p">}</span>
+</code></pre></div></div>
+
+<p>Consta de tres partes:</p>
+
+<ol>
+  <li><strong>Inicialización.</strong> Se ejecuta una vez al principio</li>
+  <li><strong>Condición para terminar.</strong> Se ejecuta el bucle mientras esa condición es cierta</li>
+  <li><strong>Cada vez.</strong> Esta parte se ejecuta cada vez que se ejecuta el contenido del bucle.</li>
+</ol>
+
+<p>Ejemplos:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">MAX</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span><span class="err">…</span><span class="p">}</span>
+<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">MAX</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span><span class="err">…</span><span class="p">}</span>
+<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">MAX</span> <span class="o">&amp;&amp;</span> <span class="n">j</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">,</span><span class="n">j</span><span class="o">--</span><span class="p">){</span><span class="err">…</span><span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="otras-formas-de-iterar">Otras formas de iterar</h2>
+
+<p>Condición al final: <code class="language-plaintext highlighter-rouge">do{…}while()</code> Primero ejecuta y luego chequea una condición para ver si sigue ejecutando. Siempre se ejecuta mínimo una vez.</p>
+
+<p>Lo que jamás hay que usar en C, pero lo permite, es:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">etiqueta…;…;…;…; goto etiqueta;</code></li>
+</ul>
+
+<p>Dos instrucciones especiales dentro del bucle:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">break</code>: Fuerza la salida del bucle aunque se cumpla la condición</li>
+  <li><code class="language-plaintext highlighter-rouge">continue</code>: Se salta todo lo que queda de bucle y pasa a la siguiente iteración</li>
+</ul>
+
+<p>En cualquier caso, usando cualquiera de las formas de iterar que hemos visto podemos hacer de todo. No es necesario usarlas todas para programar. Los programadores de C suelen usar el for por su flexibilidad.</p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#programacion</span>
+        
+          <span class="tag">#c</span>
+        
+          <span class="tag">#funciones</span>
+        
+          <span class="tag">#parametros</span>
+        
+          <span class="tag">#punteros</span>
+        
+          <span class="tag">#subprogramas</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

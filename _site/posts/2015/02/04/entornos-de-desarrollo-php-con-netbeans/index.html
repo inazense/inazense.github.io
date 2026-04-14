@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entornos de desarrollo. PHP con NetBeans | Programando a Pasitos</title>
+<meta name="description" content="Cómo crear una primera página PHP con NetBeans conectada a un servidor remoto y a una base de datos MySQL mediante mysqli.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Entornos de desarrollo. PHP con NetBeans | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Entornos de desarrollo. PHP con NetBeans" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Cómo crear una primera página PHP con NetBeans conectada a un servidor remoto y a una base de datos MySQL mediante mysqli." />
+<meta property="og:description" content="Cómo crear una primera página PHP con NetBeans conectada a un servidor remoto y a una base de datos MySQL mediante mysqli." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/02/04/entornos-de-desarrollo-php-con-netbeans/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/02/04/entornos-de-desarrollo-php-con-netbeans/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-02-04T05:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Entornos de desarrollo. PHP con NetBeans" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-02-04T05:00:00+01:00","datePublished":"2015-02-04T05:00:00+01:00","description":"Cómo crear una primera página PHP con NetBeans conectada a un servidor remoto y a una base de datos MySQL mediante mysqli.","headline":"Entornos de desarrollo. PHP con NetBeans","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/02/04/entornos-de-desarrollo-php-con-netbeans/"},"url":"http://localhost:4000/posts/2015/02/04/entornos-de-desarrollo-php-con-netbeans/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Entornos de desarrollo. PHP con NetBeans</h1>
+    <div class="post-meta">
+      <time datetime="2015-02-04T05:00:00+01:00">04 Feb 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#entornos-de-desarrollo" class="post-category">Entornos de desarrollo</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Cómo crear una primera página PHP con NetBeans conectada a un servidor remoto y a una base de datos MySQL mediante mysqli.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <p>Vamos a crear nuestra primera página en PHP con NetBeans. Lo primero, si no lo tenemos instalado, será instalar el pluggin de PHP.</p>
+
+<p>Hecho eso, nos vamos a <code class="language-plaintext highlighter-rouge">File</code> - <code class="language-plaintext highlighter-rouge">New Project</code> y elegimos <code class="language-plaintext highlighter-rouge">PHP Application from Remote Server</code>.</p>
+
+<p><img src="/img/posts/20150204_2.png" alt="PHP Application from Remote Server" /></p>
+
+<p><img src="/img/posts/20150204_3.png" alt="Siguiente pantalla" /></p>
+
+<p>En la siguiente pantalla, elegimos un nombre de proyecto. Por defecto saldrá el de a continuación, yo elegí <code class="language-plaintext highlighter-rouge">proyecto1</code>.</p>
+
+<p><img src="/img/posts/20150204_4.png" alt="Nombre de proyecto" /></p>
+
+<p>Pulsamos Next y en <code class="language-plaintext highlighter-rouge">Project URL</code> escribimos la dirección donde guardaremos nuestro proyecto. Pulsamos en <code class="language-plaintext highlighter-rouge">Manage</code> para crear una nueva conexión remota.</p>
+
+<p><img src="/img/posts/20150204_5.png" alt="Project URL y Manage" /></p>
+
+<p>Escribimos la dirección IP del servidor, usuario y contraseña.</p>
+
+<p><img src="/img/posts/20150204_6.png" alt="IP, usuario y contraseña" /></p>
+
+<p>Ok, Siguiente y saldrá el siguiente mensaje.</p>
+
+<p><img src="/img/posts/20150204_7.png" alt="Mensaje de confirmación" /></p>
+
+<p>Abrimos y/o nos descargamos el Putty, nos conectamos con el servidor con usuario y contraseña y, dentro de la carpeta <code class="language-plaintext highlighter-rouge">proyecto1</code> que se nos ha debido crear anteriormente, creamos un <code class="language-plaintext highlighter-rouge">index.php</code>.</p>
+
+<p><img src="/img/posts/20150204_8.png" alt="Putty creando index.php" /></p>
+
+<p>Nos vamos a NetBeans, retrocedemos pulsando Back y volvemos a pulsar Next. Se nos creará el proyecto.</p>
+
+<p><img src="/img/posts/20150204_9.png" alt="Proyecto creado en NetBeans" /></p>
+
+<p>En <code class="language-plaintext highlighter-rouge">index.php</code> escribimos el siguiente código:</p>
+
+<p><img src="/img/posts/20150204_13.png" alt="Código en index.php" /></p>
+
+<p>He aquí el código:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"es"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;head&gt;</span>
+        <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;title&gt;</span>Mi primera página PHP<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;/head&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
+    <span class="cp">&lt;?php</span>
+        <span class="nb">phpinfo</span><span class="p">();</span>
+    <span class="cp">?&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p>Y comprobamos, pulsando el botón play.</p>
+
+<p><img src="/img/posts/20150204_14.png" alt="Botón play" /></p>
+
+<p>Para comprobar la página. Veremos algo similar a esto:</p>
+
+<p><img src="/img/posts/20150204_15.png" alt="Resultado phpinfo()" /></p>
+
+<p>El siguiente paso es conectarnos a la base de datos para crear una nueva tabla llamada usuarios.</p>
+
+<p><img src="/img/posts/20150204_10.png" alt="Conexión a BD" /></p>
+
+<p>Nos vamos a mi usuario, pulsamos en nueva y configuramos la nueva tabla de la siguiente manera:</p>
+
+<p><img src="/img/posts/20150204_16.png" alt="Configuración de la tabla" /></p>
+
+<p><img src="/img/posts/20150204_12.png" alt="Campos de la tabla" /></p>
+
+<p>Y rellenamos las tablas con dos valores de nombre y edad.</p>
+
+<p><img src="/img/posts/20150204_11.png" alt="Datos de la tabla" /></p>
+
+<p>Vamos a escribir nuestro primer código, en el que primero nos conectaremos a la base de datos:</p>
+
+<p><img src="/img/posts/20150204_17.png" alt="Código conexión BD" /></p>
+
+<p>Y veremos lo siguiente:</p>
+
+<p><img src="/img/posts/20150204_18.png" alt="Resultado conexión correcta" /></p>
+
+<p>A continuación haremos una consulta:</p>
+
+<p><img src="/img/posts/20150204_17.png" alt="Código consulta" /></p>
+
+<p>Viéndose de la siguiente manera:</p>
+
+<p><img src="/img/posts/20150204_21.png" alt="Resultado consulta" /></p>
+
+<p>El código completo utilizado hasta este punto:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"es"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;head&gt;</span>
+        <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;title&gt;</span>Mi primera página PHP<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;/head&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
+    <span class="cp">&lt;?php</span>
+        <span class="nv">$servidor</span><span class="o">=</span><span class="s2">"localhost"</span><span class="p">;</span>
+        <span class="nv">$usuario</span><span class="o">=</span><span class="s2">"dam1"</span><span class="p">;</span>
+        <span class="nv">$password</span><span class="o">=</span><span class="s2">"dam1123"</span><span class="p">;</span>
+        <span class="nv">$bd</span><span class="o">=</span><span class="s2">"dam1_inazio"</span><span class="p">;</span>
+        
+        <span class="nv">$conector</span><span class="o">=</span><span class="nb">mysqli_connect</span><span class="p">(</span><span class="nv">$servidor</span><span class="p">,</span><span class="nv">$usuario</span><span class="p">,</span><span class="nv">$password</span><span class="p">,</span><span class="nv">$bd</span><span class="p">);</span>
+        
+        <span class="k">if</span> <span class="p">(</span><span class="nf">mysqli_connect_errno</span><span class="p">(</span><span class="nv">$conector</span><span class="p">)){</span>
+            <span class="k">echo</span> <span class="s2">"Fallo al conectar a MySQL:"</span> <span class="mf">.</span> <span class="nf">mysqli_connect_error</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="k">else</span><span class="p">{</span>
+            <span class="k">echo</span> <span class="s2">"Conexión correcta"</span><span class="p">;</span>
+            
+            <span class="nv">$consulta</span><span class="o">=</span><span class="s2">"SELECT * FROM usuario;"</span><span class="p">;</span>
+            
+            <span class="nv">$resultado</span><span class="o">=</span><span class="nf">mysqli_query</span><span class="p">(</span><span class="nv">$conector</span><span class="p">,</span><span class="nv">$consulta</span><span class="p">);</span>
+            <span class="nv">$fila</span><span class="o">=</span><span class="nf">mysqli_fetch_assoc</span><span class="p">(</span><span class="nv">$resultado</span><span class="p">);</span> <span class="c1">// Capturo fila de consulta en $fila</span>
+            
+            <span class="k">while</span> <span class="p">(</span><span class="nv">$fila</span> <span class="o">!=</span> <span class="kc">NULL</span><span class="p">){</span> <span class="c1">// Hasta que no queden más filas</span>
+                <span class="k">echo</span> <span class="s2">"&lt;br /&gt;"</span><span class="p">;</span> <span class="c1">// Salto de linea en HTML</span>
+                <span class="nb">print_r</span><span class="p">(</span><span class="nv">$fila</span><span class="p">);</span>
+                <span class="nv">$fila</span><span class="o">=</span><span class="nf">mysqli_fetch_assoc</span><span class="p">(</span><span class="nv">$resultado</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="cp">?&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p>El problema es que montado así queda un poquito bastante feo la visualización de la consulta. ¿Qué hacemos? Montarlo en una tabla.</p>
+
+<p>Lo primero será capturar las claves de nuestra consulta, para capturar los nombres de los arrays.</p>
+
+<p>Por tanto, vamos a utilizar la función <code class="language-plaintext highlighter-rouge">foreach</code>.</p>
+
+<p>A <code class="language-plaintext highlighter-rouge">foreach</code> le tenemos que pasar como parámetros la fila llamándolo como <code class="language-plaintext highlighter-rouge">$campo</code> el nombre de la clave y como <code class="language-plaintext highlighter-rouge">$valor</code> los valores contenidos en las mismas.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">foreach</span> <span class="p">(</span><span class="nv">$fila</span> <span class="k">as</span> <span class="nv">$campo</span> <span class="o">=&gt;</span> <span class="nv">$valor</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Básicamente lo que haremos será generar la estructura de una tabla y automatizar el mostrado tanto del nombre de la columna como de los campos. Tal que así:</p>
+
+<p><img src="/img/posts/20150204_1.png" alt="Código tabla con foreach" /></p>
+
+<p>Visualizando así el resultado:</p>
+
+<p><img src="/img/posts/20150204_2.png" alt="Resultado tabla" /></p>
+
+<p>Código de nuevo completo, utilizado hasta este momento y que reemplaza al anterior mostrado:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"es"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;head&gt;</span>
+        <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;title&gt;</span>Mi primera página PHP<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;/head&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
+    <span class="cp">&lt;?php</span>
+        <span class="nv">$servidor</span><span class="o">=</span><span class="s2">"localhost"</span><span class="p">;</span>
+        <span class="nv">$usuario</span><span class="o">=</span><span class="s2">"dam1"</span><span class="p">;</span>
+        <span class="nv">$password</span><span class="o">=</span><span class="s2">"dam1123"</span><span class="p">;</span>
+        <span class="nv">$bd</span><span class="o">=</span><span class="s2">"dam1_inazio"</span><span class="p">;</span>
+        
+        <span class="nv">$conector</span><span class="o">=</span><span class="nb">mysqli_connect</span><span class="p">(</span><span class="nv">$servidor</span><span class="p">,</span><span class="nv">$usuario</span><span class="p">,</span><span class="nv">$password</span><span class="p">,</span><span class="nv">$bd</span><span class="p">);</span>
+        
+        <span class="k">if</span> <span class="p">(</span><span class="nf">mysqli_connect_errno</span><span class="p">(</span><span class="nv">$conector</span><span class="p">)){</span>
+            <span class="k">echo</span> <span class="s2">"Fallo al conectar a MySQL:"</span> <span class="mf">.</span> <span class="nf">mysqli_connect_error</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="k">else</span><span class="p">{</span>
+            <span class="k">echo</span> <span class="s2">"Conexión correcta"</span><span class="p">;</span>
+            
+            <span class="nv">$consulta</span><span class="o">=</span><span class="s2">"SELECT * FROM usuario;"</span><span class="p">;</span>
+            
+            <span class="nv">$resultado</span><span class="o">=</span><span class="nf">mysqli_query</span><span class="p">(</span><span class="nv">$conector</span><span class="p">,</span><span class="nv">$consulta</span><span class="p">);</span>
+            <span class="nv">$fila</span><span class="o">=</span><span class="nf">mysqli_fetch_assoc</span><span class="p">(</span><span class="nv">$resultado</span><span class="p">);</span> <span class="c1">// Capturo fila de consulta en $fila</span>
+            <span class="k">echo</span> <span class="s2">"&lt;table&gt;"</span>
+                    <span class="mf">.</span> <span class="s2">"&lt;thead&gt;"</span>
+                        <span class="mf">.</span> <span class="s2">"&lt;tr&gt;"</span><span class="p">;</span>
+                            <span class="k">foreach</span><span class="p">(</span><span class="nv">$fila</span> <span class="k">as</span> <span class="nv">$campo</span> <span class="o">=&gt;</span> <span class="nv">$dato</span><span class="p">){</span> <span class="c1">// Capturamos el nombre del campo</span>
+                                <span class="k">echo</span> <span class="s2">"&lt;th&gt;</span><span class="nv">$campo</span><span class="s2">&lt;/th&gt;"</span><span class="p">;</span>
+                            <span class="p">}</span>
+                        <span class="k">echo</span> <span class="s2">"&lt;/tr&gt;"</span>
+                    <span class="mf">.</span> <span class="s2">"&lt;/thead&gt;"</span>
+                    <span class="mf">.</span> <span class="s2">"&lt;tbody&gt;"</span><span class="p">;</span>
+            
+            <span class="k">while</span> <span class="p">(</span><span class="nv">$fila</span> <span class="o">!=</span> <span class="kc">NULL</span><span class="p">){</span> <span class="c1">// Hasta que no queden más filas</span>
+                <span class="k">echo</span> <span class="s2">"&lt;tr&gt;"</span><span class="p">;</span>
+                <span class="k">foreach</span><span class="p">(</span><span class="nv">$fila</span> <span class="k">as</span> <span class="nv">$dato</span><span class="p">){</span> <span class="c1">// Imprime uno a uno los campos de la fila</span>
+                    <span class="k">echo</span> <span class="s2">"&lt;td&gt;</span><span class="nv">$dato</span><span class="s2">&lt;/td&gt;"</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">echo</span> <span class="s2">"&lt;/tr&gt;"</span><span class="p">;</span>
+                <span class="nv">$fila</span><span class="o">=</span><span class="nf">mysqli_fetch_assoc</span><span class="p">(</span><span class="nv">$resultado</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">echo</span> <span class="s2">"&lt;/tbody&gt;&lt;/table&gt;"</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="cp">?&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p>Y por supuesto si insertas posteriormente más datos en la tabla, los mostrará simplemente recargando la página.</p>
+
+<p><img src="/img/posts/20150204_3.png" alt="Tabla con más datos" /></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#php</span>
+        
+          <span class="tag">#netbeans</span>
+        
+          <span class="tag">#mysql</span>
+        
+          <span class="tag">#mysqli</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

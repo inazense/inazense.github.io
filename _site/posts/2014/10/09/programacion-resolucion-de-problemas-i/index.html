@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programación. Resolución de problemas I | Programando a Pasitos</title>
+<meta name="description" content="Blog de programación por Inazio Claver">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Programación. Resolución de problemas I | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Programación. Resolución de problemas I" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Elementos de un programa" />
+<meta property="og:description" content="Elementos de un programa" />
+<link rel="canonical" href="http://localhost:4000/posts/2014/10/09/programacion-resolucion-de-problemas-i/" />
+<meta property="og:url" content="http://localhost:4000/posts/2014/10/09/programacion-resolucion-de-problemas-i/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2014-10-09T08:10:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Programación. Resolución de problemas I" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver","url":"https://github.com/inazense"},"dateModified":"2014-10-09T08:10:00+02:00","datePublished":"2014-10-09T08:10:00+02:00","description":"Elementos de un programa","headline":"Programación. Resolución de problemas I","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2014/10/09/programacion-resolucion-de-problemas-i/"},"url":"http://localhost:4000/posts/2014/10/09/programacion-resolucion-de-problemas-i/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Programación. Resolución de problemas I</h1>
+    <div class="post-meta">
+      <time datetime="2014-10-09T08:10:00+02:00">09 Oct 2014</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#programacion" class="post-category">programacion</a>
+        
+      
+    </div>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="elementos-de-un-programa">Elementos de un programa</h2>
+
+<ul>
+  <li><strong>Palabras clave</strong>. Palabras que ya tienen un significado concreto en el lenguaje de programación y no pueden usarse para nada más.</li>
+</ul>
+
+<p>Cada lenguaje de programación tiene las suyas, aunque algunas son bastante comunes. Ejemplo -&gt; while, for, if, …</p>
+
+<ul>
+  <li><strong>Identificadores</strong>. No son palabras clave. Sirven para dar nombres a objetos (constantes,variables, procedimientos y funciones, etc.). Son una secuencia de letas (a-z, A-Z), dígitos (0-9) y *-*.</li>
+</ul>
+
+<p>Los lenguajes de programación suelen exigir que empiecen por una letras.</p>
+
+<ul>
+  <li><strong>Operadores</strong>. + - * / &lt; &gt; = …</li>
+  <li><strong>Separadores</strong>. “,” “;” “.”</li>
+</ul>
+
+<h2 id="tipos-de-datos">Tipos de datos</h2>
+
+<p>En matemáticas es importante tipificar los datos de un problema. ¿Cuál es la división entera entre 1 y 2? ¡0!</p>
+
+<p>Para saber de que operación se trata es necesario saber el tipo de los datos, para evitar errores.
+En un programa todos los datos han de tener un tipo que los defina.</p>
+
+<p>Son:</p>
+<ul>
+  <li>Un conjunto de valores</li>
+  <li>Un conjunto de operaciones (que podemos hacer con ellos)</li>
+  <li>Una forma de almacenamiento</li>
+</ul>
+
+<p>Clases de tipos de datos</p>
+<ul>
+  <li>Predefinidos en el lenguaj de programación (entero, real, caracter, etc).</li>
+  <li>Definidos por el usuario</li>
+</ul>
+
+<h2 id="datos-escalares">Datos escalares</h2>
+
+<p>Vienen caracterizados por:</p>
+<ul>
+  <li>Dominio de valores finito</li>
+  <li>La existencia de una relación de orden total entre sus valores</li>
+</ul>
+
+<p>Dos datos, A y B, de un mismo tipo escalar, pueden ser comparados resultando de toda operación de relación: =, &lt;, &gt;, &lt; &gt;, &lt;=, &gt;=</p>
+
+<p>El resultado de toda operación es un valor de tipo booleano, el tipo de dato más sencillo. Sólo puede tomar dos valores, verdadero o falso.</p>
+
+<p>Los datos escalares admiten también dos operadores unitarios, las funciones sucesor y predecesor, que devuelven como resultado el valor de dato que sigue o precede al expresado como argumento.</p>
+
+<p>Ejemplos sobre tipo entero:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Sucesor(17)=18;
+Predecesor(5)=4;
+</code></pre></div></div>
+
+<p>Ejemplos sobre tipo caracter:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Sucesor (“H”)=”I”;
+Predecesor(“N”)=”M”;
+</code></pre></div></div>
+
+<p>La función sucesor no está definida para el mayor de los elementos del dominio de valores de un tipo escalable.</p>
+
+<p>La función predecesor no está definida para el menor de ellos.</p>
+
+<h2 id="tipos-escalares-definidos-por-enumeración">Tipos escalares definidos por enumeración</h2>
+
+<p>Es un subconjunto de los datos escalares.
+Tipo de datos definidos por el usuario.</p>
+
+<p>Ejemplos:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Tipo semana=(lunes, martes, miércoles, jueves, viernes);
+Lunes&lt;jueves
+Predecesor(“Martes”)=Lunes
+Sucesor(“Jueves”)=viernes
+</code></pre></div></div>
+
+<h2 id="tipo-booleano">Tipo booleano</h2>
+
+<p>Tipo de datos predefinido que sólo toma dos valores, verdadero y falso.
+Operadores a emplear: AND, OR y NOT</p>
+
+<p>Ejemplos:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Lunes&lt;Martes=VERDADERO
+Lunes&lt;&gt;Lunes=FALSO
+Martes&lt;=Jueves=VERDADERO
+(Lunes&lt;Martes)AND(jueves=viernes)=FALSO
+(predecesor(martes)=martes)OR(sucesor(lunes)=martes)=VERDADERO
+</code></pre></div></div>
+
+<p><img src="/img/posts/20141009_1.png" alt="Tipos de operadores lógicos" /></p>
+
+<p><strong>Leyenda</strong>: <strong>T</strong> -&gt; True <strong>F</strong> -&gt; False <strong>N</strong> -&gt; No evaluado</p>
+
+<h2 id="tipo-entero">Tipo entero:</h2>
+
+<p>En un espacio finito de memoria no se puede representar un número infinito de valores.</p>
+
+<p>El tipo entero escoge dentro de cada compilado y lenguaje concreto, el subconjunto de enteros representables.
+El número total de datos representados depende del número de bits dedicados a representar datos de un tipo entero.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Con n bits es posible representar 2n datos diferentes
+</code></pre></div></div>
+
+<p>Usando la representación en complemento a 2, resultan los siguientes valores.</p>
+<ul>
+  <li>Para 16 bits, 216=65536 datos enteros, desde -32768 hasta 32767</li>
+  <li>Para 32 bits, 232…</li>
+</ul>
+
+<p>Los datos enteros se escribirán en algoritmos de notación arábiga, eventualmente precedidos por espacios en blanco y por un signo + o – (el signo se puede omitir si es positivo).</p>
+
+<h2 id="constantes">Constantes</h2>
+
+<p>Un dato constante es un dato de valor inalterable durante la ejecución del programa.
+Una constante se puede expresar en un algoritmo de forma explícita: 1000, 3.1416, Verdad, ‘A’, etc.</p>
+
+<p>También se puede expresar de forma simbólica, asociándole como nombre simbólico un identificador, así se incrementan la legibilidad del programa y se facilitan sus posteriores modificaciones, ya que el valor de la constante sólo hay que modificarlo en su definición.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Pi:=3.1416 ;letraA:=’A’; límite:=100;
+</code></pre></div></div>
+
+<h2 id="variables">Variables</h2>
+
+<p>Una variable se define como un dato de valor asociado que puede cambiar a lo largo de la ejecución del programa, siempre dentro de un determinado tipo de dato.</p>
+
+<p>Las variables se declaran en un algoritmo, al principio asociándoles como nombre simbólico un identificador e indicando de que tipo de datos son.</p>
+
+<p>Una variable no es más que una posición de memoria en la que hemos reservado cierto espacio de almacenamiento para un valor de un tipo de dato determinado (el espacio es el necesario para almacenar valores de ese tipo), y le hemos puesto un nombre para referirnos a ella.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>indice,contador:entero;
+medida:real;
+c:carácter;
+</code></pre></div></div>
+
+<h2 id="operación-de-asignación">Operación de asignación</h2>
+
+<p>Una variable en un programa tiene un valor, pero en principio éste es un valor indefinido. A veces el compilador asigna valores iniciales por defecto.</p>
+
+<p>La acción de asociar un nuevo valor a una variable se denomina asignación. La instrucción de asignación utiliza el operador “=” para distinguirlo del operador relacional de igualdad “==”. La sintaxis es:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>variable:=expresión
+</code></pre></div></div>
+
+<p>Al ejecutar la instrucción se evalúa la expresión y se asigna dicho valor resultate a la variable, de tal manera que en la posición de memoria asociada, está guardado a parte de ese momento dicho valor.</p>
+
+<p>La implicación es que el resultado de evaluar la expresión ha de ser del mismo tipo de datos que la variable. Si no, se produce un error por incompatibilidad entre los operandos.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Edad:=33; letra:=’A’; peso:=77.50; otroPeso:=peso+50;x:=x+1;c:=a*b+c/d; resultado:=(b+c)*(x-10)
+</code></pre></div></div>
+
+<h2 id="evaluación-de-expresiones">Evaluación de expresiones</h2>
+
+<p>En muchas partes de un algoritmo o programa pueden aparecer expresiones que es necesario evaluar.</p>
+
+<p>Su evaluación puede dar lugar a un dato que puede ser de cualquier tipo (aunque participen datos que son de otros diferentes).</p>
+
+<p>Con ese dato podemos hacer múltiples cosas, asignándoselo a una variable, usarlo como parámetros, de función o procedimiento, o servir para tomar decisiones dentro de un programa, etc.</p>
+
+<p>Los paréntesis pueden ser usados para alterar la prioridad de los operadores en una expresión (en caso de una misma prioridad, la expresión se evalúa de izquierda a derecha).</p>
+
+<p><strong>Prioridad.</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>NOT
+* / DIV MOD AND
++ - OR
+&lt; &lt;= == &gt;= &gt; &lt; &gt;
+</code></pre></div></div>
+
+<h2 id="composición-secuencial-de-acciones">Composición secuencial de acciones</h2>
+
+<p>Para diseñar las acciones que debe ejecutar un algoritmo, contemos hasta el momento con un repertorio de acciones.</p>
+
+<p>Necesitamos mecanismos que permiten establecer el orden en que deben ser ejecutadas las acciones de un algoritmo.</p>
+
+<p>El primer mecanismo de composición de acciones que vamos a presentar es la composición secuencial de acciones.</p>
+
+<p>Una composición secuencial de acciones la expresaremos escribiendo éstas en el orden que se desea que sean ejecutadas por el ordenador.</p>
+
+<p>Es decir, que se ejecutarán una tras otra en líneas de arriba hacia abajo (valga la redundancia, sí).</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A:=7;
+B:=3;
+C:=A+B;
+</code></pre></div></div>
+
+<h2 id="sintaxis-de-un-algoritmo">Sintaxis de un algoritmo</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{Comentario}
+
+“Declaración de tipos”
+“Declaración de constantes”
+“Declaración de variables”
+
+Principio
+            “instrucción 1”
+            “instrucción 2”
+            …
+            “instrucción N”
+Fin
+</code></pre></div></div>
+
+<h3 id="ejemplo-1">Ejemplo 1</h3>
+
+<p>Algoritmo multiplicar</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{Lee del teclado dos datos enteros y escribe por pantalla su producto}
+Variables
+            Multiplicado,multiplicador:entero;
+Principio
+            leerEntero(teclado,multiplicado);
+            leerEnterio(teclado,multiplicador);
+            escribirEntero(pantalla,multiplicado*multiplicador);
+Fin
+</code></pre></div></div>
+
+<p>Comentarios del ejemplo:</p>
+
+<p>Consta de una secuencia de tres acciones.
+Las dos primeras asignan valores a las variables multiplicado y multiplicador, leyéndolas del teclado.
+La tercera escribe por pantalla el producto de los valores leídos.</p>
+
+<p>Las palabras principio y fin se utilizan para delimitar la sección de descripción de acciones en el algoritmo.</p>
+
+<p>Se utiliza el carácter “;” como finalizador de las acciones programadas en el algoritmo.</p>
+
+<h3 id="qué-pasa-en-memoria">¿Qué pasa en memoria?</h3>
+
+<p>Algoritmo multiplicar</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{Lee del teclado dos datos enteros y escribe por pantalla su producto}
+Variables
+            Multiplicado,multiplicador:entero;
+Principio
+            leerEntero(teclado,multiplicado);
+            leerEnterio(teclado,multiplicador);
+            escribirEntero(pantalla,multiplicado*multiplicador);
+Fin
+</code></pre></div></div>
+
+<p>Algoritmo tonto2</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Algoritmo tonto1
+Variables
+            a,b:entero;
+principio
+            a:=75-8;
+            b:=a-9;
+fin
+
+/* En este caso, a=67 y b=58 */
+
+Algoritmo tonto2
+Variables
+            a,b:entero;
+principio
+            b:=a+3;
+fin
+
+/* Como no se inicializa A, ni a ni b obtienen ningún resultado. */
+</code></pre></div></div>
+
+<h3 id="composición-condicional-de-acciones">Composición condicional de acciones</h3>
+
+<p>En el diseño de un algoritmo en ocasiones es necesario plantear la resolución de un problema considerando cosas particulares y resolviendo cada uno de ellos mediante la correspondiente acción.</p>
+
+<p>El mecanismo de la composición condicional nos va a permitir implementar dicha estrategia de resolución de problemas.</p>
+
+<p>Su sintaxis es la siguiente</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Si &lt;expresión booleana&gt;
+    Entonces &lt;acción 1&gt;
+Si no &lt;acción 2&gt;
+Fsi
+</code></pre></div></div>
+
+<p>Se evalúa la expresión booleana obteniendo un valor verdadero / falso.
+Si el valor es verdadero, se ejecuta &lt;acción 1&gt;.
+Si es falso, se ejecuta &lt;acción 2&gt;.
+La claúsula <si no=""> se puede omitir con acción nula.</si></p>
+
+<p><strong>Ejemplo</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Algoritmo informeParidad
+{Lee un valor entero del teclado e informa por pantalla si el número es par o impar}
+Variables
+            numero:entero;
+principio:
+            leerEntero(teclado,numero);
+            si (numero MOD 2 = 0)
+                        entonces escribirCadena(pantalla,”Es par”);
+                        si no escribirCadena(pantalla,”Es impar”);
+            fsi
+fin
+</code></pre></div></div>
+
+<h3 id="composición-iterativa-de-acciones">Composición iterativa de acciones</h3>
+
+<p>Ésta composición permite describir métodos de resolución de problemas aplicando el métido de inducción.</p>
+
+<p>Resolución de problemas en caso trivial:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{Solución de P0}
+i=0; {“i” representa el índice del problema resuelto}
+mientras que no esté resuelto el problema “P” hacer
+            i=i+1;
+            “Resolver problema P, a partir de la solución del problema Pi+1”
+Fmq
+</code></pre></div></div>
+
+<h3 id="puntos-clave-del-método">Puntos clave del método</h3>
+
+<p>Identificar un caso trivial del problema y dar su solución.
+Encontrar la ley de recurrencia que permita resolver el problema Pi. Partir de la solución del problema Pi-1.
+Expresar la condición que indique la resolución del problema objetivo (P).</p>
+
+<p><strong>Sintaxis y semántica de la composición iterativa</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Mientras que &lt;expresión Booleana&gt; hacer
+            &lt;acción&gt;
+Fmq
+</code></pre></div></div>
+
+<p>Evaluar la expresión booleana obteniendo comoresultado un valor verdadero o falso. Si el valor anterior es verdad, ejecutar la acción y volver al punto anterior. En caso contrario dar por concluida la ejecución de la acción iterativa.</p>
+
+<p>Ejemplo:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Algoritmo sumaSecuenciaEnteros
+{Lee una secuencia de datos que finaliza con un Cer0 y escribe por pantalla la suma de los datos leídos}
+Variables
+            numero:entero;{último número leído}
+            sumaAcumulada:entero{acumula la suma de los datos leídos}
+principio
+            escribirCadena(pantalla,”Escriba secuencia de datos acabada con un cero 0:”);
+            sumaAcumulada:=0; {Solución inicial (trivial) al problema}
+            leerEntero(teclado,numero);
+            mientras que numero &lt; &gt; 0 hacer
+                        sumaAcumulada:=sumaAcumulada+numero; {ley de recurrencia}
+                        leerEntero(teclado,numero);
+            fmq
+            escribirCadena(pantalla,”Los datos leídos suman: “);
+            escribirEntero(pantalla,sumaAcumulada);
+            acabarLinea(pantalla);
+fin
+</code></pre></div></div>
+
+<h3 id="ejercicios-cuántas-veces-se-ejecutan-los-bucles">Ejercicios. ¿Cuántas veces se ejecutan los bucles?</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Algoritmo1
+Variables
+            termino:booleano;
+            cuenta:entero;
+principio
+            termino:=falso;
+            mientras que NOT termino hacer
+                        n:=n+1;
+                        termino:=verdad;
+            fmq
+fin
+
+Algoritmo2
+termino:=falso;
+mientras que NOT termino hacer
+            n=n+1;
+            termino:=falso;
+fmq
+
+Algoritmo3
+cuenta:=0;
+mientras que cuenta&lt;6 hacer
+            n:=n+1;
+            cuenta:=cuenta+2;
+fmq
+
+Algoritmo4
+cuenta:=10;
+mientras que cuenta&gt;0 hacer
+            n:=n+1;
+            cuenta:=cuenta-3;
+fmq
+</code></pre></div></div>
+
+<h3 id="soluciones">Soluciones</h3>
+
+<ul>
+  <li>Algoritmo 1: 1 vez</li>
+  <li>Algoritmo 2: Bucle infinito</li>
+  <li>Algoritmo 3: 3 veces</li>
+  <li>Algoritmo 4: 4 veces</li>
+</ul>
+
+<h2 id="tablas-de-la-verdad">Tablas de la verdad</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>X</th>
+      <th>Y</th>
+      <th>AND</th>
+      <th>X</th>
+      <th>Y</th>
+      <th>OR</th>
+      <th>X</th>
+      <th>NOT(X)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>V</td>
+      <td>V</td>
+      <td>V</td>
+      <td>V</td>
+      <td>V</td>
+      <td>V</td>
+      <td>V</td>
+      <td>V</td>
+    </tr>
+    <tr>
+      <td>V</td>
+      <td>F</td>
+      <td>F</td>
+      <td>V</td>
+      <td>F</td>
+      <td>V</td>
+      <td>F</td>
+      <td>V</td>
+    </tr>
+    <tr>
+      <td>F</td>
+      <td>V</td>
+      <td>F</td>
+      <td>F</td>
+      <td>V</td>
+      <td>V</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>F</td>
+      <td>F</td>
+      <td>F</td>
+      <td>F</td>
+      <td>F</td>
+      <td>F</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="representación-en-complemento-a-2">Representación en complemento a 2</h2>
+
+<p>Para representar a los enteros internamente el compilador podría utilizar un bit para discriminar el signo, pero esto no funciona, ya que habría dos ceros.</p>
+
+<p>La representación en complemento a dos garantiza la existencia de un solo 0 y algunas ventajas adicionales.</p>
+
+<p>Un número en complemento a 2 se representa así:</p>
+<ul>
+  <li>Si es positivo o cero, se codifica en binario en los bits destinados a ello</li>
+  <li>Si es negativo, se codifica su valor absoluto en binario, se hace un NOT de cada bit y se suma 1</li>
+</ul>
+
+<p>Ejemplo. Codificación de -19 usando 8 bits</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-19 en binario à 00010011
+Niego cada bit à 11101100
+Sumo 1, obteniendo à 19:11101101
+</code></pre></div></div>
+
+<p>Se puede ver que se ha desbordado la capacidad de la máquina sumando un número negativo muy grande.</p>
+
+<p>Número máximo representable 217-1=Al sumarle luego uno no vale para ocho bits.</p>
+
+<h2 id="ventajas-del-complemento-a-2">Ventajas del complemento a 2</h2>
+
+<p>Funciona perfectamente la suma de bits.
+Ejemplos:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>19 en binario:00010011
+19:11101101
+19-1900 0000 0000
+9 en binario:00001001
+-9 en binario:11110111
+19-9=10:00001010
+28/(+)00011100 à (-)11100100
+19-9=28/11100100
+</code></pre></div></div>
+
+<h2 id="tipo-entero-operadores">Tipo entero. Operadores</h2>
+
+<p>Suma – Resta – Multiplicación – DIV (División entera) – MOD (resto de división entera).</p>
+
+<p>Orden de prioridad:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>* DIV MOD
++ -
+</code></pre></div></div>
+
+<p>Ejemplos:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>5 DIV 8 = 0
+15 MOD 4 =3
+3+4*5-6/2=3+(4*5)-(6/2)=20
+</code></pre></div></div>
+
+<h2 id="tipo-entero-procedimiento-y-funciones-de-biblioteca">Tipo entero. Procedimiento y funciones de biblioteca</h2>
+
+<p>Los lenguajes de programación nos suelen ofrecer funciones y procedimientos ya desarrollados para que podamos usarlos.</p>
+
+<p>Para el tipo entero suelen ser frecuentes los siguientes:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">sqr(expresión entera)</code>: Función que calcula el cuadrado de la expresión</li>
+  <li><code class="language-plaintext highlighter-rouge">abs(exp,entera)</code>: Función que calcula el valor absoluto de la expresión</li>
+  <li><code class="language-plaintext highlighter-rouge">leerEntero(teclado,variableEntera)</code>: Procedimiento que muestra por pantalla el resultado de evaluar la expresión</li>
+</ul>
+
+<p><strong>¡Salud y coding!</strong></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#programacion</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

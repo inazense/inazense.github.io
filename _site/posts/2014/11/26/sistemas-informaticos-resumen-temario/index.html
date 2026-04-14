@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistemas informáticos. Resumen temario para examen teórico | Programando a Pasitos</title>
+<meta name="description" content="Resumen del temario teórico de sistemas informáticos. Arquitectura Von Neumann, disco duro, tipos de ordenadores, ciclo de vida de procesos, estructura de directorios Ubuntu, comandos Windows y permisos NTFS.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Sistemas informáticos. Resumen temario para examen teórico | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Sistemas informáticos. Resumen temario para examen teórico" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Resumen del temario teórico de sistemas informáticos. Arquitectura Von Neumann, disco duro, tipos de ordenadores, ciclo de vida de procesos, estructura de directorios Ubuntu, comandos Windows y permisos NTFS." />
+<meta property="og:description" content="Resumen del temario teórico de sistemas informáticos. Arquitectura Von Neumann, disco duro, tipos de ordenadores, ciclo de vida de procesos, estructura de directorios Ubuntu, comandos Windows y permisos NTFS." />
+<link rel="canonical" href="http://localhost:4000/posts/2014/11/26/sistemas-informaticos-resumen-temario/" />
+<meta property="og:url" content="http://localhost:4000/posts/2014/11/26/sistemas-informaticos-resumen-temario/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2014-11-26T14:32:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Sistemas informáticos. Resumen temario para examen teórico" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2014-11-26T14:32:00+01:00","datePublished":"2014-11-26T14:32:00+01:00","description":"Resumen del temario teórico de sistemas informáticos. Arquitectura Von Neumann, disco duro, tipos de ordenadores, ciclo de vida de procesos, estructura de directorios Ubuntu, comandos Windows y permisos NTFS.","headline":"Sistemas informáticos. Resumen temario para examen teórico","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2014/11/26/sistemas-informaticos-resumen-temario/"},"url":"http://localhost:4000/posts/2014/11/26/sistemas-informaticos-resumen-temario/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Sistemas informáticos. Resumen temario para examen teórico</h1>
+    <div class="post-meta">
+      <time datetime="2014-11-26T14:32:00+01:00">26 Nov 2014</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#sistemas-informáticos" class="post-category">Sistemas informáticos</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Resumen del temario teórico de sistemas informáticos. Arquitectura Von Neumann, disco duro, tipos de ordenadores, ciclo de vida de procesos, estructura de directorios Ubuntu, comandos Windows y permisos NTFS.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="componentes-de-un-sistema-informático">Componentes de un sistema informático</h2>
+
+<p>Es el conjunto de recursos interrelacionados, hardware, software y de recursos humanos que permite almacenar y procesar información.</p>
+
+<h2 id="arquitectura-del-ordenador">Arquitectura del ordenador</h2>
+
+<h3 id="esquema-de-von-neumann">Esquema de Von Neumann</h3>
+
+<p>Claves de arquitectura Von Neumann:</p>
+<ul>
+  <li>En la memoria del ordenador se almacenan simultáneamente datos e instrucciones.</li>
+  <li>Se puede acceder a la dirección específica en memoria indicando donde se encuentra almacenada.</li>
+  <li>La ejecución de un programa se realiza de forma secuencial pasando de una instrucción a la que sigue inmediatamente.</li>
+</ul>
+
+<p><img src="/img/posts/20141126_1.png" alt="Esquema de Von Neumann" /></p>
+
+<h3 id="partes">Partes</h3>
+
+<ul>
+  <li><strong>Periféricos.</strong> Sirven para introducir/extraer datos del ordenador.</li>
+  <li><strong>Canales.</strong> Coordina los periféricos con el sistema.</li>
+  <li><strong>Memoria central.</strong> Encargada de almacenar instrucciones de programa, datos y resultados.</li>
+  <li><strong>Unidad de control.</strong> Supervisa y controla las operaciones internas.</li>
+  <li><strong>Unidad aritmético lógica.</strong> Ejecuta todas las operaciones de tipo aritmético y lógico.</li>
+</ul>
+
+<h2 id="procesador">Procesador</h2>
+
+<h3 id="unidad-de-control">Unidad de control</h3>
+
+<p>Controla y supervisa los distintos componentes del sistema y establece el orden y ejecución de instrucciones.</p>
+
+<p><strong>Fases de trabajo:</strong></p>
+<ul>
+  <li>Leer las instrucciones de memoria central tal como fueron almacenadas.</li>
+  <li>Interpretar las instrucciones.</li>
+  <li>Ordena y establece conexiones con las demás unidades para operar.</li>
+  <li>Lee datos necesarios de memoria central para ejecutar la instrucción.</li>
+  <li>Opera con esos datos.</li>
+  <li>Almacena resultado en memoria central.</li>
+</ul>
+
+<p><strong>Elementos UC:</strong></p>
+<ul>
+  <li><strong>Reloj.</strong> Marca tiempos de actuación de dispositivos controlados.</li>
+  <li><strong>Registros:</strong>
+    <ul>
+      <li>De instrucción. Instrucción que se está ejecutando.</li>
+      <li>Contador. Dirección de memoria de la próxima instrucción a ejecutar.</li>
+      <li>Decodificador. Extrae y analiza el código de operación de la instrucción en curso.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="alu-partes">ALU. Partes</h3>
+
+<p><strong>Circuitos operacionales:</strong></p>
+<ul>
+  <li>Sumador. Realiza cualquier operación aritmética.</li>
+  <li>Complementador. Necesario para las restas de números.</li>
+  <li>Lógicos. Compara campos bit a bit y cambia la dirección de la siguiente instrucción si el resultado coincide o no con el de la comparación.</li>
+</ul>
+
+<p><strong>Registros generales:</strong></p>
+<ul>
+  <li>Acumuladores. Guarda resultados parciales.</li>
+  <li>Desplazamiento. Desplaza X posiciones a izquierda o derecha una posición de memoria.</li>
+  <li>Estado. Indica el resultado de la última operación ejecutada.</li>
+</ul>
+
+<h2 id="canales-buses">Canales (Buses)</h2>
+
+<p>Unidades de realización de entrada/salida de periféricos y memoria central.</p>
+
+<p>Tipos:</p>
+<ul>
+  <li><strong>Bus de datos.</strong> Circulan datos que intercambian procesador y periféricos. De doble sentido.</li>
+  <li><strong>Bus de direcciones.</strong> Circula la dirección de memoria central donde se quiere acceder. Sentido único hacia memoria central. Se clasifica en:
+    <ul>
+      <li>Canal selector. Dispositivos rápidos a la CPU.</li>
+      <li>Canal multiplexor. Dispositivos lentos a la CPU.</li>
+    </ul>
+  </li>
+  <li><strong>Bus de control.</strong> Circulan señales que marcan interrelaciones con la CPU.</li>
+</ul>
+
+<h2 id="memoria-central">Memoria central</h2>
+
+<p>Debe contener en todo momento los datos introducidos, los resultados intermedios y finales, las instrucciones y los programas.</p>
+
+<h2 id="periféricos">Periféricos</h2>
+
+<p>Unidades físicas que permiten introducir/extraer información del/al ordenador:</p>
+<ul>
+  <li>Unidades de entrada.</li>
+  <li>Unidades de salida.</li>
+  <li>Unidades de entrada/salida.</li>
+</ul>
+
+<h2 id="discos-magnéticos">Discos magnéticos</h2>
+
+<p>Sirven como soporte de almacenamiento para archivos de información, almacenados en uno o varios sectores de pistas circulares.</p>
+
+<h3 id="disco-duro">Disco duro</h3>
+
+<p>Dispositivo de almacenamiento no volátil que emplea un sistema de grabación magnética (MAGNETORESISTENCIA).</p>
+
+<p>Se compone de uno o varios platos unidos por un mismo eje que gira a gran velocidad dentro de una caja metálica sellada.</p>
+
+<p>Sobre cada plato, y en cada una de sus caras, se sitúa un cabezal de lectura/escritura que flota sobre una lámina de aire que genera la rotación de los discos.</p>
+
+<p>Para poder emplearlo hay que aplicar un formateo a bajo nivel que defina las particiones, que requerirá una fracción de espacio libre, según el formato empleado.</p>
+
+<p><img src="/img/posts/20141126_2.png" alt="Estructura del disco duro" /></p>
+
+<p><strong>Características:</strong></p>
+<ul>
+  <li><strong>Tiempo de acceso.</strong> Tiempo que tarda la aguja en situarse en pista y sector determinado.</li>
+  <li><strong>Tiempo de búsqueda.</strong> Tiempo de aguja en pista.</li>
+  <li><strong>Tiempo de lectura y escritura.</strong> Tiempo medio en escribir/leer información.</li>
+  <li><strong>Latencia.</strong> Tiempo en situarse en sector indicado.</li>
+  <li><strong>Velocidad de rotación.</strong> Revoluciones por minuto de los platos.</li>
+  <li><strong>Tasa de transferencia.</strong> Velocidad a la que se puede transferir datos a la computadora.</li>
+</ul>
+
+<p><strong>Direccionamiento:</strong></p>
+<ul>
+  <li><strong>Plato.</strong> Cada uno de los discos del disco duro.</li>
+  <li><strong>Cara.</strong> Cada lado del plato.</li>
+  <li><strong>Cabeza.</strong> Número de cabezales.</li>
+  <li><strong>Cilindro.</strong> Conjunto de varios platos.</li>
+  <li><strong>Sector.</strong> Cada divisor de una pista.</li>
+</ul>
+
+<h3 id="discos-ópticos">Discos ópticos</h3>
+
+<p>Están constituidos por pistas en espiral para aprovechar mejor el medio y no desperdiciar espacio.</p>
+
+<p>La espiral se genera a velocidad lineal constante, por lo que conforme el láser se aleja del centro reduce velocidad.</p>
+
+<p>El CD gira a velocidad angular variable.</p>
+
+<h2 id="ordenadores">Ordenadores</h2>
+
+<h3 id="mainframe">Mainframe</h3>
+
+<p>Computadora central. CPU muy veloz, gran cantidad de memoria y de almacenamiento externo. Permite miles de usuarios simultáneos.</p>
+
+<p>Diseñada para funcionar sin interrupción durante años y ser reparada sin apagarse.</p>
+
+<p>Usada por grandes empresas y gobiernos.</p>
+
+<h3 id="minicomputador">Minicomputador</h3>
+
+<p>Equipo multiusuario que funciona como servidor gracias a su mayor memoria de sistema, que le permite repartir mejor los recursos.</p>
+
+<h3 id="microcomputadora">Microcomputadora</h3>
+
+<p>Ordenador de muy reducidas dimensiones pensado para tareas muy específicas. Puede usarse como PC pero sin su potencia. Ej: Arduino.</p>
+
+<h2 id="ciclo-de-vida-de-los-procesos">Ciclo de vida de los procesos</h2>
+
+<p><img src="/img/posts/20141126_3.png" alt="Ciclo de vida de los procesos" /></p>
+
+<h3 id="criterio-de-planificación">Criterio de planificación</h3>
+
+<ul>
+  <li><strong>Uso de CPU.</strong> Tratar de usar al 100% la CPU todo el tiempo posible.</li>
+  <li><strong>Tasa de procesamiento.</strong> Cantidad de procesos que se pueden ejecutar por unidad de tiempo.</li>
+  <li><strong>Tiempo de ejecución.</strong> Intervalo entre orden de ejecución y finalización.</li>
+  <li><strong>Tiempo de espera.</strong> Suma de periodos de espera en cola de procesos.</li>
+  <li><strong>Tiempo de respuesta.</strong> Intervalo entre que se envía solicitud hasta la primera respuesta.</li>
+</ul>
+
+<h2 id="estructura-de-directorios-ubuntu">Estructura de directorios Ubuntu</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Directorio</th>
+      <th>Descripción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>BIN</td>
+      <td>Comandos binarios especiales para usuarios del sistema</td>
+    </tr>
+    <tr>
+      <td>BOOT</td>
+      <td>Configuración de arranque</td>
+    </tr>
+    <tr>
+      <td>DEV</td>
+      <td>Configuración periféricos del sistema</td>
+    </tr>
+    <tr>
+      <td>HOME</td>
+      <td>Directorios de usuarios salvo root</td>
+    </tr>
+    <tr>
+      <td>LIB</td>
+      <td>Bibliotecas compartidas de programas</td>
+    </tr>
+    <tr>
+      <td>MNT</td>
+      <td>Sistemas de archivos montados temporalmente</td>
+    </tr>
+    <tr>
+      <td>SRV</td>
+      <td>Datos servidos por el sistema</td>
+    </tr>
+    <tr>
+      <td>TMP</td>
+      <td>Archivos temporales</td>
+    </tr>
+    <tr>
+      <td>VAR</td>
+      <td>Archivos variables (logs y bases de datos, por ejemplo)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="comandos-panel-de-control-de-windows">Comandos Panel de Control de Windows</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Comando</th>
+      <th>Descripción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">services.msc</code></td>
+      <td>Administrador de servicios</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">secpol.msc</code></td>
+      <td>Configuración de seguridad local</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">perfmon</code></td>
+      <td>Monitor de rendimiento</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mmc</code></td>
+      <td>Nueva consola de administración</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">regedit</code></td>
+      <td>Editor de registros</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">msconfig</code></td>
+      <td>Utilidad de configuración del sistema</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="sistema-de-archivos">Sistema de archivos</h2>
+
+<p>Componente encargado de administrar y facilitar el uso de memoria periférica.</p>
+
+<h2 id="permisos-ntfs">Permisos NTFS</h2>
+
+<ul>
+  <li>Concede permisos a carpetas y archivos para controlar nivel de acceso.</li>
+  <li>Comprimir archivos y crear cuentas de almacenamiento.</li>
+  <li>Cifrar archivos usando EFS.</li>
+</ul>
+
+<p><strong>¡Salud y coding!</strong></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#sistemas-informaticos</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

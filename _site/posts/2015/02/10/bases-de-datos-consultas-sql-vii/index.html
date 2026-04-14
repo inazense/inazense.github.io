@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bases de datos. Consultas SQL (VII) | Programando a Pasitos</title>
+<meta name="description" content="Hoja de ejercicios 10 de la unidad 3. Consultas dentro de otras instrucciones, creación de tablas, vistas y actualización de datos.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bases de datos. Consultas SQL (VII) | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bases de datos. Consultas SQL (VII)" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Hoja de ejercicios 10 de la unidad 3. Consultas dentro de otras instrucciones, creación de tablas, vistas y actualización de datos." />
+<meta property="og:description" content="Hoja de ejercicios 10 de la unidad 3. Consultas dentro de otras instrucciones, creación de tablas, vistas y actualización de datos." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/02/10/bases-de-datos-consultas-sql-vii/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/02/10/bases-de-datos-consultas-sql-vii/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-02-10T05:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bases de datos. Consultas SQL (VII)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-02-10T05:00:00+01:00","datePublished":"2015-02-10T05:00:00+01:00","description":"Hoja de ejercicios 10 de la unidad 3. Consultas dentro de otras instrucciones, creación de tablas, vistas y actualización de datos.","headline":"Bases de datos. Consultas SQL (VII)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/02/10/bases-de-datos-consultas-sql-vii/"},"url":"http://localhost:4000/posts/2015/02/10/bases-de-datos-consultas-sql-vii/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Bases de datos. Consultas SQL (VII)</h1>
+    <div class="post-meta">
+      <time datetime="2015-02-10T05:00:00+01:00">10 Feb 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#bases-de-datos" class="post-category">Bases de datos</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Hoja de ejercicios 10 de la unidad 3. Consultas dentro de otras instrucciones, creación de tablas, vistas y actualización de datos.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <p>Hoja de ejercicios 10 de la unidad 3</p>
+
+<h2 id="consultas-dentro-de-otras-instrucciones-ejercicios">CONSULTAS DENTRO DE OTRAS INSTRUCCIONES. EJERCICIOS</h2>
+
+<p>Tablas utilizadas: EMPLEADOS, DEPARTAMENTOS, PEDIDOS, PRODUCTOS y CLIENTES.</p>
+
+<ol>
+  <li>Añadir 100 euros de comisión a los empleados tengan una comisión menor de 500 euros o nula.</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">update</span> <span class="n">empleados</span>
+<span class="k">set</span> <span class="n">comision</span><span class="o">=</span><span class="n">comision</span><span class="o">+</span><span class="mi">100</span>
+<span class="k">where</span> <span class="n">comision</span> <span class="o">&lt;</span> <span class="mi">500</span> <span class="k">OR</span> <span class="n">COMISION</span> <span class="k">is</span> <span class="k">null</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Crear una tabla <code class="language-plaintext highlighter-rouge">clientes_producto_20</code> con las columnas <code class="language-plaintext highlighter-rouge">cliente_no</code> y <code class="language-plaintext highlighter-rouge">nombre_cliente</code>, equivalentes a las de la tabla clientes, y <code class="language-plaintext highlighter-rouge">unidades_20</code> equivalente a la de la tabla pedidos, que contenga las filas de la tabla pedidos correspondientes al producto con número 20.</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">create</span> <span class="k">table</span> <span class="n">clientes_producto_20</span>
+<span class="k">select</span> <span class="n">cl</span><span class="p">.</span><span class="n">cliente_no</span> <span class="k">AS</span> <span class="s1">'cliente_no'</span><span class="p">,</span> <span class="n">nombre_no</span> <span class="k">AS</span> <span class="s1">'nombre'</span><span class="p">;</span>
+
+<span class="k">create</span> <span class="k">table</span> <span class="n">unidades_20</span>
+<span class="k">select</span> <span class="o">*</span>
+<span class="k">from</span> <span class="n">pedidos</span>
+<span class="k">where</span> <span class="n">producto_no</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Se quiere borrar al empleado MARTINEZ. Para poder hacerlo sin errores, previamente se habrán modificado aquellos empleados de los que sea jefe MARTINEZ poniéndoles como jefe al jefe supremo REY.</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">update</span> <span class="n">empleados</span>
+<span class="k">set</span> <span class="n">director</span> <span class="o">=</span> <span class="mi">7839</span>
+<span class="k">where</span> <span class="n">DIRECTOR</span> <span class="o">=</span> <span class="mi">7782</span><span class="p">;</span>
+
+<span class="k">delete</span> <span class="k">from</span> <span class="n">empleados</span>
+<span class="k">where</span> <span class="n">EMP_NO</span> <span class="o">=</span> <span class="mi">7782</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Actualizar la columna <code class="language-plaintext highlighter-rouge">debe</code> de la tabla clientes incluyendo en ella el importe total de los pedidos realizados por cada cliente.</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">update</span> <span class="n">clientes</span>
+<span class="k">set</span> <span class="n">debe</span><span class="o">=</span><span class="n">debe</span><span class="o">+</span> <span class="p">(</span>
+     <span class="k">select</span> <span class="k">sum</span><span class="p">(</span><span class="n">unidades</span><span class="o">*</span><span class="n">precio_actual</span><span class="p">)</span>
+     <span class="k">from</span> <span class="n">pedidos</span><span class="p">,</span> <span class="n">productos</span>
+     <span class="k">where</span> <span class="n">pedidos</span><span class="p">.</span><span class="n">PRODUCTO_NO</span> <span class="o">=</span> <span class="n">productos</span><span class="p">.</span><span class="n">PRODUCTO_NO</span> <span class="k">AND</span> <span class="n">clientes</span><span class="p">.</span><span class="n">CLIENTE_NO</span><span class="o">=</span><span class="n">pedidos</span><span class="p">.</span><span class="n">CLIENTE_NO</span>
+     <span class="k">group</span> <span class="k">by</span> <span class="n">CLIENTE_NO</span>
+<span class="p">)</span>
+<span class="k">where</span> <span class="n">CLIENTE_NO</span> <span class="k">in</span><span class="p">(</span>
+     <span class="k">SELECT</span> <span class="n">CLIENTE_NO</span>
+     <span class="k">from</span> <span class="n">pedidos</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Crear la vista EMPLEADOS_GARRIDO que incluirá los datos <code class="language-plaintext highlighter-rouge">empleado_no</code>, <code class="language-plaintext highlighter-rouge">apellido</code>, <code class="language-plaintext highlighter-rouge">salario_anual</code> de los empleados cuyo jefe es GARRIDO.</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">drop</span> <span class="k">view</span> <span class="n">if</span> <span class="k">exists</span> <span class="n">empleados_garrido</span><span class="p">;</span>
+<span class="k">create</span> <span class="k">view</span> <span class="n">empleados_garrido</span> <span class="k">as</span>
+<span class="k">select</span> <span class="n">emp_no</span><span class="p">,</span> <span class="n">apellido</span><span class="p">,</span> <span class="n">salario</span><span class="o">*</span><span class="mi">14</span>
+<span class="k">from</span> <span class="n">empleados</span>
+<span class="k">where</span> <span class="n">director</span> <span class="o">=</span> <span class="p">(</span>
+     <span class="k">select</span> <span class="n">EMP_NO</span>
+     <span class="k">from</span> <span class="n">empleados</span>
+     <span class="k">where</span> <span class="n">APELLIDO</span> <span class="k">like</span> <span class="s1">'GARRIDO'</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Crear una vista RESUMEN_DEP de los departamentos, incluyendo todos los departamentos hasta los que no tengan ningún empleado, que permita mostrar: Nombre del departamento, Número de empleados, Suma de sus salarios, Suma de sus comisiones.</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">drop</span> <span class="k">view</span> <span class="n">if</span> <span class="k">exists</span> <span class="n">resumen_dep</span><span class="p">;</span>
+
+<span class="k">create</span> <span class="k">view</span> <span class="n">resumen_dep</span> <span class="p">(</span><span class="n">departamento</span><span class="p">,</span> <span class="n">empleados</span><span class="p">,</span> <span class="n">salarios</span><span class="p">,</span> <span class="n">comisiones</span><span class="p">)</span> <span class="k">as</span>
+<span class="k">select</span> <span class="n">d</span><span class="p">.</span><span class="n">dep_no</span><span class="p">,</span> <span class="k">count</span><span class="p">(</span><span class="n">emp_no</span><span class="p">),</span> <span class="k">sum</span><span class="p">(</span><span class="n">ifnull</span><span class="p">(</span><span class="n">salario</span><span class="p">,</span><span class="mi">0</span><span class="p">)),</span> <span class="k">sum</span><span class="p">(</span><span class="n">ifnull</span><span class="p">(</span><span class="n">comision</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="k">from</span> <span class="n">departamentos</span> <span class="n">d</span>
+<span class="k">left</span> <span class="k">join</span> <span class="n">empleados</span> <span class="n">e</span>
+<span class="k">on</span> <span class="n">d</span><span class="p">.</span><span class="n">DEP_NO</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">DEP_NO</span>
+<span class="k">group</span> <span class="k">by</span> <span class="n">e</span><span class="p">.</span><span class="n">DEP_NO</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<ol>
+  <li>Crear una tabla CLIENTES_2 con las columnas <code class="language-plaintext highlighter-rouge">cliente_no</code>, <code class="language-plaintext highlighter-rouge">nombre_cliente</code> y <code class="language-plaintext highlighter-rouge">localidad_cliente</code> equivalentes a las de la tabla clientes.</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">drop</span> <span class="k">table</span> <span class="n">if</span> <span class="k">exists</span> <span class="n">clientes_2</span><span class="p">;</span>
+
+<span class="k">create</span> <span class="k">table</span> <span class="n">clientes_2</span>
+<span class="k">select</span> <span class="n">cliente_no</span><span class="p">,</span> <span class="n">nombre</span> <span class="k">as</span> <span class="s1">'nombre_no'</span><span class="p">,</span> <span class="n">localidad</span> <span class="k">as</span> <span class="s1">'localidad_no'</span>
+<span class="k">from</span> <span class="n">clientes</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Hacer un listado de las filas de la tabla <code class="language-plaintext highlighter-rouge">clientes_2</code> de empleados de SEVILLA.</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span>
+<span class="k">from</span> <span class="n">clientes_2</span>
+<span class="k">where</span> <span class="n">LOCALIDAD_NO</span> <span class="k">like</span> <span class="s1">'SEVILLA'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Crear una tabla <code class="language-plaintext highlighter-rouge">empleados_sin_comision</code> con las columnas <code class="language-plaintext highlighter-rouge">emp_no</code> y <code class="language-plaintext highlighter-rouge">apellido</code> de la tabla empleados y <code class="language-plaintext highlighter-rouge">dnombre</code> de la tabla departamentos, con los empleados que no tengan comisión.</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">drop</span> <span class="k">table</span> <span class="n">if</span> <span class="k">exists</span> <span class="n">empleados_sin_comision</span><span class="p">;</span>
+
+<span class="k">create</span> <span class="k">table</span> <span class="n">empleados_sin_comision</span>
+<span class="k">select</span> <span class="n">e</span><span class="p">.</span><span class="n">EMP_NO</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">APELLIDO</span><span class="p">,</span> <span class="n">d</span><span class="p">.</span><span class="n">DNOMBRE</span>
+<span class="k">from</span> <span class="n">empleados</span> <span class="n">e</span><span class="p">,</span> <span class="n">departamentos</span> <span class="n">d</span>
+<span class="k">where</span> <span class="n">e</span><span class="p">.</span><span class="n">DEP_NO</span> <span class="o">=</span> <span class="n">d</span><span class="p">.</span><span class="n">DEP_NO</span> <span class="k">AND</span> <span class="n">e</span><span class="p">.</span><span class="n">COMISION</span> <span class="k">is</span> <span class="k">null</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Insertar en la tabla anterior todos los empleados que tengan comisión igual a cero.</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">insert</span> <span class="k">into</span> <span class="n">empleados_sin_comision</span>
+<span class="k">select</span> <span class="n">e</span><span class="p">.</span><span class="n">EMP_NO</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">APELLIDO</span><span class="p">,</span> <span class="n">d</span><span class="p">.</span><span class="n">DNOMBRE</span>
+<span class="k">from</span> <span class="n">empleados</span> <span class="n">e</span><span class="p">,</span> <span class="n">departamentos</span> <span class="n">d</span>
+<span class="k">where</span> <span class="n">e</span><span class="p">.</span><span class="n">DEP_NO</span> <span class="o">=</span> <span class="n">d</span><span class="p">.</span><span class="n">DEP_NO</span> <span class="k">AND</span> <span class="n">e</span><span class="p">.</span><span class="n">COMISION</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Rebajar un 10% el precio de todos los productos de los que no se ha vendido nada.</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">update</span> <span class="n">productos</span>
+<span class="k">set</span> <span class="n">PRECIO_ACTUAL</span> <span class="o">=</span> <span class="n">PRECIO_ACTUAL</span><span class="o">*</span><span class="mi">0</span><span class="p">.</span><span class="mi">90</span>
+<span class="k">where</span> <span class="n">PRODUCTO_NO</span> <span class="k">not</span> <span class="k">in</span> <span class="p">(</span>
+     <span class="k">select</span> <span class="n">PRODUCTO_NO</span>
+     <span class="k">from</span> <span class="n">pedidos</span>
+     <span class="k">group</span> <span class="k">by</span> <span class="n">PRODUCTO_NO</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Añadir 50 euros al salario de los empleados de la empresa que pertenezcan a departamentos de MADRID y BARCELONA.</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">update</span> <span class="n">empleados</span>
+<span class="k">set</span> <span class="n">salario</span><span class="o">=</span><span class="n">salario</span><span class="o">+</span><span class="mi">50</span>
+<span class="k">where</span> <span class="n">DEP_NO</span> <span class="k">in</span> <span class="p">(</span>
+     <span class="k">select</span> <span class="n">DEP_NO</span>
+     <span class="k">from</span> <span class="n">departamentos</span>
+     <span class="k">where</span> <span class="n">LOCALIDAD</span> <span class="k">like</span> <span class="s1">'MADRID'</span> <span class="k">OR</span> <span class="n">LOCALIDAD</span> <span class="k">like</span> <span class="s1">'BARCELONA'</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Borrar los clientes de la tabla CLIENTES_2 que tengan pedidos de MESA MODELO UNION.</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">delete</span> <span class="k">from</span> <span class="n">clientes_2</span>
+<span class="k">where</span> <span class="n">cliente_no</span> <span class="k">in</span> <span class="p">(</span>
+     <span class="k">select</span> <span class="n">CLIENTE_NO</span>
+     <span class="k">from</span> <span class="n">pedidos</span>
+     <span class="k">where</span> <span class="n">PRODUCTO_NO</span> <span class="o">=</span> <span class="p">(</span>
+         <span class="k">select</span> <span class="n">producto_no</span>
+         <span class="k">from</span> <span class="n">productos</span>
+         <span class="k">where</span> <span class="n">descripcion</span> <span class="k">like</span> <span class="s1">'MESA MODELO UNION'</span>
+     <span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Incrementar en un 10% el salario del empleado que tiene al cliente que ha hecho la compra de mayor número de unidades.</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">update</span> <span class="n">empleados</span>
+<span class="k">set</span> <span class="n">salario</span><span class="o">=</span><span class="n">salario</span><span class="o">*</span><span class="mi">1</span><span class="p">.</span><span class="mi">10</span>
+<span class="k">where</span> <span class="n">EMP_NO</span> <span class="o">=</span> <span class="p">(</span>
+     <span class="k">select</span> <span class="n">VENDEDOR_NO</span>
+     <span class="k">from</span> <span class="n">clientes</span>
+     <span class="k">where</span> <span class="n">CLIENTE_NO</span> <span class="o">=</span> <span class="p">(</span>
+         <span class="k">select</span> <span class="n">cliente_no</span>
+         <span class="k">from</span> <span class="n">pedidos</span>
+         <span class="k">group</span> <span class="k">by</span> <span class="n">CLIENTE_NO</span>
+         <span class="k">order</span> <span class="k">by</span> <span class="k">sum</span><span class="p">(</span><span class="n">Unidades</span><span class="p">)</span> <span class="k">desc</span>
+         <span class="k">limit</span> <span class="mi">1</span>
+     <span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Crear la vista EMPLE_DEP20 que incluirá todos los datos de los empleados del departamento 20.</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">drop</span> <span class="k">view</span> <span class="n">if</span> <span class="k">exists</span> <span class="n">emple_dep_20</span><span class="p">;</span>
+
+<span class="k">create</span> <span class="k">view</span> <span class="n">emple_dep_20</span> <span class="k">as</span>
+<span class="k">select</span> <span class="o">*</span>
+<span class="k">from</span> <span class="n">empleados</span>
+<span class="k">where</span> <span class="n">DEP_NO</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Crear la vista VCLIENTES que contendrá el número de cliente, el nombre y la localidad de todos los clientes que han comprado alguna vez.</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">drop</span> <span class="k">view</span> <span class="n">if</span> <span class="k">exists</span> <span class="n">vclientes</span><span class="p">;</span>
+
+<span class="k">create</span> <span class="k">view</span> <span class="n">vclientes</span> <span class="p">(</span><span class="n">CLIENTE</span><span class="p">,</span> <span class="n">NOMBRE</span><span class="p">,</span> <span class="n">LOCALIDAD</span><span class="p">)</span> <span class="k">as</span>
+<span class="k">select</span> <span class="n">CLIENTE_NO</span><span class="p">,</span> <span class="n">NOMBRE</span><span class="p">,</span> <span class="n">LOCALIDAD</span>
+<span class="k">from</span> <span class="n">clientes</span>
+<span class="k">where</span> <span class="n">CLIENTE_NO</span> <span class="o">=</span> <span class="k">any</span> <span class="p">(</span>
+     <span class="k">select</span> <span class="k">distinct</span> <span class="n">CLIENTE_NO</span>
+     <span class="k">from</span> <span class="n">pedidos</span>
+     <span class="k">group</span> <span class="k">by</span> <span class="n">CLIENTE_NO</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Crear la vista EMPLEADOS_DIRECTORES que incluirá los datos <code class="language-plaintext highlighter-rouge">empleado_no</code>, <code class="language-plaintext highlighter-rouge">apellido</code> y <code class="language-plaintext highlighter-rouge">salario_anual</code> de los empleados cuyo oficio es DIRECTOR (salario anual = salario x 14). Una vez creada, mostrar los empleados cuyo salario total supere los 50.000 euros.</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">drop</span> <span class="k">view</span> <span class="n">if</span> <span class="k">exists</span> <span class="n">empleados_directores</span><span class="p">;</span>
+
+<span class="k">create</span> <span class="k">view</span> <span class="n">empleados_directores</span> <span class="k">as</span>
+<span class="k">select</span> <span class="n">EMP_NO</span><span class="p">,</span> <span class="n">APELLIDO</span><span class="p">,</span> <span class="n">salario</span><span class="o">*</span><span class="mi">14</span> <span class="k">AS</span> <span class="s1">'SalarioAnual'</span>
+<span class="k">from</span> <span class="n">empleados</span>
+<span class="k">where</span> <span class="n">oficio</span> <span class="k">like</span> <span class="s1">'DIRECTOR'</span><span class="p">;</span>
+
+<span class="k">select</span> <span class="o">*</span>
+<span class="k">from</span> <span class="n">empleados_directores</span>
+<span class="k">where</span> <span class="n">salarioAnual</span> <span class="o">&gt;</span> <span class="mi">50000</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Crear la vista JEFES que incluirá los apellidos de todos los empleados de la empresa y el número de empleados que tienen directamente a su cargo. Deben mostrarse todos los empleados sean o no jefes (0 si no lo son).</li>
+</ol>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">drop</span> <span class="k">view</span> <span class="n">if</span> <span class="k">exists</span> <span class="n">jefes</span><span class="p">;</span>
+
+<span class="k">create</span> <span class="k">view</span> <span class="n">jefes</span> <span class="k">as</span>
+<span class="k">select</span> <span class="n">e1</span><span class="p">.</span><span class="n">APELLIDO</span><span class="p">,</span> <span class="n">ifnull</span><span class="p">(</span><span class="k">count</span><span class="p">(</span><span class="n">e2</span><span class="p">.</span><span class="n">director</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span> <span class="k">AS</span> <span class="s1">'EMPLEADOS'</span>
+<span class="k">from</span> <span class="n">empleados</span> <span class="n">e1</span>
+<span class="k">left</span> <span class="k">join</span> <span class="n">empleados</span> <span class="n">e2</span>
+<span class="k">on</span> <span class="n">e2</span><span class="p">.</span><span class="n">DIRECTOR</span> <span class="o">=</span> <span class="n">e1</span><span class="p">.</span><span class="n">EMP_NO</span>
+<span class="k">group</span> <span class="k">by</span> <span class="n">e1</span><span class="p">.</span><span class="n">EMP_NO</span><span class="p">;</span>
+</code></pre></div></div>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#sql</span>
+        
+          <span class="tag">#bases de datos</span>
+        
+          <span class="tag">#consultas</span>
+        
+          <span class="tag">#vistas</span>
+        
+          <span class="tag">#subconsultas</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

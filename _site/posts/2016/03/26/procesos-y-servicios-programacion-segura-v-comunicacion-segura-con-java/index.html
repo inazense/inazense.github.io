@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Procesos y servicios. Programación segura V. Comunicación segura con Java | Programando a Pasitos</title>
+<meta name="description" content="Aprende programación segura en Java con JSSE y JAAS. Tutorial completo sobre SSL/TLS, autenticación, autorización, certificados digitales y comunicación segura entre cliente-servidor con ejemplos de código.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Procesos y servicios. Programación segura V. Comunicación segura con Java | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Procesos y servicios. Programación segura V. Comunicación segura con Java" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Aprende programación segura en Java con JSSE y JAAS. Tutorial completo sobre SSL/TLS, autenticación, autorización, certificados digitales y comunicación segura entre cliente-servidor con ejemplos de código." />
+<meta property="og:description" content="Aprende programación segura en Java con JSSE y JAAS. Tutorial completo sobre SSL/TLS, autenticación, autorización, certificados digitales y comunicación segura entre cliente-servidor con ejemplos de código." />
+<link rel="canonical" href="http://localhost:4000/posts/2016/03/26/procesos-y-servicios-programacion-segura-v-comunicacion-segura-con-java/" />
+<meta property="og:url" content="http://localhost:4000/posts/2016/03/26/procesos-y-servicios-programacion-segura-v-comunicacion-segura-con-java/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-03-26T05:10:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Procesos y servicios. Programación segura V. Comunicación segura con Java" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver","url":"https://github.com/inazense"},"dateModified":"2016-03-26T05:10:00+01:00","datePublished":"2016-03-26T05:10:00+01:00","description":"Aprende programación segura en Java con JSSE y JAAS. Tutorial completo sobre SSL/TLS, autenticación, autorización, certificados digitales y comunicación segura entre cliente-servidor con ejemplos de código.","headline":"Procesos y servicios. Programación segura V. Comunicación segura con Java","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2016/03/26/procesos-y-servicios-programacion-segura-v-comunicacion-segura-con-java/"},"url":"http://localhost:4000/posts/2016/03/26/procesos-y-servicios-programacion-segura-v-comunicacion-segura-con-java/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Procesos y servicios. Programación segura V. Comunicación segura con Java</h1>
+    <div class="post-meta">
+      <time datetime="2016-03-26T05:10:00+01:00">26 Mar 2016</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#java" class="post-category">Java</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Aprende programación segura en Java con JSSE y JAAS. Tutorial completo sobre SSL/TLS, autenticación, autorización, certificados digitales y comunicación segura entre cliente-servidor con ejemplos de código.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="jsse">JSSE</h2>
+
+<p><strong>JSSE</strong> (Java Secure Socket Extension) es un conjunto de paquetes que permiten el desarrollo de aplicaciones seguras en Internet. Proporciona un marco y una implementación para la versión <strong>Java</strong> de los protocolos <strong>SSL</strong> y <strong>TSL</strong> e incluye funcionalidad de encriptación de datos, autenticación de servidores, integridad de mensajes y autenticación de clientes.
+Con <strong>JSSE</strong>, los desarrolladores pueden ofrecer intercambio seguro de datos entre un cliente y un servidor que ejecuta un protocolo de aplicación, tales como <strong>HTTP</strong>, <strong>Telnet</strong> o <strong>FTP</strong>, a través de <strong>TCP/IP</strong>.
+Las clases de <strong>JSSE</strong> se encuentran en los paquetes <code class="language-plaintext highlighter-rouge">javax.net</code> y <code class="language-plaintext highlighter-rouge">javax.net.ssl</code>.</p>
+
+<h3 id="ssl">SSL</h3>
+
+<p>Las clas <strong>SSLSocket</strong> y <strong>SSLServerSocket</strong> representan sockets seguros y son derivadas de las ya familiares <strong>Socket</strong>  y <strong>ServerSocket</strong> respectivamente.</p>
+
+<p>JSSE tiene dos clases <strong>SSLServerSocketFactory</strong> y <strong>SSLSocketFactory</strong> para la creación de sockets seguros. No tienen constructor, se obtienen a través del método estatico <code class="language-plaintext highlighter-rouge">getDefault()</code>.</p>
+
+<p>Para obtener un socket servidor seguro o <strong>SSLServerSocket</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">SSLServerSocketFactory</span> <span class="n">sfact</span> <span class="o">=</span> <span class="o">(</span><span class="nc">SSLServerSocketFactory</span><span class="o">)</span>
+<span class="nc">SSLServerSocketFactory</span><span class="o">.</span><span class="na">getDefault</span><span class="o">();</span>
+<span class="nc">SSLServerSocket</span> <span class="n">servidorSSL</span> <span class="o">=</span> <span class="o">(</span><span class="nc">SSLServerSocket</span><span class="o">)</span>
+<span class="n">sfact</span><span class="o">.</span><span class="na">createServerSocket</span><span class="o">(</span><span class="n">puerto</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>El método <code class="language-plaintext highlighter-rouge">createServerSocket(int puerto)</code> devuelve un <strong>socket</strong> de servidor enlazado al puerto especificado. Para crear un <strong>SSLSocket</strong>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">SSLSocketFactory</span> <span class="n">sfact</span> <span class="o">=</span> <span class="o">(</span><span class="nc">SSLSocketFactory</span><span class="o">)</span>
+<span class="nc">SSLSocketFactory</span><span class="o">.</span><span class="na">getDefault</span><span class="o">();</span>
+<span class="nc">SSLSocket</span> <span class="nc">Cliente</span> <span class="o">=</span> <span class="o">(</span><span class="nc">SSLSocket</span><span class="o">)</span> <span class="n">sfact</span><span class="o">.</span><span class="na">createSocket</span><span class="o">(</span><span class="nc">Host</span><span class="o">,</span> <span class="n">puerto</span><span class="o">);</span>
+</code></pre></div></div>
+
+<h4 id="archivo-servidorssljava">Archivo ServidorSSL.java</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.net.ssl.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ServidorSSL</span> <span class="o">{</span>
+     
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">arg</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span> <span class="o">{</span>
+           
+           
+            <span class="c1">//System.setProperty("javax.net.ssl.keyStore", System.getProperty("user.dir") + "\\AlmacenSSL");</span>
+            <span class="c1">//System.setProperty("javax.net.ssl.keyStorePassword", "1234567");</span>
+           
+           
+            <span class="kt">int</span> <span class="n">puerto</span> <span class="o">=</span> <span class="mi">6000</span><span class="o">;</span>
+            <span class="nc">SSLServerSocketFactory</span> <span class="n">sfact</span> <span class="o">=</span> <span class="o">(</span><span class="nc">SSLServerSocketFactory</span><span class="o">)</span> <span class="nc">SSLServerSocketFactory</span><span class="o">.</span><span class="na">getDefault</span><span class="o">();</span>
+            <span class="nc">SSLServerSocket</span> <span class="n">servidorSSL</span> <span class="o">=</span> <span class="o">(</span><span class="nc">SSLServerSocket</span><span class="o">)</span> <span class="n">sfact</span><span class="o">.</span><span class="na">createServerSocket</span><span class="o">(</span><span class="n">puerto</span><span class="o">);</span>
+            <span class="nc">SSLSocket</span> <span class="n">clienteConectado</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+            <span class="nc">DataInputStream</span> <span class="n">flujoEntrada</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span> <span class="c1">//FLUJO DE ENTRADA DE CLIENTE</span>
+            <span class="nc">DataOutputStream</span> <span class="n">flujoSalida</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span> <span class="c1">//FLUJO DE SALIDA AL CLIENTE</span>
+           
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+                 
+                  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Esperando al cliente "</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
+                  <span class="n">clienteConectado</span> <span class="o">=</span> <span class="o">(</span><span class="nc">SSLSocket</span><span class="o">)</span> <span class="n">servidorSSL</span><span class="o">.</span><span class="na">accept</span><span class="o">();</span>
+                  <span class="n">flujoEntrada</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DataInputStream</span><span class="o">(</span><span class="n">clienteConectado</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">());</span>
+                  <span class="c1">// EL CLIENTE ME ENVIA UN MENSAJE</span>
+                  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Recibiendo del CLIENTE: "</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s">" \n\t"</span> <span class="o">+</span> <span class="n">flujoEntrada</span><span class="o">.</span><span class="na">readUTF</span><span class="o">());</span>
+                  <span class="n">flujoSalida</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DataOutputStream</span><span class="o">(</span><span class="n">clienteConectado</span><span class="o">.</span><span class="na">getOutputStream</span><span class="o">());</span>
+                  <span class="c1">// ENVIO UN SALUDO AL CLIENTE</span>
+                  <span class="n">flujoSalida</span><span class="o">.</span><span class="na">writeUTF</span><span class="o">(</span><span class="s">"SaIudos al cliente del servidor"</span><span class="o">);</span>
+                 
+            <span class="o">}</span>
+           
+           
+            <span class="c1">// CERRAR STREAMS Y SOCKETS</span>
+            <span class="n">flujoEntrada</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+            <span class="n">flujoSalida</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+            <span class="n">clienteConectado</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+            <span class="n">servidorSSL</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+           
+      <span class="o">}</span>
+     
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Crea una conexión sobre un socket servidor seguro y que atenderá hasta cuatro conexiones de clientes que se identificarán con un certificado válido. El servidor espera las conexiones, de cada cliente que se conecta recibe un mensaje y a continuación le envía un saludo.</p>
+
+<h4 id="archivo-clientessljava">Archivo ClienteSSL.JAVA</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.net.ssl.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ClienteSSL</span> <span class="o">{</span>
+     
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+           
+           
+            <span class="c1">//System.setProperty("javax.net.ssl.trustStore", System.getProperty("user.dir") + "\\UsuarioAlmacenSSL");</span>
+            <span class="c1">//System.setProperty("javax.net.ssl.trustStorePassword", "890123");</span>
+           
+            <span class="nc">String</span> <span class="nc">Host</span> <span class="o">=</span> <span class="s">"localhost"</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">puerto</span> <span class="o">=</span> <span class="mi">6000</span><span class="o">;</span>
+           
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"PROGRAMA CLIENTE INICIADO...."</span><span class="o">);</span>
+            <span class="nc">SSLSocketFactory</span> <span class="n">sfact</span> <span class="o">=</span> <span class="o">(</span><span class="nc">SSLSocketFactory</span><span class="o">)</span> <span class="nc">SSLSocketFactory</span><span class="o">.</span><span class="na">getDefault</span><span class="o">();</span>
+            <span class="nc">SSLSocket</span> <span class="nc">Cliente</span> <span class="o">=</span> <span class="o">(</span><span class="nc">SSLSocket</span><span class="o">)</span> <span class="n">sfact</span><span class="o">.</span><span class="na">createSocket</span><span class="o">(</span><span class="nc">Host</span><span class="o">,</span> <span class="n">puerto</span><span class="o">);</span>
+           
+            <span class="c1">// CREO FLUJO DE SALIDA AL SERVIDOR</span>
+            <span class="nc">DataOutputStream</span> <span class="n">flujoSalida</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DataOutputStream</span><span class="o">(</span><span class="nc">Cliente</span><span class="o">.</span><span class="na">getOutputStream</span><span class="o">());</span>
+           
+            <span class="c1">// ENVIO UN SALUDO AL SERVIDOR   </span>
+            <span class="n">flujoSalida</span><span class="o">.</span><span class="na">writeUTF</span><span class="o">(</span><span class="s">"Saludos al SERVIDOR DESDE EL CLIENTE"</span><span class="o">);</span>
+           
+            <span class="c1">// CREO FLUJO DE ENTRADA AL SERVIDOR</span>
+            <span class="nc">DataInputStream</span> <span class="n">flujoEntrada</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DataInputStream</span><span class="o">(</span><span class="nc">Cliente</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">());</span>
+           
+            <span class="c1">// EL SERVIDOR ME ENVIA UN MENSAJE</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Recibiendo del SERVIDOR: \n\t"</span> <span class="o">+</span> <span class="n">flujoEntrada</span><span class="o">.</span><span class="na">readUTF</span><span class="o">());</span>
+           
+            <span class="cm">/*------------------------------------------------------------------------------
+            //Información sobre la sesión SSL
+            SSLSession session = ((SSLSocket) Cliente).getSession(); 
+            System.out.println("Host: "+session.getPeerHost());
+            System.out.println("Cifrado: " + session.getCipherSuite());
+            System.out.println("Protocolo: " + session.getProtocol());
+            System.out.println("IDentificador:" + new BigInteger(session.getId()));
+            System.out.println("Creación de la sesión: " + session.getCreationTime());
+
+            X509Certificate certificate = (X509Certificate)session.getPeerCertificates()[0];
+            System.out.println("Propietario: " + certificate.getSubjectDN());
+            System.out.println("Algoritmo: " + certificate.getSigAlgName());
+            System.out.println("Tipo: " + certificate.getType());
+            System.out.println("Emisor: " + certificate.getIssuerDN());
+            System.out.println("Número Serie: " + certificate.getSerialNumber());
+            ------------------------------------------------------------------------------*/</span>
+           
+            <span class="c1">// CERRAR STREAMS Y SOCKETS</span>
+            <span class="n">flujoEntrada</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+            <span class="n">flujoSalida</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+            <span class="nc">Cliente</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+           
+      <span class="o">}</span>
+     
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Envía un mensaje al servidor y visualiza el que el servidor le devuelve.</p>
+
+<p>El servidor necesita disponer de un certificado que mostrar a los clientes que se conecten a él. Usaremos la herramienta <strong>keytool</strong> para crearlo, en el ejemplo le damos el nombre de AlmacenSSL y el valor de la clave es 1234567.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:&gt;keytool  <span class="nt">-genkey</span> <span class="nt">-alias</span> claveSSL <span class="nt">-keyalg</span> RSA –keystore AlmacenSSL <span class="nt">-storepass</span> 1234567
+</code></pre></div></div>
+
+<p>Para ejecutar el programa servidor es necesario indicar el certificado que se utilizará</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:&gt;java <span class="nt">-Djavax</span>.net.ssl.keyStore<span class="o">=</span>AlmacenSSL <span class="nt">-Djavax</span>.net.ssl.keyStorePassword<span class="o">=</span>1234567 ServidorSSL
+</code></pre></div></div>
+
+<p>Antes de ejecutar el programa cliente necesitamos colocar el certificado en el keystore del usuario, para ello lo exportamos a un fichero, le llamamos por ejemplo <code class="language-plaintext highlighter-rouge">CertificadoSSL.cer</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:&gt;keytool <span class="nt">-export</span> <span class="nt">-alias</span> claveSSL <span class="nt">-keystore</span> AlmacenSSL <span class="nt">-storepass</span> 1234567 <span class="nt">-file</span> Certificado.cer
+</code></pre></div></div>
+
+<p>Una vez que tenemos el fichero exportado es necesario incorporarle al nuevo almacenamiento para permitir realizar la validación. A continuación se crea un keystore de nombre <code class="language-plaintext highlighter-rouge">UsuarioAlmacenSSL</code> con la clave 890123 y se incorpora el fichero de certificado <code class="language-plaintext highlighter-rouge">Certificado.cer</code>. Esto lo hacemos donde ejecutemos el cliente.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:&gt;keytool <span class="nt">-import</span> <span class="nt">-alias</span> claveSSL <span class="nt">-file</span> Certificado.cer –keystore UsuarioAlmacenSSL <span class="nt">-storepass</span> 890123
+</code></pre></div></div>
+
+<p>Para ejecutar el programa cliente escribimos lo siguientes</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:&gt;java <span class="nt">-Djavax</span>.net.ssl.trustStore<span class="o">=</span>UsuarioAlmacenSSL <span class="nt">-Djavax</span>.net.ssl.trustStorePassword<span class="o">=</span>890123 ClienteSSL
+</code></pre></div></div>
+
+<p>En estos ejemplos para ejecutar el programa cliente y el servidor hemos establecido las propiedades <strong>JSSE</strong> desde la línea de comandos usando la sintaxis <code class="language-plaintext highlighter-rouge">–Dpropiedad=Valor</code>. También se pueden establecer desde el programa usando el método <code class="language-plaintext highlighter-rouge">System.setProperty(String propiedad, String valor)</code>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Propiedad</th>
+      <th>Significado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>javax.net.ssl.keyStore</td>
+      <td>Ubicación del fichero de almacén de claves de JAva. En Windows, la ruta de acceso especificada debe utilizar barras inclinadas, /, en lugar de barras invertidas, |</td>
+    </tr>
+    <tr>
+      <td>javax.net.ssl.keyStorePassword</td>
+      <td>Contraseña para acceder a la calve privada en el fichero de almacén de claves especificado por <code class="language-plaintext highlighter-rouge">javax.net.ssl.keyStore</code></td>
+    </tr>
+    <tr>
+      <td>javax.net.ssl.trustStore</td>
+      <td>Ubicación del fichero de almacén de claves que contiene la colección de certificados de confianza. En Windows, la ruta de acceso especificada debe utilizar barras inclinadas, /, en lugar de barras invertidas, |</td>
+    </tr>
+    <tr>
+      <td>javax.net.ssl.keyStorePassword</td>
+      <td>Contraseña para abrir el fichero de almacén de claves especificado por <code class="language-plaintext highlighter-rouge">javax.net.ssl.trustStore</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>En el programa servidor incluimos las siguientes líneas después de definir la variable puerto:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">"javax.net.ssl.keyStore"</span><span class="o">,</span> <span class="s">"AlmacenSSL"</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">"javax.net.ssl.keyStorePassword"</span><span class="o">,</span> <span class="s">"1234567"</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>Y en el programa cliente:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">"javax.net.ssl.trustStore"</span><span class="o">,</span> <span class="s">"UsuarioAlmacenSSL"</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">"javax.net.ssl.trustStorePassword"</span><span class="o">,</span> <span class="s">"890123"</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>Opcionalmente podemos registrar un proveedor SSL en los programas añadiendo esta línea:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">java</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">Security</span><span class="o">.</span><span class="na">addProvider</span><span class="o">(</span><span class="k">new</span> <span class="n">com</span><span class="o">.</span><span class="na">sun</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">ssl</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">ssl</span><span class="o">.</span><span class="na">Provider</span><span class="o">());</span>
+</code></pre></div></div>
+
+<p>El método <code class="language-plaintext highlighter-rouge">getSession()</code> de la clase <strong>SSLSocket</strong> devuelve un objeto <strong>SSLSession</strong> con la sesión <strong>SSL</strong> utilizada por la conexión, a partir de ella podemos obtener información como el identificador de la sesión, el cifrado <strong>SSL</strong>, el protocolo, el certificado, etc.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">SSLSession</span> <span class="n">session</span> <span class="o">=</span> <span class="o">((</span><span class="nc">SSLSocket</span><span class="o">)</span> <span class="nc">Cliente</span><span class="o">).</span><span class="na">getSession</span><span class="o">();</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Host: "</span><span class="o">+</span><span class="n">session</span><span class="o">.</span><span class="na">getPeerHost</span><span class="o">());</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Cifrado: "</span> <span class="o">+</span> <span class="n">session</span><span class="o">.</span><span class="na">getCipherSuite</span><span class="o">());</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Protocolo: "</span> <span class="o">+</span> <span class="n">session</span><span class="o">.</span><span class="na">getProtocol</span><span class="o">());</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"IDentificador:"</span> <span class="o">+</span> <span class="k">new</span> <span class="nc">BigInteger</span><span class="o">(</span><span class="n">session</span><span class="o">.</span><span class="na">getId</span><span class="o">()));</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Creación de la sesión: "</span> <span class="o">+</span> <span class="n">session</span><span class="o">.</span><span class="na">getCreationTime</span><span class="o">());</span>
+<span class="nc">X509Certificate</span> <span class="n">certificate</span> <span class="o">=</span> <span class="o">(</span><span class="nc">X509Certificate</span><span class="o">)</span><span class="n">session</span><span class="o">.</span><span class="na">getPeerCertificates</span><span class="o">()[</span><span class="mi">0</span><span class="o">];</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Propietario: "</span> <span class="o">+</span> <span class="n">certificate</span><span class="o">.</span><span class="na">getSubjectDN</span><span class="o">());</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Algoritmo: "</span> <span class="o">+</span> <span class="n">certificate</span><span class="o">.</span><span class="na">getSigAlgName</span><span class="o">());</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Tipo: "</span> <span class="o">+</span> <span class="n">certificate</span><span class="o">.</span><span class="na">getType</span><span class="o">());</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Emisor: "</span> <span class="o">+</span> <span class="n">certificate</span><span class="o">.</span><span class="na">getIssuerDN</span><span class="o">());</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Número Serie: "</span> <span class="o">+</span> <span class="n">certificate</span><span class="o">.</span><span class="na">getSerialNumber</span><span class="o">());</span>
+</code></pre></div></div>
+
+<p>En el programa servidor para obtener la información del certificado tendríamos que utilizar el método <code class="language-plaintext highlighter-rouge">getLocalCertificates()</code> en lugar de <code class="language-plaintext highlighter-rouge">getPeerCertificates()</code>.</p>
+
+<h2 id="jaas">JAAS</h2>
+
+<p><strong>JAAS</strong> (Java Authentication and Authorization Service, Servicio de Autorización y Autenticación de Java) es una interfaz que permite a las aplicaciones Java acceder a servicios de control de autenticación y acceso.</p>
+
+<p>Se puede utilizar para dos propósitos:</p>
+
+<ol>
+  <li>Para la autenticación de usuarios: para determinar de forma fiable y segura quién está ejecutando nuestro código <strong>Java</strong></li>
+  <li>Para la autorización de los usuarios: Para asegurarse de que quien lo ejecuta tiene los permisos necesarios para realizar las acciones.</li>
+</ol>
+
+<p>En estos procesos están involucradas las clases e interfaces:</p>
+
+<ul>
+  <li><strong>LoginContext</strong>, contexto de inicio de sesión: clase para iniciar y gestionar el proceso de autenticación mediante la creación de un Subject. La autenticación se hace llamando al método login().</li>
+  <li><strong>LoginModulo</strong>, módulo de conexión: interfaz para definir los mecanismos de autenticación. Se deben implementar los siguientes métodos: <code class="language-plaintext highlighter-rouge">iniatilize()</code>, <code class="language-plaintext highlighter-rouge">login()</code>, <code class="language-plaintext highlighter-rouge">commit()</code>, <code class="language-plaintext highlighter-rouge">abort()</code> y <code class="language-plaintext highlighter-rouge">logout()</code>. Se encarga de validar los datos en un proceso de autenticación.</li>
+  <li><strong>Subject</strong>, clase para representar a un ente autenticable (entidad, usuario, sistema)</li>
+  <li><strong>Principal</strong>, clase que representa los atributos que posee cada <strong>Subject</strong> recuperado una vez que se efectúa el ingreso a la aplicación. Un <strong>Subject</strong> puede contener varios principales.</li>
+  <li><strong>CallBackHandler</strong>, encargado de la interacción con el usuario para obtener los datos necesarios para la autenticación. Se debe implementar el método <code class="language-plaintext highlighter-rouge">handle()</code>.</li>
+</ul>
+
+<p>Los paquetes en los que están disponibles las clases e interfaces principales de JAAS son:</p>
+
+<ul>
+  <li><strong>javax.security.auth.</strong>* que contiene las clases de base e interfaces para los mecanismos de autenticación y autorización.</li>
+  <li><strong>javax.security.auth.callback.</strong>* que contiene las clases e interfaces para definir las credenciales de autenticación de la aplicación.</li>
+  <li><strong>javax.security.auth.login.</strong>* que contiene las clases para entrar y salir de un dominio de aplicación.</li>
+  <li><strong>javax.security.auth.spi.</strong>* que contiene las interfaces para un proveedor de <strong>JAAS</strong> para implementar módulos <strong>JAAS</strong>.</li>
+</ul>
+
+<h2 id="autenticación">Autenticación</h2>
+
+<p>El proceso básico de autenticación consta de los siguientes pasos</p>
+
+<ul>
+  <li>Creación de una instancia de <strong>LoginContext</strong>, uno o más <strong>LoginModulo</strong> son cargados basándose en el archivo de configuración de <strong>JAAS</strong>.</li>
+  <li>La instanciación de cada <strong>LoginModule</strong> es opcionalmente provista con un <strong>CallbackHandler</strong> que gestionará el proceso de comunicación con el usuario para obtener los datos con los que este tratará de autenticarse.</li>
+  <li>Invocación del método <code class="language-plaintext highlighter-rouge">login()</code> del <strong>LoginContext</strong> el cual invocará el método <code class="language-plaintext highlighter-rouge">login()</code> del <strong>LoginModule</strong>.</li>
+  <li>Los datos del usuario se obtienen por medio del <strong>CallbackHandler</strong>.</li>
+  <li>El <strong>LoginModule</strong> comprueba los datos introducidos por el usuario y los valida. Si la validación tiene éxito el usuario queda autenticado.</li>
+</ul>
+
+<h3 id="ejemplo">Ejemplo</h3>
+
+<p>Esquema básico de las clases y ficheros que se van a utilizar en el ejemplo para probar la autenticación básica con JAAS</p>
+
+<p><img src="/img/posts/20160326_1.png" alt="Clases para el ejemplo de autenticación" /></p>
+
+<p>Los ficheros son los siguientes:</p>
+
+<ul>
+  <li>Fichero <strong>EjemploJaasAutenticacion.java</strong>, es la aplicación que será autenticada y autorizada mediante JAAS.</li>
+  <li>Fichero <strong>EjemploLoginModule.java</strong>, implementa el módulo <strong>LoginModule</strong> que autentifica a los usuarios mediante su nombre y contraseña.</li>
+  <li>Fichero <strong>MyCallbackHandler.java</strong> que implementa <strong>CallbackHandler</strong>. Transfiere la información requerida al módulo <strong>LoginModule</strong>.</li>
+  <li>Fichero de autenticación de <strong>JAAS</strong>, <code class="language-plaintext highlighter-rouge">jaas.config</code>, donde se configura el módulo de login. Se vincula el nombre EjemploLogin al módulo <strong>LoginModule</strong> de nombre - <strong>EjemploLoginModule</strong>, la palabra required indica que el módulo de conexión asociado debe ser capaz de autenticar al sujeto en todo el proceso de autenticación para poder tener éxito.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">EjemploLogin</span><span class="o">{</span>
+     <span class="nc">EjemploLoginModule</span> <span class="n">required</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Fichero de autenticación <strong>JAAS</strong>, <code class="language-plaintext highlighter-rouge">policy.config</code>. Se conceden permisos de lectura sobre las propiedades usuario y clave que se introducirán desde la línea de comandos y el permiso para crear un contexto de inicio de sesión, createLoginContext, al nombre <code class="language-plaintext highlighter-rouge">EjemploLogin</code> vinculado con la clase <code class="language-plaintext highlighter-rouge">EjemploLoginModule</code>. El contenido del fichero es el siguiente:</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">grant</span> <span class="o">{</span>
+     <span class="n">permission</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">PropertyPermission</span> <span class="s">"usuario"</span><span class="o">,</span> <span class="s">"read"</span><span class="o">;</span>
+     <span class="n">permission</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">PropertyPermission</span> <span class="s">"clave"</span><span class="o">,</span> <span class="s">"read"</span><span class="o">;</span>
+     <span class="n">permission</span> <span class="n">javax</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">auth</span><span class="o">.</span><span class="na">AuthPermission</span>  <span class="s">"createLoginContext.EjemploLogin"</span><span class="o">;</span>
+<span class="o">};</span>
+</code></pre></div></div>
+
+<h4 id="archivo-mycallbackhandlerjava">Archivo MyCallbackHandler.java</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.security.auth.callback.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyCallbackHandler</span> <span class="kd">implements</span> <span class="nc">CallbackHandler</span> <span class="o">{</span>
+     
+      <span class="kd">private</span> <span class="nc">String</span> <span class="n">usuario</span><span class="o">;</span>
+      <span class="kd">private</span> <span class="nc">String</span> <span class="n">clave</span><span class="o">;</span>
+     
+      <span class="c1">//Constructor recibe parámetros usuario y clave</span>
+      <span class="kd">public</span> <span class="nf">MyCallbackHandler</span><span class="o">(</span><span class="nc">String</span> <span class="n">usu</span><span class="o">,</span> <span class="nc">String</span> <span class="n">clave</span><span class="o">)</span> <span class="o">{</span>
+           
+            <span class="k">this</span><span class="o">.</span><span class="na">usuario</span> <span class="o">=</span> <span class="n">usu</span><span class="o">;</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">clave</span> <span class="o">=</span> <span class="n">clave</span><span class="o">;</span>
+      <span class="o">}</span>
+     
+      <span class="c1">//método handle sera invocado por el LoginMbdule</span>
+      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">handle</span><span class="o">(</span><span class="nc">Callback</span><span class="o">[]</span> <span class="n">callbacks</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span><span class="o">,</span> <span class="nc">UnsupportedCallbackException</span> <span class="o">{</span>
+           
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">callbacks</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+                 
+                  <span class="nc">Callback</span> <span class="n">callback</span> <span class="o">=</span> <span class="n">callbacks</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+                  <span class="k">if</span> <span class="o">(</span><span class="n">callback</span> <span class="k">instanceof</span> <span class="nc">NameCallback</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="nc">NameCallback</span> <span class="n">nameCB</span> <span class="o">=</span> <span class="o">(</span><span class="nc">NameCallback</span><span class="o">)</span> <span class="n">callback</span><span class="o">;</span>
+                        <span class="c1">//se asigna al NameCallback el nombre de usuario</span>
+                        <span class="n">nameCB</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="n">usuario</span><span class="o">);</span>    
+                  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">callback</span> <span class="k">instanceof</span> <span class="nc">PasswordCallback</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="nc">PasswordCallback</span> <span class="n">passwordCB</span> <span class="o">=</span> <span class="o">(</span><span class="nc">PasswordCallback</span><span class="o">)</span> <span class="n">callback</span><span class="o">;</span>
+                        <span class="c1">//se asigna al PasswordCallback la clave   </span>
+                        <span class="n">passwordCB</span><span class="o">.</span><span class="na">setPassword</span><span class="o">(</span><span class="n">clave</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">());</span>
+                  <span class="o">}</span>
+            <span class="o">}</span>    
+      <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>CallbackHandler</strong> tiene el método <code class="language-plaintext highlighter-rouge">handle()</code> que será invocado por el <strong>LoginModule</strong> al que le pasará un array de objetos <strong>Callbacks</strong>, que contiene los campos de datos que se necesitan. Cada <strong>Callback</strong> representa uno de los datos comunicados por el usuarios en el proceso de autenticación (nombre, password, etc), es necesario recorrer este array para recuperar los datos.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Class</th>
+      <th>Descripción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>NameCallback</td>
+      <td>El LoginModule quiere que el usuario introduzca un nombre</td>
+    </tr>
+    <tr>
+      <td>PasswordCallback</td>
+      <td>El LoginModule quiere que el usuario introduzca un password</td>
+    </tr>
+    <tr>
+      <td>ChoiceCallback</td>
+      <td>El LoginModule quiere que el usuario elija un valor de un conjunto de valores</td>
+    </tr>
+    <tr>
+      <td>ConfirmationCallback</td>
+      <td>El LoginModule quiere que el usuario responda sí / no / cancelar a una pregunta en particular</td>
+    </tr>
+    <tr>
+      <td>TextOutputCallback</td>
+      <td>El LoginModule envía algún tipo de información al usuario</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="archivo-ejemplologinmodulejava">Archivo EjemploLoginModule.java</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.Map</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.security.auth.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.security.auth.callback.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.security.auth.login.LoginException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.security.auth.spi.LoginModule</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EjemploLoginModule</span> <span class="kd">implements</span> <span class="nc">LoginModule</span> <span class="o">{</span>
+     
+      <span class="kd">private</span> <span class="nc">Subject</span> <span class="n">subject</span><span class="o">;</span>
+      <span class="kd">private</span> <span class="nc">CallbackHandler</span> <span class="n">callbackHandler</span><span class="o">;</span>
+     
+      <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">commit</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">LoginException</span> <span class="o">{</span><span class="k">return</span> <span class="kc">true</span><span class="o">;}</span>
+     
+      <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">logout</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">LoginException</span> <span class="o">{</span><span class="k">return</span> <span class="kc">true</span><span class="o">;}</span>
+     
+      <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">abort</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">LoginException</span> <span class="o">{</span><span class="k">return</span> <span class="kc">true</span><span class="o">;}</span>
+     
+      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">initialize</span><span class="o">(</span><span class="nc">Subject</span> <span class="n">subject</span><span class="o">,</span> <span class="nc">CallbackHandler</span> <span class="n">handler</span><span class="o">,</span> <span class="nc">Map</span> <span class="n">state</span><span class="o">,</span> <span class="nc">Map</span> <span class="n">options</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">subject</span> <span class="o">=</span> <span class="n">subject</span><span class="o">;</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">callbackHandler</span> <span class="o">=</span> <span class="n">handler</span><span class="o">;</span>   
+      <span class="o">}</span>
+     
+      <span class="c1">//método login - se realiza la autenticación</span>
+      <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">login</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">LoginException</span> <span class="o">{</span>
+           
+            <span class="kt">boolean</span> <span class="n">autenticado</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+            <span class="k">if</span><span class="o">(</span><span class="n">callbackHandler</span> <span class="o">==</span> <span class="kc">null</span><span class="o">){</span>   
+                  <span class="k">throw</span> <span class="k">new</span> <span class="nf">LoginException</span><span class="o">(</span><span class="s">"Se necesita CallbackHandler"</span><span class="o">);</span>
+            <span class="o">}</span>
+           
+            <span class="c1">//Se crea el array de Callbacks</span>
+            <span class="nc">Callback</span><span class="o">[]</span> <span class="n">callbacks</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Callback</span><span class="o">[</span><span class="mi">2</span><span class="o">];</span>
+            <span class="c1">//Constructor de NameCallback y PasswordCallback con prompt</span>
+            <span class="n">callbacks</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">NameCallback</span><span class="o">(</span><span class="s">"Nombre de usuario: "</span><span class="o">);</span>
+            <span class="n">callbacks</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PasswordCallback</span><span class="o">(</span><span class="s">"Clave: "</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+           
+            <span class="k">try</span> <span class="o">{</span>
+                  <span class="c1">//se invoca al método handle del CallbackHandler</span>
+                  <span class="c1">//para solicitar el usuario y la contraseña</span>
+                  <span class="n">callbackHandler</span><span class="o">.</span><span class="na">handle</span><span class="o">(</span><span class="n">callbacks</span><span class="o">);</span>
+                  <span class="nc">String</span> <span class="n">usuario</span> <span class="o">=</span> <span class="o">((</span><span class="nc">NameCallback</span><span class="o">)</span><span class="n">callbacks</span><span class="o">[</span><span class="mi">0</span><span class="o">]).</span><span class="na">getName</span><span class="o">();</span>
+                  <span class="kt">char</span> <span class="o">[]</span> <span class="n">passw</span> <span class="o">=</span> <span class="o">((</span><span class="nc">PasswordCallback</span><span class="o">)</span><span class="n">callbacks</span><span class="o">[</span><span class="mi">1</span><span class="o">]).</span><span class="na">getPassword</span><span class="o">();</span>
+                  <span class="nc">String</span> <span class="n">clave</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="n">passw</span><span class="o">);</span>
+                 
+                  <span class="c1">//La autenticación se realiza aquí</span>
+                  <span class="c1">//el nombre de usuario: maria, su clave: 1234</span>
+                  <span class="n">autenticado</span> <span class="o">=</span> <span class="o">(</span><span class="s">"maria"</span><span class="o">.</span><span class="na">equalsIgnoreCase</span><span class="o">(</span><span class="n">usuario</span><span class="o">)</span> <span class="o">&amp;</span> <span class="s">"1234"</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">clave</span><span class="o">))</span> <span class="o">;</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span><span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();}</span>
+           
+            <span class="k">return</span> <span class="n">autenticado</span><span class="o">;</span><span class="c1">//devuelve true o false</span>
+           
+      <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Implementa el <strong>LoginModule</strong> que autenticará a los usuarios en su método <code class="language-plaintext highlighter-rouge">login()</code>. Debe implementar los siguientes métodos:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">initialize()</code>: El propósito de este método es inicializar el <strong>LoginModule</strong> con la información con la información relevante. El Subjectpasasdo a este método se usa para almacenar los principales (Principal) y credenciales si la conexión tiene éxito. Recibe un <strong>CallbackHandler</strong> que puede ser usado para introducir información de la autenticación.</li>
+  <li><code class="language-plaintext highlighter-rouge">login()</code>: El propósito de este método es autenticar al <strong>Subject</strong>.</li>
+  <li><code class="language-plaintext highlighter-rouge">commit()</code>: Se llama a este método si tiene éxito la autenticación total del <strong>LoginContext</strong>.</li>
+  <li><code class="language-plaintext highlighter-rouge">abort()</code>: Informa al LoginModule de que algún proveedor o módulo ha fallado al autenticar al <strong>Subject</strong>. Se llama a este método si la autenticación global del <strong>LoginContext</strong> ha fallado.</li>
+  <li><code class="language-plaintext highlighter-rouge">logout()</code>: Desconecta al Subject borrando los principales y credenciales del <strong>Subject</strong>. Finalizará la sesión del usuario.</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:&gt;java <span class="nt">-Dusuario</span><span class="o">=</span>maria <span class="nt">-Dclave</span><span class="o">=</span>1234 EjemploJAASAutenticacion
+</code></pre></div></div>
+
+<h2 id="autorización">Autorización</h2>
+
+<p>Para que la autorización JAAS tenga lugar, se requiere lo siguiente:</p>
+
+<ul>
+  <li>El usuario debe <strong>autenticarse</strong>. Ya visto</li>
+  <li>En el <strong>fichero de políticas</strong> se deben configurar entradas para los principales</li>
+  <li>Se debe asociar al <strong>Subject</strong> el contexto de control de acceso actual usando los métodos <code class="language-plaintext highlighter-rouge">doAs()</code> o <code class="language-plaintext highlighter-rouge">doAsPrivileged()</code> de la clase <strong>Subject</strong>.</li>
+</ul>
+
+<p>Para lo cual insertaríamos dos nuevas clases al ejemplo anterior.</p>
+
+<h4 id="archivo-ejemploaccionjava">Archivo EjemploAccion.java</h4>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.security.PrivilegedAction</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EjemploAccion</span> <span class="kd">implements</span> <span class="nc">PrivilegedAction</span> <span class="o">{</span>
+     
+      <span class="kd">public</span> <span class="nc">Object</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+           
+            <span class="nc">File</span> <span class="n">f</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"fichero.txt"</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">f</span><span class="o">.</span><span class="na">exists</span><span class="o">())</span> <span class="o">{</span>
+                 
+                  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"EL FICHERO EXISTE ... "</span><span class="o">);</span>
+                  <span class="c1">//Si existe se muestra su contenido</span>
+                  <span class="nc">FileReader</span> <span class="n">fic</span><span class="o">;</span>
+                  <span class="k">try</span> <span class="o">{</span>
+                        <span class="n">fic</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileReader</span><span class="o">(</span><span class="n">f</span><span class="o">);</span>
+                        <span class="kt">int</span> <span class="n">i</span><span class="o">;</span>
+                        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Su contenido es: "</span><span class="o">);</span>
+                        <span class="k">while</span> <span class="o">((</span><span class="n">i</span> <span class="o">=</span> <span class="n">fic</span><span class="o">.</span><span class="na">read</span><span class="o">())</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span>
+                             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">((</span><span class="kt">char</span><span class="o">)</span> <span class="n">i</span><span class="o">);</span>
+                        <span class="n">fic</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();}</span>
+                 
+            <span class="o">}</span><span class="k">else</span> <span class="o">{</span>
+                 
+                  <span class="c1">//Si no existe se crea y se insertan datos</span>
+                  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"EL FICHERO NO EXISTE, LO CREO ... "</span><span class="o">);</span>
+                  <span class="k">try</span> <span class="o">{</span>
+                        <span class="nc">FileWriter</span> <span class="n">fic</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileWriter</span><span class="o">(</span><span class="n">f</span><span class="o">);</span>
+                        <span class="nc">String</span> <span class="n">cadena</span> <span class="o">=</span> <span class="s">"Esto es una linea de texto"</span><span class="o">;</span>
+                        <span class="n">fic</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">cadena</span><span class="o">);</span> <span class="n">fic</span><span class="o">.</span><span class="na">close</span><span class="o">();</span><span class="c1">// cerrar fichero</span>
+                        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Fichero creado con datos..."</span><span class="o">);</span>
+                  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"ERROR ==&gt; "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+                  <span class="o">}</span>
+            <span class="o">}</span>
+           
+            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+           
+      <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Esta clase implementa <strong>PrivilegedAction</strong>, contiene el método <code class="language-plaintext highlighter-rouge">run()</code> que es el código que se ejecutará una vez que el usuario ha sido autenticado, teniendo en cuenta las autorizaciones de los principales definidas en el fichero de políticas.</p>
+
+<p>#### Archivo EjemploPrincipal.java</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.security.Principal</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EjemploPrincipal</span> <span class="kd">implements</span> <span class="nc">Principal</span><span class="o">,</span> <span class="n">java</span><span class="o">.</span><span class="na">io</span><span class="o">.</span><span class="na">Serializable</span> <span class="o">{</span>
+     
+      <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span><span class="c1">//nombre del principal</span>
+     
+      <span class="c1">//Crea un EjemploPrincipal con el nombre suministrado.</span>
+      <span class="kd">public</span> <span class="nf">EjemploPrincipal</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+           
+            <span class="k">if</span> <span class="o">(</span><span class="n">name</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
+                  <span class="k">throw</span> <span class="k">new</span> <span class="nf">NullPointerException</span><span class="o">(</span><span class="s">"Entrada nula"</span><span class="o">);</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+      <span class="o">}</span>
+     
+      <span class="c1">//Devuelve el nombre del Principal</span>
+      <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span><span class="k">return</span> <span class="n">name</span><span class="o">;}</span>
+     
+      <span class="c1">//Compara el objeto especificado con el Principal</span>
+      <span class="c1">//para ver si son iguales.</span>
+      <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="nc">Object</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span>
+           
+            <span class="k">if</span> <span class="o">(</span><span class="n">o</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+            <span class="k">if</span> <span class="o">(</span><span class="k">this</span> <span class="o">==</span> <span class="n">o</span><span class="o">)</span> <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+            <span class="k">if</span> <span class="o">(!(</span><span class="n">o</span> <span class="k">instanceof</span> <span class="nc">EjemploPrincipal</span><span class="o">))</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+            <span class="nc">EjemploPrincipal</span> <span class="n">that</span> <span class="o">=</span> <span class="o">(</span><span class="nc">EjemploPrincipal</span><span class="o">)</span> <span class="n">o</span><span class="o">;</span>
+            <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">getName</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="n">that</span><span class="o">.</span><span class="na">getName</span><span class="o">()))</span> <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+           
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+      <span class="o">}</span><span class="c1">//Fin de equals</span>
+
+      <span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">()</span> <span class="o">{</span><span class="k">return</span> <span class="n">name</span><span class="o">.</span><span class="na">hashCode</span><span class="o">();}</span>
+     
+      <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span><span class="k">return</span> <span class="o">(</span><span class="n">name</span><span class="o">);}</span>
+     
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Esta clase implementa la interface <strong>Principal</strong>, se usa en la clase <strong>EjemploLoginModule</strong> una vez que el usuario ha sido autenticado en el método <code class="language-plaintext highlighter-rouge">commit()</code>.</p>
+
+<h3 id="privilegios-de-acceso-en-el-fichero-de-políticas-policyconfig">Privilegios de acceso en el fichero de políticas (policy.config)</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">grant</span> <span class="o">{</span>
+     <span class="n">permission</span> <span class="n">javax</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">auth</span><span class="o">.</span><span class="na">AuthPermission</span> <span class="s">"createLoginContext.EjemploLogin"</span><span class="o">;</span>
+     <span class="n">permission</span> <span class="n">javax</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">auth</span><span class="o">.</span><span class="na">AuthPermission</span> <span class="s">"modifyPrincipals"</span><span class="o">;</span>
+     <span class="n">permission</span> <span class="n">javax</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">auth</span><span class="o">.</span><span class="na">AuthPermission</span> <span class="s">"doAsPrivileged"</span><span class="o">;</span>
+<span class="o">};</span>
+
+<span class="n">grant</span> <span class="nc">Principal</span> <span class="nc">EjemploPrincipal</span> <span class="s">"maria"</span> <span class="o">{</span>
+     <span class="n">permission</span> <span class="n">java</span><span class="o">.</span><span class="na">io</span><span class="o">.</span><span class="na">FilePermission</span> <span class="s">"fichero.txt"</span><span class="o">,</span> <span class="s">"read"</span><span class="o">;</span>
+<span class="o">}</span> <span class="o">;</span>
+
+<span class="n">grant</span> <span class="nc">Principal</span> <span class="nc">EjemploPrincipal</span> <span class="s">"juan"</span> <span class="o">{</span>
+     <span class="n">permission</span> <span class="n">java</span><span class="o">.</span><span class="na">io</span><span class="o">.</span><span class="na">FilePermission</span> <span class="s">"fichero.txt"</span><span class="o">,</span> <span class="s">"write"</span><span class="o">;</span>
+<span class="o">};</span>
+</code></pre></div></div>
+
+<p><img src="/img/posts/20160326_2.png" alt="Clases para el ejemplo de autorización" /></p>
+
+<p><strong>¡Salud y coding!</strong></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#java</span>
+        
+          <span class="tag">#jsse</span>
+        
+          <span class="tag">#jaas</span>
+        
+          <span class="tag">#ssl</span>
+        
+          <span class="tag">#tls</span>
+        
+          <span class="tag">#seguridad</span>
+        
+          <span class="tag">#autenticacion</span>
+        
+          <span class="tag">#autorizacion</span>
+        
+          <span class="tag">#certificados</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

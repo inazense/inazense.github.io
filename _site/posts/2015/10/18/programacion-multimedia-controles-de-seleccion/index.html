@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programación multimedia. Controles de selección | Programando a Pasitos</title>
+<meta name="description" content="Controles de selección en Android (Spinner, ListView, GridView, Gallery) y uso de adaptadores como ArrayAdapter para vincular datos con listas.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Programación multimedia. Controles de selección | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Programación multimedia. Controles de selección" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Controles de selección en Android (Spinner, ListView, GridView, Gallery) y uso de adaptadores como ArrayAdapter para vincular datos con listas." />
+<meta property="og:description" content="Controles de selección en Android (Spinner, ListView, GridView, Gallery) y uso de adaptadores como ArrayAdapter para vincular datos con listas." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/10/18/programacion-multimedia-controles-de-seleccion/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/10/18/programacion-multimedia-controles-de-seleccion/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-10-18T17:44:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Programación multimedia. Controles de selección" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-10-18T17:44:00+02:00","datePublished":"2015-10-18T17:44:00+02:00","description":"Controles de selección en Android (Spinner, ListView, GridView, Gallery) y uso de adaptadores como ArrayAdapter para vincular datos con listas.","headline":"Programación multimedia. Controles de selección","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/10/18/programacion-multimedia-controles-de-seleccion/"},"url":"http://localhost:4000/posts/2015/10/18/programacion-multimedia-controles-de-seleccion/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Programación multimedia. Controles de selección</h1>
+    <div class="post-meta">
+      <time datetime="2015-10-18T17:44:00+02:00">18 Oct 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#android" class="post-category">Android</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Controles de selección en Android (Spinner, ListView, GridView, Gallery) y uso de adaptadores como ArrayAdapter para vincular datos con listas.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <p>Android proporciona varios controles para que el usuario seleccione una opción de una lista:</p>
+
+<ul>
+  <li><strong>Spinner</strong>: lista desplegable</li>
+  <li><strong>ListView</strong>: lista vertical desplazable</li>
+  <li><strong>GridView</strong>: cuadrícula de elementos</li>
+  <li><strong>Gallery</strong>: galería horizontal</li>
+</ul>
+
+<p>Para vincular datos con estas listas se usan adaptadores: <code class="language-plaintext highlighter-rouge">ArrayAdapter</code>, <code class="language-plaintext highlighter-rouge">SimpleCursorAdapter</code>, <code class="language-plaintext highlighter-rouge">ListAdapter</code>, <code class="language-plaintext highlighter-rouge">SpinnerAdapter</code> y adaptadores personalizados.</p>
+
+<h2 id="arrayadapter">ArrayAdapter</h2>
+
+<p>El <code class="language-plaintext highlighter-rouge">ArrayAdapter</code> vincula clases <code class="language-plaintext highlighter-rouge">AdapterView</code> con un array de objetos (por defecto de tipo <code class="language-plaintext highlighter-rouge">String</code>). Los pasos básicos para usarlo con un <code class="language-plaintext highlighter-rouge">Spinner</code> son:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sp1</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Spinner</span><span class="o">)</span><span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">spinner1</span><span class="o">);</span>
+<span class="nc">ArrayAdapter</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">adapter</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayAdapter</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;(</span><span class="k">this</span><span class="o">,</span>
+    <span class="n">android</span><span class="o">.</span><span class="na">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">simple_spinner_item</span><span class="o">,</span> <span class="n">opcion</span><span class="o">);</span>
+<span class="n">adapter</span><span class="o">.</span><span class="na">setDropDownViewResource</span><span class="o">(</span><span class="n">android</span><span class="o">.</span><span class="na">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">simple_spinner_item</span><span class="o">);</span>
+<span class="n">sp1</span><span class="o">.</span><span class="na">setAdapter</span><span class="o">(</span><span class="n">adapter</span><span class="o">);</span>
+<span class="n">sp1</span><span class="o">.</span><span class="na">setOnItemSelectedListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p><img src="/img/posts/20151018_72.png" alt="Spinner con ArrayAdapter en el emulador" /></p>
+
+<h2 id="listadapter-con-asignaturas">ListAdapter con asignaturas</h2>
+
+<p>Este ejemplo muestra una lista de asignaturas con su curso correspondiente. Al pulsar un elemento de la lista se muestra a qué curso pertenece.</p>
+
+<h3 id="stringsxml">strings.xml</h3>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;string-array</span> <span class="na">name=</span><span class="s">"curso"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;item&gt;</span>1º<span class="nt">&lt;/item&gt;</span>
+    <span class="nt">&lt;item&gt;</span>1º<span class="nt">&lt;/item&gt;</span>
+    <span class="nt">&lt;item&gt;</span>2º<span class="nt">&lt;/item&gt;</span>
+<span class="nt">&lt;/string-array&gt;</span>
+
+<span class="nt">&lt;string-array</span> <span class="na">name=</span><span class="s">"opcion"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;item&gt;</span>BD<span class="nt">&lt;/item&gt;</span>
+    <span class="nt">&lt;item&gt;</span>XML<span class="nt">&lt;/item&gt;</span>
+    <span class="nt">&lt;item&gt;</span>Android<span class="nt">&lt;/item&gt;</span>
+<span class="nt">&lt;/string-array&gt;</span>
+</code></pre></div></div>
+
+<h3 id="mainactivityjava">MainActivity.java</h3>
+
+<p>La clase extiende <code class="language-plaintext highlighter-rouge">ListActivity</code>, que proporciona métodos específicos para trabajar con listas. El layout usa el id predefinido <code class="language-plaintext highlighter-rouge">@android:id/list</code> para el <code class="language-plaintext highlighter-rouge">ListView</code>. El método <code class="language-plaintext highlighter-rouge">onListItemClick()</code> detecta la pulsación recibiendo como parámetros el <code class="language-plaintext highlighter-rouge">ListView</code>, la <code class="language-plaintext highlighter-rouge">View</code>, la posición y el identificador del elemento.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">programaciones.inazio.listadapter</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">android.app.ListActivity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.support.v7.app.AppCompatActivity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.os.Bundle</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.view.Menu</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.view.MenuItem</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.view.View</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.widget.ArrayAdapter</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.widget.ListAdapter</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.widget.ListView</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.widget.TextView</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.w3c.dom.Text</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Listas</span> <span class="kd">extends</span> <span class="nc">ListActivity</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">TextView</span> <span class="n">resultado</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">ListView</span> <span class="n">lista</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span><span class="o">[]</span> <span class="n">cursos</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span><span class="o">[]</span> <span class="n">asignaturas</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="nc">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+        <span class="n">setContentView</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_listas</span><span class="o">);</span>
+        <span class="n">resultado</span> <span class="o">=</span> <span class="o">(</span><span class="nc">TextView</span><span class="o">)</span><span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">lblResultado</span><span class="o">);</span>
+        <span class="n">lista</span> <span class="o">=</span> <span class="o">(</span><span class="nc">ListView</span><span class="o">)</span><span class="n">findViewById</span><span class="o">(</span><span class="n">android</span><span class="o">.</span><span class="na">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">list</span><span class="o">);</span>
+
+        <span class="n">asignaturas</span> <span class="o">=</span> <span class="n">getResources</span><span class="o">().</span><span class="na">getStringArray</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">array</span><span class="o">.</span><span class="na">opcion</span><span class="o">);</span>
+        <span class="nc">ListAdapter</span> <span class="n">adapter</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayAdapter</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;(</span><span class="k">this</span><span class="o">,</span>
+            <span class="n">android</span><span class="o">.</span><span class="na">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">simple_list_item_1</span><span class="o">,</span> <span class="n">asignaturas</span><span class="o">);</span>
+        <span class="n">lista</span><span class="o">.</span><span class="na">setAdapter</span><span class="o">(</span><span class="n">adapter</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onListItemClick</span><span class="o">(</span><span class="nc">ListView</span> <span class="n">l</span><span class="o">,</span> <span class="nc">View</span> <span class="n">v</span><span class="o">,</span> <span class="kt">int</span> <span class="n">position</span><span class="o">,</span> <span class="kt">long</span> <span class="n">id</span><span class="o">){</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onListItemClick</span><span class="o">(</span><span class="n">l</span><span class="o">,</span> <span class="n">v</span><span class="o">,</span> <span class="n">position</span><span class="o">,</span> <span class="n">id</span><span class="o">);</span>
+        <span class="n">cursos</span> <span class="o">=</span> <span class="n">getResources</span><span class="o">().</span><span class="na">getStringArray</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">array</span><span class="o">.</span><span class="na">curso</span><span class="o">);</span>
+        <span class="n">resultado</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">l</span><span class="o">.</span><span class="na">getItemAtPosition</span><span class="o">(</span><span class="n">position</span><span class="o">)</span> <span class="o">+</span> <span class="s">" es de "</span> <span class="o">+</span>
+            <span class="n">cursos</span><span class="o">[</span><span class="n">position</span><span class="o">]);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">onCreateOptionsMenu</span><span class="o">(</span><span class="nc">Menu</span> <span class="n">menu</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">getMenuInflater</span><span class="o">().</span><span class="na">inflate</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">menu</span><span class="o">.</span><span class="na">menu_listas</span><span class="o">,</span> <span class="n">menu</span><span class="o">);</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">onOptionsItemSelected</span><span class="o">(</span><span class="nc">MenuItem</span> <span class="n">item</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">id</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="na">getItemId</span><span class="o">();</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">id</span> <span class="o">==</span> <span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">action_settings</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">onOptionsItemSelected</span><span class="o">(</span><span class="n">item</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><img src="/img/posts/20151018_73.png" alt="ListView con las asignaturas" /></p>
+
+<p><img src="/img/posts/20151018_74.png" alt="Resultado al pulsar un elemento de la lista" /></p>
+
+<p><img src="/img/posts/20151018_75.png" alt="Vista completa de la aplicación con lista y resultado" /></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#android</span>
+        
+          <span class="tag">#android-studio</span>
+        
+          <span class="tag">#spinner</span>
+        
+          <span class="tag">#listview</span>
+        
+          <span class="tag">#arrayadapter</span>
+        
+          <span class="tag">#listadapter</span>
+        
+          <span class="tag">#programacion-multimedia</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

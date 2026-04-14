@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acceso a datos. Clases File y RandomAccessFile | Programando a Pasitos</title>
+<meta name="description" content="Uso de las clases File y RandomAccessFile en Java para manejo de archivos y directorios, incluyendo filtros de archivos y acceso aleatorio.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Acceso a datos. Clases File y RandomAccessFile | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Acceso a datos. Clases File y RandomAccessFile" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Uso de las clases File y RandomAccessFile en Java para manejo de archivos y directorios, incluyendo filtros de archivos y acceso aleatorio." />
+<meta property="og:description" content="Uso de las clases File y RandomAccessFile en Java para manejo de archivos y directorios, incluyendo filtros de archivos y acceso aleatorio." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/10/07/acceso-datos-clases-file-y-randomaccessfile/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/10/07/acceso-datos-clases-file-y-randomaccessfile/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-10-07T10:34:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Acceso a datos. Clases File y RandomAccessFile" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-10-07T10:34:00+02:00","datePublished":"2015-10-07T10:34:00+02:00","description":"Uso de las clases File y RandomAccessFile en Java para manejo de archivos y directorios, incluyendo filtros de archivos y acceso aleatorio.","headline":"Acceso a datos. Clases File y RandomAccessFile","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/10/07/acceso-datos-clases-file-y-randomaccessfile/"},"url":"http://localhost:4000/posts/2015/10/07/acceso-datos-clases-file-y-randomaccessfile/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Acceso a datos. Clases File y RandomAccessFile</h1>
+    <div class="post-meta">
+      <time datetime="2015-10-07T10:34:00+02:00">07 Oct 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#java" class="post-category">Java</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Uso de las clases File y RandomAccessFile en Java para manejo de archivos y directorios, incluyendo filtros de archivos y acceso aleatorio.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="clase-file">Clase File</h2>
+
+<p>La clase <code class="language-plaintext highlighter-rouge">File</code> no sirve para leer ni para escribir datos en archivos. Su utilidad radica en operaciones como crear o eliminar archivos y directorios, cambiar nombres, consultar propiedades, listar contenidos de directorios, de forma independiente de la plataforma.</p>
+
+<p>Ejemplo de uso con separadores independientes de la plataforma:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>
+
+<span class="nc">String</span> <span class="n">sFichero</span> <span class="o">=</span> <span class="s">"miFichero.txt"</span><span class="o">;</span>
+<span class="nc">String</span> <span class="n">sDirectorio</span> <span class="o">=</span> <span class="s">"miDirectorio"</span><span class="o">;</span>
+<span class="nc">String</span> <span class="n">sPath</span> <span class="o">=</span> <span class="nc">File</span><span class="o">.</span><span class="na">separator</span> <span class="o">+</span> <span class="n">sDirectorio</span> <span class="o">+</span> <span class="nc">File</span><span class="o">.</span><span class="na">separator</span> <span class="o">+</span> <span class="n">sFichero</span><span class="o">;</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sPath</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p><strong>Constructores:</strong></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">File(String path)</code></li>
+  <li><code class="language-plaintext highlighter-rouge">File(String path, String name)</code></li>
+  <li><code class="language-plaintext highlighter-rouge">File(File dir, String name)</code></li>
+</ul>
+
+<p><strong>Métodos principales:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Método</th>
+      <th>Descripción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">getName()</code></td>
+      <td>Nombre del archivo</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">getPath()</code></td>
+      <td>Camino relativo</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">getAbsolutePath()</code></td>
+      <td>Camino absoluto</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">exists()</code></td>
+      <td>Comprueba si existe</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">canWrite()</code></td>
+      <td>Comprueba si se puede escribir</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">canRead()</code></td>
+      <td>Comprueba si se puede leer</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">isFile()</code></td>
+      <td>Comprueba si es fichero</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">isDirectory()</code></td>
+      <td>Comprueba si es directorio</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">isAbsolute()</code></td>
+      <td>Comprueba si el path es absoluto</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">lastModified()</code></td>
+      <td>Fecha de última modificación</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">length()</code></td>
+      <td>Longitud en bytes</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mkdir()</code></td>
+      <td>Crea un directorio</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mkdirs()</code></td>
+      <td>Crea directorios en cascada</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">renameTo()</code></td>
+      <td>Renombra el archivo</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">delete()</code></td>
+      <td>Borra el archivo</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">list()</code></td>
+      <td>Lista el contenido del directorio</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">list(FileFilter filter)</code></td>
+      <td>Lista con filtro</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="ejemplo-listar-directorio">Ejemplo: listar directorio</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EjemploClassFile</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">directorio</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">args</span><span class="o">.</span><span class="na">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span>
+            <span class="n">directorio</span> <span class="o">=</span> <span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
+        <span class="k">else</span>
+            <span class="n">directorio</span> <span class="o">=</span> <span class="s">"."</span><span class="o">;</span>
+
+        <span class="nc">File</span> <span class="n">actual</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="n">directorio</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"El directorio es: "</span><span class="o">);</span>
+        <span class="k">try</span><span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">actual</span><span class="o">.</span><span class="na">getCanonicalPath</span><span class="o">());</span>
+        <span class="o">}</span>
+        <span class="k">catch</span><span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">){}</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Su contenido es:"</span><span class="o">);</span>
+        <span class="nc">File</span><span class="o">[]</span> <span class="n">archivos</span> <span class="o">=</span> <span class="n">actual</span><span class="o">.</span><span class="na">listFiles</span><span class="o">();</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="nc">File</span> <span class="n">archivo</span> <span class="o">:</span> <span class="n">archivos</span><span class="o">){</span>
+            <span class="k">if</span><span class="o">(</span><span class="n">archivo</span><span class="o">.</span><span class="na">isFile</span><span class="o">()){</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Nombre: "</span> <span class="o">+</span> <span class="n">archivo</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Longitud en caracteres: "</span> <span class="o">+</span> <span class="n">archivo</span><span class="o">.</span><span class="na">length</span><span class="o">());</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Modificado: "</span> <span class="o">+</span> <span class="k">new</span> <span class="nc">Date</span><span class="o">(</span><span class="n">archivo</span><span class="o">.</span><span class="na">lastModified</span><span class="o">()));</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Camino: "</span> <span class="o">+</span> <span class="n">archivo</span><span class="o">.</span><span class="na">getPath</span><span class="o">());</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Camino absoluto: "</span> <span class="o">+</span> <span class="n">archivo</span><span class="o">.</span><span class="na">getAbsolutePath</span><span class="o">());</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Se puede escribir: "</span> <span class="o">+</span> <span class="n">archivo</span><span class="o">.</span><span class="na">canWrite</span><span class="o">());</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Se puede leer: "</span> <span class="o">+</span> <span class="n">archivo</span><span class="o">.</span><span class="na">canRead</span><span class="o">());</span>
+            <span class="o">}</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="ejemplo-crear-y-borrar-ficheros">Ejemplo: crear y borrar ficheros</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EjemploOperacionesArchivo</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Creación de un fichero</span>
+        <span class="k">try</span><span class="o">{</span>
+            <span class="nc">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"D:\\Inazio.txt"</span><span class="o">);</span>
+            <span class="kt">boolean</span> <span class="n">resultado</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="na">createNewFile</span><span class="o">();</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">resultado</span><span class="o">)</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Archivo creado"</span><span class="o">);</span>
+            <span class="k">else</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"No se puede crear el archivo"</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">catch</span><span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">){</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Se produjo el error "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+
+        <span class="c1">// Borrado de fichero</span>
+        <span class="k">try</span><span class="o">{</span>
+            <span class="nc">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"D:\\Inazio.txt"</span><span class="o">);</span>
+            <span class="kt">boolean</span> <span class="n">resultado</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="na">delete</span><span class="o">();</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">resultado</span><span class="o">)</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Archivo borrado"</span><span class="o">);</span>
+            <span class="k">else</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"No se pudo borar el archivo"</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">catch</span><span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">){</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Se produjo el error "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="filtros-de-archivos">Filtros de Archivos</h2>
+
+<p>Un filtro implementa la interfaz <code class="language-plaintext highlighter-rouge">FilenameFilter</code> y redefine el método <code class="language-plaintext highlighter-rouge">accept()</code>, que devuelve un <code class="language-plaintext highlighter-rouge">boolean</code> indicando si el archivo cumple los criterios (por ejemplo, por extensión).</p>
+
+<p><strong>EjemploFiltroArchivos.java:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EjemploFiltroArchivos</span> <span class="kd">implements</span> <span class="nc">FilenameFilter</span><span class="o">{</span>
+    <span class="nc">String</span> <span class="n">extension</span><span class="o">;</span>
+
+    <span class="nc">EjemploFiltroArchivos</span><span class="o">(</span><span class="nc">String</span> <span class="nc">Extension</span><span class="o">){</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">extension</span> <span class="o">=</span> <span class="n">extension</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">accept</span><span class="o">(</span><span class="nc">File</span> <span class="n">dir</span><span class="o">,</span> <span class="nc">String</span> <span class="n">name</span><span class="o">){</span>
+        <span class="k">return</span> <span class="n">name</span><span class="o">.</span><span class="na">endsWith</span><span class="o">(</span><span class="n">extension</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>ClasePruebas.java:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ClasePruebas</span><span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">args</span><span class="o">.</span><span class="na">length</span> <span class="o">!=</span><span class="mi">0</span><span class="o">){</span>
+            <span class="nc">File</span> <span class="n">fichero</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">fichero</span><span class="o">.</span><span class="na">isDirectory</span><span class="o">()){</span>
+                <span class="nc">String</span><span class="o">[]</span> <span class="n">listaArchivos</span> <span class="o">=</span> <span class="n">fichero</span><span class="o">.</span><span class="na">list</span><span class="o">(</span><span class="k">new</span> <span class="nc">EjemploFiltroArchivos</span><span class="o">(</span><span class="s">".exe"</span><span class="o">));</span>
+                <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">listaArchivos</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+                    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">listaArchivos</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="clase-randomaccessfile">Clase RandomAccessFile</h2>
+
+<p>Permite acceso directo para lectura y escritura simultánea de datos primitivos en cualquier posición del archivo. Se instancia con modo <code class="language-plaintext highlighter-rouge">"r"</code> (solo lectura) o <code class="language-plaintext highlighter-rouge">"rw"</code> (lectura-escritura).</p>
+
+<p><strong>Constructores:</strong></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">RandomAccessFile(File fichero, String modo)</code></li>
+  <li><code class="language-plaintext highlighter-rouge">RandomAccessFile(String fichero, String modo)</code></li>
+</ul>
+
+<p><strong>Métodos principales:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Método</th>
+      <th>Descripción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">seek(long posicion)</code></td>
+      <td>Posiciona el puntero en la posición indicada</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">getFilePointer()</code></td>
+      <td>Devuelve la posición actual del puntero</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">skipBytes(int desplazamiento)</code></td>
+      <td>Desplaza el puntero hacia adelante</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">length()</code></td>
+      <td>Devuelve el tamaño del archivo en bytes</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Tamaños de los tipos primitivos en Java:</p>
+
+<p><img src="/img/posts/20151007_1.png" alt="Tamaños de tipos primitivos en Java" /></p>
+
+<h3 id="ejemplo-convertir-minúsculas-a-mayúsculas-con-acceso-aleatorio">Ejemplo: convertir minúsculas a mayúsculas con acceso aleatorio</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EjemplAccesoAleatorio</span><span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">char</span> <span class="n">c</span><span class="o">;</span>
+        <span class="kt">boolean</span> <span class="n">finArchivo</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="nc">RandomAccessFile</span> <span class="n">archivo</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+
+        <span class="k">try</span><span class="o">{</span>
+            <span class="n">archivo</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RandomAccessFile</span><span class="o">(</span><span class="s">"D:\\prueba.txt"</span><span class="o">,</span> <span class="s">"rw"</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"El tamaño del archivo es: "</span> <span class="o">+</span> <span class="n">archivo</span><span class="o">.</span><span class="na">length</span><span class="o">());</span>
+
+            <span class="k">do</span><span class="o">{</span>
+                <span class="k">try</span><span class="o">{</span>
+                    <span class="n">c</span> <span class="o">=</span> <span class="o">(</span><span class="kt">char</span><span class="o">)</span><span class="n">archivo</span><span class="o">.</span><span class="na">readByte</span><span class="o">();</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">'b'</span><span class="o">){</span>
+                        <span class="n">archivo</span><span class="o">.</span><span class="na">seek</span><span class="o">(</span><span class="n">archivo</span><span class="o">.</span><span class="na">getFilePointer</span><span class="o">()-</span><span class="mi">1</span><span class="o">);</span>
+                        <span class="n">archivo</span><span class="o">.</span><span class="na">writeByte</span><span class="o">(</span><span class="nc">Character</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">(</span><span class="n">c</span><span class="o">));</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+                <span class="k">catch</span><span class="o">(</span><span class="nc">EOFException</span> <span class="n">e</span><span class="o">){</span>
+                    <span class="n">finArchivo</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+                    <span class="n">archivo</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Todas las b convertidas a mayúsculas"</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">}</span><span class="k">while</span><span class="o">(!</span><span class="n">finArchivo</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">catch</span><span class="o">(</span><span class="nc">FileNotFoundException</span> <span class="n">e</span><span class="o">){</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"El archivo no existe"</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">catch</span><span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">){</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Se produjo un error con el archivo"</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#java</span>
+        
+          <span class="tag">#acceso-a-datos</span>
+        
+          <span class="tag">#file</span>
+        
+          <span class="tag">#randomaccessfile</span>
+        
+          <span class="tag">#ficheros</span>
+        
+          <span class="tag">#io</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

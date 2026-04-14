@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programación. GUIs en Java | Programando a Pasitos</title>
+<meta name="description" content="Introducción al desarrollo de interfaces gráficas en Java con AWT y Swing, incluyendo layouts, eventos y look and feel.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Programación. GUIs en Java | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Programación. GUIs en Java" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Introducción al desarrollo de interfaces gráficas en Java con AWT y Swing, incluyendo layouts, eventos y look and feel." />
+<meta property="og:description" content="Introducción al desarrollo de interfaces gráficas en Java con AWT y Swing, incluyendo layouts, eventos y look and feel." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/05/05/programacion-guis-en-java/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/05/05/programacion-guis-en-java/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-05-05T06:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Programación. GUIs en Java" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-05-05T06:00:00+02:00","datePublished":"2015-05-05T06:00:00+02:00","description":"Introducción al desarrollo de interfaces gráficas en Java con AWT y Swing, incluyendo layouts, eventos y look and feel.","headline":"Programación. GUIs en Java","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/05/05/programacion-guis-en-java/"},"url":"http://localhost:4000/posts/2015/05/05/programacion-guis-en-java/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Programación. GUIs en Java</h1>
+    <div class="post-meta">
+      <time datetime="2015-05-05T06:00:00+02:00">05 May 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#java" class="post-category">Java</a>, 
+        
+          <a href="/categories/#programación" class="post-category">Programación</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Introducción al desarrollo de interfaces gráficas en Java con AWT y Swing, incluyendo layouts, eventos y look and feel.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <p>La API de Java tiene dos librerías para desarrollar aplicaciones con interfaz gráfica.</p>
+
+<ul>
+  <li><strong>AWT (Abstract Window Toolkit).</strong> Forma parte de la JFC (Java Foundation Classes). Los componentes se encuentran en la librería <code class="language-plaintext highlighter-rouge">java.AWT</code>.</li>
+  <li><strong>SWING.</strong> Componentes programados con código no nativo, lo cual los hace más portables. Son componentes más potentes, y se identifican con una J antes del nombre del componente. Los componentes se encuentran en la librería <code class="language-plaintext highlighter-rouge">javax.swing</code> y son todo subclases de la clase <code class="language-plaintext highlighter-rouge">JComponent.Swing</code>. Forma parte de Java2.</li>
+</ul>
+
+<p>Ejemplo básico de ventana Swing:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">javax.swing.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PruebaGUI</span><span class="o">{</span>
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span> <span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+     <span class="nc">JFrame</span> <span class="n">frame</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JFrame</span><span class="o">(</span><span class="s">"Ventana Hola mundo"</span><span class="o">);</span>
+     <span class="n">frame</span><span class="o">.</span><span class="na">setDefaultCloseOperation</span><span class="o">(</span><span class="nc">WindowConstants</span><span class="o">.</span><span class="na">EXIT_ON_CLOSE</span><span class="o">);</span>
+     <span class="nc">JLabel</span> <span class="n">label</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JLabel</span><span class="o">(</span><span class="s">"Hola mundo"</span><span class="o">);</span>
+     <span class="n">frame</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">label</span><span class="o">);</span>
+     <span class="n">frame</span><span class="o">.</span><span class="na">pack</span><span class="o">();</span>
+     <span class="n">frame</span><span class="o">.</span><span class="na">setLocationRelativeTo</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+     <span class="n">frame</span><span class="o">.</span><span class="na">setVisible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+   <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="contenedores-de-alto-nivel">Contenedores de alto nivel</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">JFrame</code> — Ventana principal.</li>
+  <li><code class="language-plaintext highlighter-rouge">JDialog</code> — Diálogo secundario.</li>
+  <li><code class="language-plaintext highlighter-rouge">JApplet</code> — Applet en navegador.</li>
+</ul>
+
+<h2 id="componentes-swing-más-comunes">Componentes Swing más comunes</h2>
+
+<p><code class="language-plaintext highlighter-rouge">JButton</code>, <code class="language-plaintext highlighter-rouge">JLabel</code>, <code class="language-plaintext highlighter-rouge">JTextField</code>, <code class="language-plaintext highlighter-rouge">JTextArea</code>, <code class="language-plaintext highlighter-rouge">JCheckBox</code>, <code class="language-plaintext highlighter-rouge">JRadioButton</code>, <code class="language-plaintext highlighter-rouge">JComboBox</code>, <code class="language-plaintext highlighter-rouge">JScrollBar</code>.</p>
+
+<h2 id="layout-managers">Layout Managers</h2>
+
+<ul>
+  <li><strong>FlowLayout</strong> — Coloca los componentes de izquierda a derecha. Es el layout por defecto.</li>
+  <li><strong>BorderLayout</strong> — Divide el contenedor en cinco zonas: norte, sur, este, oeste y centro.</li>
+  <li><strong>CardLayout</strong> — Apila los componentes como cartas de una baraja.</li>
+  <li><strong>GridLayout</strong> — Distribuye los componentes en una cuadrícula.</li>
+  <li><strong>GridBagLayout</strong> — Similar a GridLayout pero con más flexibilidad.</li>
+  <li><strong>BoxLayout</strong> — Apila los componentes en una fila o columna.</li>
+</ul>
+
+<h2 id="apariencia-look-and-feel">Apariencia (Look and Feel)</h2>
+
+<p>Se controla con <code class="language-plaintext highlighter-rouge">UIManager</code>. Opciones disponibles:</p>
+
+<ul>
+  <li>Multiplataforma: <code class="language-plaintext highlighter-rouge">MetalLookAndFeel</code></li>
+  <li>Windows</li>
+  <li>Solaris (Motif)</li>
+  <li>Mac</li>
+  <li>GTK (Unix/Linux)</li>
+</ul>
+
+<p>Se configura con <code class="language-plaintext highlighter-rouge">UIManager.setLookAndFeel(...)</code> dentro de un bloque <code class="language-plaintext highlighter-rouge">try/catch</code>.</p>
+
+<h2 id="eventos-listeners">Eventos (Listeners)</h2>
+
+<p>Los eventos permiten responder a las acciones del usuario. Se añaden con <code class="language-plaintext highlighter-rouge">addActionListener(...)</code>.</p>
+
+<p>Listeners disponibles: <code class="language-plaintext highlighter-rouge">ActionListener</code>, <code class="language-plaintext highlighter-rouge">AdjustmentListener</code>, <code class="language-plaintext highlighter-rouge">FocusListener</code>, <code class="language-plaintext highlighter-rouge">ItemListener</code>, <code class="language-plaintext highlighter-rouge">KeyListener</code>, <code class="language-plaintext highlighter-rouge">MouseListener</code>, <code class="language-plaintext highlighter-rouge">MouseMotionListener</code>, <code class="language-plaintext highlighter-rouge">WindowListener</code>.</p>
+
+<p>Ejemplo con dos botones y un <code class="language-plaintext highlighter-rouge">WindowAdapter</code> para el cierre:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">javax.swing.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EjemploEventos</span> <span class="kd">extends</span> <span class="nc">JFrame</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="nc">JButton</span> <span class="n">btnLimpia</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">JButton</span> <span class="n">btnEscribe</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">JLabel</span> <span class="n">lblMensaje</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">EjemploEventos</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">setTitle</span><span class="o">(</span><span class="s">"Ejemplo Eventos"</span><span class="o">);</span>
+        <span class="n">setLayout</span><span class="o">(</span><span class="k">new</span> <span class="nc">FlowLayout</span><span class="o">());</span>
+
+        <span class="n">btnLimpia</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"Limpia"</span><span class="o">);</span>
+        <span class="n">btnEscribe</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"Escribe"</span><span class="o">);</span>
+        <span class="n">lblMensaje</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JLabel</span><span class="o">(</span><span class="s">"Aquí aparecerá el texto"</span><span class="o">);</span>
+
+        <span class="n">btnLimpia</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">ActionListener</span><span class="o">()</span> <span class="o">{</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">lblMensaje</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+
+        <span class="n">btnEscribe</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">ActionListener</span><span class="o">()</span> <span class="o">{</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">lblMensaje</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"¡Hola!"</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+
+        <span class="n">add</span><span class="o">(</span><span class="n">btnLimpia</span><span class="o">);</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">btnEscribe</span><span class="o">);</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">lblMensaje</span><span class="o">);</span>
+
+        <span class="n">addWindowListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">WindowAdapter</span><span class="o">()</span> <span class="o">{</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">windowClosing</span><span class="o">(</span><span class="nc">WindowEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+
+        <span class="n">pack</span><span class="o">();</span>
+        <span class="n">setLocationRelativeTo</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+        <span class="n">setVisible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">new</span> <span class="nf">EjemploEventos</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="exportar-a-jar-ejecutable">Exportar a .jar ejecutable</h2>
+
+<p>En Eclipse: File → Export → “Runnable jar file”.</p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#java</span>
+        
+          <span class="tag">#programación</span>
+        
+          <span class="tag">#swing</span>
+        
+          <span class="tag">#awt</span>
+        
+          <span class="tag">#gui</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

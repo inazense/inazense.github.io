@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programación multimedia. ListView personalizados | Programando a Pasitos</title>
+<meta name="description" content="Cómo personalizar un ListView en Android añadiendo iconos a cada ítem de la lista mediante un layout personalizado y ArrayAdapter.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Programación multimedia. ListView personalizados | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Programación multimedia. ListView personalizados" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Cómo personalizar un ListView en Android añadiendo iconos a cada ítem de la lista mediante un layout personalizado y ArrayAdapter." />
+<meta property="og:description" content="Cómo personalizar un ListView en Android añadiendo iconos a cada ítem de la lista mediante un layout personalizado y ArrayAdapter." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/11/03/programacion-multimedia-listview-personalizados/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/11/03/programacion-multimedia-listview-personalizados/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-11-03T07:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Programación multimedia. ListView personalizados" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver","url":"https://github.com/inazense"},"dateModified":"2015-11-03T07:00:00+01:00","datePublished":"2015-11-03T07:00:00+01:00","description":"Cómo personalizar un ListView en Android añadiendo iconos a cada ítem de la lista mediante un layout personalizado y ArrayAdapter.","headline":"Programación multimedia. ListView personalizados","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/11/03/programacion-multimedia-listview-personalizados/"},"url":"http://localhost:4000/posts/2015/11/03/programacion-multimedia-listview-personalizados/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Programación multimedia. ListView personalizados</h1>
+    <div class="post-meta">
+      <time datetime="2015-11-03T07:00:00+01:00">03 Nov 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#android" class="post-category">Android</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Cómo personalizar un ListView en Android añadiendo iconos a cada ítem de la lista mediante un layout personalizado y ArrayAdapter.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <p>En esta entrada se mejora un <code class="language-plaintext highlighter-rouge">ListView</code> añadiendo iconos a cada opción de la lista, mediante un layout personalizado para los ítems y un <code class="language-plaintext highlighter-rouge">ArrayAdapter</code>.</p>
+
+<h2 id="layout-principal-activity_listasxml">Layout principal (activity_listas.xml)</h2>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;RelativeLayout</span> <span class="na">xmlns:android=</span><span class="s">"http://schemas.android.com/apk/res/android"</span>
+    <span class="na">xmlns:tools=</span><span class="s">"http://schemas.android.com/tools"</span>
+    <span class="na">android:layout_width=</span><span class="s">"match_parent"</span>
+    <span class="na">android:layout_height=</span><span class="s">"match_parent"</span>
+    <span class="na">android:paddingLeft=</span><span class="s">"@dimen/activity_horizontal_margin"</span>
+    <span class="na">android:paddingRight=</span><span class="s">"@dimen/activity_horizontal_margin"</span>
+    <span class="na">android:paddingTop=</span><span class="s">"@dimen/activity_vertical_margin"</span>
+    <span class="na">android:paddingBottom=</span><span class="s">"@dimen/activity_vertical_margin"</span>
+    <span class="na">tools:context=</span><span class="s">".Listas"</span>
+    <span class="na">android:background=</span><span class="s">"#FF5722"</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;TextView</span>
+        <span class="na">android:layout_width=</span><span class="s">"match_parent"</span>
+        <span class="na">android:layout_height=</span><span class="s">"wrap_content"</span>
+        <span class="na">android:text=</span><span class="s">"Ejemplo de listado"</span>
+        <span class="na">android:id=</span><span class="s">"@+id/lblTitulo"</span>
+        <span class="na">android:layout_alignParentTop=</span><span class="s">"true"</span>
+        <span class="na">android:layout_centerHorizontal=</span><span class="s">"true"</span>
+        <span class="na">android:textColor=</span><span class="s">"#FFFFFF"</span>
+        <span class="na">android:textSize=</span><span class="s">"@dimen/abc_action_button_min_width_overflow_material"</span>
+        <span class="na">android:textStyle=</span><span class="s">"bold"</span>
+        <span class="na">android:gravity=</span><span class="s">"center_horizontal"</span> <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;ListView</span>
+        <span class="na">android:layout_width=</span><span class="s">"wrap_content"</span>
+        <span class="na">android:layout_height=</span><span class="s">"wrap_content"</span>
+        <span class="na">android:id=</span><span class="s">"@android:id/list"</span>
+        <span class="na">android:layout_below=</span><span class="s">"@+id/lblTitulo"</span>
+        <span class="na">android:layout_alignParentLeft=</span><span class="s">"true"</span>
+        <span class="na">android:layout_alignParentStart=</span><span class="s">"true"</span>
+        <span class="na">android:layout_marginTop=</span><span class="s">"40dp"</span>
+        <span class="na">android:touchscreenBlocksFocus=</span><span class="s">"false"</span>
+        <span class="na">android:textAlignment=</span><span class="s">"center"</span>
+        <span class="na">android:gravity=</span><span class="s">"center"</span> <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;TextView</span>
+        <span class="na">android:layout_width=</span><span class="s">"match_parent"</span>
+        <span class="na">android:layout_height=</span><span class="s">"wrap_content"</span>
+        <span class="na">android:text=</span><span class="s">"Resultado"</span>
+        <span class="na">android:id=</span><span class="s">"@+id/lblResultado"</span>
+        <span class="na">android:layout_below=</span><span class="s">"@+id/lblTitulo"</span>
+        <span class="na">android:layout_centerHorizontal=</span><span class="s">"true"</span>
+        <span class="na">android:textSize=</span><span class="s">"@dimen/abc_dialog_padding_material"</span>
+        <span class="na">android:textColor=</span><span class="s">"#FFFFFF"</span>
+        <span class="na">android:gravity=</span><span class="s">"center_horizontal"</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/RelativeLayout&gt;</span>
+</code></pre></div></div>
+
+<h2 id="layout-personalizado-para-cada-ítem-item_layoutxml">Layout personalizado para cada ítem (item_layout.xml)</h2>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;RelativeLayout</span> <span class="na">xmlns:android=</span><span class="s">"http://schemas.android.com/apk/res/android"</span>
+    <span class="na">android:layout_width=</span><span class="s">"match_parent"</span>
+    <span class="na">android:layout_height=</span><span class="s">"?android:attr/listPreferredItemHeight"</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;ImageView</span>
+        <span class="na">android:layout_width=</span><span class="s">"?android:attr/listPreferredItemHeight"</span>
+        <span class="na">android:layout_height=</span><span class="s">"?android:attr/listPreferredItemHeight"</span>
+        <span class="na">android:id=</span><span class="s">"@+id/icono"</span>
+        <span class="na">android:src=</span><span class="s">"@drawable/android"</span>
+        <span class="na">android:layout_alignParentLeft=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;TextView</span>
+        <span class="na">android:layout_width=</span><span class="s">"?android:attr/listPreferredItemHeight"</span>
+        <span class="na">android:layout_height=</span><span class="s">"?android:attr/listPreferredItemHeight"</span>
+        <span class="na">android:id=</span><span class="s">"@+id/titulo"</span>
+        <span class="na">android:layout_marginLeft=</span><span class="s">"70dp"</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/RelativeLayout&gt;</span>
+</code></pre></div></div>
+
+<p>El valor <code class="language-plaintext highlighter-rouge">?android:attr/listPreferredItemHeight</code> usa la altura estándar recomendada por el sistema para ítems de lista.</p>
+
+<h2 id="código-java-listasjava">Código Java (Listas.java)</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="nc">TextView</span> <span class="n">resultado</span><span class="o">;</span>
+<span class="kd">private</span> <span class="nc">ListView</span> <span class="n">lista</span><span class="o">;</span>
+<span class="kd">private</span> <span class="nc">String</span><span class="o">[]</span> <span class="n">cursos</span><span class="o">;</span>
+<span class="kd">private</span> <span class="nc">String</span><span class="o">[]</span> <span class="n">asignaturas</span><span class="o">;</span>
+
+<span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="nc">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+    <span class="n">setContentView</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_listas</span><span class="o">);</span>
+    <span class="n">resultado</span> <span class="o">=</span> <span class="o">(</span><span class="nc">TextView</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">lblResultado</span><span class="o">);</span>
+    <span class="n">lista</span> <span class="o">=</span> <span class="o">(</span><span class="nc">ListView</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="n">android</span><span class="o">.</span><span class="na">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">list</span><span class="o">);</span>
+
+    <span class="n">asignaturas</span> <span class="o">=</span> <span class="n">getResources</span><span class="o">().</span><span class="na">getStringArray</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">array</span><span class="o">.</span><span class="na">opcion</span><span class="o">);</span>
+    <span class="nc">ListAdapter</span> <span class="n">adapter</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayAdapter</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;(</span>
+        <span class="k">this</span><span class="o">,</span> <span class="no">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">item_layout</span><span class="o">,</span> <span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">titulo</span><span class="o">,</span> <span class="n">asignaturas</span>
+    <span class="o">);</span>
+    <span class="n">lista</span><span class="o">.</span><span class="na">setAdapter</span><span class="o">(</span><span class="n">adapter</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onListItemClick</span><span class="o">(</span><span class="nc">ListView</span> <span class="n">l</span><span class="o">,</span> <span class="nc">View</span> <span class="n">v</span><span class="o">,</span> <span class="kt">int</span> <span class="n">position</span><span class="o">,</span> <span class="kt">long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">super</span><span class="o">.</span><span class="na">onListItemClick</span><span class="o">(</span><span class="n">l</span><span class="o">,</span> <span class="n">v</span><span class="o">,</span> <span class="n">position</span><span class="o">,</span> <span class="n">id</span><span class="o">);</span>
+    <span class="n">cursos</span> <span class="o">=</span> <span class="n">getResources</span><span class="o">().</span><span class="na">getStringArray</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">array</span><span class="o">.</span><span class="na">curso</span><span class="o">);</span>
+    <span class="n">resultado</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">l</span><span class="o">.</span><span class="na">getItemAtPosition</span><span class="o">(</span><span class="n">position</span><span class="o">)</span> <span class="o">+</span> <span class="s">" es de "</span> <span class="o">+</span> <span class="n">cursos</span><span class="o">[</span><span class="n">position</span><span class="o">]);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>El constructor de <code class="language-plaintext highlighter-rouge">ArrayAdapter</code> recibe:</p>
+<ol>
+  <li>El contexto.</li>
+  <li>El layout personalizado del ítem (<code class="language-plaintext highlighter-rouge">R.layout.item_layout</code>).</li>
+  <li>El id del <code class="language-plaintext highlighter-rouge">TextView</code> dentro de ese layout donde se coloca el texto (<code class="language-plaintext highlighter-rouge">R.id.titulo</code>).</li>
+  <li>El array de cadenas a mostrar.</li>
+</ol>
+
+<p>Los arrays <code class="language-plaintext highlighter-rouge">R.array.opcion</code> y <code class="language-plaintext highlighter-rouge">R.array.curso</code> se definen en <code class="language-plaintext highlighter-rouge">res/values/strings.xml</code>.</p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#android</span>
+        
+          <span class="tag">#listview</span>
+        
+          <span class="tag">#adapter</span>
+        
+          <span class="tag">#programacion-multimedia</span>
+        
+          <span class="tag">#layout</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

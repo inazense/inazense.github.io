@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistemas informáticos. Windows Server 2008. Primeras configuraciones | Programando a Pasitos</title>
+<meta name="description" content="Configuraciones básicas de red en Windows Server 2008 recién instalado, incluyendo zona horaria, IPv4 estática y nombre NetBIOS.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Sistemas informáticos. Windows Server 2008. Primeras configuraciones | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Sistemas informáticos. Windows Server 2008. Primeras configuraciones" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Configuraciones básicas de red en Windows Server 2008 recién instalado, incluyendo zona horaria, IPv4 estática y nombre NetBIOS." />
+<meta property="og:description" content="Configuraciones básicas de red en Windows Server 2008 recién instalado, incluyendo zona horaria, IPv4 estática y nombre NetBIOS." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/04/08/sistemas-informaticos-windows-server-2008-primeras-configuraciones/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/04/08/sistemas-informaticos-windows-server-2008-primeras-configuraciones/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-04-08T06:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Sistemas informáticos. Windows Server 2008. Primeras configuraciones" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-04-08T06:00:00+02:00","datePublished":"2015-04-08T06:00:00+02:00","description":"Configuraciones básicas de red en Windows Server 2008 recién instalado, incluyendo zona horaria, IPv4 estática y nombre NetBIOS.","headline":"Sistemas informáticos. Windows Server 2008. Primeras configuraciones","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/04/08/sistemas-informaticos-windows-server-2008-primeras-configuraciones/"},"url":"http://localhost:4000/posts/2015/04/08/sistemas-informaticos-windows-server-2008-primeras-configuraciones/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Sistemas informáticos. Windows Server 2008. Primeras configuraciones</h1>
+    <div class="post-meta">
+      <time datetime="2015-04-08T06:00:00+02:00">08 Apr 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#sistemas-informáticos" class="post-category">Sistemas informáticos</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Configuraciones básicas de red en Windows Server 2008 recién instalado, incluyendo zona horaria, IPv4 estática y nombre NetBIOS.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <p>Ya tenemos nuestro servidor instalado, limpito y listo para que lo configuremos.</p>
+
+<p>En esta entrada simplemente realizaremos las configuraciones de red más básicas, es decir, zona horaria, interfaz de red y nombre NetBios.</p>
+
+<p>¿Os acordaís donde lo dejamos, no? En la pantalla de bienvenida.</p>
+
+<p><img src="/img/posts/20150408_21.png" alt="Pantalla de bienvenida de Windows Server 2008" /></p>
+
+<p>Simplemente, en la sección de <strong>Proporcionar información al equipo</strong>, vamos a <em>Establecer zona horaria</em> y veremos lo siguiente.</p>
+
+<p><img src="/img/posts/20150408_22.png" alt="Configuración de zona horaria" /></p>
+
+<p>Ponemos la configuración horaria que nos pertenezca (aunque por defecto debería extraerla de Internet si tienes conexión), y aceptamos.</p>
+
+<p>Lo siguiente será pulsar sobre <em>Configurar funciones de red</em>. Se nos abrirá la ventana de conexiones de red disponibles.</p>
+
+<p><img src="/img/posts/20150408_23.png" alt="Ventana de conexiones de red" /></p>
+
+<p>Le damos a botón derecho - Propiedades, desmarcamos el check de las direcciones IPv6, y sobre el Protocolo de Internet versión 4 (IPv4) pulsamos en propiedades.</p>
+
+<p><img src="/img/posts/20150408_24.png" alt="Propiedades de la conexión de red" /></p>
+
+<p>Le damos la configuración que deseemos.</p>
+
+<p>En mi caso yo trabajaré con la red 10.0.0.0, en el rango de 10.0.13.0 a 10.0.13.255 (hay que compartir direcciones entre todos). Mi puerta de enlace será la 10.0.0.1 y como instalaremos un servidor DNS lo dirigimos a nuestro loopback e indicamos que el secundario sea el de Google.</p>
+
+<p>Es decir, tal que así la configuración.</p>
+
+<p><img src="/img/posts/20150408_25.png" alt="Configuración de IP estática IPv4" /></p>
+
+<p>Hecho esto, aceptamos y volvemos a la ventana de inicio.</p>
+
+<p>Ahora nos vamos a <strong>Proporcionar nombre del equipo y dominio</strong> para cambiar nombre de equipo.</p>
+
+<p>No tiene mayor misterio más que pulsar sobre <em>Cambiar</em>.</p>
+
+<p><img src="/img/posts/20150408_26.png" alt="Cambiar nombre de equipo" /></p>
+
+<p>Y escribimos el que nos dé la gana.</p>
+
+<p><img src="/img/posts/20150408_27.png" alt="Nuevo nombre del equipo introducido" /></p>
+
+<p>En la siguiente entrega instalaremos funciones y características.</p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#sistemas-informaticos</span>
+        
+          <span class="tag">#windows-server</span>
+        
+          <span class="tag">#red</span>
+        
+          <span class="tag">#configuracion</span>
+        
+          <span class="tag">#netbios</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

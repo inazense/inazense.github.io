@@ -1,0 +1,48 @@
+title: "Programando a Pasitos"
+tagline: "No es un bug, es una característica no documentada"
+description: "Blog de programación por Inazio Claver"
+author:
+  name: Inazio Claver
+  url: https://github.com/inazense
+
+url: "https://inazense.github.io"
+baseurl: ""
+
+lang: es
+timezone: Europe/Madrid
+
+permalink: /posts/:year/:month/:day/:title/
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: "pages"
+    values:
+      layout: "page"
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-paginate
+
+paginate: 10
+paginate_path: "/page/:num/"
+
+sass:
+  sass_dir: _sass
+  style: compressed
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+
+include:
+  - pages
+
+feed:
+  path: feed.xml

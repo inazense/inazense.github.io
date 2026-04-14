@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instalación y configuración de Git en Windows | Programando a Pasitos</title>
+<meta name="description" content="Guía completa para instalar y configurar Git en Windows paso a paso. Aprende a descargar Git, configurar usuario, email, editor y herramientas de merge con comandos esenciales y capturas de pantalla.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Instalación y configuración de Git en Windows | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Instalación y configuración de Git en Windows" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Guía completa para instalar y configurar Git en Windows paso a paso. Aprende a descargar Git, configurar usuario, email, editor y herramientas de merge con comandos esenciales y capturas de pantalla." />
+<meta property="og:description" content="Guía completa para instalar y configurar Git en Windows paso a paso. Aprende a descargar Git, configurar usuario, email, editor y herramientas de merge con comandos esenciales y capturas de pantalla." />
+<link rel="canonical" href="http://localhost:4000/posts/2016/08/21/instalacion-y-configuracion-de-git-en-windows/" />
+<meta property="og:url" content="http://localhost:4000/posts/2016/08/21/instalacion-y-configuracion-de-git-en-windows/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-08-21T06:10:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Instalación y configuración de Git en Windows" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2016-08-21T06:10:00+02:00","datePublished":"2016-08-21T06:10:00+02:00","description":"Guía completa para instalar y configurar Git en Windows paso a paso. Aprende a descargar Git, configurar usuario, email, editor y herramientas de merge con comandos esenciales y capturas de pantalla.","headline":"Instalación y configuración de Git en Windows","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2016/08/21/instalacion-y-configuracion-de-git-en-windows/"},"url":"http://localhost:4000/posts/2016/08/21/instalacion-y-configuracion-de-git-en-windows/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Instalación y configuración de Git en Windows</h1>
+    <div class="post-meta">
+      <time datetime="2016-08-21T06:10:00+02:00">21 Aug 2016</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#git" class="post-category">Git</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Guía completa para instalar y configurar Git en Windows paso a paso. Aprende a descargar Git, configurar usuario, email, editor y herramientas de merge con comandos esenciales y capturas de pantalla.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <p><strong>Git</strong> es un programa de control de versiones diseñado por Linus Torvalds - AKA ese señor creador del kernel Linux - que fue pensado para tener una gran eficiencia y confiabilidad del mantenimiento de versiones de nuestras aplicaciones.</p>
+
+<p>Es decir, <strong>Git</strong> lo usaremos para tener control y registrar los cambios realizados sobre uno o varios archivos a lo largo del tiempo, de modo que si la fastidias o necesitas recuperar alguna versión antigua nos resulte más sencillo que gestionando copias de nuestro código “a pelo”.</p>
+
+<p><strong>Git</strong> está basado en un sistema de control de versiones distribuido (<strong>DVCS</strong> en inglés). En un <strong>DVCS</strong> los clientes, aparte de descargar la última instantánea de los archivos, también pueden replicar completamente el repositorio. De este modo, si un servidor muerte y los sistemas están colaborando a través de él, cualquiera de los repositorios clientes podrá copiarse en el servidor de nuevo y restaurarlo.
+Es decir, cada vez que hacemos una instantánea realmente estamos haciendo una copia de seguridad completa. Eso, mezclado con la enorme velocidad de <strong>Git</strong>, hace que trabajar sea mucho más seguro, eficiente y mantengamos siempre un control sobre nuestro software.</p>
+
+<p>Para hacernos una mejor idea, observa la siguiente imagen que lo resume.</p>
+
+<p><img src="/img/posts/20160821_1.png" alt="DCSV como funciona" /></p>
+
+<h2 id="cómo-instalo-git-en-windows">¿Cómo instalo Git en Windows?</h2>
+
+<p>Lo primero será acceder a la página oficial de <strong>Git</strong> para <strong>Windows</strong> <a href="https://git-for-windows.github.io/">https://git-for-windows.github.io</a> y descargarnos el ejecutable pulsando en Download.</p>
+
+<p>Cuando se lance la instalación y después de haber aceptado la licencia de términos de uso y haber elegido una ruta donde instalarlo, veremos la pantalla de los componentes a instalar.</p>
+
+<p><img src="/img/posts/20160821_2.png" alt="Instalar git paso a paso 1" /></p>
+
+<p>Deja todo por defecto. De esta manera se instalará <strong>Git</strong> en dos formatos, consola e interfaz gráfica (aunque personalmente esta última no me gusta mucho) y se asociarán los archivos de configuración <code class="language-plaintext highlighter-rouge">.git</code> a el editor de texto por defecto, además de poder ejecutar los <code class="language-plaintext highlighter-rouge">.sh</code> con la consola de <strong>Bash</strong>. Sí, aunque no tengamos Linux Git lo trabajaremos con <strong>Bash</strong>.</p>
+
+<p>Pulsamos Next y pasaremos a la sección donde configuraremos como usar la consola de comandos de <strong>Git</strong>.</p>
+
+<p><img src="/img/posts/20160821_3.png" alt="Instalar git paso a paso 2" /></p>
+
+<p>En este caso yo quiero usar <strong>Git</strong> tanto desde <strong>Bash</strong> como desde <strong>CMD</strong>, así que elijo la segunda opción. Si quieres usarlo únicamente desde <strong>Bash</strong>, deberás marcar la primera.</p>
+
+<p>De nuevo le damos a Next y procederemos a configurar como tratará Git los finales de línea en los archivos de texto.</p>
+
+<p><img src="/img/posts/20160821_4.png" alt="Instalar git paso a paso 3" /></p>
+
+<p>Dejamos la opción por defecto simplemente, para no complicarnos. Pulsamos Next para elegir que emulador queremos para poder usar <strong>Bash</strong>.</p>
+
+<p><img src="/img/posts/20160821_5.png" alt="Instalar git paso a paso 4" /></p>
+
+<p>Elijo <strong>MinTTY</strong>, la terminal por defecto. Es más sencillo de configurar y no tiene tantas limitaciones.</p>
+
+<p>Y por último habilito las dos opciones extra que me ofrece <strong>Git</strong>, habilitar el cache en los archivos de sistema y el administrador de credenciales.</p>
+
+<p><img src="/img/posts/20160821_6.png" alt="Instalar git paso a paso 5" /></p>
+
+<p>Con estos pasos, y después de pulsar <code class="language-plaintext highlighter-rouge">Install</code>, ya tendremos listo en nuestra máquina <strong>Git</strong>. Vayamos a la segunda parte, su configuración básica.</p>
+
+<h2 id="cómo-configurar-git">Cómo configurar Git</h2>
+
+<p>Una vez que tenemos instalado <strong>Git</strong>, vamos a querer hacer algunas configuraciones para personalizar su entorno. Sólo necesitamos configurarlo una vez, aunque podremos cambiarlo en cualquier momento simplemente volviendo a ejecutar los mismos comandos.</p>
+
+<p>La herramienta que usaremos se llama <code class="language-plaintext highlighter-rouge">git config</code>, que nos permitirá obtener y establecer variables de configuración para el aspecto y funcionamiento de <strong>Git</strong>.
+Dichas variables se almacenarán en sistemas <strong>Windows</strong> en <code class="language-plaintext highlighter-rouge">C:\Users\$USUARIO</code> en un archivo llamado <code class="language-plaintext highlighter-rouge">.gitconfig</code>.</p>
+
+<p>Yo me voy a centrar en configurar mi identidad, pero hay otras muchas cosas que se pueden modificar.</p>
+
+<p>Lo primero será abrir nuestro <strong>Git Bash</strong> recién instalado.</p>
+
+<p>Se nos abrirá una nueva terminal, y ya que estamos vamos a comprobar que versión de <strong>Git</strong> tenemos instalada escribiendo <code class="language-plaintext highlighter-rouge">git --version</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git <span class="nt">--version</span>
+git version 2.9.3.windows.1
+</code></pre></div></div>
+
+<p>Bien, hecho esto vamos a indicarle nuestro nombre y correo electrónico. Esta parte es importante porque todos los commits de <strong>Git</strong> usarán esta información.</p>
+
+<p>Escribiremos lo siguiente</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config <span class="nt">--global</span> user.name <span class="s2">"Inazio Claver"</span>
+git config <span class="nt">--global</span> user.email inazio@programando.apasitos
+</code></pre></div></div>
+
+<p>Con la variable <code class="language-plaintext highlighter-rouge">--global</code> <strong>Git</strong> usará esta información para todo el sistema. Si en un momento determinado necesitas cambiar esta información para un proyecto en concreto, basta con lanzar el mismo comando sin esa variable cuando estés dentro del proyecto.</p>
+
+<p>Aparte de eso también puedes configurar tu editor de texto por defecto con el siguiente comando:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config <span class="nt">--global</span> core.editor MiEditor
+</code></pre></div></div>
+
+<p>Y la herramienta para diferencias por defecto, que usaremos para resolver los conflictos en los <strong>merge</strong> (cuando unamos las ramas). Se hace así</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config <span class="nt">--global</span> merge.tool MiHerramienta
+</code></pre></div></div>
+
+<p>Ahora sólo nos queda comprobar la configuración. Escribe el siguiente comando</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config <span class="nt">--list</span>
+</code></pre></div></div>
+
+<p>Veremos algo así</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git config <span class="nt">--list</span>
+core.symlinks<span class="o">=</span><span class="nb">false
+</span>core.autocrlf<span class="o">=</span><span class="nb">true
+</span>core.fscache<span class="o">=</span><span class="nb">true
+</span>color.diff<span class="o">=</span>auto
+color.status<span class="o">=</span>auto
+color.branch<span class="o">=</span>auto
+color.interactive<span class="o">=</span><span class="nb">true
+</span>help.format<span class="o">=</span>html
+http.sslcainfo<span class="o">=</span>%PATH%
+diff.astextplain.textconv<span class="o">=</span>astextplain
+rebase.autosquash<span class="o">=</span><span class="nb">true
+</span>credential.helper<span class="o">=</span>manager
+user.name<span class="o">=</span>Inazio Claver
+user.email<span class="o">=</span>inazio@programandoapasitos.com
+gui.recentrepo<span class="o">=</span>%RECENT_REPO%
+</code></pre></div></div>
+
+<p>Y esto sería una configuración básica para <strong>Git</strong>. Ya estamos listos para usar nuestra herramienta de control de versiones.</p>
+
+<p>Aquí no vas a aprender a manejar <strong>Git</strong>, no es el fin de este blog porque no soy un experto y, sobre todo, porque hay un libro facilitado por la propia plataforma que lo explica a las mil maravillas, <strong>Pro Git</strong>. Es gratuito, traducido al español, y podéis visitarlo pulsando <a href="https://git-scm.com/book/es/v2">aquí</a>.</p>
+
+<p><strong>¡Salud y coding!</strong></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#git</span>
+        
+          <span class="tag">#windows</span>
+        
+          <span class="tag">#instalacion</span>
+        
+          <span class="tag">#configuracion</span>
+        
+          <span class="tag">#control-versiones</span>
+        
+          <span class="tag">#git-config</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

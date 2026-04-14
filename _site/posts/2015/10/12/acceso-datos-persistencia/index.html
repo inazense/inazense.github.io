@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acceso a datos. Persistencia | Programando a Pasitos</title>
+<meta name="description" content="Conceptos de persistencia y serialización de objetos en Java, incluyendo la interfaz Serializable, el modificador transient, herencia serializable y la interfaz Externalizable.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Acceso a datos. Persistencia | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Acceso a datos. Persistencia" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Conceptos de persistencia y serialización de objetos en Java, incluyendo la interfaz Serializable, el modificador transient, herencia serializable y la interfaz Externalizable." />
+<meta property="og:description" content="Conceptos de persistencia y serialización de objetos en Java, incluyendo la interfaz Serializable, el modificador transient, herencia serializable y la interfaz Externalizable." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/10/12/acceso-datos-persistencia/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/10/12/acceso-datos-persistencia/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-10-12T06:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Acceso a datos. Persistencia" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-10-12T06:00:00+02:00","datePublished":"2015-10-12T06:00:00+02:00","description":"Conceptos de persistencia y serialización de objetos en Java, incluyendo la interfaz Serializable, el modificador transient, herencia serializable y la interfaz Externalizable.","headline":"Acceso a datos. Persistencia","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/10/12/acceso-datos-persistencia/"},"url":"http://localhost:4000/posts/2015/10/12/acceso-datos-persistencia/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Acceso a datos. Persistencia</h1>
+    <div class="post-meta">
+      <time datetime="2015-10-12T06:00:00+02:00">12 Oct 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#java" class="post-category">Java</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Conceptos de persistencia y serialización de objetos en Java, incluyendo la interfaz Serializable, el modificador transient, herencia serializable y la interfaz Externalizable.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="persistencia">Persistencia</h2>
+
+<p>La <strong>persistencia</strong> es la capacidad que permite a los objetos mantener su estado entre diferentes ejecuciones del programa, almacenándolos en memoria secundaria antes de que termine la ejecución.</p>
+
+<h2 id="serialización">Serialización</h2>
+
+<p>La <strong>serialización</strong> es el proceso de convertir el estado de un objeto en una secuencia lineal de bytes para su almacenamiento en archivos o su transmisión entre máquinas virtuales.</p>
+
+<p><img src="/img/posts/20151012_1.png" alt="Esquema de serialización de objetos" /></p>
+
+<p>Para que un objeto sea serializable, su clase debe implementar la interfaz <code class="language-plaintext highlighter-rouge">Serializable</code> (que es una interfaz vacía, sin métodos) o la interfaz <code class="language-plaintext highlighter-rouge">Externalizable</code>.</p>
+
+<p>Puntos clave:</p>
+<ul>
+  <li>Todos los tipos primitivos en Java son serializables por defecto.</li>
+  <li>Las variables marcadas con <code class="language-plaintext highlighter-rouge">transient</code> no se serializan, lo que permite proteger datos sensibles.</li>
+  <li>En jerarquías de herencia, solo es necesario que la clase base implemente <code class="language-plaintext highlighter-rouge">Serializable</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">ObjectOutputStream.writeObject()</code> serializa objetos.</li>
+  <li><code class="language-plaintext highlighter-rouge">ObjectInputStream.readObject()</code> deserializa objetos.</li>
+</ul>
+
+<p>Los flujos de objetos en Java:</p>
+
+<p><img src="/img/posts/20151012_2.png" alt="Flujos de entrada y salida de objetos" /></p>
+
+<h3 id="ejemplo-básico-de-serialización">Ejemplo básico de serialización</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Serial</span> <span class="o">{</span>
+     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+          <span class="k">try</span><span class="o">{</span>
+                <span class="nc">FileOutputStream</span> <span class="n">archivo</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileOutputStream</span><span class="o">(</span><span class="s">"D:\\prueba.dat"</span><span class="o">);</span>
+                <span class="nc">ObjectOutputStream</span> <span class="n">salida</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ObjectOutputStream</span><span class="o">(</span><span class="n">archivo</span><span class="o">);</span>
+                <span class="n">salida</span><span class="o">.</span><span class="na">writeObject</span><span class="o">(</span><span class="s">"Hoy es: "</span><span class="o">);</span>
+                <span class="n">salida</span><span class="o">.</span><span class="na">writeObject</span><span class="o">(</span><span class="k">new</span> <span class="nc">Date</span><span class="o">());</span>
+                <span class="n">salida</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+          <span class="o">}</span>
+          <span class="k">catch</span><span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">){</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Problemas con el archivo"</span><span class="o">);</span>
+          <span class="o">}</span>
+          <span class="k">try</span><span class="o">{</span>
+                <span class="nc">FileInputStream</span> <span class="n">archivo</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="s">"D:\\prueba.dat"</span><span class="o">);</span>
+                <span class="nc">ObjectInputStream</span> <span class="n">entrada</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ObjectInputStream</span><span class="o">(</span><span class="n">archivo</span><span class="o">);</span>
+                <span class="nc">String</span> <span class="n">hoy</span> <span class="o">=</span> <span class="o">(</span><span class="nc">String</span><span class="o">)</span><span class="n">entrada</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span>
+                <span class="nc">Date</span> <span class="n">fecha</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Date</span><span class="o">)</span><span class="n">entrada</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span>
+                <span class="n">entrada</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">hoy</span> <span class="o">+</span> <span class="n">fecha</span><span class="o">);</span>
+          <span class="o">}</span>
+          <span class="k">catch</span><span class="o">(</span><span class="nc">FileNotFoundException</span> <span class="n">e</span><span class="o">){</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"No se pudo abrir el archivo"</span><span class="o">);</span>
+          <span class="o">}</span>
+          <span class="k">catch</span><span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">){</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Problemas con el archivo"</span><span class="o">);</span>
+          <span class="o">}</span>
+          <span class="k">catch</span><span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">){</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Error al leer un objeto"</span><span class="o">);</span>
+          <span class="o">}</span>
+     <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Salida: <code class="language-plaintext highlighter-rouge">Hoy es: Sun Oct 11 18:09:10 CEST 2015</code></p>
+
+<h2 id="el-modificador-transient">El modificador transient</h2>
+
+<p>Las variables marcadas con <code class="language-plaintext highlighter-rouge">transient</code> se excluyen de la serialización. Esto es útil para proteger datos sensibles como contraseñas.</p>
+
+<p><strong>Cliente.java:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Cliente</span> <span class="kd">implements</span> <span class="n">java</span><span class="o">.</span><span class="na">io</span><span class="o">.</span><span class="na">Serializable</span><span class="o">{</span>
+     <span class="kd">private</span> <span class="nc">String</span> <span class="n">nombre</span><span class="o">;</span>
+     <span class="kd">private</span> <span class="kd">transient</span> <span class="nc">String</span> <span class="n">passWord</span><span class="o">;</span>
+
+     <span class="kd">public</span> <span class="nf">Cliente</span><span class="o">(</span><span class="nc">String</span> <span class="n">nombre</span><span class="o">,</span> <span class="nc">String</span> <span class="n">pw</span><span class="o">){</span>
+          <span class="k">this</span><span class="o">.</span><span class="na">nombre</span> <span class="o">=</span> <span class="n">nombre</span><span class="o">;</span>
+          <span class="n">passWord</span> <span class="o">=</span> <span class="n">pw</span><span class="o">;</span>
+     <span class="o">}</span>
+
+     <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">(){</span>
+          <span class="nc">String</span> <span class="n">texto</span> <span class="o">=</span> <span class="o">(</span><span class="n">passWord</span><span class="o">==</span><span class="kc">null</span><span class="o">)</span> <span class="o">?</span> <span class="s">"(No disponible)"</span> <span class="o">:</span> <span class="n">passWord</span><span class="o">;</span>
+          <span class="n">texto</span> <span class="o">+=</span> <span class="n">nombre</span><span class="o">;</span>
+          <span class="k">return</span> <span class="n">texto</span><span class="o">;</span>
+     <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Serializacion.java:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Serializacion</span> <span class="o">{</span>
+     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+          <span class="nc">Cliente</span> <span class="n">cliente</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Cliente</span><span class="o">(</span><span class="s">"Inazio"</span><span class="o">,</span> <span class="s">"DAM"</span><span class="o">);</span>
+
+          <span class="k">try</span><span class="o">{</span>
+                <span class="nc">ObjectOutputStream</span> <span class="n">salida</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ObjectOutputStream</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileOutputStream</span><span class="o">(</span><span class="s">"D:\\cliente.obj"</span><span class="o">));</span>
+                <span class="n">salida</span><span class="o">.</span><span class="na">writeObject</span><span class="o">(</span><span class="s">"Datos del cliente\n"</span><span class="o">);</span>
+                <span class="n">salida</span><span class="o">.</span><span class="na">writeObject</span><span class="o">(</span><span class="n">cliente</span><span class="o">);</span>
+                <span class="n">salida</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                <span class="nc">ObjectInputStream</span> <span class="n">entrada</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ObjectInputStream</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="s">"D:\\cliente.obj"</span><span class="o">));</span>
+                <span class="nc">String</span> <span class="n">str</span> <span class="o">=</span> <span class="o">(</span><span class="nc">String</span><span class="o">)</span><span class="n">entrada</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span>
+                <span class="nc">Cliente</span> <span class="n">obj1</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Cliente</span><span class="o">)</span><span class="n">entrada</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"------------"</span><span class="o">);</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">obj1</span><span class="o">);</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"------------"</span><span class="o">);</span>
+                <span class="n">entrada</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+          <span class="o">}</span>
+          <span class="k">catch</span><span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">){</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+          <span class="o">}</span>
+          <span class="k">catch</span><span class="o">(</span><span class="nc">ClassNotFoundException</span> <span class="n">e</span><span class="o">){</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+          <span class="o">}</span>
+          <span class="k">try</span><span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">.</span><span class="na">read</span><span class="o">();</span>
+          <span class="o">}</span>
+          <span class="k">catch</span><span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">){}</span>
+     <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Salida:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>------------
+Datos del cliente
+ (No disponible)Inazio
+------------
+</code></pre></div></div>
+
+<p>Como se puede observar, el campo <code class="language-plaintext highlighter-rouge">passWord</code> no se ha serializado y al deserializar aparece como <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+<h2 id="herencia-y-serialización">Herencia y serialización</h2>
+
+<p>En una jerarquía de clases, si la clase base implementa <code class="language-plaintext highlighter-rouge">Serializable</code>, todas las clases derivadas también son serializables automáticamente.</p>
+
+<p><strong>Figura.java:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Figura</span> <span class="kd">implements</span> <span class="n">java</span><span class="o">.</span><span class="na">io</span><span class="o">.</span><span class="na">Serializable</span><span class="o">{</span>
+     <span class="kd">protected</span> <span class="kt">int</span> <span class="n">x</span><span class="o">;</span>
+     <span class="kd">protected</span> <span class="kt">int</span> <span class="n">y</span><span class="o">;</span>
+
+     <span class="kd">public</span> <span class="nf">Figura</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">y</span><span class="o">){</span>
+          <span class="k">this</span><span class="o">.</span><span class="na">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">;</span>
+          <span class="k">this</span><span class="o">.</span><span class="na">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">;</span>
+     <span class="o">}</span>
+
+     <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">double</span> <span class="nf">area</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Circulo.java:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Circulo</span> <span class="kd">extends</span> <span class="nc">Figura</span><span class="o">{</span>
+     <span class="kd">protected</span> <span class="kt">double</span> <span class="n">radio</span><span class="o">;</span>
+     <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">double</span> <span class="no">PI</span> <span class="o">=</span> <span class="mf">3.1416</span><span class="o">;</span>
+
+     <span class="kd">public</span> <span class="nf">Circulo</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">y</span><span class="o">,</span> <span class="kt">double</span> <span class="n">radio</span><span class="o">){</span>
+          <span class="kd">super</span><span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">);</span>
+          <span class="k">this</span><span class="o">.</span><span class="na">radio</span> <span class="o">=</span> <span class="n">radio</span><span class="o">;</span>
+     <span class="o">}</span>
+
+     <span class="kd">public</span> <span class="kt">double</span> <span class="nf">area</span><span class="o">(){</span>
+          <span class="k">return</span> <span class="no">PI</span><span class="o">*</span><span class="n">radio</span><span class="o">*</span><span class="n">radio</span><span class="o">;</span>
+     <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Rectangulo.java:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Rectangulo</span> <span class="kd">extends</span> <span class="nc">Figura</span><span class="o">{</span>
+     <span class="kd">protected</span> <span class="kt">double</span> <span class="n">ancho</span><span class="o">,</span> <span class="n">alto</span><span class="o">;</span>
+
+     <span class="kd">public</span> <span class="nf">Rectangulo</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">y</span><span class="o">,</span> <span class="kt">double</span> <span class="n">ancho</span><span class="o">,</span> <span class="kt">double</span> <span class="n">alto</span><span class="o">){</span>
+          <span class="kd">super</span><span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">);</span>
+          <span class="k">this</span><span class="o">.</span><span class="na">ancho</span> <span class="o">=</span> <span class="n">ancho</span><span class="o">;</span>
+          <span class="k">this</span><span class="o">.</span><span class="na">alto</span> <span class="o">=</span> <span class="n">alto</span><span class="o">;</span>
+     <span class="o">}</span>
+
+     <span class="kd">public</span> <span class="kt">double</span> <span class="nf">area</span><span class="o">(){</span>
+          <span class="k">return</span> <span class="n">ancho</span><span class="o">*</span><span class="n">alto</span><span class="o">;</span>
+     <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>HerenciaSerializable.java:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HerenciaSerializable</span> <span class="o">{</span>
+     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+          <span class="nc">Figura</span> <span class="n">fig1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Rectangulo</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mi">15</span><span class="o">,</span> <span class="mi">30</span><span class="o">,</span> <span class="mi">60</span><span class="o">);</span>
+          <span class="nc">Figura</span> <span class="n">fig2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Circulo</span><span class="o">(</span><span class="mi">12</span><span class="o">,</span> <span class="mi">19</span><span class="o">,</span> <span class="mi">60</span><span class="o">);</span>
+
+          <span class="k">try</span><span class="o">{</span>
+                <span class="nc">ObjectOutputStream</span> <span class="n">salida</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ObjectOutputStream</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileOutputStream</span><span class="o">(</span><span class="s">"D:\\figura.obj"</span><span class="o">));</span>
+                <span class="n">salida</span><span class="o">.</span><span class="na">writeObject</span><span class="o">(</span><span class="s">"Guardar un objeto de una clase derivada\n"</span><span class="o">);</span>
+                <span class="n">salida</span><span class="o">.</span><span class="na">writeObject</span><span class="o">(</span><span class="n">fig1</span><span class="o">);</span>
+                <span class="n">salida</span><span class="o">.</span><span class="na">writeObject</span><span class="o">(</span><span class="n">fig2</span><span class="o">);</span>
+                <span class="n">salida</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                <span class="nc">ObjectInputStream</span> <span class="n">entrada</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ObjectInputStream</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="s">"D:\\figura.obj"</span><span class="o">));</span>
+                <span class="nc">String</span> <span class="n">str</span> <span class="o">=</span> <span class="o">(</span><span class="nc">String</span><span class="o">)</span><span class="n">entrada</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span>
+                <span class="nc">Figura</span> <span class="n">obj1</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Figura</span><span class="o">)</span><span class="n">entrada</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span>
+                <span class="nc">Figura</span> <span class="n">obj2</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Figura</span><span class="o">)</span><span class="n">entrada</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"-.-.-.-.-.-.-.-.-.-.-"</span><span class="o">);</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">obj1</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">" origen ("</span> <span class="o">+</span> <span class="n">obj1</span><span class="o">.</span><span class="na">x</span> <span class="o">+</span> <span class="s">", "</span> <span class="o">+</span> <span class="n">obj1</span><span class="o">.</span><span class="na">y</span> <span class="o">+</span> <span class="s">")"</span> <span class="o">+</span> <span class="s">" area= "</span> <span class="o">+</span> <span class="n">obj1</span><span class="o">.</span><span class="na">area</span><span class="o">());</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">obj2</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">" origen ("</span> <span class="o">+</span> <span class="n">obj2</span><span class="o">.</span><span class="na">x</span> <span class="o">+</span> <span class="s">", "</span> <span class="o">+</span> <span class="n">obj2</span><span class="o">.</span><span class="na">y</span> <span class="o">+</span> <span class="s">")"</span> <span class="o">+</span> <span class="s">" area="</span> <span class="o">+</span> <span class="n">obj2</span><span class="o">.</span><span class="na">area</span><span class="o">());</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"-.-.-.-.-.-.-.-.-.-.-"</span><span class="o">);</span>
+                <span class="n">entrada</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+          <span class="o">}</span>
+          <span class="k">catch</span><span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">){</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+          <span class="o">}</span>
+          <span class="k">catch</span><span class="o">(</span><span class="nc">ClassNotFoundException</span> <span class="n">e</span><span class="o">){</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+          <span class="o">}</span>
+          <span class="k">try</span><span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">.</span><span class="na">read</span><span class="o">();</span>
+          <span class="o">}</span>
+          <span class="k">catch</span><span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">){}</span>
+     <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Salida:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-.-.-.-.-.-.-.-.-.-.-
+Rectangulo origen (10, 15) area= 1800.0
+Circulo origen (12, 19) area=11309.76
+-.-.-.-.-.-.-.-.-.-.-
+</code></pre></div></div>
+
+<h2 id="interfaz-externalizable">Interfaz Externalizable</h2>
+
+<p>La interfaz <code class="language-plaintext highlighter-rouge">Externalizable</code> proporciona control explícito sobre la serialización mediante los métodos <code class="language-plaintext highlighter-rouge">writeExternal()</code> y <code class="language-plaintext highlighter-rouge">readExternal()</code>. Requiere que la clase tenga un constructor por defecto accesible.</p>
+
+<p><strong>Usuario.java:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Usuario</span> <span class="kd">implements</span> <span class="nc">Externalizable</span><span class="o">{</span>
+     <span class="kd">private</span> <span class="nc">String</span> <span class="n">usuario</span><span class="o">;</span>
+     <span class="kd">private</span> <span class="nc">String</span> <span class="n">password</span><span class="o">;</span>
+
+     <span class="kd">public</span> <span class="nf">Usuario</span><span class="o">(){</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Creando usuario vacío"</span><span class="o">);</span>
+     <span class="o">}</span>
+
+     <span class="nc">Usuario</span><span class="o">(</span><span class="nc">String</span> <span class="n">u</span><span class="o">,</span> <span class="nc">String</span> <span class="n">p</span><span class="o">){</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Creanado usuario ("</span> <span class="o">+</span> <span class="n">u</span> <span class="o">+</span> <span class="s">", "</span> <span class="o">+</span> <span class="n">p</span> <span class="o">+</span> <span class="s">")"</span><span class="o">);</span>
+          <span class="n">usuario</span> <span class="o">=</span> <span class="n">u</span><span class="o">;</span>
+          <span class="n">password</span> <span class="o">=</span> <span class="n">p</span><span class="o">;</span>
+     <span class="o">}</span>
+
+     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">writeExternal</span><span class="o">(</span><span class="nc">ObjectOutput</span> <span class="n">out</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span><span class="o">{</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Usuario.WriteExternal"</span><span class="o">);</span>
+          <span class="n">out</span><span class="o">.</span><span class="na">writeObject</span><span class="o">(</span><span class="n">usuario</span><span class="o">);</span>
+     <span class="o">}</span>
+
+     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">readExternal</span><span class="o">(</span><span class="nc">ObjectInput</span> <span class="n">in</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span><span class="o">,</span> <span class="nc">ClassNotFoundException</span><span class="o">{</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Usuario.readExternal"</span><span class="o">);</span>
+          <span class="n">usuario</span> <span class="o">=</span> <span class="o">(</span><span class="nc">String</span><span class="o">)</span><span class="n">in</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span>
+     <span class="o">}</span>
+
+     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">muestraUsuario</span><span class="o">(){</span>
+          <span class="nc">String</span> <span class="n">cad</span> <span class="o">=</span> <span class="s">"Usuario: "</span> <span class="o">+</span> <span class="n">usuario</span> <span class="o">+</span> <span class="s">" Password: "</span><span class="o">;</span>
+          <span class="k">if</span> <span class="o">(</span><span class="n">password</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
+                <span class="n">cad</span> <span class="o">=</span> <span class="n">cad</span> <span class="o">+</span> <span class="s">"No disponible"</span><span class="o">;</span>
+          <span class="k">else</span>
+                <span class="n">cad</span> <span class="o">=</span> <span class="n">cad</span> <span class="o">+</span> <span class="n">password</span><span class="o">;</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">cad</span><span class="o">);</span>
+     <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>ListaUsuarios.java:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.LinkedList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.ListIterator</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ListaUsuarios</span> <span class="kd">implements</span> <span class="nc">Serializable</span><span class="o">{</span>
+     <span class="kd">private</span> <span class="nc">LinkedList</span> <span class="n">lista</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">LinkedList</span><span class="o">();</span>
+     <span class="kt">int</span> <span class="n">valor</span><span class="o">;</span>
+
+     <span class="nc">ListaUsuarios</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">usuarios</span><span class="o">,</span> <span class="nc">String</span><span class="o">[]</span> <span class="n">passwords</span><span class="o">){</span>
+          <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">usuarios</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+                <span class="n">lista</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Usuario</span><span class="o">(</span><span class="n">usuarios</span><span class="o">[</span><span class="n">i</span><span class="o">],</span> <span class="n">passwords</span><span class="o">[</span><span class="n">i</span><span class="o">]));</span>
+     <span class="o">}</span>
+
+     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">muestraUsuarios</span><span class="o">(){</span>
+          <span class="nc">ListIterator</span> <span class="n">li</span> <span class="o">=</span> <span class="n">lista</span><span class="o">.</span><span class="na">listIterator</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+          <span class="nc">Usuario</span> <span class="n">u</span><span class="o">;</span>
+          <span class="k">while</span><span class="o">(</span><span class="n">li</span><span class="o">.</span><span class="na">hasNext</span><span class="o">()){</span>
+                <span class="n">u</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Usuario</span><span class="o">)</span> <span class="n">li</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>
+                <span class="n">u</span><span class="o">.</span><span class="na">muestraUsuario</span><span class="o">();</span>
+          <span class="o">}</span>
+     <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>DemoExternalizable.java:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DemoExternalizable</span> <span class="o">{</span>
+     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span><span class="o">,</span> <span class="nc">ClassNotFoundException</span><span class="o">{</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Creando el objeto"</span><span class="o">);</span>
+          <span class="nc">String</span><span class="o">[]</span> <span class="n">usuarios</span> <span class="o">=</span> <span class="o">{</span><span class="s">"Inazio"</span><span class="o">,</span> <span class="s">"Chuse"</span><span class="o">,</span> <span class="s">"Claver"</span><span class="o">};</span>
+          <span class="nc">String</span><span class="o">[]</span> <span class="n">passwords</span> <span class="o">=</span> <span class="o">{</span><span class="s">"1111"</span><span class="o">,</span> <span class="s">"2222"</span><span class="o">,</span> <span class="s">"3333"</span><span class="o">};</span>
+          <span class="nc">ListaUsuarios</span> <span class="n">lp</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ListaUsuarios</span><span class="o">(</span><span class="n">usuarios</span><span class="o">,</span> <span class="n">passwords</span><span class="o">);</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Almacenando objeto"</span><span class="o">);</span>
+          <span class="nc">ObjectOutputStream</span> <span class="n">o</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ObjectOutputStream</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileOutputStream</span><span class="o">(</span><span class="s">"D:\\objetos.out"</span><span class="o">));</span>
+          <span class="n">o</span><span class="o">.</span><span class="na">writeObject</span><span class="o">(</span><span class="n">lp</span><span class="o">);</span>
+          <span class="n">o</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Recuperando objeto"</span><span class="o">);</span>
+          <span class="nc">ObjectInputStream</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ObjectInputStream</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="s">"D:\\objectos.out"</span><span class="o">));</span>
+          <span class="n">lp</span> <span class="o">=</span> <span class="o">(</span><span class="nc">ListaUsuarios</span><span class="o">)</span><span class="n">in</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span>
+          <span class="n">lp</span><span class="o">.</span><span class="na">muestraUsuarios</span><span class="o">();</span>
+     <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Salida:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Creando el objeto
+Creanado usuario (Inazio, 1111)
+Creanado usuario (Chuse, 2222)
+Creanado usuario (Claver, 3333)
+Almacenando objeto
+Usuario.WriteExternal
+Usuario.WriteExternal
+Usuario.WriteExternal
+Recuperando objeto
+Creando usuario vacío
+Usuario.readExternal
+Creando usuario vacío
+Usuario.readExternal
+Creando usuario vacío
+Usuario.readExternal
+Usuario: Inazio Password: No disponible
+Usuario: Chuse Password: No disponible
+Usuario: Claver Password: No disponible
+</code></pre></div></div>
+
+<p>Nótese que al usar <code class="language-plaintext highlighter-rouge">Externalizable</code>, solo se serializa el campo <code class="language-plaintext highlighter-rouge">usuario</code> (lo que se escribe explícitamente en <code class="language-plaintext highlighter-rouge">writeExternal()</code>), y el campo <code class="language-plaintext highlighter-rouge">password</code> no se recupera.</p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#java</span>
+        
+          <span class="tag">#acceso-a-datos</span>
+        
+          <span class="tag">#persistencia</span>
+        
+          <span class="tag">#serializacion</span>
+        
+          <span class="tag">#serializable</span>
+        
+          <span class="tag">#externalizable</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programación. Punteros en C | Programando a Pasitos</title>
+<meta name="description" content="Introducción a los punteros en C, operadores de dirección e indirección, gestión dinámica de memoria y uso con vectores, matrices y estructuras.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Programación. Punteros en C | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Programación. Punteros en C" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Introducción a los punteros en C, operadores de dirección e indirección, gestión dinámica de memoria y uso con vectores, matrices y estructuras." />
+<meta property="og:description" content="Introducción a los punteros en C, operadores de dirección e indirección, gestión dinámica de memoria y uso con vectores, matrices y estructuras." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/01/14/programacion-punteros-en-c/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/01/14/programacion-punteros-en-c/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-01-14T05:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Programación. Punteros en C" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-01-14T05:00:00+01:00","datePublished":"2015-01-14T05:00:00+01:00","description":"Introducción a los punteros en C, operadores de dirección e indirección, gestión dinámica de memoria y uso con vectores, matrices y estructuras.","headline":"Programación. Punteros en C","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/01/14/programacion-punteros-en-c/"},"url":"http://localhost:4000/posts/2015/01/14/programacion-punteros-en-c/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Programación. Punteros en C</h1>
+    <div class="post-meta">
+      <time datetime="2015-01-14T05:00:00+01:00">14 Jan 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#programación" class="post-category">Programación</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Introducción a los punteros en C, operadores de dirección e indirección, gestión dinámica de memoria y uso con vectores, matrices y estructuras.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="variables-estáticas-y-dinámicas">Variables estáticas y dinámicas</h2>
+
+<p>Las variables pueden clasificarse en:</p>
+
+<ul>
+  <li><strong>Variables estáticas</strong>: la memoria se reserva en tiempo de compilación.</li>
+  <li><strong>Variables dinámicas</strong>: la memoria se reserva en tiempo de ejecución. Para acceder a ellas se usan punteros.</li>
+</ul>
+
+<h2 id="punteros">Punteros</h2>
+
+<p>Un <strong>puntero</strong> es una variable que almacena la dirección de memoria de otra variable.</p>
+
+<p>Los dos operadores fundamentales son:</p>
+
+<ul>
+  <li><strong>Operador dirección</strong> (<code class="language-plaintext highlighter-rouge">&amp;</code>): obtiene la dirección de memoria de una variable.</li>
+  <li><strong>Operador indirección</strong> (<code class="language-plaintext highlighter-rouge">*</code>): accede al valor almacenado en la dirección apuntada.</li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">valor</span><span class="p">;</span>
+<span class="kt">int</span> <span class="o">*</span><span class="n">puntero</span><span class="p">;</span>
+<span class="n">puntero</span><span class="o">=&amp;</span><span class="n">valor</span><span class="p">;</span>
+<span class="n">valor</span><span class="o">=</span><span class="mi">5</span><span class="p">;</span>
+<span class="o">*</span><span class="n">puntero</span><span class="o">=</span><span class="mi">5</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Nótese la diferencia: <code class="language-plaintext highlighter-rouge">puntero=5</code> modifica la dirección almacenada, mientras que <code class="language-plaintext highlighter-rouge">*puntero=5</code> modifica el valor apuntado.</p>
+
+<h2 id="declaración-e-inicialización">Declaración e inicialización</h2>
+
+<p>Al declarar un puntero sin asignarlo a ninguna variable, es recomendable inicializarlo a <code class="language-plaintext highlighter-rouge">NULL</code> para evitar comportamientos indefinidos:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="o">*</span><span class="n">puntero</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="gestión-dinámica-de-memoria">Gestión dinámica de memoria</h2>
+
+<p>Para reservar y liberar memoria dinámica se usan las funciones <code class="language-plaintext highlighter-rouge">malloc()</code> y <code class="language-plaintext highlighter-rouge">free()</code> del fichero de cabecera <code class="language-plaintext highlighter-rouge">&lt;stdlib.h&gt;</code>:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span><span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span><span class="k">struct</span> <span class="n">fecha</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">dia</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">mes</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">agno</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="k">struct</span> <span class="n">fecha</span> <span class="o">*</span><span class="n">pFecha</span><span class="p">;</span>
+<span class="n">pFecha</span><span class="o">=</span><span class="p">(</span><span class="k">struct</span> <span class="n">fecha</span> <span class="o">*</span><span class="p">)</span> <span class="n">malloc</span> <span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">fecha</span><span class="p">));</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">pFecha</span><span class="o">==</span><span class="nb">NULL</span><span class="p">){</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"No hay suficiente memoria </span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="p">{</span>
+    <span class="n">free</span><span class="p">(</span><span class="n">pFecha</span><span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h2 id="paso-de-parámetros-por-referencia">Paso de parámetros por referencia</h2>
+
+<p>Para modificar el valor de una variable desde una función, se pasa su dirección como parámetro:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">circulo</span> <span class="p">(</span><span class="kt">float</span> <span class="n">r</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="n">p</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="n">a</span><span class="p">){</span>
+    <span class="o">*</span><span class="n">p</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">Pl</span><span class="o">*</span><span class="n">r</span><span class="p">;</span>
+    <span class="o">*</span><span class="n">a</span><span class="o">=</span><span class="n">Pl</span><span class="o">*</span><span class="n">r</span><span class="o">*</span><span class="n">r</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="punteros-con-vectores-y-cadenas">Punteros con vectores y cadenas</h2>
+
+<p>En C, el nombre de un array es en sí mismo un puntero al primer elemento. Las siguientes asignaciones son equivalentes:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">char</span> <span class="o">*</span><span class="n">p</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">v</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+<span class="n">c</span><span class="o">=*</span><span class="n">p</span><span class="p">;</span>
+<span class="n">p</span><span class="o">=&amp;</span><span class="n">c</span><span class="p">;</span>
+<span class="n">p</span><span class="o">=</span><span class="n">v</span><span class="p">;</span>
+<span class="n">p</span><span class="o">=&amp;</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</code></pre></div></div>
+
+<h2 id="punteros-con-matrices">Punteros con matrices</h2>
+
+<p>Al pasar una matriz a una función, es necesario indicar también el número de columnas, ya que el puntero no tiene información sobre la estructura de la matriz:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">mifuncion</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">f</span><span class="p">,</span> <span class="kt">int</span> <span class="n">c</span><span class="p">){</span>
+    <span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="n">c</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">=</span><span class="err">…</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="punteros-con-estructuras">Punteros con estructuras</h2>
+
+<p>Para acceder a los miembros de una estructura a través de un puntero se puede usar el operador <code class="language-plaintext highlighter-rouge">-&gt;</code> o la notación <code class="language-plaintext highlighter-rouge">(*puntero).campo</code>:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">fecha</span> <span class="n">hoy</span><span class="p">;</span>
+<span class="k">struct</span> <span class="n">fecha</span> <span class="o">*</span><span class="n">phoy</span><span class="p">;</span>
+<span class="n">phoy</span><span class="o">=&amp;</span><span class="n">hoy</span><span class="p">;</span>
+<span class="n">hoy</span><span class="p">.</span><span class="n">dia</span><span class="o">=</span><span class="mi">28</span><span class="p">;</span>
+<span class="p">(</span><span class="o">*</span><span class="n">phoy</span><span class="p">).</span><span class="n">dia</span><span class="o">=</span><span class="mi">28</span><span class="p">;</span>
+<span class="n">phoy</span><span class="o">-&gt;</span><span class="n">dia</span><span class="o">=</span><span class="mi">28</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Las tres últimas líneas son equivalentes.</p>
+
+<p><strong>¡Salud y coding!</strong></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#programacion</span>
+        
+          <span class="tag">#c</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

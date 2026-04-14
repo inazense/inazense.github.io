@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entornos de desarrollo. SVN con Assembla y Tortoise | Programando a Pasitos</title>
+<meta name="description" content="Introducción a SVN como sistema de control de versiones, con tutorial paso a paso para crear un repositorio en Assembla y conectarlo con TortoiseSVN.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Entornos de desarrollo. SVN con Assembla y Tortoise | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Entornos de desarrollo. SVN con Assembla y Tortoise" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Introducción a SVN como sistema de control de versiones, con tutorial paso a paso para crear un repositorio en Assembla y conectarlo con TortoiseSVN." />
+<meta property="og:description" content="Introducción a SVN como sistema de control de versiones, con tutorial paso a paso para crear un repositorio en Assembla y conectarlo con TortoiseSVN." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/04/29/entornos-de-desarrollo-svn-con-assembla-y-tortoise/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/04/29/entornos-de-desarrollo-svn-con-assembla-y-tortoise/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-04-29T06:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Entornos de desarrollo. SVN con Assembla y Tortoise" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-04-29T06:00:00+02:00","datePublished":"2015-04-29T06:00:00+02:00","description":"Introducción a SVN como sistema de control de versiones, con tutorial paso a paso para crear un repositorio en Assembla y conectarlo con TortoiseSVN.","headline":"Entornos de desarrollo. SVN con Assembla y Tortoise","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/04/29/entornos-de-desarrollo-svn-con-assembla-y-tortoise/"},"url":"http://localhost:4000/posts/2015/04/29/entornos-de-desarrollo-svn-con-assembla-y-tortoise/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Entornos de desarrollo. SVN con Assembla y Tortoise</h1>
+    <div class="post-meta">
+      <time datetime="2015-04-29T06:00:00+02:00">29 Apr 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#entornos-de-desarrollo" class="post-category">Entornos de desarrollo</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Introducción a SVN como sistema de control de versiones, con tutorial paso a paso para crear un repositorio en Assembla y conectarlo con TortoiseSVN.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <p>SVN es el control de versiones. Nos permite compaginar diferentes programadores, ramas de desarrollo y versiones finales.</p>
+
+<p>Tiene un ciclo de vida conocido como <strong>Trunk</strong> (tronco), del que salen distintas <strong>branches</strong> (ramas). Los pasos a seguir serían bajarse el proyecto entero, y generar mi propia rama con las funciones que me han sido encargadas. Mientras tanto, el proyecto principal puede seguir avanzando.</p>
+
+<p><img src="/img/posts/20150429_1.png" alt="Diagrama Trunk/Branches en SVN" /></p>
+
+<p>Cuando se ha conseguido una versión estable se crearán <strong>tags</strong> (etiquetas), que son versiones finales dentro de un mismo proyecto. Es decir, que no se modificarán.</p>
+
+<h2 id="operaciones-principales">Operaciones principales</h2>
+
+<p><strong>Operaciones de descarga:</strong></p>
+<ul>
+  <li><strong>Checkout</strong> — Descargarse el proyecto completo.</li>
+  <li><strong>Update</strong> — Descarga sólo los archivos que han sido modificados o los nuevos.</li>
+</ul>
+
+<p><strong>Operaciones de carga:</strong></p>
+<ul>
+  <li><strong>Commit</strong> — Sube los ficheros que han sido creados o modificados al servidor.</li>
+</ul>
+
+<h2 id="crear-un-repositorio-en-assembla">Crear un repositorio en Assembla</h2>
+
+<p>Vamos a crear un nuevo proyecto. Nos registramos en assembla.com.</p>
+
+<p><img src="/img/posts/20150429_2.png" alt="Página de Assembla" /></p>
+
+<p>Nos vamos a la sección de crear espacio.</p>
+
+<p><img src="/img/posts/20150429_3.png" alt="Sección de nuevo espacio en Assembla" /></p>
+
+<p>Pulsamos en <strong>START MY 15 DAYS FREE TRIAL</strong>.</p>
+
+<p><img src="/img/posts/20150429_4.png" alt="Botón Start My 15 Days Free Trial" /></p>
+
+<p>Asignamos un nombre al nuevo espacio.</p>
+
+<p><img src="/img/posts/20150429_5.png" alt="Nombre del espacio en Assembla" /></p>
+
+<p>Seleccionamos <strong>Add a Subversion Repository</strong>.</p>
+
+<p><img src="/img/posts/20150429_6.png" alt="Selección de Add a Subversion Repository" /></p>
+
+<p>Por último pulsamos <strong>Go To My Space</strong>.</p>
+
+<p><img src="/img/posts/20150429_7.png" alt="Botón Go To My Space" /></p>
+
+<p>Página principal del proyecto:</p>
+
+<p><img src="/img/posts/20150429_8.png" alt="Página principal del proyecto en Assembla" /></p>
+
+<p>La URL de checkout se obtiene aquí:</p>
+
+<p><img src="/img/posts/20150429_9.png" alt="URL de checkout en Assembla" /></p>
+
+<p>Menú con las opciones disponibles:</p>
+
+<p><img src="/img/posts/20150429_10.png" alt="Menú de opciones del repositorio" /></p>
+
+<h2 id="conectar-con-tortoisesvn">Conectar con TortoiseSVN</h2>
+
+<p>Para realizar un checkout, descargamos TortoiseSVN desde http://tortoisesvn.net/downloads.html. En su instalación marcamos la opción de instalar la consola de comandos.</p>
+
+<p><img src="/img/posts/20150429_11.png" alt="Instalación de TortoiseSVN con opción de consola" /></p>
+
+<p>Nos creamos una carpeta local a la que volcar el proyecto.</p>
+
+<p><img src="/img/posts/20150429_12.png" alt="Carpeta local para el proyecto" /></p>
+
+<p>Dentro de esta carpeta hacemos <strong>Botón derecho &gt; SVN CheckOut</strong>.</p>
+
+<p><img src="/img/posts/20150429_13.png" alt="Menú contextual SVN CheckOut" /></p>
+
+<p>Escribimos la URL obtenida al crear nuestro sitio en Assembla.</p>
+
+<p><img src="/img/posts/20150429_14.png" alt="URL de Assembla en TortoiseSVN" /></p>
+
+<p>Nos identificamos introduciendo usuario y contraseña y se generará la estructura de la web de Assembla dentro de nuestra carpeta en local. Ya podemos trabajar con estos archivos.</p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#entornos-de-desarrollo</span>
+        
+          <span class="tag">#svn</span>
+        
+          <span class="tag">#control-de-versiones</span>
+        
+          <span class="tag">#assembla</span>
+        
+          <span class="tag">#tortoisesvn</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

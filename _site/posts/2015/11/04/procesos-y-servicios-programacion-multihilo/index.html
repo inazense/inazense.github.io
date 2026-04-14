@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Procesos y servicios. Programación multihilo | Programando a Pasitos</title>
+<meta name="description" content="Ciclo de vida de los hilos en Java, estados New, Runnable, Dead y Blocked, y ejemplos prácticos con Thread, join, interrupt y patrones de suspensión segura.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Procesos y servicios. Programación multihilo | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Procesos y servicios. Programación multihilo" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Ciclo de vida de los hilos en Java, estados New, Runnable, Dead y Blocked, y ejemplos prácticos con Thread, join, interrupt y patrones de suspensión segura." />
+<meta property="og:description" content="Ciclo de vida de los hilos en Java, estados New, Runnable, Dead y Blocked, y ejemplos prácticos con Thread, join, interrupt y patrones de suspensión segura." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/11/04/procesos-y-servicios-programacion-multihilo/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/11/04/procesos-y-servicios-programacion-multihilo/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-11-04T05:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Procesos y servicios. Programación multihilo" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver","url":"https://github.com/inazense"},"dateModified":"2015-11-04T05:00:00+01:00","datePublished":"2015-11-04T05:00:00+01:00","description":"Ciclo de vida de los hilos en Java, estados New, Runnable, Dead y Blocked, y ejemplos prácticos con Thread, join, interrupt y patrones de suspensión segura.","headline":"Procesos y servicios. Programación multihilo","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/11/04/procesos-y-servicios-programacion-multihilo/"},"url":"http://localhost:4000/posts/2015/11/04/procesos-y-servicios-programacion-multihilo/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Procesos y servicios. Programación multihilo</h1>
+    <div class="post-meta">
+      <time datetime="2015-11-04T05:00:00+01:00">04 Nov 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#java" class="post-category">Java</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Ciclo de vida de los hilos en Java, estados New, Runnable, Dead y Blocked, y ejemplos prácticos con Thread, join, interrupt y patrones de suspensión segura.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="estados-de-un-hilo">Estados de un hilo</h2>
+
+<p>El ciclo de vida de un hilo en Java pasa por los siguientes estados:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Estado</th>
+      <th>Descripción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>New</strong></td>
+      <td>Estado inicial tras crear el objeto con <code class="language-plaintext highlighter-rouge">new</code>, antes de llamar a <code class="language-plaintext highlighter-rouge">start()</code></td>
+    </tr>
+    <tr>
+      <td><strong>Runnable</strong></td>
+      <td>Alcanzado al llamar a <code class="language-plaintext highlighter-rouge">start()</code>. El sistema operativo puede asignarle tiempo de CPU</td>
+    </tr>
+    <tr>
+      <td><strong>Dead</strong></td>
+      <td>El hilo ha finalizado por conclusión normal de <code class="language-plaintext highlighter-rouge">run()</code>, excepción no capturada o llamada a <code class="language-plaintext highlighter-rouge">stop()</code> (obsoleto)</td>
+    </tr>
+    <tr>
+      <td><strong>Blocked</strong></td>
+      <td>El hilo no se ejecuta porque está dormido (<code class="language-plaintext highlighter-rouge">sleep()</code>), esperando E/S, en <code class="language-plaintext highlighter-rouge">wait()</code>, intentando bloquear un recurso ocupado o suspendido</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="creación-y-gestión-de-hilos">Creación y gestión de hilos</h2>
+
+<p>Los hilos se crean extendiendo <code class="language-plaintext highlighter-rouge">Thread</code> o implementando <code class="language-plaintext highlighter-rouge">Runnable</code>. Se arrancan con <code class="language-plaintext highlighter-rouge">start()</code>, que ejecuta el método <code class="language-plaintext highlighter-rouge">run()</code> en un hilo separado.</p>
+
+<p><strong>Métodos importantes:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Método</th>
+      <th>Descripción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">start()</code></td>
+      <td>Inicia el hilo</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">join()</code></td>
+      <td>Espera a que otro hilo finalice</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">interrupt()</code></td>
+      <td>Solicita la interrupción del hilo</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">isInterrupted()</code></td>
+      <td>Verifica si el hilo ha sido interrumpido</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">isAlive()</code></td>
+      <td>Comprueba si el hilo sigue activo</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">sleep(ms)</code></td>
+      <td>Pausa el hilo el número de milisegundos indicado</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="ejemplo-parar-un-hilo-de-forma-segura">Ejemplo: parar un hilo de forma segura</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HiloEjemploDead</span> <span class="kd">extends</span> <span class="nc">Thread</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">stopHilo</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">pararHilo</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">stopHilo</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">while</span> <span class="o">(!</span><span class="n">stopHilo</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"En el hilo"</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">HiloEjemploDead</span> <span class="n">h</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HiloEjemploDead</span><span class="o">();</span>
+        <span class="n">h</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100000</span><span class="o">;</span> <span class="n">i</span><span class="o">++);</span>
+        <span class="n">h</span><span class="o">.</span><span class="na">pararHilo</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="ejemplo-patrón-de-suspensión-segura">Ejemplo: patrón de suspensión segura</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">MyThread</span> <span class="kd">extends</span> <span class="nc">Thread</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">SuspendRequestor</span> <span class="n">suspender</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SuspendRequestor</span><span class="o">();</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">requestSuspend</span><span class="o">()</span> <span class="o">{</span> <span class="n">suspender</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">requestResume</span><span class="o">()</span> <span class="o">{</span> <span class="n">suspender</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span> <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">suspender</span><span class="o">.</span><span class="na">waitForResume</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">exception</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">exception</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">SuspendRequestor</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">suspendRequested</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">set</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">suspendRequested</span> <span class="o">=</span> <span class="n">b</span><span class="o">;</span>
+        <span class="n">notifyAll</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">waitForResume</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">InterruptedException</span> <span class="o">{</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">suspendRequested</span><span class="o">)</span>
+            <span class="n">wait</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="ejemplo-interrupción-de-un-hilo">Ejemplo: interrupción de un hilo</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HiloEjemploInterrupt</span> <span class="kd">extends</span> <span class="nc">Thread</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="k">while</span> <span class="o">(!</span><span class="n">isInterrupted</span><span class="o">())</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"En el hilo"</span><span class="o">);</span>
+                <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Ha ocurrido una excepción"</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Fin de hilo"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">interrumpir</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">interrupt</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">HiloEjemploInterrupt</span> <span class="n">h</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HiloEjemploInterrupt</span><span class="o">();</span>
+        <span class="n">h</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">20</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">h</span><span class="o">.</span><span class="na">interrumpir</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="ejemplo-join--esperar-a-que-terminen-otros-hilos">Ejemplo: join — esperar a que terminen otros hilos</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HiloJoin</span> <span class="kd">extends</span> <span class="nc">Thread</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">n</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">HiloJoin</span><span class="o">(</span><span class="nc">String</span> <span class="n">nom</span><span class="o">,</span> <span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">nom</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">n</span> <span class="o">=</span> <span class="n">n</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">":"</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">ignore</span><span class="o">)</span> <span class="o">{}</span>
+        <span class="o">}</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Fin bucle "</span> <span class="o">+</span> <span class="n">getName</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EjemploJoin</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">HiloJoin</span> <span class="n">h1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HiloJoin</span><span class="o">(</span><span class="s">"Hilo 1"</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
+        <span class="nc">HiloJoin</span> <span class="n">h2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HiloJoin</span><span class="o">(</span><span class="s">"Hilo 2"</span><span class="o">,</span> <span class="mi">5</span><span class="o">);</span>
+        <span class="nc">HiloJoin</span> <span class="n">h3</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HiloJoin</span><span class="o">(</span><span class="s">"Hilo 3"</span><span class="o">,</span> <span class="mi">7</span><span class="o">);</span>
+        <span class="n">h1</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+        <span class="n">h2</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+        <span class="n">h3</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">h1</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
+            <span class="n">h2</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
+            <span class="n">h3</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{}</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Final del programa"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>El método <code class="language-plaintext highlighter-rouge">join()</code> hace que el hilo principal espere a que <code class="language-plaintext highlighter-rouge">h1</code>, <code class="language-plaintext highlighter-rouge">h2</code> y <code class="language-plaintext highlighter-rouge">h3</code> terminen antes de imprimir el mensaje final.</p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#java</span>
+        
+          <span class="tag">#hilos</span>
+        
+          <span class="tag">#threads</span>
+        
+          <span class="tag">#programacion-de-servicios-y-procesos</span>
+        
+          <span class="tag">#concurrencia</span>
+        
+          <span class="tag">#runnable</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

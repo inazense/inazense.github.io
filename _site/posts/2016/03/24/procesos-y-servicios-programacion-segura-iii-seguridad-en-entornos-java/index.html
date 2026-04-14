@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Procesos y servicios. Programación segura III. Seguridad en entornos Java | Programando a Pasitos</title>
+<meta name="description" content="Aprende seguridad en entornos Java con JVM, gestores de seguridad y políticas. Tutorial completo sobre JCA, JSSE, JAAS, verificación de bytecodes, permisos y configuración de archivos policy.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Procesos y servicios. Programación segura III. Seguridad en entornos Java | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Procesos y servicios. Programación segura III. Seguridad en entornos Java" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Aprende seguridad en entornos Java con JVM, gestores de seguridad y políticas. Tutorial completo sobre JCA, JSSE, JAAS, verificación de bytecodes, permisos y configuración de archivos policy." />
+<meta property="og:description" content="Aprende seguridad en entornos Java con JVM, gestores de seguridad y políticas. Tutorial completo sobre JCA, JSSE, JAAS, verificación de bytecodes, permisos y configuración de archivos policy." />
+<link rel="canonical" href="http://localhost:4000/posts/2016/03/24/procesos-y-servicios-programacion-segura-iii-seguridad-en-entornos-java/" />
+<meta property="og:url" content="http://localhost:4000/posts/2016/03/24/procesos-y-servicios-programacion-segura-iii-seguridad-en-entornos-java/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-03-24T05:10:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Procesos y servicios. Programación segura III. Seguridad en entornos Java" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver","url":"https://github.com/inazense"},"dateModified":"2016-03-24T05:10:00+01:00","datePublished":"2016-03-24T05:10:00+01:00","description":"Aprende seguridad en entornos Java con JVM, gestores de seguridad y políticas. Tutorial completo sobre JCA, JSSE, JAAS, verificación de bytecodes, permisos y configuración de archivos policy.","headline":"Procesos y servicios. Programación segura III. Seguridad en entornos Java","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2016/03/24/procesos-y-servicios-programacion-segura-iii-seguridad-en-entornos-java/"},"url":"http://localhost:4000/posts/2016/03/24/procesos-y-servicios-programacion-segura-iii-seguridad-en-entornos-java/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Procesos y servicios. Programación segura III. Seguridad en entornos Java</h1>
+    <div class="post-meta">
+      <time datetime="2016-03-24T05:10:00+01:00">24 Mar 2016</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#java" class="post-category">Java</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Aprende seguridad en entornos Java con JVM, gestores de seguridad y políticas. Tutorial completo sobre JCA, JSSE, JAAS, verificación de bytecodes, permisos y configuración de archivos policy.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <p>Antes de que la <strong>JVM</strong> comience el proceso de interpretación y ejecución de los bytecodes (código objeto) debe realizar una serie de tareas para preparar el entorno en el que el programa se ejecutará. Este es el punto en el que se implementa la seguridad interna de Java.</p>
+
+<p>Hay tres componentes en el proceso:</p>
+
+<ul>
+  <li>El cargador de clases</li>
+  <li>El verificador de ficheros de clases</li>
+  <li>El gestor de seguridad</li>
+</ul>
+
+<h2 id="el-cargador-de-clases">El cargador de clases</h2>
+
+<p>Es el responsable de encontrar y cargar los bytecodes que definen las clases. Cada programa Java tiene como mínimo tres cargadores:</p>
+<ul>
+  <li>El cargador de clases bootstrap que carga las clases del sistema (normalmente desde el fichero JAR rt.jar)</li>
+  <li>El cargador de clases de extensión que carga una extensión estándar desde el directorio <code class="language-plaintext highlighter-rouge">jre/lib/ext</code></li>
+  <li>El cargador de clases de la aplicación que localiza las clases y los ficheros <strong>JAR/ZIP</strong> de la ruta de acceso a las clases (según está establecido por la variable de entorno <strong>CLASSPATH</strong> o por la opción <code class="language-plaintext highlighter-rouge">–classpath</code> de la línea de comandos)</li>
+</ul>
+
+<h2 id="el-verificador-de-ficheros-de-clases">El verificador de ficheros de clases</h2>
+
+<p>Se encarga de validar los bytecodes. Algunas de las comprobaciones que lleva a cabo son:</p>
+
+<ul>
+  <li>Que las variables estén inicializadas antes de ser utilizadas</li>
+  <li>Que las llamadas a un método coinciden con los tipos de referencias a objetos</li>
+  <li>Que no se han infrigido las reglas para el acceso a los métodos y clases privados, etc.</li>
+</ul>
+
+<h2 id="el-gestor-de-seguridad">El gestor de seguridad</h2>
+
+<p>Es una clase que controla si está permitida una determinada operación.</p>
+
+<p>Alguna de las operaciones que comprueban son las siguientes:</p>
+
+<ul>
+  <li>Si el hilo actual puede cargar un subproceso</li>
+  <li>Si puede acceder a un paquete específico</li>
+  <li>Si puede acceder o modificar las propiedades del sistema</li>
+  <li>Si puede leer desde o escribir en un fichero específico</li>
+  <li>Si puede eliminar un fichero específico</li>
+  <li>Si puede aceptar una conexión socket desde un host o número de puerto específico, etc.</li>
+</ul>
+
+<p>Por defecto no se instala de forma automática ningún gestor de seguridad cuando se ejecuta una aplicación Java. En el siguiente ejemplo veremos la salida que produce el programa ejecutándolo sin gestor de seguridad y con gestor de seguridad. El programa muestra los valores de ciertas propiedades de sistema (usamos el método <code class="language-plaintext highlighter-rouge">System.getProperty(propiedad)</code> para mostrar los valores), la siguiente tabla describe alguna de las más importantes:</p>
+
+<h3 id="ejemplo1java">Ejemplo1.java</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Ejemplo1</span> <span class="o">{</span>
+     
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+           
+            <span class="c1">//propiedades de sistema en un array</span>
+            <span class="nc">String</span> <span class="n">t</span><span class="o">[]</span> <span class="o">=</span> <span class="o">{</span>    <span class="s">"java.class.path"</span><span class="o">,</span> <span class="s">"java.home"</span><span class="o">,</span> <span class="s">"java.vendor"</span><span class="o">,</span>
+                                   <span class="s">"java.version"</span><span class="o">,</span> <span class="s">"os.name"</span><span class="o">,</span> <span class="s">"os.version"</span><span class="o">,</span><span class="s">"user.dir"</span><span class="o">,</span>
+                                   <span class="s">"user.home"</span><span class="o">,</span> <span class="s">"user.name"</span><span class="o">};</span>
+           
+           
+            <span class="nc">System</span><span class="o">.</span><span class="na">setProperty</span> <span class="o">(</span><span class="s">"java.security.policy"</span><span class="o">,</span> <span class="nc">System</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s">"user.dir"</span><span class="o">)</span> <span class="o">+</span> <span class="s">"\\src\\_01SinConGestor\\Politica1.policy"</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">setSecurityManager</span><span class="o">(</span><span class="k">new</span> <span class="nc">SecurityManager</span><span class="o">());</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">t</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+                 
+                  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Propiedad:"</span> <span class="o">+</span> <span class="n">t</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+                  <span class="k">try</span> <span class="o">{</span>
+                        <span class="nc">String</span> <span class="n">s</span> <span class="o">=</span> <span class="nc">System</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="n">t</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>     <span class="c1">//valor de la propiedad</span>
+                        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"\t==&gt; "</span> <span class="o">+</span> <span class="n">s</span><span class="o">);</span>
+                  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <span class="nc">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"\n\tEXcepción "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span> <span class="o">}</span>
+           
+            <span class="o">}</span>
+      <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="politica1policy-para-política-de-permisos">Politica1.policy (para política de permisos)</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>grant {
+      permission java.util.PropertyPermission "java.class.path", "read";
+      permission java.util.PropertyPermission "java.home", "read";
+      permission java.util.PropertyPermission "user.home", "read";
+      permission java.util.PropertyPermission "user.name", "read";
+      permission java.util.PropertyPermission "user.dir", "read";
+      permission java.util.PropertyPermission "on.version", "read";
+};
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>PROPIEDAD</th>
+      <th>SIGNIFICADO</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">file.separator</code></td>
+      <td>Separador de directorios (“/” en UNIX y “" en Windows)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">java.class.path</code></td>
+      <td>Ruta usada para encontrar los directorios y ficheros JAR que contienen los archivos de clase</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">java.home</code></td>
+      <td>Directorio para JRE</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">java.vendor</code></td>
+      <td>Nombre del proveedor</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">java.vendor.url</code></td>
+      <td>URL del proveedor</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">java.version</code></td>
+      <td>Número de versión de JRE</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">line.separator</code></td>
+      <td>Fin de línea</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">os.arch</code></td>
+      <td>Arquitectura del sistema operativo</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">os.name</code></td>
+      <td>Nombre del sistema operativo</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">os.version</code></td>
+      <td>Versión del sistema operativo</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">path.separator</code></td>
+      <td>Caracter separador usado en <code class="language-plaintext highlighter-rouge">java.class.path</code> (En Unix es : mientras quwe en Windows es ;)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">user.dir</code></td>
+      <td>Directorio en el que se está ejecutando el programa Java</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">user.home</code></td>
+      <td>Directorio por defecto del usuario</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">user.name</code></td>
+      <td>Nombre del usuario</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="apis-java-para-seguridad">APIs Java para seguridad</h2>
+
+<p><strong>JCA</strong> (<em>Java Cryptography Architecture, Arquitectura Criptográfica de Java</em>). Es un marco de trabaj para acceder y desarrollar funciones criptográficas en la plataforma Java. Proporciona la infraestructura para la ejecución de los principales servicios de cifrado, incluyendo:</p>
+
+<ul>
+  <li>Firmas digitales</li>
+  <li>Resúmenes de mensajes (hash)</li>
+  <li>Certificados y validación de certificados</li>
+  <li>Encriptación (cifrado de bloques, cifrado simétrico y asimétrico)</li>
+  <li>Generación y gestión de claves y generación segura de números aleatorios</li>
+</ul>
+
+<p><strong>JSSE</strong> (<em>Java Secure Extension, Extensión de Sockets Seguros Java</em>). Es un conjunto de paquetes Java provistos para la comunicación segura en Internet. Implementa una versión Java de los protocolos SSL y TLS. Incluye funcionalidades como:</p>
+
+<ul>
+  <li>Cifrado de datos</li>
+  <li>Autenticación del servidor</li>
+  <li>Integridad de mensajes</li>
+  <li>Autenticación del cliente</li>
+</ul>
+
+<p><strong>JAAS</strong> (<em>Java Authentication and Authorization Service, Servicio de Autenticación y Autorización de Java</em>). Es un interfaz que permite a las aplicaciones Java acceder a servicios de control de autenticación y acceso. Puede usarse con dos fines:</p>
+
+<ul>
+  <li>La autenticación de usuarios para conocer quién está ejecutando código Java.</li>
+  <li>La autorización de usuarios para garantizar que quién lo ejecuta tiene los permisos necesarios para hacerlo.</li>
+</ul>
+
+<h2 id="ficheros-de-política-en-java">Ficheros de política en Java</h2>
+
+<h3 id="localización">Localización</h3>
+
+<p>El fichero de políticas predeterminado <strong>java.policy</strong>, está localizado en los siguientes directorios.</p>
+
+<ul>
+  <li>Sistemas operativos Windows: <code class="language-plaintext highlighter-rouge">java.home\lib\security\java.policy</code></li>
+  <li>Sistemas UNIX: <code class="language-plaintext highlighter-rouge">java.home/lib/security/java.policy</code></li>
+</ul>
+
+<p>Donde <code class="language-plaintext highlighter-rouge">java.home</code> representa el valor de la propiedad <strong>java.home</strong>, que especifica el directorio en el que se instaló el <strong>JRE</strong>.</p>
+
+<p>El valor por defecto es tener un solo fichero de políticas en todo el sistema y un fchero de políticas en el directorio <code class="language-plaintext highlighter-rouge">home</code> (dado por la variable <strong>user.home</strong>) del usuario (este tiene un punto delante).</p>
+
+<p>En el fichero <strong>java.security</strong> localizado en la carpeta <code class="language-plaintext highlighter-rouge">java.home\lib\security\</code> se encuentran las localizaciones de estos ficheros:</p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">policy.url.1</span><span class="p">=</span><span class="s">file:${java.home}/lib/security/java.policy</span>
+<span class="py">policy.url.2</span><span class="p">=</span><span class="s">file:${user.home}/.java.policy</span>
+</code></pre></div></div>
+
+<h3 id="entrada-grant">Entrada grant</h3>
+
+<p>Un fichero de políticas especifica qué permisos están disponibles para el código de varias fuentes.</p>
+
+<p>Se utiliza para conceder permisos del sistema.</p>
+
+<p>Contiene una secuencia de entradas <strong>grant</strong>, cada una de ellas tiene una o más entradas, el formato básico es el siguiente:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>grant codeBase <span class="s2">"URL"</span><span class="o">{</span>
+      permission Nombre_clase <span class="s2">"Nombre_destino"</span>, <span class="s2">"Acción"</span><span class="p">;</span>
+      permission Nombre_clase <span class="s2">"Nombre_destino"</span>, <span class="s2">"Acción"</span><span class="p">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>A la derecha de <code class="language-plaintext highlighter-rouge">codeBase</code> se indica la ubicación del código base sobre el que se van a definir los permisos. Su valor es una URL y siempre se debe utiliza la barra diagonal (<code class="language-plaintext highlighter-rouge">/</code>) como separador de directorio incluso para las URL de tipo file en Windows. Por ejemplo: <code class="language-plaintext highlighter-rouge">grant codeBase “file:/C:/somepath/api/”</code>.
+Si se omite codeBase entonces los permisos se aplican a todas las fuentes.</p>
+
+<p><strong>Nombre_clase</strong> contiene el nombre de la clase de permisos, por ejemplo:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java.io.FilePermission (representa acceso a fichero o directorio)
+java.net.SocketPermission (acceso a la red vía socket)
+java.util.PropertyPermission (permiso sobre propiedades del sistema), etc.
+</code></pre></div></div>
+
+<p>El parámetro <strong>Nombre_destino</strong> especifica el destino del permiso y depende de la clase de permiso.
+Por ejemplo si la clase de permiso es java.io.FilePermission en <strong>Nombre_destino</strong> se puede poner un fichero o un directorio; si la clase es <code class="language-plaintext highlighter-rouge">java.net.SocketPermission</code> se pondría un servidor y un número de puerto; si es <code class="language-plaintext highlighter-rouge">java.util.PropertyPermission</code> se pondría una propiedad del sistema.</p>
+
+<p>En el parámetro <strong>Acción</strong> se indica una lista de acciones separadas por comas, por ejemplo read, write, delete o execute para una clase de permiso <code class="language-plaintext highlighter-rouge">java.io.FilePermission</code>; accept, listen, connect resolve para una clase de permiso <code class="language-plaintext highlighter-rouge">java.netSocketPermission</code>; read, write para una clase de permiso <code class="language-plaintext highlighter-rouge">java.util.PropertyPermission</code>.</p>
+
+<p>Desde la <a href="http://docs.oracle.com/javase/8/docs/technotes/guides/security/permissions.html">URL de Oracle</a> se pueden consultar los permisos, sus destinos y acciones.</p>
+
+<h2 id="ejemplo-de-ficheros-de-políticas">Ejemplo de ficheros de políticas</h2>
+
+<p>Creamos un fichero en una carpeta determinada (en Windows <code class="language-plaintext highlighter-rouge">C:\Ficheros</code>) e insertamos una línea, después lee el contenido del fichero y lo muestra en pantalla. El comportamiento del programa será diferente si usamos o no el gestor de seguridad y ficheros de políticas.</p>
+
+<p>Se añade el gestor de seguridad en el método <code class="language-plaintext highlighter-rouge">main()</code>, la línea <code class="language-plaintext highlighter-rouge">System.setSecurityManager(new SecurityManager());</code> antes de la cláusula <code class="language-plaintext highlighter-rouge">try</code>, la salida muestra un error de acceso denegado al escribir datos en el fichero, tampoco se podrá realizar la lectura del mismo.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.BufferedWriter</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.FileNotFoundException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.FileReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.FileWriter</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Ejemplo2</span> <span class="o">{</span>
+     
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+           
+            <span class="c1">//El directorio C:/Ficheros debe estar creado previamente.</span>
+            <span class="c1">//System.setProperty ("java.security.policy", System.getProperty("user.dir") + "\\src\\_02FicherosPoliticas\\Politica2.policy");</span>
+            <span class="c1">//System.setSecurityManager(new SecurityManager());</span>
+            <span class="k">try</span> <span class="o">{</span>
+                  <span class="c1">//escritura en fichero</span>
+                  <span class="nc">BufferedWriter</span> <span class="n">fichero</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedWriter</span> <span class="o">(</span><span class="k">new</span> <span class="nc">FileWriter</span><span class="o">(</span><span class="s">"C://Ficheros//Fichero.txt"</span><span class="o">));</span>
+                  <span class="n">fichero</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"Escritura de una linea en fichero."</span><span class="o">);</span>
+                  <span class="n">fichero</span><span class="o">.</span><span class="na">newLine</span><span class="o">();</span> <span class="c1">// escribe un salto de línea</span>
+                  <span class="n">fichero</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Final proceso de escritura..."</span><span class="o">);</span>
+                 
+                  <span class="c1">//lectura del fichero</span>
+                  <span class="nc">BufferedReader</span> <span class="n">fichero2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span> <span class="o">(</span><span class="k">new</span> <span class="nc">FileReader</span><span class="o">(</span><span class="s">"C://Ficheros//Fichero.txt"</span><span class="o">));</span>
+                  <span class="nc">String</span> <span class="n">linea</span> <span class="o">=</span> <span class="n">fichero2</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
+                  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Contenido del fichero: "</span><span class="o">);</span>
+                  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"\t"</span> <span class="o">+</span> <span class="n">linea</span><span class="o">);</span>
+                  <span class="n">fichero2</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Final proceso de lectura..."</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">FileNotFoundException</span> <span class="n">fn</span><span class="o">)</span> <span class="o">{</span>
+                  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"No se encuentra el fichero"</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">io</span><span class="o">)</span> <span class="o">{</span>
+                  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Error de E/S "</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"ERROR =&gt; "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+            <span class="o">}</span>    
+      <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Ahora se crea el siguiente fichero de políticas de nombre Politica2.policy con el siguiente contenido:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">grant</span> <span class="n">codeBase</span>  <span class="s">"file:${user.dir}/bin/"</span><span class="o">{</span>
+      <span class="n">permission</span> <span class="n">java</span><span class="o">.</span><span class="na">io</span><span class="o">.</span><span class="na">FilePermission</span> <span class="s">"C:\\Ficheros\\*"</span><span class="o">,</span> <span class="s">"read, write"</span><span class="o">;</span>
+<span class="o">};</span>
+</code></pre></div></div>
+
+<p>que permite a los programas localizados en la carpeta indicada (incluido permiso para crear) ficheros en la ruta <code class="language-plaintext highlighter-rouge">C\Ficheros</code>.</p>
+
+<h2 id="formato-grant">Formato grant</h2>
+
+<p>El parámetro <strong>Nombre_destino</strong> para la clase de permiso <code class="language-plaintext highlighter-rouge">java.io.FilePermission</code> puede terminar en una serie de caracteres:</p>
+
+<ul>
+  <li>“<code class="language-plaintext highlighter-rouge">/</code>” (donde “<code class="language-plaintext highlighter-rouge">/</code>” es el carácter separador de ficheros) indica un directorio y todos los ficheros contenidos en ese directorio.</li>
+  <li>“<code class="language-plaintext highlighter-rouge">/-</code>“ indica un directorio y (recursivamente) todos los ficheros y subdirectorios contenidos en ese directorio.</li>
+  <li>“<code class="language-plaintext highlighter-rouge">&lt;&lt;ALL FILES&gt;&gt;</code>” indica cualquier fichero</li>
+  <li>También es posible usar propiedades de sistema como <code class="language-plaintext highlighter-rouge">user.dir</code> o <code class="language-plaintext highlighter-rouge">user.home</code> para dar privilegios sobre el directorio en el que se está ejecutando el programa o sobre el directorio por defecto del usuario. Se debe utilizar la propiedad encerrada entre llaves y con el caracer <code class="language-plaintext highlighter-rouge">$</code> delante. <code class="language-plaintext highlighter-rouge">${propiedad}</code>.</li>
+</ul>
+
+<p>El parámetro <strong>Nombre_destino</strong> para la clase de permiso <code class="language-plaintext highlighter-rouge">java.net.SocketPermission</code> tiene el siguiente formato:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Host <span class="o">=</span> <span class="o">(</span>nombre del host | Direccion IP<span class="o">)</span> <span class="o">[</span>:número de puerto] donde número de puerto <span class="o">=</span> N | <span class="nt">-N</span> | N-[M]
+</code></pre></div></div>
+
+<p>Las acciones son <strong>accept, listen, connect y resolve</strong>.
+El host se especifica como un nombre de host o dirección IP.
+Especificación de puerto:</p>
+
+<ul>
+  <li>“N”, puerto N</li>
+  <li>“N-“, todos los puertos desde N en adelante</li>
+  <li>“-N”, todos los puertos desde N hacia atrás</li>
+  <li>“M-N”, rango de puertos</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.net.ServerSocket</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.Socket</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Ejemplo3Servidor</span> <span class="o">{</span>
+     
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">arg</span><span class="o">)</span> <span class="o">{</span>
+           
+            <span class="kt">int</span> <span class="n">numeroPuerto</span> <span class="o">=</span> <span class="mi">6000</span><span class="o">;</span><span class="c1">// Puerto</span>
+            <span class="nc">ServerSocket</span> <span class="n">servidor</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">setProperty</span> <span class="o">(</span><span class="s">"java.security.policy"</span><span class="o">,</span> <span class="nc">System</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s">"user.dir"</span><span class="o">)</span> <span class="o">+</span> <span class="s">"\\src\\_03FicherosPoliticasSockets\\Politica3.policy"</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">setSecurityManager</span><span class="o">(</span><span class="k">new</span> <span class="nc">SecurityManager</span><span class="o">());</span>
+           
+            <span class="k">try</span> <span class="o">{</span>
+                  <span class="n">servidor</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ServerSocket</span><span class="o">(</span><span class="n">numeroPuerto</span><span class="o">);</span>
+                  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Esperando al cliente....."</span><span class="o">);</span>
+                  <span class="nc">Socket</span> <span class="n">clienteConectado</span> <span class="o">=</span> <span class="n">servidor</span><span class="o">.</span><span class="na">accept</span><span class="o">();</span>
+                  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Cliente conectado."</span><span class="o">);</span>
+                  <span class="n">clienteConectado</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Cliente desconectado."</span><span class="o">);</span>
+                  <span class="n">servidor</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <span class="nc">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"ERROR=&gt; "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span> <span class="o">}</span>
+     
+      <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.net.Socket</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Ejemplo3</span> <span class="o">{</span>
+     
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+           
+            <span class="nc">String</span> <span class="nc">Host</span> <span class="o">=</span> <span class="s">"localhost"</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="nc">Puerto</span> <span class="o">=</span> <span class="mi">6000</span><span class="o">;</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">setProperty</span> <span class="o">(</span><span class="s">"java.security.policy"</span><span class="o">,</span> <span class="nc">System</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s">"user.dir"</span><span class="o">)</span> <span class="o">+</span> <span class="s">"\\src\\_03FicherosPoliticasSockets\\Politica4.policy"</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">setSecurityManager</span><span class="o">(</span><span class="k">new</span> <span class="nc">SecurityManager</span><span class="o">());</span>   
+           
+            <span class="k">try</span> <span class="o">{</span>
+                  <span class="nc">Socket</span> <span class="nc">Cliente</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Socket</span><span class="o">(</span><span class="nc">Host</span><span class="o">,</span> <span class="nc">Puerto</span><span class="o">);</span>
+                  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"CLIENTE INICIADO."</span><span class="o">);</span>
+                  <span class="nc">Cliente</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"CLIENTE FINALIZADO."</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <span class="nc">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"ERROR=&gt; "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span> <span class="o">}</span>
+           
+      <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/*Politica para el SERVIDOR*/
+grant codeBase "file:${user.dir}/bin/" {
+  permission java.net.SocketPermission "localhost", "listen, accept";
+};
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/*Politica para el CLIENTE*/
+grant codeBase "file:${user.dir}/bin/" {
+  permission java.net.SocketPermission "localhost:6000", "connect";
+};
+</code></pre></div></div>
+
+<p>El programa servidor escucha y acepta peticiones de clientes en el puerto 6000, cuando el cliente se conecta se visualiza un mensaje y al cerrarse también.</p>
+
+<p>El programa cliente se conecta al servidor en el puerto 6000, visualiza unos mensajes y luego se desconecta.</p>
+
+<p>El fichero de políticas para el <strong>servidor</strong>, <code class="language-plaintext highlighter-rouge">Politica3.policy</code>, representa un permiso que permite a los programas localizados en la carpeta <code class="language-plaintext highlighter-rouge">${user.dir}/bin/</code> escuchar y aceptar conexiones en localhost.</p>
+
+<p>El fichero de políticas para el cliente, <code class="language-plaintext highlighter-rouge">Politica4.policy</code>, representa un permiso que permite a los programas localizados en la carpeta <code class="language-plaintext highlighter-rouge">${user.dir}/bin/</code> conectarse al puerto 6000 en localhost.</p>
+
+<h2 id="herramienta-policytool">Herramienta PolicyTool</h2>
+
+<p>Se recomienda usar la herramienta para editar cualquier fichero de políticas y verificar la sintaxis de su contenido.
+Para lanzarla, desde la terminal escribiremos el comando <code class="language-plaintext highlighter-rouge">policytool</code>.</p>
+
+<p><img src="/img/posts/20160324_1.png" alt="policytool 1" /></p>
+
+<p><img src="/img/posts/20160324_2.png" alt="policytool 2" /></p>
+
+<p><strong>¡Salud y coding!</strong></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#procesos-servicios</span>
+        
+          <span class="tag">#java</span>
+        
+          <span class="tag">#teoria</span>
+        
+          <span class="tag">#seguridad</span>
+        
+          <span class="tag">#jvm</span>
+        
+          <span class="tag">#jca</span>
+        
+          <span class="tag">#jsse</span>
+        
+          <span class="tag">#jaas</span>
+        
+          <span class="tag">#policy</span>
+        
+          <span class="tag">#permisos</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

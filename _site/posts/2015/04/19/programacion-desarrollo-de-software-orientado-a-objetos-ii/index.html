@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programación. Desarrollo de software orientado a objetos (II) | Programando a Pasitos</title>
+<meta name="description" content="Manejo de ficheros en Java con FileReader, FileWriter, DataInputStream y serialización de objetos. Introducción al framework Collection.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Programación. Desarrollo de software orientado a objetos (II) | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Programación. Desarrollo de software orientado a objetos (II)" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Manejo de ficheros en Java con FileReader, FileWriter, DataInputStream y serialización de objetos. Introducción al framework Collection." />
+<meta property="og:description" content="Manejo de ficheros en Java con FileReader, FileWriter, DataInputStream y serialización de objetos. Introducción al framework Collection." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/04/19/programacion-desarrollo-de-software-orientado-a-objetos-ii/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/04/19/programacion-desarrollo-de-software-orientado-a-objetos-ii/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-04-19T06:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Programación. Desarrollo de software orientado a objetos (II)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-04-19T06:00:00+02:00","datePublished":"2015-04-19T06:00:00+02:00","description":"Manejo de ficheros en Java con FileReader, FileWriter, DataInputStream y serialización de objetos. Introducción al framework Collection.","headline":"Programación. Desarrollo de software orientado a objetos (II)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/04/19/programacion-desarrollo-de-software-orientado-a-objetos-ii/"},"url":"http://localhost:4000/posts/2015/04/19/programacion-desarrollo-de-software-orientado-a-objetos-ii/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Programación. Desarrollo de software orientado a objetos (II)</h1>
+    <div class="post-meta">
+      <time datetime="2015-04-19T06:00:00+02:00">19 Apr 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#programación" class="post-category">Programación</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Manejo de ficheros en Java con FileReader, FileWriter, DataInputStream y serialización de objetos. Introducción al framework Collection.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="ficheros-en-java">Ficheros en Java</h2>
+
+<p>Manejar ficheros en Java es muy sencillo. En el paquete <code class="language-plaintext highlighter-rouge">java.io</code> encontramos las herramientas que necesitamos.</p>
+
+<ol>
+  <li>La clase <code class="language-plaintext highlighter-rouge">File</code> representa un fichero o directorio (que no tiene por qué existir todavía). <code class="language-plaintext highlighter-rouge">File</code> nos permite averiguar mucha información útil (ruta del fichero, si se puede escribir, etc).</li>
+  <li>Si queremos tratar con ficheros de texto usaremos streams basados en caracteres; para el resto de casos utilizaremos streams basados en bytes.</li>
+</ol>
+
+<p>Para la lectura o escritura en ficheros de texto usamos <code class="language-plaintext highlighter-rouge">FileReader</code> y <code class="language-plaintext highlighter-rouge">FileWriter</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">FileReader</span> <span class="n">fichLec</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileReader</span><span class="o">(</span><span class="n">cadNombre1</span><span class="o">);</span>
+<span class="nc">FileWriter</span> <span class="n">fichEsc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileWriter</span><span class="o">(</span><span class="n">cadNombre2</span><span class="o">);</span>
+<span class="c1">// ...</span>
+<span class="kt">char</span> <span class="n">caracter</span> <span class="o">=</span> <span class="n">fichLec</span><span class="o">.</span><span class="na">read</span><span class="o">();</span>
+<span class="n">fichEsc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">caracter</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>Para lectura o escritura de datos en ficheros usamos <code class="language-plaintext highlighter-rouge">DataInputStream</code> y <code class="language-plaintext highlighter-rouge">DataOutputStream</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">DataInputStream</span> <span class="n">fichLec</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DataInputStream</span><span class="o">(</span><span class="n">cad1</span><span class="o">);</span>
+<span class="nc">DataOutputStream</span> <span class="n">fichEsc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DataOutputStream</span><span class="o">(</span><span class="n">cad1</span><span class="o">);</span>
+<span class="c1">// ...</span>
+<span class="kt">int</span> <span class="n">codArticulo</span> <span class="o">=</span> <span class="n">fichLec</span><span class="o">.</span><span class="na">readInt</span><span class="o">();</span>
+<span class="kt">int</span> <span class="n">numUnidades</span> <span class="o">=</span> <span class="n">fichLec</span><span class="o">.</span><span class="na">readInt</span><span class="o">();</span>
+<span class="kt">double</span> <span class="n">precio</span> <span class="o">=</span> <span class="n">fichLec</span><span class="o">.</span><span class="na">readDouble</span><span class="o">();</span>
+<span class="n">fichEsc</span><span class="o">.</span><span class="na">writeInt</span><span class="o">(</span><span class="n">codArticulo</span><span class="o">);</span>
+<span class="n">fichEsc</span><span class="o">.</span><span class="na">writeInt</span><span class="o">(</span><span class="n">numUnidades</span><span class="o">);</span>
+<span class="n">fichEsc</span><span class="o">.</span><span class="na">writeDouble</span><span class="o">(</span><span class="n">precio</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>Se aconseja que el acceso a los ficheros se haga mediante un buffer de memoria para mejorar la eficiencia:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">File</span> <span class="n">fichero</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"pedidos.dat"</span><span class="o">);</span>
+<span class="nc">DataOutputStream</span> <span class="n">dos</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DataOutputStream</span><span class="o">(</span><span class="n">fichero</span><span class="o">);</span>
+<span class="nc">BufferedOutputStream</span> <span class="n">stream</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedOutputStream</span><span class="o">(</span><span class="n">dos</span><span class="o">);</span>
+<span class="n">stream</span><span class="o">.</span><span class="na">writeInt</span><span class="o">(</span><span class="n">codArticulo</span><span class="o">);</span>
+<span class="n">stream</span><span class="o">.</span><span class="na">writeDouble</span><span class="o">(</span><span class="n">precio</span><span class="o">);</span>
+</code></pre></div></div>
+
+<h2 id="persistencia-de-objetos">Persistencia de objetos</h2>
+
+<p>Hasta ahora todos los objetos que hemos creado se han alojado en la memoria del ordenador. Ahora queremos almacenarlos en el disco duro, de manera que pueda recuperarlos cuando reinicie el ordenador.</p>
+
+<p>La persistencia de objetos se ocupa de escribirlos y leerlos desde el disco duro. Normalmente los objetos se almacenan en:</p>
+<ul>
+  <li>Ficheros binarios</li>
+  <li>Bases de datos</li>
+</ul>
+
+<h3 id="persistencia-en-ficheros">Persistencia en ficheros</h3>
+
+<p>Partimos del siguiente ejemplo:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Persona</span> <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Persona</span><span class="o">(</span><span class="s">"Ana"</span><span class="o">,</span> <span class="s">"Lopez Haro"</span><span class="o">);</span>
+<span class="nc">Mascota</span> <span class="n">m</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Mascota</span><span class="o">(</span><span class="s">"Tobi"</span><span class="o">);</span>
+<span class="nc">Coche</span> <span class="n">c</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Coche</span><span class="o">(</span><span class="s">"4324-FJT"</span><span class="o">);</span>
+<span class="n">p</span><span class="o">.</span><span class="na">compraMascota</span><span class="o">(</span><span class="n">m</span><span class="o">);</span>
+<span class="n">p</span><span class="o">.</span><span class="na">compraCoche</span><span class="o">(</span><span class="n">c</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p><img src="/img/posts/20150419_1.jpg" alt="Objeto Persona con sus referencias" /></p>
+
+<p>A la operación de convertir un objeto en una hilera de bytes se le llama <strong>serialización</strong>.</p>
+
+<p><img src="/img/posts/20150419_2.png" alt="Concepto de serialización" /></p>
+
+<p><img src="/img/posts/20150419_3.jpg" alt="Serialización de objetos con referencias" /></p>
+
+<h3 id="implementación-en-java">Implementación en Java</h3>
+
+<p>Para que un objeto pueda ser escrito y leído a un fichero debe implementar la interfaz <code class="language-plaintext highlighter-rouge">Serializable</code>.</p>
+
+<p><img src="/img/posts/20150419_4.jpg" alt="Interfaz Serializable" /></p>
+
+<p>La interfaz <code class="language-plaintext highlighter-rouge">Serializable</code> no contiene ningún método. Actúa como un marcador del objeto, indicando que éste puede ser serializado.</p>
+
+<p>Se necesitan:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">java.io.ObjectInputStream</code></li>
+  <li><code class="language-plaintext highlighter-rouge">java.io.ObjectOutputStream</code></li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.Serializable</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Coche</span> <span class="kd">implements</span> <span class="nc">Serializable</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">matricula</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="n">maxLitros</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Mascota</span> <span class="kd">implements</span> <span class="nc">Serializable</span> <span class="o">{</span>
+    <span class="c1">// ...</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PruebaSerializable</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">FileOutputStream</span> <span class="n">fichSalida</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="nc">ObjectOutputStream</span> <span class="n">oos</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="nc">FileInputStream</span> <span class="n">fichEntrada</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="nc">ObjectInputStream</span> <span class="n">ois</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">fichSalida</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileOutputStream</span><span class="o">(</span><span class="s">"c:/persona.obi"</span><span class="o">);</span>
+            <span class="n">oos</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ObjectOutputStream</span><span class="o">(</span><span class="n">fichSalida</span><span class="o">);</span>
+            <span class="n">oos</span><span class="o">.</span><span class="na">writeObject</span><span class="o">(</span><span class="n">p</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Se produjo un error de apertura"</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">oos</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="n">oos</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">fichSalida</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="n">fichSalida</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"No se consiguió cerrar el fichero correctamente"</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">fichEntrada</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="s">"c:/persona.obi"</span><span class="o">);</span>
+            <span class="n">ois</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ObjectInputStream</span><span class="o">(</span><span class="n">fichEntrada</span><span class="o">);</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Persona</span><span class="o">)</span> <span class="n">ois</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">ClassNotFoundException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Contenido de fichero no esperado"</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">ois</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="n">ois</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">fichEntrada</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="n">fichEntrada</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"No se consiguió cerrar el fichero correctamente"</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Se leyó el fichero correctamente"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><img src="/img/posts/20150419_5.png" alt="Ejemplo de DataOutputStream en fichero" /></p>
+
+<h3 id="persistencia-en-bases-de-datos">Persistencia en bases de datos</h3>
+
+<p>Según su relación con el enfoque orientado a objetos podemos clasificar las bases de datos en tres grupos:</p>
+
+<ul>
+  <li><strong>Relacionales puras:</strong> Tecnología madura y eficiente. Problema: se basan en un modelo plano de datos. Solución bastante costosa en tiempo y esfuerzo.</li>
+  <li><strong>Orientadas a objetos puras:</strong> La correspondencia entre objeto de programación y objeto en disco es directa. Tecnología lenta, ineficiente y poco flexible para consultas.</li>
+  <li><strong>Objeto-Relacionales o mixtas:</strong> Combina las ventajas de las dos anteriores. Son BBDD relacionales con nuevos tipos de datos que permiten modelar objetos. A partir de Oracle 8i se incorporan los nuevos tipos abstractos de datos.</li>
+</ul>
+
+<h2 id="el-framework-collection">El framework Collection</h2>
+
+<p>Las colecciones o contenedores de objetos son estructuras de datos muy recurridas y necesarias: tablas, listas, pilas, colas, árboles, conjuntos, diccionarios…</p>
+
+<p>Su utilización implica normalmente la adaptación de la colección al tipo de elemento que queremos almacenar.</p>
+
+<p><img src="/img/posts/20150419_6.jpg" alt="Framework Collection de Java" /></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#programacion</span>
+        
+          <span class="tag">#java</span>
+        
+          <span class="tag">#ficheros</span>
+        
+          <span class="tag">#serializacion</span>
+        
+          <span class="tag">#colecciones</span>
+        
+          <span class="tag">#orientado-a-objetos</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

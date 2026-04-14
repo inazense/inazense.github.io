@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entornos de desarrollo. Desarrollo de software II | Programando a Pasitos</title>
+<meta name="description" content="Aprende sobre distribución de software (shareware, freeware, adware), tipos de licencias (libre, propietario, dominio público), licencias GPL y clasificación de lenguajes de programación por nivel de abstracción.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Entornos de desarrollo. Desarrollo de software II | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Entornos de desarrollo. Desarrollo de software II" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Aprende sobre distribución de software (shareware, freeware, adware), tipos de licencias (libre, propietario, dominio público), licencias GPL y clasificación de lenguajes de programación por nivel de abstracción." />
+<meta property="og:description" content="Aprende sobre distribución de software (shareware, freeware, adware), tipos de licencias (libre, propietario, dominio público), licencias GPL y clasificación de lenguajes de programación por nivel de abstracción." />
+<link rel="canonical" href="http://localhost:4000/posts/2014/10/11/entornos-de-desarrollo-desarrollo-de-software-ii/" />
+<meta property="og:url" content="http://localhost:4000/posts/2014/10/11/entornos-de-desarrollo-desarrollo-de-software-ii/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2014-10-11T06:10:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Entornos de desarrollo. Desarrollo de software II" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver","url":"https://github.com/inazense"},"dateModified":"2014-10-11T06:10:00+02:00","datePublished":"2014-10-11T06:10:00+02:00","description":"Aprende sobre distribución de software (shareware, freeware, adware), tipos de licencias (libre, propietario, dominio público), licencias GPL y clasificación de lenguajes de programación por nivel de abstracción.","headline":"Entornos de desarrollo. Desarrollo de software II","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2014/10/11/entornos-de-desarrollo-desarrollo-de-software-ii/"},"url":"http://localhost:4000/posts/2014/10/11/entornos-de-desarrollo-desarrollo-de-software-ii/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Entornos de desarrollo. Desarrollo de software II</h1>
+    <div class="post-meta">
+      <time datetime="2014-10-11T06:10:00+02:00">11 Oct 2014</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#entornos-de-desarrollo" class="post-category">Entornos de desarrollo</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Aprende sobre distribución de software (shareware, freeware, adware), tipos de licencias (libre, propietario, dominio público), licencias GPL y clasificación de lenguajes de programación por nivel de abstracción.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="distribución-de-software">Distribución de software</h2>
+
+<p>La distribución de software hace referencia a la manera de hacerlo llegar al público.</p>
+
+<p><strong>Shareware:</strong> Programa de distribución de prueba para la evaluación del usuario. Puede ser un programa completo con licencia temporal o un programa con funcionalidades bloqueadas.</p>
+
+<p><strong>Freeware:</strong> Software gratuito sin necesidad de pago, que permite su distribución pero normalmente no permite la visualización del código fuente. Ejemplo: NetScan.</p>
+
+<p><strong>Adware:</strong> Software gratuito con anuncios incorporados. Ejemplos: uTorrent, aplicaciones móviles.</p>
+
+<h2 id="clasificación-según-licencias">Clasificación según licencias</h2>
+
+<p><strong>Libre:</strong> El autor cede libertades al usuario. Permite estudiar, modificar y compartir el programa. No necesariamente tiene que ser gratuito.</p>
+
+<p><strong>Propietario:</strong> Código cerrado. Se permite el uso pero no la visualización del funcionamiento interno.</p>
+
+<p><strong>Dominio público:</strong> Obras de autoría desconocida.</p>
+
+<h3 id="licencias-gpl">Licencias GPL</h3>
+
+<p>La GPL (General Public License) es la licencia más usada para software libre. Tiene tres versiones:</p>
+
+<ul>
+  <li><strong>GPL v1:</strong> Permite la modificación y redistribución del software.</li>
+  <li><strong>GPL v2:</strong> Las modificaciones heredan las restricciones de la licencia original.</li>
+  <li><strong>GPL v3:</strong> Otorga libertades adicionales al programador con atribución obligatoria.</li>
+</ul>
+
+<h2 id="clasificación-de-lenguajes-de-programación">Clasificación de lenguajes de programación</h2>
+
+<p>Los lenguajes de programación se clasifican por su nivel de abstracción:</p>
+
+<p><strong>Alto nivel:</strong> Java, C#, FORTRAN, BASIC. Son más cercanos al lenguaje humano y facilitan la modelización abstracta de conceptos del mundo real.</p>
+
+<p><strong>Nivel medio:</strong> C. Permite el acceso directo a los recursos de la máquina. Se usa para programar sistemas operativos como Android.</p>
+
+<p><strong>Bajo nivel:</strong> Ensamblador. Orientado al binario y específico de cada máquina.</p>
+
+<p>Cuánto más bajo sea el nivel, más fácil es equivocarse al escribir el código, pero mayor es el control sobre el hardware.</p>
+
+<h2 id="identación">Identación</h2>
+
+<p><strong>Identación:</strong> Espacio que se tabula para indicar que estamos en un subgrupo.</p>
+
+<h2 id="extra-editor-vim">EXTRA. Editor VIM</h2>
+
+<p><img src="/img/posts/20141011_1.png" alt="Capturas de comandos VIM" /></p>
+
+<p><strong>¡Salud y coding!</strong></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#desarrollo-software</span>
+        
+          <span class="tag">#licencias</span>
+        
+          <span class="tag">#gpl</span>
+        
+          <span class="tag">#lenguajes-programacion</span>
+        
+          <span class="tag">#entornos-desarrollo</span>
+        
+          <span class="tag">#vim</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Configurar Virtual Host Apache en Ubuntu | Programando a Pasitos</title>
+<meta name="description" content="Guía completa paso a paso para configurar Virtual Host de Apache en Ubuntu 16.04. Aprende a crear múltiples sitios web locales con dominios personalizados, configurar DNS local y gestionar permisos correctamente">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Configurar Virtual Host Apache en Ubuntu | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Configurar Virtual Host Apache en Ubuntu" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Guía completa paso a paso para configurar Virtual Host de Apache en Ubuntu 16.04. Aprende a crear múltiples sitios web locales con dominios personalizados, configurar DNS local y gestionar permisos correctamente" />
+<meta property="og:description" content="Guía completa paso a paso para configurar Virtual Host de Apache en Ubuntu 16.04. Aprende a crear múltiples sitios web locales con dominios personalizados, configurar DNS local y gestionar permisos correctamente" />
+<link rel="canonical" href="http://localhost:4000/posts/2017/02/26/configurar-virtual-host-apache-en-ubuntu/" />
+<meta property="og:url" content="http://localhost:4000/posts/2017/02/26/configurar-virtual-host-apache-en-ubuntu/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-02-26T05:10:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Configurar Virtual Host Apache en Ubuntu" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2017-02-26T05:10:00+01:00","datePublished":"2017-02-26T05:10:00+01:00","description":"Guía completa paso a paso para configurar Virtual Host de Apache en Ubuntu 16.04. Aprende a crear múltiples sitios web locales con dominios personalizados, configurar DNS local y gestionar permisos correctamente","headline":"Configurar Virtual Host Apache en Ubuntu","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2017/02/26/configurar-virtual-host-apache-en-ubuntu/"},"url":"http://localhost:4000/posts/2017/02/26/configurar-virtual-host-apache-en-ubuntu/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Configurar Virtual Host Apache en Ubuntu</h1>
+    <div class="post-meta">
+      <time datetime="2017-02-26T05:10:00+01:00">26 Feb 2017</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#sistemas" class="post-category">Sistemas</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Guía completa paso a paso para configurar Virtual Host de Apache en Ubuntu 16.04. Aprende a crear múltiples sitios web locales con dominios personalizados, configurar DNS local y gestionar permisos correctamente</p>
+    
+  </header>
+
+  <div class="post-content">
+    <p>Hace poco tiempo se estropeo mi ordenador y decidí que era el momento idóneo para dar el salto a una plataforma <strong>Linux</strong>. He tonteado mucho con ello pero nunca lo había tomado realmente en serio y, por considerarme ‘primerizo’ opté por la última <strong>versión LTS de Ubuntu</strong>, la <strong>16.04</strong>.</p>
+
+<p>El cambio no ha sido muy grande en rasgos generales, pero cuando te orientas a algo más especializado, como la programación web por ejemplo, si que he tenido ciertas dificultades para dejar todas las configuraciones como yo quería. Aquí voy a explicar como hacer una de ellas, los <strong>host virtuales de Apache</strong>.</p>
+
+<p><strong>Apache</strong> es el servidor web más popular actualmente y permite una flexibilidad asombrosa a la hora de realizar sus configuraciones. Como tengo varios proyectos en mente, me interesa poder emular varios dominios desde mi propio portátil directamente, trabajando como si de la raíz de la página web se tratase. Ahí es donde entran los <strong>virtual host</strong>.</p>
+
+<p>Un <strong>host virtual</strong> es un mecanismo que permite tener funcionando más de un sitio web en una misma máquina. Estos sitios web podrán estar basados en diferentes direcciones IP o bien en distintos nombres de dominio. Ésta segunda manera es la forma con la que quiero trabajar.</p>
+
+<p>## Pasos previos</p>
+
+<p>Me vas a llamar caprichoso, pero un paso imprescindible para seguir este tutorial (el único paso, de hecho) es tener instalado <strong>Apache2</strong> en nuestro sistema operativo.
+Para ello, te recomiendo que sigas este post de <a href="https://www.howtoforge.com/tutorial/install-apache-with-php-and-mysql-on-ubuntu-16-04-lamp/">How to forge</a>.</p>
+
+<h2 id="configurando-virtual-host-de-apache-en-ubuntu-1604">Configurando Virtual Host de Apache en Ubuntu 16.04</h2>
+
+<p>En este caso, vamos a configurar un nuevo host que sea <em>indianafotografia.local</em>, que será utilizado para realizar pruebas desde nuestro servidor local.
+Por supuesto, siéntete libre de utilizar el dominio que desees para el virtual host, pero debes ser consciente de que si crear uno como <em>google.com</em> éste primará sobre el acceso a la dirección real de <em>google.com</em>, y perderías el acceso a la misma. ¿Todo claro? Bien, prosigamos entonces.</p>
+
+<h3 id="1-crear-la-estructura-de-directorios">1. Crear la estructura de directorios</h3>
+
+<p>Los datos de nuestra página web estarán alojados en <code class="language-plaintext highlighter-rouge">/var/www</code>, así que deberemos crear dentro de esta ruta un nuevo directorio para nuestro virtual host, y dentro de ésta carpeta, un nuevo directorio llamado <code class="language-plaintext highlighter-rouge">public_html</code> (no es obligatorio, esto simplemente nos daría más flexibilidad a la hora de mantener nuestro servidor en caso de que lo queramos configurar como un servidor real sobre todo).</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo mkdir</span> <span class="nt">-p</span> /var/www/indianafotografia.local/public_html
+</code></pre></div></div>
+
+<p>No lo he comentado antes, pero todos estos pasos se realizarán desde nuestra terminal.</p>
+
+<h3 id="2-permisos">2. Permisos</h3>
+
+<p>Actualmente los directorios creados son propiedad de <strong>root</strong>, así que debemos cambiarle la propiedad a nuestro usuario actual. La variable <code class="language-plaintext highlighter-rouge">$USER</code> se encargará de ello, tomando el valor del usuario con el que estemos logueados actualmente.
+Y también modificaremos los permisos para asegurarnos de que el acceso de lectura está habilitado en la raíz principal del directorio web general.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo chown</span> <span class="nt">-R</span> <span class="nv">$USER</span>:<span class="nv">$USER</span> /var/www/indianafotografia.local/public_html
+<span class="nb">sudo chmod</span> <span class="nt">-R</span> 755 /var/www
+</code></pre></div></div>
+
+<p>Perfecto, a partir de ahora ya podemos crear nuestro propio contenido.</p>
+
+<h3 id="3-crear-contenido-web">3. Crear contenido web</h3>
+
+<p>Siéntete libre de crear el contenido que desees dentro de tu <code class="language-plaintext highlighter-rouge">public_html</code>. Eso será lo que visualizaremos por pantalla. Haz algo sencillo:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"es"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+ <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;title&gt;</span>Prueba de Virtual Host<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+ <span class="nt">&lt;h1&gt;</span>¡Este directorio funciona correctamente<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<h3 id="4-crear-el-archivo-de-configuración-de-virtual-host">4. Crear el archivo de configuración de Virtual Host</h3>
+
+<p>Estos archivos guardan la configuración actual de los virtual hosts e indican como se comportará el servidor apache cuando le soliciten esa página web.</p>
+
+<p>Apache viene con un archivo de configuración por defecto, <code class="language-plaintext highlighter-rouge">**000-default.conf**</code>, que podemos localizar en la ruta /etc/apache2/sites-available.</p>
+
+<p>Podemos copiar este archivo en la misma ruta con el nombre de nuestro virtual host acabado en .conf, o generarlo de nuevo, lo que más se guste.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo cp</span> /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/indianafotografia.local.conf
+</code></pre></div></div>
+
+<p>Ahora editaremos este archivo</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>nano /etc/apache2/sites-available/indianafotografia.local.conf
+</code></pre></div></div>
+
+<p>El documento deberá acabar teniendo este aspecto:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;VirtualHost</span> <span class="err">*:80</span><span class="nt">&gt;</span>
+ ServerAdmin webmaster@indianafotografia.local
+ ServerName indianafotografia.local
+ ServerAlias www.indianafotografia.local
+ DocumentRoot /var/www/indianafotografia.local/public_html
+
+ ErrorLog ${APACHE_LOG_DIR}/error.log
+ CustomLog ${APACHE_LOG_DIR}/access.log combined
+<span class="nt">&lt;/VirtualHost&gt;</span>
+</code></pre></div></div>
+
+<p>Vamos por pasos:</p>
+
+<ul>
+  <li><strong>ServerAdmin</strong>. Deberemos escribir un correo electrónico para que le lleguen los avisos al administrador. Si es para probar en local lo puedes inventar tranquilamente</li>
+  <li><strong>ServerName</strong>. El nombre de nuestro virtual host</li>
+  <li><strong>ServerAlias</strong>. Una segunda forma de acceder a nuestro virtual host. Actuará de “puntero” hacía nuestro ServerName.</li>
+  <li><strong>DocumentRoot</strong>. El directorio raíz de nuestra página web.</li>
+</ul>
+
+<h3 id="5-habilitar-el-nuevo-archivo-de-configuración">5. Habilitar el nuevo archivo de configuración</h3>
+
+<p>A continuación habilitaremos nuestro nuevo archivo de configuración para el virtual host y deshabilitaremos el archivo que se incluye por defecto.
+Posteriormente, deberemos reiniciar el servidor apache.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>a2ensite indianafotografia.loca.conf
+<span class="nb">sudo </span>a2dissite 000-default.conf
+<span class="nb">sudo </span>systemctl restart apache2
+</code></pre></div></div>
+
+<h3 id="6-configurando-el-dns">6. Configurando el DNS</h3>
+
+<p>Si estos virtual host los vas a utilizar para realizar pruebas en local deberás modificar el archivo de coniguración de tus DNS locales. Para ello, escribe:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>nano /etc/hosts
+</code></pre></div></div>
+
+<p>Y agregaremos la siguiente línea:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>127.0.0.1 indianafotografia.local
+</code></pre></div></div>
+
+<h3 id="comprobación-final">Comprobación final</h3>
+
+<p>Vamos a nuestro navegador web y escribimos <code class="language-plaintext highlighter-rouge">http://indianafotografia.local</code>.
+Si todo ha funcionado correctamente veremos nuestra página web.</p>
+
+<p><img src="/img/posts/20170226_1.png" alt="indiana fotografia local" /></p>
+
+<p>No hay ningún limite a la cantidad de virtual hosts que puedas administrar en tu máquina, así que siéntete libre de generar tantos como necesites.</p>
+
+<p><strong>¡Salud y coding!</strong></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#apache</span>
+        
+          <span class="tag">#ubuntu</span>
+        
+          <span class="tag">#virtual-host</span>
+        
+          <span class="tag">#linux</span>
+        
+          <span class="tag">#dns</span>
+        
+          <span class="tag">#servidor-web</span>
+        
+          <span class="tag">#configuracion</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

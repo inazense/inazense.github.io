@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutorial Maven en Eclipse I | Programando a Pasitos</title>
+<meta name="description" content="Aprende a usar Maven en Eclipse desde cero paso a paso. Tutorial completo sobre creación de proyectos, configuración del POM.xml, gestión de dependencias, plugins, arquetipos y solución de errores JDK/JRE con ejemplos prácticos.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Tutorial Maven en Eclipse I | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Tutorial Maven en Eclipse I" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Aprende a usar Maven en Eclipse desde cero paso a paso. Tutorial completo sobre creación de proyectos, configuración del POM.xml, gestión de dependencias, plugins, arquetipos y solución de errores JDK/JRE con ejemplos prácticos." />
+<meta property="og:description" content="Aprende a usar Maven en Eclipse desde cero paso a paso. Tutorial completo sobre creación de proyectos, configuración del POM.xml, gestión de dependencias, plugins, arquetipos y solución de errores JDK/JRE con ejemplos prácticos." />
+<link rel="canonical" href="http://localhost:4000/posts/2017/07/28/tutorial-maven-en-eclipse/" />
+<meta property="og:url" content="http://localhost:4000/posts/2017/07/28/tutorial-maven-en-eclipse/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-07-28T06:10:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Tutorial Maven en Eclipse I" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2017-07-28T06:10:00+02:00","datePublished":"2017-07-28T06:10:00+02:00","description":"Aprende a usar Maven en Eclipse desde cero paso a paso. Tutorial completo sobre creación de proyectos, configuración del POM.xml, gestión de dependencias, plugins, arquetipos y solución de errores JDK/JRE con ejemplos prácticos.","headline":"Tutorial Maven en Eclipse I","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2017/07/28/tutorial-maven-en-eclipse/"},"url":"http://localhost:4000/posts/2017/07/28/tutorial-maven-en-eclipse/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Tutorial Maven en Eclipse I</h1>
+    <div class="post-meta">
+      <time datetime="2017-07-28T06:10:00+02:00">28 Jul 2017</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#java" class="post-category">Java</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Aprende a usar Maven en Eclipse desde cero paso a paso. Tutorial completo sobre creación de proyectos, configuración del POM.xml, gestión de dependencias, plugins, arquetipos y solución de errores JDK/JRE con ejemplos prácticos.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <p>De normal, cuando realizamos un <strong>proyecto Java</strong> si es pequeño nosotros mismos podemos hacer las actividades típicas de la construcción de software.</p>
+
+<ul>
+  <li>Instalar las librerías necesarias para nuestro proyecto en el classpath</li>
+  <li>Correr los casos de test</li>
+  <li>Crear la documentación del código fuente</li>
+  <li>Compilar código fuente</li>
+  <li>Empacar el código compilado en JAR</li>
+</ul>
+
+<p>Pero, ¿qué sucede conforme nuestro proyecto va creciendo y se va agregando más gente a él? Pues que podemos perder el control del mismo y es más plausible cometer errores humanos en la construcción del programa. Para eso está <strong>Maven</strong>.</p>
+
+<h2 id="qué-es-maven">¿Qué es Maven?</h2>
+
+<p><strong>Maven</strong> es una herramienta para la gestión de proyectos, que nos permitirá administrar completamente el ciclo de vida de la misma. Comúnmente se conoce a <strong>Maven</strong> como un gestor de dependencias Y YA. Y eso no es del todo cierto. Podemos considerarlo como una herramienta de construcción con muchas características, que nos ayuda a gestionar las dependencias, test, documentación, compilaciones, distribuciones e incluso los <em>mailing list</em>.</p>
+
+<p>Si quieres una explicación más profesional de lo que es <strong>Maven</strong> puedes seguir el enlace hacía <a href="https://es.wikipedia.org/wiki/Maven">Maven en Wikipedia</a>.</p>
+
+<p>Bien, centrémonos. ¿Qué es, entonces, lo que <strong>Maven</strong> puede hacer por nosotros? Así, en muy resumidas cuentas, lo siguiente:</p>
+
+<ul>
+  <li>Build. Construye nuestro código fuente del proyecto</li>
+  <li>Test. Ejecuta los casos de prueba</li>
+  <li>Gestiona las dependencias de nuestro proyecto. Es cierto que no es sólo un gestor, pero para mi es de lo mejor que tiene <strong>Maven</strong>. Importa las librerías automáticamente desde un repositorio remoto. Nos podemos olvidar de hacer esa tarea manualmente.</li>
+  <li>Permite la creación y descarga de plantillas de proyectos para tener la estructura ya creada. Por ejemplo si nos vamos a dedicar a hacer páginas web, o conectores, nos interesará para ahorrarnos el trabajo de tener que empezar desde cero una y otra vez</li>
+  <li>Crea una web con la documentación del proyecto</li>
+  <li>Desplega el proyecto (AKA <strong>artefacto</strong>) en servidor</li>
+  <li>Y por supuesto, perfecta integración con <strong>Git, SVN, Jira</strong>…</li>
+</ul>
+
+<p>Imagina hacer todo esto manualmente, y más de una persona que trabaje en nuestro proyecto. ¡Es para volverse loco!</p>
+
+<p>Un par de cosas que conviene conocer antes de empezar:</p>
+
+<ul>
+  <li><strong>artefacto</strong>. Es un proyecto que lo gestiona <strong>Maven</strong> y que incluye un fichero llamado <strong>pom.xml</strong>.</li>
+  <li><strong>POM</strong>. Son las siglas de <strong>Project Object Model</strong>. Es un fichero <strong>XML</strong> que contiene la configuración del artefacto. Más adelante trabajaremos con él. Si has programado en <strong>Android</strong> anteriormente, un símil adecuado sería el <strong>AndroidManifest</strong>.</li>
+  <li><strong>groupId</strong>. El identificador único para crear nuestro artefacto. Se suele poner el mismo que en un paquete <em>java.com.programandoapasitos</em></li>
+</ul>
+
+<h2 id="maven-en-eclipse">Maven en Eclipse</h2>
+
+<p>Tenéis que saber que <strong>Maven</strong> es perfectamente posible usarlo desde la consola de comandos. Si es el caso que estáis interesados en esa forma os recomiendo <a href="https://jarroba.com/maven/">éste artículo de Jarroba.com</a> que lo explica perfectamente.</p>
+
+<p>Pero en nuestro caso vamos a usar la comodidad que nos da Eclipse con las herramientas que ya vienen integradas por defecto en su versión <a href="https://www.eclipse.org/downloads/">Java EE Developers</a> que es la que incluye el plugin de <strong>Maven</strong>, aunque ojo que puede no ser la última versión de <strong>Maven</strong> disponible.</p>
+
+<p>Lo primero será crear un nuevo proyecto <strong>Maven</strong> yendo a <em>File → New → Other</em>.</p>
+
+<p><img src="/img/posts/20170728_1.png" alt="maven new file" /></p>
+
+<p>Elegimos <em><strong>Maven</strong> → <strong>Maven Project</strong></em> y pulsamos Next.</p>
+
+<p><img src="/img/posts/20170728_2.png" alt="new maven project" /></p>
+
+<p>Ahora deberemos elegir la configuración de nuestro proyecto <strong>Maven</strong>. En la siguiente ventana podemos marcar el check de <em>Create a simple Project</em> (skip archetype selection), lo que nos creará un proyecto completamente simple sin más configuración, o bien podemos desmarcarla, que será nuestro caso, y elegiremos un arquetipo de las opciones que nos muestre el asistente.</p>
+
+<p><img src="/img/posts/20170728_3.png" alt="new maven project 2" /></p>
+
+<p>En la nueva ventana puedes seleccionar un arquetipo del listado o cargar uno desde una ubicación. En nuestro caso seleccionaremos el de <strong>groupId</strong> <em>org.apache.maven.archetypes</em> y <strong>Artifact id</strong> <em>maven-archetype-quickstart</em> y pulsamos Next.</p>
+
+<p><img src="/img/posts/20170728_4.png" alt="new maven project 3" /></p>
+
+<p>Y ahora, por último paso del asistente, tendremos que indicar nuestro propio <strong>groupId</strong> y el <strong>artifactId</strong>. Esto se hace porque los que vimos en la anterior pantalla eran los que usaron los creadores del artefacto. Sobrescribiéndolos lo establecemos como queremos y aparte de la personalización, si algún día se convierte en arquetipo lo podrán buscar con nuestros datos, y reemplazarlos con los suyos.</p>
+
+<p><img src="/img/posts/20170728_5.png" alt="new maven project 4" /></p>
+
+<p>Pulsamos <em>Finish</em> y ya tendremos nuestro proyecto. La estructura quedará tal que así</p>
+
+<p><img src="/img/posts/20170728_6.png" alt="maven project tree structure" /></p>
+
+<h2 id="usando-maven">Usando Maven</h2>
+
+<p>Ahora que ya tenemos nuestro <strong>proyecto Maven</strong> creado es hora de configurar el <strong>POM</strong> para hacerlo funcionar. Para ello hacemos doble click en el archivo <strong>pom.xml</strong> y en la pestaña inferior elegimos la sección <strong>pom.xml</strong> para poder ver el código <strong>XML</strong> “a pelo”.</p>
+
+<p><img src="/img/posts/20170728_7.png" alt="using maven 1" /></p>
+
+<p>Cuando entremos veremos un <strong>archivo XML</strong> similar a este</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+  <span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+
+  <span class="nt">&lt;groupId&gt;</span>com.programandoapasitos<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nombrePrueba<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>0.0.1-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;packaging&gt;</span>jar<span class="nt">&lt;/packaging&gt;</span>
+
+  <span class="nt">&lt;name&gt;</span>nombrePrueba<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;url&gt;</span>http://maven.apache.org<span class="nt">&lt;/url&gt;</span>
+
+  <span class="nt">&lt;properties&gt;</span>
+    <span class="nt">&lt;project.build.sourceEncoding&gt;</span>UTF-8<span class="nt">&lt;/project.build.sourceEncoding&gt;</span>
+  <span class="nt">&lt;/properties&gt;</span>
+
+  <span class="nt">&lt;dependencies&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>junit<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>3.8.1<span class="nt">&lt;/version&gt;</span>
+      <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+  <span class="nt">&lt;/dependencies&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+
+<p>De este código hay trozos que podemos intuir bastante bien con lo mencionado anteriormente. Del resto, el tag de <strong>properties</strong> indicará las propiedades de nuestro proyecto. Por ejemplo la codificación de los ficheros en <strong>UTF-8</strong> como vemos en esa línea.
+Y luego tenemos dependencies, que es la sección donde gestionaremos… ¿adivinas qué? Exacto, nuestras <strong>dependencias</strong>. Pero eso lo retomaremos más adelante.</p>
+
+<p>De momento lo que tenemos que conseguir es que <strong>Maven</strong> se encargue por nosotros de gestionar el JRE. Esto se hace incluyendo un nuevo plugin en este archivo. Así que nos ponemos debajo de <strong>&lt; dependencies &gt;</strong> y escribimos lo siguiente:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;build&gt;</span>
+   <span class="nt">&lt;pluginManagement&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+     <span class="nt">&lt;plugin&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;configuration&gt;</span>
+       <span class="nt">&lt;source&gt;</span>1.8<span class="nt">&lt;/source&gt;</span>
+       <span class="nt">&lt;target&gt;</span>1.8<span class="nt">&lt;/target&gt;</span>
+      <span class="nt">&lt;/configuration&gt;</span>
+     <span class="nt">&lt;/plugin&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+   <span class="nt">&lt;/pluginManagement&gt;</span>
+  <span class="nt">&lt;/build&gt;</span>
+</code></pre></div></div>
+
+<p>¿Qué hemos hecho?
+Dentro de <strong>build</strong> hemos creado la etiqueta <strong>pluginManagement</strong> para gestionar los <strong>plugins</strong> de <strong>Maven</strong>. Y dentro de eso hemos creado una llamada <strong>plugins</strong> que será la que los contendrá.
+Después hemos procedido a añadir un nuevo <strong>plugin</strong>, en este caso <strong>maven-compiler-plugin</strong>. Y luego le hemos indicado, en su configuración, que el <strong>source</strong> y el <strong>target</strong> apunten a la versión que tengamos del <strong>JRE</strong> en nuestro dispositivo. En mi caso, el 1.8.</p>
+
+<p>Ahora guardamos el fichero y no te preocupes si ves un error en el explorador de proyectos, en el siguiente paso se solucionará.
+Vamos al proyecto <strong>Maven</strong> y pulsamos <em><strong>botón derecho → Maven → Update Project</strong></em>…</p>
+
+<p><img src="/img/posts/20170728_8.png" alt="update maven project" /></p>
+
+<p>En la ventana que se abrirá marcamos con un check nuestro proyecto dejando la siguiente configuración</p>
+
+<p><img src="/img/posts/20170728_9.png" alt="update maven project 2" /></p>
+
+<p>Cuando acabe el proceso de actualización veremos como desaparece el error de nuestro proyecto.</p>
+
+<p>Hecho esto, vamos a lanzar por primera vez nuestro proyecto <strong>Maven</strong> y aprovecharemos para ver los ciclos de vida posibles que tiene.
+Hacemos clic con el botón derecho sobre nuestro proyecto y vamos a <strong>Run As</strong>. Ahí nos aparecerán diversas opciones</p>
+
+<p><img src="/img/posts/20170728_10.png" alt="run maven project" /></p>
+
+<p>¿Qué hace cada una de ellas?</p>
+
+<ul>
+  <li><strong>Maven build</strong> → Compila el código del proyecto</li>
+  <li><strong>Maven clean</strong> → Elimina todos los ficheros hechos por los builds anteriores</li>
+  <li><strong>Maven generate-sources</strong> → Genera código para incluirlo en la compilación</li>
+  <li><strong>Maven install</strong> → Instala los paquetes de la biblioteca en un repositorio local, compila el proyecto y lo comprueba.</li>
+</ul>
+
+<p>Así que para nuestra prueba, vamos a elegir la opción de <strong>Maven install</strong>.
+Se nos mostrará una ventana de consola con el proceso actual de dicha acción.</p>
+
+<p><img src="/img/posts/20170728_11.png" alt="run maven project 2" /></p>
+
+<p>Si vemos un mensaje de <strong>BUILD SUCCESS</strong> como en la imagen de arriba significa que el proceso se ha completado con éxito.</p>
+
+<p>Es posible que, en vez de un mensaje de éxito, veamos lo siguiente:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>No compiler is provided <span class="k">in </span>this environment. Perhaps you are running on a JRE rather than a JDK
+</code></pre></div></div>
+
+<p>Y nos esté dando un error. Esto quiere decir que tenemos mal configurada la ruta al <strong>JDK</strong> en el <strong>workspace de Eclipse</strong>.</p>
+
+<p>Para solucionarlo hay que ir a <strong>Window → Preferences → Java → Installed JRE</strong>. Lo que debe aparecer es la versión de <strong>JDK</strong>, como en esta imagen</p>
+
+<p><img src="/img/posts/20170728_12.png" alt="installed jre" /></p>
+
+<p>Si en vez de eso tenemos el <strong>JRE</strong> es el motivo de que veamos ese error. Para subsanarlo pulsamos sobre <strong>Add → Standard VM → Directory</strong> y elegimos la carpeta de instalación de nuestro <strong>JDK</strong></p>
+
+<p><img src="/img/posts/20170728_13.png" alt="installed jre 2" /></p>
+
+<p><img src="/img/posts/20170728_14.png" alt="installed jre 3" /></p>
+
+<p>Aplicamos los cambios, aceptamos y ya podemos repetir el proceso del <strong>Maven</strong> install habiendo corregido ese error.</p>
+
+<h2 id="dependencias">Dependencias</h2>
+
+<p>Para gestionar las dependencias, dentro del <strong>POM</strong> deberemos fijarnos en el tag <strong>dependencies</strong>.
+Por defecto tenemos cargada la librería de junit, que nos servirá para ver un ejemplo de cómo añadir más librerías.</p>
+
+<p>Tenemos, al igual que con los plugin, los tag de groupId y artifactId. Aparte de eso, lo que nos interesa también es el tercer tag, version, que nos permitirá indicar la versión de la librería y, en caso de tener que modificarla, bastará con cambiar ese valor y volver a hacer un install.</p>
+
+<p>Así pues… ¿de dónde podemos conseguir las dependencias?
+Bien, hay varios sitios y Google lo sabe todo, pero así más concretamente hay una página web llamada <a href="https://mvnrepository.com/">MVN Repository</a> que cuenta con un amplio abanico de dependencias organizadas por temas que es de lo mejorcito que podemos encontrar.</p>
+
+<p>Simplemente entraremos en la dependencia que nos interese, por ejemplo el conector JDBC de MySQL, elegiremos la versión que queramos cargar en nuestro proyecto y en la parte inferior de la página nos aparecerá el código XML de Maven que deberemos copiar en el <strong>POM</strong>.</p>
+
+<p><img src="/img/posts/20170728_15.png" alt="maven repository" /></p>
+
+<p>De ese modo nuestro POM quedaría tal que así</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+  <span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+
+  <span class="nt">&lt;groupId&gt;</span>com.programandoapasitos<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nombrePrueba<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>0.0.1-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;packaging&gt;</span>jar<span class="nt">&lt;/packaging&gt;</span>
+
+  <span class="nt">&lt;name&gt;</span>nombrePrueba<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;url&gt;</span>http://maven.apache.org<span class="nt">&lt;/url&gt;</span>
+
+  <span class="nt">&lt;properties&gt;</span>
+    <span class="nt">&lt;project.build.sourceEncoding&gt;</span>UTF-8<span class="nt">&lt;/project.build.sourceEncoding&gt;</span>
+  <span class="nt">&lt;/properties&gt;</span>
+
+  <span class="nt">&lt;dependencies&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>junit<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>3.8.1<span class="nt">&lt;/version&gt;</span>
+      <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    
+    <span class="c">&lt;!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java --&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+   <span class="nt">&lt;groupId&gt;</span>mysql<span class="nt">&lt;/groupId&gt;</span>
+   <span class="nt">&lt;artifactId&gt;</span>mysql-connector-java<span class="nt">&lt;/artifactId&gt;</span>
+   <span class="nt">&lt;version&gt;</span>5.1.6<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+  <span class="nt">&lt;/dependencies&gt;</span>
+  
+  <span class="nt">&lt;build&gt;</span>
+   <span class="nt">&lt;pluginManagement&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+     <span class="nt">&lt;plugin&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;configuration&gt;</span>
+       <span class="nt">&lt;source&gt;</span>1.8<span class="nt">&lt;/source&gt;</span>
+       <span class="nt">&lt;target&gt;</span>1.8<span class="nt">&lt;/target&gt;</span>
+      <span class="nt">&lt;/configuration&gt;</span>
+     <span class="nt">&lt;/plugin&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+   <span class="nt">&lt;/pluginManagement&gt;</span>
+  <span class="nt">&lt;/build&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+
+<p>Y después de hacer un <strong>Maven install</strong> ya estaremos en disposición de usar nuestra nueva dependencia.</p>
+
+<p>Hasta aquí mi pequeño tutorial para empezar a desenvolverte en Maven. Sin duda hay muchísima más chicha que aprender, por eso te recomiendo que para profundizar mucho más en el tema visites los siguientes enlaces</p>
+
+<ul>
+  <li><a href="http://www.java2s.com/Tutorials/Java/Maven_Tutorial/index.htm">Java2S Maven Tutorial</a></li>
+  <li><a href="https://maven.apache.org/pom.html">Apache Maven POM</a></li>
+</ul>
+
+<p><strong>¡Salud y coding!</strong></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#java</span>
+        
+          <span class="tag">#maven</span>
+        
+          <span class="tag">#eclipse</span>
+        
+          <span class="tag">#pom</span>
+        
+          <span class="tag">#dependencias</span>
+        
+          <span class="tag">#plugins</span>
+        
+          <span class="tag">#arquetipos</span>
+        
+          <span class="tag">#jdk</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

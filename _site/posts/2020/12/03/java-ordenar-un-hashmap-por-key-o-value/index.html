@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Java. Ordenar un HashMap por key o value | Programando a Pasitos</title>
+<meta name="description" content="Aprende a ordenar HashMap en Java por clave o valor con streams y lambdas. Tutorial completo con código paso a paso sobre sorting de Map, entrySet, comparingInt y LinkedHashMap con ejemplos prácticos.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Java. Ordenar un HashMap por key o value | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Java. Ordenar un HashMap por key o value" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Aprende a ordenar HashMap en Java por clave o valor con streams y lambdas. Tutorial completo con código paso a paso sobre sorting de Map, entrySet, comparingInt y LinkedHashMap con ejemplos prácticos." />
+<meta property="og:description" content="Aprende a ordenar HashMap en Java por clave o valor con streams y lambdas. Tutorial completo con código paso a paso sobre sorting de Map, entrySet, comparingInt y LinkedHashMap con ejemplos prácticos." />
+<link rel="canonical" href="http://localhost:4000/posts/2020/12/03/java-ordenar-un-hashmap-por-key-o-value/" />
+<meta property="og:url" content="http://localhost:4000/posts/2020/12/03/java-ordenar-un-hashmap-por-key-o-value/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-12-03T04:33:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Java. Ordenar un HashMap por key o value" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2020-12-03T04:33:00+01:00","datePublished":"2020-12-03T04:33:00+01:00","description":"Aprende a ordenar HashMap en Java por clave o valor con streams y lambdas. Tutorial completo con código paso a paso sobre sorting de Map, entrySet, comparingInt y LinkedHashMap con ejemplos prácticos.","headline":"Java. Ordenar un HashMap por key o value","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2020/12/03/java-ordenar-un-hashmap-por-key-o-value/"},"url":"http://localhost:4000/posts/2020/12/03/java-ordenar-un-hashmap-por-key-o-value/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Java. Ordenar un HashMap por key o value</h1>
+    <div class="post-meta">
+      <time datetime="2020-12-03T04:33:00+01:00">03 Dec 2020</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#java" class="post-category">Java</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Aprende a ordenar HashMap en Java por clave o valor con streams y lambdas. Tutorial completo con código paso a paso sobre sorting de Map, entrySet, comparingInt y LinkedHashMap con ejemplos prácticos.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <p>Hace DEMASIADO tiempo que no actualizo este blog, vamos a quitarle las telarañas con una entrada corta, didáctica y que puede ser útil en más de una ocasión.
+En esta ocasión vamos a ver cómo llevar a cabo una de las cosas más tontas del mundo, ordenar algo. Pero que puede ser un poco enrevesado según lo que te toque hacer.</p>
+
+<h2 id="qué-es-un-map-o-hashmap-en-java">¿Qué es un Map o HashMap en Java?</h2>
+
+<p>Antes vamos con una breve introducción. Básicamente, un <strong>Map</strong> o <strong>mapa en Java</strong> es una interfaz que nos va a permitir representar una <strong>estructura de datos</strong> que <strong>almacene información</strong> usando un <strong>par de “clave - valor”</strong>.</p>
+
+<p>Es decir, que es la forma en la que vamos a poder tener la información guardada tal que así:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="nl">"Nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Inazio"</span><span class="p">,</span><span class="w"> </span><span class="nl">"Profesión"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bordador de calcetines personalizados"</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>¿Y <strong>HashMap</strong> entonces que es? <strong>HashMap</strong> es la <strong>implementación de la interfaz Map</strong>, ni más ni menos.</p>
+
+<h2 id="cómo-ordenar-un-hashmap-en-java">Cómo ordenar un HashMap en Java</h2>
+
+<p>Para ordenar un <strong>HashMap</strong> en Java vamos a utilizar el siguiente código, que iré explicando paso a paso.</p>
+
+<p>Lo primero, va a ser crear un <strong>Map</strong> que ordenar, que si no es como plantar judías para recoger melones, un sinsentido</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashMap</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">&gt;();</span>
+		
+<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">15</span><span class="o">);</span>
+<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">12</span><span class="o">);</span>
+<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">30</span><span class="o">);</span>
+<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">5</span><span class="o">);</span>
+<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span> <span class="mi">22</span><span class="o">);</span>
+<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="mi">27</span><span class="o">);</span>
+<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">6</span><span class="o">,</span> <span class="mi">4</span><span class="o">);</span>
+<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">7</span><span class="o">,</span> <span class="mi">87</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>Una vez que tengamos eso hecho, vamos a generar un método que nos devolverá el <strong>mapa ordenado</strong>, tal que así</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">&gt;</span> <span class="nf">sortMapByValue</span><span class="o">(</span><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">)</span>
+<span class="o">{</span>
+    <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">sortedMap</span> <span class="o">=</span>  <span class="n">map</span><span class="o">.</span><span class="na">entrySet</span><span class="o">().</span><span class="na">stream</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">sorted</span><span class="o">(</span><span class="n">comparingInt</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">e</span><span class="o">.</span><span class="na">getValue</span><span class="o">()</span> <span class="o">))</span>
+            <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">toMap</span><span class="o">(</span>
+                    <span class="nc">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">::</span><span class="n">getKey</span><span class="o">,</span>
+                    <span class="nc">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">::</span><span class="n">getValue</span><span class="o">,</span>
+                    <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span> <span class="k">throw</span> <span class="k">new</span> <span class="nc">AssertionError</span><span class="o">();},</span>
+                    <span class="nl">LinkedHashMap:</span><span class="o">:</span><span class="k">new</span>
+            <span class="o">));</span>
+    <span class="k">return</span> <span class="n">sortedMap</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Veamos en más detalle este código. Nuestra primera parada es esta</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">map</span><span class="o">.</span><span class="na">entrySet</span><span class="o">().</span><span class="na">stream</span><span class="o">()</span>
+</code></pre></div></div>
+
+<p><strong>entrySet()</strong> nos va a devolver el mapa en formato de <strong>colección</strong>, que es lo que necesitamos para permitir su ordenación y <strong>stream()</strong> lo que nos va a permitir es obtener un <strong>punto de entrada</strong> a esa <strong>colección</strong>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sorted</span><span class="o">(</span><span class="n">comparingInt</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">e</span><span class="o">.</span><span class="na">getValue</span><span class="o">()))</span>
+</code></pre></div></div>
+
+<p>Este <strong>método</strong> nos va a permitir realizar la ordenación, comparando los valores de nuestro <strong>Map</strong> de forma descendente gracias al valor -1. Si quisiéramos hacerlo de forma ascendente debemos reemplazar este valor con un 1. Si queremos ordenar por <strong>key</strong> simplemente reemplazaríamos <strong>e.getValue()</strong> por <strong>e.getKey()</strong>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">toMap</span><span class="o">(</span>
+        <span class="nc">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">::</span><span class="n">getKey</span><span class="o">,</span>
+        <span class="nc">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">::</span><span class="n">getValue</span><span class="o">,</span>
+        <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span> <span class="k">throw</span> <span class="k">new</span> <span class="nc">AssertionError</span><span class="o">();},</span>
+        <span class="nl">LinkedHashMap:</span><span class="o">:</span><span class="k">new</span>
+<span class="o">));</span>
+</code></pre></div></div>
+
+<p>Por último, este método nos procesa la información y la almacena en un contenedor de resultados mutables, y en este caso le indicamos que realiza un parseo a objeto <strong>Map</strong>.</p>
+
+<p>Después de eso ya solo queda devolver nuestro <strong>Map</strong> y podremos pintar el resultado ordenado.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">Input:</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">27</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">87</span><span class="p">,}</span><span class="w">
+</span><span class="err">Output:</span><span class="w"> </span><span class="p">{</span><span class="mi">7</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">87</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">27</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">4</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Si quieres ver el script completo puedes verlo en <a href="https://github.com/inazense/scripts/blob/master/scripts/java/SortMapByValue.java">mi repositorio de GitHub</a>.</p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#java</span>
+        
+          <span class="tag">#hashmap</span>
+        
+          <span class="tag">#map</span>
+        
+          <span class="tag">#ordenacion</span>
+        
+          <span class="tag">#streams</span>
+        
+          <span class="tag">#sorting</span>
+        
+          <span class="tag">#collections</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

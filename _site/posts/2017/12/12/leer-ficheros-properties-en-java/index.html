@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leer ficheros properties en Java | Programando a Pasitos</title>
+<meta name="description" content="Aprende a leer archivos properties en Java con la clase Properties. Tutorial completo paso a paso sobre getProperty, Enumeration, carga de ficheros .properties y ejemplos prácticos de configuración con código.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Leer ficheros properties en Java | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Leer ficheros properties en Java" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Aprende a leer archivos properties en Java con la clase Properties. Tutorial completo paso a paso sobre getProperty, Enumeration, carga de ficheros .properties y ejemplos prácticos de configuración con código." />
+<meta property="og:description" content="Aprende a leer archivos properties en Java con la clase Properties. Tutorial completo paso a paso sobre getProperty, Enumeration, carga de ficheros .properties y ejemplos prácticos de configuración con código." />
+<link rel="canonical" href="http://localhost:4000/posts/2017/12/12/leer-ficheros-properties-en-java/" />
+<meta property="og:url" content="http://localhost:4000/posts/2017/12/12/leer-ficheros-properties-en-java/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-12-12T10:11:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Leer ficheros properties en Java" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2017-12-12T10:11:00+01:00","datePublished":"2017-12-12T10:11:00+01:00","description":"Aprende a leer archivos properties en Java con la clase Properties. Tutorial completo paso a paso sobre getProperty, Enumeration, carga de ficheros .properties y ejemplos prácticos de configuración con código.","headline":"Leer ficheros properties en Java","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2017/12/12/leer-ficheros-properties-en-java/"},"url":"http://localhost:4000/posts/2017/12/12/leer-ficheros-properties-en-java/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Leer ficheros properties en Java</h1>
+    <div class="post-meta">
+      <time datetime="2017-12-12T10:11:00+01:00">12 Dec 2017</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#java" class="post-category">Java</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Aprende a leer archivos properties en Java con la clase Properties. Tutorial completo paso a paso sobre getProperty, Enumeration, carga de ficheros .properties y ejemplos prácticos de configuración con código.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <p>Una práctica habitual en Java es guardar <strong>parámetros de configuración</strong> en un <strong>archivo de propiedades</strong>, que es básicamente un fichero de texto plano con la extensión <strong>.properties</strong> con su contenido almacenado como una <strong>pareja clave=valor</strong> y con el símbolo # para indicar línea de comentario.</p>
+
+<p>Por ejemplo:</p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Archivo properties
+</span><span class="py">usuario</span><span class="p">=</span><span class="s">Inazio</span>
+<span class="py">password</span><span class="p">=</span><span class="s">programandoapasitos.com</span>
+<span class="py">ruta</span><span class="p">=</span><span class="s">/home/inazio/resources</span>
+</code></pre></div></div>
+
+<p>Así, en este ejemplo la primera línea será solo de comentarios, y en las posteriores cada <strong>clave</strong> será un parámetro de nuestra configuración y, separado por un igual, su <strong>valor</strong> correspondiente.</p>
+
+<p><strong>Java</strong> nos proporciona una herramienta muy útil y sencilla para leer los <strong>archivos de propiedades</strong>, la <strong>clase Properties</strong>.</p>
+
+<p>Para usarla, lo primero que haremos será inicializar nuestro objeto y posteriormente indicarle que cargue el <strong>fichero de propiedades</strong>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Properties</span> <span class="n">propiedades</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Properties</span><span class="o">();</span>
+<span class="n">propiedades</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileReader</span><span class="o">(</span><span class="s">"config.properties"</span><span class="o">));</span>
+</code></pre></div></div>
+
+<p>Hecho esto, sólo nos quedará indicar si queremos que lea una o todas las <strong>propiedades</strong>.</p>
+
+<h2 id="leer-una-propiedad">Leer una propiedad</h2>
+
+<p>La verdad es que es tremendamente sencillo. Para realizazr la <strong>lectura de un valor</strong> en nuestro <strong>archivo properties</strong> basta con la siguiente línea</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">propiedades</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="n">miClave</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>Como veis, lo único que hacemos es usar el método <code class="language-plaintext highlighter-rouge">getProperty</code> y como parámetro le pasamos la <strong>clave</strong> del <strong>valor</strong> a extraer, devolviéndonoslo como un <strong>String</strong>.</p>
+
+<h2 id="leer-todas-las-propiedades">Leer todas las propiedades</h2>
+
+<p>Para leer todas las <strong>propiedades</strong> recurriremos a un objeto <code class="language-plaintext highlighter-rouge">Enumeration</code> que nos permitirá iterar sobre todas ellas, leeremos la clave de los <strong>valores</strong> en un bucle y obteniendo la <strong>clave</strong>, usaremos el mismo modo que en el ejemplo anterior. En este caso lo imprimiremos también</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Enumeration</span><span class="o">&lt;</span><span class="nc">Object</span><span class="o">&gt;</span> <span class="n">claves</span> <span class="o">=</span> <span class="n">propiedades</span><span class="o">.</span><span class="na">keys</span><span class="o">();</span>
+  
+<span class="k">while</span> <span class="o">(</span><span class="n">claves</span><span class="o">.</span><span class="na">hasMoreElements</span><span class="o">())</span> <span class="o">{</span>
+  <span class="nc">Object</span> <span class="n">clave</span> <span class="o">=</span> <span class="n">claves</span><span class="o">.</span><span class="na">nextElement</span><span class="o">();</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">clave</span><span class="o">.</span><span class="na">toString</span><span class="o">()</span> <span class="o">+</span> <span class="s">" - "</span> <span class="o">+</span> <span class="n">propiedades</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">clave</span><span class="o">).</span><span class="na">toString</span><span class="o">());</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>¿Qué hacemos exactamente?</strong></p>
+
+<p>En nuestro objeto <code class="language-plaintext highlighter-rouge">Enumeration</code> almacenamos todas las <strong>claves</strong> que incluye nuestro objeto <strong>Properties</strong>, e iniciamos un bucle hasta que recorrer todos los elementos.
+Después creamos un objeto genérico que será nuestra <strong>clave</strong>, y es la que usamos para extraer el valor de dicho par en la línea de abajo, aprovechando para imprimir la <strong>clave</strong> y la propiedad haciendo de ambas un casteo de <strong>String</strong>.</p>
+
+<p>¿A que resulta tremendamente sencillo? Ahora solo es cuestión de practicar con ello.
+Podéis ver el código completo de esta entrada en mi <a href="https://github.com/inazense/scripts/blob/master/scripts/java/ManejadorProperties.java"><strong>github público</strong></a>. Ahí tendréis una clase con un <strong>patrón Singleton</strong> que permite manejar este tipo de archivos..</p>
+
+<p><strong>¡Salud y coding!</strong></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#java</span>
+        
+          <span class="tag">#properties</span>
+        
+          <span class="tag">#configuracion</span>
+        
+          <span class="tag">#fileReader</span>
+        
+          <span class="tag">#getProperty</span>
+        
+          <span class="tag">#enumeration</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

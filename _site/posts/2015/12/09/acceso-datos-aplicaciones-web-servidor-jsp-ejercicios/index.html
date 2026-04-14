@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acceso a datos. Aplicaciones web servidor. JSP. Ejercicios | Programando a Pasitos</title>
+<meta name="description" content="12 ejercicios prácticos de JSP que van desde mostrar información del servidor hasta sistemas CRUD completos con base de datos.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Acceso a datos. Aplicaciones web servidor. JSP. Ejercicios | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Acceso a datos. Aplicaciones web servidor. JSP. Ejercicios" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="12 ejercicios prácticos de JSP que van desde mostrar información del servidor hasta sistemas CRUD completos con base de datos." />
+<meta property="og:description" content="12 ejercicios prácticos de JSP que van desde mostrar información del servidor hasta sistemas CRUD completos con base de datos." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/12/09/acceso-datos-aplicaciones-web-servidor-jsp-ejercicios/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/12/09/acceso-datos-aplicaciones-web-servidor-jsp-ejercicios/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-12-09T05:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Acceso a datos. Aplicaciones web servidor. JSP. Ejercicios" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-12-09T05:00:00+01:00","datePublished":"2015-12-09T05:00:00+01:00","description":"12 ejercicios prácticos de JSP que van desde mostrar información del servidor hasta sistemas CRUD completos con base de datos.","headline":"Acceso a datos. Aplicaciones web servidor. JSP. Ejercicios","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/12/09/acceso-datos-aplicaciones-web-servidor-jsp-ejercicios/"},"url":"http://localhost:4000/posts/2015/12/09/acceso-datos-aplicaciones-web-servidor-jsp-ejercicios/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Acceso a datos. Aplicaciones web servidor. JSP. Ejercicios</h1>
+    <div class="post-meta">
+      <time datetime="2015-12-09T05:00:00+01:00">09 Dec 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#acceso-a-datos" class="post-category">Acceso a datos</a>, 
+        
+          <a href="/categories/#web" class="post-category">Web</a>
+        
+      
+    </div>
+    
+      <p class="post-description">12 ejercicios prácticos de JSP que van desde mostrar información del servidor hasta sistemas CRUD completos con base de datos.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <p>Doce ejercicios prácticos para aprender JSP y acceso a bases de datos, desde operaciones básicas hasta sistemas de gestión completos.</p>
+
+<h2 id="ejercicio-1-información-del-servidor">Ejercicio 1: Información del servidor</h2>
+
+<p>Mostrar el navegador del cliente, la IP del servidor, el nombre del servidor, la información del servidor web y la IP del cliente.</p>
+
+<p><img src="/img/posts/20151209_1.png" alt="Ejercicio 1 - información del servidor" /></p>
+
+<h2 id="ejercicio-2-imprimir-texto-formateado">Ejercicio 2: Imprimir texto formateado</h2>
+
+<p>Recibir un nombre como parámetro e imprimirlo entre comillas precedido de la palabra “Nombre” en negrita.</p>
+
+<p><img src="/img/posts/20151209_2.png" alt="Ejercicio 2 - texto formateado" /></p>
+
+<h2 id="ejercicio-3-primeros-100-números-pares">Ejercicio 3: Primeros 100 números pares</h2>
+
+<p>Imprimir los 100 primeros números pares comenzando por el 2 y a continuación mostrar su suma.</p>
+
+<p><img src="/img/posts/20151209_3.png" alt="Ejercicio 3 - números pares y su suma" /></p>
+
+<h2 id="ejercicio-4-número-palíndromo">Ejercicio 4: Número palíndromo</h2>
+
+<p>Determinar si un número entero recibido como parámetro es palíndromo (se lee igual de izquierda a derecha que de derecha a izquierda).</p>
+
+<p><img src="/img/posts/20151209_4.png" alt="Ejercicio 4 - comprobación de palíndromo" /></p>
+
+<h2 id="ejercicio-5-cadena-al-revés">Ejercicio 5: Cadena al revés</h2>
+
+<p>Recibir una cadena de caracteres y mostrarla invertida.</p>
+
+<p><img src="/img/posts/20151209_5.png" alt="Ejercicio 5 - cadena invertida" /></p>
+
+<h2 id="ejercicio-6-letra-del-dni">Ejercicio 6: Letra del DNI</h2>
+
+<p>Calcular la letra correspondiente a un número de DNI mediante la división del número entre 23 y consulta en la tabla de letras.</p>
+
+<p><img src="/img/posts/20151209_6.png" alt="Ejercicio 6 - cálculo letra DNI" /></p>
+
+<h2 id="ejercicio-7-años-completos-entre-fechas">Ejercicio 7: Años completos entre fechas</h2>
+
+<p>Calcular el número de años completos transcurridos entre dos fechas proporcionadas.</p>
+
+<p><img src="/img/posts/20151209_7.png" alt="Ejercicio 7 - años entre fechas" /></p>
+
+<h2 id="ejercicio-8-desglose-de-billetes-y-monedas">Ejercicio 8: Desglose de billetes y monedas</h2>
+
+<p>Dado un importe, desglosarlo en billetes de 50€, 20€, 10€, 5€, monedas de 2€, 1€ y céntimos.</p>
+
+<p><img src="/img/posts/20151209_8.png" alt="Ejercicio 8 - desglose de billetes y monedas" /></p>
+
+<h2 id="ejercicio-9-conversión-de-divisas">Ejercicio 9: Conversión de divisas</h2>
+
+<p>Convertir una cantidad fija de euros (337) a varias divisas utilizando las tasas de cambio almacenadas en un array.</p>
+
+<p><img src="/img/posts/20151209_9.png" alt="Ejercicio 9 - conversión de divisas" /></p>
+
+<h2 id="ejercicio-10-notas-de-alumnos">Ejercicio 10: Notas de alumnos</h2>
+
+<p>Mostrar las notas de los alumnos por asignatura y calcular la media redondeada a partir de datos almacenados en un fichero.</p>
+
+<h2 id="ejercicio-11-formulario-de-registro-de-clientes">Ejercicio 11: Formulario de registro de clientes</h2>
+
+<p>Aplicación con formulario de alta de clientes con validación de datos y inserción en base de datos.</p>
+
+<p><strong>Campos del formulario:</strong></p>
+<ul>
+  <li>Código de cliente (máx. 10 caracteres)</li>
+  <li>Nombre (máx. 50 caracteres)</li>
+  <li>Dirección (máx. 30 caracteres)</li>
+  <li>Ciudad (máx. 20 caracteres)</li>
+  <li>Provincia (máx. 20 caracteres)</li>
+  <li>País (máx. 20 caracteres)</li>
+  <li>Teléfono (máx. 15 caracteres, solo numérico)</li>
+  <li>Email (debe contener <code class="language-plaintext highlighter-rouge">@</code> y <code class="language-plaintext highlighter-rouge">.</code>)</li>
+  <li>Contraseña (mínimo 6 caracteres, confirmación debe coincidir)</li>
+</ul>
+
+<p>La clase <code class="language-plaintext highlighter-rouge">Acciones.java</code> gestiona la conexión a la base de datos e inserta el cliente con soporte de transacciones y rollback en caso de error.</p>
+
+<p>El archivo <code class="language-plaintext highlighter-rouge">15a.jsp</code> presenta el formulario y <code class="language-plaintext highlighter-rouge">15b.jsp</code> procesa el envío, valida la contraseña, ejecuta la inserción y redirige al formulario al finalizar.</p>
+
+<h2 id="ejercicio-12-sistema-de-gestión-de-agenda">Ejercicio 12: Sistema de gestión de agenda</h2>
+
+<p>Sistema completo de agenda con operaciones CRUD.</p>
+
+<p><strong>Agenda.java</strong> (clase de datos):</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Agenda</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">apellidos</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nombre</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">telefono</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">direccion</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">ciudad</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">provincia</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getApellidos</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">apellidos</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getNombre</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">nombre</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getTelefono</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">telefono</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getDireccion</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">direccion</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getCiudad</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">ciudad</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getProvincia</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">provincia</span><span class="o">;</span> <span class="o">}</span>
+    <span class="c1">// setters correspondientes...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>AccionesAgenda.java</strong> gestiona las operaciones de base de datos: conectar/desconectar, insertar nuevos contactos y buscar contactos por múltiples criterios, devolviendo un <code class="language-plaintext highlighter-rouge">ArrayList</code> de resultados.</p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#java</span>
+        
+          <span class="tag">#jsp</span>
+        
+          <span class="tag">#web</span>
+        
+          <span class="tag">#mysql</span>
+        
+          <span class="tag">#jdbc</span>
+        
+          <span class="tag">#ejercicios</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bases de datos. SQL programado (XIII). Transacciones (II) | Programando a Pasitos</title>
+<meta name="description" content="Instrucciones de manejo de transacciones en MySQL&amp;#58; START TRANSACTION, COMMIT, ROLLBACK, SAVEPOINT y LOCK TABLES, con ejemplos prácticos.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bases de datos. SQL programado (XIII). Transacciones (II) | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bases de datos. SQL programado (XIII). Transacciones (II)" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Instrucciones de manejo de transacciones en MySQL: START TRANSACTION, COMMIT, ROLLBACK, SAVEPOINT y LOCK TABLES, con ejemplos prácticos." />
+<meta property="og:description" content="Instrucciones de manejo de transacciones en MySQL: START TRANSACTION, COMMIT, ROLLBACK, SAVEPOINT y LOCK TABLES, con ejemplos prácticos." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/04/17/bases-de-datos-sql-programado-xiii-transacciones-ii/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/04/17/bases-de-datos-sql-programado-xiii-transacciones-ii/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-04-17T06:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bases de datos. SQL programado (XIII). Transacciones (II)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-04-17T06:00:00+02:00","datePublished":"2015-04-17T06:00:00+02:00","description":"Instrucciones de manejo de transacciones en MySQL: START TRANSACTION, COMMIT, ROLLBACK, SAVEPOINT y LOCK TABLES, con ejemplos prácticos.","headline":"Bases de datos. SQL programado (XIII). Transacciones (II)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/04/17/bases-de-datos-sql-programado-xiii-transacciones-ii/"},"url":"http://localhost:4000/posts/2015/04/17/bases-de-datos-sql-programado-xiii-transacciones-ii/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Bases de datos. SQL programado (XIII). Transacciones (II)</h1>
+    <div class="post-meta">
+      <time datetime="2015-04-17T06:00:00+02:00">17 Apr 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#bases-de-datos" class="post-category">Bases de datos</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Instrucciones de manejo de transacciones en MySQL&#58; START TRANSACTION, COMMIT, ROLLBACK, SAVEPOINT y LOCK TABLES, con ejemplos prácticos.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="instrucciones-de-manejo-de-transacciones">Instrucciones de manejo de transacciones</h2>
+
+<ul>
+  <li>
+    <p><strong>START TRANSACTION</strong> — Empieza una nueva transacción, deja el commit a 0. Si hubiese habido algo de código previo a la transacción, éste se valida y comienza una nueva. Esto permite que se muestren los datos ya validados en el momento de realizar la transacción.</p>
+  </li>
+  <li>
+    <p><strong>COMMIT</strong> — Lo usaremos para grabar las operaciones y finalizar las transacciones.</p>
+  </li>
+</ul>
+
+<p><img src="/img/posts/20150417_1.png" alt="COMMIT" /></p>
+
+<ul>
+  <li><strong>ROLLBACK</strong> — Deshace las operaciones de la transacción y la finaliza. Ojo, sólo afecta a las instrucciones DML. Cosas como borrar una tabla no se puede deshacer con rollback (se hace un <code class="language-plaintext highlighter-rouge">drop table</code> y solucionado).</li>
+</ul>
+
+<p><img src="/img/posts/20150417_2.png" alt="ROLLBACK" /></p>
+
+<ul>
+  <li>
+    <p><strong>SAVEPOINT <em>nombreSavePoint</em></strong> — Crea un punto de guardado dentro de la transacción para tener una referencia en caso de querer deshacer cambios pero no todos.</p>
+  </li>
+  <li>
+    <p><strong>ROLLBACK TO <em>nombreSavePoint</em></strong> — Deshace los cambios hasta el punto de guardado indicado. Al igual que <code class="language-plaintext highlighter-rouge">rollback</code>, solo afecta a las instrucciones DML.</p>
+  </li>
+</ul>
+
+<p><img src="/img/posts/20150417_3.png" alt="ROLLBACK TO SAVEPOINT" /></p>
+
+<ul>
+  <li>
+    <p><strong>SET TRANSACTION</strong> — Permite cambiar el nivel de aislamiento de la transacción.</p>
+  </li>
+  <li>
+    <p><strong>LOCK TABLES</strong> — Permite bloquear explícitamente una o varias tablas. A la vez cierra todas las transacciones abiertas.</p>
+  </li>
+</ul>
+
+<h2 id="ejemplos">Ejemplos</h2>
+
+<p>Un ejemplo sencillo:</p>
+
+<p><img src="/img/posts/20150417_4.png" alt="Ejemplo sencillo de transacción" /></p>
+
+<p>Y como debería ser bien hecho, con comprobantes de errores y volcando código y texto de error en variables out:</p>
+
+<p><img src="/img/posts/20150417_5.png" alt="Ejemplo completo con gestión de errores" /></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#bases-de-datos</span>
+        
+          <span class="tag">#sql</span>
+        
+          <span class="tag">#mysql</span>
+        
+          <span class="tag">#transacciones</span>
+        
+          <span class="tag">#commit</span>
+        
+          <span class="tag">#rollback</span>
+        
+          <span class="tag">#savepoint</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

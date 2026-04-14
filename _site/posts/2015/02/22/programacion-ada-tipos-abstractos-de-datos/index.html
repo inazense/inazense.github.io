@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programación. ADA. Tipos abstractos de datos | Programando a Pasitos</title>
+<meta name="description" content="Concepto de abstracción, encapsulación, diseño modular y tipos abstractos de datos (TAD) en ADA, con ejemplos de ordenación genérica, pilas y colas.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Programación. ADA. Tipos abstractos de datos | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Programación. ADA. Tipos abstractos de datos" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Concepto de abstracción, encapsulación, diseño modular y tipos abstractos de datos (TAD) en ADA, con ejemplos de ordenación genérica, pilas y colas." />
+<meta property="og:description" content="Concepto de abstracción, encapsulación, diseño modular y tipos abstractos de datos (TAD) en ADA, con ejemplos de ordenación genérica, pilas y colas." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/02/22/programacion-ada-tipos-abstractos-de-datos/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/02/22/programacion-ada-tipos-abstractos-de-datos/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-02-22T05:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Programación. ADA. Tipos abstractos de datos" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-02-22T05:00:00+01:00","datePublished":"2015-02-22T05:00:00+01:00","description":"Concepto de abstracción, encapsulación, diseño modular y tipos abstractos de datos (TAD) en ADA, con ejemplos de ordenación genérica, pilas y colas.","headline":"Programación. ADA. Tipos abstractos de datos","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/02/22/programacion-ada-tipos-abstractos-de-datos/"},"url":"http://localhost:4000/posts/2015/02/22/programacion-ada-tipos-abstractos-de-datos/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Programación. ADA. Tipos abstractos de datos</h1>
+    <div class="post-meta">
+      <time datetime="2015-02-22T05:00:00+01:00">22 Feb 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#programación" class="post-category">Programación</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Concepto de abstracción, encapsulación, diseño modular y tipos abstractos de datos (TAD) en ADA, con ejemplos de ordenación genérica, pilas y colas.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="concepto-de-abstracción">Concepto de abstracción</h2>
+
+<p>La abstracción en resolución de problemas consiste en destacar los detalles importantes e ignorar los irrelevantes. La abstracción siempre lleva asociada la ocultación de información.</p>
+
+<p>Funciones y procedimientos ejemplifican esto separando el “qué” del “cómo”, es decir, la especificación de la implementación.</p>
+
+<h2 id="abstracción-de-acciones">Abstracción de acciones</h2>
+
+<p>Los procedimientos y funciones abstraen los detalles de ejecución, permitiendo acciones virtuales parametrizadas mientras ocultan datos locales y secuencias de instrucciones.</p>
+
+<h2 id="tipo-abstracto-de-datos-tad">Tipo abstracto de datos (TAD)</h2>
+
+<p>Un tipo abstracto de datos es “una colección de valores y de operaciones definidos mediante una especificación independiente de cualquier representación”.</p>
+
+<p>La programación con TAD requiere dos pasos:</p>
+
+<ol>
+  <li><strong>Definición del tipo</strong> (parte sintáctica y semántica)</li>
+  <li><strong>Implementación del tipo</strong> (elección de representación e implementación de operaciones)</li>
+</ol>
+
+<h2 id="encapsulación">Encapsulación</h2>
+
+<p>La encapsulación implica privacidad de la representación y protección del tipo. El usuario no conoce los detalles del tipo y sólo puede utilizar las operaciones previstas.</p>
+
+<h2 id="diseño-modular">Diseño modular</h2>
+
+<p>La programación a gran escala requiere partir el código en módulos con conexión mínima entre ellos y tamaños manejables.</p>
+
+<h2 id="ejemplo-módulo-genérico-de-ordenación">Ejemplo: módulo genérico de ordenación</h2>
+
+<h3 id="declaración-ordenacion_gads">Declaración (<code class="language-plaintext highlighter-rouge">ordenacion_g.ads</code>)</h3>
+
+<div class="language-ada highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">generic</span>
+    <span class="kd">type</span> <span class="nf">ind</span> <span class="k">is</span> <span class="p">(</span><span class="o">&lt;&gt;</span><span class="p">);</span> <span class="c1">-- cualquier tipo discreto</span>
+    <span class="kd">type</span> <span class="nf">elem</span> <span class="k">is</span> <span class="k">private</span><span class="p">;</span> <span class="c1">-- cualquier tipo</span>
+    <span class="kd">type</span> <span class="nf">vector</span> <span class="k">is</span> <span class="k">array</span> <span class="p">(</span><span class="n">ind</span> <span class="k">range</span> <span class="o">&lt;&gt;</span><span class="p">)</span> <span class="k">of</span> <span class="n">elem</span><span class="p">;</span>
+    <span class="k">with</span> <span class="kd">function</span> <span class="nf">"&gt;"</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">:</span><span class="n">elem</span><span class="p">)</span> <span class="k">return</span> <span class="nb">boolean</span><span class="p">;</span>
+
+<span class="kd">package</span> <span class="nf">ordenacion_g</span> <span class="k">is</span>
+    <span class="kd">procedure</span> <span class="nf">ordena</span> <span class="p">(</span><span class="n">v</span><span class="p">:</span><span class="k">in</span> <span class="k">out</span> <span class="n">vector</span><span class="p">);</span>
+<span class="k">end</span><span class="p">;</span> <span class="c1">-- del módulo de declaración</span>
+</code></pre></div></div>
+
+<h3 id="implementación-ordenacion_gadb">Implementación (<code class="language-plaintext highlighter-rouge">ordenacion_g.adb</code>)</h3>
+
+<div class="language-ada highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">package</span> <span class="kd">body</span> <span class="nf">ordenacion_g</span> <span class="k">is</span>
+    <span class="kd">procedure</span> <span class="nf">ordena</span> <span class="p">(</span><span class="n">v</span><span class="p">:</span> <span class="k">in</span> <span class="k">out</span> <span class="n">vector</span><span class="p">)</span> <span class="k">is</span>
+        <span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">:</span><span class="n">ind</span><span class="p">;</span> <span class="n">m</span><span class="p">,</span><span class="n">t</span><span class="p">:</span><span class="n">elem</span><span class="p">;</span> <span class="n">n</span><span class="p">:</span><span class="nb">integer</span><span class="p">;</span>
+    <span class="k">begin</span>
+        <span class="c1">-- iniciailización</span>
+        <span class="n">i</span><span class="o">:=</span><span class="n">v</span><span class="p">'</span><span class="na">first</span><span class="p">;</span>
+        <span class="n">j</span><span class="o">:=</span><span class="n">v</span><span class="p">'</span><span class="na">last</span><span class="p">;</span>
+        <span class="n">n</span><span class="o">:=</span><span class="n">ind</span><span class="p">'</span><span class="na">pos</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+        <span class="n">n</span><span class="o">:=</span><span class="n">n</span><span class="o">+</span><span class="n">ind</span><span class="p">'</span><span class="na">pos</span><span class="p">(</span><span class="n">j</span><span class="p">);</span>
+        <span class="n">n</span><span class="o">:=</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+        <span class="n">m</span><span class="o">:=</span><span class="n">v</span><span class="p">(</span><span class="n">ind</span><span class="p">'</span><span class="na">val</span><span class="p">(</span><span class="n">n</span><span class="p">));</span>
+        <span class="c1">-- partición del vector en dos</span>
+        <span class="k">while</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">j</span> <span class="k">loop</span>
+            <span class="k">while</span> <span class="n">m</span><span class="o">&gt;</span><span class="n">v</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">loop</span>
+                <span class="n">i</span><span class="o">:=</span><span class="n">ind</span><span class="p">'</span><span class="na">succ</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+            <span class="k">end</span> <span class="k">loop</span><span class="p">;</span>
+            <span class="k">while</span> <span class="n">v</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="o">&gt;</span><span class="n">m</span> <span class="k">loop</span>
+                <span class="n">j</span><span class="o">:=</span><span class="n">ind</span><span class="p">'</span><span class="na">pred</span><span class="p">(</span><span class="n">j</span><span class="p">);</span>
+            <span class="k">end</span> <span class="k">loop</span><span class="p">;</span>
+        <span class="err">…</span>
+    <span class="k">end</span> <span class="n">ordena</span><span class="p">;</span>
+<span class="k">end</span> <span class="n">ordenacion_g</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="uso-del-módulo-mi_programa">Uso del módulo (<code class="language-plaintext highlighter-rouge">mi_programa</code>)</h3>
+
+<div class="language-ada highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">with</span> <span class="nn">ordenacion_g</span><span class="p">;</span>
+<span class="kd">procedure</span> <span class="nf">mi_programa</span> <span class="k">is</span>
+    <span class="kd">type</span> <span class="nf">color</span> <span class="k">is</span> <span class="p">(</span><span class="n">rojo</span><span class="p">,</span> <span class="n">azul</span><span class="p">,</span> <span class="n">gris</span><span class="p">);</span>
+    <span class="kd">type</span> <span class="nf">dia</span> <span class="k">is</span> <span class="p">(</span><span class="n">lu</span><span class="p">,</span><span class="n">ma</span><span class="p">,</span><span class="n">mi</span><span class="p">,</span><span class="n">ju</span><span class="p">,</span><span class="n">vi</span><span class="p">,</span><span class="n">sa</span><span class="p">,</span><span class="k">do</span><span class="p">);</span>
+    <span class="kd">type</span> <span class="nf">vect</span> <span class="k">is</span> <span class="k">array</span> <span class="p">(</span><span class="n">dia</span> <span class="k">range</span> <span class="o">&lt;&gt;</span><span class="p">)</span> <span class="k">of</span> <span class="n">color</span><span class="p">;</span>
+    <span class="n">x</span><span class="p">:</span><span class="n">vect</span><span class="p">(</span><span class="n">ma</span><span class="o">..</span><span class="n">vi</span><span class="p">)</span><span class="o">:=</span><span class="p">(</span><span class="n">gris</span><span class="p">,</span><span class="n">azul</span><span class="p">,</span><span class="n">rojo</span><span class="p">,</span><span class="n">gris</span><span class="p">);</span>
+    <span class="kd">package</span> <span class="nf">o</span> <span class="k">is</span> <span class="k">new</span> <span class="n">ordenacion_g</span><span class="p">(</span><span class="n">dia</span><span class="p">,</span><span class="n">color</span><span class="p">,</span><span class="n">vect</span><span class="p">,</span><span class="s2">"&gt;"</span><span class="p">);</span>
+<span class="k">begin</span>
+    <span class="err">…</span>
+    <span class="n">o</span><span class="p">.</span><span class="n">ordena</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+    <span class="err">…</span>
+<span class="k">end</span> <span class="n">mi_programa</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="pilas-y-colas">Pilas y colas</h2>
+
+<p>Las implementaciones concretas de pilas (pilas) y colas muestran cómo mantener interfaces permite cambiar la implementación sin afectar a los usuarios.</p>
+
+<p><strong>Pila estática:</strong> Vector con contador para el elemento en la cima.</p>
+
+<p><strong>Pila dinámica:</strong> Nodos enlazados con acceso basado en punteros.</p>
+
+<p>De manera similar para las colas, con vectores circulares o implementaciones con listas doblemente enlazadas según las necesidades.</p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#programacion</span>
+        
+          <span class="tag">#ada</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

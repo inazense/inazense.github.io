@@ -1,0 +1,1505 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="es" /><updated>2026-04-14T15:25:47+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Programando a Pasitos</title><subtitle>Blog de programación por Inazio Claver</subtitle><author><name>Inazio Claver</name></author><entry><title type="html">Java. Ordenar un HashMap por key o value</title><link href="http://localhost:4000/posts/2020/12/03/java-ordenar-un-hashmap-por-key-o-value/" rel="alternate" type="text/html" title="Java. Ordenar un HashMap por key o value" /><published>2020-12-03T04:33:00+01:00</published><updated>2020-12-03T04:33:00+01:00</updated><id>http://localhost:4000/posts/2020/12/03/java-ordenar-un-hashmap-por-key-o-value</id><content type="html" xml:base="http://localhost:4000/posts/2020/12/03/java-ordenar-un-hashmap-por-key-o-value/"><![CDATA[<p>Hace DEMASIADO tiempo que no actualizo este blog, vamos a quitarle las telarañas con una entrada corta, didáctica y que puede ser útil en más de una ocasión.
+En esta ocasión vamos a ver cómo llevar a cabo una de las cosas más tontas del mundo, ordenar algo. Pero que puede ser un poco enrevesado según lo que te toque hacer.</p>
+
+<h2 id="qué-es-un-map-o-hashmap-en-java">¿Qué es un Map o HashMap en Java?</h2>
+
+<p>Antes vamos con una breve introducción. Básicamente, un <strong>Map</strong> o <strong>mapa en Java</strong> es una interfaz que nos va a permitir representar una <strong>estructura de datos</strong> que <strong>almacene información</strong> usando un <strong>par de “clave - valor”</strong>.</p>
+
+<p>Es decir, que es la forma en la que vamos a poder tener la información guardada tal que así:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="nl">"Nombre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Inazio"</span><span class="p">,</span><span class="w"> </span><span class="nl">"Profesión"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bordador de calcetines personalizados"</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>¿Y <strong>HashMap</strong> entonces que es? <strong>HashMap</strong> es la <strong>implementación de la interfaz Map</strong>, ni más ni menos.</p>
+
+<h2 id="cómo-ordenar-un-hashmap-en-java">Cómo ordenar un HashMap en Java</h2>
+
+<p>Para ordenar un <strong>HashMap</strong> en Java vamos a utilizar el siguiente código, que iré explicando paso a paso.</p>
+
+<p>Lo primero, va a ser crear un <strong>Map</strong> que ordenar, que si no es como plantar judías para recoger melones, un sinsentido</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashMap</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">&gt;();</span>
+		
+<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">15</span><span class="o">);</span>
+<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">12</span><span class="o">);</span>
+<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">30</span><span class="o">);</span>
+<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">5</span><span class="o">);</span>
+<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span> <span class="mi">22</span><span class="o">);</span>
+<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="mi">27</span><span class="o">);</span>
+<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">6</span><span class="o">,</span> <span class="mi">4</span><span class="o">);</span>
+<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">7</span><span class="o">,</span> <span class="mi">87</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>Una vez que tengamos eso hecho, vamos a generar un método que nos devolverá el <strong>mapa ordenado</strong>, tal que así</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">&gt;</span> <span class="nf">sortMapByValue</span><span class="o">(</span><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">)</span>
+<span class="o">{</span>
+    <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">sortedMap</span> <span class="o">=</span>  <span class="n">map</span><span class="o">.</span><span class="na">entrySet</span><span class="o">().</span><span class="na">stream</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">sorted</span><span class="o">(</span><span class="n">comparingInt</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">e</span><span class="o">.</span><span class="na">getValue</span><span class="o">()</span> <span class="o">))</span>
+            <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">toMap</span><span class="o">(</span>
+                    <span class="nc">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">::</span><span class="n">getKey</span><span class="o">,</span>
+                    <span class="nc">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">::</span><span class="n">getValue</span><span class="o">,</span>
+                    <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span> <span class="k">throw</span> <span class="k">new</span> <span class="nc">AssertionError</span><span class="o">();},</span>
+                    <span class="nl">LinkedHashMap:</span><span class="o">:</span><span class="k">new</span>
+            <span class="o">));</span>
+    <span class="k">return</span> <span class="n">sortedMap</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Veamos en más detalle este código. Nuestra primera parada es esta</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">map</span><span class="o">.</span><span class="na">entrySet</span><span class="o">().</span><span class="na">stream</span><span class="o">()</span>
+</code></pre></div></div>
+
+<p><strong>entrySet()</strong> nos va a devolver el mapa en formato de <strong>colección</strong>, que es lo que necesitamos para permitir su ordenación y <strong>stream()</strong> lo que nos va a permitir es obtener un <strong>punto de entrada</strong> a esa <strong>colección</strong>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sorted</span><span class="o">(</span><span class="n">comparingInt</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">e</span><span class="o">.</span><span class="na">getValue</span><span class="o">()))</span>
+</code></pre></div></div>
+
+<p>Este <strong>método</strong> nos va a permitir realizar la ordenación, comparando los valores de nuestro <strong>Map</strong> de forma descendente gracias al valor -1. Si quisiéramos hacerlo de forma ascendente debemos reemplazar este valor con un 1. Si queremos ordenar por <strong>key</strong> simplemente reemplazaríamos <strong>e.getValue()</strong> por <strong>e.getKey()</strong>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">toMap</span><span class="o">(</span>
+        <span class="nc">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">::</span><span class="n">getKey</span><span class="o">,</span>
+        <span class="nc">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">::</span><span class="n">getValue</span><span class="o">,</span>
+        <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span> <span class="k">throw</span> <span class="k">new</span> <span class="nc">AssertionError</span><span class="o">();},</span>
+        <span class="nl">LinkedHashMap:</span><span class="o">:</span><span class="k">new</span>
+<span class="o">));</span>
+</code></pre></div></div>
+
+<p>Por último, este método nos procesa la información y la almacena en un contenedor de resultados mutables, y en este caso le indicamos que realiza un parseo a objeto <strong>Map</strong>.</p>
+
+<p>Después de eso ya solo queda devolver nuestro <strong>Map</strong> y podremos pintar el resultado ordenado.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">Input:</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">27</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">87</span><span class="p">,}</span><span class="w">
+</span><span class="err">Output:</span><span class="w"> </span><span class="p">{</span><span class="mi">7</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">87</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">27</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="mi">4</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Si quieres ver el script completo puedes verlo en <a href="https://github.com/inazense/scripts/blob/master/scripts/java/SortMapByValue.java">mi repositorio de GitHub</a>.</p>]]></content><author><name>Inazio Claver</name></author><category term="Java" /><category term="java" /><category term="hashmap" /><category term="map" /><category term="ordenacion" /><category term="streams" /><category term="sorting" /><category term="collections" /><summary type="html"><![CDATA[Aprende a ordenar HashMap en Java por clave o valor con streams y lambdas. Tutorial completo con código paso a paso sobre sorting de Map, entrySet, comparingInt y LinkedHashMap con ejemplos prácticos.]]></summary></entry><entry><title type="html">Crear una barra de progreso en la terminal con Python</title><link href="http://localhost:4000/posts/2019/11/04/crear-una-barra-de-progreso-en-la-terminal-con-python/" rel="alternate" type="text/html" title="Crear una barra de progreso en la terminal con Python" /><published>2019-11-04T04:33:00+01:00</published><updated>2019-11-04T04:33:00+01:00</updated><id>http://localhost:4000/posts/2019/11/04/crear-una-barra-de-progreso-en-la-terminal-con-python</id><content type="html" xml:base="http://localhost:4000/posts/2019/11/04/crear-una-barra-de-progreso-en-la-terminal-con-python/"><![CDATA[<p>Cuando trabajamos con <strong>Python</strong> pintando resultados en la <strong>terminal</strong>, puede quedar un poco feo dejar el cursor esperando mientras procesamos ciertas acciones que van a tardar un tiempo en completarse. Esto es así aquí y en la China. El cursor parpadeando pone nervioso a todo el mundo.</p>
+
+<p>Pero… ¿cuál podría ser la solución? Cierta librería, llamada <strong>tqdm</strong>, disponible para <strong>Python 3.x.</strong></p>
+
+<h2 id="qué-es-tqdm">¿Qué es tqdm?</h2>
+
+<p>Es una <strong>librería de Python</strong> que nos va a permitir pintar <strong>barras de progreso</strong> directamente en la <strong>terminal</strong>, iterando en bucles for / while y de la que nos vamos a desentender prácticamente desde el primer minuto.</p>
+
+<p>El resultado final sería tal que así</p>
+
+<p><img src="/img/posts/20191104_1.png" alt="tqdm lib example on python 3" /></p>
+
+<p>Una simple <strong>barra de progreso</strong>, en el color por defecto de la <strong>terminal</strong>, que se irá rellenando progresivamente según iteremos dentro de nuestro bucle.</p>
+
+<h2 id="y-cómo-se-hace-eso">¿Y cómo se hace eso?</h2>
+
+<p>Lo primero, será instalar <strong>tqdm</strong>. Para ello nos iremos a la terminal y escribiremos el siguiente comando:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>tqdm
+</code></pre></div></div>
+
+<p>Por supuesto, si en nuestro ordenador tenemos <strong>Python2</strong> y <strong>Python3</strong>, deberemos reemplazar el comando <strong>pip</strong> por <strong>pip3</strong>.</p>
+
+<p>Hecho esto, veamos un par de ejemplos, harto sencillos ambos dos.
+En el primer <strong>script</strong>, vamos a realizar una iteración hasta llegar a un número en concreto, por ejemplo el 100:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+
+<span class="n">tareas</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">tareas</span><span class="p">)):</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Básicamente lo que estamos haciendo es importar nuestra <strong>librería</strong>, definir un valor hasta el que iterar y envolver el objeto sobre el que iteraremos con el método <strong>tqdm</strong>. Rápido y sencillo.
+La función sleep simplemente “duerme” la aplicación 0.2 segundos cada vez que entra en el <strong>for</strong>, para poder ver el progreso de nuestra barra tranquilamente. Por supuesto, no es necesario mantenerla y está ahí como mero ejemplo del <strong>código</strong> que podemos insertar.</p>
+
+<p>Y, en caso de que lo que deseemos sea un lista, lo haremos del siguiente modo:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+
+<span class="n">tareas</span> <span class="o">=</span> <span class="p">[</span><span class="s">"tarea1"</span><span class="p">,</span> <span class="s">"tarea2"</span><span class="p">,</span> <span class="s">"tarea3"</span><span class="p">,</span> <span class="s">"tarea4"</span><span class="p">,</span> <span class="s">"tarea5"</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">tareas</span><span class="p">):</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>¿Cuál es la única diferencia? Que ya no usamos el <strong>range</strong>, sino que lo recorremos como si fuese una lista (¡que lo es!) normal <strong>pythonesca</strong> de toda la vida.</p>
+
+<p>Y hecho esto, ya podemos trabajar felices de la vida sabiendo que nuestros resultados aparecerán por pantalla de una forma un poquito más visual que antes.</p>
+
+<p><strong>¡Salud y coding!</strong></p>]]></content><author><name>Inazio Claver</name></author><category term="Python" /><category term="python" /><category term="tqdm" /><category term="barra-progreso" /><category term="terminal" /><category term="cli" /><category term="progress-bar" /><summary type="html"><![CDATA[Aprende a crear barras de progreso en la terminal con Python usando tqdm. Tutorial completo paso a paso sobre instalación, uso en bucles for/while, iteración de listas y ejemplos prácticos de código.]]></summary></entry><entry><title type="html">ReactJS I. Instalar React en Windows</title><link href="http://localhost:4000/posts/2019/04/04/instalar-react-en-windows/" rel="alternate" type="text/html" title="ReactJS I. Instalar React en Windows" /><published>2019-04-04T05:33:00+02:00</published><updated>2019-04-04T05:33:00+02:00</updated><id>http://localhost:4000/posts/2019/04/04/instalar-react-en-windows</id><content type="html" xml:base="http://localhost:4000/posts/2019/04/04/instalar-react-en-windows/"><![CDATA[<p><strong>ReactJS</strong> (o React a secas) es una <strong>librería JavaScript</strong> de código abierto creada por <strong>Facebook</strong> para diseñar interfaces de usuario. No os voy a aburrir con más teoría porque eso es muy fácil de encontrar, así que os enlazo directamente con <a href="https://es.wikipedia.org/wiki/React">el artículo de Wikipedia</a> y si os apetece podéis leerlo tranquilamente.</p>
+
+<p>Aquí nos vamos a centrar en la parte más práctica y, aprovechando que estoy en pleno aprendizaje de esta tecnología, iré escribiendo en una nueva sección de tutoriales lo que vaya consiguiendo aprender.</p>
+
+<p>Esta entrada será muy cortita, así que vamos al grano.</p>
+
+<h2 id="cómo-instalar-reactjs-en-windows">¿Cómo instalar ReactJS en Windows?</h2>
+
+<p>Para instalar <strong>React en Windows 10</strong> usaremos el gestor de paquetes <strong>npm</strong>, que se incluye en la instalación de <strong>NodeJS</strong> (si bien no estamos supeditados a crear el backend de nuestra app con NodeJS, podemos usar el que más rabia nos dé).</p>
+
+<p>Nos vamos a la web de Node (<a href="https://nodejs.org/es/download/">https://nodejs.org/es/download/</a>) y descargamos la versión que nos apetezca. En mi caso la de <strong>64 bits</strong>. Una vez descargado simplemente lo instalamos (siguiente - siguiente - siguiente) y al finalizar solo nos quedará comprobar si la instalación se ha llevado a cabo correctamente.</p>
+
+<p>Abrimos la <strong>consola de comandos</strong> y escribimos este comando para que nos devuelva la versión actual de <strong>Node</strong>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node <span class="nt">--version</span>
+</code></pre></div></div>
+
+<p>Y lo mismo para comprobar si está instalado <strong>npm</strong>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nt">--version</span>
+</code></pre></div></div>
+
+<p>Si ha ido todo bien, veremos algo como lo siguiente:</p>
+
+<p><img src="/img/posts/20190404_1.png" alt="Versiones de Node y npm" /></p>
+
+<p>¿Tenemos todo ok? Perfecto. ¿No tenemos algo similar a la imagen? Eso se ha producido debido a que no se han agregado esos comandos a las <strong>variables de entorno</strong>. Podemos solucionarlo siguiendo los pasos que especifican en <a href="https://stackoverflow.com/questions/27864040/fixing-npm-path-in-windows-8-and-10">ésta pregunta de Stackoverflow</a>.</p>
+
+<p>Una vez que esa parte nos funciona, lo siguiente será hacer la instalación de todos los paquetes necesarios para <strong>ReactJS</strong>.</p>
+
+<p>Escribiremos el siguiente comando:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span> <span class="nt">-g</span> create-react-app
+</code></pre></div></div>
+
+<p>Con este comando lo que hacemos es instalar <strong>ReactJS</strong> en nuestro ordenador de forma <strong>global</strong>. Si no agregásemos el parámetro <code class="language-plaintext highlighter-rouge">-g</code> sólo podríamos usar ReactJS en la carpeta donde hemos ejecutado el código.</p>
+
+<p>También podemos comprobar si se ha ejecutado correctamente con el comando:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>create-react-app <span class="nt">--version</span>
+</code></pre></div></div>
+
+<p>De esta manera lo podremos emplear donde gustemos. Veremos algo tal que así:</p>
+
+<p><img src="/img/posts/20190404_2.png" alt="Create React App instalado" /></p>
+
+<p>¡Conseguido! Estamos listos para el último paso, <strong>crear un nuevo proyecto de ReactJS</strong>.</p>
+
+<h2 id="cómo-crear-un-proyecto-reactjs-en-windows">¿Cómo crear un proyecto ReactJS en Windows?</h2>
+
+<p>Es harto sencillo y escribimos el siguiente comando:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>create-react-app my-app
+</code></pre></div></div>
+
+<p>Este comando generará todo lo necesario para poder empezar a usar la nueva aplicación de <strong>ReactJS</strong>. Veremos lo siguiente por consola:</p>
+
+<p><img src="/img/posts/20190404_3.png" alt="Creando proyecto React" /></p>
+
+<p>Al final de la imagen podemos ver que nos dan las instrucciones necesarias para arrancar nuestra aplicación de <strong>ReactJS</strong>, así comprobamos que todo está funcionando como debiera.</p>
+
+<p>Ejecutamos los siguientes comandos:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>my-app
+npm start
+</code></pre></div></div>
+
+<p>Y en nuestro navegador por defecto se abrirá la siguiente web:</p>
+
+<p><img src="/img/posts/20190404_4.png" alt="ReactJS localhost" /></p>
+
+<p>Eso sería todo de momento, en futuras entregas iremos ampliando con más cositas.</p>
+
+<p><strong>¡Salud y coding!</strong></p>]]></content><author><name>Inazio Claver</name></author><category term="JavaScript" /><category term="react" /><category term="reactjs" /><category term="javascript" /><category term="windows" /><category term="nodejs" /><category term="npm" /><category term="create-react-app" /><category term="instalacion" /><summary type="html"><![CDATA[Guía completa para instalar React en Windows 10 paso a paso: descarga Node.js, configuración de npm, instalación de create-react-app y creación de tu primer proyecto ReactJS con ejemplos prácticos.]]></summary></entry><entry><title type="html">Sincronizar carpetas externas en OneDrive</title><link href="http://localhost:4000/posts/2019/02/15/sincronizar-carpetas-externas-en-onedrive/" rel="alternate" type="text/html" title="Sincronizar carpetas externas en OneDrive" /><published>2019-02-15T04:33:00+01:00</published><updated>2019-02-15T04:33:00+01:00</updated><id>http://localhost:4000/posts/2019/02/15/sincronizar-carpetas-externas-en-onedrive</id><content type="html" xml:base="http://localhost:4000/posts/2019/02/15/sincronizar-carpetas-externas-en-onedrive/"><![CDATA[<p>Esta será una entrada cortita pero creo que bastante útil.
+Es posible que, al igual que yo, uséis <strong>OneDrive</strong> para <strong>sincronizar</strong> vuestros documentos en la nube pero os moleste considerablemente no poder sincronizar varias <strong>carpetas</strong> en concreto que tengáis en vuestro ordenador.</p>
+
+<p>Es decir, mi carpeta de <strong>OneDrive</strong> está localizada en <em>C:\Users\Usuario\OneDrive</em> pero tengo otra carpeta en <em>C:\OtraCarpeta</em> que me gustaría que se <strong>sincronizase</strong> también para poder <strong>acceder a los datos desde otros lugares</strong>, tener <strong>backup</strong>… Razones varias.</p>
+
+<p>Pues bien….</p>
+
+<h2 id="cómo-lo-hacemos">¿Cómo lo hacemos?</h2>
+
+<p>Usaremos <strong>enlaces simbólicos</strong> que no es más que un <strong>“acceso directo”</strong> a una carpeta (o archivo) que se encuentra en otro directorio. Como iba diciendo, crearemos un <strong>enlace simbólico</strong> ejecutando el <strong>símbolo de sistema</strong> (¡ojo!, que no <strong>PowerShell</strong>) como <strong>administrador</strong> y escribiendo el siguiente comando:</p>
+
+<pre><code class="language-cmd">mklink /D "rutaOneDrive\nuevaCarpeta" "rutaCarpetaASincronizar"
+</code></pre>
+
+<p>Después de eso, si nos vamos a nuestra carpeta de <strong>OneDrive</strong>, veremos que se creó un acceso directo a la carpeta anterior y que la <strong>sincronización</strong> comenzará a funcionar.</p>
+
+<p>Y eso sería todo. <strong>¡Salud y coding!</strong></p>]]></content><author><name>Inazio Claver</name></author><category term="Sistemas" /><category term="onedrive" /><category term="windows" /><category term="enlaces-simbolicos" /><category term="mklink" /><category term="sincronizacion" /><category term="backup" /><category term="cloud" /><summary type="html"><![CDATA[Aprende a sincronizar carpetas externas en OneDrive con enlaces simbólicos usando mklink. Tutorial paso a paso para crear backup automático de cualquier carpeta en Windows con el símbolo del sistema.]]></summary></entry><entry><title type="html">Tutorial Java - Log4j desde cero</title><link href="http://localhost:4000/posts/2018/08/03/tutorial-java-log4j-desde-cero/" rel="alternate" type="text/html" title="Tutorial Java - Log4j desde cero" /><published>2018-08-03T06:10:00+02:00</published><updated>2018-08-03T06:10:00+02:00</updated><id>http://localhost:4000/posts/2018/08/03/tutorial-java-log4j-desde-cero</id><content type="html" xml:base="http://localhost:4000/posts/2018/08/03/tutorial-java-log4j-desde-cero/"><![CDATA[<p>En el trabajo me ha surgido la necesidad de trabajar con la librería <a href="https://logging.apache.org/log4j">Log4j</a> en un proyecto y como me he vuelto un poco loco para configurarla que menos que aprovechar para retomar este blog (again).</p>
+
+<h2 id="qué-es-log4j">¿Qué es Log4j?</h2>
+
+<p><strong>Log4j</strong> es una librería perteneciente a los <strong>Java Logging Frameworks</strong> desarrollada por <strong>Apache Software Foundation</strong> usada para generar mensajes de <strong>logging</strong> de una forma limpia, sencilla, permitiendo filtrarlos por importancia y pudiendo configurar su <strong>salida</strong> tanto por <strong>consola, fichero</strong> u otras diferentes.</p>
+
+<h2 id="niveles-de-prioridad">Niveles de prioridad</h2>
+
+<p>Existen diversos niveles de prioridad. Los cinco que más empleo, ordenados por nivel más bajo son:</p>
+
+<ul>
+  <li><strong>DEBUG</strong>: Usado para escribir mensajes de depuración</li>
+  <li><strong>INFO</strong>: Mensajes de estilo verbose. Puramente informativos de determinada acción</li>
+  <li><strong>WARN</strong>: Para alertar de eventos de los que se quiere dejar constancia pero que no afectan al funcionamiento de la aplicación</li>
+  <li><strong>ERROR</strong>: Usado para los mensajes de eventos que afectan al programa pero lo dejan seguir funcionando. Algún parámetro no es correcto pero se carga el parámetro por defecto, por ejemplo</li>
+  <li><strong>FATAL</strong>: Usado para errores críticos. Normalmente después de guardar el mensaje el programa terminará</li>
+</ul>
+
+<h2 id="appenders">Appenders</h2>
+
+<p>Otra parte fundamental de Log4j son los <strong>appenders</strong>. Y tu te preguntarás, <strong>¿qué son los appenders?</strong> Pues básicamente es cada una de las salidas por las que puede ser enviado un mensaje de <strong>log</strong>.</p>
+
+<p>Existen varios <strong>appenders</strong> y todos ellos son configurables, aunque también podemos crear los nuestros propios.</p>
+
+<p>Los appenders más usuales son:</p>
+
+<ul>
+  <li><strong>FileAppender / RollingFileAppender</strong>: Salida redirigida a un fichero de texto .log</li>
+  <li><strong>SocketAppender</strong>: Hacia un servidor remoto para almacenar los registros</li>
+  <li><strong>SMTPAppender</strong>: A un correo electrónico</li>
+  <li><strong>JDBCAppender</strong>: Hacia una base de datos</li>
+  <li><strong>ConsoleAppender</strong>: Salida por consola. En un entorno de producción no se suele usar esta forma por perder gran parte de su utilidad pero mientras se desarrolla es una forma útil de ver logs in situ.</li>
+</ul>
+
+<h2 id="y-la-parte-práctica-qué">¿Y la parte práctica, qué?</h2>
+
+<p>Sí, sé que lo estás pensando. <strong>¿Cuándo va a empezar a explicar cómo hacerlo, que es lo que me interesa a mi?</strong> Pues venga, estás de suerte. Tu hora ha llegado.</p>
+
+<p>Voy a explicar como montar un <strong>sistema logging básico con Log4j</strong> que nos muestre la salida tanto <strong>por consola como en un fichero</strong>.</p>
+
+<h2 id="preparándonos">Preparándonos</h2>
+
+<p>La explicación la voy a realizar con un proyecto <strong>Maven</strong>, así que lo primero que haremos será agregar la dependencia de <strong>Log4j</strong> a nuestro <strong>pom</strong>. La podemos encontrar <a href="https://mvnrepository.com/artifact/log4j/log4j">aquí</a>.</p>
+
+<p>Si no sabes de que te estoy hablando puedes ver <a href="http://www.programandoapasitos.com/2017/07/tutorial-maven-en-eclipse.html">mi anterior entrada sobre <strong>Maven</strong></a> o bajarte el <strong>.jar</strong> y configurarla manualmente desde el mismo enlace.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>log4j<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>log4j<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>1.2.17<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<h2 id="creando-y-configurando-el-archivo-log4jproperties">Creando y configurando el archivo log4j.properties</h2>
+
+<p>Podríamos configurarlo a través de código o con la configuración básica por defecto, pero lo que vamos a hacer es configurar las opciones de <strong>Log4j</strong> a través de un archivo <strong>properties</strong>.</p>
+
+<p>Para ello nos iremos, dentro de nuestro proyecto, a la carpeta <code class="language-plaintext highlighter-rouge">src/main/resources</code> y creamos un fichero nuevo que se llame <code class="language-plaintext highlighter-rouge">log4j.properties</code>.</p>
+
+<p><img src="/img/posts/20180803_1.png" alt="default log4j.properties" /></p>
+
+<p>Lo abrimos y escribimos el siguiente contenido:</p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">log4j.rootLogger</span><span class="p">=</span><span class="s">DEBUG, stdout, file</span>
+<span class="py">log4j.logger.infoLogger</span><span class="p">=</span><span class="s">DEBUG</span>
+<span class="py">log4j.additivity.infoLogger</span> <span class="p">=</span> <span class="s">false</span>
+
+<span class="c"># Redirigir mensajes por consola
+</span><span class="py">log4j.appender.stdout</span><span class="p">=</span><span class="s">org.apache.log4j.ConsoleAppender</span>
+<span class="py">log4j.appender.stdout.Target</span><span class="p">=</span><span class="s">System.out</span>
+<span class="py">log4j.appender.stdout.layout</span><span class="p">=</span><span class="s">org.apache.log4j.PatternLayout</span>
+<span class="py">log4j.appender.stdout.layout.ConversionPattern</span><span class="p">=</span><span class="s">[%d{yyyy-MM-dd HH:mm:ss}] [ %-5p] [%c{1}:%L] %m%n</span>
+
+<span class="c"># Redirigir los mensajes a un fichero de texto soportando file rolling
+</span><span class="py">log4j.appender.file</span><span class="p">=</span><span class="s">org.apache.log4j.RollingFileAppender</span>
+<span class="py">log4j.appender.file.File</span><span class="p">=</span><span class="s">avisos.log</span>
+<span class="py">log4j.appender.file.MaxFileSize</span><span class="p">=</span><span class="s">5MB</span>
+<span class="py">log4j.appender.file.MaxBackupIndex</span><span class="p">=</span><span class="s">10</span>
+<span class="py">log4j.appender.file.layout</span><span class="p">=</span><span class="s">org.apache.log4j.PatternLayout</span>
+<span class="py">log4j.appender.file.layout.ConversionPattern</span><span class="p">=</span><span class="s">[%d{yyyy-MM-dd HH:mm:ss}] [ %-5p] [%c{1}:%L] %m%n</span>
+</code></pre></div></div>
+
+<p>Vamos a ver más detalladamente que hace cada parte de este fichero:</p>
+
+<h3 id="configuración-básica">Configuración básica</h3>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">log4j.rootLogger</span><span class="p">=</span><span class="s">DEBUG, stdout, file</span>
+<span class="py">log4j.logger.infoLogger</span><span class="p">=</span><span class="s">DEBUG</span>
+<span class="py">log4j.additivity.infoLogger</span> <span class="p">=</span> <span class="s">false</span>
+</code></pre></div></div>
+
+<ul>
+  <li>En la <strong>primera línea</strong> estamos indicando el <strong>nivel mínimo de logging</strong> y los <strong>appenders que vamos a emplear</strong>. En este caso usaremos un nivel de logging establecido en DEBUG y creamos dos appenders, stdout y file.</li>
+  <li>La <strong>segunda línea</strong> sirve para configurar en que nivel se empezarán a mostrar las advertencias tanto por consola como a almacenarse en el fichero.</li>
+  <li>Y con la <strong>tercera línea</strong> evitamos que los appenders hereden la configuración de sus appenders padres, en caso de que los hubiera (en el nuestro, sería el appender principal así que no tenemos ese problema).</li>
+</ul>
+
+<h3 id="configuración-por-consola">Configuración por consola</h3>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Redirigir mensajes por consola
+</span><span class="py">log4j.appender.stdout</span><span class="p">=</span><span class="s">org.apache.log4j.ConsoleAppender</span>
+<span class="py">log4j.appender.stdout.Target</span><span class="p">=</span><span class="s">System.out</span>
+<span class="py">log4j.appender.stdout.layout</span><span class="p">=</span><span class="s">org.apache.log4j.PatternLayout</span>
+<span class="py">log4j.appender.stdout.layout.ConversionPattern</span><span class="p">=</span><span class="s">[%d{yyyy-MM-dd HH:mm:ss}] [ %-5p] [%c{1}:%L] %m%n</span>
+</code></pre></div></div>
+
+<p>En estas líneas vamos a crear la configuración para imprimir los mensajes por consola:</p>
+
+<ul>
+  <li>En la <strong>primera línea</strong> indicamos que tipo de logger será haciendo referencia a la clase que imprimirá los mensajes (¡recuerda la sección Appenders!).</li>
+  <li>En la <strong>segunda</strong> le decimos que queremos imprimirlo directamente por la consola.</li>
+  <li>Y las <strong>dos últimas</strong> son para configurar la plantilla que tendrá cada mensaje.</li>
+</ul>
+
+<p>Puedes ver todas las posibles opciones de configuración en la <a href="https://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/PatternLayout.html">página de ayuda de Oracle</a>.</p>
+
+<p>El mensaje de salida sería algo tal que así:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[2018-08-03 11:48:39] [ INFO ] [App:29] Esto es una prueba desde App class.
+</code></pre></div></div>
+
+<h3 id="configuración-para-fichero">Configuración para fichero</h3>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Redirigir los mensajes a un fichero de texto soportando file rolling
+</span><span class="py">log4j.appender.file</span><span class="p">=</span><span class="s">org.apache.log4j.RollingFileAppender</span>
+<span class="py">log4j.appender.file.File</span><span class="p">=</span><span class="s">avisos.log</span>
+<span class="py">log4j.appender.file.MaxFileSize</span><span class="p">=</span><span class="s">5MB</span>
+<span class="py">log4j.appender.file.MaxBackupIndex</span><span class="p">=</span><span class="s">10</span>
+<span class="py">log4j.appender.file.layout</span><span class="p">=</span><span class="s">org.apache.log4j.PatternLayout</span>
+<span class="py">log4j.appender.file.layout.ConversionPattern</span><span class="p">=</span><span class="s">[%d{yyyy-MM-dd HH:mm:ss}] [ %-5p] [%c{1}:%L] %m%n</span>
+</code></pre></div></div>
+
+<p>En estas líneas vamos a hacer exactamente lo mismo que antes pero configurando el appender para que salga a través de un fichero:</p>
+
+<ul>
+  <li>En la <strong>primera línea</strong> configuramos la clase como <strong>RollingFileAppender</strong>, lo que significa que se crearán distintos ficheros al cumplirse determinadas condiciones que tratamos en las siguientes líneas.</li>
+  <li>En la <strong>siguiente</strong> indicamos el nombre (con ruta incluida) que queremos que tenga nuestro fichero de log.</li>
+  <li>Con <strong>MaxFileSize</strong> establecemos el tamaño máximo que tendrá nuestro fichero, y con <strong>MaxBackupIndex</strong> indicamos cuantos archivos podemos tener usando el mismo log. A partir de llegar al máximo, comenzarán a sobrescribirse empezando por el más antiguo.</li>
+  <li>Y por último, al igual que por consola, indicamos que plantilla tendrán nuestros mensajes.</li>
+</ul>
+
+<h2 id="código-java-para-log4j">Código Java para Log4j</h2>
+
+<p>La forma que me resulta más fácil de trabajar es <strong>crearme una clase independiente que funcione como un handler para Log4j</strong>.</p>
+
+<p>Lo primero es definirme un enum con los tipos de log que puedo tener. En un alarde de originalidad lo podemos llamar… no sé, <code class="language-plaintext highlighter-rouge">TipoLog.java</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="nc">TipoLog</span> <span class="o">{</span>
+    <span class="no">DEBUG</span><span class="o">,</span> <span class="no">ERROR</span><span class="o">,</span> <span class="no">FATAL</span><span class="o">,</span> <span class="no">INFO</span><span class="o">,</span> <span class="no">WARNING</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Son las opciones de log que os conté en la sección <strong>Niveles de prioridad</strong>.</p>
+
+<p>La siguiente parte es crear la clase Java, tal que así:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">org.apache.log4j.Logger</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.log4j.LogManager</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UtilesLog</span> <span class="o">{</span>
+    
+    <span class="kd">private</span> <span class="kd">static</span> <span class="nc">Logger</span> <span class="n">log</span> <span class="o">=</span> <span class="nc">Logger</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="nc">UtilesLog</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    
+    <span class="nd">@SuppressWarnings</span><span class="o">(</span><span class="s">"rawtypes"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">registrarInfo</span><span class="o">(</span><span class="nc">Class</span> <span class="n">clase</span><span class="o">,</span> <span class="nc">TipoLog</span> <span class="n">tipo</span><span class="o">,</span> <span class="nc">String</span> <span class="n">mensaje</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">log</span> <span class="o">=</span> <span class="nc">LogManager</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">clase</span><span class="o">);</span>
+        
+        <span class="k">switch</span> <span class="o">(</span><span class="n">tipo</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">case</span> <span class="nl">DEBUG:</span>
+                <span class="n">log</span><span class="o">.</span><span class="na">debug</span><span class="o">(</span><span class="n">mensaje</span><span class="o">);</span>
+                <span class="k">break</span><span class="o">;</span>
+            <span class="k">case</span> <span class="nl">ERROR:</span>
+                <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">mensaje</span><span class="o">);</span>
+                <span class="k">break</span><span class="o">;</span>
+            <span class="k">case</span> <span class="nl">FATAL:</span>
+                <span class="n">log</span><span class="o">.</span><span class="na">fatal</span><span class="o">(</span><span class="n">mensaje</span><span class="o">);</span>
+                <span class="k">break</span><span class="o">;</span>
+            <span class="k">case</span> <span class="nl">INFO:</span>
+                <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="n">mensaje</span><span class="o">);</span>
+                <span class="k">break</span><span class="o">;</span>
+            <span class="k">case</span> <span class="nl">WARNING:</span>
+                <span class="n">log</span><span class="o">.</span><span class="na">warn</span><span class="o">(</span><span class="n">mensaje</span><span class="o">);</span>
+                <span class="k">break</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>En esta clase tenemos una <strong>propiedad privada estática</strong> configurada por defecto para ser el Logger de la clase que lo contiene, <strong>UtilesLog</strong>. Podéis poner el nombre que deseéis por supuesto.</p>
+
+<p>Esto se hace porque la <strong>clase Logger tiene que estar apuntando siempre a una clase</strong> sobre la que se crearán los mensajes, así que en vez de tener que declarar este Logger en todas y cada una de las clases de nuestro proyecto, podemos manejarlo en un único fichero de este modo.</p>
+
+<p><strong>¿Y como mandamos el logger entonces?</strong> Con el método que tenemos debajo, <strong>registrarInfo</strong>.</p>
+
+<p>Si te das cuenta tiene <strong>tres parámetros</strong>:</p>
+<ul>
+  <li>La <strong>clase</strong> sobre la que queremos generar los mensajes</li>
+  <li>El <strong>tipo</strong> de mensaje</li>
+  <li>El <strong>contenido</strong> del mismo</li>
+</ul>
+
+<p>Lo que hacemos simplemente es <strong>establecer el Logger para la clase pasada como parámetro</strong> y, dependiendo del tipo de log, <strong>enviar un tipo de mensaje u otro</strong>.</p>
+
+<h2 id="ejemplo-de-uso">Ejemplo de uso</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">UtilesLog</span><span class="o">.</span><span class="na">registrarInfo</span><span class="o">(</span><span class="nc">App</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="nc">TipoLog</span><span class="o">.</span><span class="na">INFO</span><span class="o">,</span> <span class="s">"Esto es una prueba desde App class."</span><span class="o">);</span>
+        <span class="nc">UtilesLog</span><span class="o">.</span><span class="na">registrarInfo</span><span class="o">(</span><span class="nc">App</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="nc">TipoLog</span><span class="o">.</span><span class="na">DEBUG</span><span class="o">,</span> <span class="s">"Mensaje de debug"</span><span class="o">);</span>
+        <span class="nc">UtilesLog</span><span class="o">.</span><span class="na">registrarInfo</span><span class="o">(</span><span class="nc">App</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="nc">TipoLog</span><span class="o">.</span><span class="na">ERROR</span><span class="o">,</span> <span class="s">"Ha ocurrido un error"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Y <strong>¡listo!</strong>, ya tenemos nuestro <strong>sistema de logging con Log4j creado y completamente funcional</strong>.</p>
+
+<p>Puedes visitar el código completo en <a href="https://github.com/inazense/scripts/tree/master/scripts/java/ManejadorLog4j">mi repositorio de Github</a>.</p>
+
+<p><strong>¡Salud y coding!</strong></p>]]></content><author><name>Inazio Claver</name></author><category term="Java" /><category term="java" /><category term="log4j" /><category term="logging" /><category term="appenders" /><category term="configuracion" /><category term="maven" /><category term="properties" /><summary type="html"><![CDATA[Aprende a ordenar HashMap en Java por clave o valor con streams y lambdas. Tutorial completo con código paso a paso sobre sorting de Map, entrySet, comparingInt y LinkedHashMap con ejemplos prácticos.]]></summary></entry><entry><title type="html">Leer ficheros properties en Java</title><link href="http://localhost:4000/posts/2017/12/12/leer-ficheros-properties-en-java/" rel="alternate" type="text/html" title="Leer ficheros properties en Java" /><published>2017-12-12T10:11:00+01:00</published><updated>2017-12-12T10:11:00+01:00</updated><id>http://localhost:4000/posts/2017/12/12/leer-ficheros-properties-en-java</id><content type="html" xml:base="http://localhost:4000/posts/2017/12/12/leer-ficheros-properties-en-java/"><![CDATA[<p>Una práctica habitual en Java es guardar <strong>parámetros de configuración</strong> en un <strong>archivo de propiedades</strong>, que es básicamente un fichero de texto plano con la extensión <strong>.properties</strong> con su contenido almacenado como una <strong>pareja clave=valor</strong> y con el símbolo # para indicar línea de comentario.</p>
+
+<p>Por ejemplo:</p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Archivo properties
+</span><span class="py">usuario</span><span class="p">=</span><span class="s">Inazio</span>
+<span class="py">password</span><span class="p">=</span><span class="s">programandoapasitos.com</span>
+<span class="py">ruta</span><span class="p">=</span><span class="s">/home/inazio/resources</span>
+</code></pre></div></div>
+
+<p>Así, en este ejemplo la primera línea será solo de comentarios, y en las posteriores cada <strong>clave</strong> será un parámetro de nuestra configuración y, separado por un igual, su <strong>valor</strong> correspondiente.</p>
+
+<p><strong>Java</strong> nos proporciona una herramienta muy útil y sencilla para leer los <strong>archivos de propiedades</strong>, la <strong>clase Properties</strong>.</p>
+
+<p>Para usarla, lo primero que haremos será inicializar nuestro objeto y posteriormente indicarle que cargue el <strong>fichero de propiedades</strong>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Properties</span> <span class="n">propiedades</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Properties</span><span class="o">();</span>
+<span class="n">propiedades</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileReader</span><span class="o">(</span><span class="s">"config.properties"</span><span class="o">));</span>
+</code></pre></div></div>
+
+<p>Hecho esto, sólo nos quedará indicar si queremos que lea una o todas las <strong>propiedades</strong>.</p>
+
+<h2 id="leer-una-propiedad">Leer una propiedad</h2>
+
+<p>La verdad es que es tremendamente sencillo. Para realizazr la <strong>lectura de un valor</strong> en nuestro <strong>archivo properties</strong> basta con la siguiente línea</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">propiedades</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="n">miClave</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>Como veis, lo único que hacemos es usar el método <code class="language-plaintext highlighter-rouge">getProperty</code> y como parámetro le pasamos la <strong>clave</strong> del <strong>valor</strong> a extraer, devolviéndonoslo como un <strong>String</strong>.</p>
+
+<h2 id="leer-todas-las-propiedades">Leer todas las propiedades</h2>
+
+<p>Para leer todas las <strong>propiedades</strong> recurriremos a un objeto <code class="language-plaintext highlighter-rouge">Enumeration</code> que nos permitirá iterar sobre todas ellas, leeremos la clave de los <strong>valores</strong> en un bucle y obteniendo la <strong>clave</strong>, usaremos el mismo modo que en el ejemplo anterior. En este caso lo imprimiremos también</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Enumeration</span><span class="o">&lt;</span><span class="nc">Object</span><span class="o">&gt;</span> <span class="n">claves</span> <span class="o">=</span> <span class="n">propiedades</span><span class="o">.</span><span class="na">keys</span><span class="o">();</span>
+  
+<span class="k">while</span> <span class="o">(</span><span class="n">claves</span><span class="o">.</span><span class="na">hasMoreElements</span><span class="o">())</span> <span class="o">{</span>
+  <span class="nc">Object</span> <span class="n">clave</span> <span class="o">=</span> <span class="n">claves</span><span class="o">.</span><span class="na">nextElement</span><span class="o">();</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">clave</span><span class="o">.</span><span class="na">toString</span><span class="o">()</span> <span class="o">+</span> <span class="s">" - "</span> <span class="o">+</span> <span class="n">propiedades</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">clave</span><span class="o">).</span><span class="na">toString</span><span class="o">());</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>¿Qué hacemos exactamente?</strong></p>
+
+<p>En nuestro objeto <code class="language-plaintext highlighter-rouge">Enumeration</code> almacenamos todas las <strong>claves</strong> que incluye nuestro objeto <strong>Properties</strong>, e iniciamos un bucle hasta que recorrer todos los elementos.
+Después creamos un objeto genérico que será nuestra <strong>clave</strong>, y es la que usamos para extraer el valor de dicho par en la línea de abajo, aprovechando para imprimir la <strong>clave</strong> y la propiedad haciendo de ambas un casteo de <strong>String</strong>.</p>
+
+<p>¿A que resulta tremendamente sencillo? Ahora solo es cuestión de practicar con ello.
+Podéis ver el código completo de esta entrada en mi <a href="https://github.com/inazense/scripts/blob/master/scripts/java/ManejadorProperties.java"><strong>github público</strong></a>. Ahí tendréis una clase con un <strong>patrón Singleton</strong> que permite manejar este tipo de archivos..</p>
+
+<p><strong>¡Salud y coding!</strong></p>]]></content><author><name>Inazio Claver</name></author><category term="Java" /><category term="java" /><category term="properties" /><category term="configuracion" /><category term="fileReader" /><category term="getProperty" /><category term="enumeration" /><summary type="html"><![CDATA[Aprende a leer archivos properties en Java con la clase Properties. Tutorial completo paso a paso sobre getProperty, Enumeration, carga de ficheros .properties y ejemplos prácticos de configuración con código.]]></summary></entry><entry><title type="html">Tutorial Maven en Eclipse (II). Generar un JAR</title><link href="http://localhost:4000/posts/2017/11/27/tutorial-maven-en-eclipse-ii-generar-un-jar/" rel="alternate" type="text/html" title="Tutorial Maven en Eclipse (II). Generar un JAR" /><published>2017-11-27T06:00:00+01:00</published><updated>2017-11-27T06:00:00+01:00</updated><id>http://localhost:4000/posts/2017/11/27/tutorial-maven-en-eclipse-ii-generar-un-jar</id><content type="html" xml:base="http://localhost:4000/posts/2017/11/27/tutorial-maven-en-eclipse-ii-generar-un-jar/"><![CDATA[<p>En la anterior entrada del <a href="/posts/2017-07-28-tutorial-maven-en-eclipse.md"><strong>Tutorial Maven en Eclipse</strong></a> aprendimos qué es <strong>Maven</strong>, como <strong>crear un proyecto Maven en Eclipse</strong>, a configurarlo y a manejar las <strong>dependencias de librerías</strong>.</p>
+
+<p>¿Cuál sería el siguiente paso lógico? Aprender como <strong>generar los archivos JAR con Maven</strong> y agregarle todas los recursos necesarias, para poder usar nuestro proyecto en cualquier máquina en que queramos ejecutarlo.</p>
+
+<h2 id="generar-jar-con-maven">Generar JAR con Maven</h2>
+
+<p>Realmente esta fase ya la vimos en el tutorial anterior, pero voy a entrar un poco más en profundidad en ella.
+Para generar un JAR desde Eclipse basta con ponernos sobre la carpeta del proyecto y hacer <strong>botón derecho → Run As → Maven install</strong>.
+O también puedes hacerlo desde la consola de comandos situándote en la carpeta principal del proyecto y ejecutar</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn <span class="nb">install</span>
+</code></pre></div></div>
+
+<p>Ambas acciones harán el mismo proceso, generar los archivos necesarios para la ejecución del proyecto dentro de la carpeta <strong>target</strong>.</p>
+
+<p>Para comprobar que el proceso de <strong>maven install</strong> ha funcionado correctamente y la ruta donde se ha generado el <strong>jar</strong> bastará con ver los mensajes que nos aparecen después de la ejecución, tal que así</p>
+
+<p><img src="/img/posts/20171127_1.png" alt="new maven project" /></p>
+
+<p>Aquí podemos ver que el <strong>build</strong> se ha realizado correctamente y en el recuadro en rojo vemos la ruta donde se almacenó nuestro <strong>.jar</strong>.</p>
+
+<h2 id="cómo-copiar-recursos-a-target-en-maven">¿Cómo copiar recursos a target en Maven?</h2>
+
+<p>Ahora bien, tenemos nuestro proyecto ya compilado, lo ejecutamos y… nos damos cuenta de que en la carpeta <strong>target</strong> no se encuentran los <strong>recursos</strong> a los que hemos hecho referencia en nuestro proyecto. Podemos haber enlazado imagenes, iconos, archivos de configuración… con su ruta relativa referente a donde se encuentre el <strong>jar</strong>, pero claro, no están en <strong>target</strong>. ¿Cómo lo hacemos funcionar entonces? ¿Acaso debemos copiar a mano todos los recursos necesarios? ¿Y si éstos cambian y nos olvidamos un día de hacerlo?</p>
+
+<p>Esta es una parte que me costó algo de tiempo descubrir cómo solucionarla, pero al final encontré con la manera propicia de arreglarlo.</p>
+
+<p>Para ello debernos usar un nuevo <strong>plugin</strong> llamado <strong>maven-resources-plugin</strong>. Lo que hará este <strong>plugin</strong> es precisamente eso, ayudarnos a <strong>copiar las dependencias a la ruta que le indiquemos</strong> nosotros, y lo mejor es que lo hace a tiempo real, no espera a compilar el proyecto. Podemos agregar y remover los recursos que le indiquemos y el se encargará de replicarlos al mismo tiempo.</p>
+
+<p><strong>¿Cómo configurar maven-resources-plugin?</strong></p>
+
+<p>Para empezar a usarlo debemos abrir el <strong>pom.xml</strong>, y en la sección de <strong>plugins</strong> dentro de <strong>build</strong> (dónde en el anterior <strong>tutorial</strong> agregamos el plugin para compilar el proyecto), crearemos uno nuevo indicando su <strong>artifactid</strong> y su <strong>versión</strong>. Posteriormente crearemos un grupo de ejecuciones que serán las que contendrán todas las rutas a copiar en nuestro proyecto.
+Vamos a ver un ejemplo entero para comprenderlo mejor</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- Copia de recursos a target --&gt;</span>
+<span class="nt">&lt;plugin&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>maven-resources-plugin<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>3.0.2<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;executions&gt;</span>
+    <span class="c">&lt;!-- Primera ejecución --&gt;</span>
+    <span class="nt">&lt;execution&gt;</span>
+      <span class="nt">&lt;id&gt;</span>copy-configuracion<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;phase&gt;</span>validate<span class="nt">&lt;/phase&gt;</span>
+      <span class="nt">&lt;goals&gt;</span>
+        <span class="nt">&lt;goal&gt;</span>copy-resources<span class="nt">&lt;/goal&gt;</span>
+      <span class="nt">&lt;/goals&gt;</span>
+      <span class="nt">&lt;configuration&gt;</span>
+        <span class="nt">&lt;outputDirectory&gt;</span>${basedir}/target/configuracion<span class="nt">&lt;/outputDirectory&gt;</span>
+        <span class="nt">&lt;resources&gt;</span>
+          <span class="nt">&lt;resource&gt;</span>
+            <span class="nt">&lt;directory&gt;</span>configuracion<span class="nt">&lt;/directory&gt;</span>
+            <span class="nt">&lt;filtering&gt;</span>true<span class="nt">&lt;/filtering&gt;</span>
+          <span class="nt">&lt;/resource&gt;</span>
+        <span class="nt">&lt;/resources&gt;</span>
+      <span class="nt">&lt;/configuration&gt;</span>
+    <span class="nt">&lt;/execution&gt;</span>
+
+    <span class="c">&lt;!-- Segunda ejecución --&gt;</span>
+    <span class="nt">&lt;execution&gt;</span>
+      <span class="nt">&lt;id&gt;</span>copy-recursos<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;phase&gt;</span>validate<span class="nt">&lt;/phase&gt;</span>
+      <span class="nt">&lt;goals&gt;</span>
+        <span class="nt">&lt;goal&gt;</span>copy-resources<span class="nt">&lt;/goal&gt;</span>
+      <span class="nt">&lt;/goals&gt;</span>
+      <span class="nt">&lt;configuration&gt;</span>
+        <span class="nt">&lt;outputDirectory&gt;</span>${basedir}/target/recursos<span class="nt">&lt;/outputDirectory&gt;</span>
+        <span class="nt">&lt;resources&gt;</span>
+          <span class="nt">&lt;resource&gt;</span>
+            <span class="nt">&lt;directory&gt;</span>recursos<span class="nt">&lt;/directory&gt;</span>
+            <span class="nt">&lt;filtering&gt;</span>true<span class="nt">&lt;/filtering&gt;</span>
+          <span class="nt">&lt;/resource&gt;</span>
+        <span class="nt">&lt;/resources&gt;</span>
+      <span class="nt">&lt;/configuration&gt;</span>
+    <span class="nt">&lt;/execution&gt;</span>
+  <span class="nt">&lt;/executions&gt;</span>
+<span class="nt">&lt;/plugin&gt;</span>
+</code></pre></div></div>
+
+<p>Empezando por arriba, el <strong>artifactid</strong> y la <strong>versión</strong> serán algo estático para todos nosotros (si modificamos la versión por otra debemos ser conscientes que las etiquetas y contenido usados pueden variar). Posteriormente abrimos un tag llamado <strong>executions</strong> que será el que englobe todas las acciones a realizar, sin límite aparente en cuanto a <strong>execution tags</strong> permitidos dentro de él.
+Y dentro de una <strong>execution</strong> es donde comienza la chicha.</p>
+
+<p>Desgranando todo el contenido de una ejecución, esto es lo que usaremos:</p>
+
+<ul>
+  <li><strong>id</strong> → Identifica de manera única esa ejecución</li>
+  <li><strong>phase</strong> → Indica la fase del proyecto donde se ejecutará esa ejecución. Como lo hacemos en validación, nos aseguramos que practicamente trabajará en tiempo real.</li>
+  <li><strong>goals</strong> → Serán las metas que establezcamos para esa ejecución
+    <ul>
+      <li><strong>goal</strong> → Cada una de las metas. Aquí escribiremos <strong>copy-configuration</strong> para indicar que queremos copiar determinados recursos en otro sitio</li>
+    </ul>
+  </li>
+  <li><strong>configuration</strong> → Será la configuración que le daremos a las metas que hayamos indicado
+    <ul>
+      <li><strong>outputDirectory</strong> → La ruta donde <strong>Maven</strong> copiará los recursos que le indiquemos. Como ruta raíz usaremos la abreviación <code class="language-plaintext highlighter-rouge">${basedir}</code> para empezar dentro del proyecto</li>
+      <li><strong>resources</strong> → Tag que incluye todas las dependencias que queramos copiar
+        <ul>
+          <li><strong>resource</strong> → Cada una de las dependencias que queramos copiar, ya sean ficheros o carpetas.
+            <ul>
+              <li><strong>directory</strong> → La ruta del recurso a copiar. Parte siempre desde el directorio raíz del proyecto</li>
+              <li><strong>filtering</strong> → Lo agregaremos por defecto a true para que establezca las rutas del proyecto automáticamente</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>Así, en el anterior código lo que hago es copiar las carpetas de <code class="language-plaintext highlighter-rouge">configuracion</code> y <code class="language-plaintext highlighter-rouge">recursos</code> de mi proyecto al directorio de <strong>target</strong>, para poder usarlas directamente cuando genere el <strong>jar</strong> sin necesidad de agregarlas manualmente.</p>
+
+<p><img src="/img/posts/20171127_2.png" alt="maven project tree" /></p>
+
+<p>De esta manera puedo olvidarme de gestionar mis dependencias manualmente, que es para lo que sirve <strong>Maven</strong> y a lo que le podemos sacar mucho partido. Cuanto más grande el proyecto, más partido le sacaremos.</p>
+
+<p><strong>¡Salud y coding!</strong></p>]]></content><author><name>Inazio Claver</name></author><category term="Java" /><category term="java" /><category term="maven" /><category term="eclipse" /><category term="jar" /><category term="maven-resources-plugin" /><category term="build" /><category term="pom" /><summary type="html"><![CDATA[Aprende a generar archivos JAR con Maven en Eclipse y copiar recursos automáticamente. Tutorial completo sobre maven-resources-plugin, configuración del POM, mvn install y gestión de dependencias paso a paso.]]></summary></entry><entry><title type="html">Tutorial Maven en Eclipse I</title><link href="http://localhost:4000/posts/2017/07/28/tutorial-maven-en-eclipse/" rel="alternate" type="text/html" title="Tutorial Maven en Eclipse I" /><published>2017-07-28T06:10:00+02:00</published><updated>2017-07-28T06:10:00+02:00</updated><id>http://localhost:4000/posts/2017/07/28/tutorial-maven-en-eclipse</id><content type="html" xml:base="http://localhost:4000/posts/2017/07/28/tutorial-maven-en-eclipse/"><![CDATA[<p>De normal, cuando realizamos un <strong>proyecto Java</strong> si es pequeño nosotros mismos podemos hacer las actividades típicas de la construcción de software.</p>
+
+<ul>
+  <li>Instalar las librerías necesarias para nuestro proyecto en el classpath</li>
+  <li>Correr los casos de test</li>
+  <li>Crear la documentación del código fuente</li>
+  <li>Compilar código fuente</li>
+  <li>Empacar el código compilado en JAR</li>
+</ul>
+
+<p>Pero, ¿qué sucede conforme nuestro proyecto va creciendo y se va agregando más gente a él? Pues que podemos perder el control del mismo y es más plausible cometer errores humanos en la construcción del programa. Para eso está <strong>Maven</strong>.</p>
+
+<h2 id="qué-es-maven">¿Qué es Maven?</h2>
+
+<p><strong>Maven</strong> es una herramienta para la gestión de proyectos, que nos permitirá administrar completamente el ciclo de vida de la misma. Comúnmente se conoce a <strong>Maven</strong> como un gestor de dependencias Y YA. Y eso no es del todo cierto. Podemos considerarlo como una herramienta de construcción con muchas características, que nos ayuda a gestionar las dependencias, test, documentación, compilaciones, distribuciones e incluso los <em>mailing list</em>.</p>
+
+<p>Si quieres una explicación más profesional de lo que es <strong>Maven</strong> puedes seguir el enlace hacía <a href="https://es.wikipedia.org/wiki/Maven">Maven en Wikipedia</a>.</p>
+
+<p>Bien, centrémonos. ¿Qué es, entonces, lo que <strong>Maven</strong> puede hacer por nosotros? Así, en muy resumidas cuentas, lo siguiente:</p>
+
+<ul>
+  <li>Build. Construye nuestro código fuente del proyecto</li>
+  <li>Test. Ejecuta los casos de prueba</li>
+  <li>Gestiona las dependencias de nuestro proyecto. Es cierto que no es sólo un gestor, pero para mi es de lo mejor que tiene <strong>Maven</strong>. Importa las librerías automáticamente desde un repositorio remoto. Nos podemos olvidar de hacer esa tarea manualmente.</li>
+  <li>Permite la creación y descarga de plantillas de proyectos para tener la estructura ya creada. Por ejemplo si nos vamos a dedicar a hacer páginas web, o conectores, nos interesará para ahorrarnos el trabajo de tener que empezar desde cero una y otra vez</li>
+  <li>Crea una web con la documentación del proyecto</li>
+  <li>Desplega el proyecto (AKA <strong>artefacto</strong>) en servidor</li>
+  <li>Y por supuesto, perfecta integración con <strong>Git, SVN, Jira</strong>…</li>
+</ul>
+
+<p>Imagina hacer todo esto manualmente, y más de una persona que trabaje en nuestro proyecto. ¡Es para volverse loco!</p>
+
+<p>Un par de cosas que conviene conocer antes de empezar:</p>
+
+<ul>
+  <li><strong>artefacto</strong>. Es un proyecto que lo gestiona <strong>Maven</strong> y que incluye un fichero llamado <strong>pom.xml</strong>.</li>
+  <li><strong>POM</strong>. Son las siglas de <strong>Project Object Model</strong>. Es un fichero <strong>XML</strong> que contiene la configuración del artefacto. Más adelante trabajaremos con él. Si has programado en <strong>Android</strong> anteriormente, un símil adecuado sería el <strong>AndroidManifest</strong>.</li>
+  <li><strong>groupId</strong>. El identificador único para crear nuestro artefacto. Se suele poner el mismo que en un paquete <em>java.com.programandoapasitos</em></li>
+</ul>
+
+<h2 id="maven-en-eclipse">Maven en Eclipse</h2>
+
+<p>Tenéis que saber que <strong>Maven</strong> es perfectamente posible usarlo desde la consola de comandos. Si es el caso que estáis interesados en esa forma os recomiendo <a href="https://jarroba.com/maven/">éste artículo de Jarroba.com</a> que lo explica perfectamente.</p>
+
+<p>Pero en nuestro caso vamos a usar la comodidad que nos da Eclipse con las herramientas que ya vienen integradas por defecto en su versión <a href="https://www.eclipse.org/downloads/">Java EE Developers</a> que es la que incluye el plugin de <strong>Maven</strong>, aunque ojo que puede no ser la última versión de <strong>Maven</strong> disponible.</p>
+
+<p>Lo primero será crear un nuevo proyecto <strong>Maven</strong> yendo a <em>File → New → Other</em>.</p>
+
+<p><img src="/img/posts/20170728_1.png" alt="maven new file" /></p>
+
+<p>Elegimos <em><strong>Maven</strong> → <strong>Maven Project</strong></em> y pulsamos Next.</p>
+
+<p><img src="/img/posts/20170728_2.png" alt="new maven project" /></p>
+
+<p>Ahora deberemos elegir la configuración de nuestro proyecto <strong>Maven</strong>. En la siguiente ventana podemos marcar el check de <em>Create a simple Project</em> (skip archetype selection), lo que nos creará un proyecto completamente simple sin más configuración, o bien podemos desmarcarla, que será nuestro caso, y elegiremos un arquetipo de las opciones que nos muestre el asistente.</p>
+
+<p><img src="/img/posts/20170728_3.png" alt="new maven project 2" /></p>
+
+<p>En la nueva ventana puedes seleccionar un arquetipo del listado o cargar uno desde una ubicación. En nuestro caso seleccionaremos el de <strong>groupId</strong> <em>org.apache.maven.archetypes</em> y <strong>Artifact id</strong> <em>maven-archetype-quickstart</em> y pulsamos Next.</p>
+
+<p><img src="/img/posts/20170728_4.png" alt="new maven project 3" /></p>
+
+<p>Y ahora, por último paso del asistente, tendremos que indicar nuestro propio <strong>groupId</strong> y el <strong>artifactId</strong>. Esto se hace porque los que vimos en la anterior pantalla eran los que usaron los creadores del artefacto. Sobrescribiéndolos lo establecemos como queremos y aparte de la personalización, si algún día se convierte en arquetipo lo podrán buscar con nuestros datos, y reemplazarlos con los suyos.</p>
+
+<p><img src="/img/posts/20170728_5.png" alt="new maven project 4" /></p>
+
+<p>Pulsamos <em>Finish</em> y ya tendremos nuestro proyecto. La estructura quedará tal que así</p>
+
+<p><img src="/img/posts/20170728_6.png" alt="maven project tree structure" /></p>
+
+<h2 id="usando-maven">Usando Maven</h2>
+
+<p>Ahora que ya tenemos nuestro <strong>proyecto Maven</strong> creado es hora de configurar el <strong>POM</strong> para hacerlo funcionar. Para ello hacemos doble click en el archivo <strong>pom.xml</strong> y en la pestaña inferior elegimos la sección <strong>pom.xml</strong> para poder ver el código <strong>XML</strong> “a pelo”.</p>
+
+<p><img src="/img/posts/20170728_7.png" alt="using maven 1" /></p>
+
+<p>Cuando entremos veremos un <strong>archivo XML</strong> similar a este</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+  <span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+
+  <span class="nt">&lt;groupId&gt;</span>com.programandoapasitos<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nombrePrueba<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>0.0.1-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;packaging&gt;</span>jar<span class="nt">&lt;/packaging&gt;</span>
+
+  <span class="nt">&lt;name&gt;</span>nombrePrueba<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;url&gt;</span>http://maven.apache.org<span class="nt">&lt;/url&gt;</span>
+
+  <span class="nt">&lt;properties&gt;</span>
+    <span class="nt">&lt;project.build.sourceEncoding&gt;</span>UTF-8<span class="nt">&lt;/project.build.sourceEncoding&gt;</span>
+  <span class="nt">&lt;/properties&gt;</span>
+
+  <span class="nt">&lt;dependencies&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>junit<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>3.8.1<span class="nt">&lt;/version&gt;</span>
+      <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+  <span class="nt">&lt;/dependencies&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+
+<p>De este código hay trozos que podemos intuir bastante bien con lo mencionado anteriormente. Del resto, el tag de <strong>properties</strong> indicará las propiedades de nuestro proyecto. Por ejemplo la codificación de los ficheros en <strong>UTF-8</strong> como vemos en esa línea.
+Y luego tenemos dependencies, que es la sección donde gestionaremos… ¿adivinas qué? Exacto, nuestras <strong>dependencias</strong>. Pero eso lo retomaremos más adelante.</p>
+
+<p>De momento lo que tenemos que conseguir es que <strong>Maven</strong> se encargue por nosotros de gestionar el JRE. Esto se hace incluyendo un nuevo plugin en este archivo. Así que nos ponemos debajo de <strong>&lt; dependencies &gt;</strong> y escribimos lo siguiente:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;build&gt;</span>
+   <span class="nt">&lt;pluginManagement&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+     <span class="nt">&lt;plugin&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;configuration&gt;</span>
+       <span class="nt">&lt;source&gt;</span>1.8<span class="nt">&lt;/source&gt;</span>
+       <span class="nt">&lt;target&gt;</span>1.8<span class="nt">&lt;/target&gt;</span>
+      <span class="nt">&lt;/configuration&gt;</span>
+     <span class="nt">&lt;/plugin&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+   <span class="nt">&lt;/pluginManagement&gt;</span>
+  <span class="nt">&lt;/build&gt;</span>
+</code></pre></div></div>
+
+<p>¿Qué hemos hecho?
+Dentro de <strong>build</strong> hemos creado la etiqueta <strong>pluginManagement</strong> para gestionar los <strong>plugins</strong> de <strong>Maven</strong>. Y dentro de eso hemos creado una llamada <strong>plugins</strong> que será la que los contendrá.
+Después hemos procedido a añadir un nuevo <strong>plugin</strong>, en este caso <strong>maven-compiler-plugin</strong>. Y luego le hemos indicado, en su configuración, que el <strong>source</strong> y el <strong>target</strong> apunten a la versión que tengamos del <strong>JRE</strong> en nuestro dispositivo. En mi caso, el 1.8.</p>
+
+<p>Ahora guardamos el fichero y no te preocupes si ves un error en el explorador de proyectos, en el siguiente paso se solucionará.
+Vamos al proyecto <strong>Maven</strong> y pulsamos <em><strong>botón derecho → Maven → Update Project</strong></em>…</p>
+
+<p><img src="/img/posts/20170728_8.png" alt="update maven project" /></p>
+
+<p>En la ventana que se abrirá marcamos con un check nuestro proyecto dejando la siguiente configuración</p>
+
+<p><img src="/img/posts/20170728_9.png" alt="update maven project 2" /></p>
+
+<p>Cuando acabe el proceso de actualización veremos como desaparece el error de nuestro proyecto.</p>
+
+<p>Hecho esto, vamos a lanzar por primera vez nuestro proyecto <strong>Maven</strong> y aprovecharemos para ver los ciclos de vida posibles que tiene.
+Hacemos clic con el botón derecho sobre nuestro proyecto y vamos a <strong>Run As</strong>. Ahí nos aparecerán diversas opciones</p>
+
+<p><img src="/img/posts/20170728_10.png" alt="run maven project" /></p>
+
+<p>¿Qué hace cada una de ellas?</p>
+
+<ul>
+  <li><strong>Maven build</strong> → Compila el código del proyecto</li>
+  <li><strong>Maven clean</strong> → Elimina todos los ficheros hechos por los builds anteriores</li>
+  <li><strong>Maven generate-sources</strong> → Genera código para incluirlo en la compilación</li>
+  <li><strong>Maven install</strong> → Instala los paquetes de la biblioteca en un repositorio local, compila el proyecto y lo comprueba.</li>
+</ul>
+
+<p>Así que para nuestra prueba, vamos a elegir la opción de <strong>Maven install</strong>.
+Se nos mostrará una ventana de consola con el proceso actual de dicha acción.</p>
+
+<p><img src="/img/posts/20170728_11.png" alt="run maven project 2" /></p>
+
+<p>Si vemos un mensaje de <strong>BUILD SUCCESS</strong> como en la imagen de arriba significa que el proceso se ha completado con éxito.</p>
+
+<p>Es posible que, en vez de un mensaje de éxito, veamos lo siguiente:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>No compiler is provided <span class="k">in </span>this environment. Perhaps you are running on a JRE rather than a JDK
+</code></pre></div></div>
+
+<p>Y nos esté dando un error. Esto quiere decir que tenemos mal configurada la ruta al <strong>JDK</strong> en el <strong>workspace de Eclipse</strong>.</p>
+
+<p>Para solucionarlo hay que ir a <strong>Window → Preferences → Java → Installed JRE</strong>. Lo que debe aparecer es la versión de <strong>JDK</strong>, como en esta imagen</p>
+
+<p><img src="/img/posts/20170728_12.png" alt="installed jre" /></p>
+
+<p>Si en vez de eso tenemos el <strong>JRE</strong> es el motivo de que veamos ese error. Para subsanarlo pulsamos sobre <strong>Add → Standard VM → Directory</strong> y elegimos la carpeta de instalación de nuestro <strong>JDK</strong></p>
+
+<p><img src="/img/posts/20170728_13.png" alt="installed jre 2" /></p>
+
+<p><img src="/img/posts/20170728_14.png" alt="installed jre 3" /></p>
+
+<p>Aplicamos los cambios, aceptamos y ya podemos repetir el proceso del <strong>Maven</strong> install habiendo corregido ese error.</p>
+
+<h2 id="dependencias">Dependencias</h2>
+
+<p>Para gestionar las dependencias, dentro del <strong>POM</strong> deberemos fijarnos en el tag <strong>dependencies</strong>.
+Por defecto tenemos cargada la librería de junit, que nos servirá para ver un ejemplo de cómo añadir más librerías.</p>
+
+<p>Tenemos, al igual que con los plugin, los tag de groupId y artifactId. Aparte de eso, lo que nos interesa también es el tercer tag, version, que nos permitirá indicar la versión de la librería y, en caso de tener que modificarla, bastará con cambiar ese valor y volver a hacer un install.</p>
+
+<p>Así pues… ¿de dónde podemos conseguir las dependencias?
+Bien, hay varios sitios y Google lo sabe todo, pero así más concretamente hay una página web llamada <a href="https://mvnrepository.com/">MVN Repository</a> que cuenta con un amplio abanico de dependencias organizadas por temas que es de lo mejorcito que podemos encontrar.</p>
+
+<p>Simplemente entraremos en la dependencia que nos interese, por ejemplo el conector JDBC de MySQL, elegiremos la versión que queramos cargar en nuestro proyecto y en la parte inferior de la página nos aparecerá el código XML de Maven que deberemos copiar en el <strong>POM</strong>.</p>
+
+<p><img src="/img/posts/20170728_15.png" alt="maven repository" /></p>
+
+<p>De ese modo nuestro POM quedaría tal que así</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+  <span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+
+  <span class="nt">&lt;groupId&gt;</span>com.programandoapasitos<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>nombrePrueba<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>0.0.1-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;packaging&gt;</span>jar<span class="nt">&lt;/packaging&gt;</span>
+
+  <span class="nt">&lt;name&gt;</span>nombrePrueba<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;url&gt;</span>http://maven.apache.org<span class="nt">&lt;/url&gt;</span>
+
+  <span class="nt">&lt;properties&gt;</span>
+    <span class="nt">&lt;project.build.sourceEncoding&gt;</span>UTF-8<span class="nt">&lt;/project.build.sourceEncoding&gt;</span>
+  <span class="nt">&lt;/properties&gt;</span>
+
+  <span class="nt">&lt;dependencies&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>junit<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>3.8.1<span class="nt">&lt;/version&gt;</span>
+      <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    
+    <span class="c">&lt;!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java --&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+   <span class="nt">&lt;groupId&gt;</span>mysql<span class="nt">&lt;/groupId&gt;</span>
+   <span class="nt">&lt;artifactId&gt;</span>mysql-connector-java<span class="nt">&lt;/artifactId&gt;</span>
+   <span class="nt">&lt;version&gt;</span>5.1.6<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+  <span class="nt">&lt;/dependencies&gt;</span>
+  
+  <span class="nt">&lt;build&gt;</span>
+   <span class="nt">&lt;pluginManagement&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+     <span class="nt">&lt;plugin&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;configuration&gt;</span>
+       <span class="nt">&lt;source&gt;</span>1.8<span class="nt">&lt;/source&gt;</span>
+       <span class="nt">&lt;target&gt;</span>1.8<span class="nt">&lt;/target&gt;</span>
+      <span class="nt">&lt;/configuration&gt;</span>
+     <span class="nt">&lt;/plugin&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+   <span class="nt">&lt;/pluginManagement&gt;</span>
+  <span class="nt">&lt;/build&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+
+<p>Y después de hacer un <strong>Maven install</strong> ya estaremos en disposición de usar nuestra nueva dependencia.</p>
+
+<p>Hasta aquí mi pequeño tutorial para empezar a desenvolverte en Maven. Sin duda hay muchísima más chicha que aprender, por eso te recomiendo que para profundizar mucho más en el tema visites los siguientes enlaces</p>
+
+<ul>
+  <li><a href="http://www.java2s.com/Tutorials/Java/Maven_Tutorial/index.htm">Java2S Maven Tutorial</a></li>
+  <li><a href="https://maven.apache.org/pom.html">Apache Maven POM</a></li>
+</ul>
+
+<p><strong>¡Salud y coding!</strong></p>]]></content><author><name>Inazio Claver</name></author><category term="Java" /><category term="java" /><category term="maven" /><category term="eclipse" /><category term="pom" /><category term="dependencias" /><category term="plugins" /><category term="arquetipos" /><category term="jdk" /><summary type="html"><![CDATA[Aprende a usar Maven en Eclipse desde cero paso a paso. Tutorial completo sobre creación de proyectos, configuración del POM.xml, gestión de dependencias, plugins, arquetipos y solución de errores JDK/JRE con ejemplos prácticos.]]></summary></entry><entry><title type="html">Resolver sudokus en Java</title><link href="http://localhost:4000/posts/2017/07/19/resolver-sudokus-con-java/" rel="alternate" type="text/html" title="Resolver sudokus en Java" /><published>2017-07-19T06:10:00+02:00</published><updated>2017-07-19T06:10:00+02:00</updated><id>http://localhost:4000/posts/2017/07/19/resolver-sudokus-con-java</id><content type="html" xml:base="http://localhost:4000/posts/2017/07/19/resolver-sudokus-con-java/"><![CDATA[<p>El otro día estaba haciendo el <strong>sudoku</strong> del periódico y me plantee la siguiente duda. ¿Cómo sería un <strong>programa que te resolviese el sudoku</strong> automáticamente?</p>
+
+<p>Para el que no lo sepa, un <strong>sudoku</strong> es un pasatiempo japonés consistente en rellenar un tablero de 9x9, que a su vez está divido en secciones de 3x3, con números del 1 al nueve de tal manera que ninguno de ellos puede estar repetido en ninguna fila, columna o secciones.
+Como curiosidad, sabed que el problema de un <strong>sudoku</strong> sólo se considera bien planteado si su solución es única, consiguiéndose esto sólo si, como mínimo, hay ya preestablecidas 17 cifras dentro del tablero <a href="https://es.wikipedia.org/wiki/Sudoku">(Wikipedia intensified)</a>.</p>
+
+<p>Dicho esto, vayamos a la resolución del problema.
+La idea que se me ocurrió, y que luego he ido leyendo que es la más sencilla de implementar, es la del <strong>algoritmo de marcha atrás</strong>.</p>
+
+<p>Es decir, leeremos el tablero y, dejando siempre fijas las posiciones que ya están preestablecidas, iremos casilla por casilla aumentando su valor en uno. Si el valor de esa casilla cumple con las reglas del <strong>sudoku</strong> (ya sabéis, no repetirse ni en su fila, columna ni sección) la dejamos tal cual y saltamos a la siguiente.
+Si no se cumple, incrementará el valor de dicha casilla hasta que esa condición se cumpla o hasta sobrepasar el valor de 9.
+En ese caso de sobrepasar dicho valor, lo que haremos será retroceder a la anterior casilla modificable e incrementar su valor en 1, repitiendo el proceso anterior.</p>
+
+<p>De este modo, solucionaríamos un <strong>sudoku</strong> cuando todas las casillas estén completamente validadas, y sería irresoluble si la primera casilla editable supera el valor de 9.</p>
+
+<p>Es decir, que el método empleado lo podemos considerar como un ataque de fuerza bruta. Costoso en tiempos computacionales, pero era la solución más sencilla de implementar que se me ocurrió. Probablemente haya muchas mejores formas de hacerlo, podéis decirme las vuestras en los comentarios.</p>
+
+<h2 id="a-programar">¡A programar!</h2>
+
+<p>Sabiendo esto, vamos a pasar al código. Lo primero que debéis saber es que aquí sólo voy a mostrar la lógica de la resolución. Puedes acceder al código completo en <a href="https://github.com/inazense/SudokuSolver">mi repositorio de Github</a>. Incluye la interfaz gráfica entre otras mejoras que me encuentro desarrollando actualmente.</p>
+
+<h3 id="participantes">Participantes</h3>
+
+<p>El primer paso será definir los participantes que necesitaremos para <strong>solucionar el sudoku</strong>, que serán un tablero, las casillas que lo compongan y las secciones en las que lo dividiremos.</p>
+
+<p>Así pues, vamos a ir de menos a más.
+Lo primero será definir las secciones, en una enumeración.</p>
+
+<p><strong>Enum Sector</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="nc">Sector</span>
+<span class="o">{</span>
+ <span class="no">PRIMERO</span><span class="o">,</span> <span class="no">SEGUNDO</span><span class="o">,</span> <span class="no">TERCERO</span><span class="o">,</span>
+ <span class="no">CUARTO</span><span class="o">,</span> <span class="no">QUINTO</span><span class="o">,</span> <span class="no">SEXTO</span><span class="o">,</span>
+ <span class="no">SEPTIMO</span><span class="o">,</span> <span class="no">OCTAVO</span><span class="o">,</span> <span class="no">NOVENO</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Como podemos ver, es una enumeración sencilla en la que nos limitamos a nombrar los nueve sectores de nuestro tablero.</p>
+
+<p><strong>Casilla</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Casilla</span> <span class="o">{</span>
+
+ <span class="c1">/// PROPIEDADES</span>
+ <span class="kd">private</span> <span class="kt">int</span> <span class="n">valor</span><span class="o">;</span>
+ <span class="kd">private</span> <span class="kt">int</span> <span class="n">posX</span><span class="o">;</span>
+ <span class="kd">private</span> <span class="kt">int</span> <span class="n">posY</span><span class="o">;</span>
+ <span class="kd">private</span> <span class="nc">Sector</span> <span class="n">sector</span><span class="o">;</span>
+ <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">editable</span><span class="o">;</span>
+ 
+ <span class="c1">/// CONSTRUCTORES</span>
+ <span class="cm">/**
+  * Inicializa una casilla vacía
+  */</span>
+ <span class="kd">public</span> <span class="nf">Casilla</span><span class="o">()</span> <span class="o">{}</span>
+ 
+ <span class="cm">/**
+  * 
+  * @param valor
+  * @param posX
+  * @param posY
+  * @param sector
+  * @param editable
+  */</span>
+ <span class="kd">public</span> <span class="nf">Casilla</span><span class="o">(</span><span class="kt">int</span> <span class="n">valor</span><span class="o">,</span> <span class="kt">int</span> <span class="n">posX</span><span class="o">,</span> <span class="kt">int</span> <span class="n">posY</span><span class="o">,</span> <span class="nc">Sector</span> <span class="n">sector</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">editable</span><span class="o">)</span> <span class="o">{</span>
+  
+  <span class="k">this</span><span class="o">.</span><span class="na">valor</span>   <span class="o">=</span> <span class="n">valor</span><span class="o">;</span>
+  <span class="k">this</span><span class="o">.</span><span class="na">posX</span>   <span class="o">=</span> <span class="n">posX</span><span class="o">;</span>
+  <span class="k">this</span><span class="o">.</span><span class="na">posY</span>   <span class="o">=</span> <span class="n">posY</span><span class="o">;</span>
+  <span class="k">this</span><span class="o">.</span><span class="na">sector</span>  <span class="o">=</span> <span class="n">sector</span><span class="o">;</span>
+  <span class="k">this</span><span class="o">.</span><span class="na">editable</span>  <span class="o">=</span> <span class="n">editable</span><span class="o">;</span>
+ <span class="o">}</span>
+ 
+ <span class="c1">/// METODOS</span>
+ 
+ <span class="cm">/**
+  * Establece el sector dependiendo de la posición X e Y de la casilla
+  */</span>
+ <span class="kd">public</span> <span class="kt">void</span> <span class="nf">establecerSectorSegunPosicion</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">switch</span><span class="o">(</span><span class="n">posX</span><span class="o">)</span> <span class="o">{</span>
+  
+  <span class="k">case</span> <span class="mi">0</span><span class="o">:</span>
+  <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+  <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
+   <span class="k">switch</span><span class="o">(</span><span class="n">posY</span><span class="o">)</span> <span class="o">{</span>
+   <span class="k">case</span> <span class="mi">0</span><span class="o">:</span>
+   <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+   <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">setSector</span><span class="o">(</span><span class="nc">Sector</span><span class="o">.</span><span class="na">PRIMERO</span><span class="o">);</span>
+    <span class="k">break</span><span class="o">;</span>
+   <span class="k">case</span> <span class="mi">3</span><span class="o">:</span>
+   <span class="k">case</span> <span class="mi">4</span><span class="o">:</span>
+   <span class="k">case</span> <span class="mi">5</span><span class="o">:</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">setSector</span><span class="o">(</span><span class="nc">Sector</span><span class="o">.</span><span class="na">SEGUNDO</span><span class="o">);</span>
+    <span class="k">break</span><span class="o">;</span>
+   <span class="k">case</span> <span class="mi">6</span><span class="o">:</span>
+   <span class="k">case</span> <span class="mi">7</span><span class="o">:</span> 
+   <span class="k">case</span> <span class="mi">8</span><span class="o">:</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">setSector</span><span class="o">(</span><span class="nc">Sector</span><span class="o">.</span><span class="na">TERCERO</span><span class="o">);</span>
+    <span class="k">break</span><span class="o">;</span>
+   <span class="k">default</span><span class="o">:</span>
+    <span class="k">break</span><span class="o">;</span>
+   <span class="o">}</span>
+   <span class="k">break</span><span class="o">;</span>
+  <span class="k">case</span> <span class="mi">3</span><span class="o">:</span>
+  <span class="k">case</span> <span class="mi">4</span><span class="o">:</span>
+  <span class="k">case</span> <span class="mi">5</span><span class="o">:</span>
+   <span class="k">switch</span><span class="o">(</span><span class="n">posY</span><span class="o">)</span> <span class="o">{</span>
+   <span class="k">case</span> <span class="mi">0</span><span class="o">:</span>
+   <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+   <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">setSector</span><span class="o">(</span><span class="nc">Sector</span><span class="o">.</span><span class="na">CUARTO</span><span class="o">);</span>
+    <span class="k">break</span><span class="o">;</span>
+   <span class="k">case</span> <span class="mi">3</span><span class="o">:</span>
+   <span class="k">case</span> <span class="mi">4</span><span class="o">:</span>
+   <span class="k">case</span> <span class="mi">5</span><span class="o">:</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">setSector</span><span class="o">(</span><span class="nc">Sector</span><span class="o">.</span><span class="na">QUINTO</span><span class="o">);</span>
+    <span class="k">break</span><span class="o">;</span>
+   <span class="k">case</span> <span class="mi">6</span><span class="o">:</span>
+   <span class="k">case</span> <span class="mi">7</span><span class="o">:</span> 
+   <span class="k">case</span> <span class="mi">8</span><span class="o">:</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">setSector</span><span class="o">(</span><span class="nc">Sector</span><span class="o">.</span><span class="na">SEXTO</span><span class="o">);</span>
+    <span class="k">break</span><span class="o">;</span>
+   <span class="k">default</span><span class="o">:</span>
+    <span class="k">break</span><span class="o">;</span>
+   <span class="o">}</span>
+   <span class="k">break</span><span class="o">;</span>
+  <span class="k">case</span> <span class="mi">6</span><span class="o">:</span>
+  <span class="k">case</span> <span class="mi">7</span><span class="o">:</span>
+  <span class="k">case</span> <span class="mi">8</span><span class="o">:</span>
+   <span class="k">switch</span><span class="o">(</span><span class="n">posY</span><span class="o">)</span> <span class="o">{</span>
+   <span class="k">case</span> <span class="mi">0</span><span class="o">:</span>
+   <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+   <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">setSector</span><span class="o">(</span><span class="nc">Sector</span><span class="o">.</span><span class="na">SEPTIMO</span><span class="o">);</span>
+    <span class="k">break</span><span class="o">;</span>
+   <span class="k">case</span> <span class="mi">3</span><span class="o">:</span>
+   <span class="k">case</span> <span class="mi">4</span><span class="o">:</span>
+   <span class="k">case</span> <span class="mi">5</span><span class="o">:</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">setSector</span><span class="o">(</span><span class="nc">Sector</span><span class="o">.</span><span class="na">OCTAVO</span><span class="o">);</span>
+    <span class="k">break</span><span class="o">;</span>
+   <span class="k">case</span> <span class="mi">6</span><span class="o">:</span>
+   <span class="k">case</span> <span class="mi">7</span><span class="o">:</span> 
+   <span class="k">case</span> <span class="mi">8</span><span class="o">:</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">setSector</span><span class="o">(</span><span class="nc">Sector</span><span class="o">.</span><span class="na">NOVENO</span><span class="o">);</span>
+    <span class="k">break</span><span class="o">;</span>
+   <span class="k">default</span><span class="o">:</span>
+    <span class="k">break</span><span class="o">;</span>
+   <span class="o">}</span>
+   <span class="k">break</span><span class="o">;</span>
+  <span class="o">}</span>
+ <span class="o">}</span>
+
+ <span class="cm">/**
+  * Devuelve el valor de la casilla
+  * @return Entero entre 0 y 9
+  */</span>
+ <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getValor</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">valor</span><span class="o">;</span>
+ <span class="o">}</span>
+
+ <span class="cm">/**
+  * Establece el valor de la casilla
+  * @param valor Entero entre 0 y 9
+  */</span>
+ <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setValor</span><span class="o">(</span><span class="kt">int</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">this</span><span class="o">.</span><span class="na">valor</span> <span class="o">=</span> <span class="n">valor</span><span class="o">;</span>
+ <span class="o">}</span>
+
+ <span class="cm">/**
+  * Devuelve la posición horizontal
+  * @return Entero entre 0 y 8
+  */</span>
+ <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getPosX</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">posX</span><span class="o">;</span>
+ <span class="o">}</span>
+
+ <span class="cm">/**
+  * Establece la posición horizontal
+  * @param posX Entero entre 0 y 8
+  */</span>
+ <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPosX</span><span class="o">(</span><span class="kt">int</span> <span class="n">posX</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">this</span><span class="o">.</span><span class="na">posX</span> <span class="o">=</span> <span class="n">posX</span><span class="o">;</span>
+ <span class="o">}</span>
+
+ <span class="cm">/**
+  * Devuelve la posición vertical
+  * @return Entero entre 0 y 8
+  */</span>
+ <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getPosY</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">posY</span><span class="o">;</span>
+ <span class="o">}</span>
+
+ <span class="cm">/**
+  * Establece la posición vertical
+  * @param posY Entero entre 0 y 8
+  */</span>
+ <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPosY</span><span class="o">(</span><span class="kt">int</span> <span class="n">posY</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">this</span><span class="o">.</span><span class="na">posY</span> <span class="o">=</span> <span class="n">posY</span><span class="o">;</span>
+ <span class="o">}</span>
+
+ <span class="cm">/**
+  * Devuelve el sector de la casilla
+  * @return Sector preestablecido en Enum Sector
+  */</span>
+ <span class="kd">public</span> <span class="nc">Sector</span> <span class="nf">getSector</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">sector</span><span class="o">;</span>
+ <span class="o">}</span>
+
+ <span class="cm">/**
+  * Establece el sector de la casilla
+  * @param sector Propiedad del enum Sector
+  */</span>
+ <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSector</span><span class="o">(</span><span class="nc">Sector</span> <span class="n">sector</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">this</span><span class="o">.</span><span class="na">sector</span> <span class="o">=</span> <span class="n">sector</span><span class="o">;</span>
+ <span class="o">}</span>
+
+ <span class="cm">/**
+  * Devuelve si la casilla tiene un valor fijo o no
+  * @return True -&gt; Valor fijo. False -&gt; Valor modificable
+  */</span>
+ <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEditable</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">editable</span><span class="o">;</span>
+ <span class="o">}</span>
+
+ <span class="cm">/**
+  * Establece la opción de editar la casilla
+  * @param editable True -&gt; editable. False -&gt; no editable
+  */</span>
+ <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setEditable</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">editable</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">this</span><span class="o">.</span><span class="na">editable</span> <span class="o">=</span> <span class="n">editable</span><span class="o">;</span>
+ <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>En esta clase establecemos las propiedades de cada una de nuestras casillas.
+Su posición horizontal y vertical, su valor, el sector al que pertenece y si es o no editable.
+En los métodos creamos los <strong>getters</strong> y <strong>setters</strong> y un método más, el de establecerSectorSegunPosicion() que usaremos para indicar a que sector pertenece nuestra casilla.</p>
+
+<p><strong>Tablero</strong></p>
+
+<p>Esta clase vamos a comentarla un poco más, aunque también es muy sencillita.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Tablero</span> <span class="o">{</span>
+
+ <span class="c1">/// PROPIEDADES </span>
+ 
+ <span class="kd">private</span> <span class="nc">Casilla</span><span class="o">[][]</span> <span class="n">casillas</span><span class="o">;</span>
+ 
+ <span class="c1">/// CONSTRUCTOR</span>
+ 
+ <span class="cm">/**
+  * Genera un tablero de sudoku básico de 9x9
+  */</span>
+ <span class="kd">public</span> <span class="nf">Tablero</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">this</span><span class="o">.</span><span class="na">casillas</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Casilla</span><span class="o">[</span><span class="mi">9</span><span class="o">][</span><span class="mi">9</span><span class="o">];</span>
+ <span class="o">}</span>
+ 
+ <span class="c1">/// METODOS</span>
+ 
+ <span class="cm">/**
+  * Devuelve las casillas del tablero
+  * @return
+  */</span>
+ <span class="kd">public</span> <span class="nc">Casilla</span><span class="o">[][]</span> <span class="nf">getCasillas</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">casillas</span><span class="o">;</span>
+ <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Lo primero, vemos que la definición de las propiedades y del constructor no tiene mucha miga. Simplemente establecemos una matriz de casillas y en su constructor la inicializamos. Además generamos un getter para nuestras casillas.</p>
+
+<p>Hecho esto, vamos a ver los diferentes métodos que podemos emplear:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * Inicializa el tablero estableciendo por defecto los valores:
+ * Valor  = 0
+ * PosX  = i
+ * PosY  = j
+ * Editable = true
+ * Sector  = Según posición
+ */</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">inicializarTablero</span><span class="o">()</span> <span class="o">{</span>
+ 
+ <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="o">.</span><span class="na">casillas</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+  <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="k">this</span><span class="o">.</span><span class="na">casillas</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">length</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+   <span class="nc">Casilla</span> <span class="n">casilla</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Casilla</span><span class="o">();</span>
+   <span class="n">casilla</span><span class="o">.</span><span class="na">setValor</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+   <span class="n">casilla</span><span class="o">.</span><span class="na">setPosX</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+   <span class="n">casilla</span><span class="o">.</span><span class="na">setPosY</span><span class="o">(</span><span class="n">j</span><span class="o">);</span>
+   <span class="n">casilla</span><span class="o">.</span><span class="na">setEditable</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+   <span class="n">casilla</span><span class="o">.</span><span class="na">establecerSectorSegunPosicion</span><span class="o">();</span>
+   
+   <span class="k">this</span><span class="o">.</span><span class="na">casillas</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">casilla</span><span class="o">;</span>
+  <span class="o">}</span>
+ <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Este método es el encargado de inicializar una por una nuestras casillas. Recorremos la matriz y establecemos su posición, calculamos su sector, le indicamos que es editable y establecemos un valor por defecto de 0.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * Establece una nueva casilla en la posición que tenga configurada la misma
+ * @param casilla
+ */</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">editarCasilla</span><span class="o">(</span><span class="nc">Casilla</span> <span class="n">casilla</span><span class="o">)</span> <span class="o">{</span>
+ <span class="k">this</span><span class="o">.</span><span class="na">casillas</span><span class="o">[</span><span class="n">casilla</span><span class="o">.</span><span class="na">getPosX</span><span class="o">()][</span><span class="n">casilla</span><span class="o">.</span><span class="na">getPosY</span><span class="o">()]</span> <span class="o">=</span> <span class="n">casilla</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Aquí le indicamos que copie la casilla pasada  por parámetro a la casilla que está en el tablero con su misma posición, horizontal y vertical.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * Reestablece el valor de la casilla según su posición
+ * @param x Posición horizontal
+ * @param y Posición vertical
+ */</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">reestablecerCasillaPorPosicion</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">y</span><span class="o">)</span> <span class="o">{</span>
+ <span class="k">this</span><span class="o">.</span><span class="na">casillas</span><span class="o">[</span><span class="n">x</span><span class="o">][</span><span class="n">y</span><span class="o">].</span><span class="na">setValor</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>En este método reseteamos el valor de una casilla pasando por parámetro su posición dentro de la matriz.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * Inserta los valores de la matriz en la misma casilla respecto a su posición
+ * Ha tenido que inicializarse la matriz de casillas previamente
+ * @param matriz Matriz de enteros entre 0 y 9
+ */</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">insertarValores</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">matriz</span><span class="o">)</span> <span class="o">{</span>
+ 
+ <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">matriz</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+  <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">matriz</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">length</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+   <span class="k">if</span> <span class="o">(</span><span class="n">matriz</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">casillas</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">].</span><span class="na">setEditable</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+   <span class="o">}</span>
+   <span class="k">this</span><span class="o">.</span><span class="na">casillas</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">].</span><span class="na">setValor</span><span class="o">(</span><span class="n">matriz</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]);</span>
+  <span class="o">}</span>
+ <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Y por último, con este método rellenamos nuestra matriz de casillas usando la matriz de enteros pasada por parámetro. Copiamos los valores en las mismas posiciones. También indicamos que si ese valor es 0, la casilla siga como editable y si no, que pase a ser no editable.
+Éste método ha de usarse SIEMPRE una vez que ha inicializado todas las casillas</p>
+
+<p><strong>Solucionador</strong></p>
+
+<p>Esta clase la vamos a tratar igual que Tablero, yendo paso a paso por sus métodos. Es una clase exclusivamente dedicada a operar para resolver el sudoku y no tiene ninguna propiedad suya ni ningún constructor personalizado, así que la definimos simplemente así:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Solucionador</span> <span class="o">{</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Hecho esto, vamos a ver los métodos uno por uno.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * Devuelve un array con todas las casillas en las que la propiedad editable es verdadera
+ * @param casillas Matriz de casillas
+ * @return Array con las casillas editables
+ */</span>
+<span class="kd">private</span> <span class="nc">ArrayList</span> <span class="nf">extraerCasillasEditables</span><span class="o">(</span><span class="nc">Casilla</span><span class="o">[][]</span> <span class="n">casillas</span><span class="o">)</span> <span class="o">{</span>
+ <span class="nc">ArrayList</span> <span class="n">editables</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">();</span>
+ 
+ <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">casillas</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++</span> <span class="o">)</span> <span class="o">{</span>
+  <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">casillas</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">length</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+   <span class="k">if</span> <span class="o">(</span><span class="n">casillas</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">].</span><span class="na">isEditable</span><span class="o">())</span> <span class="o">{</span>
+    <span class="n">editables</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">casillas</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]);</span>
+   <span class="o">}</span>
+  <span class="o">}</span>
+ <span class="o">}</span>
+ 
+ <span class="k">return</span> <span class="n">editables</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Éste método es utilizado para permitirnos saber que casillas hemos de recorrer incrementando su valor, es decir, que casillas son editables por nuestro programa. Así podremos avanzar / retroceder entre ellas sin tenernos que preocupar de controlar los dos niveles de una matriz.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * Extrae las casillas que contengan la misma fila, columna o sector que la casilla actual
+ * @param tablero Tablero de 9x9
+ * @param actual Casilla actual
+ * @return ArrayList que contiene tres arrayList de casillas. Fila, columna y sector
+ */</span>
+<span class="kd">private</span> <span class="nc">ArrayList</span><span class="o">&gt;</span> <span class="nf">extraerCasillasComparables</span><span class="o">(</span><span class="nc">Tablero</span> <span class="n">tablero</span><span class="o">,</span> <span class="nc">Casilla</span> <span class="n">actual</span><span class="o">)</span> <span class="o">{</span>
+ 
+ <span class="nc">ArrayList</span> <span class="n">fila</span>  <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">();</span>
+ <span class="nc">ArrayList</span> <span class="n">columna</span>  <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">();</span>
+ <span class="nc">ArrayList</span> <span class="n">sector</span>  <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">();</span>
+ 
+ <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">tablero</span><span class="o">.</span><span class="na">getCasillas</span><span class="o">().</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+  <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">tablero</span><span class="o">.</span><span class="na">getCasillas</span><span class="o">()[</span><span class="n">i</span><span class="o">].</span><span class="na">length</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+   <span class="k">if</span> <span class="o">(</span><span class="n">tablero</span><span class="o">.</span><span class="na">getCasillas</span><span class="o">()[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">].</span><span class="na">getPosX</span><span class="o">()</span> <span class="o">==</span> <span class="n">actual</span><span class="o">.</span><span class="na">getPosX</span><span class="o">())</span> <span class="o">{</span>
+    <span class="n">fila</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">tablero</span><span class="o">.</span><span class="na">getCasillas</span><span class="o">()[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]);</span>
+   <span class="o">}</span>
+   
+   <span class="k">if</span> <span class="o">(</span><span class="n">tablero</span><span class="o">.</span><span class="na">getCasillas</span><span class="o">()[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">].</span><span class="na">getPosY</span><span class="o">()</span> <span class="o">==</span> <span class="n">actual</span><span class="o">.</span><span class="na">getPosY</span><span class="o">())</span> <span class="o">{</span>
+    <span class="n">columna</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">tablero</span><span class="o">.</span><span class="na">getCasillas</span><span class="o">()[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]);</span>
+   <span class="o">}</span>
+   
+   <span class="k">if</span> <span class="o">(</span><span class="n">tablero</span><span class="o">.</span><span class="na">getCasillas</span><span class="o">()[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">].</span><span class="na">getSector</span><span class="o">()</span> <span class="o">==</span> <span class="n">actual</span><span class="o">.</span><span class="na">getSector</span><span class="o">())</span> <span class="o">{</span>
+    <span class="n">sector</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">tablero</span><span class="o">.</span><span class="na">getCasillas</span><span class="o">()[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]);</span>
+   <span class="o">}</span>
+  <span class="o">}</span>
+ <span class="o">}</span>
+ 
+ <span class="nc">ArrayList</span><span class="o">&gt;</span> <span class="n">resultado</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&gt;();</span>
+ <span class="n">resultado</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">fila</span><span class="o">);</span>
+ <span class="n">resultado</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">columna</span><span class="o">);</span>
+ <span class="n">resultado</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">sector</span><span class="o">);</span>
+ 
+ <span class="k">return</span> <span class="n">resultado</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Aquí lo que hacemos es extraer todas las casillas que coincidan con la fila, columna o sector de la casilla que pasamos como parámetro y que esté dentro del tablero (valga la redundancia, ¿verdad?) para usarla como comparativas y validar si es correcto.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * Valida la fila, columna y sector. Si no se repite ningun numero (sin contar el 0)
+ * es una lista válida
+ * @param listas ArrayList de arraylist de casillas
+ * @return True si validacion correcta. False en caso contrario
+ */</span>
+<span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">validacionFCS</span><span class="o">(</span><span class="nc">ArrayList</span><span class="o">&gt;</span> <span class="n">listas</span><span class="o">)</span> <span class="o">{</span>
+ 
+ <span class="k">for</span> <span class="o">(</span><span class="nc">ArrayList</span> <span class="n">lista</span> <span class="o">:</span> <span class="n">listas</span><span class="o">)</span> <span class="o">{</span>
+  
+  <span class="nc">ArrayList</span> <span class="n">valores</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+  <span class="n">valores</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">();</span>
+  
+  <span class="k">for</span> <span class="o">(</span><span class="nc">Casilla</span> <span class="n">casilla</span> <span class="o">:</span> <span class="n">lista</span><span class="o">)</span> <span class="o">{</span>
+   <span class="k">if</span> <span class="o">(</span><span class="n">casilla</span><span class="o">.</span><span class="na">getValor</span><span class="o">()</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">valores</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">casilla</span><span class="o">.</span><span class="na">getValor</span><span class="o">()))</span> <span class="o">{</span>
+     <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">else</span> <span class="o">{</span>
+     <span class="n">valores</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">casilla</span><span class="o">.</span><span class="na">getValor</span><span class="o">());</span>
+    <span class="o">}</span>
+   <span class="o">}</span>
+  <span class="o">}</span>
+ <span class="o">}</span>
+ 
+ <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Habiendo extraido los valores de fila, columan y sector con el método anterior, pasaremos esos arraylist (uno a uno) a este método, que se encargará de validar si en esa lista tenemos valores repetidos o no. Nos servirá para realizar la validación de las reglas del <strong>sudoku</strong>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * Método que controla las operaciones necesarias para solucionar el sudoku
+ * @param tablero Tablero que contiene las casillas del sudoku
+ * @return boolean. True = Sudoku solucionado. False = Sudoku sin solucionar
+ */</span>
+<span class="kd">public</span> <span class="nc">Tablero</span> <span class="nf">solucionarSudoku</span><span class="o">(</span><span class="nc">Tablero</span> <span class="n">tablero</span><span class="o">)</span> <span class="o">{</span>
+ 
+ <span class="nc">ArrayList</span> <span class="n">editables</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">extraerCasillasEditables</span><span class="o">(</span><span class="n">tablero</span><span class="o">.</span><span class="na">getCasillas</span><span class="o">());</span>
+ <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+ 
+ <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">editables</span><span class="o">.</span><span class="na">size</span><span class="o">())</span> <span class="o">{</span>
+  
+  <span class="c1">// Control de salida. Si el primer resultado es igual a 0 y su valor superior al máximo permitido por el sudoku, </span>
+  <span class="c1">// error al solucionar el sudoku</span>
+  <span class="nc">Casilla</span> <span class="n">actual</span> <span class="o">=</span> <span class="n">editables</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">actual</span><span class="o">.</span><span class="na">getValor</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">9</span><span class="o">)</span> <span class="o">{</span>
+   <span class="n">tablero</span><span class="o">.</span><span class="na">reestablecerCasillaPorPosicion</span><span class="o">(</span><span class="n">actual</span><span class="o">.</span><span class="na">getPosX</span><span class="o">(),</span> <span class="n">actual</span><span class="o">.</span><span class="na">getPosY</span><span class="o">());</span>
+   <span class="n">i</span><span class="o">--;</span>
+   
+   <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+   <span class="o">}</span>
+   <span class="k">else</span> <span class="o">{</span>
+    <span class="n">actual</span> <span class="o">=</span> <span class="n">editables</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+    <span class="n">actual</span><span class="o">.</span><span class="na">setValor</span><span class="o">(</span><span class="n">actual</span><span class="o">.</span><span class="na">getValor</span><span class="o">()</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
+    <span class="n">tablero</span><span class="o">.</span><span class="na">editarCasilla</span><span class="o">(</span><span class="n">actual</span><span class="o">);</span>
+   <span class="o">}</span>
+  <span class="o">}</span>
+  <span class="k">else</span> <span class="o">{</span>
+   <span class="k">if</span> <span class="o">(</span><span class="n">actual</span><span class="o">.</span><span class="na">getValor</span><span class="o">()</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">actual</span><span class="o">.</span><span class="na">setValor</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+   <span class="o">}</span>
+   
+   <span class="nc">ArrayList</span><span class="o">&gt;</span> <span class="n">listasParaValidar</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">extraerCasillasComparables</span><span class="o">(</span><span class="n">tablero</span><span class="o">,</span> <span class="n">actual</span><span class="o">);</span>
+   
+   <span class="c1">// Validar si listas cumplen reglas de Sudoku (salvo valor sin rellenar)</span>
+   <span class="k">if</span> <span class="o">(</span><span class="n">validacionFCS</span><span class="o">(</span><span class="n">listasParaValidar</span><span class="o">))</span> <span class="o">{</span>
+    <span class="n">tablero</span><span class="o">.</span><span class="na">editarCasilla</span><span class="o">(</span><span class="n">actual</span><span class="o">);</span>
+    <span class="n">i</span><span class="o">++;</span>
+   <span class="o">}</span>
+   <span class="k">else</span>
+   <span class="o">{</span>
+    <span class="n">actual</span><span class="o">.</span><span class="na">setValor</span><span class="o">(</span><span class="n">actual</span><span class="o">.</span><span class="na">getValor</span><span class="o">()</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">actual</span><span class="o">.</span><span class="na">getValor</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">9</span><span class="o">)</span> <span class="o">{</span>
+     <span class="n">tablero</span><span class="o">.</span><span class="na">reestablecerCasillaPorPosicion</span><span class="o">(</span><span class="n">actual</span><span class="o">.</span><span class="na">getPosX</span><span class="o">(),</span> <span class="n">actual</span><span class="o">.</span><span class="na">getPosY</span><span class="o">());</span>
+     <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">i</span><span class="o">--;</span>
+      <span class="n">actual</span> <span class="o">=</span> <span class="n">editables</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+      <span class="n">actual</span><span class="o">.</span><span class="na">setValor</span><span class="o">(</span><span class="n">actual</span><span class="o">.</span><span class="na">getValor</span><span class="o">()</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
+      <span class="n">tablero</span><span class="o">.</span><span class="na">editarCasilla</span><span class="o">(</span><span class="n">actual</span><span class="o">);</span>
+     <span class="o">}</span>
+     <span class="k">else</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+     <span class="o">}</span>
+    <span class="o">}</span>
+   <span class="o">}</span>
+  <span class="o">}</span>
+  
+ <span class="o">}</span>
+ 
+ <span class="k">return</span> <span class="n">tablero</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Y aquí tenemos al método padre. El método principal que se encarga de gestionar los anteriormente descritos.
+Le pasamos un tablero como parámetro, y su tarea es entrar en un bucle que recorra todas las casillas editables, del que sólo saldrá si ya no podemos darle más valor a la primera casilla editable, devolviendo un nulo, o si hemos llegado al final del <strong>sudoku</strong> completando todas las casillas, devolviendo el tablero ya resuelto.</p>
+
+<p>De esta forma, dependiendo del resultado nosotros podremos pintar el tablero ya resulto o mostrar un mensaje de “imposible resolver” o algo similar</p>
+
+<p><img src="/img/posts/20170719_1.png" alt="sudoku solved" /></p>
+
+<p><img src="/img/posts/20170719_2.png" alt="sudoku unsolved" /></p>
+
+<p>Como ya dije previamente, éste post solo muestra la <strong>lógica resolutiva del sudoku</strong>. Si quieres ver como está hecha la interfaz gráfica, como volcar un sudoku desde un CSV, una imagen… te recomiendo que revises el repositorio de <a href="https://github.com/inazense/SudokuSolver"><strong>SudokuSolver</strong> en GitHub</a>.</p>
+
+<p><strong>¡Salud y coding!</strong></p>]]></content><author><name>Inazio Claver</name></author><category term="Java" /><category term="java" /><category term="sudoku" /><category term="algoritmos" /><category term="backtracking" /><category term="swing" /><category term="interfaz-grafica" /><category term="recursividad" /><summary type="html"><![CDATA[Aprende a crear un programa que resuelve sudokus automáticamente en Java con algoritmo de backtracking. Tutorial completo paso a paso con código, interfaz gráfica Swing, validación de reglas y ejemplos prácticos de fuerza bruta.]]></summary></entry><entry><title type="html">Cómo leer ficheros CSV con Java</title><link href="http://localhost:4000/posts/2017/04/16/como-leer-ficheros-csv-con-java/" rel="alternate" type="text/html" title="Cómo leer ficheros CSV con Java" /><published>2017-04-16T06:10:00+02:00</published><updated>2017-04-16T06:10:00+02:00</updated><id>http://localhost:4000/posts/2017/04/16/como-leer-ficheros-csv-con-java</id><content type="html" xml:base="http://localhost:4000/posts/2017/04/16/como-leer-ficheros-csv-con-java/"><![CDATA[<p>Un <strong>CSV</strong> es un fichero de texto plano que consta de varios valores separados por comas (o punto y coma, según el caso), de modo que para procesar este tipo de ficheros en <strong>Java</strong> en principio debería bastar con leer el archivo línea a línea y partir las cadenas de texto por el separador correspondiente.</p>
+
+<p>Por ejemplo, si tenemos la siguiente línea, sería bastante sencillo de procesarlo:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Programando, a, pasitos
+</code></pre></div></div>
+
+<p>Pero sin embargo, si nos encontramos alguna de las siguientes entradas:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"Programando a pasitos", "Claver, Inazio", "CSV, Java"
+</code></pre></div></div>
+
+<p>ya es más complicado, al formar las comas parte de la cadena de texto que queremos extraer. Y si además tenemos en cuenta que las comillas también pueden ser parte de ese valor, se complicaría, teniendo que poner dobles comillas para indicar que es parte del valor de una cadena.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"Programando a pasitos", "Claver, Inazio", """Leyendo CSV"" en Java"
+</code></pre></div></div>
+
+<p>Vamos a ver como procesar los dos tipos de <strong>CSV</strong> anteriores, el sencillo y el complejo.</p>
+
+<h2 id="lectura-de-csv-sencillo">Lectura de CSV sencillo</h2>
+
+<p>El primer ejemplo va a ser la lectura de un .csv sencillo, en la que no tenemos que eliminar comillas y que el caracter del separador sólo se usa para delimitar los campos del .csv. Por ejemplo, este:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Inazio, Programando a pasitos, Tutorial
+Lectura, CSV, Java
+</code></pre></div></div>
+
+<p>Usaremos la coma como separador, quedándo nuestro código tal que así</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">SEPARADOR</span> <span class="o">=</span> <span class="s">","</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+ 
+ <span class="nc">BufferedReader</span> <span class="n">bufferLectura</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+ <span class="k">try</span> <span class="o">{</span>
+  <span class="c1">// Abrir el .csv en buffer de lectura</span>
+  <span class="n">bufferLectura</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileReader</span><span class="o">(</span><span class="s">"archivo.csv"</span><span class="o">));</span>
+  
+  <span class="c1">// Leer una linea del archivo</span>
+  <span class="nc">String</span> <span class="n">linea</span> <span class="o">=</span> <span class="n">bufferLectura</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
+  
+  <span class="k">while</span> <span class="o">(</span><span class="n">linea</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+   <span class="c1">// Sepapar la linea leída con el separador definido previamente</span>
+   <span class="nc">String</span><span class="o">[]</span> <span class="n">campos</span> <span class="o">=</span> <span class="n">linea</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="no">SEPARADOR</span><span class="o">);</span> 
+   
+   <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">campos</span><span class="o">));</span>
+   
+   <span class="c1">// Volver a leer otra línea del fichero</span>
+   <span class="n">linea</span> <span class="o">=</span> <span class="n">bufferLectura</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
+  <span class="o">}</span>
+ <span class="o">}</span> 
+ <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+ <span class="o">}</span>
+ <span class="k">finally</span> <span class="o">{</span>
+  <span class="c1">// Cierro el buffer de lectura</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">bufferLectura</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+   <span class="k">try</span> <span class="o">{</span>
+    <span class="n">bufferLectura</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+   <span class="o">}</span> 
+   <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+   <span class="o">}</span>
+  <span class="o">}</span>
+ <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Yendo por pasos</p>
+
+<ol>
+  <li>Debemos abrir el archivo .csv. Como queremos recorrerlo línea a línea, la clase <code class="language-plaintext highlighter-rouge">BufferedReader</code> es la más adecuada, porque nos permite usar el método <code class="language-plaintext highlighter-rouge">readLines()</code>.</li>
+  <li>Después de eso, armaremos un bucle que seguirá leyendo líneas de nuestro buffer hasta que devuelva null.</li>
+  <li>Dividiremos la cadena en un array de strings usando el método <code class="language-plaintext highlighter-rouge">split()</code> con el parámetro del separador.</li>
+  <li>Por último, si el buffer de léctura se ha abierto (que salvo que haya saltado alguna excepción a la hora de abrir el archivo, así será) deberemos cerrarlo en el bloque <code class="language-plaintext highlighter-rouge">finally</code>.</li>
+</ol>
+
+<h2 id="lectura-de-csv-complejo">Lectura de CSV complejo</h2>
+
+<p>A la hora de leer un CSV complejo, como el que sigue:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"Programando a pasitos", "Claver, Inazio", "CSV, Java"
+</code></pre></div></div>
+
+<p>echaremos mano de la librería <a href="https://opencsv.sourceforge.net/">OpenCSV</a>. Nos descargamos el jar desde aquí, y escribiremos el siguiente código:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">char</span> <span class="no">SEPARADOR</span> <span class="o">=</span> <span class="sc">';'</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">char</span> <span class="no">COMILLAS</span> <span class="o">=</span> <span class="sc">'"'</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+ 
+ <span class="nc">CSVReader</span> <span class="n">lector</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+ 
+ <span class="k">try</span> <span class="o">{</span>
+  <span class="c1">// Abrir el .csv</span>
+  <span class="n">lector</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CSVReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileReader</span><span class="o">(</span><span class="s">"archivo.csv"</span><span class="o">),</span> <span class="no">SEPARADOR</span><span class="o">,</span> <span class="no">COMILLAS</span><span class="o">);</span>
+  
+  <span class="c1">// Definir el string de la línea leída</span>
+  <span class="nc">String</span> <span class="n">linea</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+  
+  <span class="k">while</span> <span class="o">((</span><span class="n">linea</span> <span class="o">=</span> <span class="n">lector</span><span class="o">.</span><span class="na">readNext</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+   <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">linea</span><span class="o">));</span>
+  <span class="o">}</span>
+ <span class="o">}</span> 
+ <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+ <span class="o">}</span>
+ <span class="k">finally</span> <span class="o">{</span>
+  <span class="c1">// Cierro el buffer de lectura</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">lector</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+   <span class="k">try</span> <span class="o">{</span>
+    <span class="n">lector</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+   <span class="o">}</span> 
+   <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+   <span class="o">}</span>
+  <span class="o">}</span>
+ <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>El proceso es muy similar al anterior, salvo que en vez de un <code class="language-plaintext highlighter-rouge">BufferedReader</code> creamos un objeto de <code class="language-plaintext highlighter-rouge">CSVReader</code>.</p>
+
+<p>Puedes descargarte una clase con los ejemplos completos en <a href="https://github.com/inazense/scripts/blob/master/scripts/java/LectorCSV.java">mi github</a>.</p>
+
+<p><strong>¡Salud y coding!</strong></p>]]></content><author><name>Inazio Claver</name></author><category term="Java" /><category term="java" /><category term="csv" /><category term="opencsv" /><category term="bufferedreader" /><category term="archivos" /><category term="parsing" /><category term="delimitadores" /><summary type="html"><![CDATA[Aprende a leer archivos CSV en Java con BufferedReader y OpenCSV. Tutorial completo paso a paso para procesar CSV simples y complejos, manejar comillas, separadores y caracteres especiales con ejemplos de código.]]></summary></entry></feed>

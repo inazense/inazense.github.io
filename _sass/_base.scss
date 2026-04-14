@@ -1,0 +1,119 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: $font-stack;
+  line-height: 1.7;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.divider {
+  width: $divider-width;
+  background-color: var(--border);
+  flex-shrink: 0;
+}
+
+.content {
+  flex: 1;
+  padding: 2.5rem 3rem;
+  overflow-x: hidden;
+  min-width: 0;
+}
+
+// Tipografía
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text);
+  line-height: 1.3;
+  margin-top: 1.8em;
+  margin-bottom: 0.5em;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  &:hover { text-decoration: underline; }
+}
+
+p { margin: 0 0 1.2rem; }
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+// Código inline
+code {
+  font-family: $font-mono;
+  font-size: 0.875em;
+  background: var(--code-bg);
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+  color: var(--accent);
+}
+
+// Bloques de código
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.2rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+
+  code {
+    background: none;
+    padding: 0;
+    color: var(--text);
+    font-size: 0.85em;
+  }
+}
+
+// Imágenes
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  display: block;
+  margin: 1.5rem auto;
+}
+
+// Citas
+blockquote {
+  border-left: 3px solid var(--accent);
+  margin: 1.5rem 0;
+  padding: 0.5rem 1.5rem;
+  color: var(--secondary);
+  font-style: italic;
+}
+
+// Tablas
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.9em;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 0.6rem 1rem;
+  text-align: left;
+}
+th { background: var(--surface); color: var(--accent); }
+tr:nth-child(even) { background: var(--surface); }
+
+// Listas
+ul, ol {
+  padding-left: 1.5rem;
+  margin: 0.75rem 0 1.2rem;
+  li { margin-bottom: 0.3rem; }
+}

@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acceso a datos. Oracle Database. Ejercicios | Programando a Pasitos</title>
+<meta name="description" content="21 ejercicios prácticos sobre Oracle Database con tipos de objetos, herencia, referencias REF y colecciones VARRAY.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Acceso a datos. Oracle Database. Ejercicios | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Acceso a datos. Oracle Database. Ejercicios" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="21 ejercicios prácticos sobre Oracle Database con tipos de objetos, herencia, referencias REF y colecciones VARRAY." />
+<meta property="og:description" content="21 ejercicios prácticos sobre Oracle Database con tipos de objetos, herencia, referencias REF y colecciones VARRAY." />
+<link rel="canonical" href="http://localhost:4000/posts/2016/02/25/acceso-datos-oracle-database-ejercicios/" />
+<meta property="og:url" content="http://localhost:4000/posts/2016/02/25/acceso-datos-oracle-database-ejercicios/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-02-25T05:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Acceso a datos. Oracle Database. Ejercicios" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2016-02-25T05:00:00+01:00","datePublished":"2016-02-25T05:00:00+01:00","description":"21 ejercicios prácticos sobre Oracle Database con tipos de objetos, herencia, referencias REF y colecciones VARRAY.","headline":"Acceso a datos. Oracle Database. Ejercicios","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2016/02/25/acceso-datos-oracle-database-ejercicios/"},"url":"http://localhost:4000/posts/2016/02/25/acceso-datos-oracle-database-ejercicios/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Acceso a datos. Oracle Database. Ejercicios</h1>
+    <div class="post-meta">
+      <time datetime="2016-02-25T05:00:00+01:00">25 Feb 2016</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#acceso-a-datos" class="post-category">Acceso a datos</a>, 
+        
+          <a href="/categories/#bases-de-datos" class="post-category">Bases de datos</a>
+        
+      
+    </div>
+    
+      <p class="post-description">21 ejercicios prácticos sobre Oracle Database con tipos de objetos, herencia, referencias REF y colecciones VARRAY.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <p>A continuación se presentan 21 ejercicios progresivos sobre Oracle Database que cubren tipos de objetos, herencia de tipos, referencias entre objetos y colecciones VARRAY.</p>
+
+<h2 id="ejercicio-1-definición-de-tipos-base">Ejercicio 1: Definición de tipos base</h2>
+
+<p>Creamos los tipos básicos <code class="language-plaintext highlighter-rouge">T_DIRECCION</code>, <code class="language-plaintext highlighter-rouge">T_TELEFONO</code> y <code class="language-plaintext highlighter-rouge">T_PROFESOR</code>:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">create</span> <span class="k">or</span> <span class="k">replace</span> <span class="k">type</span> <span class="n">T_DIRECCION</span> <span class="k">as</span> <span class="k">object</span><span class="p">(</span>
+  <span class="n">calle</span> <span class="n">varchar2</span><span class="p">(</span><span class="mi">15</span><span class="p">),</span>
+  <span class="n">numero</span> <span class="n">varchar2</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+  <span class="n">ciudad</span> <span class="n">varchar2</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+  <span class="n">codigo_postal</span> <span class="n">varchar2</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">create</span> <span class="k">or</span> <span class="k">replace</span> <span class="k">type</span> <span class="n">T_TELEFONO</span> <span class="k">as</span> <span class="n">varray</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="k">of</span> <span class="n">varchar2</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+
+<span class="k">create</span> <span class="k">or</span> <span class="k">replace</span> <span class="k">type</span> <span class="n">T_PROFESOR</span> <span class="k">as</span> <span class="k">object</span><span class="p">(</span>
+  <span class="n">nombre</span> <span class="n">varchar2</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+  <span class="n">direccion</span> <span class="n">T_DIRECCION</span><span class="p">,</span>
+  <span class="n">salario</span> <span class="n">number</span><span class="p">,</span>
+  <span class="n">telefono</span> <span class="n">T_TELEFONO</span>
+<span class="p">)</span> <span class="k">not</span> <span class="k">final</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><img src="/img/posts/20160225_1.png" alt="Definición de tipos base T_DIRECCION, T_TELEFONO y T_PROFESOR" /></p>
+
+<h2 id="ejercicio-2-herencia-y-creación-de-tablas">Ejercicio 2: Herencia y creación de tablas</h2>
+
+<p>Creamos los subtipos <code class="language-plaintext highlighter-rouge">T_CONTRATADO</code> y <code class="language-plaintext highlighter-rouge">T_TITULAR</code> y sus tablas correspondientes:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">create</span> <span class="k">or</span> <span class="k">replace</span> <span class="k">type</span> <span class="n">T_CONTRATADO</span> <span class="k">under</span> <span class="n">T_PROFESOR</span><span class="p">();</span>
+<span class="k">create</span> <span class="k">or</span> <span class="k">replace</span> <span class="k">type</span> <span class="n">T_TITULAR</span> <span class="k">under</span> <span class="n">T_PROFESOR</span><span class="p">();</span>
+
+<span class="k">create</span> <span class="k">table</span> <span class="n">PROFESOR</span> <span class="k">of</span> <span class="n">T_PROFESOR</span><span class="p">(</span>
+  <span class="k">primary</span> <span class="k">key</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">create</span> <span class="k">table</span> <span class="n">PROFESOR_CONTRATADO</span> <span class="k">of</span> <span class="n">T_CONTRATADO</span><span class="p">(</span>
+  <span class="k">primary</span> <span class="k">key</span><span class="p">(</span><span class="n">nombre</span><span class="p">),</span>
+  <span class="k">check</span><span class="p">(</span><span class="n">salario</span> <span class="o">&lt;=</span> <span class="mi">166386</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">create</span> <span class="k">table</span> <span class="n">PROFESOR_TITULAR</span> <span class="k">of</span> <span class="n">T_TITULAR</span><span class="p">(</span>
+  <span class="k">primary</span> <span class="k">key</span><span class="p">(</span><span class="n">nombre</span><span class="p">),</span>
+  <span class="k">check</span><span class="p">(</span><span class="n">salario</span> <span class="o">&gt;</span> <span class="mi">166386</span><span class="p">),</span>
+  <span class="k">check</span><span class="p">(</span><span class="n">direccion</span> <span class="k">is</span> <span class="k">not</span> <span class="k">null</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p><img src="/img/posts/20160225_2.png" alt="Creación de subtipos y tablas" /></p>
+
+<h2 id="ejercicio-3-inserción-de-datos">Ejercicio 3: Inserción de datos</h2>
+
+<p>Insertamos datos en las tablas de profesores:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">insert</span> <span class="k">into</span> <span class="n">PROFESOR_TITULAR</span> <span class="k">values</span><span class="p">(</span><span class="s1">'Jose Mª'</span><span class="p">,</span> <span class="n">T_DIRECCION</span><span class="p">(</span><span class="s1">'Alcalá'</span><span class="p">,</span> <span class="s1">'3'</span><span class="p">,</span> <span class="s1">'Madrid'</span><span class="p">,</span> <span class="s1">'28020'</span><span class="p">),</span> <span class="mi">200000</span><span class="p">,</span> <span class="n">T_TELEFONO</span><span class="p">(</span><span class="s1">'6647401'</span><span class="p">,</span> <span class="s1">'4556478'</span><span class="p">,</span> <span class="s1">'606754321'</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="s1">'914445556'</span><span class="p">));</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">PROFESOR_TITULAR</span> <span class="k">values</span><span class="p">(</span><span class="s1">'Jorge'</span><span class="p">,</span> <span class="n">T_DIRECCION</span><span class="p">(</span><span class="s1">'Butarque'</span><span class="p">,</span> <span class="s1">'15'</span><span class="p">,</span> <span class="s1">'Leganés'</span><span class="p">,</span> <span class="s1">'28911'</span><span class="p">),</span> <span class="mi">250000</span><span class="p">,</span> <span class="n">T_TELEFONO</span><span class="p">(</span><span class="s1">'6647401'</span><span class="p">,</span> <span class="s1">'4557486'</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="s1">'964321236'</span><span class="p">,</span> <span class="k">null</span><span class="p">));</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">PROFESOR_TITULAR</span> <span class="k">values</span><span class="p">(</span><span class="s1">'Belen'</span><span class="p">,</span> <span class="n">T_DIRECCION</span><span class="p">(</span><span class="k">null</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="k">null</span><span class="p">),</span> <span class="mi">200000</span><span class="p">,</span> <span class="n">T_TELEFONO</span><span class="p">(</span><span class="s1">'6647402'</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="s1">'606896310'</span><span class="p">,</span><span class="k">null</span><span class="p">,</span> <span class="k">null</span><span class="p">));</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">PROFESOR_TITULAR</span> <span class="k">values</span><span class="p">(</span><span class="s1">'Esperanza'</span><span class="p">,</span> <span class="n">T_DIRECCION</span><span class="p">(</span><span class="s1">'Serrano'</span><span class="p">,</span> <span class="s1">'56'</span><span class="p">,</span> <span class="s1">'Madrid'</span><span class="p">,</span> <span class="s1">'28010'</span><span class="p">),</span> <span class="mi">250000</span><span class="p">,</span> <span class="n">T_TELEFONO</span><span class="p">(</span><span class="s1">'6647403'</span><span class="p">,</span> <span class="s1">'4557486'</span><span class="p">,</span> <span class="s1">'606312890'</span><span class="p">,</span> <span class="s1">'987348675'</span><span class="p">,</span> <span class="k">null</span><span class="p">));</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">PROFESOR_TITULAR</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">direccion</span><span class="p">,</span> <span class="n">salario</span><span class="p">)</span> <span class="k">values</span><span class="p">(</span><span class="s1">'Paloma'</span><span class="p">,</span> <span class="n">T_DIRECCION</span><span class="p">(</span><span class="s1">'Tulipan'</span><span class="p">,</span> <span class="s1">'10'</span><span class="p">,</span> <span class="s1">'Mostoles'</span><span class="p">,</span> <span class="s1">'28933'</span><span class="p">),</span> <span class="mi">300000</span><span class="p">);</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">PROFESOR_CONTRATADO</span> <span class="k">values</span><span class="p">(</span><span class="s1">'Pepe'</span><span class="p">,</span> <span class="n">T_DIRECCION</span><span class="p">(</span><span class="s1">'Gran via'</span><span class="p">,</span> <span class="s1">'8'</span><span class="p">,</span> <span class="s1">'Madrid'</span><span class="p">,</span> <span class="s1">'28009'</span><span class="p">),</span> <span class="mi">150000</span><span class="p">,</span> <span class="n">T_TELEFONO</span><span class="p">(</span><span class="s1">'6647405'</span><span class="p">,</span> <span class="s1">'4676478'</span><span class="p">,</span> <span class="s1">'606757651'</span><span class="p">,</span> <span class="s1">'964398736'</span><span class="p">,</span> <span class="s1">'914481096'</span><span class="p">));</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">PROFESOR_CONTRATADO</span> <span class="k">values</span><span class="p">(</span><span class="s1">'Susana'</span><span class="p">,</span> <span class="n">T_DIRECCION</span><span class="p">(</span><span class="k">null</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="s1">'Leganes'</span><span class="p">,</span> <span class="k">null</span><span class="p">),</span> <span class="mi">150000</span><span class="p">,</span> <span class="n">T_TELEFONO</span><span class="p">(</span><span class="s1">'6647405'</span><span class="p">,</span> <span class="s1">'4554586'</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="s1">'934876823'</span><span class="p">,</span> <span class="k">null</span><span class="p">));</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">PROFESOR_CONTRATADO</span> <span class="k">values</span><span class="p">(</span><span class="s1">'Ana'</span><span class="p">,</span> <span class="n">T_DIRECCION</span><span class="p">(</span><span class="k">null</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="s1">'Getafe'</span><span class="p">,</span> <span class="k">null</span><span class="p">),</span> <span class="mi">100000</span><span class="p">,</span> <span class="n">T_TELEFONO</span><span class="p">(</span><span class="s1">'6647405'</span><span class="p">,</span> <span class="s1">'4490634'</span><span class="p">,</span> <span class="s1">'606856670'</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="k">null</span><span class="p">));</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">PROFESOR_CONTRATADO</span> <span class="k">values</span><span class="p">(</span><span class="s1">'Juan'</span><span class="p">,</span> <span class="n">T_DIRECCION</span><span class="p">(</span><span class="s1">'Velazquez'</span><span class="p">,</span> <span class="s1">'88'</span><span class="p">,</span> <span class="s1">'Madrid'</span><span class="p">,</span> <span class="s1">'28010'</span><span class="p">),</span> <span class="mi">110000</span><span class="p">,</span> <span class="n">T_TELEFONO</span><span class="p">(</span><span class="s1">'6647406'</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="s1">'987348675'</span><span class="p">,</span> <span class="k">null</span><span class="p">));</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">PROFESOR_CONTRATADO</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">salario</span><span class="p">,</span> <span class="n">telefono</span><span class="p">)</span> <span class="k">values</span><span class="p">(</span><span class="s1">'Maria'</span><span class="p">,</span> <span class="mi">145000</span><span class="p">,</span> <span class="n">T_TELEFONO</span><span class="p">(</span><span class="k">null</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="k">null</span><span class="p">));</span>
+</code></pre></div></div>
+
+<h2 id="ejercicio-4-consulta-de-todas-las-tablas">Ejercicio 4: Consulta de todas las tablas</h2>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">PROFESOR_CONTRATADO</span><span class="p">;</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">PROFESOR_TITULAR</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="ejercicio-5-consultas-específicas">Ejercicio 5: Consultas específicas</h2>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">pc</span><span class="p">.</span><span class="n">nombre</span><span class="p">,</span> <span class="n">pc</span><span class="p">.</span><span class="n">direccion</span><span class="p">.</span><span class="n">ciudad</span> <span class="k">from</span> <span class="n">PROFESOR_CONTRATADO</span> <span class="n">pc</span> <span class="k">where</span> <span class="n">salario</span> <span class="o">&gt;</span> <span class="mi">100000</span><span class="p">;</span>
+
+<span class="k">select</span> <span class="n">pc</span><span class="p">.</span><span class="n">nombre</span><span class="p">,</span> <span class="n">pc</span><span class="p">.</span><span class="n">telefono</span> <span class="k">from</span> <span class="n">PROFESOR_TITULAR</span> <span class="n">pc</span><span class="p">;</span>
+
+<span class="k">select</span> <span class="n">pc</span><span class="p">.</span><span class="n">nombre</span><span class="p">,</span> <span class="n">pc</span><span class="p">.</span><span class="n">direccion</span> <span class="k">from</span> <span class="n">PROFESOR_TITULAR</span> <span class="n">pc</span> <span class="k">where</span> <span class="n">salario</span> <span class="o">&gt;</span> <span class="mi">200000</span><span class="p">;</span>
+
+<span class="k">select</span> <span class="n">pc</span><span class="p">.</span><span class="n">nombre</span><span class="p">,</span> <span class="n">pc</span><span class="p">.</span><span class="n">salario</span> <span class="k">from</span> <span class="n">PROFESOR_TITULAR</span> <span class="n">pc</span> <span class="k">where</span> <span class="n">pc</span><span class="p">.</span><span class="n">direccion</span><span class="p">.</span><span class="n">ciudad</span> <span class="o">=</span> <span class="s1">'Madrid'</span>
+<span class="k">union</span>
+<span class="k">select</span> <span class="n">pc</span><span class="p">.</span><span class="n">nombre</span><span class="p">,</span> <span class="n">pc</span><span class="p">.</span><span class="n">salario</span> <span class="k">from</span> <span class="n">PROFESOR_CONTRATADO</span> <span class="n">pc</span> <span class="k">where</span> <span class="n">pc</span><span class="p">.</span><span class="n">direccion</span><span class="p">.</span><span class="n">ciudad</span> <span class="o">=</span> <span class="s1">'Madrid'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><img src="/img/posts/20160225_3.png" alt="Resultados de consultas sobre atributos de objetos" /></p>
+
+<h2 id="ejercicio-6-borrar-objetos">Ejercicio 6: Borrar objetos</h2>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">drop</span> <span class="k">table</span> <span class="n">PROFESOR_TITULAR</span><span class="p">;</span>
+<span class="k">drop</span> <span class="k">table</span> <span class="n">PROFESOR_CONTRATADO</span><span class="p">;</span>
+<span class="k">drop</span> <span class="k">table</span> <span class="n">PROFESOR</span><span class="p">;</span>
+
+<span class="k">drop</span> <span class="k">type</span> <span class="n">T_TITULAR</span><span class="p">;</span>
+<span class="k">drop</span> <span class="k">type</span> <span class="n">T_CONTRATADO</span><span class="p">;</span>
+<span class="k">drop</span> <span class="k">type</span> <span class="n">T_PROFESOR</span><span class="p">;</span>
+<span class="k">drop</span> <span class="k">type</span> <span class="n">T_TELEFONO</span><span class="p">;</span>
+<span class="k">drop</span> <span class="k">type</span> <span class="n">T_DIRECCION</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="ejercicio-7-añadir-fecha-de-nacimiento-y-método-edad">Ejercicio 7: Añadir fecha de nacimiento y método edad()</h2>
+
+<p>Redefinimos <code class="language-plaintext highlighter-rouge">T_PROFESOR</code> añadiendo el atributo <code class="language-plaintext highlighter-rouge">fecha_nacimiento</code> y el método <code class="language-plaintext highlighter-rouge">edad()</code>:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">create</span> <span class="k">or</span> <span class="k">replace</span> <span class="k">type</span> <span class="n">T_DIRECCION</span> <span class="k">as</span> <span class="k">object</span><span class="p">(</span>
+  <span class="n">calle</span> <span class="n">varchar2</span><span class="p">(</span><span class="mi">15</span><span class="p">),</span>
+  <span class="n">numero</span> <span class="n">varchar2</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+  <span class="n">ciudad</span> <span class="n">varchar2</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+  <span class="n">codigo_postal</span> <span class="n">varchar2</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">create</span> <span class="k">or</span> <span class="k">replace</span> <span class="k">type</span> <span class="n">T_TELEFONO</span> <span class="k">as</span> <span class="n">varray</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="k">of</span> <span class="n">varchar2</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+
+<span class="k">create</span> <span class="k">or</span> <span class="k">replace</span> <span class="k">type</span> <span class="n">T_PROFESOR</span> <span class="k">as</span> <span class="k">object</span><span class="p">(</span>
+  <span class="n">nombre</span> <span class="n">varchar2</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+  <span class="n">fecha_nacimiento</span> <span class="nb">date</span><span class="p">,</span>
+  <span class="n">direccion</span> <span class="n">T_DIRECCION</span><span class="p">,</span>
+  <span class="n">salario</span> <span class="n">number</span><span class="p">,</span>
+  <span class="n">telefono</span> <span class="n">T_TELEFONO</span><span class="p">,</span>
+  <span class="n">member</span> <span class="k">function</span> <span class="n">edad</span> <span class="k">return</span> <span class="n">number</span>
+<span class="p">)</span> <span class="k">not</span> <span class="k">final</span><span class="p">;</span>
+
+<span class="k">create</span> <span class="k">or</span> <span class="k">replace</span> <span class="k">type</span> <span class="n">body</span> <span class="n">T_PROFESOR</span> <span class="k">as</span>
+<span class="n">member</span> <span class="k">function</span> <span class="n">edad</span> <span class="k">return</span> <span class="n">number</span> <span class="k">is</span>
+<span class="n">ed</span> <span class="n">number</span><span class="p">;</span>
+<span class="k">begin</span>
+  <span class="n">ed</span><span class="p">:</span><span class="o">=</span> <span class="n">to_char</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">'YYYY'</span><span class="p">)</span> <span class="o">-</span> <span class="n">to_char</span><span class="p">(</span><span class="n">fecha_nacimiento</span><span class="p">,</span> <span class="s1">'YYYY'</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">ed</span><span class="p">;</span>
+<span class="k">end</span><span class="p">;</span>
+<span class="k">end</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="ejercicio-8-recrear-tablas-con-fecha-de-nacimiento">Ejercicio 8: Recrear tablas con fecha de nacimiento</h2>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">create</span> <span class="k">or</span> <span class="k">replace</span> <span class="k">type</span> <span class="n">T_CONTRATADO</span> <span class="k">under</span> <span class="n">T_PROFESOR</span><span class="p">();</span>
+<span class="k">create</span> <span class="k">or</span> <span class="k">replace</span> <span class="k">type</span> <span class="n">T_TITULAR</span> <span class="k">under</span> <span class="n">T_PROFESOR</span><span class="p">();</span>
+
+<span class="k">create</span> <span class="k">table</span> <span class="n">PROFESOR</span> <span class="k">of</span> <span class="n">T_PROFESOR</span><span class="p">(</span>
+  <span class="k">primary</span> <span class="k">key</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">create</span> <span class="k">table</span> <span class="n">PROFESOR_CONTRATADO</span> <span class="k">of</span> <span class="n">T_CONTRATADO</span><span class="p">(</span>
+  <span class="k">primary</span> <span class="k">key</span><span class="p">(</span><span class="n">nombre</span><span class="p">),</span>
+  <span class="k">check</span><span class="p">(</span><span class="n">salario</span> <span class="o">&lt;=</span> <span class="mi">166386</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">create</span> <span class="k">table</span> <span class="n">PROFESOR_TITULAR</span> <span class="k">of</span> <span class="n">T_TITULAR</span><span class="p">(</span>
+  <span class="k">primary</span> <span class="k">key</span><span class="p">(</span><span class="n">nombre</span><span class="p">),</span>
+  <span class="k">check</span><span class="p">(</span><span class="n">salario</span> <span class="o">&gt;</span> <span class="mi">166386</span><span class="p">),</span>
+  <span class="k">check</span><span class="p">(</span><span class="n">direccion</span> <span class="k">is</span> <span class="k">not</span> <span class="k">null</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">PROFESOR_TITULAR</span> <span class="p">(</span><span class="n">NOMBRE</span><span class="p">,</span> <span class="n">FECHA_NACIMIENTO</span><span class="p">,</span> <span class="n">DIRECCION</span><span class="p">,</span> <span class="n">SALARIO</span><span class="p">,</span> <span class="n">TELEFONO</span><span class="p">)</span>
+<span class="k">values</span><span class="p">(</span><span class="s1">'José Mª'</span><span class="p">,</span> <span class="s1">'03/11/1966'</span><span class="p">,</span> <span class="n">T_DIRECCION</span><span class="p">(</span><span class="s1">'Alcalá'</span><span class="p">,</span> <span class="s1">'3'</span><span class="p">,</span> <span class="s1">'Madrid'</span><span class="p">,</span> <span class="s1">'28020'</span><span class="p">),</span> <span class="mi">200000</span><span class="p">,</span> <span class="n">T_TELEFONO</span><span class="p">(</span><span class="s1">'6647401'</span><span class="p">,</span> <span class="s1">'4556478'</span><span class="p">,</span><span class="s1">'606754321'</span><span class="p">,</span> <span class="k">NULL</span><span class="p">,</span> <span class="s1">'914445556'</span><span class="p">));</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">PROFESOR_TITULAR</span> <span class="p">(</span><span class="n">NOMBRE</span><span class="p">,</span> <span class="n">FECHA_NACIMIENTO</span><span class="p">,</span> <span class="n">DIRECCION</span><span class="p">,</span> <span class="n">SALARIO</span><span class="p">,</span> <span class="n">TELEFONO</span><span class="p">)</span>
+<span class="k">values</span><span class="p">(</span><span class="s1">'Jorge'</span><span class="p">,</span> <span class="s1">'12/03/1962'</span><span class="p">,</span> <span class="n">T_DIRECCION</span><span class="p">(</span><span class="s1">'Butarque'</span><span class="p">,</span> <span class="s1">'15'</span><span class="p">,</span> <span class="s1">'Leganés'</span><span class="p">,</span> <span class="s1">'28911'</span><span class="p">),</span> <span class="mi">250000</span><span class="p">,</span> <span class="n">T_TELEFONO</span><span class="p">(</span><span class="s1">'6647401'</span><span class="p">,</span> <span class="s1">'4557486'</span><span class="p">,</span><span class="k">NULL</span><span class="p">,</span><span class="s1">'964321236'</span><span class="p">,</span> <span class="k">NULL</span><span class="p">));</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">PROFESOR_TITULAR</span> <span class="p">(</span><span class="n">NOMBRE</span><span class="p">,</span> <span class="n">FECHA_NACIMIENTO</span><span class="p">,</span> <span class="n">DIRECCION</span><span class="p">,</span> <span class="n">SALARIO</span><span class="p">,</span> <span class="n">TELEFONO</span><span class="p">)</span>
+<span class="k">values</span><span class="p">(</span><span class="s1">'Belén'</span><span class="p">,</span><span class="s1">'07/10/1964'</span><span class="p">,</span> <span class="n">T_DIRECCION</span><span class="p">(</span><span class="k">NULL</span><span class="p">,</span> <span class="k">NULL</span><span class="p">,</span> <span class="k">NULL</span><span class="p">,</span> <span class="k">NULL</span><span class="p">),</span> <span class="mi">200000</span><span class="p">,</span> <span class="n">T_TELEFONO</span><span class="p">(</span><span class="s1">'6647402'</span><span class="p">,</span> <span class="k">NULL</span><span class="p">,</span><span class="s1">'606896310'</span><span class="p">,</span><span class="k">NULL</span><span class="p">,</span> <span class="k">NULL</span><span class="p">));</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">PROFESOR_TITULAR</span> <span class="p">(</span><span class="n">NOMBRE</span><span class="p">,</span> <span class="n">FECHA_NACIMIENTO</span><span class="p">,</span> <span class="n">DIRECCION</span><span class="p">,</span> <span class="n">SALARIO</span><span class="p">,</span> <span class="n">TELEFONO</span><span class="p">)</span>
+<span class="k">values</span><span class="p">(</span><span class="s1">'Esperanza'</span><span class="p">,</span><span class="s1">'24/01/1972'</span><span class="p">,</span> <span class="n">T_DIRECCION</span><span class="p">(</span><span class="s1">'Serrano'</span><span class="p">,</span> <span class="s1">'56'</span><span class="p">,</span> <span class="s1">'Madrid'</span><span class="p">,</span> <span class="s1">'28010'</span><span class="p">),</span> <span class="mi">250000</span><span class="p">,</span> <span class="n">T_TELEFONO</span><span class="p">(</span><span class="s1">'6647403'</span><span class="p">,</span> <span class="s1">'4457834'</span><span class="p">,</span><span class="s1">'606312890'</span><span class="p">,</span><span class="s1">'987348675'</span><span class="p">,</span> <span class="k">NULL</span><span class="p">));</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">PROFESOR_TITULAR</span> <span class="p">(</span><span class="n">NOMBRE</span><span class="p">,</span> <span class="n">FECHA_NACIMIENTO</span><span class="p">,</span> <span class="n">DIRECCION</span><span class="p">,</span> <span class="n">SALARIO</span><span class="p">)</span>
+<span class="k">values</span><span class="p">(</span><span class="s1">'Paloma'</span><span class="p">,</span> <span class="s1">'02/07/1970'</span><span class="p">,</span> <span class="n">T_DIRECCION</span><span class="p">(</span><span class="s1">'Tulipán'</span><span class="p">,</span> <span class="s1">'10'</span><span class="p">,</span> <span class="s1">'Móstoles'</span><span class="p">,</span> <span class="s1">'28933'</span><span class="p">),</span> <span class="mi">300000</span><span class="p">);</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">PROFESOR_CONTRATADO</span> <span class="p">(</span><span class="n">NOMBRE</span><span class="p">,</span> <span class="n">FECHA_NACIMIENTO</span><span class="p">,</span> <span class="n">DIRECCION</span><span class="p">,</span> <span class="n">SALARIO</span><span class="p">,</span> <span class="n">TELEFONO</span><span class="p">)</span>
+<span class="k">values</span><span class="p">(</span><span class="s1">'Pepe'</span><span class="p">,</span> <span class="s1">'03/12/1960'</span><span class="p">,</span> <span class="n">T_DIRECCION</span><span class="p">(</span><span class="s1">'Gran Vía'</span><span class="p">,</span> <span class="s1">'8'</span><span class="p">,</span> <span class="s1">'Madrid'</span><span class="p">,</span> <span class="s1">'28009'</span><span class="p">),</span> <span class="mi">150000</span><span class="p">,</span> <span class="n">T_TELEFONO</span><span class="p">(</span><span class="s1">'6647405'</span><span class="p">,</span> <span class="s1">'4676478'</span><span class="p">,</span><span class="s1">'606757651'</span><span class="p">,</span> <span class="s1">'964398736'</span><span class="p">,</span> <span class="s1">'914481096'</span><span class="p">));</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">PROFESOR_CONTRATADO</span> <span class="p">(</span><span class="n">NOMBRE</span><span class="p">,</span>  <span class="n">FECHA_NACIMIENTO</span><span class="p">,</span> <span class="n">DIRECCION</span><span class="p">,</span> <span class="n">SALARIO</span><span class="p">,</span> <span class="n">TELEFONO</span><span class="p">)</span>
+<span class="k">values</span><span class="p">(</span><span class="s1">'Susana'</span><span class="p">,</span> <span class="s1">'12/11/1964'</span><span class="p">,</span> <span class="n">T_DIRECCION</span><span class="p">(</span><span class="k">Null</span><span class="p">,</span> <span class="k">Null</span><span class="p">,</span> <span class="s1">'Leganés'</span><span class="p">,</span> <span class="k">Null</span><span class="p">),</span> <span class="mi">150000</span><span class="p">,</span> <span class="n">T_TELEFONO</span><span class="p">(</span><span class="s1">'6647405'</span><span class="p">,</span> <span class="s1">'4554586'</span><span class="p">,</span><span class="k">Null</span><span class="p">,</span> <span class="s1">'934876823'</span><span class="p">,</span> <span class="k">Null</span><span class="p">));</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">PROFESOR_CONTRATADO</span> <span class="p">(</span><span class="n">NOMBRE</span><span class="p">,</span> <span class="n">FECHA_NACIMIENTO</span><span class="p">,</span> <span class="n">DIRECCION</span><span class="p">,</span> <span class="n">SALARIO</span><span class="p">,</span> <span class="n">TELEFONO</span><span class="p">)</span>
+<span class="k">values</span><span class="p">(</span><span class="s1">'Ana'</span><span class="p">,</span> <span class="s1">'04/02/1955'</span><span class="p">,</span> <span class="n">T_DIRECCION</span><span class="p">(</span><span class="k">Null</span><span class="p">,</span> <span class="k">Null</span><span class="p">,</span> <span class="s1">'Getafe'</span><span class="p">,</span> <span class="k">Null</span><span class="p">),</span> <span class="mi">100000</span><span class="p">,</span> <span class="n">T_TELEFONO</span><span class="p">(</span><span class="s1">'6647405'</span><span class="p">,</span> <span class="s1">'4490634'</span><span class="p">,</span> <span class="s1">'606856670'</span><span class="p">,</span> <span class="k">Null</span><span class="p">,</span> <span class="s1">'914445576'</span><span class="p">));</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">PROFESOR_CONTRATADO</span> <span class="p">(</span><span class="n">NOMBRE</span><span class="p">,</span> <span class="n">FECHA_NACIMIENTO</span><span class="p">,</span> <span class="n">DIRECCION</span><span class="p">,</span> <span class="n">SALARIO</span><span class="p">,</span> <span class="n">TELEFONO</span><span class="p">)</span>
+<span class="k">values</span><span class="p">(</span><span class="s1">'Juan'</span><span class="p">,</span> <span class="s1">'24/10/1963'</span><span class="p">,</span> <span class="n">T_DIRECCION</span><span class="p">(</span><span class="s1">'Velázquez'</span><span class="p">,</span> <span class="s1">'88'</span><span class="p">,</span> <span class="s1">'Madrid'</span><span class="p">,</span> <span class="s1">'28010'</span><span class="p">),</span> <span class="mi">110000</span><span class="p">,</span> <span class="n">T_TELEFONO</span><span class="p">(</span><span class="s1">'6647406'</span><span class="p">,</span> <span class="k">Null</span><span class="p">,</span> <span class="k">Null</span><span class="p">,</span> <span class="s1">'987348675'</span><span class="p">,</span> <span class="k">Null</span><span class="p">));</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">PROFESOR_CONTRATADO</span> <span class="p">(</span><span class="n">NOMBRE</span><span class="p">,</span> <span class="n">FECHA_NACIMIENTO</span><span class="p">,</span> <span class="n">SALARIO</span><span class="p">,</span> <span class="n">TELEFONO</span><span class="p">)</span>
+<span class="k">values</span><span class="p">(</span><span class="s1">'María'</span><span class="p">,</span> <span class="s1">'30/06/1965'</span><span class="p">,</span> <span class="mi">145000</span><span class="p">,</span> <span class="n">T_TELEFONO</span><span class="p">(</span><span class="k">Null</span><span class="p">,</span> <span class="k">Null</span><span class="p">,</span> <span class="k">Null</span><span class="p">,</span> <span class="k">Null</span><span class="p">,</span> <span class="k">Null</span><span class="p">));</span>
+</code></pre></div></div>
+
+<p><img src="/img/posts/20160225_4.png" alt="Inserción de datos con fecha de nacimiento" /></p>
+
+<h2 id="ejercicio-9-nombre-y-edad-de-los-profesores-de-madrid">Ejercicio 9: Nombre y edad de los profesores de Madrid</h2>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">pt</span><span class="p">.</span><span class="n">nombre</span><span class="p">,</span> <span class="n">pt</span><span class="p">.</span><span class="n">edad</span><span class="p">()</span>
+<span class="k">from</span> <span class="n">PROFESOR_TITULAR</span> <span class="n">pt</span>
+<span class="k">where</span> <span class="n">pt</span><span class="p">.</span><span class="n">direccion</span><span class="p">.</span><span class="n">ciudad</span> <span class="o">=</span> <span class="s1">'Madrid'</span>
+<span class="k">union</span>
+<span class="k">select</span> <span class="n">pc</span><span class="p">.</span><span class="n">nombre</span><span class="p">,</span> <span class="n">pc</span><span class="p">.</span><span class="n">edad</span><span class="p">()</span>
+<span class="k">from</span> <span class="n">PROFESOR_CONTRATADO</span> <span class="n">pc</span>
+<span class="k">where</span> <span class="n">pc</span><span class="p">.</span><span class="n">direccion</span><span class="p">.</span><span class="n">ciudad</span> <span class="o">=</span> <span class="s1">'Madrid'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="ejercicio-10-borrar-todos-los-objetos">Ejercicio 10: Borrar todos los objetos</h2>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">drop</span> <span class="k">table</span> <span class="n">PROFESOR_TITULAR</span><span class="p">;</span>
+<span class="k">drop</span> <span class="k">table</span> <span class="n">PROFESOR_CONTRATADO</span><span class="p">;</span>
+<span class="k">drop</span> <span class="k">table</span> <span class="n">PROFESOR</span><span class="p">;</span>
+
+<span class="k">drop</span> <span class="k">type</span> <span class="n">T_TITULAR</span><span class="p">;</span>
+<span class="k">drop</span> <span class="k">type</span> <span class="n">T_CONTRATADO</span><span class="p">;</span>
+<span class="k">drop</span> <span class="k">type</span> <span class="n">T_PROFESOR</span><span class="p">;</span>
+<span class="k">drop</span> <span class="k">type</span> <span class="n">T_TELEFONO</span><span class="p">;</span>
+<span class="k">drop</span> <span class="k">type</span> <span class="n">T_DIRECCION</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="ejercicio-11-definir-tipo-t_profesor-con-tabla">Ejercicio 11: Definir tipo T_PROFESOR con tabla</h2>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">create</span> <span class="k">or</span> <span class="k">replace</span> <span class="k">type</span> <span class="n">T_DIRECCION</span> <span class="k">as</span> <span class="k">object</span><span class="p">(</span>
+  <span class="n">calle</span> <span class="n">varchar2</span><span class="p">(</span><span class="mi">15</span><span class="p">),</span>
+  <span class="n">numero</span> <span class="n">varchar2</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+  <span class="n">ciudad</span> <span class="n">varchar2</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+  <span class="n">codigo_postal</span> <span class="n">varchar2</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">create</span> <span class="k">or</span> <span class="k">replace</span> <span class="k">type</span> <span class="n">T_TELEFONO</span> <span class="k">as</span> <span class="n">varray</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="k">of</span> <span class="n">VARCHAR2</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+
+<span class="k">create</span> <span class="k">or</span> <span class="k">replace</span> <span class="k">type</span> <span class="n">T_PROFESOR</span> <span class="k">as</span> <span class="k">object</span><span class="p">(</span>
+  <span class="n">nombre</span> <span class="n">varchar2</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+  <span class="n">direccion</span> <span class="n">T_DIRECCION</span><span class="p">,</span>
+  <span class="n">salario</span> <span class="n">number</span><span class="p">,</span>
+  <span class="n">telefono</span> <span class="n">T_TELEFONO</span>
+<span class="p">)</span> <span class="k">not</span> <span class="k">final</span><span class="p">;</span>
+
+<span class="k">create</span> <span class="k">table</span> <span class="n">PROFESOR</span> <span class="k">of</span> <span class="n">T_PROFESOR</span><span class="p">(</span>
+  <span class="k">primary</span> <span class="k">key</span> <span class="p">(</span><span class="n">nombre</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="ejercicio-12-crear-t_titular-y-su-tabla">Ejercicio 12: Crear T_TITULAR y su tabla</h2>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">create</span> <span class="k">or</span> <span class="k">replace</span> <span class="k">type</span> <span class="n">T_TITULAR</span> <span class="k">under</span> <span class="n">T_PROFESOR</span><span class="p">();</span>
+
+<span class="k">create</span> <span class="k">table</span> <span class="n">PROFESOR_TITULAR</span> <span class="k">of</span> <span class="n">T_TITULAR</span><span class="p">(</span>
+  <span class="k">primary</span> <span class="k">key</span> <span class="p">(</span><span class="n">nombre</span><span class="p">),</span>
+  <span class="k">check</span> <span class="p">(</span><span class="n">salario</span> <span class="o">&gt;</span> <span class="mi">166386</span><span class="p">),</span>
+  <span class="k">check</span> <span class="p">(</span><span class="n">direccion</span> <span class="k">is</span> <span class="k">not</span> <span class="k">null</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="ejercicio-13-definir-t_asignatura-con-referencia-ref">Ejercicio 13: Definir T_ASIGNATURA con referencia REF</h2>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">create</span> <span class="k">or</span> <span class="k">replace</span> <span class="k">type</span> <span class="n">T_ASIGNATURA</span> <span class="k">as</span> <span class="k">object</span><span class="p">(</span>
+  <span class="n">nombre</span> <span class="n">varchar2</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+  <span class="n">curso</span> <span class="n">varchar2</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+  <span class="n">titulacion</span> <span class="n">varchar2</span><span class="p">(</span><span class="mi">16</span><span class="p">),</span>
+  <span class="n">num_creditos</span> <span class="n">number</span><span class="p">,</span>
+  <span class="n">prof</span> <span class="k">ref</span> <span class="n">T_PROFESOR</span>
+<span class="p">);</span>
+
+<span class="k">create</span> <span class="k">table</span> <span class="n">ASIGNATURA</span> <span class="k">of</span> <span class="n">T_ASIGNATURA</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><img src="/img/posts/20160225_5.png" alt="Definición de T_ASIGNATURA con REF a T_PROFESOR" /></p>
+
+<h2 id="ejercicio-14-insertar-profesores-y-asignaturas">Ejercicio 14: Insertar profesores y asignaturas</h2>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">insert</span> <span class="k">into</span> <span class="n">PROFESOR_TITULAR</span> <span class="k">values</span><span class="p">(</span><span class="s1">'Jose Mª'</span><span class="p">,</span> <span class="n">T_DIRECCION</span><span class="p">(</span><span class="s1">'Alcalá'</span><span class="p">,</span> <span class="s1">'3'</span><span class="p">,</span> <span class="s1">'Madrid'</span><span class="p">,</span> <span class="s1">'28020'</span><span class="p">),</span> <span class="mi">200000</span><span class="p">,</span> <span class="n">T_TELEFONO</span><span class="p">(</span><span class="s1">'6647401'</span><span class="p">,</span> <span class="s1">'4556478'</span><span class="p">,</span> <span class="s1">'6067'</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="s1">'914445556'</span><span class="p">));</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">PROFESOR_TITULAR</span> <span class="k">values</span><span class="p">(</span><span class="s1">'Jorge'</span><span class="p">,</span> <span class="n">T_DIRECCION</span><span class="p">(</span><span class="s1">'Butarque'</span><span class="p">,</span> <span class="s1">'3'</span><span class="p">,</span> <span class="s1">'Leganés'</span><span class="p">,</span> <span class="s1">'28911'</span><span class="p">),</span> <span class="mi">250000</span><span class="p">,</span> <span class="n">T_TELEFONO</span><span class="p">(</span><span class="s1">'6647401'</span><span class="p">,</span> <span class="s1">'4557486'</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="s1">'964321236'</span><span class="p">,</span> <span class="k">null</span><span class="p">));</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">PROFESOR_TITULAR</span> <span class="k">values</span><span class="p">(</span><span class="s1">'Belén'</span><span class="p">,</span> <span class="n">T_DIRECCION</span><span class="p">(</span><span class="k">null</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="k">null</span><span class="p">),</span> <span class="mi">200000</span><span class="p">,</span> <span class="n">T_TELEFONO</span><span class="p">(</span><span class="s1">'6647402'</span><span class="p">,</span> <span class="s1">'4457834'</span><span class="p">,</span> <span class="s1">'6063'</span><span class="p">,</span> <span class="s1">'987348675'</span><span class="p">,</span> <span class="k">null</span><span class="p">));</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">PROFESOR_TITULAR</span> <span class="k">values</span><span class="p">(</span><span class="s1">'Esperanza'</span><span class="p">,</span> <span class="n">T_DIRECCION</span><span class="p">(</span><span class="s1">'Serrano'</span><span class="p">,</span> <span class="s1">'56'</span><span class="p">,</span> <span class="s1">'Madrid'</span><span class="p">,</span> <span class="s1">'28010'</span><span class="p">),</span> <span class="mi">250000</span><span class="p">,</span> <span class="n">T_TELEFONO</span><span class="p">(</span><span class="s1">'6647403'</span><span class="p">,</span> <span class="s1">'4457834'</span><span class="p">,</span> <span class="s1">'6063'</span><span class="p">,</span> <span class="s1">'987348675'</span><span class="p">,</span> <span class="k">null</span><span class="p">));</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">PROFESOR_TITULAR</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">direccion</span><span class="p">,</span> <span class="n">salario</span><span class="p">)</span> <span class="k">values</span><span class="p">(</span><span class="s1">'Paloma'</span><span class="p">,</span> <span class="n">T_DIRECCION</span><span class="p">(</span><span class="s1">'Tulipán'</span><span class="p">,</span> <span class="s1">'10'</span><span class="p">,</span> <span class="s1">'Móstoles'</span><span class="p">,</span> <span class="s1">'28933'</span><span class="p">),</span> <span class="mi">300000</span><span class="p">);</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">ASIGNATURA</span> <span class="k">values</span><span class="p">(</span><span class="s1">'Diseño de BD'</span><span class="p">,</span> <span class="s1">'3'</span><span class="p">,</span> <span class="s1">'I.T.Informática'</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="p">(</span><span class="k">select</span> <span class="k">ref</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">from</span> <span class="n">PROFESOR_TITULAR</span> <span class="n">p</span> <span class="k">where</span> <span class="n">p</span><span class="p">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="s1">'Esperanza'</span><span class="p">));</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">ASIGNATURA</span> <span class="k">values</span><span class="p">(</span><span class="s1">'Bases de datos'</span><span class="p">,</span> <span class="s1">'1'</span><span class="p">,</span> <span class="s1">'I.Informática'</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="p">(</span><span class="k">select</span> <span class="k">ref</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">from</span> <span class="n">PROFESOR_TITULAR</span> <span class="n">p</span> <span class="k">where</span> <span class="n">p</span><span class="p">.</span><span class="n">nombre</span> <span class="k">like</span> <span class="s1">'Esperanza'</span><span class="p">));</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">ASIGNATURA</span> <span class="k">values</span><span class="p">(</span><span class="s1">'Aplicaciones de BD'</span><span class="p">,</span> <span class="s1">'2'</span><span class="p">,</span> <span class="s1">'I.Informática'</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="p">(</span><span class="k">select</span> <span class="k">ref</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">from</span> <span class="n">PROFESOR_TITULAR</span> <span class="n">p</span> <span class="k">where</span> <span class="n">p</span><span class="p">.</span><span class="n">nombre</span> <span class="k">like</span> <span class="s1">'Jose Mª'</span><span class="p">));</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">ASIGNATURA</span> <span class="k">values</span><span class="p">(</span><span class="s1">'BD Avanzadas'</span><span class="p">,</span> <span class="s1">'3'</span><span class="p">,</span> <span class="s1">'I.T.Informática'</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="p">(</span><span class="k">select</span> <span class="k">ref</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">from</span> <span class="n">PROFESOR_TITULAR</span> <span class="n">p</span> <span class="k">where</span> <span class="n">p</span><span class="p">.</span><span class="n">nombre</span> <span class="k">like</span> <span class="s1">'Belén'</span><span class="p">));</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">ASIGNATURA</span> <span class="k">values</span><span class="p">(</span><span class="s1">'Arquitectura Softw'</span><span class="p">,</span> <span class="s1">'2'</span><span class="p">,</span> <span class="s1">'I.Informática'</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="p">(</span><span class="k">select</span> <span class="k">ref</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">from</span> <span class="n">PROFESOR_TITULAR</span> <span class="n">p</span> <span class="k">where</span> <span class="n">p</span><span class="p">.</span><span class="n">nombre</span> <span class="k">like</span> <span class="s1">'Jorge'</span><span class="p">));</span>
+</code></pre></div></div>
+
+<h2 id="ejercicio-15-consultar-el-contenido-de-las-tablas">Ejercicio 15: Consultar el contenido de las tablas</h2>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">PROFESOR_TITULAR</span><span class="p">;</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">ASIGNATURA</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><img src="/img/posts/20160225_6.png" alt="Contenido de PROFESOR_TITULAR y ASIGNATURA" /></p>
+
+<h2 id="ejercicio-16-insertar-asignatura-duplicada">Ejercicio 16: Insertar asignatura duplicada</h2>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">insert</span> <span class="k">into</span> <span class="n">ASIGNATURA</span> <span class="k">values</span><span class="p">(</span><span class="s1">'Diseño de BD'</span><span class="p">,</span> <span class="s1">'3'</span><span class="p">,</span> <span class="s1">'I.T.Informática'</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="p">(</span><span class="k">select</span> <span class="k">ref</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">from</span> <span class="n">PROFESOR_TITULAR</span> <span class="n">p</span> <span class="k">where</span> <span class="n">p</span><span class="p">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="s1">'Esperanza'</span><span class="p">));</span>
+</code></pre></div></div>
+
+<h2 id="ejercicio-17-borrar-profesores-de-leganés">Ejercicio 17: Borrar profesores de Leganés</h2>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">delete</span> <span class="n">PROFESOR_TITULAR</span> <span class="n">p</span> <span class="k">where</span> <span class="n">p</span><span class="p">.</span><span class="n">direccion</span><span class="p">.</span><span class="n">ciudad</span> <span class="o">=</span> <span class="s1">'Leganés'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="ejercicio-18-verificar-tablas-tras-el-borrado">Ejercicio 18: Verificar tablas tras el borrado</h2>
+
+<p>Al borrar un profesor que es referenciado por una asignatura, la referencia queda como <strong>dangling reference</strong> (referencia colgante).</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">PROFESOR_TITULAR</span><span class="p">;</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">ASIGNATURA</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><img src="/img/posts/20160225_7.png" alt="Resultado con dangling references tras el borrado" /></p>
+
+<h2 id="ejercicio-19-consultas-a-través-de-referencias">Ejercicio 19: Consultas a través de referencias</h2>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">asig</span><span class="p">.</span><span class="n">prof</span><span class="p">.</span><span class="n">nombre</span><span class="p">,</span> <span class="n">asig</span><span class="p">.</span><span class="n">prof</span><span class="p">.</span><span class="n">telefono</span>
+<span class="k">from</span> <span class="n">asignatura</span> <span class="n">asig</span>
+<span class="k">where</span> <span class="n">asig</span><span class="p">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="s1">'Bases de datos'</span><span class="p">;</span>
+
+<span class="k">select</span> <span class="k">distinct</span> <span class="n">asig</span><span class="p">.</span><span class="n">prof</span><span class="p">.</span><span class="n">nombre</span>
+<span class="k">from</span> <span class="n">asignatura</span> <span class="n">asig</span>
+<span class="k">where</span> <span class="n">asig</span><span class="p">.</span><span class="n">titulacion</span> <span class="o">=</span> <span class="s1">'I.T.Informática'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="ejercicio-20-múltiples-profesores-por-asignatura-con-varray">Ejercicio 20: Múltiples profesores por asignatura con VARRAY</h2>
+
+<p>Modificamos el esquema para que una asignatura pueda impartirla hasta 3 profesores:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">drop</span> <span class="k">table</span> <span class="n">ASIGNATURA</span><span class="p">;</span>
+<span class="k">drop</span> <span class="k">type</span> <span class="n">T_ASIGNATURA</span><span class="p">;</span>
+
+<span class="k">create</span> <span class="k">or</span> <span class="k">replace</span> <span class="k">type</span> <span class="n">T_CONJUNTO_PROFESORES</span> <span class="k">as</span> <span class="n">varray</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">of</span> <span class="k">ref</span> <span class="n">T_TITULAR</span><span class="p">;</span>
+
+<span class="k">create</span> <span class="k">or</span> <span class="k">replace</span> <span class="k">type</span> <span class="n">T_ASIGNATURA</span> <span class="k">as</span> <span class="k">object</span><span class="p">(</span>
+  <span class="n">nombre</span> <span class="n">varchar2</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+  <span class="n">curso</span> <span class="n">varchar2</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+  <span class="n">titulacion</span> <span class="n">varchar2</span><span class="p">(</span><span class="mi">16</span><span class="p">),</span>
+  <span class="n">num_creditos</span> <span class="n">number</span><span class="p">,</span>
+  <span class="n">prof</span> <span class="n">T_CONJUNTO_PROFESORES</span>
+<span class="p">);</span>
+
+<span class="k">create</span> <span class="k">table</span> <span class="n">ASIGNATURA</span> <span class="k">of</span> <span class="n">T_ASIGNATURA</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="ejercicio-21-insertar-asignaturas-con-varios-profesores">Ejercicio 21: Insertar asignaturas con varios profesores</h2>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">insert</span> <span class="k">into</span> <span class="n">ASIGNATURA</span> <span class="k">values</span><span class="p">(</span><span class="s1">'Diseño de BD'</span><span class="p">,</span> <span class="s1">'3'</span><span class="p">,</span> <span class="s1">'I.T.Informática'</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="n">T_CONJUNTO_PROFESORES</span><span class="p">(</span>
+    <span class="p">(</span><span class="k">select</span> <span class="k">ref</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">from</span> <span class="n">PROFESOR_TITULAR</span> <span class="n">p</span> <span class="k">where</span> <span class="n">p</span><span class="p">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="s1">'Esperanza'</span><span class="p">),</span>
+    <span class="p">(</span><span class="k">select</span> <span class="k">ref</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">from</span> <span class="n">PROFESOR_TITULAR</span> <span class="n">p</span> <span class="k">where</span> <span class="n">p</span><span class="p">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="s1">'Jose Mª'</span><span class="p">),</span>
+    <span class="p">(</span><span class="k">select</span> <span class="k">ref</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">from</span> <span class="n">PROFESOR_TITULAR</span> <span class="n">p</span> <span class="k">where</span> <span class="n">p</span><span class="p">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="s1">'Belén'</span><span class="p">)</span>
+<span class="p">));</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">ASIGNATURA</span> <span class="k">values</span><span class="p">(</span><span class="s1">'Bases de datos'</span><span class="p">,</span> <span class="s1">'1'</span><span class="p">,</span> <span class="s1">'I.Informática'</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">T_CONJUNTO_PROFESORES</span><span class="p">(</span>
+    <span class="p">(</span><span class="k">select</span> <span class="k">ref</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">from</span> <span class="n">PROFESOR_TITULAR</span> <span class="n">p</span> <span class="k">where</span> <span class="n">p</span><span class="p">.</span><span class="n">nombre</span> <span class="k">like</span> <span class="s1">'Esperanza'</span><span class="p">),</span>
+    <span class="p">(</span><span class="k">select</span> <span class="k">ref</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">from</span> <span class="n">PROFESOR_TITULAR</span> <span class="n">p</span> <span class="k">where</span> <span class="n">p</span><span class="p">.</span><span class="n">nombre</span> <span class="k">like</span> <span class="s1">'Belén'</span><span class="p">),</span>
+    <span class="k">null</span>
+<span class="p">));</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">ASIGNATURA</span> <span class="k">values</span><span class="p">(</span><span class="s1">'Aplicaciones de BD'</span><span class="p">,</span> <span class="s1">'2'</span><span class="p">,</span> <span class="s1">'I.Informática'</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">T_CONJUNTO_PROFESORES</span><span class="p">(</span>
+    <span class="p">(</span><span class="k">select</span> <span class="k">ref</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">from</span> <span class="n">PROFESOR_TITULAR</span> <span class="n">p</span> <span class="k">where</span> <span class="n">p</span><span class="p">.</span><span class="n">nombre</span> <span class="k">like</span> <span class="s1">'Jose Mª'</span><span class="p">),</span>
+    <span class="p">(</span><span class="k">select</span> <span class="k">ref</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">from</span> <span class="n">PROFESOR_TITULAR</span> <span class="n">p</span> <span class="k">where</span> <span class="n">p</span><span class="p">.</span><span class="n">nombre</span> <span class="k">like</span> <span class="s1">'Esperanza'</span><span class="p">),</span>
+    <span class="k">null</span>
+<span class="p">));</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">ASIGNATURA</span> <span class="k">values</span><span class="p">(</span><span class="s1">'BD Avanzadas'</span><span class="p">,</span> <span class="s1">'3'</span><span class="p">,</span> <span class="s1">'I.T.Informática'</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">T_CONJUNTO_PROFESORES</span><span class="p">(</span>
+    <span class="p">(</span><span class="k">select</span> <span class="k">ref</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">from</span> <span class="n">PROFESOR_TITULAR</span> <span class="n">p</span> <span class="k">where</span> <span class="n">p</span><span class="p">.</span><span class="n">nombre</span> <span class="k">like</span> <span class="s1">'Belén'</span><span class="p">),</span>
+    <span class="p">(</span><span class="k">select</span> <span class="k">ref</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">from</span> <span class="n">PROFESOR_TITULAR</span> <span class="n">p</span> <span class="k">where</span> <span class="n">p</span><span class="p">.</span><span class="n">nombre</span> <span class="k">like</span> <span class="s1">'Jose Mª'</span><span class="p">),</span>
+    <span class="k">null</span>
+<span class="p">));</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">ASIGNATURA</span> <span class="k">values</span><span class="p">(</span><span class="s1">'Arquitectura Softw'</span><span class="p">,</span> <span class="s1">'2'</span><span class="p">,</span> <span class="s1">'I.Informática'</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">T_CONJUNTO_PROFESORES</span><span class="p">(</span>
+    <span class="p">(</span><span class="k">select</span> <span class="k">ref</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">from</span> <span class="n">PROFESOR_TITULAR</span> <span class="n">p</span> <span class="k">where</span> <span class="n">p</span><span class="p">.</span><span class="n">nombre</span> <span class="k">like</span> <span class="s1">'Jorge'</span><span class="p">),</span>
+    <span class="p">(</span><span class="k">select</span> <span class="k">ref</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">from</span> <span class="n">PROFESOR_TITULAR</span> <span class="n">p</span> <span class="k">where</span> <span class="n">p</span><span class="p">.</span><span class="n">nombre</span> <span class="k">like</span> <span class="s1">'Paloma'</span><span class="p">),</span>
+    <span class="k">null</span>
+<span class="p">));</span>
+</code></pre></div></div>
+
+<p><img src="/img/posts/20160225_8.png" alt="Asignaturas con múltiples profesores mediante T_CONJUNTO_PROFESORES" /></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#oracle</span>
+        
+          <span class="tag">#sql</span>
+        
+          <span class="tag">#plsql</span>
+        
+          <span class="tag">#bases-de-datos</span>
+        
+          <span class="tag">#objetos</span>
+        
+          <span class="tag">#herencia</span>
+        
+          <span class="tag">#varray</span>
+        
+          <span class="tag">#ref</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

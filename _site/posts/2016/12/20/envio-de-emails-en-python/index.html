@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Envío de emails en Python | Programando a Pasitos</title>
+<meta name="description" content="Aprende a enviar emails automáticamente con Python usando smtplib. Tutorial completo con código para automatizar correos electrónicos, formatear fechas, configurar servidores SMTP y gestión de errores paso a paso">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Envío de emails en Python | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Envío de emails en Python" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Aprende a enviar emails automáticamente con Python usando smtplib. Tutorial completo con código para automatizar correos electrónicos, formatear fechas, configurar servidores SMTP y gestión de errores paso a paso" />
+<meta property="og:description" content="Aprende a enviar emails automáticamente con Python usando smtplib. Tutorial completo con código para automatizar correos electrónicos, formatear fechas, configurar servidores SMTP y gestión de errores paso a paso" />
+<link rel="canonical" href="http://localhost:4000/posts/2016/12/20/envio-de-emails-en-python/" />
+<meta property="og:url" content="http://localhost:4000/posts/2016/12/20/envio-de-emails-en-python/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-12-20T05:10:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Envío de emails en Python" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2016-12-20T05:10:00+01:00","datePublished":"2016-12-20T05:10:00+01:00","description":"Aprende a enviar emails automáticamente con Python usando smtplib. Tutorial completo con código para automatizar correos electrónicos, formatear fechas, configurar servidores SMTP y gestión de errores paso a paso","headline":"Envío de emails en Python","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2016/12/20/envio-de-emails-en-python/"},"url":"http://localhost:4000/posts/2016/12/20/envio-de-emails-en-python/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Envío de emails en Python</h1>
+    <div class="post-meta">
+      <time datetime="2016-12-20T05:10:00+01:00">20 Dec 2016</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#python" class="post-category">Python</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Aprende a enviar emails automáticamente con Python usando smtplib. Tutorial completo con código para automatizar correos electrónicos, formatear fechas, configurar servidores SMTP y gestión de errores paso a paso</p>
+    
+  </header>
+
+  <div class="post-content">
+    <p>Ésta será una entrada rápida.</p>
+
+<p>Os pongo en situación. A partir de hoy en el trabajo debemos fichar diariamente a base de enviar un correo electrónico cuando empecemos cada jornada, tanto por la mañana como por la tarde. Los mails deberán llevar como cabecera nuestro nombre de usuario, la fecha actual en formato DDMMAA y la letra M o T dependiendo si es por la mañana o por la tarde, y en el cuerpo del mensaje deberá llevar un texto en concreto.</p>
+
+<p>Bien, el caso es que soy un poco perro y, como pretendo quedarme bastante tiempo en esta empresa, no me apetece mucho tener que estar escribiendo todos los días, dos veces al día, el mismo correo. Es una tarea repetitiva que se puede automatizar fácilmente.</p>
+
+<p>Y aprovechando que estoy intentando aprender <strong>Python</strong>, ¿qué lenguaje mejor para programar ese <strong>script</strong> que el de la serpiente? Leyendo un poquito vi que <strong>enviar mails con Python</strong> es tremendamente sencillo, enseguida lo veréis.</p>
+
+<p>El <strong>script</strong> debía constar de dos partes, una que extrajera la fecha del sistema y la formateara como yo quisiera, y la segunda que creara un mail y lo mandase.</p>
+
+<h2 id="el-código">El código</h2>
+
+<p>El código completo es el siguiente:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># -*- coding: utf-8 -*-
+</span><span class="kn">import</span> <span class="nn">smtplib</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="s">'''
+Calcular la hora
+'''</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">"%p"</span><span class="p">)</span> <span class="o">==</span> <span class="s">"AM"</span><span class="p">):</span>
+ <span class="n">tipoHora</span> <span class="o">=</span> <span class="s">"M"</span>
+<span class="k">else</span><span class="p">:</span>
+ <span class="n">tipoHora</span> <span class="o">=</span> <span class="s">"T"</span>
+
+<span class="s">'''
+Crear datos de envío
+'''</span>
+<span class="n">remitente</span>   <span class="o">=</span> <span class="s">"Inazio &lt;remitente@mail.com&gt;"</span>
+<span class="n">destinatario</span>  <span class="o">=</span> <span class="s">"destinatario@mail.com"</span>
+<span class="n">asunto</span>    <span class="o">=</span> <span class="s">"xxxxxxxxxx"</span> <span class="o">+</span> <span class="n">time</span><span class="p">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">"%d%m%y"</span><span class="p">)</span> <span class="o">+</span> <span class="n">tipoHora</span>
+<span class="n">mensaje</span>   <span class="o">=</span> <span class="s">"Aquí va el contenido de nuestro mensaje"</span>
+
+<span class="s">'''
+Preparo el mail y agrego campos
+'''</span>
+<span class="n">email</span> <span class="o">=</span> <span class="s">"""From: %s 
+To: %s 
+MIME-Version: 1.0 
+Content-type: text/html 
+Subject: %s 
+ 
+%s
+"""</span> <span class="o">%</span> <span class="p">(</span><span class="n">remitente</span><span class="p">,</span> <span class="n">destinatario</span><span class="p">,</span> <span class="n">asunto</span><span class="p">,</span> <span class="n">mensaje</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+ <span class="n">smtp</span> <span class="o">=</span> <span class="n">smtplib</span><span class="p">.</span><span class="n">SMTP</span><span class="p">(</span><span class="s">'smtp.mail.com'</span><span class="p">)</span>
+ <span class="n">smtp</span><span class="p">.</span><span class="n">login</span><span class="p">(</span><span class="s">'inazio.claver@mail.com'</span><span class="p">,</span> <span class="s">'*******'</span><span class="p">)</span>
+ <span class="n">smtp</span><span class="p">.</span><span class="n">sendmail</span><span class="p">(</span><span class="n">remitente</span><span class="p">,</span> <span class="n">destinatario</span><span class="p">,</span> <span class="n">email</span><span class="p">)</span>
+ <span class="n">smtp</span><span class="p">.</span><span class="n">quit</span><span class="p">()</span>
+<span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+ <span class="k">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Vamos a verlo paso a paso para comprender bien lo que hace.</p>
+
+<h2 id="qué-información-necesitamos-conocer">¿Qué información necesitamos conocer?</h2>
+
+<p>Antes de nada, debemos tener claro qué es lo que necesitamos.</p>
+
+<ol>
+  <li>Correo electrónico del remitente</li>
+  <li>Correo electrónico del destinatario</li>
+  <li>Dirección del servidor SMTP para envíar el mensaje</li>
+  <li>Asunto y cuerpo de nuestro mensaje</li>
+</ol>
+
+<p>Sabiendo eso, lo primero que haremos será importar las librerías necesarias, que afortunadamente se incluyen en el paquete por defecto. Son time para trabajar con tiempos, y smtplib para envío de correos electrónicos. Además agregaremos nuestra consabida cabecera de utf-8</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># -*- coding: utf-8 -*-
+</span><span class="kn">import</span> <span class="nn">smtplib</span>
+<span class="kn">import</span> <span class="nn">time</span>
+</code></pre></div></div>
+
+<p>Ahora viene la parte en la que trabajaremos con la fecha y hora.
+La hora se captura con la función <code class="language-plaintext highlighter-rouge">time.strftime()</code> pudiendo pasarle varios parámetros para imprimirla en cadena de texto como deseemos. A saber:</p>
+
+<p><img src="/img/posts/20161220_1.png" alt="time.strftime params" /></p>
+
+<p>Por lo tanto, como quiero construir una cadena que sea DDMMAA y si es por la tarde o por el día, primero averiguaré si es AM o PM y luego concatenaré el resultado en un String.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">"%p"</span><span class="p">)</span> <span class="o">==</span> <span class="s">"AM"</span><span class="p">):</span>
+ <span class="n">tipoHora</span> <span class="o">=</span> <span class="s">"M"</span>
+<span class="k">else</span><span class="p">:</span>
+ <span class="n">tipoHora</span> <span class="o">=</span> <span class="s">"T"</span>
+
+<span class="s">'''
+El asunto debe ser mi nombre de usuario, más la fecha y si es mañana o tarde. Ej: xxxxxxxxxxxx201216M
+'''</span>
+<span class="n">asunto</span>    <span class="o">=</span> <span class="s">"xxxxxxxxxx"</span> <span class="o">+</span> <span class="n">time</span><span class="p">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">"%d%m%y"</span><span class="p">)</span> <span class="o">+</span> <span class="n">tipoHora</span>
+</code></pre></div></div>
+
+<p>Solo nos queda crear la información que insertaremos en el mail. Lo podemos hacer de la siguiente manera, a través de la sustitución de parámetros indicados en una cadena de texto.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">email</span> <span class="o">=</span> <span class="s">"""From: %s 
+To: %s 
+MIME-Version: 1.0 
+Content-type: text/html 
+Subject: %s
+ 
+%s
+"""</span> <span class="o">%</span> <span class="p">(</span><span class="n">remitente</span><span class="p">,</span> <span class="n">destinatario</span><span class="p">,</span> <span class="n">asunto</span><span class="p">,</span> <span class="n">mensaje</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Y ahora trabajaremos configurando nuestro servidor, siempre dentro de una sección try / except.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="p">:</span>
+ <span class="n">smtp</span> <span class="o">=</span> <span class="n">smtplib</span><span class="p">.</span><span class="n">SMTP</span><span class="p">(</span><span class="s">'smtp.mail.com'</span><span class="p">)</span>
+ <span class="n">smtp</span><span class="p">.</span><span class="n">login</span><span class="p">(</span><span class="s">'ignacio.claver@mail.com'</span><span class="p">,</span> <span class="s">'XXX'</span><span class="p">)</span>
+ <span class="n">smtp</span><span class="p">.</span><span class="n">sendmail</span><span class="p">(</span><span class="n">remitente</span><span class="p">,</span> <span class="n">destinatario</span><span class="p">,</span> <span class="n">email</span><span class="p">)</span>
+ <span class="n">smtp</span><span class="p">.</span><span class="n">quit</span><span class="p">()</span>
+<span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+ <span class="k">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Lo primero es establecer la dirección de nuestro <strong>servidor SMTP</strong> para posteriormente usar. Después nos loguearemos usando el correo electrónico y la contraseña, y posteriormente usamos la función <code class="language-plaintext highlighter-rouge">sendmail</code> pasandole los parámetros de remitente, destinatario y el <strong>email</strong> a enviar, que establecimos anteriormente.
+<strong>Nota</strong>: Según la configuración del servidor <strong>SMTP</strong> a veces no es necesario establecer usuario y contraseña.</p>
+
+<p>Con todo eso ya estamos listos para generar el <strong>mail</strong>. Bastará con lanzar la aplicación desde la consola de <strong>Python</strong> e ir a revisarlo a nuestro cliente de correo electrónico. Si ha habido algún error se mostrará en la consola desde la que hemos lanzado el programa.</p>
+
+<p><img src="/img/posts/20161220_2.png" alt="envio de email con python" /></p>
+
+<p>Si a vosotros no os llega a la bandeja de entrada deberíais revisar la sección de SPAM.</p>
+
+<p><strong>¡Salud y coding!</strong></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#python</span>
+        
+          <span class="tag">#emails</span>
+        
+          <span class="tag">#smtplib</span>
+        
+          <span class="tag">#automatizacion</span>
+        
+          <span class="tag">#smtp</span>
+        
+          <span class="tag">#scripting</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

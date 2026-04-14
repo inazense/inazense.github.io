@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistemas informáticos. Apuntes 3 evaluación. Segundo exámen | Programando a Pasitos</title>
+<meta name="description" content="Apuntes del segundo examen de la tercera evaluación de sistemas informáticos sobre Windows Server 2008, Active Directory, DHCP, DNS, LAMP y CMS en Ubuntu Server.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Sistemas informáticos. Apuntes 3 evaluación. Segundo exámen | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Sistemas informáticos. Apuntes 3 evaluación. Segundo exámen" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Apuntes del segundo examen de la tercera evaluación de sistemas informáticos sobre Windows Server 2008, Active Directory, DHCP, DNS, LAMP y CMS en Ubuntu Server." />
+<meta property="og:description" content="Apuntes del segundo examen de la tercera evaluación de sistemas informáticos sobre Windows Server 2008, Active Directory, DHCP, DNS, LAMP y CMS en Ubuntu Server." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/05/27/sistemas-informaticos-apuntes-3-evaluacion-segundo-examen/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/05/27/sistemas-informaticos-apuntes-3-evaluacion-segundo-examen/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-05-27T06:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Sistemas informáticos. Apuntes 3 evaluación. Segundo exámen" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-05-27T06:00:00+02:00","datePublished":"2015-05-27T06:00:00+02:00","description":"Apuntes del segundo examen de la tercera evaluación de sistemas informáticos sobre Windows Server 2008, Active Directory, DHCP, DNS, LAMP y CMS en Ubuntu Server.","headline":"Sistemas informáticos. Apuntes 3 evaluación. Segundo exámen","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/05/27/sistemas-informaticos-apuntes-3-evaluacion-segundo-examen/"},"url":"http://localhost:4000/posts/2015/05/27/sistemas-informaticos-apuntes-3-evaluacion-segundo-examen/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Sistemas informáticos. Apuntes 3 evaluación. Segundo exámen</h1>
+    <div class="post-meta">
+      <time datetime="2015-05-27T06:00:00+02:00">27 May 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#sistemas-informáticos" class="post-category">Sistemas informáticos</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Apuntes del segundo examen de la tercera evaluación de sistemas informáticos sobre Windows Server 2008, Active Directory, DHCP, DNS, LAMP y CMS en Ubuntu Server.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="primera-parte-server-2008">PRIMERA PARTE. SERVER 2008</h2>
+
+<p><strong>Windows Server 2008:</strong> Servidor con interfaz gráfica multitarea, multiusuario, a tiempo real / compartido.</p>
+
+<p><strong>Dominio:</strong> Agrupación de usuarios y equipos que facilita la administración centralizada.</p>
+
+<p><strong>Controlador de Dominio:</strong> Centro neurálgico del dominio. Centraliza cuentas, protege información, gestiona copias de seguridad, evita intrusiones.</p>
+
+<p><strong>ADDS (Servicios de dominio de Active Directory):</strong> BD distribuida que almacena y administra información sobre recursos de red.</p>
+
+<p><strong>Active Directory:</strong> Servicio de directorio de Microsoft, estructura jerarquizada, basado en estándares X.500. Estructura: Dominio, Unidad organizativa (OU), Grupos, Objetos. Usa DNS para resolver nombres y definir espacios de nombres.</p>
+
+<p><strong>Gestión de dominios:</strong> Objetos que administra: usuarios globales, grupos, equipos, unidades organizativas.</p>
+
+<p><strong>Directivas de grupo (GPO):</strong> Conjunto de reglas que controlan el medio ambiente de trabajo de cuentas y equipos. Actualización cada 90 min en clientes, 5 min en CD. Forzar con <code class="language-plaintext highlighter-rouge">gpupdate</code>. Orden de procesamiento: LGP → Sitio → Dominio → OU.</p>
+
+<p><strong>Permisos efectivos. Delegación de permisos. Listas de control de acceso (ACL):</strong> fijas y variables.</p>
+
+<p><strong>Seguridad:</strong> de sistema, de los datos, a nivel de usuario, a nivel de equipo.</p>
+
+<p><strong>Servidores de ficheros (DFS):</strong> Espacio de nombres DFS y Replicación DFS. Se instala desde Administrador del servidor → Funciones → Sistema de archivos distribuido.</p>
+
+<h2 id="segunda-parte-ubuntu-server">SEGUNDA PARTE. UBUNTU SERVER</h2>
+
+<h3 id="servidor-dhcp">Servidor DHCP</h3>
+
+<p>Establece configuración IP automática. Parámetros mínimos: IP y máscara. Opcionales: gateway, DNS.</p>
+
+<p>Instalación DHCP3:</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">sudo apt-get install dhcp3-server</code></li>
+  <li>Editar <code class="language-plaintext highlighter-rouge">dhcpd.conf</code> (previo backup).</li>
+  <li>Buscar sección <code class="language-plaintext highlighter-rouge">subnet</code> y descomentar líneas con subred, rango, DNS, dominio, gateway, broadcast.</li>
+  <li>Reiniciar: <code class="language-plaintext highlighter-rouge">sudo /etc/init.d/dhcp3-server restart</code></li>
+</ol>
+
+<h3 id="servidor-dns-bind">Servidor DNS Bind</h3>
+
+<p>DNS resuelve nombres de dominio a IP. Estructura básica en árbol. FQDN = host + dominio secundario + dominio primario (ej: <code class="language-plaintext highlighter-rouge">www.google.com</code>).</p>
+
+<p><strong>Tipos de servidores DNS:</strong> Maestro, Esclavo, Solo de caché, De reenvío.</p>
+
+<p><strong>Tipos de registro:</strong> A (Address), MX (correo), CNAME (alias), NS (nameserver), SOA (servidor primario). Zonas de búsqueda directa e inversa.</p>
+
+<p><strong>Configurar BIND9:</strong> instalar <code class="language-plaintext highlighter-rouge">bind9</code>, editar <code class="language-plaintext highlighter-rouge">/etc/bind/named.conf.default-zones</code>, añadir zona, crear archivo <code class="language-plaintext highlighter-rouge">db.nombredominio</code>, definir SOA/NS/CNAME/A, configurar reenviadores en <code class="language-plaintext highlighter-rouge">named.conf.options</code>, reiniciar con <code class="language-plaintext highlighter-rouge">sudo service bind9 restart</code>.</p>
+
+<h3 id="apache--mysql--php-lamp">Apache + MySQL + PHP (LAMP)</h3>
+
+<p>Apache implementa HTTP. PHP como intérprete. MySQL como gestor de BD.</p>
+
+<p><strong>CMS:</strong> phpMyAdmin como gestor. Se accede vía <code class="language-plaintext highlighter-rouge">192.168.137.198/phpmyadmin</code>.</p>
+
+<ul>
+  <li><strong>WordPress:</strong> CMS en PHP para blogs. Instalación en <code class="language-plaintext highlighter-rouge">/var/www/wordpress</code>, permisos, BD en phpMyAdmin, acceso web al instalador.</li>
+  <li><strong>Joomla:</strong> CMS en PHP con licencia GPL. Muy usado para e-commerce. Instalación en <code class="language-plaintext highlighter-rouge">/var/www/joomla</code>.</li>
+  <li><strong>Drupal:</strong> CMS modular en PHP con licencia GPL. Ideal para comunidades, foros, portales. Instalación en <code class="language-plaintext highlighter-rouge">/var/www/drupal</code>.</li>
+</ul>
+
+<h3 id="sitios-virtuales-en-apache">Sitios virtuales en Apache</h3>
+
+<p>Por puerto, por IP, por nombre de dominio (requiere DNS).</p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#sistemas-informaticos</span>
+        
+          <span class="tag">#windows-server</span>
+        
+          <span class="tag">#active-directory</span>
+        
+          <span class="tag">#ubuntu-server</span>
+        
+          <span class="tag">#dhcp</span>
+        
+          <span class="tag">#dns</span>
+        
+          <span class="tag">#apache</span>
+        
+          <span class="tag">#lamp</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

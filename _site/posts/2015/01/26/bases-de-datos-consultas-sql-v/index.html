@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bases de datos. Consultas SQL (V) | Programando a Pasitos</title>
+<meta name="description" content="Ejercicios de subconsultas SQL sobre las tablas de empleados, departamentos, pedidos, productos y clientes.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bases de datos. Consultas SQL (V) | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bases de datos. Consultas SQL (V)" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Ejercicios de subconsultas SQL sobre las tablas de empleados, departamentos, pedidos, productos y clientes." />
+<meta property="og:description" content="Ejercicios de subconsultas SQL sobre las tablas de empleados, departamentos, pedidos, productos y clientes." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/01/26/bases-de-datos-consultas-sql-v/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/01/26/bases-de-datos-consultas-sql-v/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-01-26T02:40:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bases de datos. Consultas SQL (V)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-01-26T02:40:00+01:00","datePublished":"2015-01-26T02:40:00+01:00","description":"Ejercicios de subconsultas SQL sobre las tablas de empleados, departamentos, pedidos, productos y clientes.","headline":"Bases de datos. Consultas SQL (V)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/01/26/bases-de-datos-consultas-sql-v/"},"url":"http://localhost:4000/posts/2015/01/26/bases-de-datos-consultas-sql-v/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Bases de datos. Consultas SQL (V)</h1>
+    <div class="post-meta">
+      <time datetime="2015-01-26T02:40:00+01:00">26 Jan 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#bases-de-datos" class="post-category">Bases de datos</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Ejercicios de subconsultas SQL sobre las tablas de empleados, departamentos, pedidos, productos y clientes.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <p>Hoja de ejercicios 8 de la unidad 3.</p>
+
+<p><strong>Tablas utilizadas:</strong> <code class="language-plaintext highlighter-rouge">EMPLEADOS</code>, <code class="language-plaintext highlighter-rouge">DEPARTAMENTOS</code>, <code class="language-plaintext highlighter-rouge">PEDIDOS</code>, <code class="language-plaintext highlighter-rouge">PRODUCTOS</code> y <code class="language-plaintext highlighter-rouge">CLIENTES</code>.</p>
+
+<h2 id="subconsultas-ejercicios-i">SUBCONSULTAS. EJERCICIOS (I)</h2>
+
+<p><strong>1.</strong> Listar los nombres y códigos de los departamentos en los que haya empleados.</p>
+
+<p>Mi solución:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">d1</span><span class="p">.</span><span class="n">dep_no</span><span class="p">,</span> <span class="n">dnombre</span>
+<span class="k">from</span> <span class="n">departamentos</span> <span class="n">d1</span>
+<span class="k">where</span> <span class="n">d1</span><span class="p">.</span><span class="n">DEP_NO</span> <span class="o">=</span> <span class="k">ANY</span> <span class="p">(</span><span class="k">select</span> <span class="n">d2</span><span class="p">.</span><span class="n">DEP_NO</span> <span class="k">from</span> <span class="n">empleados</span> <span class="n">d2</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Solución del profesor:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">dep_no</span><span class="p">,</span> <span class="n">dnombre</span>
+<span class="k">from</span> <span class="n">departamentos</span>
+<span class="k">where</span> <span class="n">dep_no</span> <span class="k">in</span> <span class="p">(</span>
+     <span class="k">select</span> <span class="k">distinct</span> <span class="n">DEP_NO</span>
+     <span class="k">from</span> <span class="n">empleados</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p><strong>2.</strong> Obtener los datos del pedido más reciente.</p>
+
+<p>Mi solución:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span>
+<span class="k">from</span> <span class="n">productos</span>
+<span class="k">where</span> <span class="n">PRODUCTO_NO</span> <span class="o">=</span> <span class="p">(</span><span class="k">select</span> <span class="n">producto_no</span> <span class="k">from</span> <span class="n">pedidos</span> <span class="k">order</span> <span class="k">by</span> <span class="n">FECHA_PEDIDO</span> <span class="k">limit</span> <span class="mi">1</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Solución del profesor:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span>
+<span class="k">from</span> <span class="n">productos</span>
+<span class="k">where</span> <span class="n">PRODUCTO_NO</span> <span class="o">=</span> <span class="p">(</span><span class="k">select</span> <span class="k">max</span><span class="p">(</span><span class="n">fecha_pedido</span><span class="p">)</span> <span class="k">from</span> <span class="n">pedidos</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><strong>3.</strong> Para el departamento de VENTAS, visualizar para cada oficio la suma de los salarios de los empleados.</p>
+
+<p>Mi solución:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">OFICIO</span><span class="p">,</span> <span class="k">sum</span><span class="p">(</span><span class="n">salario</span><span class="p">)</span>
+<span class="k">from</span> <span class="n">empleados</span>
+<span class="k">where</span> <span class="n">dep_no</span> <span class="o">=</span> <span class="p">(</span>
+     <span class="k">select</span> <span class="n">dep_no</span>
+     <span class="k">from</span> <span class="n">departamentos</span>
+     <span class="k">where</span> <span class="n">dnombre</span> <span class="k">like</span> <span class="s1">'ventas'</span><span class="p">)</span>
+<span class="k">group</span> <span class="k">by</span> <span class="n">oficio</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Solución del profesor:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">oficio</span><span class="p">,</span> <span class="k">sum</span><span class="p">(</span><span class="n">salario</span><span class="p">)</span>
+<span class="k">from</span> <span class="n">empleados</span>
+<span class="k">where</span> <span class="n">dep_no</span> <span class="o">=</span> <span class="p">(</span>
+     <span class="k">select</span> <span class="n">DEP_NO</span>
+     <span class="k">from</span> <span class="n">departamentos</span>
+     <span class="k">where</span> <span class="n">dnombre</span><span class="o">=</span><span class="s1">'VENTAS'</span>
+<span class="p">)</span>
+<span class="k">group</span> <span class="k">by</span> <span class="n">oficio</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><strong>4.</strong> Obtener los datos del producto con más unidades en los pedidos de los clientes.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span>
+<span class="k">from</span> <span class="n">productos</span>
+<span class="k">where</span> <span class="n">producto_no</span> <span class="o">=</span> <span class="p">(</span>
+     <span class="k">select</span> <span class="n">PRODUCTO_NO</span>
+     <span class="k">from</span> <span class="n">pedidos</span>
+     <span class="k">group</span> <span class="k">by</span> <span class="n">PRODUCTO_NO</span>
+          <span class="k">having</span> <span class="k">sum</span><span class="p">(</span><span class="n">unidades</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span>
+          <span class="k">select</span> <span class="k">sum</span><span class="p">(</span><span class="n">UNIDADES</span><span class="p">)</span>
+          <span class="k">from</span> <span class="n">pedidos</span>
+          <span class="k">group</span> <span class="k">by</span> <span class="n">producto_no</span>
+          <span class="k">order</span> <span class="k">by</span> <span class="mi">1</span> <span class="k">desc</span>
+          <span class="k">limit</span> <span class="mi">1</span>
+     <span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p><strong>5.</strong> Seleccionar los datos de los pedidos correspondientes al realizado con mayor cantidad de unidades del mismo producto, visualizándolo para cada producto.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span>
+<span class="k">from</span> <span class="n">pedidos</span>
+<span class="k">where</span> <span class="p">(</span><span class="n">PRODUCTO_NO</span><span class="p">,</span> <span class="n">unidades</span><span class="p">)</span> <span class="k">in</span> <span class="p">(</span>
+     <span class="k">select</span> <span class="n">producto_no</span><span class="p">,</span> <span class="k">max</span><span class="p">(</span><span class="n">unidades</span><span class="p">)</span>
+     <span class="k">from</span> <span class="n">pedidos</span>
+     <span class="k">group</span> <span class="k">by</span> <span class="mi">1</span>
+<span class="p">)</span>
+<span class="k">order</span> <span class="k">by</span> <span class="n">PRODUCTO_NO</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><strong>6.</strong> Seleccionar los empleados de la empresa que tengan igual comisión que la media de su oficio.</p>
+
+<p>Mi solución:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span>
+<span class="k">from</span> <span class="n">empleados</span>
+<span class="k">where</span> <span class="p">(</span><span class="n">oficio</span><span class="p">,</span><span class="n">salario</span><span class="p">)</span> <span class="o">=</span> <span class="k">ANY</span> <span class="p">(</span>
+     <span class="k">select</span> <span class="n">oficio</span><span class="p">,</span> <span class="k">avg</span><span class="p">(</span><span class="n">salario</span><span class="p">)</span>
+     <span class="k">from</span> <span class="n">empleados</span>
+     <span class="k">group</span> <span class="k">by</span> <span class="n">oficio</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p>Solución del profesor:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span>
+<span class="k">from</span> <span class="n">empleados</span> <span class="n">e1</span>
+<span class="k">where</span> <span class="n">COMISION</span> <span class="o">=</span> <span class="p">(</span>
+     <span class="k">select</span> <span class="k">avg</span><span class="p">(</span><span class="n">ifcomision</span><span class="p">)</span>
+     <span class="k">from</span> <span class="n">empleados</span> <span class="n">e2</span>
+     <span class="k">where</span> <span class="n">e1</span><span class="p">.</span><span class="n">oficio</span><span class="o">=</span><span class="n">oficio</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="subconsultas-ejercicios-ii">SUBCONSULTAS. EJERCICIOS (II)</h2>
+
+<p><strong>1.</strong> Obtener un listado con el número y nombre de los clientes atendidos por el vendedor con nombre ‘CALVO’.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">CLIENTE_NO</span><span class="p">,</span> <span class="n">NOMBRE</span>
+<span class="k">from</span> <span class="n">clientes</span>
+<span class="k">where</span> <span class="n">VENDEDOR_NO</span> <span class="o">=</span> <span class="p">(</span>
+     <span class="k">select</span> <span class="n">EMP_NO</span>
+     <span class="k">from</span> <span class="n">empleados</span>
+     <span class="k">where</span> <span class="n">apellido</span> <span class="k">like</span> <span class="s1">'CALVO'</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p><strong>2.</strong> Obtener un listado con los números de pedido, números de producto y fecha de los pedidos realizados por el cliente con nombre ‘EDICIONES SANZ’.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">PEDIDO_NO</span><span class="p">,</span> <span class="n">PRODUCTO_NO</span><span class="p">,</span> <span class="n">FECHA_PEDIDO</span>
+<span class="k">from</span> <span class="n">pedidos</span>
+<span class="k">where</span> <span class="n">CLIENTE_NO</span> <span class="o">=</span> <span class="p">(</span>
+     <span class="k">select</span> <span class="n">CLIENTE_NO</span>
+     <span class="k">from</span> <span class="n">clientes</span>
+     <span class="k">where</span> <span class="n">nombre</span> <span class="k">like</span> <span class="s1">'EDICIONES SANZ'</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p><strong>3.</strong> Obtener el número, nombre y límite de crédito de los clientes con crédito inferior a la media de los créditos.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">CLIENTE_NO</span><span class="p">,</span> <span class="n">NOMBRE</span><span class="p">,</span> <span class="n">ifnull</span><span class="p">(</span><span class="n">LIMITE_CREDITO</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">from</span> <span class="n">clientes</span>
+<span class="k">where</span> <span class="n">LIMITE_CREDITO</span> <span class="o">&lt;</span> <span class="p">(</span>
+     <span class="k">select</span> <span class="k">avg</span><span class="p">(</span><span class="n">ifnull</span><span class="p">(</span><span class="n">LIMITE_CREDITO</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+     <span class="k">from</span> <span class="n">clientes</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p><strong>4.</strong> Visualizar los datos del producto más caro.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span>
+<span class="k">from</span> <span class="n">productos</span>
+<span class="k">where</span> <span class="n">PRECIO_ACTUAL</span> <span class="o">=</span> <span class="p">(</span>
+     <span class="k">select</span> <span class="k">max</span><span class="p">(</span><span class="n">precio_actual</span><span class="p">)</span>
+     <span class="k">from</span> <span class="n">productos</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p><strong>5.</strong> Listar los clientes que han hecho algún pedido de ‘DESTRUCTORA DE PAPEL A3’.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span>
+<span class="k">from</span> <span class="n">clientes</span>
+<span class="k">where</span> <span class="n">CLIENTE_NO</span> <span class="o">=</span> <span class="k">ANY</span> <span class="p">(</span>
+     <span class="k">select</span> <span class="n">CLIENTE_NO</span>
+     <span class="k">from</span> <span class="n">pedidos</span>
+     <span class="k">where</span> <span class="n">PRODUCTO_NO</span> <span class="o">=</span> <span class="p">(</span>
+          <span class="k">select</span> <span class="n">PRODUCTO_NO</span>
+          <span class="k">from</span> <span class="n">productos</span>
+          <span class="k">where</span> <span class="n">DESCRIPCION</span> <span class="k">like</span> <span class="s1">'DESTRUCTORA DE PAPEL A3'</span>
+     <span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p><strong>6.</strong> Obtener los vendedores con más de dos clientes.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span>
+<span class="k">from</span> <span class="n">empleados</span>
+<span class="k">where</span> <span class="n">emp_no</span> <span class="k">in</span> <span class="p">(</span>
+     <span class="k">select</span> <span class="n">VENDEDOR_NO</span>
+     <span class="k">from</span> <span class="n">clientes</span>
+     <span class="k">group</span> <span class="k">by</span> <span class="mi">1</span>
+     <span class="k">having</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">2</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p><strong>7.</strong> Conseguir los apellidos y oficios de los empleados del departamento 10 cuyo oficio sea idéntico al de cualquiera de los empleados del departamento de VENTAS.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">APELLIDO</span><span class="p">,</span> <span class="n">oficio</span>
+<span class="k">from</span> <span class="n">empleados</span>
+<span class="k">where</span> <span class="n">DEP_NO</span> <span class="o">=</span> <span class="mi">10</span> <span class="k">AND</span> <span class="n">OFICIO</span> <span class="k">in</span> <span class="p">(</span>
+     <span class="k">select</span> <span class="k">distinct</span> <span class="n">OFICIO</span>
+     <span class="k">from</span> <span class="n">empleados</span>
+     <span class="k">where</span> <span class="n">DEP_NO</span> <span class="o">=</span> <span class="p">(</span>
+          <span class="k">select</span> <span class="n">dep_no</span>
+          <span class="k">from</span> <span class="n">departamentos</span>
+          <span class="k">where</span> <span class="n">dnombre</span> <span class="k">like</span> <span class="s1">'VENTAS'</span>
+     <span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p><strong>8.</strong> Visualizar los vendedores con clientes que no tengan ningún pedido.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span>
+<span class="k">from</span> <span class="n">empleados</span>
+<span class="k">where</span> <span class="n">emp_no</span> <span class="k">in</span> <span class="p">(</span>
+     <span class="k">select</span> <span class="n">vendedor_no</span>
+     <span class="k">from</span> <span class="n">clientes</span>
+     <span class="k">where</span> <span class="n">cliente_no</span> <span class="k">not</span> <span class="k">in</span> <span class="p">(</span>
+          <span class="k">select</span> <span class="k">distinct</span> <span class="n">cliente_no</span>
+          <span class="k">from</span> <span class="n">pedidos</span>
+     <span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p><strong>9.</strong> Seleccionar el departamento en el que trabaja el empleado con mayor salario, visualizando el nombre del departamento.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">DNOMBRE</span>
+<span class="k">from</span> <span class="n">departamentos</span>
+<span class="k">where</span> <span class="n">DEP_NO</span> <span class="k">in</span> <span class="p">(</span>
+     <span class="k">select</span> <span class="n">DEP_NO</span>
+     <span class="k">from</span> <span class="n">empleados</span>
+     <span class="k">where</span> <span class="n">salario</span> <span class="o">=</span> <span class="p">(</span>
+          <span class="k">select</span> <span class="k">max</span><span class="p">(</span><span class="n">SALARIO</span><span class="p">)</span>
+          <span class="k">from</span> <span class="n">empleados</span>
+     <span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p><strong>10.</strong> Seleccionar aquellos empleados cuyo salario sea menor a la media de los salarios de su departamento.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span>
+<span class="k">from</span> <span class="n">empleados</span> <span class="n">e1</span>
+<span class="k">where</span> <span class="n">SALARIO</span> <span class="o">&lt;</span> <span class="p">(</span>
+     <span class="k">select</span> <span class="k">avg</span><span class="p">(</span><span class="n">salario</span><span class="p">)</span>
+     <span class="k">from</span> <span class="n">empleados</span> <span class="n">e2</span>
+     <span class="k">where</span> <span class="n">e1</span><span class="p">.</span><span class="n">dep_no</span><span class="o">=</span><span class="n">e2</span><span class="p">.</span><span class="n">dep_no</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p><strong>11.</strong> Obtener los nombres y las localidades de los clientes que tengan pedidos.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">localidad</span>
+<span class="k">from</span> <span class="n">clientes</span>
+<span class="k">where</span> <span class="n">CLIENTE_NO</span> <span class="k">in</span> <span class="p">(</span>
+     <span class="k">select</span> <span class="k">distinct</span> <span class="n">CLIENTE_NO</span>
+     <span class="k">from</span> <span class="n">pedidos</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p><strong>12.</strong> Seleccionar el departamento con menos suma salarial total (salario+comision) de la empresa, visualizando el nombre del departamento.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">dnombre</span>
+<span class="k">from</span> <span class="n">departamentos</span>
+<span class="k">where</span> <span class="n">dep_no</span> <span class="k">in</span> <span class="p">(</span>
+     <span class="k">select</span> <span class="n">DEP_NO</span>
+     <span class="k">from</span> <span class="n">empleados</span>
+     <span class="k">group</span> <span class="k">by</span> <span class="n">dep_no</span>
+     <span class="k">having</span> <span class="k">sum</span><span class="p">(</span><span class="n">salario</span> <span class="o">+</span> <span class="n">ifnull</span><span class="p">(</span><span class="n">comision</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span> <span class="o">=</span> <span class="p">(</span>
+          <span class="k">select</span> <span class="k">sum</span><span class="p">(</span><span class="n">salario</span> <span class="o">+</span> <span class="n">ifnull</span><span class="p">(</span><span class="n">comision</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+          <span class="k">from</span> <span class="n">empleados</span>
+          <span class="k">group</span> <span class="k">by</span> <span class="n">dep_no</span>
+          <span class="k">order</span> <span class="k">by</span> <span class="mi">1</span>
+          <span class="k">limit</span> <span class="mi">1</span>
+     <span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p><strong>¡Salud y coding!</strong></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#bases-de-datos</span>
+        
+          <span class="tag">#sql</span>
+        
+          <span class="tag">#mysql</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

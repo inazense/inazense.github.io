@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acceso a datos. Aplicaciones web servidor. JSP | Programando a Pasitos</title>
+<meta name="description" content="Introducción a JavaServer Pages (JSP), sus elementos de script, objetos implícitos, acciones con JavaBeans y librerías de tags personalizadas.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Acceso a datos. Aplicaciones web servidor. JSP | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Acceso a datos. Aplicaciones web servidor. JSP" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Introducción a JavaServer Pages (JSP), sus elementos de script, objetos implícitos, acciones con JavaBeans y librerías de tags personalizadas." />
+<meta property="og:description" content="Introducción a JavaServer Pages (JSP), sus elementos de script, objetos implícitos, acciones con JavaBeans y librerías de tags personalizadas." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/11/22/acceso-datos-aplicaciones-web-servidor-jsp/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/11/22/acceso-datos-aplicaciones-web-servidor-jsp/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-11-22T05:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Acceso a datos. Aplicaciones web servidor. JSP" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver","url":"https://github.com/inazense"},"dateModified":"2015-11-22T05:00:00+01:00","datePublished":"2015-11-22T05:00:00+01:00","description":"Introducción a JavaServer Pages (JSP), sus elementos de script, objetos implícitos, acciones con JavaBeans y librerías de tags personalizadas.","headline":"Acceso a datos. Aplicaciones web servidor. JSP","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/11/22/acceso-datos-aplicaciones-web-servidor-jsp/"},"url":"http://localhost:4000/posts/2015/11/22/acceso-datos-aplicaciones-web-servidor-jsp/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Acceso a datos. Aplicaciones web servidor. JSP</h1>
+    <div class="post-meta">
+      <time datetime="2015-11-22T05:00:00+01:00">22 Nov 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#java" class="post-category">Java</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Introducción a JavaServer Pages (JSP), sus elementos de script, objetos implícitos, acciones con JavaBeans y librerías de tags personalizadas.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="qué-es-una-jsp">¿Qué es una JSP?</h2>
+
+<p>Las <strong>JavaServer Pages</strong> (JSP) permiten separar los componentes dinámicos del contenido estático en páginas web. Los desarrolladores escriben HTML o XML normal e insertan lógica dinámica entre etiquetas especiales que comienzan con <code class="language-plaintext highlighter-rouge">&lt;%</code> y terminan con <code class="language-plaintext highlighter-rouge">%&gt;</code>.</p>
+
+<p>Ejemplo básico:</p>
+
+<div class="language-jsp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;%</span> <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Hola mundo"</span><span class="o">);</span> <span class="nt">%&gt;</span>
+</code></pre></div></div>
+
+<h2 id="elementos-de-script-jsp">Elementos de script JSP</h2>
+
+<h3 id="expresiones">Expresiones</h3>
+
+<p>Evalúan una expresión Java e insertan el resultado directamente en la salida:</p>
+
+<div class="language-jsp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;%=</span> <span class="k">new</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Date</span><span class="o">()</span> <span class="nt">%&gt;</span>
+</code></pre></div></div>
+
+<h3 id="scriptlets">Scriptlets</h3>
+
+<p>Insertan código Java dentro del método <code class="language-plaintext highlighter-rouge">service()</code> del servlet generado:</p>
+
+<div class="language-jsp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;%</span> <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span> <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span> <span class="o">}</span> <span class="nt">%&gt;</span>
+</code></pre></div></div>
+
+<h3 id="declaraciones">Declaraciones</h3>
+
+<p>Definen métodos y atributos a nivel de clase del servlet (fuera de los métodos):</p>
+
+<div class="language-jsp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;%!</span> <span class="kd">private</span> <span class="kt">int</span> <span class="n">accessCount</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="nt">%&gt;</span>
+</code></pre></div></div>
+
+<h3 id="directivas">Directivas</h3>
+
+<p>Afectan a la estructura global del servlet generado. Los tres tipos son:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Directiva</th>
+      <th>Uso</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">page</code></td>
+      <td>Configura propiedades de la página (imports, errorPage, etc.)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">include</code></td>
+      <td>Incluye otro fichero en tiempo de traducción</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">taglib</code></td>
+      <td>Declara una librería de tags personalizados</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Ejemplo:</p>
+
+<div class="language-jsp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;%@ page </span><span class="na">language=</span><span class="s">"java"</span><span class="na"> contentType=</span><span class="s">"text/html; charset=ISO-8859-1"</span> <span class="nt">%&gt;</span>
+<span class="nt">&lt;%@ page </span><span class="na">errorPage=</span><span class="s">"error.jsp"</span> <span class="nt">%&gt;</span>
+</code></pre></div></div>
+
+<h3 id="acciones">Acciones</h3>
+
+<p>Operaciones predefinidas de JSP que se ejecutan en tiempo de petición:</p>
+
+<div class="language-jsp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;jsp:useBean </span><span class="na">id=</span><span class="s">"miBean"</span><span class="na"> class=</span><span class="s">"com.ejemplo.MiBean"</span><span class="na"> scope=</span><span class="s">"session"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;jsp:setProperty </span><span class="na">name=</span><span class="s">"miBean"</span><span class="na"> property=</span><span class="s">"nombre"</span><span class="na"> value=</span><span class="s">"Juan"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;jsp:getProperty </span><span class="na">name=</span><span class="s">"miBean"</span><span class="na"> property=</span><span class="s">"nombre"</span> <span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<h2 id="objetos-implícitos">Objetos implícitos</h2>
+
+<p>JSP pone a disposición nueve variables predefinidas sin necesidad de declararlas:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Tipo</th>
+      <th>Descripción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">request</code></td>
+      <td><code class="language-plaintext highlighter-rouge">HttpServletRequest</code></td>
+      <td>Petición HTTP actual</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">response</code></td>
+      <td><code class="language-plaintext highlighter-rouge">HttpServletResponse</code></td>
+      <td>Respuesta HTTP</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">out</code></td>
+      <td><code class="language-plaintext highlighter-rouge">JspWriter</code></td>
+      <td>Flujo de salida hacia el cliente</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">session</code></td>
+      <td><code class="language-plaintext highlighter-rouge">HttpSession</code></td>
+      <td>Sesión del usuario</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">application</code></td>
+      <td><code class="language-plaintext highlighter-rouge">ServletContext</code></td>
+      <td>Contexto de la aplicación</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">config</code></td>
+      <td><code class="language-plaintext highlighter-rouge">ServletConfig</code></td>
+      <td>Configuración del servlet</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">pageContext</code></td>
+      <td><code class="language-plaintext highlighter-rouge">PageContext</code></td>
+      <td>Contexto de la página</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">page</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Object</code></td>
+      <td>Referencia al servlet actual</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">exception</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Throwable</code></td>
+      <td>Excepción (solo en páginas de error)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="javabeans-en-jsp">JavaBeans en JSP</h2>
+
+<p>Las tres acciones para trabajar con JavaBeans son:</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">&lt;jsp:useBean&gt;</code></strong> — instancia o recupera un bean:</p>
+
+<div class="language-jsp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;jsp:useBean </span><span class="na">id=</span><span class="s">"usuario"</span><span class="na"> class=</span><span class="s">"com.ejemplo.Usuario"</span><span class="na"> scope=</span><span class="s">"session"</span> <span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">&lt;jsp:setProperty&gt;</code></strong> — establece el valor de una propiedad:</p>
+
+<div class="language-jsp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;jsp:setProperty </span><span class="na">name=</span><span class="s">"usuario"</span><span class="na"> property=</span><span class="s">"nombre"</span><span class="na"> param=</span><span class="s">"nombrePila"</span> <span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">&lt;jsp:getProperty&gt;</code></strong> — recupera el valor de una propiedad:</p>
+
+<div class="language-jsp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;jsp:getProperty </span><span class="na">name=</span><span class="s">"usuario"</span><span class="na"> property=</span><span class="s">"nombre"</span> <span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<h2 id="librerías-de-tags-personalizadas">Librerías de tags personalizadas</h2>
+
+<p>Con la directiva <code class="language-plaintext highlighter-rouge">taglib</code> se pueden importar librerías de tags propias o de terceros (como JSTL):</p>
+
+<div class="language-jsp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;%@ taglib </span><span class="na">uri=</span><span class="s">"/WEB-INF/miTagLib.tld"</span><span class="na"> prefix=</span><span class="s">"mi"</span> <span class="nt">%&gt;</span>
+<span class="nt">&lt;mi:holaMundo /&gt;</span>
+</code></pre></div></div>
+
+<p>Para crear una librería de tags propia se necesita:</p>
+
+<ol>
+  <li>Una clase Java que extienda <code class="language-plaintext highlighter-rouge">TagSupport</code> o <code class="language-plaintext highlighter-rouge">BodyTagSupport</code>.</li>
+  <li>Un fichero descriptor <code class="language-plaintext highlighter-rouge">.tld</code> con la definición del tag.</li>
+  <li>Configuración en <code class="language-plaintext highlighter-rouge">web.xml</code>.</li>
+  <li>La página JSP que usa el tag.</li>
+</ol>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#java</span>
+        
+          <span class="tag">#jsp</span>
+        
+          <span class="tag">#acceso-a-datos</span>
+        
+          <span class="tag">#javabeans</span>
+        
+          <span class="tag">#web</span>
+        
+          <span class="tag">#servlet</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

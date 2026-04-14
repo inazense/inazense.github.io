@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aprendiendo Python (III). Sentencias y bucles | Programando a Pasitos</title>
+<meta name="description" content="Aprende sentencias condicionales if-elif-else y bucles while-for en Python 3. Tutorial completo con ejemplos prácticos sobre control de flujo, captura de datos, range() y estructuras de control fundamentales.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Aprendiendo Python (III). Sentencias y bucles | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Aprendiendo Python (III). Sentencias y bucles" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Aprende sentencias condicionales if-elif-else y bucles while-for en Python 3. Tutorial completo con ejemplos prácticos sobre control de flujo, captura de datos, range() y estructuras de control fundamentales." />
+<meta property="og:description" content="Aprende sentencias condicionales if-elif-else y bucles while-for en Python 3. Tutorial completo con ejemplos prácticos sobre control de flujo, captura de datos, range() y estructuras de control fundamentales." />
+<link rel="canonical" href="http://localhost:4000/posts/2016/09/25/aprendiendo-python-3-iii-sentencias-y-bucles/" />
+<meta property="og:url" content="http://localhost:4000/posts/2016/09/25/aprendiendo-python-3-iii-sentencias-y-bucles/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-09-25T06:10:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Aprendiendo Python (III). Sentencias y bucles" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2016-09-25T06:10:00+02:00","datePublished":"2016-09-25T06:10:00+02:00","description":"Aprende sentencias condicionales if-elif-else y bucles while-for en Python 3. Tutorial completo con ejemplos prácticos sobre control de flujo, captura de datos, range() y estructuras de control fundamentales.","headline":"Aprendiendo Python (III). Sentencias y bucles","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2016/09/25/aprendiendo-python-3-iii-sentencias-y-bucles/"},"url":"http://localhost:4000/posts/2016/09/25/aprendiendo-python-3-iii-sentencias-y-bucles/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Aprendiendo Python (III). Sentencias y bucles</h1>
+    <div class="post-meta">
+      <time datetime="2016-09-25T06:10:00+02:00">25 Sep 2016</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#python" class="post-category">Python</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Aprende sentencias condicionales if-elif-else y bucles while-for en Python 3. Tutorial completo con ejemplos prácticos sobre control de flujo, captura de datos, range() y estructuras de control fundamentales.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <p>Prometo que esta será, de principio, la última entrada de pura teoría sobre <strong>Python</strong>. En este post quiero tratar las sentencias de condición y los bucles.</p>
+
+<p>Pero antes de nada vamos a ver como capturar la entrada de datos. Esto, evidentemente con interfaz gráfica se haría de otra forma, pero trabajando en consola es fundamental para que los usuarios puedan introducir los datos en la terminal.</p>
+
+<p>Recordamos que estamos en <strong>Python 3</strong>, porque aquí tenemos una de las diferencias con su version anterior. En la versión 2.x capturabamos los datos usando la función <code class="language-plaintext highlighter-rouge">raw_input()</code>, pero en la 3.x nos dará un error de interpretación del módulo.
+Para capturar entrada de datos en <strong>Python 3</strong> usaremos la función <code class="language-plaintext highlighter-rouge">input()</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dia</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">"Escribe el día:"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Aclarado este punto, que lo usaremos bastante en ejercicios posteriores, pasemos a ver el contenido principal.</p>
+
+<h2 id="sentencias">Sentencias</h2>
+
+<p>Bueno, no es mi intención extenderme con las sentencias <code class="language-plaintext highlighter-rouge">if - else if - else</code>. Simplemente voy a detenerme a explicar la sintaxis para generarlo en <strong>Python</strong>.</p>
+
+<p><strong>If y else</strong> se denominan tal cual, y si debemos echar mano de varias comprobaciones en una condición podemos agruparlas con paréntesis y los booleanos vistos en la anterior entrada. Asimismo, si quieremos usar la sentencia <strong>else if</strong> la palabra clave es <code class="language-plaintext highlighter-rouge">elif</code>.
+Veamos un ejemplo</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">fruta</span> <span class="o">=</span> <span class="s">'manzana'</span><span class="p">:</span>
+ <span class="n">precio</span> <span class="o">=</span> <span class="mf">0.55</span>
+<span class="k">elif</span> <span class="n">fruta</span> <span class="o">=</span> <span class="s">'platano'</span><span class="p">:</span>
+ <span class="n">precio</span> <span class="o">=</span> <span class="mf">0.79</span>
+<span class="k">elif</span> <span class="n">fruta</span> <span class="o">=</span> <span class="s">'pera'</span><span class="p">:</span>
+ <span class="n">precio</span> <span class="o">=</span> <span class="mf">0.28</span>
+<span class="k">else</span><span class="p">:</span>
+ <span class="k">print</span><span class="p">(</span><span class="s">'No tenemos '</span> <span class="o">+</span> <span class="n">fruta</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>¿Os habéis percatado de que después de cada condición, para indicar como se comporta el código, tabulo la línea? Bien, esto es fundamental en <strong>Python</strong>. Si recordáis la primera entrada os dije que no existían llaves ni punto y coma en este lenguaje. Aquí tenemos el por qué. Cuando queramos indicar que un trozo de código pertenece a una sentencia superior (condiciones, bucles, funciones, etc) debemos hacerlo tabulando esa sección de código un nivel hacía dentro. Y por supuesto para volver a la “rama” anterior basta con eliminar dicha tabulación. Además esto permite un código mucho más sencillo de leer con un estándar muy práctico.</p>
+
+<p><img src="/img/posts/20160925_1.png" alt="programmers joke will know" /></p>
+
+<p>Y para concatenar varias condiciones en una misma sentencia, como decía antes, podemos hacerlo tal que así</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">((</span><span class="n">mes</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">dia</span> <span class="o">==</span> <span class="mi">28</span><span class="p">))</span> <span class="ow">or</span> <span class="p">((</span><span class="n">mes</span> <span class="o">==</span> <span class="mi">7</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">dia</span> <span class="o">==</span> <span class="mi">31</span><span class="p">)):</span>
+ <span class="k">print</span><span class="p">(</span><span class="s">'Felicidades Inazio!'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="bucles">Bucles</h2>
+
+<p>Evidentemente también vamos a usar <strong>bucles</strong>. Muchos bucles. Bucles como tontos. Bucles así, porque nosotros podemos. Y para ello necesitamos cuales tenemos a nuestra disposición y su sintaxis.</p>
+
+<p>El <strong>bucle while</strong> es aquel que repite un conjunto de instrucciones mientras se cumpla una condición fijada previamente, y una de sus características es que no está fijada de antemano la cantidad de veces que se ejecutará. Lo hará siempre que se cumpla la condición.</p>
+
+<p>Su sintaxis es sencilla, veamosla con un programa que calcule la secuencia de Fibonacci hasta 10000.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+
+<span class="k">while</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="mi">10000</span><span class="p">:</span>
+ <span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s">','</span><span class="p">)</span>
+ <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</code></pre></div></div>
+
+<p>Quiero comentar tres cosas de este código. La primera, evidente, es que la sintaxis de un <strong>while</strong> es muy fácil. <strong>While + condición + dos puntos</strong>, y dentro el contenido.
+La segunda es que en la primera línea de código aprendemos a hacer asignaciones múltiples correctamente. Basta con diferencias las variables con una coma y su valor igual.
+Y la tercera, y última, es que ese parámetro que uso, end=”,”, sirve para que <code class="language-plaintext highlighter-rouge">print()</code> no finalice con un salto de línea sino con el caracter que le indicamos.</p>
+
+<p><strong>While</strong> tiene dos palabras reservadas en su interior, <code class="language-plaintext highlighter-rouge">break</code> y <code class="language-plaintext highlighter-rouge">continue</code>. Continue hace que pasemos directamente al inicio del bucle de nuevo, da igual en que sección de él estemos. Y <strong>break</strong> nos sacará directamente del bucle hacía la siguiente instrucción.</p>
+
+<p>El <strong>bucle for</strong> difiere un poco de otros lenguajes, como pueda ser C donde podemos definiar tanto la iteración como la condición de fin. En <strong>Python</strong> este <strong>bucle</strong> itera sobre los elementos de cualquier secuencia en el orden que aparezcan.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">miLista</span> <span class="o">=</span> <span class="p">[</span><span class="s">'Python'</span><span class="p">,</span> <span class="s">'Java'</span><span class="p">,</span> <span class="s">'C'</span><span class="p">,</span> <span class="s">'ADA'</span><span class="p">,</span> <span class="s">'Movilizer'</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">lenguaje</span> <span class="ow">in</span> <span class="n">miLista</span><span class="p">:</span>
+ <span class="k">print</span> <span class="n">lenguaje</span>
+</code></pre></div></div>
+
+<p>Nos puede resultar un poco engorroso verlo solo de esta forma si queremos hacer una iteración de enteros del 0 al 100 por ejemplo, sin usar un while que tengamos que sumar nosotros la variable para ir avanzando. Por eso podemos usar la función integrada <code class="language-plaintext highlighter-rouge">range()</code> que combinada con el for nos dejará hacer este tipo de sentencias. Por ejemplo, vamos a imprimir los numeros impares del 0 al 100 con esta técnica, y luego los numeros pares del 100 al 200 en otro for distinto.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Números impares de 0 a 100
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+ <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<span class="c1"># Números pares de 100 a 200
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">201</span><span class="p">):</span>
+ <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Así, si usamos range y solo definimos un entero, será desde 0 hasta ese entero, y si pasamos dos parámetros lo hará desde el primero hasta x valor, empezando por cero. Es decir, si quieres imprimir desde el 1 hasta el 100 inclusive, deberás pasar un <code class="language-plaintext highlighter-rouge">range(1, 101)</code> para verlo correctamente. Si lo hicieses hasta el 100 solo imprimirías hasta el número 99.</p>
+
+<hr />
+
+<p>En la siguiente entrada comenzaré la realización de algunos ejercicios básicos para empezar a coger práctica con <strong>Python</strong>, y posteriormente explicaré como crear funciones.</p>
+
+<p><strong>¡Salud y coding!</strong></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#python</span>
+        
+          <span class="tag">#control-flujo</span>
+        
+          <span class="tag">#bucles</span>
+        
+          <span class="tag">#if-else</span>
+        
+          <span class="tag">#while</span>
+        
+          <span class="tag">#for</span>
+        
+          <span class="tag">#range</span>
+        
+          <span class="tag">#input</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

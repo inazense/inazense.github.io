@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Java y MySQL. Patrón Singleton | Programando a Pasitos</title>
+<meta name="description" content="Aprende a implementar el patrón Singleton en Java para conexiones MySQL. Tutorial completo con código paso a paso sobre patrones de diseño, instancia única y gestión eficiente de bases de datos.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Java y MySQL. Patrón Singleton | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Java y MySQL. Patrón Singleton" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Aprende a implementar el patrón Singleton en Java para conexiones MySQL. Tutorial completo con código paso a paso sobre patrones de diseño, instancia única y gestión eficiente de bases de datos." />
+<meta property="og:description" content="Aprende a implementar el patrón Singleton en Java para conexiones MySQL. Tutorial completo con código paso a paso sobre patrones de diseño, instancia única y gestión eficiente de bases de datos." />
+<link rel="canonical" href="http://localhost:4000/posts/2016/07/04/java-y-mysql-patron-singleton/" />
+<meta property="og:url" content="http://localhost:4000/posts/2016/07/04/java-y-mysql-patron-singleton/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-07-04T06:10:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Java y MySQL. Patrón Singleton" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2016-07-04T06:10:00+02:00","datePublished":"2016-07-04T06:10:00+02:00","description":"Aprende a implementar el patrón Singleton en Java para conexiones MySQL. Tutorial completo con código paso a paso sobre patrones de diseño, instancia única y gestión eficiente de bases de datos.","headline":"Java y MySQL. Patrón Singleton","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2016/07/04/java-y-mysql-patron-singleton/"},"url":"http://localhost:4000/posts/2016/07/04/java-y-mysql-patron-singleton/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Java y MySQL. Patrón Singleton</h1>
+    <div class="post-meta">
+      <time datetime="2016-07-04T06:10:00+02:00">04 Jul 2016</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#java" class="post-category">Java</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Aprende a implementar el patrón Singleton en Java para conexiones MySQL. Tutorial completo con código paso a paso sobre patrones de diseño, instancia única y gestión eficiente de bases de datos.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <p>¿Necesitas una conexión en tu aplicación Java? ¿Harto de abrir varias instancias cada vez que quieres conectarte a <strong>MySQL</strong>? ¿Estás leyendo esto con voz de anuncio?
+Entonces el <strong>patrón Singleton</strong> es tu nuevo mejor amigo.</p>
+
+<p>El <strong>patrón Singleton</strong>, o <strong>patrón de instancia única</strong>, es un <strong>patrón de diseño</strong> encargado de restringir la creación de objetos de una clase (o el valor de un tipo) a un único objeto. Genera una única instancia en la ejecución del programa y proporciona un acceso global a la misma.</p>
+
+<p>Sirve para multitud de funcionalidades, pero en este caso vamos a ver su aplicación a la hora de conectarnos a una base de datos <strong>MySQL</strong>.</p>
+
+<h2 id="cómo-funciona">¿Cómo funciona?</h2>
+
+<p>Crearemos una nueva clase, por ejemplo <code class="language-plaintext highlighter-rouge">EjemploSingleton</code>, que será la responsable de crear la única instancia.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.sql.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EjemploSingleton</span> <span class="o">{</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Lo siguiente será crear una variable estática que almacenará nuestra conexión y la inicializaremos a <code class="language-plaintext highlighter-rouge">null</code></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">static</span> <span class="nc">Connection</span> <span class="n">conn</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p>Después de eso deberemos crear un constructor para nuestra nueva clase, pero ojo, lo crearemos privado.
+¡¿Un constructor privado?! Sí, como lo oyes. Es la forma de garantizar que solo tendremos una única instancia para la conexión.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="nf">EjemploSingleton</span><span class="o">(){</span>
+ 
+    <span class="nc">String</span> <span class="n">url</span> <span class="o">=</span> <span class="s">"jdbc:mysql://localhost:3306/test"</span><span class="o">;</span>
+    <span class="nc">String</span> <span class="n">driver</span> <span class="o">=</span> <span class="s">"com.mysql.jdbc.Driver"</span><span class="o">;</span>
+    <span class="nc">String</span> <span class="n">usuario</span> <span class="o">=</span> <span class="s">"usuario"</span><span class="o">;</span>
+    <span class="nc">String</span> <span class="n">password</span> <span class="o">=</span> <span class="s">"password"</span><span class="o">;</span>
+ 
+    <span class="k">try</span><span class="o">{</span>
+ <span class="nc">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="n">driver</span><span class="o">);</span>
+ <span class="n">conn</span> <span class="o">=</span> <span class="nc">DriverManager</span><span class="o">.</span><span class="na">getConnection</span><span class="o">(</span><span class="n">url</span><span class="o">,</span> <span class="n">usuario</span><span class="o">,</span> <span class="n">password</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">catch</span><span class="o">(</span><span class="nc">ClassNotFoundException</span> <span class="o">|</span> <span class="nc">SQLException</span> <span class="n">e</span><span class="o">){</span>
+ <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Vale, pero si es privado, ¿cómo vamos a crearlo? He ahí la gracia, al constructor lo llama la propia clase, a través de un método. Es lo que veremos a continuación.</p>
+
+<p>Vamos a crear un método llamado <code class="language-plaintext highlighter-rouge">getConnection</code> en el que indicaremos que si nuestra propiedad conn es nula, vuelva a levantar el driver y crear una conexión llamando al constructor privado.
+Y retornaremos la conexión para trabajar con ella.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="nc">Connection</span> <span class="nf">getConnection</span><span class="o">(){</span>
+ 
+    <span class="k">if</span> <span class="o">(</span><span class="n">conn</span> <span class="o">==</span> <span class="kc">null</span><span class="o">){</span>
+ <span class="k">new</span> <span class="nf">EjemploSingleton</span><span class="o">();</span>
+    <span class="o">}</span>
+ 
+    <span class="k">return</span> <span class="n">conn</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Y una vez programada nuestra clase, podremos echar mano de esa conexión desde cualquier parte de nuestro programa llamándolo de esta forma</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Connection</span> <span class="n">conn</span> <span class="o">=</span> <span class="nc">EjemploSingleton</span><span class="o">.</span><span class="na">getConnection</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p>Et voilá! Ya tenemos un patrón de instancia única en <strong>Java</strong> con <strong>MySQL</strong>.</p>
+
+<p>El código completo es el siguiente:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.sql.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EjemploSingleton</span> <span class="o">{</span>
+
+    <span class="c1">// Propiedades</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="nc">Connection</span> <span class="n">conn</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">driver</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">url</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">usuario</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">password</span><span class="o">;</span>
+ 
+    <span class="c1">// Constructor</span>
+    <span class="kd">private</span> <span class="nf">EjemploSingleton</span><span class="o">(){</span>
+ 
+ <span class="nc">String</span> <span class="n">url</span> <span class="o">=</span> <span class="s">"jdbc:mysql://localhost:3306/test"</span><span class="o">;</span>
+ <span class="nc">String</span> <span class="n">driver</span> <span class="o">=</span> <span class="s">"com.mysql.jdbc.Driver"</span><span class="o">;</span>
+ <span class="nc">String</span> <span class="n">usuario</span> <span class="o">=</span> <span class="s">"usuario"</span><span class="o">;</span>
+ <span class="nc">String</span> <span class="n">password</span> <span class="o">=</span> <span class="s">"password"</span><span class="o">;</span>
+  
+ <span class="k">try</span><span class="o">{</span>
+     <span class="nc">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="n">driver</span><span class="o">);</span>
+     <span class="n">conn</span> <span class="o">=</span> <span class="nc">DriverManager</span><span class="o">.</span><span class="na">getConnection</span><span class="o">(</span><span class="n">url</span><span class="o">,</span> <span class="n">usuario</span><span class="o">,</span> <span class="n">password</span><span class="o">);</span>
+ <span class="o">}</span>
+ <span class="k">catch</span><span class="o">(</span><span class="nc">ClassNotFoundException</span> <span class="o">|</span> <span class="nc">SQLException</span> <span class="n">e</span><span class="o">){</span>
+     <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+ <span class="o">}</span>
+    <span class="o">}</span> <span class="c1">// Fin constructor</span>
+ 
+    <span class="c1">// Métodos</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Connection</span> <span class="nf">getConnection</span><span class="o">(){</span>
+  
+ <span class="k">if</span> <span class="o">(</span><span class="n">conn</span> <span class="o">==</span> <span class="kc">null</span><span class="o">){</span>
+     <span class="k">new</span> <span class="nf">EjemploSingleton</span><span class="o">();</span>
+ <span class="o">}</span>
+  
+ <span class="k">return</span> <span class="n">conn</span><span class="o">;</span>
+    <span class="o">}</span> <span class="c1">// Fin getConnection</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>¡Salud y coding!</strong></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#java</span>
+        
+          <span class="tag">#mysql</span>
+        
+          <span class="tag">#singleton</span>
+        
+          <span class="tag">#patrones-diseño</span>
+        
+          <span class="tag">#jdbc</span>
+        
+          <span class="tag">#base-datos</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

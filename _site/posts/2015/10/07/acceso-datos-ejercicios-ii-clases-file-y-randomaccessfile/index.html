@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acceso a datos. Ejercicios (II). Clases File y RandomAccessFile | Programando a Pasitos</title>
+<meta name="description" content="Siete ejercicios prácticos sobre manipulación de archivos y directorios en Java usando las clases File y RandomAccessFile.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Acceso a datos. Ejercicios (II). Clases File y RandomAccessFile | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Acceso a datos. Ejercicios (II). Clases File y RandomAccessFile" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Siete ejercicios prácticos sobre manipulación de archivos y directorios en Java usando las clases File y RandomAccessFile." />
+<meta property="og:description" content="Siete ejercicios prácticos sobre manipulación de archivos y directorios en Java usando las clases File y RandomAccessFile." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/10/07/acceso-datos-ejercicios-ii-clases-file-y-randomaccessfile/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/10/07/acceso-datos-ejercicios-ii-clases-file-y-randomaccessfile/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-10-07T10:39:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Acceso a datos. Ejercicios (II). Clases File y RandomAccessFile" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-10-07T10:39:00+02:00","datePublished":"2015-10-07T10:39:00+02:00","description":"Siete ejercicios prácticos sobre manipulación de archivos y directorios en Java usando las clases File y RandomAccessFile.","headline":"Acceso a datos. Ejercicios (II). Clases File y RandomAccessFile","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/10/07/acceso-datos-ejercicios-ii-clases-file-y-randomaccessfile/"},"url":"http://localhost:4000/posts/2015/10/07/acceso-datos-ejercicios-ii-clases-file-y-randomaccessfile/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Acceso a datos. Ejercicios (II). Clases File y RandomAccessFile</h1>
+    <div class="post-meta">
+      <time datetime="2015-10-07T10:39:00+02:00">07 Oct 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#java" class="post-category">Java</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Siete ejercicios prácticos sobre manipulación de archivos y directorios en Java usando las clases File y RandomAccessFile.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="ejercicio-1-listar-archivos-y-directorios">Ejercicio 1: Listar archivos y directorios</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+          <span class="nc">String</span> <span class="n">directorio</span><span class="o">;</span>
+          <span class="nc">File</span> <span class="n">actual</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+
+          <span class="k">if</span> <span class="o">(</span><span class="n">args</span><span class="o">.</span><span class="na">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span>
+                <span class="n">directorio</span> <span class="o">=</span> <span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
+          <span class="k">else</span>
+                <span class="n">directorio</span> <span class="o">=</span> <span class="s">"."</span><span class="o">;</span>
+
+          <span class="k">try</span><span class="o">{</span>
+                <span class="n">actual</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="n">directorio</span><span class="o">);</span>
+                <span class="k">if</span><span class="o">(</span><span class="n">actual</span><span class="o">.</span><span class="na">isDirectory</span><span class="o">()){</span>
+                     <span class="nc">String</span><span class="o">[]</span> <span class="n">contenido</span> <span class="o">=</span> <span class="n">actual</span><span class="o">.</span><span class="na">list</span><span class="o">();</span>
+                     <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">contenido</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+                          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">contenido</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+                     <span class="o">}</span>
+                <span class="o">}</span>
+                <span class="k">else</span>
+                     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"El directorio no es válido"</span><span class="o">);</span>
+          <span class="o">}</span>
+          <span class="k">catch</span><span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">){</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+          <span class="o">}</span>
+     <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="ejercicio-2-filtrar-archivos-por-extensión">Ejercicio 2: Filtrar archivos por extensión</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+          <span class="nc">String</span> <span class="n">directorio</span><span class="o">;</span>
+          <span class="nc">File</span> <span class="n">actual</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+
+          <span class="k">if</span> <span class="o">(</span><span class="n">args</span><span class="o">.</span><span class="na">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span>
+                <span class="n">directorio</span> <span class="o">=</span> <span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
+          <span class="k">else</span>
+                <span class="n">directorio</span> <span class="o">=</span> <span class="s">"."</span><span class="o">;</span>
+
+          <span class="n">actual</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="n">directorio</span><span class="o">);</span>
+
+          <span class="k">if</span> <span class="o">(</span><span class="n">actual</span><span class="o">.</span><span class="na">isDirectory</span><span class="o">()){</span>
+                <span class="nc">String</span><span class="o">[]</span> <span class="n">archivos</span> <span class="o">=</span> <span class="n">actual</span><span class="o">.</span><span class="na">list</span><span class="o">(</span><span class="k">new</span> <span class="nc">FiltradoArchivos</span><span class="o">(</span><span class="s">".exe"</span><span class="o">));</span>
+
+                <span class="k">if</span> <span class="o">(</span><span class="n">archivos</span><span class="o">.</span><span class="na">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">){</span>
+                     <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">archivos</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+                          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Archivos en "</span> <span class="o">+</span> <span class="n">actual</span><span class="o">.</span><span class="na">getAbsolutePath</span><span class="o">()</span> <span class="o">+</span> <span class="s">":"</span><span class="o">);</span>
+                          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">archivos</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+                     <span class="o">}</span>
+                <span class="o">}</span>
+                <span class="k">else</span><span class="o">{</span>
+                     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"No hay archivos para mostrar"</span><span class="o">);</span>
+                <span class="o">}</span>
+          <span class="o">}</span>
+          <span class="k">else</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Directorio no válido"</span><span class="o">);</span>
+     <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="ejercicio-3-copiar-archivo-origen-a-destino">Ejercicio 3: Copiar archivo origen a destino</h2>
+
+<p><strong>Opciones.java:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Opciones</span> <span class="o">{</span>
+     <span class="kd">private</span> <span class="nc">File</span> <span class="n">origen</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+     <span class="kd">private</span> <span class="nc">File</span> <span class="n">destino</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+     <span class="kd">private</span> <span class="nc">InputStream</span> <span class="n">in</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+     <span class="kd">private</span> <span class="nc">OutputStream</span> <span class="n">out</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+     <span class="kd">private</span> <span class="nc">String</span> <span class="n">ruta</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
+     <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">controlOrigen</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+
+     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">copiarArchivo</span><span class="o">(</span><span class="nc">File</span> <span class="n">o</span><span class="o">,</span> <span class="nc">File</span> <span class="n">d</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">bandera</span><span class="o">){</span>
+          <span class="n">indicarArchivo</span><span class="o">(</span><span class="n">o</span><span class="o">,</span> <span class="n">d</span><span class="o">,</span> <span class="n">bandera</span><span class="o">);</span>
+
+          <span class="k">if</span> <span class="o">(</span><span class="n">controlOrigen</span><span class="o">){</span>
+                <span class="k">try</span><span class="o">{</span>
+                     <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="n">origen</span><span class="o">);</span>
+                     <span class="n">out</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileOutputStream</span><span class="o">(</span><span class="n">destino</span><span class="o">);</span>
+                     <span class="kt">byte</span><span class="o">[]</span> <span class="n">lector</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="mi">1024</span><span class="o">];</span>
+                     <span class="kt">int</span> <span class="n">i</span><span class="o">;</span>
+
+                     <span class="k">while</span> <span class="o">((</span><span class="n">i</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">lector</span><span class="o">))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">){</span>
+                          <span class="n">out</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">lector</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">i</span><span class="o">);</span>
+                     <span class="o">}</span>
+                     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Copia realizada correctamente"</span><span class="o">);</span>
+                <span class="o">}</span>
+                <span class="k">catch</span><span class="o">(</span><span class="nc">FileNotFoundException</span> <span class="n">e</span><span class="o">){</span>
+                     <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                <span class="o">}</span>
+                <span class="k">catch</span><span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">){</span>
+                     <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                <span class="o">}</span>
+                <span class="k">finally</span><span class="o">{</span>
+                     <span class="k">try</span><span class="o">{</span>
+                          <span class="n">in</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                          <span class="n">out</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                     <span class="o">}</span>
+                     <span class="k">catch</span><span class="o">(</span><span class="nc">FileNotFoundException</span> <span class="n">e</span><span class="o">){</span>
+                          <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                     <span class="o">}</span>
+                     <span class="k">catch</span><span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">){</span>
+                          <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                     <span class="o">}</span>
+                <span class="o">}</span>
+          <span class="o">}</span>
+          <span class="k">else</span><span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"El archivo de origen indicado no existe. No se puede realizar la copia"</span><span class="o">);</span>
+          <span class="o">}</span>
+     <span class="o">}</span>
+
+     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">indicarArchivo</span><span class="o">(</span><span class="nc">File</span> <span class="n">o</span><span class="o">,</span> <span class="nc">File</span> <span class="n">d</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">bandera</span><span class="o">){</span>
+          <span class="k">if</span><span class="o">(</span><span class="n">o</span><span class="o">.</span><span class="na">isFile</span><span class="o">())</span>
+                <span class="n">origen</span> <span class="o">=</span> <span class="n">o</span><span class="o">;</span>
+          <span class="k">else</span>
+                <span class="n">controlOrigen</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+
+          <span class="k">if</span><span class="o">(</span><span class="n">bandera</span><span class="o">)</span>
+                <span class="n">destino</span> <span class="o">=</span> <span class="n">d</span><span class="o">;</span>
+
+          <span class="k">if</span> <span class="o">(</span><span class="n">d</span><span class="o">.</span><span class="na">isDirectory</span><span class="o">()){</span>
+                <span class="n">ruta</span> <span class="o">=</span> <span class="n">ruta</span> <span class="o">+</span> <span class="n">d</span><span class="o">.</span><span class="na">getAbsolutePath</span><span class="o">()</span> <span class="o">+</span> <span class="nc">File</span><span class="o">.</span><span class="na">separator</span> <span class="o">+</span> <span class="n">o</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Path D:"</span> <span class="o">+</span> <span class="n">d</span><span class="o">.</span><span class="na">getAbsolutePath</span><span class="o">());</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Nombre origen:"</span> <span class="o">+</span> <span class="n">o</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Ruta total:"</span> <span class="o">+</span> <span class="n">ruta</span><span class="o">);</span>
+                <span class="n">destino</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="n">ruta</span><span class="o">);</span>
+          <span class="o">}</span>
+          <span class="k">else</span>
+                <span class="n">destino</span> <span class="o">=</span> <span class="n">d</span><span class="o">;</span>
+     <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Main.java:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+          <span class="nc">Opciones</span> <span class="n">op</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Opciones</span><span class="o">();</span>
+          <span class="nc">File</span> <span class="n">origen</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"C:\\Users\\usuario\\workspace\\File3\\origen.txt"</span><span class="o">);</span>
+          <span class="nc">File</span> <span class="n">destino</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"C:\\Users\\usuario\\Desktop\\"</span><span class="o">);</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">destino</span><span class="o">.</span><span class="na">getAbsolutePath</span><span class="o">());</span>
+
+          <span class="n">op</span><span class="o">.</span><span class="na">copiarArchivo</span><span class="o">(</span><span class="n">origen</span><span class="o">,</span> <span class="n">destino</span><span class="o">,</span> <span class="n">origen</span><span class="o">.</span><span class="na">isFile</span><span class="o">());</span>
+     <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="ejercicio-4-copiar-directorio-recursivamente">Ejercicio 4: Copiar directorio recursivamente</h2>
+
+<p><strong>Ficheros.java:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Ficheros</span> <span class="o">{</span>
+     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">copiarDirectorio</span><span class="o">(</span><span class="nc">File</span> <span class="n">dOrigen</span><span class="o">,</span> <span class="nc">File</span> <span class="n">dDestino</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span><span class="o">{</span>
+          <span class="k">if</span><span class="o">(</span><span class="n">dOrigen</span><span class="o">.</span><span class="na">isDirectory</span><span class="o">()){</span>
+                <span class="k">if</span><span class="o">(!</span><span class="n">dDestino</span><span class="o">.</span><span class="na">exists</span><span class="o">()){</span>
+                     <span class="n">dDestino</span><span class="o">.</span><span class="na">mkdir</span><span class="o">();</span>
+                <span class="o">}</span>
+                <span class="nc">String</span><span class="o">[]</span> <span class="n">hijos</span> <span class="o">=</span> <span class="n">dOrigen</span><span class="o">.</span><span class="na">list</span><span class="o">();</span>
+                <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">hijos</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+                     <span class="n">copiarDirectorio</span><span class="o">(</span><span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="n">dOrigen</span><span class="o">,</span> <span class="n">hijos</span><span class="o">[</span><span class="n">i</span><span class="o">]),</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="n">dDestino</span><span class="o">,</span> <span class="n">hijos</span><span class="o">[</span><span class="n">i</span><span class="o">]));</span>
+                     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Copiado "</span> <span class="o">+</span> <span class="n">hijos</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+                <span class="o">}</span>
+          <span class="o">}</span>
+          <span class="k">else</span><span class="o">{</span>
+                <span class="n">copiarFichero</span><span class="o">(</span><span class="n">dOrigen</span><span class="o">,</span> <span class="n">dDestino</span><span class="o">);</span>
+          <span class="o">}</span>
+     <span class="o">}</span>
+
+     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">copiarFichero</span><span class="o">(</span><span class="nc">File</span> <span class="n">fOrigen</span><span class="o">,</span> <span class="nc">File</span> <span class="n">fDestino</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span><span class="o">{</span>
+          <span class="nc">InputStream</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="n">fOrigen</span><span class="o">);</span>
+          <span class="nc">OutputStream</span> <span class="n">out</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileOutputStream</span><span class="o">(</span><span class="n">fDestino</span><span class="o">);</span>
+          <span class="kt">byte</span><span class="o">[]</span> <span class="n">buffer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="mi">1024</span><span class="o">];</span>
+          <span class="kt">int</span> <span class="n">cap</span><span class="o">;</span>
+
+          <span class="k">while</span> <span class="o">((</span><span class="n">cap</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">buffer</span><span class="o">))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">){</span>
+                <span class="n">out</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">buffer</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">cap</span><span class="o">);</span>
+          <span class="o">}</span>
+          <span class="n">in</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+          <span class="n">out</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Copiado "</span> <span class="o">+</span> <span class="n">fOrigen</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+     <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Main.java:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+          <span class="nc">File</span> <span class="n">origen</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"C:\\Users\\usuario\\workspace\\File4\\origen\\"</span><span class="o">);</span>
+          <span class="nc">File</span> <span class="n">destino</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"C:\\Users\\usuario\\workspace\\File4\\destino\\"</span><span class="o">);</span>
+          <span class="nc">Ficheros</span> <span class="n">fc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Ficheros</span><span class="o">();</span>
+
+          <span class="k">try</span><span class="o">{</span>
+                <span class="n">fc</span><span class="o">.</span><span class="na">copiarDirectorio</span><span class="o">(</span><span class="n">origen</span><span class="o">,</span> <span class="n">destino</span><span class="o">);</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Volcado finalizado"</span><span class="o">);</span>
+          <span class="o">}</span>
+          <span class="k">catch</span><span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">){</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+          <span class="o">}</span>
+     <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="ejercicio-5-escribir-referencias-y-precios">Ejercicio 5: Escribir referencias y precios</h2>
+
+<p><strong>Opciones.java:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Vector</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Opciones</span> <span class="o">{</span>
+     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">escribePrecios</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">ref</span><span class="o">,</span> <span class="kt">double</span><span class="o">[]</span> <span class="n">precio</span><span class="o">,</span> <span class="nc">String</span> <span class="n">nombre</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span><span class="o">{</span>
+          <span class="nc">FileWriter</span> <span class="n">fW</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileWriter</span><span class="o">(</span><span class="n">nombre</span><span class="o">);</span>
+          <span class="nc">BufferedWriter</span> <span class="n">bW</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedWriter</span><span class="o">(</span><span class="n">fW</span><span class="o">);</span>
+          <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ref</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+                <span class="n">bW</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">ref</span><span class="o">[</span><span class="n">i</span><span class="o">])</span> <span class="o">+</span> <span class="s">" - "</span> <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">precio</span><span class="o">[</span><span class="n">i</span><span class="o">])</span> <span class="o">+</span> <span class="s">"€"</span><span class="o">);</span>
+                <span class="n">bW</span><span class="o">.</span><span class="na">newLine</span><span class="o">();</span>
+          <span class="o">}</span>
+          <span class="n">bW</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+          <span class="n">fW</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+     <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Main.java:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+          <span class="nc">String</span> <span class="n">nombre</span> <span class="o">=</span> <span class="s">"precios.txt"</span><span class="o">;</span>
+          <span class="kt">int</span><span class="o">[]</span> <span class="n">ref</span> <span class="o">=</span> <span class="o">{</span><span class="mi">1</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">58</span><span class="o">,</span> <span class="mi">80</span><span class="o">,</span> <span class="mi">97</span><span class="o">};</span>
+          <span class="kt">double</span><span class="o">[]</span> <span class="n">precio</span> <span class="o">=</span> <span class="o">{</span><span class="mf">51.03</span><span class="o">,</span> <span class="mf">5.00</span><span class="o">,</span> <span class="mf">4.99</span><span class="o">,</span> <span class="mf">87.95</span><span class="o">,</span> <span class="mf">3.14</span><span class="o">};</span>
+          <span class="nc">Opciones</span> <span class="n">op</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Opciones</span><span class="o">();</span>
+
+          <span class="k">try</span><span class="o">{</span>
+                <span class="n">op</span><span class="o">.</span><span class="na">escribePrecios</span><span class="o">(</span><span class="n">ref</span><span class="o">,</span> <span class="n">precio</span><span class="o">,</span> <span class="n">nombre</span><span class="o">);</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Fichero de precios generado correctamente"</span><span class="o">);</span>
+          <span class="o">}</span>
+          <span class="k">catch</span><span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">){</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+          <span class="o">}</span>
+     <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="ejercicio-6-leer-referencias-y-precios-con-randomaccessfile">Ejercicio 6: Leer referencias y precios con RandomAccessFile</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Random</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+          <span class="kt">int</span> <span class="n">i</span><span class="o">,</span> <span class="n">n</span><span class="o">;</span>
+          <span class="kt">boolean</span> <span class="n">finArchivo</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+          <span class="nc">RandomAccessFile</span> <span class="n">archivo</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+          <span class="nc">Random</span> <span class="n">r</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Random</span><span class="o">();</span>
+
+          <span class="k">try</span><span class="o">{</span>
+                <span class="n">archivo</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RandomAccessFile</span><span class="o">(</span><span class="s">"precios.dat"</span><span class="o">,</span> <span class="s">"rw"</span><span class="o">);</span>
+                <span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+                     <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="o">){</span>
+                          <span class="n">n</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="mi">500</span><span class="o">)</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+                          <span class="n">archivo</span><span class="o">.</span><span class="na">writeInt</span><span class="o">(</span><span class="n">n</span><span class="o">);</span>
+                     <span class="o">}</span>
+                     <span class="k">else</span><span class="o">{</span>
+                          <span class="n">n</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="mi">5000</span><span class="o">)</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+                          <span class="n">archivo</span><span class="o">.</span><span class="na">writeInt</span><span class="o">(</span><span class="n">n</span><span class="o">);</span>
+                     <span class="o">}</span>
+                <span class="o">}</span>
+                <span class="n">archivo</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+          <span class="o">}</span>
+          <span class="k">catch</span><span class="o">(</span><span class="nc">FileNotFoundException</span> <span class="n">e</span><span class="o">){</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+          <span class="o">}</span>
+          <span class="k">catch</span><span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">){</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+          <span class="o">}</span>
+
+          <span class="k">try</span><span class="o">{</span>
+                <span class="n">archivo</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RandomAccessFile</span><span class="o">(</span><span class="s">"precios.dat"</span><span class="o">,</span> <span class="s">"rw"</span><span class="o">);</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Referencia y precios"</span><span class="o">);</span>
+                <span class="k">do</span><span class="o">{</span>
+                     <span class="k">try</span><span class="o">{</span>
+                          <span class="n">i</span> <span class="o">=</span> <span class="n">archivo</span><span class="o">.</span><span class="na">readInt</span><span class="o">();</span>
+                          <span class="n">n</span> <span class="o">=</span> <span class="n">archivo</span><span class="o">.</span><span class="na">readInt</span><span class="o">();</span>
+                          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"REF. "</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s">": "</span> <span class="o">+</span> <span class="n">n</span> <span class="o">+</span> <span class="s">"€"</span><span class="o">);</span>
+                     <span class="o">}</span>
+                     <span class="k">catch</span><span class="o">(</span><span class="nc">EOFException</span> <span class="n">e</span><span class="o">){</span>
+                          <span class="n">finArchivo</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+                          <span class="n">archivo</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Fin de fichero"</span><span class="o">);</span>
+                     <span class="o">}</span>
+                <span class="o">}</span><span class="k">while</span><span class="o">(!</span><span class="n">finArchivo</span><span class="o">);</span>
+          <span class="o">}</span>
+          <span class="k">catch</span><span class="o">(</span><span class="nc">FileNotFoundException</span> <span class="n">e</span><span class="o">){</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+          <span class="o">}</span>
+          <span class="k">catch</span><span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">){</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+          <span class="o">}</span>
+     <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="ejercicio-7-actualizar-precios-con-descuentoincremento">Ejercicio 7: Actualizar precios con descuento/incremento</h2>
+
+<p><strong>Metodos.java:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.text.DecimalFormat</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Metodos</span> <span class="o">{</span>
+     <span class="kd">private</span> <span class="kt">double</span> <span class="n">i</span><span class="o">,</span> <span class="n">n</span><span class="o">;</span>
+     <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">finArchivo</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+     <span class="kd">private</span> <span class="nc">RandomAccessFile</span> <span class="n">archivo</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+     <span class="kd">private</span> <span class="nc">DecimalFormat</span> <span class="n">precio</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DecimalFormat</span><span class="o">(</span><span class="s">"#.##"</span><span class="o">);</span>
+     <span class="kd">private</span> <span class="nc">DecimalFormat</span> <span class="n">ref</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DecimalFormat</span><span class="o">(</span><span class="s">"#"</span><span class="o">);</span>
+
+     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">leerArchivoDoubles</span><span class="o">(</span><span class="nc">String</span> <span class="n">nombre</span><span class="o">){</span>
+          <span class="n">finArchivo</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+          <span class="k">try</span><span class="o">{</span>
+                <span class="n">archivo</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RandomAccessFile</span><span class="o">(</span><span class="n">nombre</span><span class="o">,</span> <span class="s">"rw"</span><span class="o">);</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Referencia y precios"</span><span class="o">);</span>
+                <span class="k">do</span><span class="o">{</span>
+                     <span class="k">try</span><span class="o">{</span>
+                          <span class="n">i</span> <span class="o">=</span> <span class="n">archivo</span><span class="o">.</span><span class="na">readDouble</span><span class="o">();</span>
+                          <span class="n">n</span> <span class="o">=</span> <span class="n">archivo</span><span class="o">.</span><span class="na">readDouble</span><span class="o">();</span>
+                          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"REF. "</span> <span class="o">+</span> <span class="n">ref</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">+</span> <span class="s">": "</span> <span class="o">+</span> <span class="n">precio</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">n</span><span class="o">)</span> <span class="o">+</span> <span class="s">"€"</span><span class="o">);</span>
+                     <span class="o">}</span>
+                     <span class="k">catch</span><span class="o">(</span><span class="nc">EOFException</span> <span class="n">e</span><span class="o">){</span>
+                          <span class="n">finArchivo</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+                          <span class="n">archivo</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                     <span class="o">}</span>
+                <span class="o">}</span><span class="k">while</span><span class="o">(!</span><span class="n">finArchivo</span><span class="o">);</span>
+          <span class="o">}</span>
+          <span class="k">catch</span><span class="o">(</span><span class="nc">FileNotFoundException</span> <span class="n">e</span><span class="o">){</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+          <span class="o">}</span>
+          <span class="k">catch</span><span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">){</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+          <span class="o">}</span>
+     <span class="o">}</span>
+
+     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">cambiarPrecios</span><span class="o">(</span><span class="nc">String</span> <span class="n">nombre</span><span class="o">){</span>
+          <span class="n">finArchivo</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+          <span class="k">try</span><span class="o">{</span>
+                <span class="n">archivo</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">RandomAccessFile</span><span class="o">(</span><span class="n">nombre</span><span class="o">,</span> <span class="s">"rw"</span><span class="o">);</span>
+                <span class="k">do</span><span class="o">{</span>
+                     <span class="k">try</span><span class="o">{</span>
+                          <span class="n">i</span> <span class="o">=</span> <span class="n">archivo</span><span class="o">.</span><span class="na">readDouble</span><span class="o">();</span>
+                          <span class="n">i</span> <span class="o">=</span> <span class="n">archivo</span><span class="o">.</span><span class="na">readDouble</span><span class="o">();</span>
+                          <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="o">){</span>
+                               <span class="n">archivo</span><span class="o">.</span><span class="na">seek</span><span class="o">(</span><span class="n">archivo</span><span class="o">.</span><span class="na">getFilePointer</span><span class="o">()</span> <span class="o">-</span> <span class="mi">8</span><span class="o">);</span>
+                               <span class="n">archivo</span><span class="o">.</span><span class="na">writeDouble</span><span class="o">(</span><span class="n">i</span> <span class="o">*</span> <span class="mf">0.50</span><span class="o">);</span>
+                          <span class="o">}</span>
+                          <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="o">){</span>
+                               <span class="n">archivo</span><span class="o">.</span><span class="na">seek</span><span class="o">(</span><span class="n">archivo</span><span class="o">.</span><span class="na">getFilePointer</span><span class="o">()</span> <span class="o">-</span> <span class="mi">8</span><span class="o">);</span>
+                               <span class="n">archivo</span><span class="o">.</span><span class="na">writeDouble</span><span class="o">(</span><span class="n">i</span> <span class="o">*</span> <span class="mf">1.50</span><span class="o">);</span>
+                          <span class="o">}</span>
+                     <span class="o">}</span>
+                     <span class="k">catch</span><span class="o">(</span><span class="nc">EOFException</span> <span class="n">e</span><span class="o">){</span>
+                          <span class="n">finArchivo</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+                          <span class="n">archivo</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                     <span class="o">}</span>
+                <span class="o">}</span><span class="k">while</span><span class="o">(!</span><span class="n">finArchivo</span><span class="o">);</span>
+          <span class="o">}</span>
+          <span class="k">catch</span><span class="o">(</span><span class="nc">FileNotFoundException</span> <span class="n">e</span><span class="o">){</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+          <span class="o">}</span>
+          <span class="k">catch</span><span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">){</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+          <span class="o">}</span>
+     <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Main.java:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+          <span class="nc">Metodos</span> <span class="n">m</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Metodos</span><span class="o">();</span>
+          <span class="n">m</span><span class="o">.</span><span class="na">cambiarPrecios</span><span class="o">(</span><span class="s">"precios.dat"</span><span class="o">);</span>
+          <span class="n">m</span><span class="o">.</span><span class="na">leerArchivoDoubles</span><span class="o">(</span><span class="s">"precios.dat"</span><span class="o">);</span>
+     <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#java</span>
+        
+          <span class="tag">#acceso-a-datos</span>
+        
+          <span class="tag">#file</span>
+        
+          <span class="tag">#randomaccessfile</span>
+        
+          <span class="tag">#ficheros</span>
+        
+          <span class="tag">#ejercicios</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<article class="post-card">
+  <h2 class="post-card-title">
+    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+  </h2>
+  <div class="post-card-meta">
+    <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d %b %Y" }}</time>
+    {% if post.categories.size > 0 %}
+      <span class="meta-sep">&mdash;</span>
+      {% for cat in post.categories %}
+        <a href="{{ '/categories/' | relative_url }}#{{ cat | slugify }}" class="post-category">{{ cat }}</a>{% unless forloop.last %}, {% endunless %}
+      {% endfor %}
+    {% endif %}
+  </div>
+  {% if post.description %}
+    <p class="post-card-excerpt">{{ post.description }}</p>
+  {% else %}
+    <p class="post-card-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+  {% endif %}
+  <a href="{{ post.url | relative_url }}" class="read-more">Seguir leyendo &rarr;</a>
+</article>

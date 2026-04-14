@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Procesos y servicios. Programación segura IV. Criptografía con Java | Programando a Pasitos</title>
+<meta name="description" content="Aprende criptografía avanzada en Java con JCA y JCE. Tutorial completo sobre cifrado simétrico/asimétrico, firmas digitales, certificados, claves RSA/AES y ejemplos prácticos de seguridad.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Procesos y servicios. Programación segura IV. Criptografía con Java | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Procesos y servicios. Programación segura IV. Criptografía con Java" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Aprende criptografía avanzada en Java con JCA y JCE. Tutorial completo sobre cifrado simétrico/asimétrico, firmas digitales, certificados, claves RSA/AES y ejemplos prácticos de seguridad." />
+<meta property="og:description" content="Aprende criptografía avanzada en Java con JCA y JCE. Tutorial completo sobre cifrado simétrico/asimétrico, firmas digitales, certificados, claves RSA/AES y ejemplos prácticos de seguridad." />
+<link rel="canonical" href="http://localhost:4000/posts/2016/03/25/procesos-y-servicios-programacion-segura-iv-criptografia-con-java/" />
+<meta property="og:url" content="http://localhost:4000/posts/2016/03/25/procesos-y-servicios-programacion-segura-iv-criptografia-con-java/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-03-25T05:10:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Procesos y servicios. Programación segura IV. Criptografía con Java" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver","url":"https://github.com/inazense"},"dateModified":"2016-03-25T05:10:00+01:00","datePublished":"2016-03-25T05:10:00+01:00","description":"Aprende criptografía avanzada en Java con JCA y JCE. Tutorial completo sobre cifrado simétrico/asimétrico, firmas digitales, certificados, claves RSA/AES y ejemplos prácticos de seguridad.","headline":"Procesos y servicios. Programación segura IV. Criptografía con Java","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2016/03/25/procesos-y-servicios-programacion-segura-iv-criptografia-con-java/"},"url":"http://localhost:4000/posts/2016/03/25/procesos-y-servicios-programacion-segura-iv-criptografia-con-java/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Procesos y servicios. Programación segura IV. Criptografía con Java</h1>
+    <div class="post-meta">
+      <time datetime="2016-03-25T05:10:00+01:00">25 Mar 2016</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#java" class="post-category">Java</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Aprende criptografía avanzada en Java con JCA y JCE. Tutorial completo sobre cifrado simétrico/asimétrico, firmas digitales, certificados, claves RSA/AES y ejemplos prácticos de seguridad.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="proveedores-de-servicios-criptográficos">Proveedores de servicios criptográficos</h2>
+
+<p>El <strong>API JCA</strong> (<em>Java Cryptography Architecture</em>, incluye la extensión criptográfica de <strong>Java JCE</strong> – <em>Java Cryptography Extension</em>) incluída dentro del paquete <strong>JDK</strong> incluye dos componentes de software:</p>
+
+<ul>
+  <li>El marco que define y apoya los servicios criptográficos para que los proveedores faciliten implementaciones. Este marco incluye paquetes como
+    - java.security
+    - javax.crypto
+    - javax.crypto.spec
+    - javax.crypto.interfaces</li>
+  <li>Los proveedores reales, tales como Sun, SunRsaSign, SunJCE, que contienen las implementaciones criptográficas reales. El proveedore es el encargado de proporcionar la implementación de uno o varios algoritmos al programador. Los proveedores de seguridad se definen en el fichero <code class="language-plaintext highlighter-rouge">java.security</code> localizo en la carpeta <code class="language-plaintext highlighter-rouge">java.home\lib\security</code>. Forman una lista de entradas con un número que indican el orden de búsqueda cuando en los programas no se especifica un proveedor.
+    - security.provider.2=sun.security.rsa.SunRsaSign
+    - security.provider.1=sun.security.provider.Sun
+    - security.provider.3=com.sun.net.ssl.internal.ssl.Provider
+    - security.provider.4=com.sun.crypyo.provider.SunJCE
+    - security.provider.5=sun.security.jgss.SunProvider</li>
+</ul>
+
+<p><strong>JCA</strong> define el concepto de proveedor mediante la clase <strong>Provider</strong> del paquete <code class="language-plaintext highlighter-rouge">java.security</code>. Se trata de una clase abstracta que debe ser redefinida por clases proveedor específicas.</p>
+
+<p>Tiene métodos para acceder a informaciones sobre las implementaciones de los algoritmos para la generación, conversión y gestión de claves y la generación de firmas y resúmenes, como el nombre del proveedor, el número de versión, etc.</p>
+
+<h2 id="resúmenes-de-mensajes">Resúmenes de mensajes</h2>
+
+<p>Un <strong>message digest</strong> o resúmen de mensajes (también se le conoce como <strong>función hash</strong>) es una marca digital de un bloque de datos.</p>
+
+<p>La clase <code class="language-plaintext highlighter-rouge">MessageDigest</code> permite a las aplicaciones implementar algoritmos de resumen de mensajes, como MD5, SHA-1 o SHA-256. Dispone de un constructor protegido, por lo que se accede a él mediante el método <code class="language-plaintext highlighter-rouge">getInstance(String algoritmo)</code>.</p>
+
+<h3 id="ejemplo">Ejemplo</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.security.MessageDigest</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.security.NoSuchAlgorithmException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.security.Provider</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Ejemplo4</span> <span class="o">{</span>
+     
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+           
+            <span class="nc">MessageDigest</span> <span class="n">md</span><span class="o">;</span>
+            <span class="k">try</span> <span class="o">{</span>
+                  <span class="n">md</span> <span class="o">=</span> <span class="nc">MessageDigest</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">"SHA"</span><span class="o">);</span>
+                  <span class="nc">String</span> <span class="n">texto</span> <span class="o">=</span> <span class="s">"Esto es un texto plano."</span><span class="o">;</span>
+                 
+                  <span class="kt">byte</span> <span class="n">dataBytes</span><span class="o">[]</span> <span class="o">=</span> <span class="n">texto</span><span class="o">.</span><span class="na">getBytes</span><span class="o">();</span><span class="c1">//TEXTO A BYTES</span>
+                  <span class="n">md</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">dataBytes</span><span class="o">)</span> <span class="o">;</span><span class="c1">//SE INTRQDUCE TEXTO EN BYTES A RESUMIR</span>
+                  <span class="kt">byte</span> <span class="n">resumen</span><span class="o">[]</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="na">digest</span><span class="o">();</span><span class="c1">//SE CALCULA EL RESUMEN</span>
+                 
+                  <span class="c1">//PARA CREAR UN RESUMEN CIFRADO CON CLAVE</span>
+                  <span class="c1">//String clave="clave de cifrado";</span>
+                  <span class="c1">//byte resumen[] = md.digest(clave.getBytes()); // SE CALCULA EL RESUMEN CIFRADO</span>
+                 
+                 
+                  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Mensaje original: "</span> <span class="o">+</span> <span class="n">texto</span><span class="o">);</span>
+                  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Número de bytes: "</span> <span class="o">+</span> <span class="n">md</span><span class="o">.</span><span class="na">getDigestLength</span><span class="o">());</span>
+                  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Algoritmo: "</span> <span class="o">+</span> <span class="n">md</span><span class="o">.</span><span class="na">getAlgorithm</span><span class="o">());</span>
+                  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Mensaje resumen: "</span> <span class="o">+</span> <span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="n">resumen</span><span class="o">));</span>
+                  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Mensaje en Hexadecimal: "</span> <span class="o">+</span> <span class="nc">Hexadecimal</span><span class="o">(</span><span class="n">resumen</span><span class="o">));</span>
+                  <span class="nc">Provider</span> <span class="n">proveedor</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="na">getProvider</span><span class="o">();</span>
+                  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Proveedor: "</span> <span class="o">+</span> <span class="n">proveedor</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">NoSuchAlgorithmException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span> <span class="o">}</span>
+           
+      <span class="o">}</span>
+     
+     
+      <span class="c1">// CONVIERTE UN ARRAY DE BYTES A HEXADECIMAL</span>
+      <span class="kd">static</span> <span class="nc">String</span> <span class="nf">Hexadecimal</span><span class="o">(</span><span class="kt">byte</span><span class="o">[]</span> <span class="n">resumen</span><span class="o">)</span> <span class="o">{</span>
+           
+            <span class="nc">String</span> <span class="n">hex</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">resumen</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+                 
+                  <span class="nc">String</span> <span class="n">h</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">toHexString</span><span class="o">(</span><span class="n">resumen</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&amp;</span> <span class="mh">0xFF</span><span class="o">);</span>
+                  <span class="k">if</span> <span class="o">(</span><span class="n">h</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span>
+                        <span class="n">hex</span> <span class="o">+=</span> <span class="s">"0"</span><span class="o">;</span>
+                  <span class="n">hex</span> <span class="o">+=</span> <span class="n">h</span><span class="o">;</span>
+            <span class="o">}</span>
+           
+            <span class="k">return</span> <span class="n">hex</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">();</span>
+           
+      <span class="o">}</span>
+     
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Genera el resúmen de un texto plano. Con el método <code class="language-plaintext highlighter-rouge">MessageDigest.getInstance(“SHA”)</code> se obtiene una instancia del algoritmo SHA. El texto plano lo pasamos a un array de bytes y el array se pasa como argumento al método <code class="language-plaintext highlighter-rouge">upate()</code>, finalmente con el método <code class="language-plaintext highlighter-rouge">digest()</code> se obtiene el resumen del mensaje. Después se muestra en pantalla el número de bytes generados en el mensaje, el algoritmo utilizado, el resumen generado y convertido a Hexadecimal y por último información del proveedor.</p>
+
+<p>Se puede crear un resúmen cifrado con clave usando el segundo método <code class="language-plaintext highlighter-rouge">digest(bytes[])</code>, donde se proporciona la clave en un array de bytes.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">clave</span><span class="o">=</span><span class="s">"clave de cifrado"</span><span class="o">;</span>
+<span class="kt">byte</span> <span class="n">dataBytes</span><span class="o">[]</span> <span class="o">=</span> <span class="n">texto</span><span class="o">.</span><span class="na">getBytes</span><span class="o">();</span> <span class="c1">//TEXTO A BYTES</span>
+<span class="n">md</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">dataBytes</span><span class="o">)</span> <span class="o">;</span> <span class="c1">// SE INTRODUCE TEXTO EN BYTES A RESUMIR</span>
+<span class="kt">byte</span> <span class="n">resumen</span><span class="o">[]</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="na">digest</span><span class="o">(</span><span class="n">clave</span><span class="o">.</span><span class="na">getBytes</span><span class="o">());</span>  <span class="c1">// SE CALCULA EL RESUMEN CIFRADO</span>
+</code></pre></div></div>
+
+<h3 id="segundo-ejemplo">Segundo ejemplo</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.FileOutputStream</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.ObjectOutputStream</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.security.MessageDigest</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.security.NoSuchAlgorithmException</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Ejemplo5</span> <span class="o">{</span>
+     
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+           
+            <span class="k">try</span> <span class="o">{</span>
+                  <span class="nc">FileOutputStream</span> <span class="n">fileout</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileOutputStream</span><span class="o">(</span><span class="s">"DATOS.DAT"</span><span class="o">);</span>
+                  <span class="nc">ObjectOutputStream</span> <span class="n">dataOS</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ObjectOutputStream</span><span class="o">(</span><span class="n">fileout</span><span class="o">);</span>
+                  <span class="nc">MessageDigest</span> <span class="n">md</span> <span class="o">=</span> <span class="nc">MessageDigest</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">"SHA"</span><span class="o">);</span>
+                  <span class="nc">String</span> <span class="n">datos</span> <span class="o">=</span> <span class="s">"En un lugar de la Mancha, "</span>
+                             <span class="o">+</span> <span class="s">"de cuyo nombre no quiero acordarme, no ha mucho tiempo "</span>
+                             <span class="o">+</span> <span class="s">"que vivía un hidalgo de los de lanza en astillero, "</span>
+                             <span class="o">+</span> <span class="s">"adarga antigua, rocín flaco y galgo corredor."</span><span class="o">;</span>
+                  <span class="kt">byte</span> <span class="n">dataBytes</span><span class="o">[]</span> <span class="o">=</span> <span class="n">datos</span><span class="o">.</span><span class="na">getBytes</span><span class="o">();</span>
+                  <span class="n">md</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">dataBytes</span><span class="o">)</span> <span class="o">;</span><span class="c1">// TEXTQ A RESUMIR</span>
+                  <span class="kt">byte</span> <span class="n">resumen</span><span class="o">[]</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="na">digest</span><span class="o">();</span> <span class="c1">// SE CALCULA EL RESUMEN</span>
+                  <span class="n">dataOS</span><span class="o">.</span><span class="na">writeObject</span><span class="o">(</span><span class="n">datos</span><span class="o">);</span> <span class="c1">//se escriben los datos</span>
+                  <span class="n">dataOS</span><span class="o">.</span><span class="na">writeObject</span><span class="o">(</span><span class="n">resumen</span><span class="o">);</span><span class="c1">//Se escribe el resumen</span>
+                  <span class="n">dataOS</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                  <span class="n">fileout</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">NoSuchAlgorithmException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span> <span class="o">}</span>
+           
+      <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Guardaremos un mensaje en un fichero.
+También guardaremos en el fichero el resumen del mensaje, para asegurarnos de que a la hora de leer el mensaje el fichero <strong>no esté dañado o no haya sido manipuado y los datos sean los correctos</strong>.</p>
+
+<p>### Tercer ejemplo</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.FileInputStream</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.ObjectInputStream</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.security.MessageDigest</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Ejemplo6</span> <span class="o">{</span>
+     
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+           
+            <span class="k">try</span> <span class="o">{</span>
+                  <span class="nc">FileInputStream</span> <span class="n">fileout</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="s">"DATOS.DAT"</span><span class="o">);</span>
+                  <span class="nc">ObjectInputStream</span> <span class="n">dataOS</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ObjectInputStream</span><span class="o">(</span><span class="n">fileout</span><span class="o">);</span>
+                  <span class="nc">Object</span> <span class="n">o</span> <span class="o">=</span> <span class="n">dataOS</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span>
+                 
+                  <span class="c1">// Primera lectura, se obtiene el String</span>
+                  <span class="nc">String</span> <span class="n">datos</span> <span class="o">=</span> <span class="o">(</span><span class="nc">String</span><span class="o">)</span> <span class="n">o</span><span class="o">;</span>
+                  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Datos: "</span> <span class="o">+</span> <span class="n">datos</span><span class="o">);</span>
+                 
+                  <span class="c1">// Segunda lectura, se obtiene el resumen</span>
+                  <span class="n">o</span> <span class="o">=</span> <span class="n">dataOS</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span>
+                  <span class="kt">byte</span> <span class="n">resumenOriginal</span><span class="o">[]</span> <span class="o">=</span> <span class="o">(</span><span class="kt">byte</span><span class="o">[])</span> <span class="n">o</span><span class="o">;</span>
+                 
+                  <span class="nc">MessageDigest</span> <span class="n">md</span> <span class="o">=</span> <span class="nc">MessageDigest</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">"SHA"</span><span class="o">);</span>
+                  <span class="c1">//Se calcula el resumen del String leído del fichero</span>
+                  <span class="n">md</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">datos</span><span class="o">.</span><span class="na">getBytes</span><span class="o">());</span><span class="c1">// TEXTO A RESUMIR</span>
+                  <span class="kt">byte</span> <span class="n">resumenActual</span><span class="o">[]</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="na">digest</span><span class="o">();</span> <span class="c1">// SE CALCULA EL RESUMEN</span>
+                 
+                  <span class="c1">//Se comprueban lo dos resúmenes</span>
+                  <span class="k">if</span> <span class="o">(</span><span class="nc">MessageDigest</span><span class="o">.</span><span class="na">isEqual</span><span class="o">(</span><span class="n">resumenActual</span><span class="o">,</span> <span class="n">resumenOriginal</span><span class="o">))</span>
+                        <span class="nc">System</span><span class="o">.</span> <span class="n">out</span><span class="o">.</span><span class="na">println</span> <span class="o">(</span><span class="s">"DATOS VÁLIDOS"</span><span class="o">)</span> <span class="o">;</span>
+                  <span class="k">else</span>
+                        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"DATOS NO VÁLIDOS"</span><span class="o">)</span> <span class="o">;</span>
+                  <span class="n">dataOS</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                  <span class="n">fileout</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+            <span class="o">}</span><span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span> <span class="o">}</span>
+     
+      <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Al recuperar los datos del fichero primero necesitamos leer el String y luego el resumen, a continuación hemos de calcular de nuevo el resumen con el String leído y comparar este resúmen con el leído del fichero.</p>
+
+<h2 id="generando-y-verificando-firmas-digitales">Generando y verificando firmas digitales</h2>
+
+<p>El resumen de un mensaje no nos da un alto nivel de seguridad.</p>
+
+<p>Se puede decir que el fichero no es correcto si el texto que se lee no produce la misma salida que el resúmen guardado.</p>
+
+<p>Pero alguien puede cambiar el texto y el resumen, y no podemos estar seguros de que el texto sea el que debería ser.</p>
+
+<p><img src="/img/posts/20160325_1.png" alt="cifrado de claves" /></p>
+
+<h3 id="clase-keypairgenerator">Clase KeyPairGenerator</h3>
+
+<p>En algunos casos, el par de claves (<strong>clave pública</strong> y <strong>clave privada</strong>) están disponibles en ficheros. En ese caso, el programa puede importar y utilizar la <strong>clave privada</strong> para firmar.</p>
+
+<p>En otros casos, el programa necesita generar el par de claves.</p>
+
+<p>La clase KeyParGenerator nos permite generar el par de claves. Dispone de un constructor protegido, por lo que se accede a él mediante el método <code class="language-plaintext highlighter-rouge">getInstance(String algoritmo)</code>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Métodos</th>
+      <th>Misión</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">static KeyParGenerator getInstance(String algoritmo)</code><br /><br /><code class="language-plaintext highlighter-rouge">staticKeyPairGenerator getInstance(String algoritmo, String provider)</code></td>
+      <td>Devuelve un objeto KeyPairGenerator que genera un par de claves pública/privada para el algoritmo especificado. Puede lanzar la excepción <code class="language-plaintext highlighter-rouge">NoSuchAlgorithmException</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">void initialize(int keysize, SecureRandom random)</code></td>
+      <td>Inicializa el generador de par de claves para un determinado tamaño de clave y un generador de números aleatorios</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">KeyPair generateKeyPair()</code><br /><br /><code class="language-plaintext highlighter-rouge">KeyPair genKeyPair()</code></td>
+      <td>Genera el par de claves</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="clase-keypair">Clase KeyPair</h3>
+
+<p>Es una clase soporte para generar las claves pública y privada.
+Dispone de dos métodos</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Métodos</th>
+      <th>Misión</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">PrivateKey getPrivate()</code></td>
+      <td>Devuelve una referencia a la clave privada del par de claves</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">PublicKey getPrivate()</code></td>
+      <td>Devuelve una referencia a la clave pública del par de claves</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>PrivateKey</strong> y <strong>PublicKey</strong> son interfaces que agrupan todas las interfaces de clave privada y pública respectivamente.</p>
+
+<h3 id="clase-signature">Clase Signature</h3>
+
+<p>Se usa para firmar los datos.
+Un objeto de esta clase se puede utilizar para generar y verificar firmas digitales.</p>
+
+<p>Dispone de un constructor protegido y se acceder a él mediante el método <code class="language-plaintext highlighter-rouge">getInstance(String algoritmo)</code>.</p>
+
+<p>Al especifiar el nombre del algoritmo de firma, también se debe incluir el nombre del algoritmo de resumen de mensajes utilizado por el algoritmo de firma. <strong>SHA1withDSA</strong> es una forma de especificar el algoritmo de <strong>firma DSA</strong>, usando el algoritmo de resumen <strong>SHA-1</strong>. <strong>MD5withRSA</strong> significa algoritmo de resumen <strong>MD5</strong> con algortmo de firma <strong>RSA</strong>.</p>
+
+<p>Existen tres fases en el uso de un objeto <strong>Signature</strong> ya sea para firmar o verificar los datos: inicialización (ya sea con clave pública <code class="language-plaintext highlighter-rouge">initVerify()</code> o clave privada <code class="language-plaintext highlighter-rouge">initSign()</code>), actualización (<code class="language-plaintext highlighter-rouge">update()</code>) y firma (<code class="language-plaintext highlighter-rouge">sign()</code>) o verificación (<code class="language-plaintext highlighter-rouge">verify()</code>).</p>
+
+<h4 id="ejemplo-1">Ejemplo</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kn">import</span> <span class="nn">java.security.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Ejemplo7</span> <span class="o">{</span>
+     
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+           
+            <span class="k">try</span> <span class="o">{</span>
+                  <span class="nc">KeyPairGenerator</span> <span class="n">keyGen</span> <span class="o">=</span> <span class="nc">KeyPairGenerator</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">"DSA"</span><span class="o">);</span>
+                  <span class="c1">//SE INICIALIZA EL GENERADOR DE CLAVES</span>
+                  <span class="nc">SecureRandom</span> <span class="n">numero</span> <span class="o">=</span> <span class="nc">SecureRandom</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">"SHA1PRNG"</span><span class="o">);</span>
+                  <span class="n">keyGen</span><span class="o">.</span><span class="na">initialize</span> <span class="o">(</span><span class="mi">1024</span><span class="o">,</span> <span class="n">numero</span><span class="o">);</span>
+                 
+                  <span class="c1">//SE CREA EL PAR DE CLAVES PRIVADA Y PÚBLICA</span>
+                  <span class="nc">KeyPair</span> <span class="n">par</span> <span class="o">=</span> <span class="n">keyGen</span><span class="o">.</span><span class="na">generateKeyPair</span><span class="o">();</span>
+                  <span class="nc">PrivateKey</span> <span class="n">clavepriv</span> <span class="o">=</span> <span class="n">par</span><span class="o">.</span><span class="na">getPrivate</span><span class="o">();</span>
+                  <span class="nc">PublicKey</span> <span class="n">clavepub</span> <span class="o">=</span> <span class="n">par</span><span class="o">.</span><span class="na">getPublic</span><span class="o">();</span>
+                 
+                  <span class="c1">//FIRMA CON CLAVE PRIVADA EL MENSAJE</span>
+                  <span class="c1">//AL OBJETO Signature SE LE SUMINISTRAN LOS DATOS A FIRMAR</span>
+                  <span class="nc">Signature</span> <span class="n">dsa</span> <span class="o">=</span> <span class="nc">Signature</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">"SHAlwithDSA"</span><span class="o">);</span>
+                  <span class="n">dsa</span><span class="o">.</span><span class="na">initSign</span> <span class="o">(</span><span class="n">clavepriv</span><span class="o">);</span>
+                  <span class="nc">String</span> <span class="n">mensaje</span> <span class="o">=</span> <span class="s">"Este mensaje va a ser firmado"</span><span class="o">;</span>
+                  <span class="n">dsa</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">mensaje</span><span class="o">.</span><span class="na">getBytes</span><span class="o">());</span>
+                 
+                  <span class="kt">byte</span> <span class="o">[]</span> <span class="n">firma</span><span class="o">=</span> <span class="n">dsa</span><span class="o">.</span><span class="na">sign</span><span class="o">();</span> <span class="c1">//MENSAJE FIRMADO</span>
+                 
+                  <span class="c1">//EL RECEPTOR DEL MENSAJE</span>
+                  <span class="c1">//VERIFICA CON LA CLAVE PÚBLICA EL MENSAJE FIRMADO</span>
+                  <span class="c1">//AL OBJETO signature SE LE SUMINIST. LOS DATOS A VERIFICAR</span>
+                  <span class="nc">Signature</span> <span class="n">verificadsa</span> <span class="o">=</span> <span class="nc">Signature</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">"SHAlwithDSA"</span><span class="o">);</span>
+                  <span class="n">verificadsa</span><span class="o">.</span><span class="na">initVerify</span><span class="o">(</span><span class="n">clavepub</span><span class="o">);</span>
+                  <span class="n">verificadsa</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">mensaje</span><span class="o">.</span><span class="na">getBytes</span><span class="o">());</span>
+                  <span class="kt">boolean</span> <span class="n">check</span> <span class="o">=</span> <span class="n">verificadsa</span><span class="o">.</span><span class="na">verify</span><span class="o">(</span><span class="n">firma</span><span class="o">);</span>
+                  <span class="k">if</span><span class="o">(</span><span class="n">check</span><span class="o">)</span>   
+                        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"FIRMA VERIFICADA CON CLAVE PÚBLICA"</span><span class="o">)</span> <span class="o">;</span>
+                  <span class="k">else</span>
+                        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"FIRMA NO VERIFICADA"</span><span class="o">);</span>
+           
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">NoSuchAlgorithmException</span> <span class="n">e1</span><span class="o">)</span> <span class="o">{</span> <span class="n">e1</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InvalidKeyException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">SignatureException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span> <span class="o">}</span>
+           
+      <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="almacenar-las-claves-pública-y-privada-en-ficheros">Almacenar las claves pública y privada en ficheros</h2>
+
+<p>Para almacenar la clave privada en disco es necesario codificarla en formato <strong>PKCS8</strong> usando la clase <strong>PKCS8EncodedKeySpec</strong>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Métodos</th>
+      <th>Misión</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">PKC8EncodedKeySpec(byte[] encodedKey)</code></td>
+      <td>Crea un nuevo objeto <code class="language-plaintext highlighter-rouge">PKC8EncodedKeySpec</code> con la clave codificada</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">byte[] getEncoded</code></td>
+      <td>Devuevle los bytes codificados de la clave de acuerdo con el estándar <code class="language-plaintext highlighter-rouge">PKC #8</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">String getFormat()</code></td>
+      <td>Devuelve el nombre del formato de codificación asociado con esta especificación de clave</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">PKCS8EncodedKeySpec</span> <span class="n">pk8Spec</span> <span class="o">=</span>
+            <span class="k">new</span> <span class="nf">PKCS8EncodedKeySpec</span><span class="o">(</span><span class="n">clavepriv</span><span class="o">.</span><span class="na">getEncoded</span><span class="o">());</span>
+            <span class="c1">//Escribir a fichero binario la clave privada</span>
+<span class="nc">FileOutputStream</span> <span class="n">outpriv</span> <span class="o">=</span>
+<span class="k">new</span> <span class="nf">FileOutputStream</span><span class="o">(</span><span class="s">"Clave.privada"</span><span class="o">);</span>
+<span class="n">outpriv</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">pk8Spec</span><span class="o">.</span><span class="na">getEncoded</span><span class="o">());</span>
+<span class="n">outpriv</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p>Para almacenar la clave pública en disco es necesario codificarla en <strong>formato X.509</strong> usando la clase <strong>X509EncodedKeySpec</strong>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">X509EncodedKeySpec</span> <span class="n">pkX509</span> <span class="o">=</span>
+            <span class="k">new</span> <span class="nf">X509EncodedKeySpec</span><span class="o">(</span><span class="n">clavepub</span><span class="o">.</span><span class="na">getEncoded</span><span class="o">());</span>
+            <span class="c1">//Escribir a fichero binario la clave pública</span>
+<span class="nc">FileOutputStream</span> <span class="n">outpub</span> <span class="o">=</span>
+<span class="k">new</span> <span class="nf">FileOutputStream</span><span class="o">(</span><span class="s">"Clave.publica"</span><span class="o">);</span>
+<span class="n">outpub</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">pkX509</span><span class="o">.</span><span class="na">getEncoded</span><span class="o">());</span>
+<span class="n">outpub</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</code></pre></div></div>
+
+<h2 id="recuperar-las-claves-pública-y-privada-de-ficheros">Recuperar las claves pública y privada de ficheros</h2>
+
+<p>Clase <code class="language-plaintext highlighter-rouge">KeyFactory</code>. Para recuperar las claves de los ficheros que proporciona métodos para convertir claves de formato criptográfico (<strong>PKCS8</strong>, <strong>X.509</strong>) a especificaciones de claves y viceversa.</p>
+
+<h2 id="firmar-los-datos-de-un-fichero-con-la-clave-privada">Firmar los datos de un fichero con la clave privada</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.security.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.security.spec.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Ejemplo8</span> <span class="o">{</span>
+     
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+           
+            <span class="k">try</span> <span class="o">{</span>
+                  <span class="c1">// LECTURA DEL FICHERO DE CLAVE PRIVADA</span>
+                  <span class="nc">FileInputStream</span> <span class="n">inpriv</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="s">"Clave.privada"</span><span class="o">);</span>
+                  <span class="kt">byte</span><span class="o">[]</span> <span class="n">bufferPriv</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">inpriv</span><span class="o">.</span><span class="na">available</span><span class="o">()];</span>
+                  <span class="n">inpriv</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">bufferPriv</span><span class="o">);</span><span class="c1">// lectura de bytes</span>
+                  <span class="n">inpriv</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                 
+                  <span class="c1">//RECUPERA CLAVE PRIVADA DESDE DATOS CODIFICADOS EN FORMATO PKCS8</span>
+                  <span class="nc">PKCS8EncodedKeySpec</span> <span class="n">clavePrivadaSpec</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PKCS8EncodedKeySpec</span><span class="o">(</span><span class="n">bufferPriv</span><span class="o">);</span>
+                  <span class="nc">KeyFactory</span> <span class="n">keyDSA</span> <span class="o">=</span> <span class="nc">KeyFactory</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">"DSA"</span><span class="o">);</span>
+                  <span class="nc">PrivateKey</span> <span class="n">clavePrivada</span> <span class="o">=</span> <span class="n">keyDSA</span><span class="o">.</span><span class="na">generatePrivate</span><span class="o">(</span><span class="n">clavePrivadaSpec</span><span class="o">);</span>
+                 
+                  <span class="c1">//INICIALIZA FIRMA CON CLAVE PRIVADA</span>
+                  <span class="nc">Signature</span> <span class="n">dsa</span> <span class="o">=</span> <span class="nc">Signature</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">"SHA1withDSA"</span><span class="o">);</span>
+                  <span class="n">dsa</span><span class="o">.</span><span class="na">initSign</span> <span class="o">(</span><span class="n">clavePrivada</span><span class="o">);</span>
+                 
+                  <span class="c1">//LECTURA DEL FICHERO A FIRMAR</span>
+                  <span class="c1">//Se suministra al objeto Signature los datos a firmar</span>
+                  <span class="nc">FileInputStream</span> <span class="n">fichero</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="s">"FICHERO.DAT"</span><span class="o">);</span>
+                  <span class="nc">BufferedInputStream</span> <span class="n">bis</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedInputStream</span><span class="o">(</span><span class="n">fichero</span><span class="o">);</span>
+                  <span class="kt">byte</span><span class="o">[]</span> <span class="n">buffer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">bis</span><span class="o">.</span><span class="na">available</span><span class="o">()];</span>
+                  <span class="kt">int</span> <span class="n">len</span><span class="o">;</span>
+                  <span class="k">while</span> <span class="o">((</span><span class="n">len</span> <span class="o">=</span> <span class="n">bis</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">buffer</span><span class="o">))</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">)</span>
+                        <span class="n">dsa</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">buffer</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">len</span><span class="o">);</span>
+                  <span class="n">bis</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                 
+                  <span class="c1">//GENERA LA FIRMA DE LOS DATOS DEL FICHERO</span>
+                  <span class="kt">byte</span><span class="o">[]</span> <span class="n">firma</span> <span class="o">=</span> <span class="n">dsa</span><span class="o">.</span><span class="na">sign</span><span class="o">();</span>
+                 
+                  <span class="c1">// GUARDA LA FIRMA EN OTRO FICHERO</span>
+                  <span class="nc">FileOutputStream</span> <span class="n">fos</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileOutputStream</span><span class="o">(</span><span class="s">"FICHERO.FIRMA"</span><span class="o">);</span>
+                  <span class="n">fos</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">firma</span><span class="o">);</span>
+                  <span class="n">fos</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                 
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e1</span><span class="o">)</span> <span class="o">{</span> <span class="n">e1</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span> <span class="o">}</span>
+           
+      <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Genera la firma del fichero <code class="language-plaintext highlighter-rouge">DATOS.DAT</code> a partir de la clave privada almacenada en el fichero Clave.privada. La firma se almacenará en el fichero <code class="language-plaintext highlighter-rouge">DATOS.FIRMA</code>.</p>
+
+<h2 id="verificar-la-firma-de-un-fichero-con-la-clave-pública">Verificar la firma de un fichero con la clave pública</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.security.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.security.spec.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Ejemplo9</span> <span class="o">{</span>
+     
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+           
+            <span class="k">try</span> <span class="o">{</span>
+                  <span class="c1">//LECTURA DE LA CLAVE PUBLICA DEL FICHERO</span>
+                  <span class="nc">FileInputStream</span> <span class="n">inpub</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="s">"Clave.publica"</span><span class="o">);</span>
+                  <span class="kt">byte</span><span class="o">[]</span> <span class="n">bufferPub</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">inpub</span><span class="o">.</span><span class="na">available</span><span class="o">()];</span>
+                  <span class="n">inpub</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">bufferPub</span><span class="o">);</span><span class="c1">// lectura de bytes</span>
+                  <span class="n">inpub</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                 
+                  <span class="c1">//RECUPERA CLAVE PUBLICA DESDE DATOS CODIFICADOS EN FORMATO X509</span>
+                  <span class="nc">KeyFactory</span> <span class="n">keyDSA</span> <span class="o">=</span> <span class="nc">KeyFactory</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">"DSA"</span><span class="o">);</span>
+                  <span class="nc">X509EncodedKeySpec</span> <span class="n">clavePublicaSpec</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">X509EncodedKeySpec</span><span class="o">(</span><span class="n">bufferPub</span><span class="o">);</span>
+                  <span class="nc">PublicKey</span> <span class="n">clavePublica</span> <span class="o">=</span> <span class="n">keyDSA</span><span class="o">.</span><span class="na">generatePublic</span><span class="o">(</span><span class="n">clavePublicaSpec</span><span class="o">);</span>
+                 
+                  <span class="c1">//LECTURA DEL FICHERO QUE CONTIENE LA FIRMA</span>
+                  <span class="nc">FileInputStream</span> <span class="n">firmafic</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="s">"FICHERO.FIRMA"</span><span class="o">);</span>
+                  <span class="kt">byte</span><span class="o">[]</span> <span class="n">firma</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">firmafic</span><span class="o">.</span><span class="na">available</span><span class="o">()];</span>
+                  <span class="n">firmafic</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">firma</span><span class="o">);</span> <span class="n">firmafic</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                 
+                  <span class="c1">//INICIALIZA EL OBJETO Signature CON CLAVE PÚBLICA PARA VERIFICAR</span>
+                  <span class="nc">Signature</span> <span class="n">dsa</span> <span class="o">=</span> <span class="nc">Signature</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">"SHAlwithDSA"</span><span class="o">);</span>
+                  <span class="n">dsa</span><span class="o">.</span><span class="na">initVerify</span> <span class="o">(</span><span class="n">clavePublica</span><span class="o">);</span>
+                 
+                  <span class="c1">//LECTURA DEL FICHERO QUE CONTIENE LOS DATOS A VERIFICAR</span>
+                  <span class="c1">//Se suministra al objeto Signature los datos a verificar</span>
+                  <span class="nc">FileInputStream</span> <span class="n">fichero</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="s">"FICHERO.DAT"</span><span class="o">);</span>
+                  <span class="nc">BufferedInputStream</span> <span class="n">bis</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedInputStream</span><span class="o">(</span><span class="n">fichero</span><span class="o">);</span>
+                  <span class="kt">byte</span><span class="o">[]</span> <span class="n">buffer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">bis</span><span class="o">.</span><span class="na">available</span><span class="o">()];</span>
+                  <span class="kt">int</span> <span class="n">len</span><span class="o">;</span>
+                  <span class="k">while</span> <span class="o">((</span><span class="n">len</span> <span class="o">=</span> <span class="n">bis</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">buffer</span><span class="o">))</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">)</span>
+                        <span class="n">dsa</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">buffer</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">len</span><span class="o">);</span>
+                  <span class="n">bis</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                 
+                  <span class="c1">//VERIFICAR LA FIRMA DE LOS DATOS LEIDOS</span>
+                  <span class="kt">boolean</span> <span class="n">verifica</span> <span class="o">=</span> <span class="n">dsa</span><span class="o">.</span><span class="na">verify</span><span class="o">(</span><span class="n">firma</span><span class="o">);</span>
+                  <span class="c1">//COMPROBAR LA VERIFICACIÓN</span>
+                  <span class="k">if</span> <span class="o">(</span><span class="n">verifica</span><span class="o">)</span>
+                        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"LOS DATOS SE CORRESPONDEN CON SU FIRMA."</span><span class="o">);</span>
+                  <span class="k">else</span>   
+                        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"LOS DATOS NO SE CORRESPONDEN CON SU FIRMA"</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">el</span><span class="o">)</span> <span class="o">{</span> <span class="n">el</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span> <span class="o">}</span>
+           
+      <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Necesitamos la clave púlica almacenada en el fichero <code class="language-plaintext highlighter-rouge">Clave.publica</code>, la firma del fichero almacenada en <code class="language-plaintext highlighter-rouge">DATOS.FIRMA</code> y el fichero de datos <code class="language-plaintext highlighter-rouge">DATOS.DAT</code>. En primer lugar obtendremos la clave pública del fichero <code class="language-plaintext highlighter-rouge">Clave.publica</code>, a continuación obtenemos la firma digital almacenada en el fichero <code class="language-plaintext highlighter-rouge">DATOS.FIRMA</code>. A continuación se leen los datos del fichero de datos <code class="language-plaintext highlighter-rouge">DATOS.DAT</code> y se suministran al objeto <code class="language-plaintext highlighter-rouge">Signature</code>. Por último se verifica la firma con la clave pública.</p>
+
+<h2 id="herramientas-para-firmar-ficheros">Herramientas para firmar ficheros</h2>
+
+<p>Java dispone de la herramienta de línea de comandos keytool para generar y manipular certificados.</p>
+
+<p>Para firmar un documento seguiremos los siguientes pasos:</p>
+
+<ol>
+  <li>Crear un fichero JAR que contiene el documento a firmar.</li>
+</ol>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">jar</span> <span class="n">cvf</span> <span class="nc">Contrato</span><span class="o">.</span><span class="na">jar</span> <span class="nc">Contrato</span><span class="o">.</span><span class="na">pdf</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Generar las claves púlica y privada (si no existen), con keytool-genkey.</li>
+</ol>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">keytool</span> <span class="err">–</span><span class="n">genkey</span> <span class="err">–</span><span class="n">alias</span> <span class="nc">FirmaContrato</span> <span class="err">–</span><span class="n">keystore</span> <span class="nc">AlmacenClaves</span>
+</code></pre></div></div>
+
+<p>Creamos un almacén de claves (<strong>keystore</strong>) con el nombre <code class="language-plaintext highlighter-rouge">AlmacenClaves</code>. <code class="language-plaintext highlighter-rouge">FirmaContrato</code> es el nombre con el que haremos referencia al par de claves creado.</p>
+
+<p>Nos pedirá contraseña para el almacén de claves y para la clave privada del par de claves generado.</p>
+
+<p>El certificado generado tiene una validez de 90 días a no ser que se especifique la opción <code class="language-plaintext highlighter-rouge">-validity</code> en <strong>keytool</strong>.
+Los certificados autofirmados son útiles para desarrollar y probar una aplicación.
+La aplicación está firmada con un certificado que no es de confianza, por tanto, al ejecutarla nos preguntará antes si queremos ejecutarla.
+Se recomienda no importar en un almacén de claves un certificado en el que no se confíe plenamente.</p>
+
+<ol>
+  <li>Firmar el fichero JAR, usando jarsigner y la clave privada.</li>
+</ol>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">jarsigner</span> <span class="err">–</span><span class="n">keystore</span> <span class="nc">AlmacenClaves</span> <span class="err">–</span><span class="n">signedjar</span> <span class="nc">DocumentoFirmado</span><span class="o">.</span><span class="na">jar</span> <span class="nc">Contrato</span><span class="o">.</span><span class="na">jar</span> <span class="nc">FirmaContrato</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Con keytool –export exportar el certificado de clave pública para que el receptor autentique la firma del emisor.</li>
+</ol>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">keytool</span> <span class="err">–</span><span class="n">export</span> <span class="err">–</span><span class="n">keystore</span> <span class="nc">AlmacenClaves</span> <span class="err">–</span><span class="n">alias</span> <span class="nc">FirmaContrato</span> <span class="err">–</span><span class="n">file</span> <span class="nc">MariaJesus</span><span class="o">.</span><span class="na">cer</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Por último suministrar el fichero JAR firmado y el certificado al receptor.</li>
+</ol>
+
+<p>El receptor necesita importar el certificado como un certificado de confianza</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">keytool</span> <span class="err">–</span><span class="kn">import</span> <span class="err">–</span><span class="nn">alias</span> <span class="nc">MJesus</span> <span class="err">–</span><span class="n">file</span> <span class="nc">MariaJesus</span><span class="o">.</span><span class="na">cer</span> <span class="err">–</span><span class="n">keystore</span> <span class="nc">AlmacenReceptor</span>
+</code></pre></div></div>
+
+<p>y verificar la firma del fichero JAR.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">jarsigner</span> <span class="err">–</span><span class="n">verify</span> <span class="err">–</span><span class="n">verbose</span> <span class="err">–</span><span class="n">certs</span> <span class="err">–</span><span class="n">keystore</span> <span class="nc">AlmacenReceptor</span> <span class="nc">DocumentoFirmado</span><span class="o">.</span><span class="na">jar</span>
+</code></pre></div></div>
+
+<h3 id="clase-cipher">Clase Cipher</h3>
+
+<p>Para crear un objeto <strong>Cipher</strong> se llama al método <code class="language-plaintext highlighter-rouge">getInstance()</code> pasando como argumento el algoritmo y opcionalmente, el nombre de un proveedor.</p>
+
+<p>Como algoritmo en el método <code class="language-plaintext highlighter-rouge">getInstance()</code> se pueden poner los siguientes (algoritmo/modo/relleno), entre paréntesis se especifica el tamañi de la clave en bits:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AES/CBC/NoPadding (128)
+AES/CBC/PKCS5Padding (128)
+AES/ECB/NoPadding (128)
+AES/ECB/PKCS5Padding (128)
+DES/CBC/NoPadding (56)
+DES/CBC/PKCS5Padding (56)
+DES/ECB/NoPadding (56)
+DES/ECB/PKCS5Padding (56)
+DESede/CBC/NoPadding (168)
+DESede/CBC/PKCS5Padding (168)
+DESede/ECB/NoPadding (168)
+DESede/ECB/PKCS5Padding (168)
+RSA/ECB/PKCS1Padding (1024, 2048)
+RSA/ECB/OAEPWithSHA-1AndMGF1Padding (1024, 2048)
+RSA/ECB/OAEPWithSHA-256AndMGF1Padding (1024, 2048)
+</code></pre></div></div>
+
+<p>Los modos son la forma de trabajar del algoritmo</p>
+
+<ul>
+  <li><strong>ECB</strong> (Electronic Cookbook Mode). Los mensajes se dividen en bloques y cada uno de ellos es cifrado por separado por separado utilizando la misma clave K. A bloques de texto plano o claro idénticos les corresponden bloques idénticos de texto cifrado, de anera que se pueden reconocer estos patrones. De ahí que no sea recomendable.</li>
+  <li><strong>CBC</strong> (Cipher Block Chaining), a cada bloque de texto plano se le aplica la operación XOR con el bloque cifrado anterior antes de ser cifrado. De esta forma, cada bloque de texto cifrado depende de todo el texto en claro procesado hasta este punto. Para hacer cada men saje único se utilza asimismo un vector de inicialización.</li>
+</ul>
+
+<p>El relleno se utiliza cuando el mensaje a cifrar no es múltiplo de la longitud de cifrado del algoritmo, entonces es necesario indicar la forma de rellenar los últimos bloques.</p>
+
+<h3 id="clase-keygenerator">Clase KeyGenerator</h3>
+
+<p>Proporciona funcionalidades para generar claves secretas para usarse en algoritmos simétricos</p>
+
+<h2 id="pasos-para-encriptar-y-desencriptar-con-clave-secreta">Pasos para encriptar y desencriptar con clave secreta</h2>
+
+<p><img src="/img/posts/20160325_2.png" alt="proceso de cifrado y descifrado con clave secreta" /></p>
+
+<ul>
+  <li>Creamos la clave secreta usando <strong>AES</strong> o <strong>DES</strong>.</li>
+  <li>Creamos un objeto <strong>Ciphercon</strong> el algoritmo/modo/relleno que creamos oportuno, lo inicializamos en modo encriptación con la clave creada anteriormente.</li>
+  <li>Realizamos el cifrado de la información con el método <code class="language-plaintext highlighter-rouge">doFinal()</code>.</li>
+  <li>Configuramos el objeto <strong>Cipher</strong> en modo desencriptación con la clave anterior para desencriptar el texto, usamos el método <code class="language-plaintext highlighter-rouge">doFinal()</code>.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.security.InvalidAlgorithmParameterException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.security.InvalidKeyException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.security.Key</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.security.NoSuchAlgorithmException</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.crypto.BadPaddingException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.crypto.Cipher</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.crypto.IllegalBlockSizeException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.crypto.KeyGenerator</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.crypto.NoSuchPaddingException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.crypto.SecretKey</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.crypto.spec.IvParameterSpec</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Ejemplo10</span> <span class="o">{</span>
+     
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+           
+            <span class="k">try</span> <span class="o">{</span>
+           
+                  <span class="c1">//Creamos la clave secreta usando el algoritmo AES y deﬁnimos un tamaño de clave de 128 bits</span>
+                  <span class="nc">KeyGenerator</span> <span class="n">kg</span> <span class="o">=</span> <span class="nc">KeyGenerator</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">"AES"</span><span class="o">);</span>
+                  <span class="n">kg</span><span class="o">.</span><span class="na">init</span> <span class="o">(</span><span class="mi">128</span><span class="o">);</span>
+                  <span class="nc">SecretKey</span> <span class="n">clave</span> <span class="o">=</span> <span class="n">kg</span><span class="o">.</span><span class="na">generateKey</span><span class="o">();</span>
+                 
+                  <span class="c1">//Creamos un objeto Cipher con el algoritmo AES/ECB/PKCS5Padding, lo inicializamos en modo encriptación con la clave creada anteriormente.</span>
+                  <span class="nc">Cipher</span> <span class="n">c</span> <span class="o">=</span> <span class="nc">Cipher</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">"AES/ECB/PKCS5Padding"</span><span class="o">);</span>
+                  <span class="n">c</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="nc">Cipher</span><span class="o">.</span><span class="na">ENCRYPT_MODE</span><span class="o">,</span> <span class="n">clave</span><span class="o">);</span>
+                 
+                  <span class="c1">//Realizamos el cifrado de la información con el método doFinal()</span>
+                  <span class="kt">byte</span> <span class="n">textoPlano</span><span class="o">[]</span> <span class="o">=</span> <span class="s">"Esto es un Texto Plano"</span><span class="o">.</span><span class="na">getBytes</span><span class="o">();</span>
+                  <span class="kt">byte</span> <span class="n">textoCifrado</span><span class="o">[]</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">doFinal</span><span class="o">(</span><span class="n">textoPlano</span><span class="o">);</span>
+                  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Encriptado: "</span><span class="o">+</span> <span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="n">textoCifrado</span><span class="o">));</span>
+                 
+                  <span class="c1">//Conﬁguramos el objeto Cipher en modo desencriptación con la clave anterior para desencriptar el texto, usamos el método doFinal()</span>
+                  <span class="n">c</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="nc">Cipher</span><span class="o">.</span><span class="na">DECRYPT_MODE</span><span class="o">,</span> <span class="n">clave</span><span class="o">);</span>
+                  <span class="kt">byte</span> <span class="n">desencriptado</span><span class="o">[]</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">doFinal</span><span class="o">(</span><span class="n">textoCifrado</span><span class="o">);</span>
+                  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Desencriptado: "</span><span class="o">+</span> <span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="n">desencriptado</span><span class="o">));</span>
+
+
+                  <span class="cm">/*
+                  //Muchos modos de algoritmo (por ejemplo CBC) requieren un vector de inicialización que se especifica cuando se inicializa
+                  //el objeto Cipher en modo desencriptación. En estos casos, se debe pasar al método init() el vector de inicialización.
+                  //La clase IvParameterSpec se usa para hacer esto en el cifrado DES.
+                  KeyGenerator kg = KeyGenerator.getInstance("DES");
+                  Cipher c = Cipher.getInstance("DES/CBC/PKCS5Padding");
+                  Key clave = kg.generateKey();
+                 
+                  //Devuelve el vector IV inicializado en un nuevo buffer
+                  byte iv[]=c.getIV();
+                  IvParameterSpec dps = new IvParameterSpec(iv);
+                  c.init(Cipher.DECRYPT_MODE, clave, dps);
+                  */</span>
+
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">NoSuchAlgorithmException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>        
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">NoSuchPaddingException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InvalidKeyException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IllegalBlockSizeException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">BadPaddingException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+      <span class="c1">//    } catch (InvalidAlgorithmParameterException e) {</span>
+            <span class="o">}</span>
+           
+      <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="almacenar-la-clave-secreta-en-un-fichero">Almacenar la clave secreta en un fichero</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.security.*</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.crypto.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AlmacenaClaveSecreta</span> <span class="o">{</span>
+     
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+           
+            <span class="k">try</span> <span class="o">{</span>
+                  <span class="nc">KeyGenerator</span> <span class="n">kg</span> <span class="o">=</span> <span class="nc">KeyGenerator</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">"AES"</span><span class="o">);</span>
+                  <span class="n">kg</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="mi">128</span><span class="o">);</span>
+                  <span class="c1">//genera clave secreta</span>
+                  <span class="nc">SecretKey</span> <span class="n">clave</span> <span class="o">=</span> <span class="n">kg</span><span class="o">.</span><span class="na">generateKey</span><span class="o">();</span>
+                  <span class="nc">ObjectOutputStream</span> <span class="n">out</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ObjectOutputStream</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileOutputStream</span><span class="o">(</span><span class="s">"Clave.secreta"</span><span class="o">));</span>
+                  <span class="n">out</span><span class="o">.</span><span class="na">writeObject</span><span class="o">(</span><span class="n">clave</span><span class="o">);</span>
+                  <span class="n">out</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+
+                  <span class="cm">/*
+                  //Para recuperar la clave secreta del fichero
+                  ObjectInputStream in = new ObjectInputStream(new FileInputStream("Clave.secreta"));
+                  Key secreta = (Key) in.readObject();
+                  in.close();
+                  */</span>
+                 
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">NoSuchAlgorithmException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span><span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">FileNotFoundException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span><span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="c1">//} catch (ClassNotFoundException e) { e.printStackTrace();//Para recuperar la clave secreta</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span><span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();}</span>
+           
+      <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Genera una clave secreta <strong>AES</strong> y la almacena en el fichero <code class="language-plaintext highlighter-rouge">Clave.secreta</code>.</p>
+
+<h2 id="encriptar-y-desencriptar-con-clave-pública">Encriptar y desencriptar con clave pública</h2>
+
+<p>Conversación encriptada</p>
+
+<p><img src="/img/posts/20160325_3.png" alt="conversacion encriptada" /></p>
+
+<p>Conversación híbrida</p>
+
+<p><img src="/img/posts/20160325_4.png" alt="conversacion híbrida" /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.security.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.crypto.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Ejemplo12</span> <span class="o">{</span>
+     
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+           
+            <span class="k">try</span> <span class="o">{</span>
+                  <span class="c1">//SE CREA EL PAR DE CLAVES PÚBLICA Y PRIVADA</span>
+                  <span class="nc">KeyPairGenerator</span> <span class="n">keyGen</span> <span class="o">=</span> <span class="nc">KeyPairGenerator</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">"RSA"</span><span class="o">);</span>
+                  <span class="n">keyGen</span><span class="o">.</span><span class="na">initialize</span> <span class="o">(</span><span class="mi">1024</span><span class="o">);</span>
+                  <span class="nc">KeyPair</span> <span class="n">par</span> <span class="o">=</span> <span class="n">keyGen</span><span class="o">.</span><span class="na">generateKeyPair</span><span class="o">();</span>
+                  <span class="nc">PrivateKey</span> <span class="n">clavepriv</span> <span class="o">=</span> <span class="n">par</span><span class="o">.</span><span class="na">getPrivate</span><span class="o">();</span>
+                  <span class="nc">PublicKey</span> <span class="n">clavepub</span> <span class="o">=</span> <span class="n">par</span><span class="o">.</span><span class="na">getPublic</span><span class="o">();</span>
+                 
+                  <span class="c1">//SE CREA LA CLAVE SECRETA AES</span>
+                  <span class="nc">KeyGenerator</span> <span class="n">kg</span> <span class="o">=</span> <span class="nc">KeyGenerator</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">"AES"</span><span class="o">);</span>
+                  <span class="n">kg</span><span class="o">.</span><span class="na">init</span> <span class="o">(</span><span class="mi">128</span><span class="o">);</span>
+                  <span class="nc">SecretKey</span> <span class="n">clavesecreta</span> <span class="o">=</span> <span class="n">kg</span><span class="o">.</span><span class="na">generateKey</span><span class="o">();</span>
+                 
+                  <span class="c1">//SE ENCRIPTA LA CLAVE SECRETA CON LA CLAVE RSA PÚBLICA</span>
+                  <span class="nc">Cipher</span> <span class="n">c</span> <span class="o">=</span> <span class="nc">Cipher</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">"RSA/ECB/PKCSlPadding"</span><span class="o">);</span>
+                  <span class="n">c</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="nc">Cipher</span><span class="o">.</span><span class="na">WRAP_MODE</span><span class="o">,</span> <span class="n">clavepub</span><span class="o">);</span>
+                  <span class="kt">byte</span> <span class="n">claveenvuelta</span><span class="o">[]</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">wrap</span><span class="o">(</span><span class="n">clavesecreta</span><span class="o">);</span>
+                 
+                  <span class="c1">//CIFRAMOS TEXTO CON LA CLAVE SECRETA</span>
+                  <span class="n">c</span> <span class="o">=</span> <span class="nc">Cipher</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">"AES/ECB/PKCS5Padding"</span><span class="o">);</span>
+                  <span class="n">c</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="nc">Cipher</span><span class="o">.</span><span class="na">ENCRYPT_MODE</span><span class="o">,</span> <span class="n">clavesecreta</span><span class="o">);</span>
+                  <span class="kt">byte</span> <span class="n">textoPlano</span><span class="o">[]</span> <span class="o">=</span> <span class="s">"Esto es un Texto Plano"</span><span class="o">.</span><span class="na">getBytes</span><span class="o">();</span>
+                  <span class="kt">byte</span> <span class="n">textoCifrado</span><span class="o">[]</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">doFinal</span><span class="o">(</span><span class="n">textoPlano</span><span class="o">);</span>
+                  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Encriptado: "</span> <span class="o">+</span> <span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="n">textoCifrado</span><span class="o">));</span>
+                 
+            <span class="cm">/* Para desencriptar el texto primero necesitamos desencriptar la clave Secreta con la clave privada y a continuación desencriptar el texto con esa clave; usaremos el método unwrap():*/</span>
+                 
+                  <span class="c1">//SE DESENCRIPTA LA CLAVE SECRETA CON LA CLAVE RSA PRIVADA</span>
+                  <span class="nc">Cipher</span> <span class="n">c2</span> <span class="o">=</span> <span class="nc">Cipher</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">"RSA/ECB/PKCS1Padding"</span><span class="o">);</span>
+                  <span class="n">c2</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="nc">Cipher</span><span class="o">.</span><span class="na">UNWRAP_MODE</span><span class="o">,</span> <span class="n">clavepriv</span><span class="o">);</span>
+                  <span class="nc">Key</span> <span class="n">clavedesenvuelta</span><span class="o">=</span> <span class="n">c2</span><span class="o">.</span><span class="na">unwrap</span> <span class="o">(</span><span class="n">claveenvuelta</span><span class="o">,</span> <span class="s">"AES"</span><span class="o">,</span> <span class="nc">Cipher</span><span class="o">.</span><span class="na">SECRET_KEY</span><span class="o">);</span>
+                 
+                  <span class="c1">//DESCIFRAMOS EL TEXTO CON LA CLAVE DESENVUELTA</span>
+                  <span class="n">c2</span> <span class="o">=</span> <span class="nc">Cipher</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">"AES/ECB/PKCS5Padding"</span><span class="o">);</span>
+                  <span class="n">c2</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="nc">Cipher</span><span class="o">.</span><span class="na">DECRYPT_MODE</span><span class="o">,</span> <span class="n">clavedesenvuelta</span><span class="o">);</span>
+                  <span class="kt">byte</span> <span class="n">desencriptado</span><span class="o">[]</span> <span class="o">=</span> <span class="n">c2</span><span class="o">.</span><span class="na">doFinal</span><span class="o">(</span><span class="n">textoCifrado</span><span class="o">);</span>
+                  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"DesenCriptado:"</span> <span class="o">+</span> <span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="n">desencriptado</span><span class="o">));</span>
+                            
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span> <span class="o">}</span>
+           
+      <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Se genera un par de claves pública y privada con el algoritmo <strong>RSA</strong>.</li>
+  <li>Se crea una clave secreta con el algoritmo <strong>AES</strong>.</li>
+  <li>Esta clave se creará para encriptar el texto.</li>
+  <li>La clave secreta es encriptada mediante la clave pública utilizando el método <code class="language-plaintext highlighter-rouge">wrap()</code></li>
+  <li>Para desencriptar el texto primero necesitamos desencriptar la clave Secreta con la clave priada y a continuación desencriptar el texto con esa clave; usaremos el método <code class="language-plaintext highlighter-rouge">unwrap()</code></li>
+</ul>
+
+<h3 id="clave-de-sesión">Clave de sesión</h3>
+
+<p>Es un término medio entre el cifrado simétrico y asimétrico que permite combinar las dos técnicas. Consiste en generar una clave de sesión K y cifrarla usando la clave pública del receptor. El receptor descifra la clave de sesión usando su clave privada. El emisor y el receptor comparten una clave que solo ellos conocen y pueden cifrar sus comunicaciones usando la misma clave de sesión.</p>
+
+<p><img src="/img/posts/20160325_5.png" alt="clave de sesión" /></p>
+
+<h2 id="encriptar-y-desencriptar-flujos-de-datos">Encriptar y desencriptar flujos de datos</h2>
+
+<p><strong>Clase CipherOutputStream</strong>. Encriptar datos hacia un fichero</p>
+
+<p><strong>CipherInputStream</strong>. Leer y desencriptar datos de un fichero</p>
+
+<p>Ambas manipular de forma transparente las llamadas a <code class="language-plaintext highlighter-rouge">update()</code> y <code class="language-plaintext highlighter-rouge">doFinal()</code></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.security.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.crypto.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Ejemplo13Cifra</span> <span class="o">{</span> 
+     
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+           
+            <span class="k">try</span> <span class="o">{</span>
+                  <span class="c1">//RECUPERAMOS CLAVE SECRETA DEL FICHERO</span>
+                  <span class="nc">ObjectInputStream</span> <span class="n">oin</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ObjectInputStream</span><span class="o">(</span> <span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="s">"Clave.secreta"</span><span class="o">));</span>
+                  <span class="nc">Key</span> <span class="n">clavesecreta</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Key</span><span class="o">)</span> <span class="n">oin</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span>
+                  <span class="n">oin</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                 
+                  <span class="c1">//SE DEFINE EL OBJETO Cipher para encriptar</span>
+                  <span class="nc">Cipher</span> <span class="n">c</span> <span class="o">=</span> <span class="nc">Cipher</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">"AES/ECB/PKCS5Padding"</span><span class="o">);</span>
+                  <span class="n">c</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="nc">Cipher</span><span class="o">.</span><span class="na">ENCRYPT_MODE</span><span class="o">,</span> <span class="n">clavesecreta</span><span class="o">);</span>
+                 
+                  <span class="c1">//FICHERO A CIFRAR</span>
+                  <span class="nc">FileInputStream</span> <span class="n">filein</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="s">"FICHERO.pdf"</span><span class="o">);</span>
+                  <span class="c1">//OBJETO CipherOutputStream donde se almacena el fichero cifrado</span>
+                  <span class="nc">CipherOutputStream</span> <span class="n">out</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CipherOutputStream</span><span class="o">(</span> <span class="k">new</span> <span class="nc">FileOutputStream</span><span class="o">(</span><span class="s">"FicheroPDF.Cifrado"</span><span class="o">),</span> <span class="n">c</span><span class="o">);</span>
+                  <span class="kt">int</span> <span class="n">tambloque</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">getBlockSize</span><span class="o">();</span><span class="c1">//tamaño de bloque objeto Cipher</span>
+                  <span class="kt">byte</span><span class="o">[]</span> <span class="n">bytes</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">tambloque</span><span class="o">];</span><span class="c1">//bloque de bytes</span>
+                 
+                  <span class="c1">//LEEMOS BLOQUES DE BYTES DEL FICHERO PDF</span>
+                  <span class="c1">//Y int LO VAMOS ESCRIBIENDO AL CipherOutputStream</span>
+                  <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">filein</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">bytes</span><span class="o">);</span>
+                  <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">{</span> 
+                        <span class="n">out</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">bytes</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">i</span><span class="o">);</span>
+                        <span class="n">i</span> <span class="o">=</span> <span class="n">filein</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">bytes</span><span class="o">);</span>
+                  <span class="o">}</span>
+                 
+                  <span class="n">out</span><span class="o">.</span><span class="na">flush</span><span class="o">();</span>
+                  <span class="n">out</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                  <span class="n">filein</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Fichero cifrado con clave secreta."</span><span class="o">);</span>
+                 
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span><span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();}</span>
+           
+      <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Utiliza la clave secreta almacenada en un fichero llamado para cifrar un documento PDF de nombre <code class="language-plaintext highlighter-rouge">Fichero.pdf</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.security.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.crypto.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Ejemplo13Descifra</span> <span class="o">{</span>
+     
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+           
+            <span class="k">try</span> <span class="o">{</span>
+                  <span class="c1">//RECUPERAMOS CLAVE SECRETA DEL FICHERO</span>
+                  <span class="nc">ObjectInputStream</span> <span class="n">oin</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ObjectInputStream</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="s">"Clave.secreta"</span><span class="o">));</span>
+                  <span class="nc">Key</span> <span class="n">clavesecreta</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Key</span><span class="o">)</span> <span class="n">oin</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span>
+                  <span class="n">oin</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                 
+                  <span class="c1">//SE DEFINE EL OBJETO Cipher para desencriptar</span>
+                  <span class="nc">Cipher</span> <span class="n">c</span> <span class="o">=</span> <span class="nc">Cipher</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">"AES/ECB/PKCS5Padding"</span><span class="o">);</span>
+                  <span class="n">c</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="nc">Cipher</span><span class="o">.</span><span class="na">DECRYPT_MODE</span><span class="o">,</span> <span class="n">clavesecreta</span><span class="o">);</span>
+                 
+                  <span class="c1">//OBJETO CipherInputStream CUYO CONTENIDO SE VA A DESCIFRAR</span>
+                  <span class="nc">CipherInputStream</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CipherInputStream</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="s">"FicheroPDF.Cifrado"</span><span class="o">),</span> <span class="n">c</span><span class="o">);</span>
+                  <span class="kt">int</span> <span class="n">tambloque</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">getBlockSize</span><span class="o">();</span><span class="c1">//tamaño de bloque</span>
+                  <span class="kt">byte</span><span class="o">[]</span> <span class="n">bytes</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">tambloque</span><span class="o">];</span><span class="c1">//bloque de bytes</span>
+                 
+                  <span class="c1">//FICHERO CON EL CONTENIDO DESCIFRADO QUE SE CREARÁ</span>
+                  <span class="nc">FileOutputStream</span> <span class="n">fileout</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileOutputStream</span><span class="o">(</span><span class="s">"FICHEROdescifrado.pdf"</span><span class="o">);</span>
+                 
+                  <span class="c1">//LEEMOS BLOQUES DE BYTES DEL FICHERO cifrado</span>
+                  <span class="c1">//Y LO VAMOS ESCRIBIENDO desencriptados al FileOutputStream</span>
+                  <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">bytes</span><span class="o">);</span>
+                  <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="o">){</span>
+                        <span class="n">fileout</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">bytes</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">i</span><span class="o">);</span>   
+                        <span class="n">i</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">bytes</span><span class="o">);</span>
+                  <span class="o">}</span>
+                  <span class="n">fileout</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                  <span class="n">in</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Fichero descifrado con clave secreta."</span><span class="o">);</span>
+                 
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span><span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();}</span>
+           
+      <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Utiliza la clase <strong>CipherInputStream</strong> para leer y desencriptar datos de un fichero cifrado.</p>
+
+<p><strong>¡Salud y coding!</strong></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#procesos-servicios</span>
+        
+          <span class="tag">#teoria</span>
+        
+          <span class="tag">#java</span>
+        
+          <span class="tag">#criptografia</span>
+        
+          <span class="tag">#jca</span>
+        
+          <span class="tag">#jce</span>
+        
+          <span class="tag">#seguridad</span>
+        
+          <span class="tag">#cifrado</span>
+        
+          <span class="tag">#rsa</span>
+        
+          <span class="tag">#aes</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

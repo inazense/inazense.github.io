@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resolver sudokus en Java | Programando a Pasitos</title>
+<meta name="description" content="Aprende a crear un programa que resuelve sudokus automáticamente en Java con algoritmo de backtracking. Tutorial completo paso a paso con código, interfaz gráfica Swing, validación de reglas y ejemplos prácticos de fuerza bruta.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Resolver sudokus en Java | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Resolver sudokus en Java" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Aprende a crear un programa que resuelve sudokus automáticamente en Java con algoritmo de backtracking. Tutorial completo paso a paso con código, interfaz gráfica Swing, validación de reglas y ejemplos prácticos de fuerza bruta." />
+<meta property="og:description" content="Aprende a crear un programa que resuelve sudokus automáticamente en Java con algoritmo de backtracking. Tutorial completo paso a paso con código, interfaz gráfica Swing, validación de reglas y ejemplos prácticos de fuerza bruta." />
+<link rel="canonical" href="http://localhost:4000/posts/2017/07/19/resolver-sudokus-con-java/" />
+<meta property="og:url" content="http://localhost:4000/posts/2017/07/19/resolver-sudokus-con-java/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-07-19T06:10:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Resolver sudokus en Java" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2017-07-19T06:10:00+02:00","datePublished":"2017-07-19T06:10:00+02:00","description":"Aprende a crear un programa que resuelve sudokus automáticamente en Java con algoritmo de backtracking. Tutorial completo paso a paso con código, interfaz gráfica Swing, validación de reglas y ejemplos prácticos de fuerza bruta.","headline":"Resolver sudokus en Java","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2017/07/19/resolver-sudokus-con-java/"},"url":"http://localhost:4000/posts/2017/07/19/resolver-sudokus-con-java/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Resolver sudokus en Java</h1>
+    <div class="post-meta">
+      <time datetime="2017-07-19T06:10:00+02:00">19 Jul 2017</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#java" class="post-category">Java</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Aprende a crear un programa que resuelve sudokus automáticamente en Java con algoritmo de backtracking. Tutorial completo paso a paso con código, interfaz gráfica Swing, validación de reglas y ejemplos prácticos de fuerza bruta.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <p>El otro día estaba haciendo el <strong>sudoku</strong> del periódico y me plantee la siguiente duda. ¿Cómo sería un <strong>programa que te resolviese el sudoku</strong> automáticamente?</p>
+
+<p>Para el que no lo sepa, un <strong>sudoku</strong> es un pasatiempo japonés consistente en rellenar un tablero de 9x9, que a su vez está divido en secciones de 3x3, con números del 1 al nueve de tal manera que ninguno de ellos puede estar repetido en ninguna fila, columna o secciones.
+Como curiosidad, sabed que el problema de un <strong>sudoku</strong> sólo se considera bien planteado si su solución es única, consiguiéndose esto sólo si, como mínimo, hay ya preestablecidas 17 cifras dentro del tablero <a href="https://es.wikipedia.org/wiki/Sudoku">(Wikipedia intensified)</a>.</p>
+
+<p>Dicho esto, vayamos a la resolución del problema.
+La idea que se me ocurrió, y que luego he ido leyendo que es la más sencilla de implementar, es la del <strong>algoritmo de marcha atrás</strong>.</p>
+
+<p>Es decir, leeremos el tablero y, dejando siempre fijas las posiciones que ya están preestablecidas, iremos casilla por casilla aumentando su valor en uno. Si el valor de esa casilla cumple con las reglas del <strong>sudoku</strong> (ya sabéis, no repetirse ni en su fila, columna ni sección) la dejamos tal cual y saltamos a la siguiente.
+Si no se cumple, incrementará el valor de dicha casilla hasta que esa condición se cumpla o hasta sobrepasar el valor de 9.
+En ese caso de sobrepasar dicho valor, lo que haremos será retroceder a la anterior casilla modificable e incrementar su valor en 1, repitiendo el proceso anterior.</p>
+
+<p>De este modo, solucionaríamos un <strong>sudoku</strong> cuando todas las casillas estén completamente validadas, y sería irresoluble si la primera casilla editable supera el valor de 9.</p>
+
+<p>Es decir, que el método empleado lo podemos considerar como un ataque de fuerza bruta. Costoso en tiempos computacionales, pero era la solución más sencilla de implementar que se me ocurrió. Probablemente haya muchas mejores formas de hacerlo, podéis decirme las vuestras en los comentarios.</p>
+
+<h2 id="a-programar">¡A programar!</h2>
+
+<p>Sabiendo esto, vamos a pasar al código. Lo primero que debéis saber es que aquí sólo voy a mostrar la lógica de la resolución. Puedes acceder al código completo en <a href="https://github.com/inazense/SudokuSolver">mi repositorio de Github</a>. Incluye la interfaz gráfica entre otras mejoras que me encuentro desarrollando actualmente.</p>
+
+<h3 id="participantes">Participantes</h3>
+
+<p>El primer paso será definir los participantes que necesitaremos para <strong>solucionar el sudoku</strong>, que serán un tablero, las casillas que lo compongan y las secciones en las que lo dividiremos.</p>
+
+<p>Así pues, vamos a ir de menos a más.
+Lo primero será definir las secciones, en una enumeración.</p>
+
+<p><strong>Enum Sector</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="nc">Sector</span>
+<span class="o">{</span>
+ <span class="no">PRIMERO</span><span class="o">,</span> <span class="no">SEGUNDO</span><span class="o">,</span> <span class="no">TERCERO</span><span class="o">,</span>
+ <span class="no">CUARTO</span><span class="o">,</span> <span class="no">QUINTO</span><span class="o">,</span> <span class="no">SEXTO</span><span class="o">,</span>
+ <span class="no">SEPTIMO</span><span class="o">,</span> <span class="no">OCTAVO</span><span class="o">,</span> <span class="no">NOVENO</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Como podemos ver, es una enumeración sencilla en la que nos limitamos a nombrar los nueve sectores de nuestro tablero.</p>
+
+<p><strong>Casilla</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Casilla</span> <span class="o">{</span>
+
+ <span class="c1">/// PROPIEDADES</span>
+ <span class="kd">private</span> <span class="kt">int</span> <span class="n">valor</span><span class="o">;</span>
+ <span class="kd">private</span> <span class="kt">int</span> <span class="n">posX</span><span class="o">;</span>
+ <span class="kd">private</span> <span class="kt">int</span> <span class="n">posY</span><span class="o">;</span>
+ <span class="kd">private</span> <span class="nc">Sector</span> <span class="n">sector</span><span class="o">;</span>
+ <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">editable</span><span class="o">;</span>
+ 
+ <span class="c1">/// CONSTRUCTORES</span>
+ <span class="cm">/**
+  * Inicializa una casilla vacía
+  */</span>
+ <span class="kd">public</span> <span class="nf">Casilla</span><span class="o">()</span> <span class="o">{}</span>
+ 
+ <span class="cm">/**
+  * 
+  * @param valor
+  * @param posX
+  * @param posY
+  * @param sector
+  * @param editable
+  */</span>
+ <span class="kd">public</span> <span class="nf">Casilla</span><span class="o">(</span><span class="kt">int</span> <span class="n">valor</span><span class="o">,</span> <span class="kt">int</span> <span class="n">posX</span><span class="o">,</span> <span class="kt">int</span> <span class="n">posY</span><span class="o">,</span> <span class="nc">Sector</span> <span class="n">sector</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">editable</span><span class="o">)</span> <span class="o">{</span>
+  
+  <span class="k">this</span><span class="o">.</span><span class="na">valor</span>   <span class="o">=</span> <span class="n">valor</span><span class="o">;</span>
+  <span class="k">this</span><span class="o">.</span><span class="na">posX</span>   <span class="o">=</span> <span class="n">posX</span><span class="o">;</span>
+  <span class="k">this</span><span class="o">.</span><span class="na">posY</span>   <span class="o">=</span> <span class="n">posY</span><span class="o">;</span>
+  <span class="k">this</span><span class="o">.</span><span class="na">sector</span>  <span class="o">=</span> <span class="n">sector</span><span class="o">;</span>
+  <span class="k">this</span><span class="o">.</span><span class="na">editable</span>  <span class="o">=</span> <span class="n">editable</span><span class="o">;</span>
+ <span class="o">}</span>
+ 
+ <span class="c1">/// METODOS</span>
+ 
+ <span class="cm">/**
+  * Establece el sector dependiendo de la posición X e Y de la casilla
+  */</span>
+ <span class="kd">public</span> <span class="kt">void</span> <span class="nf">establecerSectorSegunPosicion</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">switch</span><span class="o">(</span><span class="n">posX</span><span class="o">)</span> <span class="o">{</span>
+  
+  <span class="k">case</span> <span class="mi">0</span><span class="o">:</span>
+  <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+  <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
+   <span class="k">switch</span><span class="o">(</span><span class="n">posY</span><span class="o">)</span> <span class="o">{</span>
+   <span class="k">case</span> <span class="mi">0</span><span class="o">:</span>
+   <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+   <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">setSector</span><span class="o">(</span><span class="nc">Sector</span><span class="o">.</span><span class="na">PRIMERO</span><span class="o">);</span>
+    <span class="k">break</span><span class="o">;</span>
+   <span class="k">case</span> <span class="mi">3</span><span class="o">:</span>
+   <span class="k">case</span> <span class="mi">4</span><span class="o">:</span>
+   <span class="k">case</span> <span class="mi">5</span><span class="o">:</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">setSector</span><span class="o">(</span><span class="nc">Sector</span><span class="o">.</span><span class="na">SEGUNDO</span><span class="o">);</span>
+    <span class="k">break</span><span class="o">;</span>
+   <span class="k">case</span> <span class="mi">6</span><span class="o">:</span>
+   <span class="k">case</span> <span class="mi">7</span><span class="o">:</span> 
+   <span class="k">case</span> <span class="mi">8</span><span class="o">:</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">setSector</span><span class="o">(</span><span class="nc">Sector</span><span class="o">.</span><span class="na">TERCERO</span><span class="o">);</span>
+    <span class="k">break</span><span class="o">;</span>
+   <span class="k">default</span><span class="o">:</span>
+    <span class="k">break</span><span class="o">;</span>
+   <span class="o">}</span>
+   <span class="k">break</span><span class="o">;</span>
+  <span class="k">case</span> <span class="mi">3</span><span class="o">:</span>
+  <span class="k">case</span> <span class="mi">4</span><span class="o">:</span>
+  <span class="k">case</span> <span class="mi">5</span><span class="o">:</span>
+   <span class="k">switch</span><span class="o">(</span><span class="n">posY</span><span class="o">)</span> <span class="o">{</span>
+   <span class="k">case</span> <span class="mi">0</span><span class="o">:</span>
+   <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+   <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">setSector</span><span class="o">(</span><span class="nc">Sector</span><span class="o">.</span><span class="na">CUARTO</span><span class="o">);</span>
+    <span class="k">break</span><span class="o">;</span>
+   <span class="k">case</span> <span class="mi">3</span><span class="o">:</span>
+   <span class="k">case</span> <span class="mi">4</span><span class="o">:</span>
+   <span class="k">case</span> <span class="mi">5</span><span class="o">:</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">setSector</span><span class="o">(</span><span class="nc">Sector</span><span class="o">.</span><span class="na">QUINTO</span><span class="o">);</span>
+    <span class="k">break</span><span class="o">;</span>
+   <span class="k">case</span> <span class="mi">6</span><span class="o">:</span>
+   <span class="k">case</span> <span class="mi">7</span><span class="o">:</span> 
+   <span class="k">case</span> <span class="mi">8</span><span class="o">:</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">setSector</span><span class="o">(</span><span class="nc">Sector</span><span class="o">.</span><span class="na">SEXTO</span><span class="o">);</span>
+    <span class="k">break</span><span class="o">;</span>
+   <span class="k">default</span><span class="o">:</span>
+    <span class="k">break</span><span class="o">;</span>
+   <span class="o">}</span>
+   <span class="k">break</span><span class="o">;</span>
+  <span class="k">case</span> <span class="mi">6</span><span class="o">:</span>
+  <span class="k">case</span> <span class="mi">7</span><span class="o">:</span>
+  <span class="k">case</span> <span class="mi">8</span><span class="o">:</span>
+   <span class="k">switch</span><span class="o">(</span><span class="n">posY</span><span class="o">)</span> <span class="o">{</span>
+   <span class="k">case</span> <span class="mi">0</span><span class="o">:</span>
+   <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+   <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">setSector</span><span class="o">(</span><span class="nc">Sector</span><span class="o">.</span><span class="na">SEPTIMO</span><span class="o">);</span>
+    <span class="k">break</span><span class="o">;</span>
+   <span class="k">case</span> <span class="mi">3</span><span class="o">:</span>
+   <span class="k">case</span> <span class="mi">4</span><span class="o">:</span>
+   <span class="k">case</span> <span class="mi">5</span><span class="o">:</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">setSector</span><span class="o">(</span><span class="nc">Sector</span><span class="o">.</span><span class="na">OCTAVO</span><span class="o">);</span>
+    <span class="k">break</span><span class="o">;</span>
+   <span class="k">case</span> <span class="mi">6</span><span class="o">:</span>
+   <span class="k">case</span> <span class="mi">7</span><span class="o">:</span> 
+   <span class="k">case</span> <span class="mi">8</span><span class="o">:</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">setSector</span><span class="o">(</span><span class="nc">Sector</span><span class="o">.</span><span class="na">NOVENO</span><span class="o">);</span>
+    <span class="k">break</span><span class="o">;</span>
+   <span class="k">default</span><span class="o">:</span>
+    <span class="k">break</span><span class="o">;</span>
+   <span class="o">}</span>
+   <span class="k">break</span><span class="o">;</span>
+  <span class="o">}</span>
+ <span class="o">}</span>
+
+ <span class="cm">/**
+  * Devuelve el valor de la casilla
+  * @return Entero entre 0 y 9
+  */</span>
+ <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getValor</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">valor</span><span class="o">;</span>
+ <span class="o">}</span>
+
+ <span class="cm">/**
+  * Establece el valor de la casilla
+  * @param valor Entero entre 0 y 9
+  */</span>
+ <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setValor</span><span class="o">(</span><span class="kt">int</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">this</span><span class="o">.</span><span class="na">valor</span> <span class="o">=</span> <span class="n">valor</span><span class="o">;</span>
+ <span class="o">}</span>
+
+ <span class="cm">/**
+  * Devuelve la posición horizontal
+  * @return Entero entre 0 y 8
+  */</span>
+ <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getPosX</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">posX</span><span class="o">;</span>
+ <span class="o">}</span>
+
+ <span class="cm">/**
+  * Establece la posición horizontal
+  * @param posX Entero entre 0 y 8
+  */</span>
+ <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPosX</span><span class="o">(</span><span class="kt">int</span> <span class="n">posX</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">this</span><span class="o">.</span><span class="na">posX</span> <span class="o">=</span> <span class="n">posX</span><span class="o">;</span>
+ <span class="o">}</span>
+
+ <span class="cm">/**
+  * Devuelve la posición vertical
+  * @return Entero entre 0 y 8
+  */</span>
+ <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getPosY</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">posY</span><span class="o">;</span>
+ <span class="o">}</span>
+
+ <span class="cm">/**
+  * Establece la posición vertical
+  * @param posY Entero entre 0 y 8
+  */</span>
+ <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPosY</span><span class="o">(</span><span class="kt">int</span> <span class="n">posY</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">this</span><span class="o">.</span><span class="na">posY</span> <span class="o">=</span> <span class="n">posY</span><span class="o">;</span>
+ <span class="o">}</span>
+
+ <span class="cm">/**
+  * Devuelve el sector de la casilla
+  * @return Sector preestablecido en Enum Sector
+  */</span>
+ <span class="kd">public</span> <span class="nc">Sector</span> <span class="nf">getSector</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">sector</span><span class="o">;</span>
+ <span class="o">}</span>
+
+ <span class="cm">/**
+  * Establece el sector de la casilla
+  * @param sector Propiedad del enum Sector
+  */</span>
+ <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSector</span><span class="o">(</span><span class="nc">Sector</span> <span class="n">sector</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">this</span><span class="o">.</span><span class="na">sector</span> <span class="o">=</span> <span class="n">sector</span><span class="o">;</span>
+ <span class="o">}</span>
+
+ <span class="cm">/**
+  * Devuelve si la casilla tiene un valor fijo o no
+  * @return True -&gt; Valor fijo. False -&gt; Valor modificable
+  */</span>
+ <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEditable</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">editable</span><span class="o">;</span>
+ <span class="o">}</span>
+
+ <span class="cm">/**
+  * Establece la opción de editar la casilla
+  * @param editable True -&gt; editable. False -&gt; no editable
+  */</span>
+ <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setEditable</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">editable</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">this</span><span class="o">.</span><span class="na">editable</span> <span class="o">=</span> <span class="n">editable</span><span class="o">;</span>
+ <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>En esta clase establecemos las propiedades de cada una de nuestras casillas.
+Su posición horizontal y vertical, su valor, el sector al que pertenece y si es o no editable.
+En los métodos creamos los <strong>getters</strong> y <strong>setters</strong> y un método más, el de establecerSectorSegunPosicion() que usaremos para indicar a que sector pertenece nuestra casilla.</p>
+
+<p><strong>Tablero</strong></p>
+
+<p>Esta clase vamos a comentarla un poco más, aunque también es muy sencillita.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Tablero</span> <span class="o">{</span>
+
+ <span class="c1">/// PROPIEDADES </span>
+ 
+ <span class="kd">private</span> <span class="nc">Casilla</span><span class="o">[][]</span> <span class="n">casillas</span><span class="o">;</span>
+ 
+ <span class="c1">/// CONSTRUCTOR</span>
+ 
+ <span class="cm">/**
+  * Genera un tablero de sudoku básico de 9x9
+  */</span>
+ <span class="kd">public</span> <span class="nf">Tablero</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">this</span><span class="o">.</span><span class="na">casillas</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Casilla</span><span class="o">[</span><span class="mi">9</span><span class="o">][</span><span class="mi">9</span><span class="o">];</span>
+ <span class="o">}</span>
+ 
+ <span class="c1">/// METODOS</span>
+ 
+ <span class="cm">/**
+  * Devuelve las casillas del tablero
+  * @return
+  */</span>
+ <span class="kd">public</span> <span class="nc">Casilla</span><span class="o">[][]</span> <span class="nf">getCasillas</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">casillas</span><span class="o">;</span>
+ <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Lo primero, vemos que la definición de las propiedades y del constructor no tiene mucha miga. Simplemente establecemos una matriz de casillas y en su constructor la inicializamos. Además generamos un getter para nuestras casillas.</p>
+
+<p>Hecho esto, vamos a ver los diferentes métodos que podemos emplear:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * Inicializa el tablero estableciendo por defecto los valores:
+ * Valor  = 0
+ * PosX  = i
+ * PosY  = j
+ * Editable = true
+ * Sector  = Según posición
+ */</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">inicializarTablero</span><span class="o">()</span> <span class="o">{</span>
+ 
+ <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="o">.</span><span class="na">casillas</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+  <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="k">this</span><span class="o">.</span><span class="na">casillas</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">length</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+   <span class="nc">Casilla</span> <span class="n">casilla</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Casilla</span><span class="o">();</span>
+   <span class="n">casilla</span><span class="o">.</span><span class="na">setValor</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+   <span class="n">casilla</span><span class="o">.</span><span class="na">setPosX</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+   <span class="n">casilla</span><span class="o">.</span><span class="na">setPosY</span><span class="o">(</span><span class="n">j</span><span class="o">);</span>
+   <span class="n">casilla</span><span class="o">.</span><span class="na">setEditable</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+   <span class="n">casilla</span><span class="o">.</span><span class="na">establecerSectorSegunPosicion</span><span class="o">();</span>
+   
+   <span class="k">this</span><span class="o">.</span><span class="na">casillas</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">casilla</span><span class="o">;</span>
+  <span class="o">}</span>
+ <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Este método es el encargado de inicializar una por una nuestras casillas. Recorremos la matriz y establecemos su posición, calculamos su sector, le indicamos que es editable y establecemos un valor por defecto de 0.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * Establece una nueva casilla en la posición que tenga configurada la misma
+ * @param casilla
+ */</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">editarCasilla</span><span class="o">(</span><span class="nc">Casilla</span> <span class="n">casilla</span><span class="o">)</span> <span class="o">{</span>
+ <span class="k">this</span><span class="o">.</span><span class="na">casillas</span><span class="o">[</span><span class="n">casilla</span><span class="o">.</span><span class="na">getPosX</span><span class="o">()][</span><span class="n">casilla</span><span class="o">.</span><span class="na">getPosY</span><span class="o">()]</span> <span class="o">=</span> <span class="n">casilla</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Aquí le indicamos que copie la casilla pasada  por parámetro a la casilla que está en el tablero con su misma posición, horizontal y vertical.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * Reestablece el valor de la casilla según su posición
+ * @param x Posición horizontal
+ * @param y Posición vertical
+ */</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">reestablecerCasillaPorPosicion</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">y</span><span class="o">)</span> <span class="o">{</span>
+ <span class="k">this</span><span class="o">.</span><span class="na">casillas</span><span class="o">[</span><span class="n">x</span><span class="o">][</span><span class="n">y</span><span class="o">].</span><span class="na">setValor</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>En este método reseteamos el valor de una casilla pasando por parámetro su posición dentro de la matriz.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * Inserta los valores de la matriz en la misma casilla respecto a su posición
+ * Ha tenido que inicializarse la matriz de casillas previamente
+ * @param matriz Matriz de enteros entre 0 y 9
+ */</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">insertarValores</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">matriz</span><span class="o">)</span> <span class="o">{</span>
+ 
+ <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">matriz</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+  <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">matriz</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">length</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+   <span class="k">if</span> <span class="o">(</span><span class="n">matriz</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">casillas</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">].</span><span class="na">setEditable</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+   <span class="o">}</span>
+   <span class="k">this</span><span class="o">.</span><span class="na">casillas</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">].</span><span class="na">setValor</span><span class="o">(</span><span class="n">matriz</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]);</span>
+  <span class="o">}</span>
+ <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Y por último, con este método rellenamos nuestra matriz de casillas usando la matriz de enteros pasada por parámetro. Copiamos los valores en las mismas posiciones. También indicamos que si ese valor es 0, la casilla siga como editable y si no, que pase a ser no editable.
+Éste método ha de usarse SIEMPRE una vez que ha inicializado todas las casillas</p>
+
+<p><strong>Solucionador</strong></p>
+
+<p>Esta clase la vamos a tratar igual que Tablero, yendo paso a paso por sus métodos. Es una clase exclusivamente dedicada a operar para resolver el sudoku y no tiene ninguna propiedad suya ni ningún constructor personalizado, así que la definimos simplemente así:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Solucionador</span> <span class="o">{</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Hecho esto, vamos a ver los métodos uno por uno.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * Devuelve un array con todas las casillas en las que la propiedad editable es verdadera
+ * @param casillas Matriz de casillas
+ * @return Array con las casillas editables
+ */</span>
+<span class="kd">private</span> <span class="nc">ArrayList</span> <span class="nf">extraerCasillasEditables</span><span class="o">(</span><span class="nc">Casilla</span><span class="o">[][]</span> <span class="n">casillas</span><span class="o">)</span> <span class="o">{</span>
+ <span class="nc">ArrayList</span> <span class="n">editables</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">();</span>
+ 
+ <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">casillas</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++</span> <span class="o">)</span> <span class="o">{</span>
+  <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">casillas</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">length</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+   <span class="k">if</span> <span class="o">(</span><span class="n">casillas</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">].</span><span class="na">isEditable</span><span class="o">())</span> <span class="o">{</span>
+    <span class="n">editables</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">casillas</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]);</span>
+   <span class="o">}</span>
+  <span class="o">}</span>
+ <span class="o">}</span>
+ 
+ <span class="k">return</span> <span class="n">editables</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Éste método es utilizado para permitirnos saber que casillas hemos de recorrer incrementando su valor, es decir, que casillas son editables por nuestro programa. Así podremos avanzar / retroceder entre ellas sin tenernos que preocupar de controlar los dos niveles de una matriz.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * Extrae las casillas que contengan la misma fila, columna o sector que la casilla actual
+ * @param tablero Tablero de 9x9
+ * @param actual Casilla actual
+ * @return ArrayList que contiene tres arrayList de casillas. Fila, columna y sector
+ */</span>
+<span class="kd">private</span> <span class="nc">ArrayList</span><span class="o">&gt;</span> <span class="nf">extraerCasillasComparables</span><span class="o">(</span><span class="nc">Tablero</span> <span class="n">tablero</span><span class="o">,</span> <span class="nc">Casilla</span> <span class="n">actual</span><span class="o">)</span> <span class="o">{</span>
+ 
+ <span class="nc">ArrayList</span> <span class="n">fila</span>  <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">();</span>
+ <span class="nc">ArrayList</span> <span class="n">columna</span>  <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">();</span>
+ <span class="nc">ArrayList</span> <span class="n">sector</span>  <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">();</span>
+ 
+ <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">tablero</span><span class="o">.</span><span class="na">getCasillas</span><span class="o">().</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+  <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">tablero</span><span class="o">.</span><span class="na">getCasillas</span><span class="o">()[</span><span class="n">i</span><span class="o">].</span><span class="na">length</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+   <span class="k">if</span> <span class="o">(</span><span class="n">tablero</span><span class="o">.</span><span class="na">getCasillas</span><span class="o">()[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">].</span><span class="na">getPosX</span><span class="o">()</span> <span class="o">==</span> <span class="n">actual</span><span class="o">.</span><span class="na">getPosX</span><span class="o">())</span> <span class="o">{</span>
+    <span class="n">fila</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">tablero</span><span class="o">.</span><span class="na">getCasillas</span><span class="o">()[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]);</span>
+   <span class="o">}</span>
+   
+   <span class="k">if</span> <span class="o">(</span><span class="n">tablero</span><span class="o">.</span><span class="na">getCasillas</span><span class="o">()[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">].</span><span class="na">getPosY</span><span class="o">()</span> <span class="o">==</span> <span class="n">actual</span><span class="o">.</span><span class="na">getPosY</span><span class="o">())</span> <span class="o">{</span>
+    <span class="n">columna</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">tablero</span><span class="o">.</span><span class="na">getCasillas</span><span class="o">()[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]);</span>
+   <span class="o">}</span>
+   
+   <span class="k">if</span> <span class="o">(</span><span class="n">tablero</span><span class="o">.</span><span class="na">getCasillas</span><span class="o">()[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">].</span><span class="na">getSector</span><span class="o">()</span> <span class="o">==</span> <span class="n">actual</span><span class="o">.</span><span class="na">getSector</span><span class="o">())</span> <span class="o">{</span>
+    <span class="n">sector</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">tablero</span><span class="o">.</span><span class="na">getCasillas</span><span class="o">()[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]);</span>
+   <span class="o">}</span>
+  <span class="o">}</span>
+ <span class="o">}</span>
+ 
+ <span class="nc">ArrayList</span><span class="o">&gt;</span> <span class="n">resultado</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&gt;();</span>
+ <span class="n">resultado</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">fila</span><span class="o">);</span>
+ <span class="n">resultado</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">columna</span><span class="o">);</span>
+ <span class="n">resultado</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">sector</span><span class="o">);</span>
+ 
+ <span class="k">return</span> <span class="n">resultado</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Aquí lo que hacemos es extraer todas las casillas que coincidan con la fila, columna o sector de la casilla que pasamos como parámetro y que esté dentro del tablero (valga la redundancia, ¿verdad?) para usarla como comparativas y validar si es correcto.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * Valida la fila, columna y sector. Si no se repite ningun numero (sin contar el 0)
+ * es una lista válida
+ * @param listas ArrayList de arraylist de casillas
+ * @return True si validacion correcta. False en caso contrario
+ */</span>
+<span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">validacionFCS</span><span class="o">(</span><span class="nc">ArrayList</span><span class="o">&gt;</span> <span class="n">listas</span><span class="o">)</span> <span class="o">{</span>
+ 
+ <span class="k">for</span> <span class="o">(</span><span class="nc">ArrayList</span> <span class="n">lista</span> <span class="o">:</span> <span class="n">listas</span><span class="o">)</span> <span class="o">{</span>
+  
+  <span class="nc">ArrayList</span> <span class="n">valores</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+  <span class="n">valores</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">();</span>
+  
+  <span class="k">for</span> <span class="o">(</span><span class="nc">Casilla</span> <span class="n">casilla</span> <span class="o">:</span> <span class="n">lista</span><span class="o">)</span> <span class="o">{</span>
+   <span class="k">if</span> <span class="o">(</span><span class="n">casilla</span><span class="o">.</span><span class="na">getValor</span><span class="o">()</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">valores</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">casilla</span><span class="o">.</span><span class="na">getValor</span><span class="o">()))</span> <span class="o">{</span>
+     <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">else</span> <span class="o">{</span>
+     <span class="n">valores</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">casilla</span><span class="o">.</span><span class="na">getValor</span><span class="o">());</span>
+    <span class="o">}</span>
+   <span class="o">}</span>
+  <span class="o">}</span>
+ <span class="o">}</span>
+ 
+ <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Habiendo extraido los valores de fila, columan y sector con el método anterior, pasaremos esos arraylist (uno a uno) a este método, que se encargará de validar si en esa lista tenemos valores repetidos o no. Nos servirá para realizar la validación de las reglas del <strong>sudoku</strong>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * Método que controla las operaciones necesarias para solucionar el sudoku
+ * @param tablero Tablero que contiene las casillas del sudoku
+ * @return boolean. True = Sudoku solucionado. False = Sudoku sin solucionar
+ */</span>
+<span class="kd">public</span> <span class="nc">Tablero</span> <span class="nf">solucionarSudoku</span><span class="o">(</span><span class="nc">Tablero</span> <span class="n">tablero</span><span class="o">)</span> <span class="o">{</span>
+ 
+ <span class="nc">ArrayList</span> <span class="n">editables</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">extraerCasillasEditables</span><span class="o">(</span><span class="n">tablero</span><span class="o">.</span><span class="na">getCasillas</span><span class="o">());</span>
+ <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+ 
+ <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">editables</span><span class="o">.</span><span class="na">size</span><span class="o">())</span> <span class="o">{</span>
+  
+  <span class="c1">// Control de salida. Si el primer resultado es igual a 0 y su valor superior al máximo permitido por el sudoku, </span>
+  <span class="c1">// error al solucionar el sudoku</span>
+  <span class="nc">Casilla</span> <span class="n">actual</span> <span class="o">=</span> <span class="n">editables</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">actual</span><span class="o">.</span><span class="na">getValor</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">9</span><span class="o">)</span> <span class="o">{</span>
+   <span class="n">tablero</span><span class="o">.</span><span class="na">reestablecerCasillaPorPosicion</span><span class="o">(</span><span class="n">actual</span><span class="o">.</span><span class="na">getPosX</span><span class="o">(),</span> <span class="n">actual</span><span class="o">.</span><span class="na">getPosY</span><span class="o">());</span>
+   <span class="n">i</span><span class="o">--;</span>
+   
+   <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+   <span class="o">}</span>
+   <span class="k">else</span> <span class="o">{</span>
+    <span class="n">actual</span> <span class="o">=</span> <span class="n">editables</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+    <span class="n">actual</span><span class="o">.</span><span class="na">setValor</span><span class="o">(</span><span class="n">actual</span><span class="o">.</span><span class="na">getValor</span><span class="o">()</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
+    <span class="n">tablero</span><span class="o">.</span><span class="na">editarCasilla</span><span class="o">(</span><span class="n">actual</span><span class="o">);</span>
+   <span class="o">}</span>
+  <span class="o">}</span>
+  <span class="k">else</span> <span class="o">{</span>
+   <span class="k">if</span> <span class="o">(</span><span class="n">actual</span><span class="o">.</span><span class="na">getValor</span><span class="o">()</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">actual</span><span class="o">.</span><span class="na">setValor</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+   <span class="o">}</span>
+   
+   <span class="nc">ArrayList</span><span class="o">&gt;</span> <span class="n">listasParaValidar</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">extraerCasillasComparables</span><span class="o">(</span><span class="n">tablero</span><span class="o">,</span> <span class="n">actual</span><span class="o">);</span>
+   
+   <span class="c1">// Validar si listas cumplen reglas de Sudoku (salvo valor sin rellenar)</span>
+   <span class="k">if</span> <span class="o">(</span><span class="n">validacionFCS</span><span class="o">(</span><span class="n">listasParaValidar</span><span class="o">))</span> <span class="o">{</span>
+    <span class="n">tablero</span><span class="o">.</span><span class="na">editarCasilla</span><span class="o">(</span><span class="n">actual</span><span class="o">);</span>
+    <span class="n">i</span><span class="o">++;</span>
+   <span class="o">}</span>
+   <span class="k">else</span>
+   <span class="o">{</span>
+    <span class="n">actual</span><span class="o">.</span><span class="na">setValor</span><span class="o">(</span><span class="n">actual</span><span class="o">.</span><span class="na">getValor</span><span class="o">()</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">actual</span><span class="o">.</span><span class="na">getValor</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">9</span><span class="o">)</span> <span class="o">{</span>
+     <span class="n">tablero</span><span class="o">.</span><span class="na">reestablecerCasillaPorPosicion</span><span class="o">(</span><span class="n">actual</span><span class="o">.</span><span class="na">getPosX</span><span class="o">(),</span> <span class="n">actual</span><span class="o">.</span><span class="na">getPosY</span><span class="o">());</span>
+     <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">i</span><span class="o">--;</span>
+      <span class="n">actual</span> <span class="o">=</span> <span class="n">editables</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+      <span class="n">actual</span><span class="o">.</span><span class="na">setValor</span><span class="o">(</span><span class="n">actual</span><span class="o">.</span><span class="na">getValor</span><span class="o">()</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
+      <span class="n">tablero</span><span class="o">.</span><span class="na">editarCasilla</span><span class="o">(</span><span class="n">actual</span><span class="o">);</span>
+     <span class="o">}</span>
+     <span class="k">else</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+     <span class="o">}</span>
+    <span class="o">}</span>
+   <span class="o">}</span>
+  <span class="o">}</span>
+  
+ <span class="o">}</span>
+ 
+ <span class="k">return</span> <span class="n">tablero</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Y aquí tenemos al método padre. El método principal que se encarga de gestionar los anteriormente descritos.
+Le pasamos un tablero como parámetro, y su tarea es entrar en un bucle que recorra todas las casillas editables, del que sólo saldrá si ya no podemos darle más valor a la primera casilla editable, devolviendo un nulo, o si hemos llegado al final del <strong>sudoku</strong> completando todas las casillas, devolviendo el tablero ya resuelto.</p>
+
+<p>De esta forma, dependiendo del resultado nosotros podremos pintar el tablero ya resulto o mostrar un mensaje de “imposible resolver” o algo similar</p>
+
+<p><img src="/img/posts/20170719_1.png" alt="sudoku solved" /></p>
+
+<p><img src="/img/posts/20170719_2.png" alt="sudoku unsolved" /></p>
+
+<p>Como ya dije previamente, éste post solo muestra la <strong>lógica resolutiva del sudoku</strong>. Si quieres ver como está hecha la interfaz gráfica, como volcar un sudoku desde un CSV, una imagen… te recomiendo que revises el repositorio de <a href="https://github.com/inazense/SudokuSolver"><strong>SudokuSolver</strong> en GitHub</a>.</p>
+
+<p><strong>¡Salud y coding!</strong></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#java</span>
+        
+          <span class="tag">#sudoku</span>
+        
+          <span class="tag">#algoritmos</span>
+        
+          <span class="tag">#backtracking</span>
+        
+          <span class="tag">#swing</span>
+        
+          <span class="tag">#interfaz-grafica</span>
+        
+          <span class="tag">#recursividad</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

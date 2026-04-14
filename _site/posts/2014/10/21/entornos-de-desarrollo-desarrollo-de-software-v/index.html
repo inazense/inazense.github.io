@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entornos de desarrollo. Desarrollo de software (V) | Programando a Pasitos</title>
+<meta name="description" content="Blog de programación por Inazio Claver">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Entornos de desarrollo. Desarrollo de software (V) | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Entornos de desarrollo. Desarrollo de software (V)" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Proyectos en Code Blocks" />
+<meta property="og:description" content="Proyectos en Code Blocks" />
+<link rel="canonical" href="http://localhost:4000/posts/2014/10/21/entornos-de-desarrollo-desarrollo-de-software-v/" />
+<meta property="og:url" content="http://localhost:4000/posts/2014/10/21/entornos-de-desarrollo-desarrollo-de-software-v/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2014-10-21T17:36:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Entornos de desarrollo. Desarrollo de software (V)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver","url":"https://github.com/inazense"},"dateModified":"2014-10-21T17:36:00+02:00","datePublished":"2014-10-21T17:36:00+02:00","description":"Proyectos en Code Blocks","headline":"Entornos de desarrollo. Desarrollo de software (V)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2014/10/21/entornos-de-desarrollo-desarrollo-de-software-v/"},"url":"http://localhost:4000/posts/2014/10/21/entornos-de-desarrollo-desarrollo-de-software-v/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Entornos de desarrollo. Desarrollo de software (V)</h1>
+    <div class="post-meta">
+      <time datetime="2014-10-21T17:36:00+02:00">21 Oct 2014</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#entornos-de-desarrollo" class="post-category">entornos de desarrollo</a>
+        
+      
+    </div>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="proyectos-en-code-blocks">Proyectos en Code Blocks</h2>
+
+<p>Los proyectos son agrupaciones de hojas en C que facilitan la organización cuando estamos elaborando un programa complejo.</p>
+
+<p>Para hacer uso de ellos, nos vamos a <strong>New File → Project</strong></p>
+
+<p><img src="/img/posts/20141021_1.png" alt="New File → Project" /></p>
+
+<p>En la ventana que se desplegará, seleccionamos la opción de <strong>Console application</strong></p>
+
+<p><img src="/img/posts/20141021_2.png" alt="Console application" /></p>
+
+<p>Y lanzaremos el menú de configuración para crear el nuevo proyecto. La primera imagen es simplemente un aviso de lo que vamos a realizar, la saltamos.</p>
+
+<p><img src="/img/posts/20141021_3.png" alt="Aviso de nuevo proyecto" /></p>
+
+<p>A continuación se nos pedirá que elijamos el lenguaje de programación del proyecto. Elegimos C, ya que es lo que estamos aprendiendo de momento.</p>
+
+<p><img src="/img/posts/20141021_4.png" alt="Selección de lenguaje C" /></p>
+
+<p>También nos pide que añadamos un título y el directorio donde se va a almacenar el proyecto. Los dos últimos campos se rellenaran por defecto.</p>
+
+<p><img src="/img/posts/20141021_5.png" alt="Título y directorio del proyecto" /></p>
+
+<p>En la siguiente ventana trataremos los parámetros de la compilación. Deberemos dejarlos tal y como se están en la siguiente imagen.</p>
+
+<p><img src="/img/posts/20141021_6.png" alt="Parámetros de compilación" /></p>
+
+<p>Y ya tenemos nuestro proyecto creado. Si ahora nos vamos al panel de la izquierda y desplegamos el Workspace veremos que nos aparece. Le damos al botón de +, desplegamos también Sources y nos aparecerá main.c, la hoja principal de nuestro proyecto.</p>
+
+<p><img src="/img/posts/20141021_7.png" alt="Proyecto creado en el Workspace" /></p>
+
+<p>Para trabajar escribimos un código que nos permita realizar pruebas.</p>
+
+<p><img src="/img/posts/20141021_8.png" alt="Código de prueba" /></p>
+
+<h2 id="debugger-en-codeblocks">Debugger en CodeBlocks</h2>
+
+<p>Vamos a emplear la herramienta de debugging que trae CodeBlocks. Para ello, seleccionamos una línea y pulsamos la tecla F5. Nos aparecerá un pirindolo rojo en esa fila.</p>
+
+<p><img src="/img/posts/20141021_9.png" alt="Breakpoint en el debugger" /></p>
+
+<p>Pulsamos sobre el botón de Debugger y elegimos las opciones de <strong>CPU Registers</strong> y <strong>Watches</strong></p>
+
+<p><img src="/img/posts/20141021_10.png" alt="Opciones de CPU Registers y Watches" /></p>
+
+<p>Para ejecutar esa línea, pulsaremos en el botón de play <strong>ROJO</strong>, a la derecha de Debug.</p>
+
+<p>Nos aparecerá una advertencia indicando que los valores por defecto de CodeBlocks han cambiado. Elegimos Yes y continuamos a lo nuestro.</p>
+
+<p><img src="/img/posts/20141021_11.png" alt="Advertencia de valores por defecto" /></p>
+
+<p><img src="/img/posts/20141021_12.png" alt="Panel de Watches" /></p>
+
+<p><img src="/img/posts/20141021_13.png" alt="Panel de CPU Registers" /></p>
+
+<p>Para detener la ejecución pulsaremos sobre el aspa roja, a la derecha del botón que inicia el debugger.</p>
+
+<p><img src="/img/posts/20141021_14.png" alt="Detener ejecución" /></p>
+
+<p>Nos volverá a indicar que los valores cambiaron. De nuevo Yes y podemos seguir compilando y haciendo debugging a nuestro antojo.</p>
+
+<p><img src="/img/posts/20141021_15.png" alt="Segunda advertencia de valores" /></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#entornos de desarrollo</span>
+        
+          <span class="tag">#codeblocks</span>
+        
+          <span class="tag">#c</span>
+        
+          <span class="tag">#debugger</span>
+        
+          <span class="tag">#proyectos</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

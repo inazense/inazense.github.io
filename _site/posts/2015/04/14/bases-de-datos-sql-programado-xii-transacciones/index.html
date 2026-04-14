@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bases de datos. SQL programado (XII). Transacciones | Programando a Pasitos</title>
+<meta name="description" content="Introducción a las transacciones en MySQL con el principio ACID, niveles de aislamiento, COMMIT y ROLLBACK con ejemplos prácticos por línea de comandos.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bases de datos. SQL programado (XII). Transacciones | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bases de datos. SQL programado (XII). Transacciones" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Introducción a las transacciones en MySQL con el principio ACID, niveles de aislamiento, COMMIT y ROLLBACK con ejemplos prácticos por línea de comandos." />
+<meta property="og:description" content="Introducción a las transacciones en MySQL con el principio ACID, niveles de aislamiento, COMMIT y ROLLBACK con ejemplos prácticos por línea de comandos." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/04/14/bases-de-datos-sql-programado-xii-transacciones/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/04/14/bases-de-datos-sql-programado-xii-transacciones/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-04-14T06:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bases de datos. SQL programado (XII). Transacciones" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-04-14T06:00:00+02:00","datePublished":"2015-04-14T06:00:00+02:00","description":"Introducción a las transacciones en MySQL con el principio ACID, niveles de aislamiento, COMMIT y ROLLBACK con ejemplos prácticos por línea de comandos.","headline":"Bases de datos. SQL programado (XII). Transacciones","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/04/14/bases-de-datos-sql-programado-xii-transacciones/"},"url":"http://localhost:4000/posts/2015/04/14/bases-de-datos-sql-programado-xii-transacciones/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Bases de datos. SQL programado (XII). Transacciones</h1>
+    <div class="post-meta">
+      <time datetime="2015-04-14T06:00:00+02:00">14 Apr 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#bases-de-datos" class="post-category">Bases de datos</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Introducción a las transacciones en MySQL con el principio ACID, niveles de aislamiento, COMMIT y ROLLBACK con ejemplos prácticos por línea de comandos.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <p>La idea de transacción es un conjunto de operaciones SQL que, o se realizan todas, o no se realiza ninguna.</p>
+
+<p>Un ejemplo de transacción sería una transferencia bancaria. Descuentas de una cuenta e incrementas el dinero en otra. Se han de realizar ambas; si el sistema se cuelga no puede hacerse ninguna de ellas.</p>
+
+<p>Todas las transacciones deben cumplir el principio <strong>ACID</strong> (Atomic Consistent Isolated Durable). Es decir:</p>
+
+<ul>
+  <li><strong>Atómica (Atomic).</strong> Se han de aplicar todas las operaciones de la transacción, o no se ejecuta ninguna.</li>
+  <li><strong>Consistente (Consistent).</strong> Después de la transacción la base de datos debe quedar en un estado consistente, es decir, con los datos correctamente almacenados.</li>
+  <li><strong>Aislada (Isolated).</strong> Una transacción no debe interferir con otras transacciones que se estén llevando a cabo de forma simultánea.</li>
+  <li><strong>Permanente (Durable).</strong> Se deben mantener los datos para que perduren en el tiempo, aun cuando la base de datos o el equipo fallen.</li>
+</ul>
+
+<h2 id="niveles-de-aislamiento">Niveles de aislamiento</h2>
+
+<p>Determinan la manera en la que las transacciones de una sesión pueden afectar a los datos recuperados o accedidos por otra sesión.</p>
+
+<ul>
+  <li><strong>Lectura no confirmada.</strong> El nivel más bajo. Permite que una transacción pueda leer filas que todavía no han sido confirmadas (COMMIT). Aumenta el rendimiento pero no justifica que se pueda permitir a un usuario leer datos modificados por otro usuario cuando aún pueden deshacer dichas modificaciones.</li>
+  <li><strong>Lectura confirmada.</strong> Sólo se permite lectura de datos que han sido confirmados con COMMIT. Con este trabaja ORACLE.</li>
+  <li><strong>Lectura repetible.</strong> Nivel por defecto. Hasta que un usuario no haga un fin de transacción, no podrá ver los cambios realizados por otros usuarios.</li>
+  <li><strong>Secuenciable.</strong> Mayor nivel de aislamiento. No sólo bloquea las operaciones DML, sino hasta los propios SELECT. Es decir, no sólo bloquea las filas que estás modificando, sino también las que estás consultando.</li>
+</ul>
+
+<h2 id="ejemplo-práctico">Ejemplo práctico</h2>
+
+<p>Vamos a trabajar por línea de comandos. Abrimos dos consolas de cliente por línea de comandos, y hacemos en ambas los siguientes pasos.</p>
+
+<p>Lo primero es realizar un <code class="language-plaintext highlighter-rouge">select connection_id()</code> para que nos devuelva el identificador de usuario. Lo hacemos en ambas consolas.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">connection_id</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p><img src="/img/posts/20150414_1.png" alt="Identificadores de conexión en dos consolas" /></p>
+
+<p>A continuación deshabilitamos en ambas sesiones el autocommit para controlar nosotros mismos las transacciones (es decir, para deshabilitar las lecturas no confirmadas). Lo hacemos en ambas consolas también.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">set</span> <span class="o">@@</span><span class="n">autocommit</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="c1">-- Deshabilito el autocommit</span>
+
+<span class="k">show</span> <span class="n">variables</span> <span class="k">like</span> <span class="s1">'autocommit'</span><span class="p">;</span> <span class="c1">-- veo si se han realizado los cambios</span>
+</code></pre></div></div>
+
+<p><img src="/img/posts/20150414_2.png" alt="Deshabilitando el autocommit en ambas sesiones" /></p>
+
+<p>Trabajemos ahora con el nivel por defecto de MySQL.</p>
+
+<p>Ahora, realizo un update normal:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">update</span> <span class="n">alumnos</span> <span class="k">set</span> <span class="n">alumno</span> <span class="o">=</span> <span class="s1">'dos'</span>
+</code></pre></div></div>
+
+<p>Y para confirmar los datos realizamos un:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">commit</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Ahora, en la segunda consola, escribimos un <code class="language-plaintext highlighter-rouge">commit</code> y podremos ya ver los cambios modificados por otro usuario, y los nuestros también, por supuesto.</p>
+
+<p>Ahora bien, si el primer usuario no quiere guardar los cambios realizados, usaremos el comando:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">rollback</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Este comando deshace todas las modificaciones realizadas por la transacción.</p>
+
+<p>Por supuesto, si el usuario dos intenta modificar una fila empleada por el usuario uno, la instrucción ejecutada por el usuario dos quedará en espera durante el tiempo especificado en el motor de la base de datos, confiando en que usuario uno termina su actualización antes de llegar al máximo permitido.</p>
+
+<p>Para configurar el tiempo de espera, lanzamos un:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">variables</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><img src="/img/posts/20150414_3.png" alt="Configuración del tiempo de espera de bloqueo" /></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#bases-de-datos</span>
+        
+          <span class="tag">#sql</span>
+        
+          <span class="tag">#mysql</span>
+        
+          <span class="tag">#transacciones</span>
+        
+          <span class="tag">#acid</span>
+        
+          <span class="tag">#commit</span>
+        
+          <span class="tag">#rollback</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

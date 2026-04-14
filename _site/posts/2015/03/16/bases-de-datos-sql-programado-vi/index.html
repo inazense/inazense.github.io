@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bases de datos. SQL programado (VI). Cursores | Programando a Pasitos</title>
+<meta name="description" content="Uso de cursores en MySQL para recorrer conjuntos de resultados fila a fila, con control de errores y cursores anidados.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bases de datos. SQL programado (VI). Cursores | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bases de datos. SQL programado (VI). Cursores" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Uso de cursores en MySQL para recorrer conjuntos de resultados fila a fila, con control de errores y cursores anidados." />
+<meta property="og:description" content="Uso de cursores en MySQL para recorrer conjuntos de resultados fila a fila, con control de errores y cursores anidados." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/03/16/bases-de-datos-sql-programado-vi/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/03/16/bases-de-datos-sql-programado-vi/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-03-16T05:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bases de datos. SQL programado (VI). Cursores" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-03-16T05:00:00+01:00","datePublished":"2015-03-16T05:00:00+01:00","description":"Uso de cursores en MySQL para recorrer conjuntos de resultados fila a fila, con control de errores y cursores anidados.","headline":"Bases de datos. SQL programado (VI). Cursores","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/03/16/bases-de-datos-sql-programado-vi/"},"url":"http://localhost:4000/posts/2015/03/16/bases-de-datos-sql-programado-vi/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Bases de datos. SQL programado (VI). Cursores</h1>
+    <div class="post-meta">
+      <time datetime="2015-03-16T05:00:00+01:00">16 Mar 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#bases-de-datos" class="post-category">Bases de datos</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Uso de cursores en MySQL para recorrer conjuntos de resultados fila a fila, con control de errores y cursores anidados.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="cursores">Cursores</h2>
+
+<p>Un cursor es una zona de memoria donde se traen datos para trabajar con ellos fila a fila.</p>
+
+<p><strong>Declaración:</strong></p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">DECLARE</span> <span class="n">nombreCursor</span> <span class="k">FOR</span> <span class="n">sentenciaSQL</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><img src="/img/posts/20150316_1.png" alt="Ejemplo de cursor básico sobre la tabla alumnos" /></p>
+
+<p>Con <code class="language-plaintext highlighter-rouge">OPEN c_alumnos</code> se abre el cursor posicionándolo al inicio de los datos. Se declaran variables para almacenar los datos leídos en cada iteración.</p>
+
+<p><strong>Sintaxis del FETCH:</strong></p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FETCH</span> <span class="n">nombreCursor</span> <span class="k">INTO</span> <span class="n">variableDondeGuardar</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><img src="/img/posts/20150316_2.png" alt="Sintaxis FETCH" /></p>
+
+<p>Lee fila a fila, almacenando cada campo en la variable correspondiente.</p>
+
+<p><strong>Ejemplo completo con control de error NOT FOUND:</strong></p>
+
+<p><img src="/img/posts/20150316_3.png" alt="Procedimiento completo con cursor y control de última fila" /></p>
+
+<p>Al intentar leer más allá del final del conjunto, MySQL genera el error 1329. Se controla declarando un manejador antes del cursor:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">DECLARE</span> <span class="k">CONTINUE</span> <span class="k">HANDLER</span> <span class="k">FOR</span> <span class="k">NOT</span> <span class="k">FOUND</span> <span class="k">SET</span> <span class="k">variable</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Se declara previamente: <code class="language-plaintext highlighter-rouge">DECLARE v_ultima_fila INT DEFAULT 0;</code></p>
+
+<p>El programa cierra el cursor con: <code class="language-plaintext highlighter-rouge">CLOSE nombreCursor;</code></p>
+
+<p><img src="/img/posts/20150316_4.png" alt="Declaración del manejador NOT FOUND" /></p>
+
+<h2 id="cursores-con-parámetros">Cursores con parámetros</h2>
+
+<p>El parámetro se pasa mediante la cláusula <code class="language-plaintext highlighter-rouge">WHERE</code> de la sentencia SQL del cursor, permitiendo filtrar los resultados de forma dinámica:</p>
+
+<p><img src="/img/posts/20150316_5.png" alt="Cursor con parámetro en la cláusula WHERE" /></p>
+
+<h2 id="cursores-anidados">Cursores anidados</h2>
+
+<p>Combina un cursor principal (<code class="language-plaintext highlighter-rouge">c_centros</code>) con otro interno (<code class="language-plaintext highlighter-rouge">c_departamentos</code>). El procedimiento abre el cursor principal, recorre sus filas en un bucle y, dentro de cada iteración, abre el segundo cursor para procesar los datos relacionados:</p>
+
+<p><img src="/img/posts/20150316_6.png" alt="Ejemplo de cursores anidados" /></p>
+
+<p>Es importante reiniciar la variable de control de última fila después de recorrer el cursor interno para que el bucle exterior funcione correctamente.</p>
+
+<p><img src="/img/posts/20150316_7.png" alt="Detalle del reinicio de la variable de control" /></p>
+
+<blockquote>
+  <p><strong>Nota:</strong> En el segundo cursor anidado hay que asegurarse de que la variable de filtro (<code class="language-plaintext highlighter-rouge">v_numce</code>) tenga el valor correcto antes de abrir el cursor. Una alternativa es usar <code class="language-plaintext highlighter-rouge">INNER JOIN</code> en la consulta principal.</p>
+</blockquote>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#bases-de-datos</span>
+        
+          <span class="tag">#sql</span>
+        
+          <span class="tag">#mysql</span>
+        
+          <span class="tag">#cursores</span>
+        
+          <span class="tag">#procedimientos</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

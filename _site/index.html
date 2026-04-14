@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog | Programando a Pasitos</title>
+<meta name="description" content="Blog de programación por Inazio Claver">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Blog | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Blog" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Blog de programación por Inazio Claver" />
+<meta property="og:description" content="Blog de programación por Inazio Claver" />
+<link rel="canonical" href="http://localhost:4000/" />
+<meta property="og:url" content="http://localhost:4000/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="website" />
+<link rel="next" href="http://localhost:4000/page/2/" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Blog" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Inazio Claver","url":"https://github.com/inazense"},"description":"Blog de programación por Inazio Claver","headline":"Blog","name":"Programando a Pasitos","url":"http://localhost:4000/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item active">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <div class="post-list">
+  
+    <article class="post-card">
+  <h2 class="post-card-title">
+    <a href="/posts/2020/12/03/java-ordenar-un-hashmap-por-key-o-value/">Java. Ordenar un HashMap por key o value</a>
+  </h2>
+  <div class="post-card-meta">
+    <time datetime="2020-12-03T04:33:00+01:00">03 Dec 2020</time>
+    
+      <span class="meta-sep">&mdash;</span>
+      
+        <a href="/categories/#java" class="post-category">Java</a>
+      
+    
+  </div>
+  
+    <p class="post-card-excerpt">Aprende a ordenar HashMap en Java por clave o valor con streams y lambdas. Tutorial completo con código paso a paso sobre sorting de Map, entrySet, comparingInt y LinkedHashMap con ejemplos prácticos.</p>
+  
+  <a href="/posts/2020/12/03/java-ordenar-un-hashmap-por-key-o-value/" class="read-more">Seguir leyendo &rarr;</a>
+</article>
+
+    <hr class="post-divider">
+  
+    <article class="post-card">
+  <h2 class="post-card-title">
+    <a href="/posts/2019/11/04/crear-una-barra-de-progreso-en-la-terminal-con-python/">Crear una barra de progreso en la terminal con Python</a>
+  </h2>
+  <div class="post-card-meta">
+    <time datetime="2019-11-04T04:33:00+01:00">04 Nov 2019</time>
+    
+      <span class="meta-sep">&mdash;</span>
+      
+        <a href="/categories/#python" class="post-category">Python</a>
+      
+    
+  </div>
+  
+    <p class="post-card-excerpt">Aprende a crear barras de progreso en la terminal con Python usando tqdm. Tutorial completo paso a paso sobre instalación, uso en bucles for/while, iteración de listas y ejemplos prácticos de código.</p>
+  
+  <a href="/posts/2019/11/04/crear-una-barra-de-progreso-en-la-terminal-con-python/" class="read-more">Seguir leyendo &rarr;</a>
+</article>
+
+    <hr class="post-divider">
+  
+    <article class="post-card">
+  <h2 class="post-card-title">
+    <a href="/posts/2019/04/04/instalar-react-en-windows/">ReactJS I. Instalar React en Windows</a>
+  </h2>
+  <div class="post-card-meta">
+    <time datetime="2019-04-04T05:33:00+02:00">04 Apr 2019</time>
+    
+      <span class="meta-sep">&mdash;</span>
+      
+        <a href="/categories/#javascript" class="post-category">JavaScript</a>
+      
+    
+  </div>
+  
+    <p class="post-card-excerpt">Guía completa para instalar React en Windows 10 paso a paso: descarga Node.js, configuración de npm, instalación de create-react-app y creación de tu primer proyecto ReactJS con ejemplos prácticos.</p>
+  
+  <a href="/posts/2019/04/04/instalar-react-en-windows/" class="read-more">Seguir leyendo &rarr;</a>
+</article>
+
+    <hr class="post-divider">
+  
+    <article class="post-card">
+  <h2 class="post-card-title">
+    <a href="/posts/2019/02/15/sincronizar-carpetas-externas-en-onedrive/">Sincronizar carpetas externas en OneDrive</a>
+  </h2>
+  <div class="post-card-meta">
+    <time datetime="2019-02-15T04:33:00+01:00">15 Feb 2019</time>
+    
+      <span class="meta-sep">&mdash;</span>
+      
+        <a href="/categories/#sistemas" class="post-category">Sistemas</a>
+      
+    
+  </div>
+  
+    <p class="post-card-excerpt">Aprende a sincronizar carpetas externas en OneDrive con enlaces simbólicos usando mklink. Tutorial paso a paso para crear backup automático de cualquier carpeta en Windows con el símbolo del sistema.</p>
+  
+  <a href="/posts/2019/02/15/sincronizar-carpetas-externas-en-onedrive/" class="read-more">Seguir leyendo &rarr;</a>
+</article>
+
+    <hr class="post-divider">
+  
+    <article class="post-card">
+  <h2 class="post-card-title">
+    <a href="/posts/2018/08/03/tutorial-java-log4j-desde-cero/">Tutorial Java - Log4j desde cero</a>
+  </h2>
+  <div class="post-card-meta">
+    <time datetime="2018-08-03T06:10:00+02:00">03 Aug 2018</time>
+    
+      <span class="meta-sep">&mdash;</span>
+      
+        <a href="/categories/#java" class="post-category">Java</a>
+      
+    
+  </div>
+  
+    <p class="post-card-excerpt">Aprende a ordenar HashMap en Java por clave o valor con streams y lambdas. Tutorial completo con código paso a paso sobre sorting de Map, entrySet, comparingInt y LinkedHashMap con ejemplos prácticos.</p>
+  
+  <a href="/posts/2018/08/03/tutorial-java-log4j-desde-cero/" class="read-more">Seguir leyendo &rarr;</a>
+</article>
+
+    <hr class="post-divider">
+  
+    <article class="post-card">
+  <h2 class="post-card-title">
+    <a href="/posts/2017/12/12/leer-ficheros-properties-en-java/">Leer ficheros properties en Java</a>
+  </h2>
+  <div class="post-card-meta">
+    <time datetime="2017-12-12T10:11:00+01:00">12 Dec 2017</time>
+    
+      <span class="meta-sep">&mdash;</span>
+      
+        <a href="/categories/#java" class="post-category">Java</a>
+      
+    
+  </div>
+  
+    <p class="post-card-excerpt">Aprende a leer archivos properties en Java con la clase Properties. Tutorial completo paso a paso sobre getProperty, Enumeration, carga de ficheros .properties y ejemplos prácticos de configuración con código.</p>
+  
+  <a href="/posts/2017/12/12/leer-ficheros-properties-en-java/" class="read-more">Seguir leyendo &rarr;</a>
+</article>
+
+    <hr class="post-divider">
+  
+    <article class="post-card">
+  <h2 class="post-card-title">
+    <a href="/posts/2017/11/27/tutorial-maven-en-eclipse-ii-generar-un-jar/">Tutorial Maven en Eclipse (II). Generar un JAR</a>
+  </h2>
+  <div class="post-card-meta">
+    <time datetime="2017-11-27T06:00:00+01:00">27 Nov 2017</time>
+    
+      <span class="meta-sep">&mdash;</span>
+      
+        <a href="/categories/#java" class="post-category">Java</a>
+      
+    
+  </div>
+  
+    <p class="post-card-excerpt">Aprende a generar archivos JAR con Maven en Eclipse y copiar recursos automáticamente. Tutorial completo sobre maven-resources-plugin, configuración del POM, mvn install y gestión de dependencias paso a paso.</p>
+  
+  <a href="/posts/2017/11/27/tutorial-maven-en-eclipse-ii-generar-un-jar/" class="read-more">Seguir leyendo &rarr;</a>
+</article>
+
+    <hr class="post-divider">
+  
+    <article class="post-card">
+  <h2 class="post-card-title">
+    <a href="/posts/2017/07/28/tutorial-maven-en-eclipse/">Tutorial Maven en Eclipse I</a>
+  </h2>
+  <div class="post-card-meta">
+    <time datetime="2017-07-28T06:10:00+02:00">28 Jul 2017</time>
+    
+      <span class="meta-sep">&mdash;</span>
+      
+        <a href="/categories/#java" class="post-category">Java</a>
+      
+    
+  </div>
+  
+    <p class="post-card-excerpt">Aprende a usar Maven en Eclipse desde cero paso a paso. Tutorial completo sobre creación de proyectos, configuración del POM.xml, gestión de dependencias, plugins, arquetipos y solución de errores JDK/JRE con ejemplos prácticos.</p>
+  
+  <a href="/posts/2017/07/28/tutorial-maven-en-eclipse/" class="read-more">Seguir leyendo &rarr;</a>
+</article>
+
+    <hr class="post-divider">
+  
+    <article class="post-card">
+  <h2 class="post-card-title">
+    <a href="/posts/2017/07/19/resolver-sudokus-con-java/">Resolver sudokus en Java</a>
+  </h2>
+  <div class="post-card-meta">
+    <time datetime="2017-07-19T06:10:00+02:00">19 Jul 2017</time>
+    
+      <span class="meta-sep">&mdash;</span>
+      
+        <a href="/categories/#java" class="post-category">Java</a>
+      
+    
+  </div>
+  
+    <p class="post-card-excerpt">Aprende a crear un programa que resuelve sudokus automáticamente en Java con algoritmo de backtracking. Tutorial completo paso a paso con código, interfaz gráfica Swing, validación de reglas y ejemplos prácticos de fuerza bruta.</p>
+  
+  <a href="/posts/2017/07/19/resolver-sudokus-con-java/" class="read-more">Seguir leyendo &rarr;</a>
+</article>
+
+    <hr class="post-divider">
+  
+    <article class="post-card">
+  <h2 class="post-card-title">
+    <a href="/posts/2017/04/16/como-leer-ficheros-csv-con-java/">Cómo leer ficheros CSV con Java</a>
+  </h2>
+  <div class="post-card-meta">
+    <time datetime="2017-04-16T06:10:00+02:00">16 Apr 2017</time>
+    
+      <span class="meta-sep">&mdash;</span>
+      
+        <a href="/categories/#java" class="post-category">Java</a>
+      
+    
+  </div>
+  
+    <p class="post-card-excerpt">Aprende a leer archivos CSV en Java con BufferedReader y OpenCSV. Tutorial completo paso a paso para procesar CSV simples y complejos, manejar comillas, separadores y caracteres especiales con ejemplos de código.</p>
+  
+  <a href="/posts/2017/04/16/como-leer-ficheros-csv-con-java/" class="read-more">Seguir leyendo &rarr;</a>
+</article>
+
+    
+  
+</div>
+
+
+<nav class="pagination" aria-label="Paginación">
+  
+    <span class="btn-page btn-page--disabled">&larr; Más recientes</span>
+  
+
+  <span class="page-count">Página 1 de 24</span>
+
+  
+    <a href="/page/2/" class="btn-page">Más antiguas &rarr;</a>
+  
+</nav>
+
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

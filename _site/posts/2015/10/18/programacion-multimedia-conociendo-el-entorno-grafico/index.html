@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programación multimedia. Conociendo el entorno gráfico | Programando a Pasitos</title>
+<meta name="description" content="Guía del entorno gráfico de Android Studio para empezar el desarrollo multimedia, incluyendo la paleta de componentes, el editor visual, la barra de herramientas y los desplegables de configuración.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Programación multimedia. Conociendo el entorno gráfico | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Programación multimedia. Conociendo el entorno gráfico" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Guía del entorno gráfico de Android Studio para empezar el desarrollo multimedia, incluyendo la paleta de componentes, el editor visual, la barra de herramientas y los desplegables de configuración." />
+<meta property="og:description" content="Guía del entorno gráfico de Android Studio para empezar el desarrollo multimedia, incluyendo la paleta de componentes, el editor visual, la barra de herramientas y los desplegables de configuración." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/10/18/programacion-multimedia-conociendo-el-entorno-grafico/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/10/18/programacion-multimedia-conociendo-el-entorno-grafico/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-10-18T06:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Programación multimedia. Conociendo el entorno gráfico" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-10-18T06:00:00+02:00","datePublished":"2015-10-18T06:00:00+02:00","description":"Guía del entorno gráfico de Android Studio para empezar el desarrollo multimedia, incluyendo la paleta de componentes, el editor visual, la barra de herramientas y los desplegables de configuración.","headline":"Programación multimedia. Conociendo el entorno gráfico","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/10/18/programacion-multimedia-conociendo-el-entorno-grafico/"},"url":"http://localhost:4000/posts/2015/10/18/programacion-multimedia-conociendo-el-entorno-grafico/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Programación multimedia. Conociendo el entorno gráfico</h1>
+    <div class="post-meta">
+      <time datetime="2015-10-18T06:00:00+02:00">18 Oct 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#android" class="post-category">Android</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Guía del entorno gráfico de Android Studio para empezar el desarrollo multimedia, incluyendo la paleta de componentes, el editor visual, la barra de herramientas y los desplegables de configuración.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="crear-un-nuevo-proyecto">Crear un nuevo proyecto</h2>
+
+<p>Para comenzar, abrimos Android Studio y seleccionamos <strong>Start a new Android Studio project</strong>. Asignamos un nombre al proyecto (por ejemplo, “Vistas1”), elegimos la plataforma destino e indicamos la versión mínima del SDK requerida.</p>
+
+<p><img src="/img/posts/20151018_1.png" alt="Pantalla de inicio de Android Studio" /></p>
+
+<p><img src="/img/posts/20151018_2.png" alt="Configuración del nuevo proyecto" /></p>
+
+<p><img src="/img/posts/20151018_3.png" alt="Selección de versión mínima del SDK" /></p>
+
+<p><img src="/img/posts/20151018_4.png" alt="Selección de actividad inicial" /></p>
+
+<h2 id="el-editor-de-layouts">El editor de layouts</h2>
+
+<p>Una vez creado el proyecto, se abre el editor visual del layout. En él podemos diseñar la interfaz mediante arrastrar y soltar componentes.</p>
+
+<p><img src="/img/posts/20151018_5.png" alt="Editor visual del layout" /></p>
+
+<h2 id="la-paleta-de-componentes">La paleta de componentes</h2>
+
+<p>La paleta está organizada en secciones: <strong>Layouts</strong>, <strong>Widgets</strong>, <strong>Text Fields</strong>, etc. Desde aquí arrastramos los elementos al área de diseño.</p>
+
+<p><img src="/img/posts/20151018_6.png" alt="Paleta de componentes" /></p>
+
+<p><img src="/img/posts/20151018_7.png" alt="Secciones de la paleta" /></p>
+
+<h2 id="añadir-componentes">Añadir componentes</h2>
+
+<p>El <code class="language-plaintext highlighter-rouge">LinearLayout</code> es el contenedor base sobre el cual se cargan los demás componentes. Sobre él podemos añadir elementos como <code class="language-plaintext highlighter-rouge">ToggleButton</code>, <code class="language-plaintext highlighter-rouge">CheckBox</code>, <code class="language-plaintext highlighter-rouge">ProgressBar</code> y <code class="language-plaintext highlighter-rouge">RatingBar</code>.</p>
+
+<p><img src="/img/posts/20151018_8.png" alt="Añadir componentes al layout" /></p>
+
+<p><img src="/img/posts/20151018_9.png" alt="Componentes añadidos sobre LinearLayout" /></p>
+
+<h2 id="las-pestañas-de-vista">Las pestañas de vista</h2>
+
+<p>En la parte superior del editor hay dos pestañas para cambiar entre:</p>
+<ul>
+  <li><strong>Design</strong>: vista gráfica con los componentes representados visualmente</li>
+  <li><strong>Text</strong>: vista del código XML del layout</li>
+</ul>
+
+<p><img src="/img/posts/20151018_10.png" alt="Pestaña Design" /></p>
+
+<p><img src="/img/posts/20151018_11.png" alt="Pestaña Text (XML)" /></p>
+
+<h2 id="la-barra-de-herramientas-superior">La barra de herramientas superior</h2>
+
+<p>La barra superior del editor contiene botones para:</p>
+
+<ul>
+  <li>Escalado del dispositivo en el editor</li>
+  <li>Control del zoom</li>
+  <li>Posicionamiento (gravedad)</li>
+  <li>Expansión/contracción de elementos</li>
+  <li>Distribución del espacio entre elementos</li>
+</ul>
+
+<p><img src="/img/posts/20151018_12.png" alt="Barra de herramientas del editor" /></p>
+
+<h2 id="los-desplegables-de-configuración">Los desplegables de configuración</h2>
+
+<p>Hay siete desplegables que permiten configurar la previsualización:</p>
+
+<ol>
+  <li><strong>Dispositivo</strong>: previsualizar en diferentes dispositivos (Nexus, Galaxy, etc.)</li>
+  <li><strong>Tamaño/resolución de pantalla</strong></li>
+  <li><strong>Orientación</strong>: Portrait o Landscape</li>
+  <li><strong>Tema visual</strong>: aplicar el tema de la aplicación</li>
+  <li><strong>Actividad</strong>: navegar entre actividades del proyecto</li>
+  <li><strong>Idioma</strong>: cambiar el idioma de la previsualización</li>
+  <li><strong>Versión del SDK</strong></li>
+</ol>
+
+<p><img src="/img/posts/20151018_13.png" alt="Desplegables de configuración" /></p>
+
+<p><img src="/img/posts/20151018_14.png" alt="Selección de dispositivo" /></p>
+
+<p><img src="/img/posts/20151018_15.png" alt="Selección de orientación" /></p>
+
+<p><img src="/img/posts/20151018_16.png" alt="Selección de tema" /></p>
+
+<h2 id="el-panel-de-propiedades">El panel de propiedades</h2>
+
+<p>Al seleccionar un componente en el editor, el panel de propiedades de la derecha permite editar sus atributos, como <code class="language-plaintext highlighter-rouge">text</code>, <code class="language-plaintext highlighter-rouge">textSize</code> e <code class="language-plaintext highlighter-rouge">id</code>. El <code class="language-plaintext highlighter-rouge">id</code> es especialmente importante porque es el identificador que se usa para referenciar el componente desde el código Java.</p>
+
+<p><img src="/img/posts/20151018_17.png" alt="Panel de propiedades" /></p>
+
+<p><img src="/img/posts/20151018_18.png" alt="Editar propiedad id" /></p>
+
+<h2 id="ejecución">Ejecución</h2>
+
+<p>Para ejecutar la aplicación, pulsamos el botón de ejecución (triángulo verde) y seleccionamos el destino: emulador o dispositivo físico conectado.</p>
+
+<p><img src="/img/posts/20151018_19.png" alt="Botón de ejecución" /></p>
+
+<p><img src="/img/posts/20151018_20.png" alt="Selección de dispositivo o emulador" /></p>
+
+<p><img src="/img/posts/20151018_21.png" alt="Resultado en el emulador" /></p>
+
+<p><img src="/img/posts/20151018_22.png" alt="Vista completa del proyecto" /></p>
+
+<p><img src="/img/posts/20151018_23.png" alt="Estructura de carpetas del proyecto" /></p>
+
+<p><img src="/img/posts/20151018_24.png" alt="Proyecto en ejecución" /></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#android</span>
+        
+          <span class="tag">#android-studio</span>
+        
+          <span class="tag">#interfaz-grafica</span>
+        
+          <span class="tag">#layouts</span>
+        
+          <span class="tag">#widgets</span>
+        
+          <span class="tag">#programacion-multimedia</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

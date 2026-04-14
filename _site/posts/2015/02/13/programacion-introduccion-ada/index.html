@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programación. Introducción a ADA | Programando a Pasitos</title>
+<meta name="description" content="Introducción al lenguaje de programación ADA, sus características, tipos de datos, estructuras de control y vectores.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Programación. Introducción a ADA | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Programación. Introducción a ADA" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Introducción al lenguaje de programación ADA, sus características, tipos de datos, estructuras de control y vectores." />
+<meta property="og:description" content="Introducción al lenguaje de programación ADA, sus características, tipos de datos, estructuras de control y vectores." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/02/13/programacion-introduccion-ada/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/02/13/programacion-introduccion-ada/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-02-13T05:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Programación. Introducción a ADA" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-02-13T05:00:00+01:00","datePublished":"2015-02-13T05:00:00+01:00","description":"Introducción al lenguaje de programación ADA, sus características, tipos de datos, estructuras de control y vectores.","headline":"Programación. Introducción a ADA","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/02/13/programacion-introduccion-ada/"},"url":"http://localhost:4000/posts/2015/02/13/programacion-introduccion-ada/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Programación. Introducción a ADA</h1>
+    <div class="post-meta">
+      <time datetime="2015-02-13T05:00:00+01:00">13 Feb 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#programación" class="post-category">Programación</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Introducción al lenguaje de programación ADA, sus características, tipos de datos, estructuras de control y vectores.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="características-generales">Características generales</h2>
+
+<ul>
+  <li>Lenguaje de propósito general</li>
+  <li>Es profesional (complejo, no pensado para aprendices)</li>
+  <li>Incorporación de puntos clave de la teoría de la programación</li>
+</ul>
+
+<p><strong>Legibilidad.</strong> Evita notación demasiado concisa (es más costoso el mantenimiento que la producción de software. “Un programa se lee más veces de las que se escribe”).</p>
+
+<p><strong>Fuerte y esteticamente tipado.</strong> Gran cantidad para definir datos de tipos diferentes. Cada dato puede usarse sólo en operaciones específicas de su tipo. La utilización inadecuada se detecta en tiempo de compilación.</p>
+
+<p><strong>Diseño a gran escala.</strong> Programación modular. Mecanismos de encapsulación. Compilación separada.</p>
+
+<p><strong>Abstracción de datos.</strong> Separación clara entre especificación, representación e implementación.</p>
+
+<p><strong>Módulos genéricos</strong></p>
+
+<p><strong>Programa concurrente.</strong> Descripción de procesos que pueden ejecutarse concurrentemente. Definición de operaciones de sincronización entre esos procesos.</p>
+
+<p><strong>Manejo de excepciones.</strong> Definición de comportamientos de recuperación ante situaciones de error no previstas.</p>
+
+<h2 id="escribir-en-ada">Escribir en ADA</h2>
+
+<ul>
+  <li>El fichero tendrá extensión <code class="language-plaintext highlighter-rouge">.adb</code></li>
+  <li><strong><code class="language-plaintext highlighter-rouge">;</code></strong> para finalizar una orden</li>
+  <li>No existen las llaves</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">--</code></strong> es un comentario</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">with</code></strong> sirve para incluir paquetes</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">procedure [nombre] is</code></strong> es el procedimiento principal, que tendrá el mismo nombre que el archivo fuente.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">use</code></strong> hace referencia a los paquetes</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">begin</code></strong> es el comienzo del programa</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">put("");</code></strong> es para mostrar por pantalla cadenas de texto</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">get("");</code></strong> sirve para capturar caracteres</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">constant</code></strong> es usado para la declaración de constantes</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">while loop / end loop</code></strong> es para condiciones de mientras que…</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">if then end if</code></strong> es usado para condiciones de si…</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">/=</code></strong> distinto de</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">:=</code></strong> Asignación</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">=</code></strong> Comparación</li>
+</ul>
+
+<h2 id="compilación-en-ada">Compilación en ADA</h2>
+
+<p>Para compilar debes instalar el gnat.</p>
+
+<p>Para su instalación, escribe:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">sudo apt-get update</code> (para actualizar repositorios)</li>
+  <li><code class="language-plaintext highlighter-rouge">sudo apt-get install gnat-4.6</code> (versión hasta la fecha – 10/02/2015)</li>
+</ul>
+
+<p>Para compilar, escribe este comando:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">gnatmake nombreArchivoSinLaExtensión</code></li>
+</ul>
+
+<h2 id="es-simple">E/S Simple</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">text.io</code> – Entrada y salida de caracteres</li>
+  <li><code class="language-plaintext highlighter-rouge">integer_text.io</code> – Entrada y salida de enteros</li>
+</ul>
+
+<h2 id="reservas">Reservas</h2>
+
+<p>ADA tiene 69 palabras reservadas.</p>
+
+<p><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhY21W84l40Ca4KFWp3TDbLN1Bkt3n1M-QGP20EXOv7UDFbiG0iKjqpoPZa_YhObUYF8JjAwxbybTuVWuzSBa_dIeUgK2SWzWRpjOSJZ2S-v08COMgBDkO5pCVWRpYWVhtNHE_jGlkifIw/s1600/Sin+t%C3%ADtulo.png" alt="Palabras reservadas de ADA" /></p>
+
+<h2 id="tipos-escalables">Tipos escalables</h2>
+
+<div class="language-ada highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pi</span><span class="p">:</span><span class="k">constant</span> <span class="nb">float</span><span class="o">:=</span><span class="mf">3.1415</span><span class="p">;</span> <span class="c1">-- Inicializo constante pi con valor de 3.1415</span>
+<span class="n">final</span><span class="p">:</span><span class="k">constant</span> <span class="nb">character</span><span class="o">:=</span><span class="sc">'.'</span><span class="p">;</span> <span class="c1">-- Inicializo constante final con valor inicial de '.'</span>
+<span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">integer</span><span class="p">;</span> <span class="c1">-- i, j y k son enteros</span>
+</code></pre></div></div>
+
+<p>ADA es fuertemente tipado. No se puede asignar valor a una variable de un tipo diferente.</p>
+
+<h2 id="subtipos">Subtipos</h2>
+
+<p>Caracteriza un subconjunto de los valores de un tipo. No constituye un nuevo tipo (la asignación está permitida).</p>
+
+<h2 id="tipos-definidos-por-enumeración">Tipos definidos por enumeración</h2>
+
+<p>Hay dos ya predefinidos. Booleanos y caracteres.</p>
+
+<div class="language-ada highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">type</span> <span class="nf">dia</span> <span class="k">is</span> <span class="p">(</span><span class="n">lunes</span><span class="p">,</span> <span class="n">martes</span><span class="p">,</span> <span class="n">miercoles</span><span class="p">,</span> <span class="n">jueves</span><span class="p">,</span> <span class="n">viernes</span><span class="p">,</span> <span class="n">sabado</span><span class="p">,</span> <span class="n">domingo</span><span class="p">);</span>
+<span class="kd">subtype</span> <span class="nf">laboral</span> <span class="k">is</span> <span class="n">dia</span> <span class="k">range</span> <span class="n">lunes</span><span class="o">..</span><span class="n">viernes</span><span class="p">;</span>
+<span class="n">d1</span><span class="p">:</span><span class="n">dia</span><span class="p">;</span><span class="n">d2</span><span class="p">:</span><span class="n">laboral</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="atributos">Atributos</h2>
+
+<div class="language-ada highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dia</span> <span class="p">'</span><span class="na">first</span><span class="o">:=</span><span class="n">lunes</span><span class="p">;</span> <span class="c1">-- Primero</span>
+<span class="n">dia</span> <span class="p">'</span><span class="na">last</span><span class="o">:=</span><span class="n">sabado</span><span class="p">;</span> <span class="c1">-- Último</span>
+<span class="n">dia</span> <span class="p">'</span><span class="na">succ</span><span class="p">(</span><span class="n">lunes</span><span class="p">)</span><span class="o">:=</span><span class="n">martes</span><span class="p">;</span> <span class="c1">-- Sucesor</span>
+<span class="n">dia</span> <span class="p">'</span><span class="na">pred</span><span class="p">(</span><span class="n">martes</span><span class="p">)</span><span class="o">:=</span><span class="n">lunes</span><span class="p">;</span> <span class="c1">-- Preedecesor</span>
+<span class="n">dia</span> <span class="p">'</span><span class="na">pos</span><span class="p">(</span><span class="n">lunes</span><span class="p">)</span><span class="o">:=</span><span class="mi">0</span><span class="p">;</span> <span class="c1">-- Posición</span>
+<span class="n">dia</span> <span class="p">'</span><span class="na">val</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">:=</span><span class="n">martes</span><span class="p">;</span> <span class="c1">-- Valor</span>
+<span class="n">dia</span> <span class="p">'</span><span class="na">image</span><span class="p">(</span><span class="n">lunes</span><span class="p">)</span><span class="o">:=</span><span class="s2">"LUNES"</span><span class="p">;</span> <span class="c1">-- Convertir a cadena de texto</span>
+<span class="n">dia</span> <span class="p">'</span><span class="na">value</span><span class="p">(</span><span class="s2">"martes"</span><span class="p">)</span><span class="o">:=</span><span class="n">martes</span><span class="p">;</span> <span class="c1">-- Convertir cadena de texto al tipo definido</span>
+</code></pre></div></div>
+
+<h2 id="tipo-booleano">Tipo booleano</h2>
+
+<div class="language-ada highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">type</span> <span class="nf">boolean</span> <span class="k">is</span> <span class="p">(</span><span class="n">false</span><span class="p">,</span><span class="n">true</span><span class="p">);</span>
+<span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">:</span><span class="nb">boolean</span><span class="p">;</span>
+<span class="p">((</span><span class="ow">not</span> <span class="n">a</span><span class="p">)</span> <span class="ow">and</span> <span class="n">b</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">c</span> <span class="ow">xor</span> <span class="n">d</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhGAqeL4VkZ9XgBdlZI9rodDbHniWh41EXHAtUuwFNWkJPDBSg6Selozdq55dzMTqI1inrB9elqEgyWxISFf5TvIYJ43X0AerEq0Dvefz6JkWlv0R_GT7z9_L89G4QqGcArGsjMxcD8EIQ/s1600/aa.png" alt="Tabla de operadores booleanos en ADA" /></p>
+
+<h2 id="tipos-enteros">Tipos enteros</h2>
+
+<p>Hay algunos predefinidos:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">type integer is …;</code> – enteros</li>
+  <li><code class="language-plaintext highlighter-rouge">type short-integer is …;</code> – enteros cortos</li>
+  <li><code class="language-plaintext highlighter-rouge">type long –integer is …;</code> – enteros largos</li>
+  <li><code class="language-plaintext highlighter-rouge">subtype natural is integer range 0..integer 'last;</code> – De 0 en adelante</li>
+  <li><code class="language-plaintext highlighter-rouge">subtype positives is integer range 1..integer 'last;</code> – De 1 en adelante</li>
+</ul>
+
+<h2 id="orden-de-las-propiedades">Orden de las propiedades</h2>
+
+<ol>
+  <li>and, or, xor</li>
+  <li>not</li>
+  <li>=, /=, &lt;, &lt;=, &gt;, &gt;=, in, not in</li>
+  <li>+, – (binarios)</li>
+  <li>…</li>
+</ol>
+
+<h2 id="tipos-reales">Tipos reales</h2>
+
+<div class="language-ada highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">type</span> <span class="nf">misReales</span> <span class="k">is</span> <span class="k">digits</span> <span class="mi">7</span><span class="p">;</span>
+<span class="n">n</span><span class="p">:</span><span class="nb">integer</span><span class="p">;</span><span class="n">x</span><span class="p">:</span><span class="nb">float</span><span class="p">;</span>
+
+<span class="c1">-- No se admite aritmetica mixta</span>
+
+<span class="n">n</span><span class="o">+</span><span class="n">x</span> <span class="c1">-- incorrecto</span>
+
+<span class="c1">-- Forma correcta (una de las dos)</span>
+
+<span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">+</span><span class="n">x</span>
+<span class="n">n</span><span class="o">+</span><span class="nb">integer</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>La conversión de real a entero aplica un redondeo.</p>
+
+<h2 id="estructuras-de-control">Estructuras de control</h2>
+
+<h3 id="if">If</h3>
+
+<div class="language-ada highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span>
+     <span class="k">then</span> <span class="err">…</span>
+<span class="k">end</span> <span class="k">if</span><span class="p">;</span>
+
+<span class="k">if</span>
+     <span class="k">then</span> <span class="err">…</span>
+     <span class="k">else</span> <span class="err">…</span>
+<span class="k">end</span> <span class="k">if</span><span class="p">;</span>
+
+<span class="k">if</span>
+     <span class="k">then</span> <span class="err">…</span>
+     <span class="k">elsif</span>
+                 <span class="k">then</span> <span class="err">…</span>
+     <span class="k">else</span> <span class="err">…</span>
+<span class="k">end</span> <span class="k">if</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="case">Case</h3>
+
+<div class="language-ada highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">case</span> <span class="err">…</span> <span class="k">is</span> <span class="err">…</span>
+     <span class="k">when</span> <span class="err">…</span> <span class="o">=&gt;</span><span class="err">…</span>  <span class="c1">-- Una opción</span>
+     <span class="k">when</span> <span class="err">…</span> <span class="o">|</span> <span class="err">…</span> <span class="o">|</span> <span class="err">…</span> <span class="o">=&gt;</span> <span class="err">…</span> <span class="c1">-- Varias opciones</span>
+     <span class="k">when</span> <span class="err">…</span> <span class="o">..</span> <span class="err">…</span> <span class="o">=&gt;</span> <span class="err">…</span> <span class="c1">-- Con rango</span>
+     <span class="k">when</span> <span class="err">…</span> <span class="o">=&gt;</span> <span class="k">NULL</span><span class="p">;</span> <span class="c1">-- Nulo</span>
+     <span class="k">when</span> <span class="k">others</span> <span class="o">=&gt;</span> <span class="err">…</span> <span class="c1">-- Default</span>
+<span class="k">end</span> <span class="k">case</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="estructuras-iterativas">Estructuras iterativas</h2>
+
+<h3 id="while">While</h3>
+
+<div class="language-ada highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">while</span> <span class="err">…</span> <span class="k">loop</span>
+     <span class="err">…</span>
+<span class="k">end</span> <span class="k">loop</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="for">For</h3>
+
+<div class="language-ada highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">d</span> <span class="k">in</span> <span class="n">dia</span> <span class="k">loop</span>
+     <span class="err">…</span>
+<span class="k">end</span> <span class="k">loop</span><span class="p">;</span>
+
+<span class="k">for</span> <span class="n">d</span> <span class="k">in</span> <span class="k">reverse</span> <span class="n">lunes</span><span class="o">..</span><span class="n">viernes</span> <span class="k">loop</span>
+     <span class="err">…</span>
+<span class="k">end</span> <span class="k">loop</span><span class="p">;</span>
+
+<span class="k">loop</span>
+     <span class="err">…</span>
+<span class="k">end</span> <span class="k">loop</span><span class="p">;</span>
+
+<span class="k">loop</span>
+     <span class="err">…</span><span class="p">;</span>
+     <span class="k">exit</span><span class="p">;</span>
+     <span class="err">…</span><span class="p">;</span>
+<span class="k">end</span> <span class="k">loop</span><span class="p">;</span>
+
+<span class="k">loop</span>
+     <span class="err">…</span>
+     <span class="k">exit</span> <span class="k">when</span><span class="err">…</span><span class="p">;</span>
+     <span class="err">…</span>
+<span class="k">end</span> <span class="k">loop</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="estructuración-de-control-subalgoritmos">Estructuración de control. Subalgoritmos</h2>
+
+<p><strong>Procedimientos y funciones</strong></p>
+
+<p>Paso de parámetros:</p>
+
+<div class="language-ada highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">in</span> <span class="p">(</span><span class="n">entrada</span><span class="p">),</span> <span class="k">out</span><span class="p">(</span><span class="n">salida</span><span class="p">),</span> <span class="k">in</span> <span class="k">out</span> <span class="p">(</span><span class="n">entrada</span><span class="o">/</span><span class="n">salida</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>En ADA, por defecto, todas son de entrada.</p>
+
+<div class="language-ada highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">procedure</span> <span class="nf">toto</span> <span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">T1</span><span class="p">;</span><span class="n">y</span><span class="p">:</span><span class="k">in</span> <span class="k">out</span> <span class="n">T2</span><span class="p">)</span> <span class="k">is</span>
+     <span class="err">…</span>
+<span class="k">end</span> <span class="n">toto</span><span class="p">;</span>
+
+<span class="n">toto</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="n">z</span><span class="p">);</span> <span class="c1">-- Llamada normal</span>
+<span class="n">toto</span><span class="p">(</span><span class="n">y</span><span class="o">=&gt;</span><span class="n">z</span><span class="p">;</span><span class="n">x</span><span class="o">=&gt;</span><span class="n">e</span><span class="p">)</span> <span class="c1">-- Llamada nombrada</span>
+</code></pre></div></div>
+
+<p><strong>Funciones</strong></p>
+
+<div class="language-ada highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">:</span><span class="nb">natural</span><span class="p">)</span>
+     <span class="k">return</span> <span class="nb">natural</span> <span class="k">is</span>
+<span class="k">begin</span>
+     <span class="k">if</span> <span class="n">n</span> <span class="k">in</span> <span class="mi">0</span><span class="o">..</span><span class="mi">1</span>
+          <span class="k">then</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+     <span class="k">else</span>
+          <span class="k">return</span> <span class="n">n</span><span class="o">*</span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+     <span class="k">end</span> <span class="k">if</span><span class="p">;</span>
+<span class="k">end</span> <span class="n">factorial</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Existe sobrecarga, puedo llamar a 7 funciones de la misma manera (suma de coches, de motos…), que el compilador distinguirá las funciones por el contexto de los operandos (enteros, reales, vectores).</p>
+
+<p>Es decir, el significado es distinguido por el contexto.</p>
+
+<p>Las funciones y procedimientos deben estar en funciones y procedimientos. Hay jerarquía, y el orden importa.</p>
+
+<h2 id="vectores">Vectores</h2>
+
+<p><strong>Definiciones restringidas</strong></p>
+
+<div class="language-ada highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">type</span> <span class="nf">t1</span> <span class="k">is</span> <span class="k">array</span> <span class="p">(</span><span class="mi">1</span><span class="o">..</span><span class="mi">10</span><span class="p">)</span> <span class="k">of</span> <span class="nb">boolean</span><span class="p">;</span> <span class="c1">-- Vector de 10 posiciones de booleanos</span>
+
+<span class="kd">type</span> <span class="nf">t2</span> <span class="k">is</span> <span class="k">array</span> <span class="p">(</span><span class="n">dia</span><span class="p">)</span> <span class="k">of</span> <span class="n">t1</span><span class="p">;</span> <span class="c1">-- t2 es vector de posiciones de lunes a sábado que contienen valores contenidos en t1</span>
+
+<span class="kd">type</span> <span class="nf">t3</span> <span class="k">is</span> <span class="k">array</span> <span class="p">(</span><span class="n">lunes</span><span class="o">..</span><span class="n">jueves</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="o">..</span><span class="mi">14</span><span class="p">)</span> <span class="k">of</span> <span class="n">t1</span><span class="p">;</span> <span class="c1">-- Matriz</span>
+
+<span class="n">x</span><span class="p">:</span><span class="n">t1</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span><span class="n">t2</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span><span class="n">t3</span><span class="p">;</span>
+
+<span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">);</span>
+<span class="n">y</span><span class="p">(</span><span class="n">martes</span><span class="p">);</span>
+<span class="n">y</span><span class="p">(</span><span class="n">martes</span><span class="p">)(</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">);</span>
+<span class="n">z</span><span class="p">(</span><span class="n">martes</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">);</span>
+<span class="n">x</span><span class="p">(</span><span class="mi">5</span><span class="o">..</span><span class="mi">8</span><span class="p">);</span>
+<span class="n">y</span><span class="p">(</span><span class="n">martes</span><span class="o">..</span><span class="n">viernes</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><strong>Definiciones no restringidas</strong></p>
+
+<div class="language-ada highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">type</span> <span class="nf">matriz</span> <span class="k">is</span> <span class="k">array</span> <span class="p">(</span><span class="nb">positive</span> <span class="k">range</span> <span class="o">&lt;&gt;</span><span class="p">,</span> <span class="nb">positive</span> <span class="k">range</span> <span class="o">&lt;&gt;</span><span class="p">)</span> <span class="k">of</span> <span class="n">real</span><span class="p">;</span> <span class="c1">-- range &lt;&gt; es de cualquier rango</span>
+
+<span class="kd">function</span> <span class="nf">"+"</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">:</span><span class="n">matriz</span><span class="p">)</span>
+          <span class="k">return</span> <span class="n">matriz</span> <span class="k">is</span>
+<span class="k">begin</span> <span class="o">..</span> <span class="k">end</span> <span class="s2">"+"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><strong>Atributos relacionados con los índices</strong></p>
+
+<div class="language-ada highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">"+"</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">:</span><span class="n">matriz</span><span class="p">)</span>
+          <span class="k">return</span> <span class="n">matriz</span> <span class="k">is</span>
+   <span class="n">suma</span><span class="p">:</span><span class="n">matriz</span><span class="p">(</span><span class="n">a</span><span class="p">'</span><span class="na">range</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="n">a</span><span class="p">'</span><span class="na">range</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span>
+
+<span class="k">begin</span>
+          <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">a</span><span class="p">'</span><span class="na">range</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">loop</span>
+                     <span class="k">for</span> <span class="n">j</span> <span class="k">in</span> <span class="n">a</span><span class="p">'</span><span class="na">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">loop</span>
+                                <span class="n">suma</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="o">:=</span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="o">+</span><span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">);</span>
+                     <span class="k">end</span> <span class="k">loop</span><span class="p">;</span>
+          <span class="k">end</span> <span class="k">loop</span><span class="p">;</span>
+          <span class="k">return</span> <span class="n">suma</span><span class="p">;</span>
+<span class="k">end</span> <span class="s2">"+"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><strong>Constantes de tipos vectoriales</strong></p>
+
+<div class="language-ada highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">m1</span><span class="o">:=</span><span class="p">((</span><span class="mi">1</span><span class="o">..</span><span class="mi">3</span><span class="o">=&gt;</span><span class="mf">1.0</span><span class="p">);(</span><span class="mi">1</span><span class="o">=&gt;</span><span class="mf">2.0</span><span class="p">;</span><span class="mi">2</span><span class="o">=&gt;</span><span class="mf">3.0</span><span class="p">;</span><span class="mi">3</span><span class="o">=&gt;</span><span class="mf">4.0</span><span class="p">));</span>
+<span class="n">m2</span><span class="o">:=</span><span class="n">mat23</span><span class="p">'(</span><span class="mi">1</span><span class="o">=&gt;</span><span class="p">(</span><span class="mi">1</span><span class="o">=&gt;</span><span class="mf">1.0</span><span class="p">;</span><span class="k">others</span><span class="o">=&gt;</span><span class="mf">0.0</span><span class="p">);</span><span class="mi">2</span><span class="o">=&gt;</span><span class="p">(</span><span class="mi">2</span><span class="o">:=</span><span class="mf">1.0</span><span class="p">,</span><span class="k">others</span><span class="o">=&gt;</span><span class="mf">0.0</span><span class="p">));</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">others</code> exige límites conocidos.</p>
+
+<h2 id="tipo-no-restringido-predefinido-strings">Tipo no restringido predefinido: strings</h2>
+
+<div class="language-ada highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">type</span> <span class="nf">string</span> <span class="k">is</span> <span class="k">array</span><span class="p">(</span><span class="nb">positive</span> <span class="k">range</span> <span class="o">&lt;&gt;</span><span class="p">)</span> <span class="k">of</span> <span class="nb">character</span><span class="p">;</span>
+<span class="n">x0</span><span class="p">:</span><span class="nb">string</span><span class="p">(</span><span class="mi">1</span><span class="o">..</span><span class="mi">8</span><span class="p">);</span>
+<span class="kd">subtype</span> <span class="nf">s1</span> <span class="k">is</span> <span class="nb">string</span><span class="p">(</span><span class="mi">2</span><span class="o">..</span><span class="mi">8</span><span class="p">);</span>
+<span class="kd">subtype</span> <span class="nf">linea</span> <span class="k">is</span> <span class="nb">string</span><span class="p">(</span><span class="mi">1</span><span class="o">..</span><span class="mi">80</span><span class="p">);</span>
+
+<span class="n">x1</span><span class="p">:</span><span class="n">s1</span><span class="p">;</span>
+<span class="n">l</span><span class="p">:</span><span class="n">linea</span><span class="p">;</span>
+
+<span class="n">l</span><span class="p">(</span><span class="mi">3</span><span class="o">..</span><span class="mi">10</span><span class="p">)</span><span class="o">:=</span><span class="n">x0</span><span class="p">;</span>
+<span class="n">l</span><span class="p">(</span><span class="mi">2</span><span class="o">..</span><span class="mi">4</span><span class="p">)</span><span class="o">:=</span><span class="n">x0</span><span class="p">(</span><span class="mi">2</span><span class="o">..</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">l</span><span class="p">(</span><span class="mi">1</span><span class="o">..</span><span class="mi">8</span><span class="p">)</span><span class="o">:=</span><span class="n">x0</span><span class="p">(</span><span class="mi">1</span><span class="o">..</span><span class="mi">4</span><span class="p">)</span><span class="o">&amp;</span><span class="s2">"A"</span><span class="o">&amp;</span><span class="n">x1</span><span class="p">(</span><span class="mi">2</span><span class="o">..</span><span class="mi">4</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Las constantes tipo cadena entre comillas dobles.</p>
+
+<p><code class="language-plaintext highlighter-rouge">x0</code> es una cadena de caracteres de longitud exactamente 8.</p>
+
+<p>Cadenas → Tamaño exacto. De ocho caracteres exactamente, por ejemplo.</p>
+
+<p>Cadena bounded → No tan estrictas. Hasta 8 caracteres.</p>
+
+<h2 id="punteros">Punteros</h2>
+
+<div class="language-ada highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">type</span> <span class="nf">celda</span><span class="p">;</span>
+<span class="kd">type</span> <span class="nf">enlace</span> <span class="k">is</span> <span class="k">access</span> <span class="n">celda</span><span class="p">;</span>
+<span class="kd">type</span> <span class="nf">celda</span> <span class="k">is</span>
+     <span class="k">record</span>
+          <span class="n">valor</span><span class="p">:</span><span class="nb">integer</span><span class="p">;</span>
+          <span class="n">siguiente</span><span class="p">:</span><span class="n">enlace</span><span class="p">;</span>
+     <span class="k">end</span> <span class="k">record</span><span class="p">;</span>
+<span class="n">e</span><span class="p">:</span><span class="n">enlace</span><span class="p">;</span>
+
+<span class="n">e</span><span class="o">:=</span><span class="k">new</span> <span class="n">celda</span><span class="p">;</span>
+<span class="n">e</span><span class="p">.</span><span class="n">valor</span><span class="o">:=</span><span class="mi">13</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><strong>Liberación de memoria de datos inaccesibles</strong></p>
+
+<div class="language-ada highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">with</span> <span class="nn">unchecked_deallocation</span><span class="p">;</span>
+<span class="kd">procedure</span> <span class="nf">disponer</span> <span class="k">is</span> <span class="k">new</span>
+     <span class="n">unchecked_deallocation</span><span class="p">(</span><span class="n">celda</span><span class="p">,</span><span class="n">enlace</span><span class="p">);</span>
+
+<span class="n">e</span><span class="p">:</span><span class="n">enlace</span><span class="p">;</span>
+<span class="err">…</span>
+<span class="n">disponer</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+</code></pre></div></div>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#programacion</span>
+        
+          <span class="tag">#ada</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

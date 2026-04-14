@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programación. Diseño de la programación (I) | Programando a Pasitos</title>
+<meta name="description" content="Blog de programación por Inazio Claver">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Programación. Diseño de la programación (I) | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Programación. Diseño de la programación (I)" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Diseño descendente" />
+<meta property="og:description" content="Diseño descendente" />
+<link rel="canonical" href="http://localhost:4000/posts/2014/10/14/programacion-diseno-de-la-programacion-i/" />
+<meta property="og:url" content="http://localhost:4000/posts/2014/10/14/programacion-diseno-de-la-programacion-i/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2014-10-14T15:22:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Programación. Diseño de la programación (I)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver","url":"https://github.com/inazense"},"dateModified":"2014-10-14T15:22:00+02:00","datePublished":"2014-10-14T15:22:00+02:00","description":"Diseño descendente","headline":"Programación. Diseño de la programación (I)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2014/10/14/programacion-diseno-de-la-programacion-i/"},"url":"http://localhost:4000/posts/2014/10/14/programacion-diseno-de-la-programacion-i/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Programación. Diseño de la programación (I)</h1>
+    <div class="post-meta">
+      <time datetime="2014-10-14T15:22:00+02:00">14 Oct 2014</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#programacion" class="post-category">programacion</a>
+        
+      
+    </div>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="diseño-descendente">Diseño descendente</h2>
+
+<p>Hasta ahora: Problema difícil → ¿Solución?</p>
+
+<p>A partir de ahora: Problema difícil → División en subproblemas → Solución de subproblemas</p>
+
+<p>Cuando necesitemos un algoritmo que resuelva un problema difícil, puedo dividirlo en subprogramas (que al ser más pequeños son más sencillos de resolver), y ocuparme de solucionar esos subproblemas, pensando los correspondientes subalgoritmos.</p>
+
+<p>Si alguno de mis subproblemas continúa siendo demasiado difícil, puedo volver a descomponerlo en subproblemas y buscar solución a estos, y así tantas veces como sea necesario.</p>
+
+<h2 id="abstracción">Abstracción</h2>
+
+<p>Con los algoritmos ocurre lo siguiente:</p>
+
+<ul>
+  <li>Mi problema principal se resuelve resolviendo un conjunto de subproblemas. Yo sin más enumero las tareas a realizar y me dan igual esos detalles para elaborar mi algoritmo.</li>
+  <li>Al entrar a resolver cada subproblema, yo cumplo las especificaciones técnicas que me han dado, escribo un subalgoritmo que resuelve ese subproblema y me despreocupo del uso que se vaya a hacer de él siempre y cuando se respeten esas especificaciones y el subalgoritmo sea empleado para lo que sirve.</li>
+</ul>
+
+<p>Ejemplo.</p>
+
+<p><em>Calcula el área del triángulo:</em></p>
+
+<p><em>¿Qué hacer?</em></p>
+
+<p><em>Pedir datos al usuario</em></p>
+
+<p><em>Calcular la superficie</em></p>
+
+<p><em>Mostrar resultados por pantalla</em></p>
+
+<p>Hasta ahora, para resolver un problema pensábamos de una forma “ascendente”. ¿Qué instrucciones tengo que poner abajo para darle solución a ese gran problema que tengo?</p>
+
+<p>A partir de ahora para resolver problemas pensamos de arriba abajo. Para resolver mi problema, ¿qué tareas lo resuelven? Y luego, ¿esas tareas, con qué subtareas se resuelven?</p>
+
+<p>Y al final de todo terminarás poniendo las instrucciones necesarias.</p>
+
+<p>Nuestro lema es: <em>Divide y vencerás</em></p>
+
+<h2 id="subprogramas">Subprogramas</h2>
+
+<p>Un subprograma puede hacer las mismas acciones que el programa principal. La idea es darle un nombre a un trozo de programa y quitar de en medio.</p>
+
+<h2 id="qué-conseguimos">¿Qué conseguimos?</h2>
+
+<p><strong>Sencillez.</strong> Resolvemos problemas más pequeños y utilizamos la solución para solucionar problemas mayores.</p>
+
+<p><strong>Claridad.</strong> Nos queda un programa mucho más corto donde se puede ver más fácilmente lo que se está haciendo.</p>
+
+<p><strong>Reusabilidad.</strong> Si se hace lo mismo en varios puntos del programa sólo hay que escribirlo una vez y hacerlo funcionar siempre. Si hubiera errores en ese trozo de programa, sólo habría que corregirlo una vez.</p>
+
+<p><strong>Reparto de trabajo.</strong> Podemos darle los subproblemas a resolver a diferentes programadores que pueden trabajar en paralelo.</p>
+
+<p><strong>Resulta más difícil equivocarse y más sencillo corregir errores.</strong> Los subprogramas pueden probarse uno a uno antes de juntarlos. Los errores en programas cortos y claros se encuentran más fácilmente.</p>
+
+<h2 id="ejecución-de-un-programa-con-subprogramas">Ejecución de un programa con subprogramas</h2>
+
+<p>El programa se va ejecutando hasta llegar a la llamada a un subprograma.</p>
+
+<p>El programa principal LLAMA o INVOCA al subprograma (pudiendo enviar datos).</p>
+
+<p>El subprograma devuelve el control al programa principal (puede devolver datos).</p>
+
+<p>El programa continúa ejecutándose justo donde se había quedado.</p>
+
+<h2 id="consideraciones">Consideraciones</h2>
+
+<p>Se puede llamar varias veces en un mismo subprograma. Un subprograma puede llamar a otro subprograma y así sucesivamente tantas veces como sea necesario.</p>
+
+<p>Un subprograma puede llamarse incluso a sí mismo.</p>
+
+<p>Se puede llamar a un subprograma en cualquier parte de un programa o subprograma.</p>
+
+<h2 id="parámetros">Parámetros</h2>
+
+<p>Un programa y un subprograma se comunican información por medio de parámetros.</p>
+
+<p>Los parámetros pueden ser:</p>
+
+<ul>
+  <li><strong>De entrada (E).</strong> Del programa al subprograma al invocarlo</li>
+  <li><strong>De salida (S).</strong> Del subprograma al programa al devolverle el control</li>
+  <li><strong>De entrada / salida (E/S).</strong> En ambas direcciones</li>
+</ul>
+
+<p>Los parámetros de entrada, cuando los pasa el programa principal, tienen que ser una expresión de cualquier tipo (eso sí, el tipo de datos resultante tiene que ser el que espera el subprograma). Podría ser una variable, un dato…</p>
+
+<p>Los parámetros de salida o entrada/salida, en cambio, tienen que ser necesariamente una variable, ya que es en esa variable donde se almacenará el dato que devuelva el subprograma.</p>
+
+<p>Ejemplo</p>
+
+<p><em>Subprograma destruyeMatriz</em></p>
+
+<p><em>{Pasándole una matriz, pone a 0 todos los elementos que están fuera del rango [min,max] (también parámetros) y que me devolviera en otro parámetro “destruidos” el número de elementos destruidos}</em></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/* Mi subprograma empezaría definiendo esos parámetros */
+
+Subprograma destruyeMatriz (E/S matriz, E min, E max, S destruidos)
+</code></pre></div></div>
+
+<p>Normalmente hay que definir de qué tipo de datos es cada parámetro que va a utilizar el subprograma (aquí lo he obviado para centrarme en lo que interesa en esta explicación)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/* Lo llamaría desde el subprograma principal, por ejemplo: */
+
+destruyeMatriz (miMatriz, 3.5+i, cuantos);
+
+/* Obsérvese que miMatriz y cuantos, al ser parámetros S o E/S son necesariamente variables.
+   En cambio, para los valores min y max, como son parámetros de entrada, puedo pasar los
+   datos constantes o expresiones que serán evaluados antes. */
+</code></pre></div></div>
+
+<h2 id="parámetros-actuales-y-formales">Parámetros actuales y formales</h2>
+
+<p>Los parámetros formales son los que figuran en la declaración del subprograma y son usados para efectuar los cálculos necesarios en su interior.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Subprograma destruyeMatriz(E/S matriz, E min, E max, S destruidos)
+</code></pre></div></div>
+
+<p>Los parámetros actuales son los que se pasan desde el programa principal</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>destruyeMatriz(miMatriz, 3.5+i, cuantos);
+</code></pre></div></div>
+
+<p>Los parámetros actuales hay que pasarlos en el mismo orden en el que han sido declarados como parámetros formales y cada uno tiene que ser compatible con el tipo que está esperando el subprograma para ese parámetro.</p>
+
+<p>Al hacer la invocación se asocian uno a uno los parámetros actuales con los formales pasando la información que contienen.</p>
+
+<p>Al serle devuelto el control del programa o subprograma invocante, se devuelven en las variables los valores asociados a los parámetros de salida o entrada/salida.</p>
+
+<h2 id="tipos-de-subprogramas">Tipos de subprogramas</h2>
+
+<p>En programación hay dos tipos de subprogramas:</p>
+
+<ul>
+  <li><strong>Funciones.</strong> Subprogramas que realizan operaciones sobre uno o más valores que se han pasado como parámetros y producen un único dato como resultado (del tipo que sea).</li>
+  <li><strong>Procedimientos.</strong> Subprogramas que realizan una serie de acciones que pueden modificar algunos de los parámetros que reciben, pero no tienen asociado ningún valor concreto que devuelvan como resultado.</li>
+</ul>
+
+<h2 id="funciones">Funciones</h2>
+
+<p>En estado puro una función es un subprograma que realiza operaciones sobre uno o más valores que se han pasado como parámetros y produce un único dato como resultado (del tipo que sea).</p>
+
+<p>Sólo admite parámetros de entrada. No puede modificarlos ni hacer nada con ellos para que puedan devolver al programa principal ninguna información.</p>
+
+<p>Su única forma de enviar información al programa que le ha llamado es mediante el valor del dato que devuelve como resultado.</p>
+
+<p>El dato que devuelve puede ser de cualquier tipo.</p>
+
+<h2 id="declaración-de-funciones-sintaxis">Declaración de funciones. Sintaxis</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Función &lt;nombre de función&gt;(&lt;lista de parámetros formales&gt;) devuelve &lt;tipo&gt;
+Variables
+  &lt;definición de variables locales&gt;
+Principio
+  &lt;acciones&gt; (Utilizando parámetros formales)
+  Devolver &lt;expresión&gt;
+Fin
+</code></pre></div></div>
+
+<ul>
+  <li><strong>&lt;nombre función&gt;</strong> Nombre identificativo para la función</li>
+  <li>
+    <p><strong>&lt;lista de parámetros formales&gt;</strong> Entre paréntesis, pondremos los parámetros formales que esperan la función. De cada parámetro habrá que especificar nombre, tipo de datos y clase. Se separarán por comas</p>
+
+    <p><em>EJ: función g(E x:real, E y:real) devuelve real;</em></p>
+  </li>
+  <li><strong>&lt;tipo&gt;</strong> Tipo de datos que devuelve la función</li>
+  <li><strong>&lt;definición de variables locales&gt;</strong> Aquí definimos variables locales que serán utilizadas dentro de la función. Sólo existen dentro de ellas. Cuando la función termine, las variables serán destruidas e inaccesibles.</li>
+  <li><strong>&lt;acciones&gt; (Utilizando parámetros formales)</strong> Las acciones son similares a las de un programa. Se pueden llamar a otras funciones o procedimientos. En esas acciones se pueden usar los parámetros formales para hacer cálculos con ellos.</li>
+  <li><strong>Devolver &lt;expresión&gt;</strong> Devolver es una instrucción especial que sólo tienen las funciones. Evalúa la expresión y devuelve el dato que obtenemos (que tiene que concordar con el tipo establecido en la cabecera de la función tras el “devuelve”) al programa o subprograma que invocó a la función.</li>
+</ul>
+
+<p>Ejemplo de declaración</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>función factorial(n:entero) devuelve entero
+variables
+  resultado:entero;
+  indice:entero;
+principio
+  resultado:=1;
+  para indice:=2 hasta n hacer
+    resultado:=resultado*indice;
+  fpara
+  devolver resultado
+fin
+</code></pre></div></div>
+
+<h2 id="llamada-a-una-función">Llamada a una función</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;nombre de función&gt; (&lt;lista de parámetros actuales&gt;)
+</code></pre></div></div>
+
+<p>Correspondencia entre parámetros formales y actuales:</p>
+<ul>
+  <li>mismo número</li>
+  <li>de izquierda a derecha</li>
+  <li>parámetros correspondientes del mismo tipo</li>
+</ul>
+
+<p>Una llamada a una función devuelve un valor y por lo tanto es una expresión o parte de una expresión.</p>
+
+<p>Ejemplos:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A:=Factorial(7);
+
+C:=Factorial(A)-Factorial(7)+b;
+
+Algoritmo calculaFactorial
+variables
+  numero:entero;
+principio
+  escribirCadena(pantalla,'Introduzca un número para calcular su factorial');
+  leerEntero(teclado,numero);
+  escribirCadena(pantalla,'El factorial del número es:');
+  escribirEntero(pantalla,factorial(numero));
+fin
+</code></pre></div></div>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#programacion</span>
+        
+          <span class="tag">#c</span>
+        
+          <span class="tag">#subprogramas</span>
+        
+          <span class="tag">#funciones</span>
+        
+          <span class="tag">#procedimientos</span>
+        
+          <span class="tag">#parametros</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

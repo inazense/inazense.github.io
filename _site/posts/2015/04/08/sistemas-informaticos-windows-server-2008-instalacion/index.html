@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistemas informáticos. Windows Server 2008. Instalación | Programando a Pasitos</title>
+<meta name="description" content="Guía paso a paso para crear una máquina virtual con Windows Virtual PC e instalar Windows Server 2008 Enterprise.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Sistemas informáticos. Windows Server 2008. Instalación | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Sistemas informáticos. Windows Server 2008. Instalación" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Guía paso a paso para crear una máquina virtual con Windows Virtual PC e instalar Windows Server 2008 Enterprise." />
+<meta property="og:description" content="Guía paso a paso para crear una máquina virtual con Windows Virtual PC e instalar Windows Server 2008 Enterprise." />
+<link rel="canonical" href="http://localhost:4000/posts/2015/04/08/sistemas-informaticos-windows-server-2008-instalacion/" />
+<meta property="og:url" content="http://localhost:4000/posts/2015/04/08/sistemas-informaticos-windows-server-2008-instalacion/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-04-08T06:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Sistemas informáticos. Windows Server 2008. Instalación" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-04-08T06:00:00+02:00","datePublished":"2015-04-08T06:00:00+02:00","description":"Guía paso a paso para crear una máquina virtual con Windows Virtual PC e instalar Windows Server 2008 Enterprise.","headline":"Sistemas informáticos. Windows Server 2008. Instalación","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/04/08/sistemas-informaticos-windows-server-2008-instalacion/"},"url":"http://localhost:4000/posts/2015/04/08/sistemas-informaticos-windows-server-2008-instalacion/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Sistemas informáticos. Windows Server 2008. Instalación</h1>
+    <div class="post-meta">
+      <time datetime="2015-04-08T06:00:00+02:00">08 Apr 2015</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#sistemas-informáticos" class="post-category">Sistemas informáticos</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Guía paso a paso para crear una máquina virtual con Windows Virtual PC e instalar Windows Server 2008 Enterprise.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <p>Llegué tarde porque tuve que ir a que me desangrarán un poco (¿banco? no, fueron análisis en el médico) y me tuve que poner al día aprisa y corriendo.</p>
+
+<p>Empezamos nueva unidad, en la que trabajaremos con los servicios que ofrece Windows Server 2008 R2, y claro, el primer paso consiste en instalarlo, que si no mal vamos…</p>
+
+<p>Pensé que lo haríamos con VirtualBox, pero al parecer usamos Windows Virtual PC. Como no recordaba muy bien como se crea una máquina virtual ahí, voy a colgar primero las capturas de ello, y posteriormente paso a la instalación.</p>
+
+<h2 id="creación-de-máquina-virtual-con-virtualpc">Creación de máquina virtual con VirtualPC</h2>
+
+<p>Vamos a Inicio y buscamos Windows Virtual PC.</p>
+
+<p><img src="/img/posts/20150408_1.png" alt="Windows Virtual PC en el menú Inicio" /></p>
+
+<p>Lo abrimos y pulsamos sobre <em>Crear Máquina Virtual</em>.</p>
+
+<p><img src="/img/posts/20150408_2.png" alt="Botón Crear Máquina Virtual" /></p>
+
+<p>Le indicamos un nombre y una ubicación para nuestra máquina virtual, que yo dejé por defecto.</p>
+
+<p><img src="/img/posts/20150408_3.png" alt="Nombre y ubicación de la máquina virtual" /></p>
+
+<p>Agregamos la cantidad de memoria RAM que le deseamos poner (sólo 1GB porque el equipo de clase si no irá muy justillo).</p>
+
+<p><img src="/img/posts/20150408_4.png" alt="Configuración de memoria RAM" /></p>
+
+<p>Y ya está hecha nuestra máquina virtual. ¿Rápido, no?</p>
+
+<p>El problema es que no hemos indicado método para instalar el SO. Arrancamos nuestra nueva máquina virtual y vamos a <em>Herramientas - Configuración</em>.</p>
+
+<p><img src="/img/posts/20150408_5.png" alt="Menú Herramientas - Configuración" /></p>
+
+<p>Nos vamos a unidad de DVD y le indicamos la ruta de nuestra ISO con el sistema operativo.</p>
+
+<p><img src="/img/posts/20150408_6.png" alt="Configuración de la unidad de DVD con la ISO" /></p>
+
+<p>Aceptamos y reiniciamos la máquina. A continuación comenzará la instalación del SO.</p>
+
+<h2 id="instalación-del-sistema-operativo">Instalación del sistema operativo</h2>
+
+<p><img src="/img/posts/20150408_7.png" alt="Inicio de la instalación de Windows Server 2008" /></p>
+
+<p><img src="/img/posts/20150408_8.png" alt="Selección de idioma y teclado" /></p>
+
+<p>Bueno, pequeño inciso: la versión que instalaremos será <em>Windows Server 2008 Enterprise (instalación completa)</em>.</p>
+
+<p><img src="/img/posts/20150408_9.png" alt="Selección de versión Windows Server 2008 Enterprise" /></p>
+
+<p><img src="/img/posts/20150408_10.png" alt="Aceptación de licencia" /></p>
+
+<p><img src="/img/posts/20150408_11.png" alt="Tipo de instalación personalizada" /></p>
+
+<p>Dejamos todo el tamaño del disco (es dinámico, tranquilos que no gastaré tanto espacio).</p>
+
+<p><img src="/img/posts/20150408_12.png" alt="Selección del disco y partición" /></p>
+
+<p>Y a esperar…</p>
+
+<p><img src="/img/posts/20150408_13.png" alt="Progreso de la instalación" /></p>
+
+<p><img src="/img/posts/20150408_14.png" alt="Reinicio durante la instalación" /></p>
+
+<p>Cuando realicé el primer arranque nos pedirá cambiar la contraseña del administrador. Le damos una nueva y pulsamos sobre la flecha para entrar en el escritorio del Administrador.</p>
+
+<p><img src="/img/posts/20150408_15.png" alt="Petición de cambio de contraseña del administrador" /></p>
+
+<p><img src="/img/posts/20150408_16.png" alt="Estableciendo nueva contraseña" /></p>
+
+<p><img src="/img/posts/20150408_17.png" alt="Confirmación del cambio de contraseña" /></p>
+
+<p><img src="/img/posts/20150408_18.png" alt="Inicio de sesión con la nueva contraseña" /></p>
+
+<p>Y ya está, en cuanto veamos esta pantalla sabremos que lo hemos hecho correctamente.</p>
+
+<p><img src="/img/posts/20150408_19.png" alt="Escritorio de Windows Server 2008 con el Administrador del servidor" /></p>
+
+<p><img src="/img/posts/20150408_20.png" alt="Pantalla final de bienvenida del servidor" /></p>
+
+<p>En siguientes entradas hablaremos de las primeras configuraciones.</p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#sistemas-informaticos</span>
+        
+          <span class="tag">#windows-server</span>
+        
+          <span class="tag">#virtualizacion</span>
+        
+          <span class="tag">#instalacion</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>

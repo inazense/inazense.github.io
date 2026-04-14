@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Procesos y servicios. Programación de Sockets (II) | Programando a Pasitos</title>
+<meta name="description" content="Programación avanzada de sockets en Java con soporte para múltiples clientes mediante hilos, comunicación UDP con DatagramSocket y DatagramPacket, y sockets multicast.">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+<script>
+  // Aplicar tema guardado antes del primer render (evita flash)
+  (function() {
+    var t = localStorage.getItem('pap-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Procesos y servicios. Programación de Sockets (II) | Programando a Pasitos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Procesos y servicios. Programación de Sockets (II)" />
+<meta name="author" content="Inazio Claver" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Programación avanzada de sockets en Java con soporte para múltiples clientes mediante hilos, comunicación UDP con DatagramSocket y DatagramPacket, y sockets multicast." />
+<meta property="og:description" content="Programación avanzada de sockets en Java con soporte para múltiples clientes mediante hilos, comunicación UDP con DatagramSocket y DatagramPacket, y sockets multicast." />
+<link rel="canonical" href="http://localhost:4000/posts/2016/01/21/procesos-y-servicios-programacion-de-sockets-ii/" />
+<meta property="og:url" content="http://localhost:4000/posts/2016/01/21/procesos-y-servicios-programacion-de-sockets-ii/" />
+<meta property="og:site_name" content="Programando a Pasitos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-01-21T05:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Procesos y servicios. Programación de Sockets (II)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver","url":"https://github.com/inazense"},"dateModified":"2016-01-21T05:00:00+01:00","datePublished":"2016-01-21T05:00:00+01:00","description":"Programación avanzada de sockets en Java con soporte para múltiples clientes mediante hilos, comunicación UDP con DatagramSocket y DatagramPacket, y sockets multicast.","headline":"Procesos y servicios. Programación de Sockets (II)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2016/01/21/procesos-y-servicios-programacion-de-sockets-ii/"},"url":"http://localhost:4000/posts/2016/01/21/procesos-y-servicios-programacion-de-sockets-ii/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+</head>
+<body>
+  <div class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="topbar-title">Programando a Pasitos</span>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">&times;</button>
+
+  <div class="sidebar-inner">
+
+    <div class="profile">
+      <img src="/img/profile.svg" alt="Inazio Claver" class="profile-photo">
+      <h1 class="blog-title">Programando a Pasitos</h1>
+      <p class="blog-tagline">No es un bug, es una característica no documentada</p>
+
+      <div class="social-links">
+        <a href="https://github.com/inazense" class="social-btn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="/feed.xml" class="social-btn" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegación principal">
+      <a href="/" class="nav-item">Blog</a>
+      <a href="/categories/" class="nav-item">Categorías</a>
+      <a href="/anecdotario/" class="nav-item">Anecdotario</a>
+      <a href="/descargas/" class="nav-item">Descargas</a>
+    </nav>
+
+    <div class="search-box">
+      <input type="search" id="search-input" placeholder="Buscar..." autocomplete="off" aria-label="Buscar entradas">
+      <div id="search-results" class="search-results" hidden aria-live="polite"></div>
+    </div>
+
+    <div class="theme-switcher" aria-label="Cambiar tema de color">
+      <button class="theme-dot" data-theme="dark"  style="background:#ffffff" aria-label="Tema blanco/gris" title="Blanco/gris"></button>
+      <button class="theme-dot" data-theme="green" style="background:#39d353" aria-label="Tema verde terminal" title="Verde terminal"></button>
+      <button class="theme-dot" data-theme="blue"  style="background:#63b3ed" aria-label="Tema azul/cyan" title="Azul/cyan"></button>
+      <button class="theme-dot" data-theme="amber" style="background:#f59e0b" aria-label="Tema naranja/ámbar" title="Naranja/ámbar"></button>
+    </div>
+
+  </div>
+</aside>
+
+    <div class="divider"></div>
+    <main class="content" id="main-content">
+      <article class="post-full">
+  <header class="post-header">
+    <h1 class="post-title">Procesos y servicios. Programación de Sockets (II)</h1>
+    <div class="post-meta">
+      <time datetime="2016-01-21T05:00:00+01:00">21 Jan 2016</time>
+      
+        <span class="meta-sep">&mdash;</span>
+        
+          <a href="/categories/#java" class="post-category">Java</a>
+        
+      
+    </div>
+    
+      <p class="post-description">Programación avanzada de sockets en Java con soporte para múltiples clientes mediante hilos, comunicación UDP con DatagramSocket y DatagramPacket, y sockets multicast.</p>
+    
+  </header>
+
+  <div class="post-content">
+    <h2 id="múltiples-clientes-con-hilos">Múltiples clientes con hilos</h2>
+
+<p>Para atender a múltiples clientes simultáneamente, el servidor usa un hilo dedicado para cada conexión. El bucle principal del servidor llama a <code class="language-plaintext highlighter-rouge">accept()</code> indefinidamente, y por cada cliente que se conecta lanza un nuevo <code class="language-plaintext highlighter-rouge">Thread</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.ServerSocket</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.Socket</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Servidor</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span> <span class="n">args</span><span class="o">[])</span> <span class="kd">throws</span> <span class="nc">IOException</span> <span class="o">{</span>
+        <span class="nc">ServerSocket</span> <span class="n">servidor</span><span class="o">;</span>
+        <span class="n">servidor</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ServerSocket</span><span class="o">(</span><span class="mi">6000</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Servidor iniciado..."</span><span class="o">);</span>
+        <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">Socket</span> <span class="n">cliente</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Socket</span><span class="o">();</span>
+            <span class="n">cliente</span> <span class="o">=</span> <span class="n">servidor</span><span class="o">.</span><span class="na">accept</span><span class="o">();</span>
+            <span class="nc">HiloServidor</span> <span class="n">hilo</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HiloServidor</span><span class="o">(</span><span class="n">cliente</span><span class="o">);</span>
+            <span class="n">hilo</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>La clase <code class="language-plaintext highlighter-rouge">HiloServidor</code> extiende <code class="language-plaintext highlighter-rouge">Thread</code> y gestiona la comunicación con el cliente en su método <code class="language-plaintext highlighter-rouge">run()</code>.</p>
+
+<h2 id="sockets-udp">Sockets UDP</h2>
+
+<p>A diferencia de TCP, UDP es un protocolo no orientado a conexión. Los paquetes contienen de forma explícita la dirección IP y el puerto de destino, lo que los hace más ligeros pero sin garantía de entrega ni orden.</p>
+
+<h3 id="clase-datagrampacket">Clase DatagramPacket</h3>
+
+<p>Representa un paquete de datos UDP.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Constructor / Método</th>
+      <th>Descripción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DatagramPacket(byte[] buf, int length)</code></td>
+      <td>Para recibir datos</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DatagramPacket(byte[] buf, int length, InetAddress addr, int port)</code></td>
+      <td>Para enviar datos</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">int getLength()</code></td>
+      <td>Longitud de los datos recibidos</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">int getPort()</code></td>
+      <td>Puerto de origen del paquete</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">InetAddress getAddress()</code></td>
+      <td>Dirección IP de origen</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">byte[] getData()</code></td>
+      <td>Contenido del paquete</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="clase-datagramsocket">Clase DatagramSocket</h3>
+
+<p>Proporciona soporte para el envío y recepción de datagramas UDP.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Constructor / Método</th>
+      <th>Descripción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DatagramSocket(int port)</code></td>
+      <td>Crea un socket en el puerto indicado</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DatagramSocket()</code></td>
+      <td>Crea un socket en un puerto disponible</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">void send(DatagramPacket p)</code></td>
+      <td>Envía un datagrama</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">void receive(DatagramPacket p)</code></td>
+      <td>Recibe un datagrama (bloqueante)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">void close()</code></td>
+      <td>Cierra el socket</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="ejemplo-comunicación-udp">Ejemplo: comunicación UDP</h2>
+
+<h3 id="servidorudpjava">ServidorUDP.java</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.net.DatagramPacket</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.DatagramSocket</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.InetAddress</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ServidorUDP</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">argv</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="kt">byte</span><span class="o">[]</span> <span class="n">bufer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="mi">1024</span><span class="o">];</span>
+        <span class="nc">DatagramSocket</span> <span class="n">socket</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DatagramSocket</span><span class="o">(</span><span class="mi">12345</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Esperando Datagrama ................"</span><span class="o">);</span>
+        <span class="nc">DatagramPacket</span> <span class="n">recibo</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DatagramPacket</span><span class="o">(</span><span class="n">bufer</span><span class="o">,</span> <span class="n">bufer</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
+        <span class="n">socket</span><span class="o">.</span><span class="na">receive</span><span class="o">(</span><span class="n">recibo</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">bytesRec</span> <span class="o">=</span> <span class="n">recibo</span><span class="o">.</span><span class="na">getLength</span><span class="o">();</span>
+        <span class="nc">String</span> <span class="n">paquete</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="n">recibo</span><span class="o">.</span><span class="na">getData</span><span class="o">());</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Número de Bytes recibidos: "</span> <span class="o">+</span> <span class="n">bytesRec</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Contenido del Paquete    : "</span> <span class="o">+</span> <span class="n">paquete</span><span class="o">.</span><span class="na">trim</span><span class="o">());</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Puerto origen del mensaje: "</span> <span class="o">+</span> <span class="n">recibo</span><span class="o">.</span><span class="na">getPort</span><span class="o">());</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"IP de origen             : "</span> <span class="o">+</span> <span class="n">recibo</span><span class="o">.</span><span class="na">getAddress</span><span class="o">().</span><span class="na">getHostAddress</span><span class="o">());</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Puerto destino del mensaje: "</span> <span class="o">+</span> <span class="n">socket</span><span class="o">.</span><span class="na">getLocalPort</span><span class="o">());</span>
+        <span class="n">socket</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="clienteudpjava">ClienteUDP.java</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.net.DatagramPacket</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.DatagramSocket</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.InetAddress</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ClienteUDP</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">argv</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="nc">InetAddress</span> <span class="n">destino</span> <span class="o">=</span> <span class="nc">InetAddress</span><span class="o">.</span><span class="na">getLocalHost</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">12345</span><span class="o">;</span>
+        <span class="kt">byte</span><span class="o">[]</span> <span class="n">mensaje</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="mi">1024</span><span class="o">];</span>
+        <span class="nc">String</span> <span class="nc">Saludo</span> <span class="o">=</span> <span class="s">"Enviando Saludos !!"</span><span class="o">;</span>
+        <span class="n">mensaje</span> <span class="o">=</span> <span class="nc">Saludo</span><span class="o">.</span><span class="na">getBytes</span><span class="o">();</span>
+        <span class="nc">DatagramPacket</span> <span class="n">envio</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DatagramPacket</span><span class="o">(</span><span class="n">mensaje</span><span class="o">,</span> <span class="n">mensaje</span><span class="o">.</span><span class="na">length</span><span class="o">,</span> <span class="n">destino</span><span class="o">,</span> <span class="n">port</span><span class="o">);</span>
+        <span class="nc">DatagramSocket</span> <span class="n">socket</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DatagramSocket</span><span class="o">(</span><span class="mi">34567</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Enviando Datagrama de longitud: "</span> <span class="o">+</span> <span class="n">mensaje</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Host destino : "</span> <span class="o">+</span> <span class="n">destino</span><span class="o">.</span><span class="na">getHostName</span><span class="o">());</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"IP Destino : "</span> <span class="o">+</span> <span class="n">destino</span><span class="o">.</span><span class="na">getHostAddress</span><span class="o">());</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Puerto local del socket: "</span> <span class="o">+</span> <span class="n">socket</span><span class="o">.</span><span class="na">getLocalPort</span><span class="o">());</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Puerto al que envio: "</span> <span class="o">+</span> <span class="n">envio</span><span class="o">.</span><span class="na">getPort</span><span class="o">());</span>
+        <span class="n">socket</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">envio</span><span class="o">);</span>
+        <span class="n">socket</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="sockets-multicast">Sockets Multicast</h2>
+
+<p><code class="language-plaintext highlighter-rouge">MulticastSocket</code> permite enviar un paquete a múltiples destinatarios simultáneamente. Los clientes se suscriben a un grupo multicast (dirección de clase D, rango <strong>224.0.0.0 – 239.255.255.255</strong>). Cuando el servidor envía al grupo, todos los clientes suscritos reciben el mensaje.</p>
+
+<h3 id="servidormcjava">ServidorMC.java</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ServidorMC</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span> <span class="n">args</span><span class="o">[])</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="nc">BufferedReader</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">InputStreamReader</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">));</span>
+        <span class="nc">MulticastSocket</span> <span class="n">ms</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MulticastSocket</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="nc">Puerto</span> <span class="o">=</span> <span class="mi">12345</span><span class="o">;</span>
+        <span class="nc">InetAddress</span> <span class="n">grupo</span> <span class="o">=</span> <span class="nc">InetAddress</span><span class="o">.</span><span class="na">getByName</span><span class="o">(</span><span class="s">"225.0.0.1"</span><span class="o">);</span>
+        <span class="nc">String</span> <span class="n">cadena</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
+        <span class="k">while</span> <span class="o">(!</span><span class="n">cadena</span><span class="o">.</span><span class="na">trim</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="s">"*"</span><span class="o">))</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Datos a enviar al grupo: "</span><span class="o">);</span>
+            <span class="n">cadena</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
+            <span class="nc">DatagramPacket</span> <span class="n">paquete</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DatagramPacket</span><span class="o">(</span><span class="n">cadena</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(),</span> <span class="n">cadena</span><span class="o">.</span><span class="na">length</span><span class="o">(),</span> <span class="n">grupo</span><span class="o">,</span> <span class="nc">Puerto</span><span class="o">);</span>
+            <span class="n">ms</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">paquete</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="n">ms</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Socket cerrado..."</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="clientemcjava">ClienteMC.java</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ClienteMC</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span> <span class="n">args</span><span class="o">[])</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="nc">Puerto</span> <span class="o">=</span> <span class="mi">12345</span><span class="o">;</span>
+        <span class="nc">MulticastSocket</span> <span class="n">ms</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MulticastSocket</span><span class="o">(</span><span class="nc">Puerto</span><span class="o">);</span>
+        <span class="nc">InetAddress</span> <span class="n">grupo</span> <span class="o">=</span> <span class="nc">InetAddress</span><span class="o">.</span><span class="na">getByName</span><span class="o">(</span><span class="s">"225.0.0.1"</span><span class="o">);</span>
+        <span class="n">ms</span><span class="o">.</span><span class="na">joinGroup</span><span class="o">(</span><span class="n">grupo</span><span class="o">);</span>
+        <span class="nc">String</span> <span class="n">msg</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
+        <span class="k">while</span> <span class="o">(!</span><span class="n">msg</span><span class="o">.</span><span class="na">trim</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="s">"*"</span><span class="o">))</span> <span class="o">{</span>
+            <span class="kt">byte</span><span class="o">[]</span> <span class="n">buf</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="mi">1000</span><span class="o">];</span>
+            <span class="nc">DatagramPacket</span> <span class="n">paquete</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DatagramPacket</span><span class="o">(</span><span class="n">buf</span><span class="o">,</span> <span class="n">buf</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
+            <span class="n">ms</span><span class="o">.</span><span class="na">receive</span><span class="o">(</span><span class="n">paquete</span><span class="o">);</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="n">paquete</span><span class="o">.</span><span class="na">getData</span><span class="o">());</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Recibo: "</span> <span class="o">+</span> <span class="n">msg</span><span class="o">.</span><span class="na">trim</span><span class="o">());</span>
+        <span class="o">}</span>
+        <span class="n">ms</span><span class="o">.</span><span class="na">leaveGroup</span><span class="o">(</span><span class="n">grupo</span><span class="o">);</span>
+        <span class="n">ms</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Socket cerrado..."</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>El servidor lee líneas de la consola y las envía al grupo hasta que se introduce <code class="language-plaintext highlighter-rouge">*</code>. Los clientes se unen al grupo con <code class="language-plaintext highlighter-rouge">joinGroup()</code> y reciben los mensajes hasta que llega el asterisco.</p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <span class="tag">#java</span>
+        
+          <span class="tag">#sockets</span>
+        
+          <span class="tag">#udp</span>
+        
+          <span class="tag">#tcp</span>
+        
+          <span class="tag">#multicast</span>
+        
+          <span class="tag">#hilos</span>
+        
+          <span class="tag">#programacion-de-servicios-y-procesos</span>
+        
+      </div>
+    
+    <a href="/" class="back-link">&larr; Volver al blog</a>
+  </footer>
+</article>
+
+    </main>
+  </div>
+
+  <script src="/assets/js/theme.js"></script>
+  <script src="/assets/js/search.js"></script>
+</body>
+</html>
