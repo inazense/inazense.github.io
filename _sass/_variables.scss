@@ -10,37 +10,15 @@
   --code-bg:   #1e1e1e;
 }
 
-// ── Tema 2: Verde terminal
-[data-theme="green"] {
-  --bg:        #0d0d0d;
-  --surface:   #111111;
-  --text:      #ccffcc;
-  --secondary: #6a9e6a;
-  --accent:    #39d353;
-  --border:    #1a2e1a;
-  --code-bg:   #0a1a0a;
-}
-
-// ── Tema 3: Azul/cyan
-[data-theme="blue"] {
-  --bg:        #0f0f0f;
-  --surface:   #141a24;
-  --text:      #d0e8ff;
-  --secondary: #6a8aae;
-  --accent:    #63b3ed;
-  --border:    #1a2640;
-  --code-bg:   #0a1020;
-}
-
-// ── Tema 4: Naranja/ámbar
-[data-theme="amber"] {
-  --bg:        #111111;
-  --surface:   #1c1700;
-  --text:      #fdf0d0;
-  --secondary: #a08040;
-  --accent:    #f59e0b;
-  --border:    #2a2000;
-  --code-bg:   #1a1200;
+// ── Tema 2: Light/Claro
+[data-theme="light"] {
+  --bg:        #faf9f7;
+  --surface:   #ffffff;
+  --text:      #1c1917;
+  --secondary: #78716c;
+  --accent:    #7c3aed;
+  --border:    #e7e5e4;
+  --code-bg:   #f5f4f1;
 }
 
 // ── Tipografía

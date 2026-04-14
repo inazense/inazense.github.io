@@ -179,23 +179,32 @@
   text-align: center;
 }
 
-// Selector de temas
-.theme-switcher {
-  display: flex;
-  gap: 0.5rem;
+// Botón toggle dark/light
+.theme-toggle {
   margin-top: auto;
-  padding-top: 0.5rem;
-}
-
-.theme-dot {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 0.4rem 0.8rem;
+  color: var(--secondary);
+  font-family: $font-stack;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
   cursor: pointer;
-  padding: 0;
-  transition: transform 0.15s, border-color 0.15s;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  width: fit-content;
 
-  &:hover { transform: scale(1.25); }
-  &.active { border-color: var(--text); }
+  &:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
 }
+
+[data-theme="dark"]  .icon-sun          { display: none; }
+[data-theme="dark"]  .toggle-label-light { display: none; }
+[data-theme="light"] .icon-moon         { display: none; }
+[data-theme="light"] .toggle-label-dark  { display: none; }

@@ -5,21 +5,18 @@
   function applyTheme(name) {
     document.documentElement.setAttribute('data-theme', name);
     localStorage.setItem(STORAGE_KEY, name);
-    document.querySelectorAll('.theme-dot').forEach(function (dot) {
-      dot.classList.toggle('active', dot.dataset.theme === name);
-    });
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    // Aplicar tema guardado y marcar el dot activo
     applyTheme(localStorage.getItem(STORAGE_KEY) || DEFAULT_THEME);
 
-    // Clicks en los dots de tema
-    document.querySelectorAll('.theme-dot').forEach(function (dot) {
-      dot.addEventListener('click', function () {
-        applyTheme(dot.dataset.theme);
+    var toggleBtn = document.getElementById('theme-toggle');
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', function () {
+        var current = document.documentElement.getAttribute('data-theme');
+        applyTheme(current === 'light' ? 'dark' : 'light');
       });
-    });
+    }
 
     // Hamburger / drawer del sidebar
     var hamburger = document.getElementById('hamburger-btn');
@@ -47,7 +44,6 @@
     if (closeBtn)  closeBtn.addEventListener('click', closeSidebar);
     if (overlay)   overlay.addEventListener('click', closeSidebar);
 
-    // Cerrar drawer con Escape
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && sidebar && sidebar.classList.contains('open')) {
         closeSidebar();
