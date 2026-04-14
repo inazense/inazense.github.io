@@ -18,6 +18,17 @@
       });
     }
 
+    // Dropdowns de navegación (Categorías, Archivo)
+    document.querySelectorAll('.nav-toggle').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        var targetId = btn.id.replace('-toggle', '-dropdown');
+        var dropdown = document.getElementById(targetId);
+        btn.setAttribute('aria-expanded', !expanded);
+        if (dropdown) dropdown.hidden = expanded;
+      });
+    });
+
     // Hamburger / drawer del sidebar
     var hamburger = document.getElementById('hamburger-btn');
     var sidebar   = document.getElementById('sidebar');

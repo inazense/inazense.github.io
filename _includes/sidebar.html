@@ -24,7 +24,20 @@
 
     <nav class="sidebar-nav" aria-label="Navegación principal">
       <a href="{{ '/' | relative_url }}" class="nav-item{% if page.url == '/' %} active{% endif %}">Blog</a>
-      <a href="{{ '/categories/' | relative_url }}" class="nav-item{% if page.url contains '/categories' %} active{% endif %}">Categorías</a>
+
+      <button class="nav-item nav-toggle" id="categories-toggle" aria-expanded="false">Categorías</button>
+      <div class="nav-dropdown" id="categories-dropdown" hidden>
+        {%- assign sorted_cats = site.categories | sort -%}
+        {%- for category in sorted_cats -%}
+        <div class="nav-dropdown-category">
+          <span>{{ category[0] }}</span>
+          <span class="dropdown-count">{{ category[1].size }}</span>
+        </div>
+        {%- endfor -%}
+      </div>
+
+      <a href="{{ '/archivo/' | relative_url }}" class="nav-item{% if page.url contains '/archivo' %} active{% endif %}">Archivo</a>
+
       <a href="{{ '/anecdotario/' | relative_url }}" class="nav-item{% if page.url contains '/anecdotario' %} active{% endif %}">Anecdotario</a>
       <a href="{{ '/descargas/' | relative_url }}" class="nav-item{% if page.url contains '/descargas' %} active{% endif %}">Descargas</a>
     </nav>

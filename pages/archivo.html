@@ -1,0 +1,13 @@
+---
+layout: page
+title: Archivo
+permalink: /archivo/
+---
+<ul class="archivo-list">
+  {% for post in site.posts %}
+  <li class="archivo-entry">
+    <a href="{{ post.url | relative_url }}" class="archivo-title">{{ post.title }}</a>
+    <time datetime="{{ post.date | date_to_xmlschema }}" class="archivo-date">{{ post.date | date: "%d %b %Y" }}</time>
+  </li>
+  {% endfor %}
+</ul>
