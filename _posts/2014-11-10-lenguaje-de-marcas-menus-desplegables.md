@@ -2,7 +2,7 @@
 title: Lenguaje de marcas. Menús desplegables
 description:
 date: 2014-11-10 00:00:00 +0800
-categories: [lenguajes de marcas]
+categories: [Lenguajes de marcas]
 tags: [html, css, menus desplegables, lenguaje de marcas]
 pin: false
 math: false

@@ -3,7 +3,7 @@ title: Sistemas informáticos. Windows Server 2008. Primeras configuraciones
 description: Configuraciones básicas de red en Windows Server 2008 recién instalado, incluyendo zona horaria, IPv4 estática y nombre NetBIOS.
 author: Inazio Claver
 date: 2015-04-08 12:00:00 +0800
-categories: [Sistemas informáticos]
+categories: [Sistemas]
 tags: [sistemas-informaticos, windows-server, red, configuracion, netbios]
 pin: false
 math: false

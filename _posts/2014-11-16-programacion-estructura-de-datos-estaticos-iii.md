@@ -2,7 +2,7 @@
 title: Programación. Estructura de datos estáticos (III)
 description:
 date: 2014-11-16 00:00:00 +0800
-categories: [programacion]
+categories: [Programación]
 tags: [programacion, matrices, determinante, adjunta, inversa, sarrus]
 pin: false
 math: false

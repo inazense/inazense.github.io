@@ -2,7 +2,7 @@
 title: Entornos de desarrollo. Diagramas de flujo
 description:
 date: 2014-11-11 23:55:00 +0800
-categories: [entornos de desarrollo]
+categories: [Entornos de desarrollo]
 tags: [entornos de desarrollo, diagramas de flujo, algoritmos]
 pin: false
 math: false

@@ -2,7 +2,7 @@
 title: Bases de datos. Teoría de la normalización (I)
 description:
 date: 2014-11-03 00:00:00 +0800
-categories: [bases de datos]
+categories: [Bases de datos]
 tags: [bases de datos, normalizacion, 1fn]
 pin: false
 math: false

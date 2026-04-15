@@ -2,7 +2,7 @@
 title: Programación. Resolución de problemas (II)
 description: El tipo real en programación, representación binaria de decimales, coma fija, coma flotante (mantisa-exponente), operaciones y funciones de biblioteca para reales.
 date: 2014-10-13 13:54:00 +0800
-categories: [programacion]
+categories: [Programación]
 tags: [programacion, c, tipos-datos, reales, binario, coma-flotante, mantisa]
 pin: false
 math: false

@@ -3,7 +3,7 @@ title: Sistemas informáticos. Cisco Packet Tracer (II)
 description: Práctica de subnetting y configuración de DHCP relay en Cisco Packet Tracer con cinco redes conectadas a través de un router central.
 author: Inazio Claver
 date: 2015-03-03 12:00:00 +0800
-categories: [Sistemas informáticos]
+categories: [Sistemas]
 tags: [sistemas-informaticos, cisco, redes, dhcp, subnetting]
 pin: false
 math: false

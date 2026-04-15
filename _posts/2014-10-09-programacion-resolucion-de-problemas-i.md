@@ -2,7 +2,7 @@
 title: Programación. Resolución de problemas I
 description: 
 date: 2014-10-09 14:10:00 +0800
-categories: [programacion]
+categories: [Programación]
 tags: [programacion]
 pin: false
 math: false

@@ -3,7 +3,7 @@ title: Lenguaje de marcas. RSS
 description: Introducción a RSS (Really Simple Syndication), formato XML para distribuir contenido web actualizado, con sus versiones, estructura y elementos principales.
 author: Inazio Claver
 date: 2015-03-06 12:00:00 +0800
-categories: [Lenguaje de marcas]
+categories: [Lenguajes de marcas]
 tags: [lenguaje-de-marcas, rss, xml]
 pin: false
 math: false

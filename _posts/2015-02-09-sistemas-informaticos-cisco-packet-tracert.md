@@ -3,7 +3,7 @@ title: Sistemas informáticos. Cisco Packet Tracert
 description: Introducción al uso de Cisco Packet Tracer para hacer planeamientos de red con switches, hosts y routers.
 author: Inazio Claver
 date: 2015-02-09 12:00:00 +0800
-categories: [Sistemas informáticos]
+categories: [Sistemas]
 tags: [cisco, packet tracer, redes, router, switch]
 pin: false
 math: false

@@ -2,7 +2,7 @@
 title: Programación. Ficheros (I)
 description:
 date: 2014-11-16 00:00:00 +0800
-categories: [programacion]
+categories: [Programación]
 tags: [programacion, ficheros, ficheros secuenciales, ficheros de texto]
 pin: false
 math: false

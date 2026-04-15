@@ -2,7 +2,7 @@
 title: Programación. Diseño de la programación (II)
 description:
 date: 2014-10-17 20:55:00 +0800
-categories: [programacion]
+categories: [Programación]
 tags: [programacion, subprogramas, funciones, procedimientos, parametros, pseudocodigo]
 pin: false
 math: false

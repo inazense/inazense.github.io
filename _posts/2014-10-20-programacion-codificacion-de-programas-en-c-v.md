@@ -2,7 +2,7 @@
 title: Programación. Codificación de programas en C (V)
 description:
 date: 2014-10-20 18:23:00 +0800
-categories: [programacion]
+categories: [Programación]
 tags: [programacion, c, enum, tipos, math]
 pin: false
 math: false

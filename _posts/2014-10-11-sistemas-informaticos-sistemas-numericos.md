@@ -2,7 +2,7 @@
 title: Sistemas Informáticos. Sistemas Numéricos
 description:
 date: 2014-10-11 12:10:00 +0800
-categories: [Sistemas informáticos]
+categories: [Sistemas]
 tags: [sistemas-informaticos, sistemas-numericos, binario, complemento, coma-flotante, representacion-informacion]
 pin: false
 math: false

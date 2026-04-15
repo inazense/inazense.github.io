@@ -2,7 +2,7 @@
 title: Entornos de desarrollo. Proyectos
 description:
 date: 2014-11-05 00:00:00 +0800
-categories: [entornos de desarrollo]
+categories: [Entornos de desarrollo]
 tags: [entornos de desarrollo, codeblocks, c, proyectos, gcc]
 pin: false
 math: false

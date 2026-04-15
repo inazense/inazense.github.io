@@ -2,7 +2,7 @@
 title: Programación. Resolución de problemas (III)
 description:
 date: 2014-10-14 20:25:00 +0800
-categories: [programacion]
+categories: [Programación]
 tags: [programacion, c, tipos-datos, reales, pseudocodigo, algoritmos]
 pin: false
 math: false

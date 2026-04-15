@@ -2,7 +2,7 @@
 title: Entornos de desarrollo. Desarrollo de software (V)
 description:
 date: 2014-10-21 23:36:00 +0800
-categories: [entornos de desarrollo]
+categories: [Entornos de desarrollo]
 tags: [entornos de desarrollo, codeblocks, c, debugger, proyectos]
 pin: false
 math: false

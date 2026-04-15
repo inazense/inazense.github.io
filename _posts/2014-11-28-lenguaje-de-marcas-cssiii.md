@@ -3,7 +3,7 @@ title: Lenguaje de marcas. CSS(III)
 description: Creación de botones redondeados, efectos hover, transiciones CSS y estilos para tablas con ejemplos de código HTML y CSS.
 author: Inazio Claver
 date: 2014-11-28 13:42:00 +0800
-categories: [Lenguaje de marcas]
+categories: [Lenguajes de marcas]
 tags: [css, lenguaje-de-marcas]
 pin: false
 math: false

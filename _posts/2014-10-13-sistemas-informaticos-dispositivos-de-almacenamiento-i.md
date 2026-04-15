@@ -2,7 +2,7 @@
 title: Sistemas informáticos. Dispositivos de almacenamiento (I)
 description: Introducción a los dispositivos de almacenamiento, evolución histórica desde las tarjetas perforadas y cintas magnéticas hasta el disco duro, y el concepto de espectro.
 date: 2014-10-13 14:00:00 +0800
-categories: [Sistemas informáticos]
+categories: [Sistemas]
 tags: [sistemas-informaticos, almacenamiento, disco-duro, tarjetas-perforadas, cintas-magneticas]
 pin: false
 math: false

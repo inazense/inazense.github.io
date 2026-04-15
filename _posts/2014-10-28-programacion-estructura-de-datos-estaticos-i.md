@@ -2,7 +2,7 @@
 title: Programación. Estructura de datos estáticos (I)
 description:
 date: 2014-10-28 23:16:00 +0800
-categories: [programacion]
+categories: [Programación]
 tags: [programacion, c, vectores, arrays, datos estaticos, macros, printf]
 pin: false
 math: false

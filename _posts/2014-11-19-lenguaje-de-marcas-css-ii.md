@@ -3,7 +3,7 @@ title: Lenguaje de marcas. CSS (II)
 description: Atributo position en CSS (static, absolute, relative, fixed) y z-index para controlar la profundidad de los elementos en la página.
 author: Inazio Claver
 date: 2014-11-19 11:13:00 +0800
-categories: [Lenguaje de marcas]
+categories: [Lenguajes de marcas]
 tags: [css, lenguaje-de-marcas]
 pin: false
 math: false

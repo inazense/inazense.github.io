@@ -2,7 +2,7 @@
 title: Lenguaje de marcas. Etiquetas (I)
 description: Introducción a la etiqueta HTML <a> para la creación de hipervínculos, con sus atributos href, target y title, y ejemplos de sintaxis.
 date: 2014-10-11 12:20:00 +0800
-categories: [Lenguaje de marcas]
+categories: [Lenguajes de marcas]
 tags: [html, etiquetas, hipervinculos, lenguaje-marcas]
 pin: false
 math: false

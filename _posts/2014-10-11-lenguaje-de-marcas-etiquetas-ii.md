@@ -2,7 +2,7 @@
 title: Lenguaje de marcas. Etiquetas (II)
 description: Estructura básica de la etiqueta HTML <table> con sus secciones thead, tbody y tfoot, y las etiquetas tr, th y td.
 date: 2014-10-11 15:41:00 +0800
-categories: [Lenguaje de marcas]
+categories: [Lenguajes de marcas]
 tags: [html, etiquetas, tablas, lenguaje-marcas]
 pin: false
 math: false

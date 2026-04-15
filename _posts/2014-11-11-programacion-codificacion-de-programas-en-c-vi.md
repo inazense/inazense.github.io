@@ -2,7 +2,7 @@
 title: Programación. Codificación de programas en C (VI)
 description:
 date: 2014-11-11 23:25:00 +0800
-categories: [programacion]
+categories: [Programación]
 tags: [programacion, c, variables, visibilidad, variables globales, variables locales]
 pin: false
 math: false

@@ -2,7 +2,7 @@
 title: Programación. Estructuras de datos dinámicas en C (I)
 description:
 date: 2014-10-29 22:44:00 +0800
-categories: [programacion]
+categories: [Programación]
 tags: [programacion, c, vectores, arrays, cadenas]
 pin: false
 math: false

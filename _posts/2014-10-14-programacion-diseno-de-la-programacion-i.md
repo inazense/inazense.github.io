@@ -2,7 +2,7 @@
 title: Programación. Diseño de la programación (I)
 description:
 date: 2014-10-14 21:22:00 +0800
-categories: [programacion]
+categories: [Programación]
 tags: [programacion, c, subprogramas, funciones, procedimientos, parametros]
 pin: false
 math: false

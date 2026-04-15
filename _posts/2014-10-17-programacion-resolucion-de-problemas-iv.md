@@ -2,7 +2,7 @@
 title: Programación. Resolución de problemas (IV)
 description:
 date: 2014-10-17 17:18:00 +0800
-categories: [programacion]
+categories: [Programación]
 tags: [programacion, algoritmos, pseudocodigo, raiz cuadrada]
 pin: false
 math: false

@@ -2,7 +2,7 @@
 title: Estructuras de datos dinámicas en C (IV)
 description:
 date: 2014-11-04 19:13:00 +0800
-categories: [programacion]
+categories: [Programación]
 tags: [programacion, c, estructuras de datos, registros, vectores]
 pin: false
 math: false

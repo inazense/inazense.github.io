@@ -2,7 +2,7 @@
 title: Bases de datos. WorkBench
 description:
 date: 2014-10-14 21:39:00 +0800
-categories: [bases de datos]
+categories: [Bases de datos]
 tags: [bases de datos, workbench, mysql]
 pin: false
 math: false

@@ -2,7 +2,7 @@
 title: Programación. Codificación de Programas en C (II)
 description:
 date: 2014-10-10 14:10:00 +0800
-categories: [programacion]
+categories: [Programación]
 tags: [programacion, c, operadores, estructuras-control, funciones, entrada-salida]
 pin: false
 math: false

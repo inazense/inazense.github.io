@@ -2,7 +2,7 @@
 title: Bases de datos. Modelo relacional (V)
 description:
 date: 2014-10-14 21:26:00 +0800
-categories: [bases de datos]
+categories: [Bases de datos]
 tags: [bases de datos, modelo relacional, entidades, interrelaciones]
 pin: false
 math: false

@@ -2,7 +2,7 @@
 title: Estructuras de datos dinámicas en C (III)
 description:
 date: 2014-11-04 19:02:00 +0800
-categories: [programacion]
+categories: [Programación]
 tags: [programacion, c, estructuras de datos, registros, numeros complejos]
 pin: false
 math: false

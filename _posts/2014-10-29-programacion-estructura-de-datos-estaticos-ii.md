@@ -2,7 +2,7 @@
 title: Programación. Estructura de datos estáticos (II)
 description:
 date: 2014-10-29 22:39:00 +0800
-categories: [programacion]
+categories: [Programación]
 tags: [programacion, vectores, matrices, datos estaticos, pseudocodigo]
 pin: false
 math: false

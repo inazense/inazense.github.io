@@ -940,7 +940,7 @@
     "title": "Sistemas informáticos. Apuntes 3 evaluación. Segundo exámen",
     "url": "/posts/2015/05/27/sistemas-informaticos-apuntes-3-evaluacion-segundo-examen/",
     "date": "27 May 2015",
-    "categories": "Sistemas informáticos",
+    "categories": "Sistemas",
     "tags": "sistemas-informaticos, windows-server, active-directory, ubuntu-server, dhcp, dns, apache, lamp",
     "excerpt": "Apuntes del segundo examen de la tercera evaluación de sistemas informáticos sobre Windows Server 2008, Active Directory, DHCP, DNS, LAMP..."
   },
@@ -949,7 +949,7 @@
     "title": "Sistemas informáticos. Apuntes 3 evaluación. Primer exámen",
     "url": "/posts/2015/05/25/sistemas-informaticos-apuntes-3-evaluacion-primer-examen/",
     "date": "25 May 2015",
-    "categories": "Sistemas informáticos",
+    "categories": "Sistemas",
     "tags": "sistemas-informaticos, redes, tcp-ip, seguridad, vpn, iptables",
     "excerpt": "Apuntes del primer examen de la tercera evaluación de sistemas informáticos sobre redes, protocolos TCP/IP, dispositivos de interconexión y seguridad...."
   },
@@ -1111,7 +1111,7 @@
     "title": "Sistemas informáticos. Windows Server 2008. Primeras configuraciones",
     "url": "/posts/2015/04/08/sistemas-informaticos-windows-server-2008-primeras-configuraciones/",
     "date": "08 Apr 2015",
-    "categories": "Sistemas informáticos",
+    "categories": "Sistemas",
     "tags": "sistemas-informaticos, windows-server, red, configuracion, netbios",
     "excerpt": "Configuraciones básicas de red en Windows Server 2008 recién instalado, incluyendo zona horaria, IPv4 estática y nombre NetBIOS."
   },
@@ -1120,7 +1120,7 @@
     "title": "Sistemas informáticos. Windows Server 2008. Instalación",
     "url": "/posts/2015/04/08/sistemas-informaticos-windows-server-2008-instalacion/",
     "date": "08 Apr 2015",
-    "categories": "Sistemas informáticos",
+    "categories": "Sistemas",
     "tags": "sistemas-informaticos, windows-server, virtualizacion, instalacion",
     "excerpt": "Guía paso a paso para crear una máquina virtual con Windows Virtual PC e instalar Windows Server 2008 Enterprise."
   },
@@ -1282,7 +1282,7 @@
     "title": "Lenguaje de marcas. RSS",
     "url": "/posts/2015/03/06/lenguaje-de-marcas-rss/",
     "date": "06 Mar 2015",
-    "categories": "Lenguaje de marcas",
+    "categories": "Lenguajes de marcas",
     "tags": "lenguaje-de-marcas, rss, xml",
     "excerpt": "Introducción a RSS (Really Simple Syndication), formato XML para distribuir contenido web actualizado, con sus versiones, estructura y elementos principales...."
   },
@@ -1300,7 +1300,7 @@
     "title": "Sistemas informáticos. Cisco Packet Tracer (II)",
     "url": "/posts/2015/03/03/sistemas-informaticos-cisco-packet-tracer-ii/",
     "date": "03 Mar 2015",
-    "categories": "Sistemas informáticos",
+    "categories": "Sistemas",
     "tags": "sistemas-informaticos, cisco, redes, dhcp, subnetting",
     "excerpt": "Práctica de subnetting y configuración de DHCP relay en Cisco Packet Tracer con cinco redes conectadas a través de un..."
   },
@@ -1408,7 +1408,7 @@
     "title": "Sistemas informáticos. Cisco Packet Tracert",
     "url": "/posts/2015/02/09/sistemas-informaticos-cisco-packet-tracert/",
     "date": "09 Feb 2015",
-    "categories": "Sistemas informáticos",
+    "categories": "Sistemas",
     "tags": "cisco, packet tracer, redes, router, switch",
     "excerpt": "Introducción al uso de Cisco Packet Tracer para hacer planeamientos de red con switches, hosts y routers."
   },
@@ -1651,7 +1651,7 @@
     "title": "Lenguaje de marcas. CSS(III)",
     "url": "/posts/2014/11/28/lenguaje-de-marcas-cssiii/",
     "date": "28 Nov 2014",
-    "categories": "Lenguaje de marcas",
+    "categories": "Lenguajes de marcas",
     "tags": "css, lenguaje-de-marcas",
     "excerpt": "Creación de botones redondeados, efectos hover, transiciones CSS y estilos para tablas con ejemplos de código HTML y CSS."
   },
@@ -1660,7 +1660,7 @@
     "title": "Sistemas informáticos. Resumen temario para examen teórico",
     "url": "/posts/2014/11/26/sistemas-informaticos-resumen-temario/",
     "date": "26 Nov 2014",
-    "categories": "Sistemas informáticos",
+    "categories": "Sistemas",
     "tags": "sistemas-informaticos",
     "excerpt": "Resumen del temario teórico de sistemas informáticos. Arquitectura Von Neumann, disco duro, tipos de ordenadores, ciclo de vida de procesos,..."
   },
@@ -1687,7 +1687,7 @@
     "title": "Lenguaje de marcas. CSS (II)",
     "url": "/posts/2014/11/19/lenguaje-de-marcas-css-ii/",
     "date": "19 Nov 2014",
-    "categories": "Lenguaje de marcas",
+    "categories": "Lenguajes de marcas",
     "tags": "css, lenguaje-de-marcas",
     "excerpt": "Atributo position en CSS (static, absolute, relative, fixed) y z-index para controlar la profundidad de los elementos en la página...."
   },
@@ -1696,7 +1696,7 @@
     "title": "Programación. Ficheros (I)",
     "url": "/posts/2014/11/15/programacion-ficheros-i/",
     "date": "15 Nov 2014",
-    "categories": "programacion",
+    "categories": "Programación",
     "tags": "programacion, ficheros, ficheros secuenciales, ficheros de texto",
     "excerpt": "Uso de ficheros\n\n"
   },
@@ -1705,7 +1705,7 @@
     "title": "Programación. Estructura de datos estáticos (III)",
     "url": "/posts/2014/11/15/programacion-estructura-de-datos-estaticos-iii/",
     "date": "15 Nov 2014",
-    "categories": "programacion",
+    "categories": "Programación",
     "tags": "programacion, matrices, determinante, adjunta, inversa, sarrus",
     "excerpt": "Operaciones con matrices\n\n"
   },
@@ -1714,7 +1714,7 @@
     "title": "Entornos de desarrollo. Diagramas de flujo",
     "url": "/posts/2014/11/11/entornos-de-desarrollo-diagramas-de-flujo/",
     "date": "11 Nov 2014",
-    "categories": "entornos de desarrollo",
+    "categories": "Entornos de desarrollo",
     "tags": "entornos de desarrollo, diagramas de flujo, algoritmos",
     "excerpt": "Los diagramas de flujo son una representación gráfica de un algoritmo que permite visualizarlo con mayor claridad. Se construyen usando..."
   },
@@ -1723,7 +1723,7 @@
     "title": "Programación. Codificación de programas en C (VI)",
     "url": "/posts/2014/11/11/programacion-codificacion-de-programas-en-c-vi/",
     "date": "11 Nov 2014",
-    "categories": "programacion",
+    "categories": "Programación",
     "tags": "programacion, c, variables, visibilidad, variables globales, variables locales",
     "excerpt": "Visibilidad de variables\n\n"
   },
@@ -1732,7 +1732,7 @@
     "title": "Lenguaje de marcas. Menús desplegables",
     "url": "/posts/2014/11/09/lenguaje-de-marcas-menus-desplegables/",
     "date": "09 Nov 2014",
-    "categories": "lenguajes de marcas",
+    "categories": "Lenguajes de marcas",
     "tags": "html, css, menus desplegables, lenguaje de marcas",
     "excerpt": "Con CSS3 podemos crear menús desplegables sin necesidad de JavaScript ni jQuery. La idea es ocultar los submenús por defecto..."
   },
@@ -1741,7 +1741,7 @@
     "title": "Entornos de desarrollo. Proyectos",
     "url": "/posts/2014/11/04/entornos-de-desarrollo-proyectos/",
     "date": "04 Nov 2014",
-    "categories": "entornos de desarrollo",
+    "categories": "Entornos de desarrollo",
     "tags": "entornos de desarrollo, codeblocks, c, proyectos, gcc",
     "excerpt": "Estamos creando un proyecto en CodeBlocks, el juego de Conecta 4. Posteriormente subiré el código completo, pero ahora voy a..."
   },
@@ -1750,7 +1750,7 @@
     "title": "Estructuras de datos dinámicas en C (IV)",
     "url": "/posts/2014/11/04/estructuras-de-datos-dinamicas-en-c-iv/",
     "date": "04 Nov 2014",
-    "categories": "programacion",
+    "categories": "Programación",
     "tags": "programacion, c, estructuras de datos, registros, vectores",
     "excerpt": "Vectores con registros. Registros con vectores\n\n"
   },
@@ -1759,7 +1759,7 @@
     "title": "Estructuras de datos dinámicas en C (III)",
     "url": "/posts/2014/11/04/estructuras-de-datos-dinamicas-en-c-iii/",
     "date": "04 Nov 2014",
-    "categories": "programacion",
+    "categories": "Programación",
     "tags": "programacion, c, estructuras de datos, registros, numeros complejos",
     "excerpt": "Ejercicios con números complejos\n\n"
   },
@@ -1768,7 +1768,7 @@
     "title": "Bases de datos. Teoría de la normalización (I)",
     "url": "/posts/2014/11/02/bases-de-datos-teoria-de-la-normalizacion-i/",
     "date": "02 Nov 2014",
-    "categories": "bases de datos",
+    "categories": "Bases de datos",
     "tags": "bases de datos, normalizacion, 1fn",
     "excerpt": "La teoría de la normalización sirve para verificar si las tablas están correctamente diseñadas para soportar la información.\n\n"
   },
@@ -1777,7 +1777,7 @@
     "title": "Programación. Estructuras de datos dinámicas en C (II)",
     "url": "/posts/2014/10/30/programacion-estructuras-de-datos-dinamicas-en-c-ii/",
     "date": "30 Oct 2014",
-    "categories": "programacion",
+    "categories": "Programación",
     "tags": "programacion, c, cadenas, registros, structs, ctype",
     "excerpt": "Cadenas de caracteres en C\n\n"
   },
@@ -1786,7 +1786,7 @@
     "title": "Programación. Estructuras de datos dinámicas en C (I)",
     "url": "/posts/2014/10/29/programacion-estructuras-de-datos-dinamicas-en-c-i/",
     "date": "29 Oct 2014",
-    "categories": "programacion",
+    "categories": "Programación",
     "tags": "programacion, c, vectores, arrays, cadenas",
     "excerpt": "Vectores en C\n\n"
   },
@@ -1795,7 +1795,7 @@
     "title": "Programación. Estructura de datos estáticos (II)",
     "url": "/posts/2014/10/29/programacion-estructura-de-datos-estaticos-ii/",
     "date": "29 Oct 2014",
-    "categories": "programacion",
+    "categories": "Programación",
     "tags": "programacion, vectores, matrices, datos estaticos, pseudocodigo",
     "excerpt": "Ejercicios\n\n"
   },
@@ -1804,7 +1804,7 @@
     "title": "Programación. Estructura de datos estáticos (I)",
     "url": "/posts/2014/10/28/programacion-estructura-de-datos-estaticos-i/",
     "date": "28 Oct 2014",
-    "categories": "programacion",
+    "categories": "Programación",
     "tags": "programacion, c, vectores, arrays, datos estaticos, macros, printf",
     "excerpt": "Macros\n\n"
   },
@@ -1813,7 +1813,7 @@
     "title": "¡Huelga!",
     "url": "/posts/2014/10/23/huelga/",
     "date": "23 Oct 2014",
-    "categories": "varios",
+    "categories": "Varios",
     "tags": "huelga, educacion",
     "excerpt": "\n\n"
   },
@@ -1822,7 +1822,7 @@
     "title": "Entornos de desarrollo. Desarrollo de software (V)",
     "url": "/posts/2014/10/21/entornos-de-desarrollo-desarrollo-de-software-v/",
     "date": "21 Oct 2014",
-    "categories": "entornos de desarrollo",
+    "categories": "Entornos de desarrollo",
     "tags": "entornos de desarrollo, codeblocks, c, debugger, proyectos",
     "excerpt": "Proyectos en Code Blocks\n\n"
   },
@@ -1831,7 +1831,7 @@
     "title": "Programación. Codificación de programas en C (V)",
     "url": "/posts/2014/10/20/programacion-codificacion-de-programas-en-c-v/",
     "date": "20 Oct 2014",
-    "categories": "programacion",
+    "categories": "Programación",
     "tags": "programacion, c, enum, tipos, math",
     "excerpt": "Tipos escalares definidos por enumeración\n\n"
   },
@@ -1840,7 +1840,7 @@
     "title": "Programación. Resolución de problemas (V)",
     "url": "/posts/2014/10/20/programacion-resolucion-de-problemas-v/",
     "date": "20 Oct 2014",
-    "categories": "programacion",
+    "categories": "Programación",
     "tags": "programacion, algoritmos, invariante, bucle",
     "excerpt": "Evitando errores. Invariante del bucle\n\n"
   },
@@ -1849,7 +1849,7 @@
     "title": "Lenguaje de marcas. CSS (I)",
     "url": "/posts/2014/10/18/lenguaje-de-marcas-css-i/",
     "date": "18 Oct 2014",
-    "categories": "lenguaje de marcas",
+    "categories": "Lenguajes de marcas",
     "tags": "lenguaje de marcas, css, selectores, html, margin, padding",
     "excerpt": "Visibilidad de los elementos\n\n"
   },
@@ -1858,7 +1858,7 @@
     "title": "Programación. Codificación de programas en C (IV)",
     "url": "/posts/2014/10/17/programacion-codificacion-de-programas-en-c-iv/",
     "date": "17 Oct 2014",
-    "categories": "programacion",
+    "categories": "Programación",
     "tags": "programacion, c, funciones, parametros, punteros, subprogramas",
     "excerpt": "Subprogramas en C\n\n"
   },
@@ -1867,7 +1867,7 @@
     "title": "Programación. Diseño de la programación (II)",
     "url": "/posts/2014/10/17/programacion-diseno-de-la-programacion-ii/",
     "date": "17 Oct 2014",
-    "categories": "programacion",
+    "categories": "Programación",
     "tags": "programacion, subprogramas, funciones, procedimientos, parametros, pseudocodigo",
     "excerpt": "Algoritmo primoEntreDosNumeros\n\n"
   },
@@ -1876,7 +1876,7 @@
     "title": "Programación. Resolución de problemas (IV)",
     "url": "/posts/2014/10/17/programacion-resolucion-de-problemas-iv/",
     "date": "17 Oct 2014",
-    "categories": "programacion",
+    "categories": "Programación",
     "tags": "programacion, algoritmos, pseudocodigo, raiz cuadrada",
     "excerpt": "Planteamiento de resolución para raíces cuadradas.\n\n"
   },
@@ -1885,7 +1885,7 @@
     "title": "Lenguaje de marcas. Etiquetas (III)",
     "url": "/posts/2014/10/15/lenguaje-de-marcas-etiquetas-iii/",
     "date": "15 Oct 2014",
-    "categories": "lenguaje de marcas",
+    "categories": "Lenguajes de marcas",
     "tags": "lenguaje de marcas, html, html5, audio, video, etiquetas",
     "excerpt": "Etiqueta &lt;audio&gt; → HTML5\n\n"
   },
@@ -1894,7 +1894,7 @@
     "title": "Entornos de desarrollo. Desarrollo de software (IV)",
     "url": "/posts/2014/10/15/entornos-de-desarrollo-desarrollo-de-software-iv/",
     "date": "15 Oct 2014",
-    "categories": "entornos de desarrollo",
+    "categories": "Entornos de desarrollo",
     "tags": "entornos de desarrollo, codeblocks, c, compilacion, compilador, gcc",
     "excerpt": "Compilaciones\n\n"
   },
@@ -1903,7 +1903,7 @@
     "title": "Lenguaje de marcas. Estructuras",
     "url": "/posts/2014/10/14/lenguaje-de-marcas-estructuras/",
     "date": "14 Oct 2014",
-    "categories": "lenguaje de marcas",
+    "categories": "Lenguajes de marcas",
     "tags": "lenguaje de marcas, html, html5, estructura, css, javascript, php",
     "excerpt": "Estructura general HTML\n\n"
   },
@@ -1912,7 +1912,7 @@
     "title": "Bases de datos. WorkBench",
     "url": "/posts/2014/10/14/bases-de-datos-workbench/",
     "date": "14 Oct 2014",
-    "categories": "bases de datos",
+    "categories": "Bases de datos",
     "tags": "bases de datos, workbench, mysql",
     "excerpt": "¿Cómo usar MySQL WorkBench? Primeros pasos\n\n"
   },
@@ -1921,7 +1921,7 @@
     "title": "Bases de datos. Modelo relacional (V)",
     "url": "/posts/2014/10/14/bases-de-datos-modelo-relacional-v/",
     "date": "14 Oct 2014",
-    "categories": "bases de datos",
+    "categories": "Bases de datos",
     "tags": "bases de datos, modelo relacional, entidades, interrelaciones",
     "excerpt": "Dependencia en existencia\n\n"
   },
@@ -1930,7 +1930,7 @@
     "title": "Programación. Diseño de la programación (I)",
     "url": "/posts/2014/10/14/programacion-diseno-de-la-programacion-i/",
     "date": "14 Oct 2014",
-    "categories": "programacion",
+    "categories": "Programación",
     "tags": "programacion, c, subprogramas, funciones, procedimientos, parametros",
     "excerpt": "Diseño descendente\n\n"
   },
@@ -1939,7 +1939,7 @@
     "title": "Programación. Resolución de problemas (III)",
     "url": "/posts/2014/10/14/programacion-resolucion-de-problemas-iii/",
     "date": "14 Oct 2014",
-    "categories": "programacion",
+    "categories": "Programación",
     "tags": "programacion, c, tipos-datos, reales, pseudocodigo, algoritmos",
     "excerpt": "Tipo real\n\n"
   },
@@ -1957,7 +1957,7 @@
     "title": "Sistemas informáticos. Dispositivos de almacenamiento (I)",
     "url": "/posts/2014/10/13/sistemas-informaticos-dispositivos-de-almacenamiento-i/",
     "date": "13 Oct 2014",
-    "categories": "Sistemas informáticos",
+    "categories": "Sistemas",
     "tags": "sistemas-informaticos, almacenamiento, disco-duro, tarjetas-perforadas, cintas-magneticas",
     "excerpt": "Introducción a los dispositivos de almacenamiento, evolución histórica desde las tarjetas perforadas y cintas magnéticas hasta el disco duro, y..."
   },
@@ -1966,7 +1966,7 @@
     "title": "Programación. Resolución de problemas (II)",
     "url": "/posts/2014/10/13/programacion-resolucion-de-problemas-ii/",
     "date": "13 Oct 2014",
-    "categories": "programacion",
+    "categories": "Programación",
     "tags": "programacion, c, tipos-datos, reales, binario, coma-flotante, mantisa",
     "excerpt": "El tipo real en programación, representación binaria de decimales, coma fija, coma flotante (mantisa-exponente), operaciones y funciones de biblioteca para..."
   },
@@ -1975,7 +1975,7 @@
     "title": "Lenguaje de marcas. Etiquetas (II)",
     "url": "/posts/2014/10/11/lenguaje-de-marcas-etiquetas-ii/",
     "date": "11 Oct 2014",
-    "categories": "Lenguaje de marcas",
+    "categories": "Lenguajes de marcas",
     "tags": "html, etiquetas, tablas, lenguaje-marcas",
     "excerpt": "Estructura básica de la etiqueta HTML con sus secciones thead, tbody y tfoot, y las etiquetas tr, th y td...."
   },
@@ -2002,7 +2002,7 @@
     "title": "Programación. Codificación de Programas en C (III)",
     "url": "/posts/2014/10/11/programacion-codificacion-de-programas-en-c-iii/",
     "date": "11 Oct 2014",
-    "categories": "programacion",
+    "categories": "Programación",
     "tags": "programacion, c, printf, scanf, switch, for, do-while, caracteres, cadenas, linux",
     "excerpt": "Profundiza en printf y scanf, compilación en Linux, estructuras de control switch/for/do-while, tipos carácter y cadena, con ejemplos de algoritmos..."
   },
@@ -2011,7 +2011,7 @@
     "title": "Lenguaje de marcas. Etiquetas (I)",
     "url": "/posts/2014/10/11/lenguaje-de-marcas-etiquetas-i/",
     "date": "11 Oct 2014",
-    "categories": "Lenguaje de marcas",
+    "categories": "Lenguajes de marcas",
     "tags": "html, etiquetas, hipervinculos, lenguaje-marcas",
     "excerpt": "Introducción a la etiqueta HTML para la creación de hipervínculos, con sus atributos href, target y title, y ejemplos de..."
   },
@@ -2020,7 +2020,7 @@
     "title": "Sistemas Informáticos. Sistemas Numéricos",
     "url": "/posts/2014/10/11/sistemas-informaticos-sistemas-numericos/",
     "date": "11 Oct 2014",
-    "categories": "Sistemas informáticos",
+    "categories": "Sistemas",
     "tags": "sistemas-informaticos, sistemas-numericos, binario, complemento, coma-flotante, representacion-informacion",
     "excerpt": "Complementación de binarios\n\n"
   },
@@ -2038,7 +2038,7 @@
     "title": "Programación. Codificación de Programas en C (II)",
     "url": "/posts/2014/10/10/programacion-codificacion-de-programas-en-c-ii/",
     "date": "10 Oct 2014",
-    "categories": "programacion",
+    "categories": "Programación",
     "tags": "programacion, c, operadores, estructuras-control, funciones, entrada-salida",
     "excerpt": "Operadores\n\n"
   },
@@ -2047,7 +2047,7 @@
     "title": "Programación. Codificación de Programas en C (I)",
     "url": "/posts/2014/10/09/programacion-codificacion-de-programas-en-c-i/",
     "date": "09 Oct 2014",
-    "categories": "programacion",
+    "categories": "Programación",
     "tags": "programacion, c, tipos-de-datos, variables, conversion-tipos",
     "excerpt": "Advertencias\n\n"
   },
@@ -2065,7 +2065,7 @@
     "title": "Programación. Resolución de problemas I",
     "url": "/posts/2014/10/09/programacion-resolucion-de-problemas-i/",
     "date": "09 Oct 2014",
-    "categories": "programacion",
+    "categories": "Programación",
     "tags": "programacion",
     "excerpt": "Elementos de un programa\n\n"
   },
@@ -2083,7 +2083,7 @@
     "title": "Programación. Introducción",
     "url": "/posts/2014/10/08/programacion-introduccion/",
     "date": "08 Oct 2014",
-    "categories": "programacion",
+    "categories": "Programación",
     "tags": "programacion, introduccion, algoritmos, compilacion, interpretacion, sistemas-operativos, paradigmas, fundamentos",
     "excerpt": "Guía introductoria a la programación para principiantes: conceptos clave, algoritmos, compilación vs interpretación, ciclo de vida del software y paradigmas..."
   },
@@ -2128,7 +2128,7 @@
     "title": "Sistemas informáticos. Explotación de sistemas informáticos I",
     "url": "/posts/2014/10/07/sistemas-informaticos-explotacion-de-sistemas-informaticos-i/",
     "date": "07 Oct 2014",
-    "categories": "Sistemas informáticos",
+    "categories": "Sistemas",
     "tags": "arquitectura, procesador, memoria, buses, sistemas-informaticos, hardware",
     "excerpt": "Aprende arquitectura de computadoras: procesador, memoria, buses y periféricos. Guía completa sobre UC, ALU, registros, canales de comunicación, tipos de..."
   },

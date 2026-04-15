@@ -2,7 +2,7 @@
 title: Programación. Codificación de programas en C (IV)
 description:
 date: 2014-10-17 21:34:00 +0800
-categories: [programacion]
+categories: [Programación]
 tags: [programacion, c, funciones, parametros, punteros, subprogramas]
 pin: false
 math: false

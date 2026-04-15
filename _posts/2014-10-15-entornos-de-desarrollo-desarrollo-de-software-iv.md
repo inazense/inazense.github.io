@@ -2,7 +2,7 @@
 title: Entornos de desarrollo. Desarrollo de software (IV)
 description:
 date: 2014-10-15 23:27:00 +0800
-categories: [entornos de desarrollo]
+categories: [Entornos de desarrollo]
 tags: [entornos de desarrollo, codeblocks, c, compilacion, compilador, gcc]
 pin: false
 math: false

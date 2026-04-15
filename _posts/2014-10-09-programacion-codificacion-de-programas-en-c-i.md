@@ -2,7 +2,7 @@
 title: Programación. Codificación de Programas en C (I)
 description:
 date: 2014-10-09 16:10:00 +0800
-categories: [programacion]
+categories: [Programación]
 tags: [programacion, c, tipos-de-datos, variables, conversion-tipos]
 pin: false
 math: false

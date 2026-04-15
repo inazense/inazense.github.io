@@ -2,7 +2,7 @@
 title: Lenguaje de marcas. CSS (I)
 description:
 date: 2014-10-18 22:37:00 +0800
-categories: [lenguaje de marcas]
+categories: [Lenguajes de marcas]
 tags: [lenguaje de marcas, css, selectores, html, margin, padding]
 pin: false
 math: false

@@ -2,7 +2,7 @@
 title: Lenguaje de marcas. Estructuras
 description:
 date: 2014-10-14 21:51:00 +0800
-categories: [lenguaje de marcas]
+categories: [Lenguajes de marcas]
 tags: [lenguaje de marcas, html, html5, estructura, css, javascript, php]
 pin: false
 math: false

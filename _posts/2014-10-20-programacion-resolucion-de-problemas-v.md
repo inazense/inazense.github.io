@@ -2,7 +2,7 @@
 title: Programación. Resolución de problemas (V)
 description:
 date: 2014-10-20 18:05:00 +0800
-categories: [programacion]
+categories: [Programación]
 tags: [programacion, algoritmos, invariante, bucle]
 pin: false
 math: false

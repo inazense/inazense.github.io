@@ -9,6 +9,7 @@
   top: 0;
   height: 100vh;
   overflow-y: auto;
+  overflow-x: hidden;
   flex-shrink: 0;
   transition: background-color 0.25s ease;
   scrollbar-width: thin;
@@ -139,6 +140,16 @@
   color: var(--text);
   border-radius: $radius;
   transition: background 0.15s;
+  min-width: 0;
+
+  span:first-child {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 0.5rem;
+  }
 
   &:hover { background: rgba(var(--accent-rgb), 0.06); }
 }

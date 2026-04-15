@@ -2,7 +2,7 @@
 title: Lenguaje de marcas. Etiquetas (III)
 description:
 date: 2014-10-15 23:41:00 +0800
-categories: [lenguaje de marcas]
+categories: [Lenguajes de marcas]
 tags: [lenguaje de marcas, html, html5, audio, video, etiquetas]
 pin: false
 math: false
