@@ -7,7 +7,9 @@ body {
   background-color: var(--bg);
   color: var(--text);
   font-family: $font-stack;
-  line-height: 1.7;
+  font-size: 1rem;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
@@ -31,16 +33,27 @@ body {
 
 // Tipografía
 h1, h2, h3, h4, h5, h6 {
+  font-family: $font-heading;
   color: var(--text);
   line-height: 1.3;
-  margin-top: 1.8em;
-  margin-bottom: 0.5em;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 0.65em;
 }
+
+h1 { font-size: 1.85rem; margin-top: 0; }
+h2 { font-size: 1.45rem; margin-top: 2.5rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--border); }
+h3 { font-size: 1.2rem; }
+h4 { font-size: 1.05rem; }
 
 a {
   color: var(--accent);
   text-decoration: none;
-  &:hover { text-decoration: underline; }
+  transition: color 0.2s ease;
+  &:hover {
+    color: var(--link-hover);
+    text-decoration: none;
+  }
 }
 
 p { margin: 0 0 1.2rem; }
@@ -56,25 +69,29 @@ code {
   font-family: $font-mono;
   font-size: 0.875em;
   background: var(--code-bg);
-  padding: 0.15em 0.4em;
-  border-radius: 3px;
-  color: var(--accent);
+  padding: 0.15em 0.45em;
+  border-radius: $radius;
+  color: var(--text);
+  border: 1px solid var(--border);
 }
 
 // Bloques de código
 pre {
   background: var(--code-bg);
   border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 1.2rem;
+  border-radius: $radius-lg;
+  padding: 1.25rem 1.5rem;
   overflow-x: auto;
   margin: 1.5rem 0;
+  box-shadow: var(--card-shadow);
 
   code {
     background: none;
     padding: 0;
     color: var(--text);
-    font-size: 0.85em;
+    font-size: 0.875em;
+    border: none;
+    border-radius: 0;
   }
 }
 
@@ -82,18 +99,22 @@ pre {
 img {
   max-width: 100%;
   height: auto;
-  border-radius: 4px;
+  border-radius: $radius;
   display: block;
   margin: 1.5rem auto;
 }
 
 // Citas
 blockquote {
-  border-left: 3px solid var(--accent);
-  margin: 1.5rem 0;
-  padding: 0.5rem 1.5rem;
+  border-left: 4px solid var(--accent);
+  border-radius: 0 $radius $radius 0;
+  margin: 1.75rem 0;
+  padding: 0.75rem 1.5rem;
+  background: rgba(var(--accent-rgb), 0.05);
   color: var(--secondary);
   font-style: italic;
+
+  p:last-child { margin-bottom: 0; }
 }
 
 // Tablas
@@ -102,18 +123,33 @@ table {
   border-collapse: collapse;
   margin: 1.5rem 0;
   font-size: 0.9em;
-}
-th, td {
+  border-radius: $radius;
+  overflow: hidden;
   border: 1px solid var(--border);
-  padding: 0.6rem 1rem;
+}
+
+th, td {
+  border-bottom: 1px solid var(--border);
+  padding: 0.55rem 1rem;
   text-align: left;
 }
-th { background: var(--surface); color: var(--accent); }
-tr:nth-child(even) { background: var(--surface); }
+
+th {
+  background: var(--surface);
+  color: var(--accent);
+  font-family: $font-heading;
+  font-weight: 700;
+  font-size: 0.85em;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+tr:last-child td { border-bottom: none; }
+tr:nth-child(even) { background: rgba(var(--accent-rgb), 0.03); }
 
 // Listas
 ul, ol {
-  padding-left: 1.5rem;
+  padding-left: 1.75rem;
   margin: 0.75rem 0 1.2rem;
-  li { margin-bottom: 0.3rem; }
+  li { margin-bottom: 0.35rem; }
 }

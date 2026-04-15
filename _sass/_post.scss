@@ -3,13 +3,16 @@
 .post-header { margin-bottom: 2.5rem; }
 
 .post-title {
-  font-size: 1.85rem;
+  font-family: $font-heading;
+  font-size: 2rem;
+  font-weight: 700;
   margin: 0 0 0.75rem;
   line-height: 1.25;
+  color: var(--text);
 }
 
 .post-meta {
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   color: var(--secondary);
   display: flex;
   align-items: center;
@@ -18,29 +21,36 @@
   margin-bottom: 0.75rem;
 
   time { color: var(--secondary); }
-  a { color: var(--accent); }
+  a { color: var(--accent); &:hover { color: var(--link-hover); } }
 }
 
 .post-description {
   font-size: 1rem;
   color: var(--secondary);
-  border-left: 3px solid var(--accent);
-  padding-left: 1rem;
+  background: rgba(var(--accent-rgb), 0.06);
+  border-left: 4px solid var(--accent);
+  border-radius: 0 $radius $radius 0;
+  padding: 0.75rem 1.25rem;
   margin: 1rem 0 0;
   font-style: italic;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 .post-content {
-  h2 { font-size: 1.35rem; }
-  h3 { font-size: 1.12rem; }
-  h4 { font-size: 1rem; }
+  h2 {
+    font-size: 1.45rem;
+    margin-top: 2.5rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border);
+  }
+  h3 { font-size: 1.2rem; }
+  h4 { font-size: 1.05rem; }
 
   // Imágenes centradas con caption opcional
   img + em {
     display: block;
     text-align: center;
-    font-size: 0.82rem;
+    font-size: 0.84rem;
     color: var(--secondary);
     margin-top: -1rem;
     margin-bottom: 1.5rem;
@@ -61,20 +71,28 @@
 .post-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0.45rem;
 }
 
 .tag {
-  font-size: 0.73rem;
+  font-size: 0.78rem;
   color: var(--secondary);
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 3px;
-  padding: 0.15rem 0.5rem;
+  border-radius: 0.8rem;
+  padding: 0.2rem 0.65rem;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+
+  &:hover {
+    color: var(--accent);
+    border-color: rgba(var(--accent-rgb), 0.5);
+    background: rgba(var(--accent-rgb), 0.08);
+    text-decoration: none;
+  }
 }
 
 .back-link {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: var(--secondary);
   transition: color 0.2s;
 
