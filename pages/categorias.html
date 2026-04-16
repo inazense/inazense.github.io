@@ -3,23 +3,28 @@ layout: page
 title: Categorías
 permalink: /categorias/
 ---
-<div class="cat-index">
+<div class="cat-accordion">
   {% assign sorted_cats = site.categories | sort %}
   {% for cat in sorted_cats %}
-  <section class="cat-section" id="{{ cat[0] | slugify }}">
-    <h2 class="cat-heading">
-      {{ cat[0] }}
-      <span class="cat-count">{{ cat[1].size }}</span>
-    </h2>
-    <ul class="cat-posts">
+  <details class="cat-item" id="{{ cat[0] | slugify }}">
+    <summary class="cat-summary">
+      <span class="cat-summary-name">{{ cat[0] }}</span>
+      <span class="cat-summary-meta">
+        <span class="cat-summary-count">{{ cat[1].size }} entradas</span>
+        <svg class="cat-chevron" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </span>
+    </summary>
+    <ul class="cat-post-list">
       {% assign cat_posts = cat[1] | sort: "date" | reverse %}
       {% for post in cat_posts %}
-      <li class="cat-post-item">
-        <a href="{{ post.url | relative_url }}" class="archivo-title">{{ post.title }}</a>
-        <span class="archivo-date">{{ post.date | date: "%d %b %Y" }}</span>
+      <li class="cat-post-entry">
+        <a href="{{ post.url | relative_url }}" class="cat-post-link">{{ post.title }}</a>
+        <span class="cat-post-date">{{ post.date | date: "%d %b %Y" }}</span>
       </li>
       {% endfor %}
     </ul>
-  </section>
+  </details>
   {% endfor %}
 </div>
