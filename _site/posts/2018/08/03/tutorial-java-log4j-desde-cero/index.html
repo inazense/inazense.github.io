@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tutorial Java - Log4j desde cero | Programando a Pasitos</title>
-<meta name="description" content="Aprende a ordenar HashMap en Java por clave o valor con streams y lambdas. Tutorial completo con código paso a paso sobre sorting de Map, entrySet, comparingInt y LinkedHashMap con ejemplos prácticos.">
+<meta name="description" content="Aprende a integrar Log4j en proyectos Java con Maven. Guía paso a paso sobre configuración con ficheros properties, tipos de appenders, niveles de log y ejemplos de uso reales.">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -25,8 +25,8 @@
 <meta property="og:title" content="Tutorial Java - Log4j desde cero" />
 <meta name="author" content="Inazio Claver" />
 <meta property="og:locale" content="es" />
-<meta name="description" content="Aprende a ordenar HashMap en Java por clave o valor con streams y lambdas. Tutorial completo con código paso a paso sobre sorting de Map, entrySet, comparingInt y LinkedHashMap con ejemplos prácticos." />
-<meta property="og:description" content="Aprende a ordenar HashMap en Java por clave o valor con streams y lambdas. Tutorial completo con código paso a paso sobre sorting de Map, entrySet, comparingInt y LinkedHashMap con ejemplos prácticos." />
+<meta name="description" content="Aprende a integrar Log4j en proyectos Java con Maven. Guía paso a paso sobre configuración con ficheros properties, tipos de appenders, niveles de log y ejemplos de uso reales." />
+<meta property="og:description" content="Aprende a integrar Log4j en proyectos Java con Maven. Guía paso a paso sobre configuración con ficheros properties, tipos de appenders, niveles de log y ejemplos de uso reales." />
 <link rel="canonical" href="http://localhost:4000/posts/2018/08/03/tutorial-java-log4j-desde-cero/" />
 <meta property="og:url" content="http://localhost:4000/posts/2018/08/03/tutorial-java-log4j-desde-cero/" />
 <meta property="og:site_name" content="Programando a Pasitos" />
@@ -35,7 +35,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Tutorial Java - Log4j desde cero" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2018-08-03T06:10:00+02:00","datePublished":"2018-08-03T06:10:00+02:00","description":"Aprende a ordenar HashMap en Java por clave o valor con streams y lambdas. Tutorial completo con código paso a paso sobre sorting de Map, entrySet, comparingInt y LinkedHashMap con ejemplos prácticos.","headline":"Tutorial Java - Log4j desde cero","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2018/08/03/tutorial-java-log4j-desde-cero/"},"url":"http://localhost:4000/posts/2018/08/03/tutorial-java-log4j-desde-cero/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2018-08-03T06:10:00+02:00","datePublished":"2018-08-03T06:10:00+02:00","description":"Aprende a integrar Log4j en proyectos Java con Maven. Guía paso a paso sobre configuración con ficheros properties, tipos de appenders, niveles de log y ejemplos de uso reales.","headline":"Tutorial Java - Log4j desde cero","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2018/08/03/tutorial-java-log4j-desde-cero/"},"url":"http://localhost:4000/posts/2018/08/03/tutorial-java-log4j-desde-cero/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -81,62 +81,63 @@
       <a href="/" class="nav-item">Blog</a>
 
       <button class="nav-item nav-toggle" id="categories-toggle" aria-expanded="false">Categorías</button>
-      <div class="nav-dropdown" id="categories-dropdown" hidden><div class="nav-dropdown-category">
+      <div class="nav-dropdown" id="categories-dropdown" hidden><a href="/categorias/#acceso-a-datos" class="nav-dropdown-category">
           <span>Acceso a datos</span>
           <span class="dropdown-count">7</span>
-        </div><div class="nav-dropdown-category">
+        </a><a href="/categorias/#android" class="nav-dropdown-category">
           <span>Android</span>
           <span class="dropdown-count">19</span>
-        </div><div class="nav-dropdown-category">
+        </a><a href="/categorias/#bases-de-datos" class="nav-dropdown-category">
           <span>Bases de datos</span>
           <span class="dropdown-count">43</span>
-        </div><div class="nav-dropdown-category">
+        </a><a href="/categorias/#cms" class="nav-dropdown-category">
           <span>CMS</span>
           <span class="dropdown-count">1</span>
-        </div><div class="nav-dropdown-category">
+        </a><a href="/categorias/#entornos-de-desarrollo" class="nav-dropdown-category">
           <span>Entornos de desarrollo</span>
           <span class="dropdown-count">23</span>
-        </div><div class="nav-dropdown-category">
+        </a><a href="/categorias/#git" class="nav-dropdown-category">
           <span>Git</span>
           <span class="dropdown-count">1</span>
-        </div><div class="nav-dropdown-category">
+        </a><a href="/categorias/#java" class="nav-dropdown-category">
           <span>Java</span>
           <span class="dropdown-count">59</span>
-        </div><div class="nav-dropdown-category">
+        </a><a href="/categorias/#javascript" class="nav-dropdown-category">
           <span>JavaScript</span>
           <span class="dropdown-count">1</span>
-        </div><div class="nav-dropdown-category">
+        </a><a href="/categorias/#lenguajes-de-marcas" class="nav-dropdown-category">
           <span>Lenguajes de marcas</span>
           <span class="dropdown-count">17</span>
-        </div><div class="nav-dropdown-category">
+        </a><a href="/categorias/#libros" class="nav-dropdown-category">
           <span>Libros</span>
           <span class="dropdown-count">1</span>
-        </div><div class="nav-dropdown-category">
+        </a><a href="/categorias/#linux" class="nav-dropdown-category">
           <span>Linux</span>
           <span class="dropdown-count">2</span>
-        </div><div class="nav-dropdown-category">
+        </a><a href="/categorias/#php" class="nav-dropdown-category">
           <span>PHP</span>
           <span class="dropdown-count">2</span>
-        </div><div class="nav-dropdown-category">
+        </a><a href="/categorias/#programación" class="nav-dropdown-category">
           <span>Programación</span>
           <span class="dropdown-count">47</span>
-        </div><div class="nav-dropdown-category">
+        </a><a href="/categorias/#programación-de-servicios-y-procesos" class="nav-dropdown-category">
           <span>Programación de servicios y procesos</span>
           <span class="dropdown-count">4</span>
-        </div><div class="nav-dropdown-category">
+        </a><a href="/categorias/#python" class="nav-dropdown-category">
           <span>Python</span>
           <span class="dropdown-count">10</span>
-        </div><div class="nav-dropdown-category">
+        </a><a href="/categorias/#sistemas" class="nav-dropdown-category">
           <span>Sistemas</span>
           <span class="dropdown-count">14</span>
-        </div><div class="nav-dropdown-category">
+        </a><a href="/categorias/#varios" class="nav-dropdown-category">
           <span>Varios</span>
           <span class="dropdown-count">4</span>
-        </div><div class="nav-dropdown-category">
+        </a><a href="/categorias/#web" class="nav-dropdown-category">
           <span>Web</span>
           <span class="dropdown-count">4</span>
-        </div></div>
+        </a></div>
 
+      <a href="/categorias/" class="nav-item">Todas las categorías</a>
       <a href="/archivo/" class="nav-item">Archivo</a>
 
       <a href="/anecdotario/" class="nav-item">Anecdotario</a>
@@ -172,7 +173,10 @@
 
     <div class="divider"></div>
     <main class="content" id="main-content">
-      <article class="post-full">
+      
+
+
+<article class="post-full">
   <header class="post-header">
     <h1 class="post-title">Tutorial Java - Log4j desde cero</h1>
     <div class="post-meta">
@@ -180,12 +184,14 @@
       
         <span class="meta-sep">&mdash;</span>
         
-          <a href="/categories/#java" class="post-category">Java</a>
+          <a href="/categorias/#java" class="post-category">Java</a>
         
       
+      <span class="meta-sep">&mdash;</span>
+      <span class="read-time">9 min de lectura</span>
     </div>
     
-      <p class="post-description">Aprende a ordenar HashMap en Java por clave o valor con streams y lambdas. Tutorial completo con código paso a paso sobre sorting de Map, entrySet, comparingInt y LinkedHashMap con ejemplos prácticos.</p>
+      <p class="post-description">Aprende a integrar Log4j en proyectos Java con Maven. Guía paso a paso sobre configuración con ficheros properties, tipos de appenders, niveles de log y ejemplos de uso reales.</p>
     
   </header>
 
@@ -434,6 +440,46 @@
     
     <a href="/" class="back-link">&larr; Volver al blog</a>
   </footer>
+
+  
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+
+<section class="related-posts">
+  <h2 class="related-title">También te puede interesar</h2>
+  <ul class="related-list">
+    
+    <li class="related-item">
+      <a href="/posts/2020/12/03/java-ordenar-un-hashmap-por-key-o-value/" class="related-link">Java. Ordenar un HashMap por key o value</a>
+      <span class="related-date">03 Dec 2020</span>
+    </li>
+    
+    <li class="related-item">
+      <a href="/posts/2017/12/12/leer-ficheros-properties-en-java/" class="related-link">Leer ficheros properties en Java</a>
+      <span class="related-date">12 Dec 2017</span>
+    </li>
+    
+    <li class="related-item">
+      <a href="/posts/2017/11/27/tutorial-maven-en-eclipse-ii-generar-un-jar/" class="related-link">Tutorial Maven en Eclipse (II). Generar un JAR</a>
+      <span class="related-date">27 Nov 2017</span>
+    </li>
+    
+  </ul>
+</section>
+
 
   
 <section class="post-comments" id="comments">

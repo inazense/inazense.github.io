@@ -1,0 +1,23 @@
+{% assign main_cat = page.categories | first %}
+{% assign cat_posts = site.posts | where_exp: "p", "p.categories contains main_cat" %}
+{% assign related_posts = "" | split: "" %}
+{% for p in cat_posts %}
+  {% if p.url != page.url %}
+    {% assign related_posts = related_posts | push: p %}
+  {% endif %}
+  {% if related_posts.size >= 3 %}{% break %}{% endif %}
+{% endfor %}
+
+{% if related_posts.size > 0 %}
+<section class="related-posts">
+  <h2 class="related-title">También te puede interesar</h2>
+  <ul class="related-list">
+    {% for p in related_posts %}
+    <li class="related-item">
+      <a href="{{ p.url | relative_url }}" class="related-link">{{ p.title }}</a>
+      <span class="related-date">{{ p.date | date: "%d %b %Y" }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}

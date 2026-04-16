@@ -1,6 +1,6 @@
 ---
 title: Tutorial Java - Log4j desde cero
-description: Aprende a ordenar HashMap en Java por clave o valor con streams y lambdas. Tutorial completo con código paso a paso sobre sorting de Map, entrySet, comparingInt y LinkedHashMap con ejemplos prácticos.
+description: Aprende a integrar Log4j en proyectos Java con Maven. Guía paso a paso sobre configuración con ficheros properties, tipos de appenders, niveles de log y ejemplos de uso reales.
 author: Inazio Claver
 date: 2018-08-03 12:10:00 +0800
 categories: [Java]

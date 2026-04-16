@@ -1,12 +1,57 @@
 ---
 layout: default
 ---
-<div class="post-list">
-  {% for post in paginator.posts %}
-    {% include post-card.html post=post %}
-    {% unless forloop.last %}<hr class="post-divider">{% endunless %}
-  {% endfor %}
-</div>
+
+{% if paginator.page == 1 %}
+
+<section class="home-hero">
+  <h1 class="hero-title">Tutoriales de programación sin rodeos</h1>
+  <p class="hero-subtitle">Java, Python, JavaScript y automatización — explicados paso a paso, con código real.</p>
+  <div class="hero-ctas">
+    <a href="{{ '/categorias/' | relative_url }}" class="hero-btn hero-btn--primary">Explorar categorías</a>
+    <a href="#ultimas" class="hero-btn hero-btn--secondary">Últimas entradas</a>
+  </div>
+</section>
+
+{% assign featured_posts = site.posts | where: "featured", true %}
+{% if featured_posts.size > 0 %}
+<section class="home-featured">
+  <h2 class="section-title">Imprescindibles</h2>
+  <div class="featured-grid">
+    {% for post in featured_posts limit: 3 %}
+    <a href="{{ post.url | relative_url }}" class="featured-card">
+      <span class="featured-cat">{{ post.categories | first }}</span>
+      <h3 class="featured-title">{{ post.title }}</h3>
+      <p class="featured-excerpt">{{ post.description | default: post.excerpt | strip_html | truncatewords: 18 }}</p>
+      <span class="featured-read">Leer &rarr;</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+<section class="home-categories">
+  <h2 class="section-title">Explorar por tecnología</h2>
+  <div class="category-chips">
+    {% assign sorted_cats = site.categories | sort %}
+    {% for cat in sorted_cats %}
+    <a href="{{ '/categorias/' | relative_url }}#{{ cat[0] | slugify }}" class="category-chip">
+      {{ cat[0] }}<span class="chip-count">{{ cat[1].size }}</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+{% endif %}
+
+<section class="home-posts" id="ultimas">
+  {% if paginator.page == 1 %}<h2 class="section-title">Últimas entradas</h2>{% endif %}
+  <div class="post-list">
+    {% for post in paginator.posts %}
+      {% include post-card.html post=post %}
+    {% endfor %}
+  </div>
+</section>
 
 {% if paginator.total_pages > 1 %}
 <nav class="pagination" aria-label="Paginación">
@@ -24,4 +69,15 @@ layout: default
     <span class="btn-page btn-page--disabled">Más antiguas &rarr;</span>
   {% endif %}
 </nav>
+{% endif %}
+
+{% if paginator.page == 1 %}
+<section class="home-author">
+  <img src="{{ '/img/profile.png' | relative_url }}" alt="{{ site.author.name }}" class="author-photo">
+  <div class="author-info">
+    <h3 class="author-name">{{ site.author.name }}</h3>
+    <p class="author-bio">Desarrollador backend apasionado por Java, Spring y Python. En este blog comparto tutoriales prácticos sobre programación para que avances paso a paso.</p>
+    <a href="{{ site.author.url }}" class="author-github" target="_blank" rel="noopener">Ver en GitHub &rarr;</a>
+  </div>
+</section>
 {% endif %}

@@ -6,6 +6,7 @@ date: 2019-11-04 11:33:00 +0800
 categories: [Python]
 tags: [python, tqdm, barra-progreso, terminal, cli, progress-bar]
 pin: false
+featured: true
 math: false
 mermaid: false
 #image:

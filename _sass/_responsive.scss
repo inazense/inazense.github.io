@@ -58,6 +58,10 @@
     padding: 1.5rem;
   }
 
+  .featured-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   // Sidebar como panel deslizante
   .sidebar {
     position: fixed;
@@ -126,6 +130,18 @@
 
   .post-title { font-size: 1.55rem; }
   .post-card-title { font-size: 1.15rem; }
+
+  .hero-title { font-size: 1.45rem; }
+  .hero-subtitle { font-size: 0.95rem; }
+
+  .featured-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-author {
+    flex-direction: column;
+    text-align: center;
+  }
 
   .pagination {
     flex-direction: column;

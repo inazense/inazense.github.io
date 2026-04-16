@@ -102,6 +102,56 @@
   }
 }
 
+// ── Artículos relacionados
+.related-posts {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.related-title {
+  font-family: $font-heading;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 1rem;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.related-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.related-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+  gap: 1rem;
+
+  &:last-child { border-bottom: none; }
+}
+
+.related-link {
+  font-size: 0.9rem;
+  color: var(--text);
+  &:hover { color: var(--accent); text-decoration: none; }
+}
+
+.related-date {
+  font-size: 0.78rem;
+  color: var(--secondary);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
 .post-comments {
   margin-top: 3rem;
   padding-top: 1.5rem;

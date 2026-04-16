@@ -1,0 +1,25 @@
+---
+layout: page
+title: Categorías
+permalink: /categorias/
+---
+<div class="cat-index">
+  {% assign sorted_cats = site.categories | sort %}
+  {% for cat in sorted_cats %}
+  <section class="cat-section" id="{{ cat[0] | slugify }}">
+    <h2 class="cat-heading">
+      {{ cat[0] }}
+      <span class="cat-count">{{ cat[1].size }}</span>
+    </h2>
+    <ul class="cat-posts">
+      {% assign cat_posts = cat[1] | sort: "date" | reverse %}
+      {% for post in cat_posts %}
+      <li class="cat-post-item">
+        <a href="{{ post.url | relative_url }}" class="archivo-title">{{ post.title }}</a>
+        <span class="archivo-date">{{ post.date | date: "%d %b %Y" }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endfor %}
+</div>
