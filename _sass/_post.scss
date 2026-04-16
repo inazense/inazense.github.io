@@ -101,3 +101,19 @@
     text-decoration: none;
   }
 }
+
+.post-comments {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.comments-title {
+  font-family: $font-heading;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 1.5rem;
+  border-bottom: none;
+  padding-bottom: 0;
+}

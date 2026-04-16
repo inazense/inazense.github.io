@@ -2,9 +2,19 @@
   var STORAGE_KEY = 'pap-theme';
   var DEFAULT_THEME = 'dark';
 
+  function sendGiscusTheme(name) {
+    var frame = document.querySelector('iframe.giscus-frame');
+    if (!frame) return;
+    frame.contentWindow.postMessage(
+      { giscus: { setConfig: { theme: name === 'light' ? 'light' : 'dark_dimmed' } } },
+      'https://giscus.app'
+    );
+  }
+
   function applyTheme(name) {
     document.documentElement.setAttribute('data-theme', name);
     localStorage.setItem(STORAGE_KEY, name);
+    sendGiscusTheme(name);
   }
 
   document.addEventListener('DOMContentLoaded', function () {

@@ -329,6 +329,36 @@
     
     <a href="/" class="back-link">&larr; Volver al blog</a>
   </footer>
+
+  
+<section class="post-comments" id="comments">
+  <h2 class="comments-title">Comentarios</h2>
+  <div class="giscus"></div>
+</section>
+<script>
+(function () {
+  var stored = localStorage.getItem('pap-theme') || 'dark';
+  var giscusTheme = stored === 'light' ? 'light' : 'dark_dimmed';
+  var s = document.createElement('script');
+  s.src = 'https://giscus.app/client.js';
+  s.dataset.repo             = 'inazense/inazense.github.io';
+  s.dataset.repoId           = 'R_kgDOSCW1ng';
+  s.dataset.category         = 'General';
+  s.dataset.categoryId       = 'DIC_kwDOSCW1ns4C6-xJ';
+  s.dataset.mapping          = 'pathname';
+  s.dataset.strict           = '0';
+  s.dataset.reactionsEnabled = '1';
+  s.dataset.emitMetadata     = '0';
+  s.dataset.inputPosition    = 'bottom';
+  s.dataset.theme            = giscusTheme;
+  s.dataset.lang             = 'es';
+  s.crossOrigin              = 'anonymous';
+  s.async                    = true;
+  document.querySelector('.giscus').after(s);
+})();
+</script>
+
+
 </article>
 
     </main>

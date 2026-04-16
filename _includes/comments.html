@@ -1,0 +1,28 @@
+{% if page.comments != false %}
+<section class="post-comments" id="comments">
+  <h2 class="comments-title">Comentarios</h2>
+  <div class="giscus"></div>
+</section>
+<script>
+(function () {
+  var stored = localStorage.getItem('pap-theme') || 'dark';
+  var giscusTheme = stored === 'light' ? 'light' : 'dark_dimmed';
+  var s = document.createElement('script');
+  s.src = 'https://giscus.app/client.js';
+  s.dataset.repo             = '{{ site.giscus.repo }}';
+  s.dataset.repoId           = '{{ site.giscus.repo_id }}';
+  s.dataset.category         = '{{ site.giscus.category }}';
+  s.dataset.categoryId       = '{{ site.giscus.category_id }}';
+  s.dataset.mapping          = '{{ site.giscus.mapping | default: "pathname" }}';
+  s.dataset.strict           = '0';
+  s.dataset.reactionsEnabled = '{{ site.giscus.reactions_enabled | default: "1" }}';
+  s.dataset.emitMetadata     = '0';
+  s.dataset.inputPosition    = '{{ site.giscus.input_position | default: "bottom" }}';
+  s.dataset.theme            = giscusTheme;
+  s.dataset.lang             = '{{ site.giscus.lang | default: "es" }}';
+  s.crossOrigin              = 'anonymous';
+  s.async                    = true;
+  document.querySelector('.giscus').after(s);
+})();
+</script>
+{% endif %}

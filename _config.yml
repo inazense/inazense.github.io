@@ -46,3 +46,13 @@ include:
 
 feed:
   path: feed.xml
+
+giscus:
+  repo: inazense/inazense.github.io
+  repo_id: R_kgDOSCW1ng
+  category: General
+  category_id: DIC_kwDOSCW1ns4C6-xJ
+  mapping: pathname
+  reactions_enabled: "1"
+  input_position: bottom
+  lang: es
