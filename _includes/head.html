@@ -4,6 +4,11 @@
   {%- if page.title -%}{{ page.title }} | {{ site.title }}{%- else -%}{{ site.title }}{%- endif -%}
 </title>
 <meta name="description" content="{{ page.description | default: site.description | escape }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ '/apple-touch-icon.png' | relative_url }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ '/favicon-32x32.png' | relative_url }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ '/favicon-16x16.png' | relative_url }}">
+<link rel="shortcut icon" href="{{ '/favicon.ico' | relative_url }}">
+<link rel="manifest" href="{{ '/site.webmanifest' | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ '/feed.xml' | relative_url }}">
 <script>
