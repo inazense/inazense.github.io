@@ -1708,6 +1708,21 @@
   
 </div>
 
+<script>
+(function () {
+  function openFromHash() {
+    var hash = window.location.hash;
+    if (!hash) return;
+    var target = document.querySelector('details' + hash);
+    if (!target) return;
+    target.open = true;
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  document.addEventListener('DOMContentLoaded', openFromHash);
+  window.addEventListener('hashchange', openFromHash);
+})();
+</script>
+
   </div>
 </article>
 
