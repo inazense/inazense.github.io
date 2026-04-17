@@ -1,0 +1,371 @@
+// ── Anecdotario — estilos encapsulados bajo .anec-page
+
+html { scroll-behavior: smooth; }
+
+.anec-page {
+  padding-bottom: 4rem;
+}
+
+// ── Eyebrow pill
+.anec-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.9rem;
+  background: rgba(var(--accent-rgb), 0.1);
+  border: 1px solid rgba(var(--accent-rgb), 0.25);
+  border-radius: 2rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.03em;
+  margin-bottom: 1rem;
+}
+
+// ── Hero
+.anec-hero {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 2.5rem;
+  align-items: start;
+  padding: 2.5rem 0 3rem;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.anec-hero-title {
+  font-family: $font-heading;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.1;
+  margin: 0 0 0.9rem;
+}
+
+.anec-hero-desc {
+  font-size: 0.97rem;
+  color: var(--secondary);
+  line-height: 1.65;
+  margin: 0 0 1.5rem;
+  max-width: 46ch;
+}
+
+.anec-hero-ctas {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+.anec-hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.anec-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.7rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 2rem;
+  font-size: 0.74rem;
+  color: var(--secondary);
+}
+
+// ── Panel visual hero
+.anec-hero-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.anec-stats-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: $radius-lg;
+  padding: 1.25rem;
+}
+
+.anec-stats-title {
+  font-family: $font-heading;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--secondary);
+  margin: 0 0 1rem;
+}
+
+.anec-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+}
+
+.anec-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.anec-stat-value {
+  font-family: $font-heading;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.anec-stat-label {
+  font-size: 0.7rem;
+  color: var(--secondary);
+  line-height: 1.3;
+}
+
+.anec-note-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: $radius-lg;
+  padding: 1rem 1.1rem;
+}
+
+.anec-note-title {
+  font-family: $font-heading;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin: 0 0 0.4rem;
+}
+
+.anec-note-text {
+  font-size: 0.82rem;
+  color: var(--secondary);
+  margin: 0;
+  line-height: 1.55;
+}
+
+// ── Cabecera de sección
+.anec-section-title {
+  font-family: $font-heading;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--secondary);
+  margin: 0 0 0.6rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.anec-section-desc {
+  font-size: 0.9rem;
+  color: var(--secondary);
+  margin: 0 0 1.75rem;
+  line-height: 1.55;
+}
+
+// ── Destacadas
+.anec-featured {
+  margin-bottom: 3rem;
+}
+
+.anec-featured-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.anec-featured-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.4rem 1.25rem 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: $radius-lg;
+  overflow: hidden;
+  transition: box-shadow 0.2s, border-color 0.2s;
+
+  &::before {
+    content: '\201C';
+    position: absolute;
+    top: 0.3rem;
+    right: 0.9rem;
+    font-family: Georgia, serif;
+    font-size: 3.5rem;
+    line-height: 1;
+    color: rgba(var(--accent-rgb), 0.15);
+    pointer-events: none;
+  }
+
+  &:hover {
+    box-shadow: var(--card-shadow);
+    border-color: rgba(var(--accent-rgb), 0.35);
+  }
+}
+
+.anec-featured-cat {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  padding: 0.2rem 0.65rem;
+  background: rgba(var(--accent-rgb), 0.1);
+  border-radius: 2rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+}
+
+.anec-featured-quote {
+  font-size: 0.95rem;
+  color: var(--text);
+  line-height: 1.6;
+  margin: 0;
+  font-style: italic;
+}
+
+// ── Colección completa
+.anec-collection {
+  margin-bottom: 3rem;
+}
+
+// ── Bloque principal (Lo dijo el profe / Grado Medio)
+.anec-block {
+  margin-bottom: 3.5rem;
+}
+
+.anec-block-title {
+  font-family: $font-heading;
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 0.4rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 2px solid var(--border);
+}
+
+.anec-block-desc {
+  font-size: 0.9rem;
+  color: var(--secondary);
+  margin: 0.5rem 0 2rem;
+  line-height: 1.55;
+}
+
+// ── Subgrupo temático
+.anec-subgroup {
+  margin-bottom: 2rem;
+}
+
+.anec-subgroup-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-bottom: 0.85rem;
+}
+
+.anec-subgroup-title {
+  font-family: $font-heading;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.anec-subgroup-count {
+  font-size: 0.7rem;
+  color: var(--secondary);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 0.05rem 0.45rem;
+  flex-shrink: 0;
+}
+
+// ── Grid de citas
+.anec-quotes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.65rem;
+}
+
+// ── Card de cita individual
+.anec-quote-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: $radius-lg;
+  padding: 1rem 1.1rem;
+  transition: box-shadow 0.2s;
+
+  &:hover { box-shadow: var(--card-shadow); }
+}
+
+.anec-quote-text {
+  font-size: 0.9rem;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.65;
+  font-style: italic;
+}
+
+// ── CTA final
+.anec-footer-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding: 1.5rem 1.75rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: $radius-lg;
+  margin-top: 1rem;
+}
+
+.anec-footer-title {
+  font-family: $font-heading;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 0.3rem;
+}
+
+.anec-footer-text {
+  font-size: 0.88rem;
+  color: var(--secondary);
+  margin: 0;
+  line-height: 1.5;
+  max-width: 55ch;
+}
+
+// ── Responsive: tablet
+@media (max-width: 1024px) {
+  .anec-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .anec-hero-visual { display: none; }
+
+  .anec-featured-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+// ── Responsive: móvil
+@media (max-width: 768px) {
+.anec-hero-desc { max-width: 100%; }
+
+  .anec-featured-grid { grid-template-columns: 1fr; }
+  .anec-quotes-grid { grid-template-columns: 1fr; }
+
+  .anec-footer-cta {
+    flex-direction: column;
+    text-align: center;
+  }
+}
