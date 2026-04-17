@@ -1,27 +1,46 @@
 ---
-layout: page
+layout: default
 title: Descargas
 permalink: /descargas/
 ---
+<div class="downloads-page">
 
-## Libros de Primer Curso
+  <!-- HERO -->
+  <section class="dl-hero dl-hero--simple">
+    <p class="dl-eyebrow">Recursos técnicos · Manuales y materiales de estudio</p>
+    <h1 class="dl-hero-title">Descargas</h1>
+    <p class="dl-hero-subtitle">Una selección de manuales y materiales de estudio sobre programación y desarrollo, creados a partir de apuntes, práctica real y muchas horas de trabajo personal.</p>
+  </section>
 
-Desde Septiembre llevo realizando un manual con todos lo aprendido en el módulo de programación, basado en los apuntes aportados por Proffesor P. (llamado así para preservar su identidad). He recopilado muchas horas de atender en clase y resolución de problemas por mi cuenta en el manual que comparto.
+  <!-- LIBROS -->
+  <section class="dl-section">
+    <div class="dl-cards-grid">
+      <div class="dl-card">
+        <h3 class="dl-card-title">Módulo de Programación DAM1</h3>
+        <p class="dl-card-desc">Recopilación de teoría, ejercicios prácticos y resolución de problemas para aprender a programar con una base sólida. Usa C, ADA y Java como apoyo, pero el objetivo principal es entender programación, no memorizar un lenguaje.</p>
+        <a href="https://1drv.ms/b/s!AhYJ7kzSqmoEgycZvyT9P8TyGVwP?e=XbxmGf" target="_blank" rel="noopener" class="dl-btn dl-btn--download">Descargar PDF</a>
+      </div>
+      <div class="dl-card">
+        <h3 class="dl-card-title">Acceso a Datos DAM2</h3>
+        <p class="dl-card-desc">Material sobre tratamiento de información y persistencia de datos, con trabajo sobre ficheros en Java, bases de datos MySQL, tecnologías web como PHP y JSP, e introducción a Hibernate, Oracle SQL y NeoDatis.</p>
+        <a href="https://1drv.ms/b/s!AhYJ7kzSqmoEgykPwGv5QY5GBAqq?e=ShHADG" target="_blank" rel="noopener" class="dl-btn dl-btn--download">Descargar PDF</a>
+      </div>
+      <div class="dl-card">
+        <h3 class="dl-card-title">Programación de Servicios y Procesos DAM2</h3>
+        <p class="dl-card-desc">Introducción a procesos y servicios con apoyo en C para los fundamentos y Java para ejercicios más complejos orientados a lógica y práctica real.</p>
+        <a href="https://1drv.ms/b/s!AhYJ7kzSqmoEgzDJKPRBXHGVbMBE?e=pwPRKj" target="_blank" rel="noopener" class="dl-btn dl-btn--download">Descargar PDF</a>
+      </div>
+    </div>
+  </section>
 
-Está basado para aprender con los leguajes C, ADA y Java, pero no significa que vayas a aprender esos lenguajes, sino que el objetivo último es que se aprenda a programar, da igual el lenguaje.
+  <!-- BLOQUE DE CIERRE -->
+  <section class="dl-closing">
+    <h2 class="dl-closing-title">Uso y reconocimiento</h2>
+    <p class="dl-closing-text">Espero que estos materiales te resulten útiles y puedas aprovecharlos tanto como yo. Si los compartes, recuerda mencionar de dónde los descargaste. El conocimiento es libre, pero el reconocimiento siempre se agradece.</p>
+    <div class="dl-closing-ctas">
+      <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="dl-btn dl-btn--secondary">Volver arriba</a>
+      <a href="/blog/" class="dl-btn dl-btn--secondary">Explorar el blog</a>
+    </div>
+  </section>
 
-Se aporta teoría de programación ejercicios prácticos, tanto resueltos, que son los que ha mandado para entregar obligatoriamente, como voluntarios (pelín más complicados de realizar). Son 980 páginas, imagino que de una sentada será complicado leerlas todas, ¿no?
-
-[Módulo de programación DAM1 Sierra de Guara, by Inazio Claver](https://1drv.ms/b/s!AhYJ7kzSqmoEgycZvyT9P8TyGVwP?e=XbxmGf)
-
-## Libros de Segundo Curso
-
-En el primer libro, Acceso a datos, hablo del tratamiento de la información por parte de las tecnologías. Como trabajar con ficheros en Java, con conexiones a bases de datos MySQL en Java y tecnologías web (PHP y JSP), e introducción a Hibernate, Oracle SQL y NeoDatis. Todo ello explicado con ejemplos prácticos, y con ejercicios recopilados para practicar los conocimientos adquiridos.
-
-[Módulo de Acceso a datos DAM2 Sierra de Guara, by Inazio Claver](https://1drv.ms/b/s!AhYJ7kzSqmoEgykPwGv5QY5GBAqq?e=ShHADG)
-
-El segundo, Programación de servicios y procesos, trata sobre la iniciación a este estilo de programación, apoyandome en el lenguaje C para realizar una introducción y explicación de los primeros pasos en los procesos, y Java para la práctica de ejercicios de procesos más complejos en cuanto a lógica y la parte de servicios.
-
-[Módulo de Programación de Servicios y Procesos DAM2 Sierra de Guara, by Inazio Claver](https://1drv.ms/b/s!AhYJ7kzSqmoEgzDJKPRBXHGVbMBE?e=pwPRKj)
-
-Espero que os resulten de interés y podáis aprovecharlo tanto como yo. Recuerda mencionar donde los descargaste en caso de que quieras compartirlos. El conocimiento es libre, pero el reconocimiento siempre se agradece.
+</div>
