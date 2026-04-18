@@ -1,0 +1,9 @@
+<nav class="breadcrumb" aria-label="Miga de pan">
+  <a href="{{ '/' | relative_url }}" class="breadcrumb-link">Blog</a>
+  {% if page.categories[0] %}
+    <span class="breadcrumb-sep" aria-hidden="true">›</span>
+    <a href="{{ '/categorias/' | relative_url }}#{{ page.categories[0] | slugify }}" class="breadcrumb-link">{{ page.categories[0] }}</a>
+  {% endif %}
+  <span class="breadcrumb-sep" aria-hidden="true">›</span>
+  <span class="breadcrumb-current" aria-current="page">{{ page.title }}</span>
+</nav>

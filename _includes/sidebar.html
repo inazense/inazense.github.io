@@ -23,7 +23,7 @@
     </div>
 
     <nav class="sidebar-nav" aria-label="Navegación principal">
-      <a href="{{ '/' | relative_url }}" class="nav-item{% if page.url == '/' %} active{% endif %}">Blog</a>
+      <a href="{{ '/' | relative_url }}" class="nav-item{% if page.url == '/' or page.url contains '/posts/' %} active{% endif %}">Blog</a>
 
       <a href="{{ '/categorias/' | relative_url }}" class="nav-item{% if page.url contains '/categorias' %} active{% endif %}">Categorías</a>
       <a href="{{ '/archivo/' | relative_url }}" class="nav-item{% if page.url contains '/archivo' %} active{% endif %}">Archivo</a>

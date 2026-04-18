@@ -1,3 +1,65 @@
+// ── Breadcrumbs
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+  color: var(--secondary);
+  margin-bottom: 1.5rem;
+
+  .breadcrumb-link {
+    color: var(--secondary);
+    text-decoration: none;
+    &:hover { color: var(--accent); text-decoration: underline; }
+  }
+
+  .breadcrumb-sep { color: var(--border); user-select: none; }
+
+  .breadcrumb-current {
+    color: var(--text);
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 40ch;
+  }
+}
+
+// ── Tabla de contenidos
+.toc {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: $radius;
+  padding: 1rem 1.25rem;
+  margin-bottom: 2rem;
+
+  .toc-title {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--secondary);
+    margin-bottom: 0.6rem;
+  }
+
+  .toc-list {
+    margin: 0;
+    padding-left: 1.1rem;
+
+    ol { padding-left: 1rem; margin-top: 0.2rem; }
+    li { margin-bottom: 0.25rem; }
+
+    a {
+      font-size: 0.875rem;
+      color: var(--secondary);
+      text-decoration: none;
+      &:hover { color: var(--accent); text-decoration: underline; }
+    }
+  }
+}
+
 .post-full { max-width: $content-max; }
 
 .post-header { margin-bottom: 2.5rem; }
