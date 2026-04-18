@@ -37,6 +37,12 @@
 }
 
 .post-content {
+  a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    &:hover { text-decoration: underline; }
+  }
+
   h2 {
     font-size: 1.45rem;
     margin-top: 2.5rem;

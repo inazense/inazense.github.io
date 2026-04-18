@@ -65,6 +65,17 @@
     if (closeBtn)  closeBtn.addEventListener('click', closeSidebar);
     if (overlay)   overlay.addEventListener('click', closeSidebar);
 
+    document.querySelectorAll('#sidebar .nav-item').forEach(function(link) {
+      link.addEventListener('click', closeSidebar);
+    });
+
+    document.querySelectorAll('.post-content a[href^="http"]').forEach(function(link) {
+      if (link.hostname !== window.location.hostname) {
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
+      }
+    });
+
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && sidebar && sidebar.classList.contains('open')) {
         closeSidebar();

@@ -57,17 +57,17 @@ layout: default
 {% if paginator.total_pages > 1 %}
 <nav class="pagination" aria-label="Paginación">
   {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path | relative_url }}" class="btn-page">&larr; Más recientes</a>
+    <a href="{{ paginator.previous_page_path | relative_url }}" class="btn-page">&larr; Anterior</a>
   {% else %}
-    <span class="btn-page btn-page--disabled">&larr; Más recientes</span>
+    <span class="btn-page btn-page--disabled">&larr; Anterior</span>
   {% endif %}
 
   <span class="page-count">Página {{ paginator.page }} de {{ paginator.total_pages }}</span>
 
   {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path | relative_url }}" class="btn-page">Más antiguas &rarr;</a>
+    <a href="{{ paginator.next_page_path | relative_url }}" class="btn-page">Siguiente &rarr;</a>
   {% else %}
-    <span class="btn-page btn-page--disabled">Más antiguas &rarr;</span>
+    <span class="btn-page btn-page--disabled">Siguiente &rarr;</span>
   {% endif %}
 </nav>
 {% endif %}
