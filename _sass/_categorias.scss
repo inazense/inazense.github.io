@@ -1,0 +1,273 @@
+// ── Página de Categorías (/categorias/)
+// Encapsulado bajo .categories-page — reutiliza exclusivamente variables del proyecto
+
+.categories-page {
+  padding-bottom: 4rem;
+
+  h1, h2, h3 {
+    border-bottom: none;
+    margin-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+// ── Botones
+.ctg-btn {
+  display: inline-block;
+  padding: 0.55rem 1.4rem;
+  border-radius: $radius-lg;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+  cursor: pointer;
+
+  &--primary {
+    background: var(--accent);
+    color: var(--bg);
+    border: 1px solid var(--accent);
+    &:hover {
+      background: var(--link-hover);
+      border-color: var(--link-hover);
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+
+  &--secondary {
+    border: 1px solid var(--border);
+    color: var(--text);
+    background: transparent;
+    &:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      text-decoration: none;
+    }
+  }
+}
+
+// ── Hero
+.ctg-hero {
+  padding: 2.5rem 0 3rem;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.ctg-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.9rem;
+  background: rgba(var(--accent-rgb), 0.1);
+  border: 1px solid rgba(var(--accent-rgb), 0.25);
+  border-radius: 2rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.03em;
+  margin-bottom: 1rem;
+}
+
+.ctg-title {
+  font-family: $font-heading;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.1;
+  margin: 0 0 0.9rem;
+}
+
+.ctg-subtitle {
+  font-size: 0.97rem;
+  color: var(--secondary);
+  line-height: 1.65;
+  margin: 0 0 1.5rem;
+  max-width: 50ch;
+}
+
+
+
+// ── Acordeón principal
+.ctg-accordion-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 3.5rem;
+}
+
+.ctg-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: $radius-lg;
+  overflow: hidden;
+  transition: border-color 0.2s;
+
+  &:hover { border-color: rgba(var(--accent-rgb), 0.4); }
+
+  &[open] {
+    border-color: rgba(var(--accent-rgb), 0.5);
+
+    .ctg-chevron { transform: rotate(180deg); }
+    .ctg-summary { border-bottom: 1px solid var(--border); }
+  }
+}
+
+.ctg-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  gap: 1rem;
+  transition: background 0.15s;
+
+  &::-webkit-details-marker { display: none; }
+  &::marker { display: none; }
+
+  &:hover { background: rgba(var(--accent-rgb), 0.04); }
+}
+
+.ctg-summary-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.ctg-summary-name {
+  font-family: $font-heading;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.ctg-summary-desc {
+  font-size: 0.78rem;
+  color: var(--secondary);
+  line-height: 1.4;
+}
+
+.ctg-summary-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.ctg-summary-count {
+  font-size: 0.75rem;
+  color: var(--secondary);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.ctg-chevron {
+  color: var(--secondary);
+  transition: transform 0.25s ease;
+  flex-shrink: 0;
+}
+
+// ── Lista de posts dentro del acordeón
+.ctg-post-list {
+  list-style: none;
+  padding: 0.35rem 0;
+  margin: 0;
+}
+
+.ctg-post-entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.5rem 1.25rem;
+  gap: 1rem;
+  transition: background 0.15s;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--border);
+  }
+
+  &:hover { background: rgba(var(--accent-rgb), 0.04); }
+}
+
+.ctg-post-link {
+  font-size: 0.88rem;
+  color: var(--text);
+  line-height: 1.4;
+  font-weight: 500;
+  text-decoration: none;
+  flex: 1;
+  min-width: 0;
+
+  &:hover { color: var(--accent); text-decoration: none; }
+}
+
+.ctg-post-date {
+  font-size: 0.75rem;
+  color: var(--secondary);
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+// ── Cierre
+.ctg-footer {
+  border-top: 1px solid var(--border);
+  padding-top: 2.5rem;
+  text-align: center;
+}
+
+.ctg-footer-title {
+  font-family: $font-heading;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 0.75rem;
+}
+
+.ctg-footer-text {
+  font-size: 0.92rem;
+  color: var(--secondary);
+  line-height: 1.65;
+  max-width: 52ch;
+  margin: 0 auto 1.5rem;
+}
+
+.ctg-footer-ctas {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+// ── Responsive: móvil
+@media (max-width: #{$breakpoint-sm}) {
+  .ctg-title { font-size: 1.75rem; }
+
+  .ctg-hero {
+    padding: 1.75rem 0 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .ctg-summary {
+    padding: 0.85rem 1rem;
+    gap: 0.75rem;
+  }
+
+  .ctg-post-entry {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.15rem;
+    padding: 0.55rem 1rem;
+  }
+
+  .ctg-footer {
+    text-align: left;
+  }
+
+  .ctg-footer-ctas {
+    justify-content: flex-start;
+  }
+
+}

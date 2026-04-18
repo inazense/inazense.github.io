@@ -3,30 +3,86 @@ layout: page
 title: Categorías
 permalink: /categorias/
 ---
-<div class="cat-accordion">
-  {% assign sorted_cats = site.categories | sort %}
-  {% for cat in sorted_cats %}
-  <details class="cat-item" id="{{ cat[0] | slugify }}">
-    <summary class="cat-summary">
-      <span class="cat-summary-name">{{ cat[0] }}</span>
-      <span class="cat-summary-meta">
-        <span class="cat-summary-count">{{ cat[1].size }} entradas</span>
-        <svg class="cat-chevron" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <polyline points="6 9 12 15 18 9"/>
-        </svg>
-      </span>
-    </summary>
-    <ul class="cat-post-list">
-      {% assign cat_posts = cat[1] | sort: "date" | reverse %}
-      {% for post in cat_posts %}
-      <li class="cat-post-entry">
-        <a href="{{ post.url | relative_url }}" class="cat-post-link">{{ post.title }}</a>
-        <span class="cat-post-date">{{ post.date | date: "%d %b %Y" }}</span>
-      </li>
-      {% endfor %}
-    </ul>
-  </details>
-  {% endfor %}
+
+{% assign months_es = "ene,feb,mar,abr,may,jun,jul,ago,sep,oct,nov,dic" | split: "," %}
+{% assign sorted_cats = site.categories | sort %}
+
+<div class="categories-page">
+
+  <!-- ── Hero ──────────────────────────────────────────────── -->
+  <section class="ctg-hero">
+    <div class="ctg-hero-main">
+      <span class="ctg-eyebrow">Mapa del contenido · Explora el blog por temas</span>
+      <h1 class="ctg-title">Categorías</h1>
+      <p class="ctg-subtitle">Explora el blog por tecnologías, materias y temas para encontrar más rápido lo que te interesa.</p>
+    </div>
+  </section>
+
+  <!-- ── Acordeón de categorías ────────────────────────────── -->
+  <section class="ctg-accordion-section" id="categorias-lista">
+    {% for cat in sorted_cats %}
+    {% assign cat_name = cat[0] %}
+
+    {% if cat_name == "Acceso a datos" %}{% assign cat_desc = "Oracle, Hibernate, JSP y persistencia de información" %}
+    {% elsif cat_name == "Android" %}{% assign cat_desc = "Ejemplos, prácticas y desarrollo de aplicaciones Android" %}
+    {% elsif cat_name == "Java" %}{% assign cat_desc = "Tutoriales, patrones y buenas prácticas en Java" %}
+    {% elsif cat_name == "Python" %}{% assign cat_desc = "Scripts, automatización y desarrollo con Python" %}
+    {% elsif cat_name == "JavaScript" %}{% assign cat_desc = "Desarrollo frontend, scripting y herramientas JS" %}
+    {% elsif cat_name == "Web" %}{% assign cat_desc = "HTML, CSS, tecnologías y desarrollo web" %}
+    {% elsif cat_name == "Utilidades" %}{% assign cat_desc = "Herramientas, scripts y recursos prácticos" %}
+    {% elsif cat_name == "Sistemas" %}{% assign cat_desc = "Configuración, administración y automatización de sistemas" %}
+    {% elsif cat_name == "Maven" %}{% assign cat_desc = "Gestión de proyectos y dependencias con Maven" %}
+    {% elsif cat_name == "Bases de datos" %}{% assign cat_desc = "SQL, consultas, modelado y gestión de datos" %}
+    {% elsif cat_name == "Git" %}{% assign cat_desc = "Control de versiones, flujos y buenas prácticas" %}
+    {% elsif cat_name == "Linux" %}{% assign cat_desc = "Comandos, shell scripting y entornos Linux" %}
+    {% elsif cat_name == "Spring" %}{% assign cat_desc = "Framework Spring, Boot y ecosistema Java empresarial" %}
+    {% elsif cat_name == "Testing" %}{% assign cat_desc = "Pruebas unitarias, integración y calidad de código" %}
+    {% else %}{% assign cat_desc = "" %}
+    {% endif %}
+
+    <details class="ctg-item" id="{{ cat_name | slugify }}">
+      <summary class="ctg-summary">
+        <div class="ctg-summary-main">
+          <span class="ctg-summary-name">{{ cat_name }}</span>
+          {% if cat_desc != "" %}
+          <span class="ctg-summary-desc">{{ cat_desc }}</span>
+          {% endif %}
+        </div>
+        <div class="ctg-summary-meta">
+          <span class="ctg-summary-count">{{ cat[1].size }} entradas</span>
+          <svg class="ctg-chevron" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+      </summary>
+      <ul class="ctg-post-list">
+        {% assign cat_posts = cat[1] | sort: "date" | reverse %}
+        {% for post in cat_posts %}
+        {% assign m_idx = post.date | date: "%-m" | minus: 1 %}
+        {% assign m_name = months_es[m_idx] %}
+        {% assign d = post.date | date: "%-d" %}
+        {% assign y = post.date | date: "%Y" %}
+        <li class="ctg-post-entry">
+          <a href="{{ post.url | relative_url }}" class="ctg-post-link">{{ post.title }}</a>
+          <time datetime="{{ post.date | date_to_xmlschema }}" class="ctg-post-date">{{ d }} {{ m_name }} {{ y }}</time>
+        </li>
+        {% endfor %}
+      </ul>
+    </details>
+    {% endfor %}
+  </section>
+
+  <!-- ── Cierre ────────────────────────────────────────────── -->
+  <footer class="ctg-footer">
+    <h2 class="ctg-footer-title">Sigue navegando</h2>
+    <p class="ctg-footer-text">Si prefieres explorar el contenido de otra forma, puedes ir al archivo completo, volver a la portada del blog o consultar la sección de descargas.</p>
+    <div class="ctg-footer-ctas">
+      <a href="/archivo/" class="ctg-btn ctg-btn--secondary">Ver archivo</a>
+      <a href="/" class="ctg-btn ctg-btn--secondary">Volver al blog</a>
+      <a href="/descargas/" class="ctg-btn ctg-btn--secondary">Ir a descargas</a>
+    </div>
+  </footer>
+
 </div>
 
 <script>
