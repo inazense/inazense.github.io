@@ -3,11 +3,59 @@ layout: page
 title: Archivo
 permalink: /archivo/
 ---
-<ul class="archivo-list">
-  {% for post in site.posts %}
-  <li class="archivo-entry">
-    <a href="{{ post.url | relative_url }}" class="archivo-title">{{ post.title }}</a>
-    <time datetime="{{ post.date | date_to_xmlschema }}" class="archivo-date">{{ post.date | date: "%d %b %Y" }}</time>
-  </li>
-  {% endfor %}
-</ul>
+
+{% assign months_es = "ene,feb,mar,abr,may,jun,jul,ago,sep,oct,nov,dic" | split: "," %}
+
+<div class="archive-page">
+
+  <!-- ── Hero ──────────────────────────────────────────────── -->
+  <section class="arc-hero">
+    <div class="arc-hero-main">
+      <span class="arc-eyebrow">Hemeroteca técnica · Tutoriales y utilidades publicadas</span>
+      <h1 class="arc-title">Archivo</h1>
+      <p class="arc-subtitle">Todas las publicaciones del blog ordenadas en el tiempo, para encontrar tutoriales, utilidades y artículos técnicos sin perderte entre enlaces.</p>
+    </div>
+  </section>
+
+  <!-- ── Archivo cronológico ───────────────────────────────── -->
+  <section class="arc-timeline" id="archivo-cronologico">
+    {% assign posts_by_year = site.posts | group_by_exp:"post", "post.date | date: '%Y'" %}
+    {% for year_group in posts_by_year %}
+    <div class="arc-year-block">
+      <header class="arc-year-header">
+        <span class="arc-year-label">{{ year_group.name }}</span>
+        <span class="arc-year-count">{{ year_group.items | size }} entradas</span>
+      </header>
+      <ul class="arc-entries">
+        {% for post in year_group.items %}
+        {% assign m_idx = post.date | date: "%-m" | minus: 1 %}
+        {% assign m_name = months_es[m_idx] %}
+        {% assign d = post.date | date: "%-d" %}
+        {% assign y = post.date | date: "%Y" %}
+        <li class="arc-entry">
+          <a href="{{ post.url | relative_url }}" class="arc-entry-title">{{ post.title }}</a>
+          <div class="arc-entry-meta">
+            <time datetime="{{ post.date | date_to_xmlschema }}" class="arc-entry-date">{{ d }} {{ m_name }} {{ y }}</time>
+            {% if post.categories[0] %}
+            <span class="arc-entry-badge">{{ post.categories[0] }}</span>
+            {% endif %}
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+  </section>
+
+  <!-- ── Cierre ────────────────────────────────────────────── -->
+  <footer class="arc-footer">
+    <h2 class="arc-footer-title">Sigue explorando</h2>
+    <p class="arc-footer-text">Si no buscas algo concreto, puedes continuar por categorías, volver a la portada del blog o descubrir los recursos de la sección de descargas.</p>
+    <div class="arc-footer-ctas">
+      <a href="/categorias/" class="arc-btn arc-btn--secondary">Ver categorías</a>
+      <a href="/" class="arc-btn arc-btn--secondary">Volver al blog</a>
+      <a href="/descargas/" class="arc-btn arc-btn--secondary">Ir a descargas</a>
+    </div>
+  </footer>
+
+</div>

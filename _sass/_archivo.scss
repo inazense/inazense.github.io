@@ -1,0 +1,254 @@
+// ── Página de Archivo (/archivo/)
+// Encapsulado bajo .archive-page — reutiliza exclusivamente variables del proyecto
+
+.archive-page {
+  padding-bottom: 4rem;
+
+  h1, h2, h3 {
+    border-bottom: none;
+    margin-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+// ── Botones
+.arc-btn {
+  display: inline-block;
+  padding: 0.55rem 1.4rem;
+  border-radius: $radius-lg;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+  cursor: pointer;
+
+  &--primary {
+    background: var(--accent);
+    color: var(--bg);
+    border: 1px solid var(--accent);
+    &:hover {
+      background: var(--link-hover);
+      border-color: var(--link-hover);
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+
+  &--secondary {
+    border: 1px solid var(--border);
+    color: var(--text);
+    background: transparent;
+    &:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      text-decoration: none;
+    }
+  }
+}
+
+// ── Hero
+.arc-hero {
+  padding: 2.5rem 0 3rem;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.arc-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.9rem;
+  background: rgba(var(--accent-rgb), 0.1);
+  border: 1px solid rgba(var(--accent-rgb), 0.25);
+  border-radius: 2rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.03em;
+  margin-bottom: 1rem;
+}
+
+.arc-title {
+  font-family: $font-heading;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.1;
+  margin: 0 0 0.9rem;
+}
+
+.arc-subtitle {
+  font-size: 0.97rem;
+  color: var(--secondary);
+  line-height: 1.65;
+  margin: 0 0 1.5rem;
+  max-width: 50ch;
+}
+
+
+// ── Línea de tiempo por años
+.arc-timeline {
+  margin-bottom: 3.5rem;
+}
+
+.arc-year-block {
+  margin-bottom: 2.75rem;
+}
+
+.arc-year-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border);
+}
+
+.arc-year-label {
+  font-family: $font-heading;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
+}
+
+.arc-year-count {
+  font-size: 0.78rem;
+  color: var(--secondary);
+  font-weight: 400;
+}
+
+// ── Entradas
+.arc-entries {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.arc-entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.6rem 0.65rem;
+  border-radius: $radius;
+  transition: background 0.15s ease;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--border);
+  }
+
+  &:hover {
+    background: rgba(var(--accent-rgb), 0.05);
+  }
+}
+
+.arc-entry-title {
+  font-size: 0.92rem;
+  color: var(--text);
+  font-weight: 500;
+  text-decoration: none;
+  line-height: 1.4;
+  flex: 1;
+  min-width: 0;
+
+  &:hover {
+    color: var(--accent);
+    text-decoration: none;
+  }
+}
+
+.arc-entry-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.arc-entry-date {
+  font-size: 0.78rem;
+  color: var(--secondary);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.arc-entry-badge {
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 0.15rem 0.55rem;
+  border-radius: 2rem;
+  background: rgba(var(--accent-rgb), 0.1);
+  color: var(--accent);
+  border: 1px solid rgba(var(--accent-rgb), 0.2);
+  white-space: nowrap;
+  max-width: 10ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// ── Cierre
+.arc-footer {
+  border-top: 1px solid var(--border);
+  padding-top: 2.5rem;
+  text-align: center;
+}
+
+.arc-footer-title {
+  font-family: $font-heading;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 0.75rem;
+}
+
+.arc-footer-text {
+  font-size: 0.92rem;
+  color: var(--secondary);
+  line-height: 1.65;
+  max-width: 52ch;
+  margin: 0 auto 1.5rem;
+}
+
+.arc-footer-ctas {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+// ── Responsive: móvil
+@media (max-width: #{$breakpoint-sm}) {
+  .arc-title {
+    font-size: 1.75rem;
+  }
+
+  .arc-hero {
+    padding: 1.75rem 0 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .arc-entry {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    padding: 0.7rem 0.4rem;
+  }
+
+  .arc-entry-meta {
+    width: 100%;
+  }
+
+  .arc-year-label {
+    font-size: 1.15rem;
+  }
+
+  .arc-footer {
+    text-align: left;
+  }
+
+  .arc-footer-ctas {
+    justify-content: flex-start;
+  }
+}
