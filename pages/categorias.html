@@ -23,30 +23,10 @@ permalink: /categorias/
     {% for cat in sorted_cats %}
     {% assign cat_name = cat[0] %}
 
-    {% if cat_name == "Acceso a datos" %}{% assign cat_desc = "Oracle, Hibernate, JSP y persistencia de información" %}
-    {% elsif cat_name == "Android" %}{% assign cat_desc = "Ejemplos, prácticas y desarrollo de aplicaciones Android" %}
-    {% elsif cat_name == "Java" %}{% assign cat_desc = "Tutoriales, patrones y buenas prácticas en Java" %}
-    {% elsif cat_name == "Python" %}{% assign cat_desc = "Scripts, automatización y desarrollo con Python" %}
-    {% elsif cat_name == "JavaScript" %}{% assign cat_desc = "Desarrollo frontend, scripting y herramientas JS" %}
-    {% elsif cat_name == "Web" %}{% assign cat_desc = "HTML, CSS, tecnologías y desarrollo web" %}
-    {% elsif cat_name == "Utilidades" %}{% assign cat_desc = "Herramientas, scripts y recursos prácticos" %}
-    {% elsif cat_name == "Sistemas" %}{% assign cat_desc = "Configuración, administración y automatización de sistemas" %}
-    {% elsif cat_name == "Maven" %}{% assign cat_desc = "Gestión de proyectos y dependencias con Maven" %}
-    {% elsif cat_name == "Bases de datos" %}{% assign cat_desc = "SQL, consultas, modelado y gestión de datos" %}
-    {% elsif cat_name == "Git" %}{% assign cat_desc = "Control de versiones, flujos y buenas prácticas" %}
-    {% elsif cat_name == "Linux" %}{% assign cat_desc = "Comandos, shell scripting y entornos Linux" %}
-    {% elsif cat_name == "Spring" %}{% assign cat_desc = "Framework Spring, Boot y ecosistema Java empresarial" %}
-    {% elsif cat_name == "Testing" %}{% assign cat_desc = "Pruebas unitarias, integración y calidad de código" %}
-    {% else %}{% assign cat_desc = "" %}
-    {% endif %}
-
     <details class="ctg-item" id="{{ cat_name | slugify }}">
       <summary class="ctg-summary">
         <div class="ctg-summary-main">
           <span class="ctg-summary-name">{{ cat_name }}</span>
-          {% if cat_desc != "" %}
-          <span class="ctg-summary-desc">{{ cat_desc }}</span>
-          {% endif %}
         </div>
         <div class="ctg-summary-meta">
           <span class="ctg-summary-count">{{ cat[1].size }} entradas</span>
