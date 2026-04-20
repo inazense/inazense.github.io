@@ -92,6 +92,9 @@
 .ct-actions { display: flex; }
 
 .ct-btn--submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   background: var(--accent);
   border: 1px solid var(--accent);
   border-radius: $radius-lg;
