@@ -1,0 +1,90 @@
+---
+layout: default
+title: Contacto
+permalink: /contact/
+description: "Envíame un mensaje si tienes dudas, sugerencias o simplemente quieres saludar."
+---
+<div class="contact-page">
+
+  <section class="ct-hero">
+    <p class="ct-eyebrow">Escríbeme &middot; Preguntas, sugerencias o simplemente hola</p>
+    <h1 class="ct-hero-title">Contacto</h1>
+    <p class="ct-hero-subtitle">¿Tienes alguna duda sobre un artículo, una sugerencia para el blog o simplemente quieres ponerte en contacto? Rellena el formulario y te respondo lo antes posible.</p>
+  </section>
+
+  <section class="ct-section">
+    <div class="ct-card">
+      <form id="contact-form" class="ct-form" novalidate>
+        <input type="hidden" name="access_key" value="facfbdf3-56d9-4c2f-aca3-ab79226f8d86">
+        <input type="hidden" name="subject" value="Nuevo mensaje desde el blog">
+        <input type="hidden" name="from_name" value="Blog Programando a Pasitos">
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+
+        <div class="ct-field">
+          <label for="ct-name" class="ct-label">Nombre</label>
+          <input type="text" id="ct-name" name="name" class="ct-input" placeholder="Tu nombre" required autocomplete="name">
+        </div>
+
+        <div class="ct-field">
+          <label for="ct-email" class="ct-label">Email</label>
+          <input type="email" id="ct-email" name="email" class="ct-input" placeholder="tu@email.com" required autocomplete="email">
+        </div>
+
+        <div class="ct-field">
+          <label for="ct-message" class="ct-label">Mensaje</label>
+          <textarea id="ct-message" name="message" class="ct-textarea" rows="6" placeholder="Escribe tu mensaje aquí..." required></textarea>
+        </div>
+
+        <div class="ct-actions">
+          <button type="submit" class="ct-btn ct-btn--submit" id="ct-submit">
+            <span class="ct-btn-text">Enviar mensaje</span>
+          </button>
+        </div>
+
+        <div id="ct-result" class="ct-result" hidden></div>
+      </form>
+    </div>
+  </section>
+
+</div>
+
+<script>
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var form = this;
+  var submitBtn = document.getElementById('ct-submit');
+  var resultDiv = document.getElementById('ct-result');
+
+  submitBtn.disabled = true;
+  submitBtn.querySelector('.ct-btn-text').textContent = 'Enviando...';
+  resultDiv.hidden = true;
+  resultDiv.className = 'ct-result';
+
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify(Object.fromEntries(new FormData(form)))
+  })
+  .then(function(res) { return res.json(); })
+  .then(function(data) {
+    resultDiv.hidden = false;
+    if (data.success) {
+      resultDiv.classList.add('ct-result--success');
+      resultDiv.textContent = '¡Mensaje enviado! Te responderé lo antes posible.';
+      form.reset();
+    } else {
+      resultDiv.classList.add('ct-result--error');
+      resultDiv.textContent = 'Algo ha ido mal. Por favor, inténtalo de nuevo.';
+    }
+  })
+  .catch(function() {
+    resultDiv.hidden = false;
+    resultDiv.classList.add('ct-result--error');
+    resultDiv.textContent = 'Error de conexión. Comprueba tu internet e inténtalo de nuevo.';
+  })
+  .finally(function() {
+    submitBtn.disabled = false;
+    submitBtn.querySelector('.ct-btn-text').textContent = 'Enviar mensaje';
+  });
+});
+</script>
