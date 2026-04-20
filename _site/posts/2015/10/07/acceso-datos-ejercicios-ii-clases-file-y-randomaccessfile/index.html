@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <title>Acceso a datos. Ejercicios (II). Clases File y RandomAccessFile | Programando a Pasitos</title>
 <meta name="description" content="Siete ejercicios prácticos sobre manipulación de archivos y directorios en Java usando las clases File y RandomAccessFile.">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -12,6 +14,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="stylesheet" href="/assets/css/main.css">
 <link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+
 <script>
   // Aplicar tema guardado antes del primer render (evita flash)
   (function() {
@@ -35,12 +38,13 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Acceso a datos. Ejercicios (II). Clases File y RandomAccessFile" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-10-07T10:39:00+02:00","datePublished":"2015-10-07T10:39:00+02:00","description":"Siete ejercicios prácticos sobre manipulación de archivos y directorios en Java usando las clases File y RandomAccessFile.","headline":"Acceso a datos. Ejercicios (II). Clases File y RandomAccessFile","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/10/07/acceso-datos-ejercicios-ii-clases-file-y-randomaccessfile/"},"url":"http://localhost:4000/posts/2015/10/07/acceso-datos-ejercicios-ii-clases-file-y-randomaccessfile/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-10-07T10:39:00+02:00","datePublished":"2015-10-07T10:39:00+02:00","description":"Siete ejercicios prácticos sobre manipulación de archivos y directorios en Java usando las clases File y RandomAccessFile.","headline":"Acceso a datos. Ejercicios (II). Clases File y RandomAccessFile","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/10/07/acceso-datos-ejercicios-ii-clases-file-y-randomaccessfile/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/img/profile.png"},"name":"Inazio Claver"},"url":"http://localhost:4000/posts/2015/10/07/acceso-datos-ejercicios-ii-clases-file-y-randomaccessfile/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Saltar al contenido</a>
   <div class="topbar" id="topbar">
     <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
       <span></span>
@@ -48,6 +52,11 @@
       <span></span>
     </button>
     <span class="topbar-title">Programando a Pasitos</span>
+    <button class="topbar-search-btn" id="topbar-search-btn" aria-label="Buscar">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+    </button>
   </div>
 
   <div class="sidebar-overlay" id="sidebar-overlay"></div>
@@ -117,7 +126,25 @@
     <div class="divider"></div>
     <main class="content" id="main-content">
       
+      
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Acceso a datos. Ejercicios (II). Clases File y RandomAccessFile",
+  "description": "Siete ejercicios prácticos sobre manipulación de archivos y directorios en Java usando las clases File y RandomAccessFile.",
+  "datePublished": "2015-10-07T10:39:00+02:00",
+  "dateModified": "2015-10-07T10:39:00+02:00",
+  "author": { "@type": "Person", "name": "Inazio Claver", "url": "https://github.com/inazense" },
+  "publisher": { "@type": "Organization", "name": "Programando a Pasitos", "url": "http://localhost:4000" },
+  "url": "http://localhost:4000/posts/2015/10/07/acceso-datos-ejercicios-ii-clases-file-y-randomaccessfile/",
+  "wordCount": 2631,
+  "timeRequired": "PT14M",
+  "articleSection": "Java",
+  "keywords": "java, acceso-a-datos, file, randomaccessfile, ficheros, ejercicios"
+}
+</script>
 
 <article class="post-full">
   <nav class="breadcrumb" aria-label="Miga de pan">
@@ -558,22 +585,39 @@
     
       <div class="post-tags">
         
-          <span class="tag">#java</span>
+          <a href="/categorias/#java" class="tag">#java</a>
         
-          <span class="tag">#acceso-a-datos</span>
+          <a href="/categorias/#acceso-a-datos" class="tag">#acceso-a-datos</a>
         
-          <span class="tag">#file</span>
+          <a href="/categorias/#file" class="tag">#file</a>
         
-          <span class="tag">#randomaccessfile</span>
+          <a href="/categorias/#randomaccessfile" class="tag">#randomaccessfile</a>
         
-          <span class="tag">#ficheros</span>
+          <a href="/categorias/#ficheros" class="tag">#ficheros</a>
         
-          <span class="tag">#ejercicios</span>
+          <a href="/categorias/#ejercicios" class="tag">#ejercicios</a>
         
       </div>
     
     <a href="/" class="back-link">&larr; Volver al blog</a>
   </footer>
+
+  
+  <nav class="post-nav" aria-label="Navegación entre entradas">
+    
+    <a href="/posts/2015/10/07/acceso-datos-clases-file-y-randomaccessfile/" class="post-nav-link post-nav-prev">
+      <span class="nav-dir">&larr; Anterior</span>
+      <span class="nav-title">Acceso a datos. Clases File y RandomAccessFile</span>
+    </a>
+    
+    
+    <a href="/posts/2015/10/10/programacion-multimedia-configuracion-de-smartphone-para-android-studio/" class="post-nav-link post-nav-next">
+      <span class="nav-dir">Siguiente &rarr;</span>
+      <span class="nav-title">Programación multimedia. Configuración de smartphone para Android Studio</span>
+    </a>
+    
+  </nav>
+  
 
   
 
@@ -645,6 +689,16 @@
 
     </main>
   </div>
+
+  <footer class="site-footer">
+  <p class="footer-text">
+    &copy; 2026 Inazio Claver
+    &middot;
+    <a href="/feed.xml" class="footer-link">RSS</a>
+    &middot;
+    <a href="https://github.com/inazense" class="footer-link" target="_blank" rel="noopener">GitHub</a>
+  </p>
+</footer>
 
   <script src="/assets/js/theme.js"></script>
   <script src="/assets/js/search.js"></script>

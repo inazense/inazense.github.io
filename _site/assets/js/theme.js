@@ -127,6 +127,68 @@
       }
     });
 
+    // Lazy loading en imágenes del contenido
+    document.querySelectorAll('.post-content img').forEach(function(img) {
+      img.setAttribute('loading', 'lazy');
+    });
+
+    // TOC activo al hacer scroll
+    (function() {
+      var tocLinks = document.querySelectorAll('.toc-list a');
+      if (!tocLinks.length) return;
+      var headingIds = Array.from(tocLinks).map(function(a) {
+        return a.getAttribute('href').replace('#', '');
+      });
+      var headings = headingIds.map(function(id) { return document.getElementById(id); }).filter(Boolean);
+      if (!headings.length) return;
+
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            tocLinks.forEach(function(a) { a.classList.remove('active'); });
+            var activeLink = document.querySelector('.toc-list a[href="#' + entry.target.id + '"]');
+            if (activeLink) activeLink.classList.add('active');
+          }
+        });
+      }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+      headings.forEach(function(h) { observer.observe(h); });
+    })();
+
+    // Botón buscar en topbar móvil
+    var topbarSearchBtn = document.getElementById('topbar-search-btn');
+    if (topbarSearchBtn) {
+      topbarSearchBtn.addEventListener('click', function() {
+        openSidebar();
+        setTimeout(function() {
+          var searchInput = document.getElementById('search-input');
+          if (searchInput) searchInput.focus();
+        }, 320);
+      });
+    }
+
+    // Botón copiar en bloques de código
+    document.querySelectorAll('.post-content pre').forEach(function(pre) {
+      var btn = document.createElement('button');
+      btn.className = 'copy-btn';
+      btn.setAttribute('aria-label', 'Copiar código');
+      btn.textContent = 'Copiar';
+      pre.style.position = 'relative';
+      pre.appendChild(btn);
+
+      btn.addEventListener('click', function() {
+        var code = pre.querySelector('code');
+        var text = code ? code.textContent : pre.textContent;
+        navigator.clipboard.writeText(text).then(function() {
+          btn.textContent = '¡Copiado!';
+          setTimeout(function() { btn.textContent = 'Copiar'; }, 2000);
+        }).catch(function() {
+          btn.textContent = 'Error';
+          setTimeout(function() { btn.textContent = 'Copiar'; }, 2000);
+        });
+      });
+    });
+
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && sidebar && sidebar.classList.contains('open')) {
         closeSidebar();

@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <title>Procesos y servicios. Programación de Sockets (I) | Programando a Pasitos</title>
 <meta name="description" content="Introducción a la programación de sockets TCP en Java con las clases ServerSocket y Socket, incluyendo ejemplos de servidor y cliente con DataInputStream y DataOutputStream.">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -12,6 +14,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="stylesheet" href="/assets/css/main.css">
 <link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+
 <script>
   // Aplicar tema guardado antes del primer render (evita flash)
   (function() {
@@ -35,12 +38,13 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Procesos y servicios. Programación de Sockets (I)" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver","url":"https://github.com/inazense"},"dateModified":"2016-01-20T06:00:00+01:00","datePublished":"2016-01-20T06:00:00+01:00","description":"Introducción a la programación de sockets TCP en Java con las clases ServerSocket y Socket, incluyendo ejemplos de servidor y cliente con DataInputStream y DataOutputStream.","headline":"Procesos y servicios. Programación de Sockets (I)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2016/01/20/procesos-y-servicios-programacion-de-sockets-i/"},"url":"http://localhost:4000/posts/2016/01/20/procesos-y-servicios-programacion-de-sockets-i/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver","url":"https://github.com/inazense"},"dateModified":"2016-01-20T06:00:00+01:00","datePublished":"2016-01-20T06:00:00+01:00","description":"Introducción a la programación de sockets TCP en Java con las clases ServerSocket y Socket, incluyendo ejemplos de servidor y cliente con DataInputStream y DataOutputStream.","headline":"Procesos y servicios. Programación de Sockets (I)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2016/01/20/procesos-y-servicios-programacion-de-sockets-i/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/img/profile.png"},"name":"Inazio Claver"},"url":"http://localhost:4000/posts/2016/01/20/procesos-y-servicios-programacion-de-sockets-i/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Saltar al contenido</a>
   <div class="topbar" id="topbar">
     <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
       <span></span>
@@ -48,6 +52,11 @@
       <span></span>
     </button>
     <span class="topbar-title">Programando a Pasitos</span>
+    <button class="topbar-search-btn" id="topbar-search-btn" aria-label="Buscar">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+    </button>
   </div>
 
   <div class="sidebar-overlay" id="sidebar-overlay"></div>
@@ -117,7 +126,25 @@
     <div class="divider"></div>
     <main class="content" id="main-content">
       
+      
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Procesos y servicios. Programación de Sockets (I)",
+  "description": "Introducción a la programación de sockets TCP en Java con las clases ServerSocket y Socket, incluyendo ejemplos de servidor y cliente con DataInputStream y DataOutputStream.",
+  "datePublished": "2016-01-20T06:00:00+01:00",
+  "dateModified": "2016-01-20T06:00:00+01:00",
+  "author": { "@type": "Person", "name": "Inazio Claver", "url": "https://github.com/inazense" },
+  "publisher": { "@type": "Organization", "name": "Programando a Pasitos", "url": "http://localhost:4000" },
+  "url": "http://localhost:4000/posts/2016/01/20/procesos-y-servicios-programacion-de-sockets-i/",
+  "wordCount": 818,
+  "timeRequired": "PT5M",
+  "articleSection": "Java",
+  "keywords": "java, sockets, tcp, programacion-de-servicios-y-procesos, serversocket"
+}
+</script>
 
 <article class="post-full">
   <nav class="breadcrumb" aria-label="Miga de pan">
@@ -339,20 +366,37 @@
     
       <div class="post-tags">
         
-          <span class="tag">#java</span>
+          <a href="/categorias/#java" class="tag">#java</a>
         
-          <span class="tag">#sockets</span>
+          <a href="/categorias/#sockets" class="tag">#sockets</a>
         
-          <span class="tag">#tcp</span>
+          <a href="/categorias/#tcp" class="tag">#tcp</a>
         
-          <span class="tag">#programacion-de-servicios-y-procesos</span>
+          <a href="/categorias/#programacion-de-servicios-y-procesos" class="tag">#programacion-de-servicios-y-procesos</a>
         
-          <span class="tag">#serversocket</span>
+          <a href="/categorias/#serversocket" class="tag">#serversocket</a>
         
       </div>
     
     <a href="/" class="back-link">&larr; Volver al blog</a>
   </footer>
+
+  
+  <nav class="post-nav" aria-label="Navegación entre entradas">
+    
+    <a href="/posts/2016/01/20/procesos-y-servicios-programacion-en-red/" class="post-nav-link post-nav-prev">
+      <span class="nav-dir">&larr; Anterior</span>
+      <span class="nav-title">Procesos y servicios. Programación en red</span>
+    </a>
+    
+    
+    <a href="/posts/2016/01/21/procesos-y-servicios-programacion-de-sockets-ii/" class="post-nav-link post-nav-next">
+      <span class="nav-dir">Siguiente &rarr;</span>
+      <span class="nav-title">Procesos y servicios. Programación de Sockets (II)</span>
+    </a>
+    
+  </nav>
+  
 
   
 
@@ -424,6 +468,16 @@
 
     </main>
   </div>
+
+  <footer class="site-footer">
+  <p class="footer-text">
+    &copy; 2026 Inazio Claver
+    &middot;
+    <a href="/feed.xml" class="footer-link">RSS</a>
+    &middot;
+    <a href="https://github.com/inazense" class="footer-link" target="_blank" rel="noopener">GitHub</a>
+  </p>
+</footer>
 
   <script src="/assets/js/theme.js"></script>
   <script src="/assets/js/search.js"></script>

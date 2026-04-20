@@ -28,6 +28,9 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-paginate
+  - jekyll-sitemap
+
+logo: /img/profile.png
 
 paginate: 10
 paginate_path: "/page/:num/"

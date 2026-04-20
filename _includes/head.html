@@ -1,5 +1,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <title>
   {%- if page.title -%}{{ page.title }} | {{ site.title }}{%- else -%}{{ site.title }}{%- endif -%}
 </title>
@@ -11,6 +13,10 @@
 <link rel="manifest" href="{{ '/site.webmanifest' | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ '/feed.xml' | relative_url }}">
+{% if paginator %}
+  {% if paginator.previous_page %}<link rel="prev" href="{{ paginator.previous_page_path | prepend: site.url }}">{% endif %}
+  {% if paginator.next_page %}<link rel="next" href="{{ paginator.next_page_path | prepend: site.url }}">{% endif %}
+{% endif %}
 <script>
   // Aplicar tema guardado antes del primer render (evita flash)
   (function() {

@@ -6,5 +6,9 @@ permalink: /404.html
 <div class="error-page">
   <p class="error-code">404</p>
   <p class="error-msg">Esta página no existe o ha sido movida.</p>
-  <a href="{{ '/' | relative_url }}" class="btn-home">&larr; Volver al blog</a>
+  <div class="error-nav">
+    <a href="{{ '/' | relative_url }}" class="btn-home">&larr; Volver al blog</a>
+    <a href="{{ '/categorias/' | relative_url }}" class="btn-home">Explorar categorías</a>
+    <a href="{{ '/archivo/' | relative_url }}" class="btn-home">Ver archivo</a>
+  </div>
 </div>

@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <title>Bases de datos. Modelo relacional (I) | Programando a Pasitos</title>
 <meta name="description" content="Aprende el modelo relacional de bases de datos: tablas, tuplas, atributos y claves primarias. Guía completa sobre teoría de Codd, estructura de datos, dominios, cardinalidad y fundamentos de bases de datos relacionales.">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -12,6 +14,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="stylesheet" href="/assets/css/main.css">
 <link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+
 <script>
   // Aplicar tema guardado antes del primer render (evita flash)
   (function() {
@@ -35,12 +38,13 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Bases de datos. Modelo relacional (I)" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver","url":"https://github.com/inazense"},"dateModified":"2014-10-07T09:10:00+02:00","datePublished":"2014-10-07T09:10:00+02:00","description":"Aprende el modelo relacional de bases de datos: tablas, tuplas, atributos y claves primarias. Guía completa sobre teoría de Codd, estructura de datos, dominios, cardinalidad y fundamentos de bases de datos relacionales.","headline":"Bases de datos. Modelo relacional (I)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2014/10/07/bases-de-datos-modelo-relacional-i/"},"url":"http://localhost:4000/posts/2014/10/07/bases-de-datos-modelo-relacional-i/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver","url":"https://github.com/inazense"},"dateModified":"2014-10-07T09:10:00+02:00","datePublished":"2014-10-07T09:10:00+02:00","description":"Aprende el modelo relacional de bases de datos: tablas, tuplas, atributos y claves primarias. Guía completa sobre teoría de Codd, estructura de datos, dominios, cardinalidad y fundamentos de bases de datos relacionales.","headline":"Bases de datos. Modelo relacional (I)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2014/10/07/bases-de-datos-modelo-relacional-i/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/img/profile.png"},"name":"Inazio Claver"},"url":"http://localhost:4000/posts/2014/10/07/bases-de-datos-modelo-relacional-i/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Saltar al contenido</a>
   <div class="topbar" id="topbar">
     <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
       <span></span>
@@ -48,6 +52,11 @@
       <span></span>
     </button>
     <span class="topbar-title">Programando a Pasitos</span>
+    <button class="topbar-search-btn" id="topbar-search-btn" aria-label="Buscar">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+    </button>
   </div>
 
   <div class="sidebar-overlay" id="sidebar-overlay"></div>
@@ -117,7 +126,25 @@
     <div class="divider"></div>
     <main class="content" id="main-content">
       
+      
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Bases de datos. Modelo relacional (I)",
+  "description": "Aprende el modelo relacional de bases de datos: tablas, tuplas, atributos y claves primarias. Guía completa sobre teoría de Codd, estructura de datos, dominios, cardinalidad y fundamentos de bases de datos relacionales.",
+  "datePublished": "2014-10-07T09:10:00+02:00",
+  "dateModified": "2014-10-07T09:10:00+02:00",
+  "author": { "@type": "Person", "name": "Inazio Claver", "url": "https://github.com/inazense" },
+  "publisher": { "@type": "Organization", "name": "Programando a Pasitos", "url": "http://localhost:4000" },
+  "url": "http://localhost:4000/posts/2014/10/07/bases-de-datos-modelo-relacional-i/",
+  "wordCount": 249,
+  "timeRequired": "PT2M",
+  "articleSection": "Bases de datos",
+  "keywords": "bases-datos, modelo-relacional, sql, tablas, claves-primarias, codd"
+}
+</script>
 
 <article class="post-full">
   <nav class="breadcrumb" aria-label="Miga de pan">
@@ -200,22 +227,39 @@ En las relaciones:</p>
     
       <div class="post-tags">
         
-          <span class="tag">#bases-datos</span>
+          <a href="/categorias/#bases-datos" class="tag">#bases-datos</a>
         
-          <span class="tag">#modelo-relacional</span>
+          <a href="/categorias/#modelo-relacional" class="tag">#modelo-relacional</a>
         
-          <span class="tag">#sql</span>
+          <a href="/categorias/#sql" class="tag">#sql</a>
         
-          <span class="tag">#tablas</span>
+          <a href="/categorias/#tablas" class="tag">#tablas</a>
         
-          <span class="tag">#claves-primarias</span>
+          <a href="/categorias/#claves-primarias" class="tag">#claves-primarias</a>
         
-          <span class="tag">#codd</span>
+          <a href="/categorias/#codd" class="tag">#codd</a>
         
       </div>
     
     <a href="/" class="back-link">&larr; Volver al blog</a>
   </footer>
+
+  
+  <nav class="post-nav" aria-label="Navegación entre entradas">
+    
+    <a href="/posts/2014/10/07/sistemas-informaticos-explotacion-de-sistemas-informaticos-i/" class="post-nav-link post-nav-prev">
+      <span class="nav-dir">&larr; Anterior</span>
+      <span class="nav-title">Sistemas informáticos. Explotación de sistemas informáticos I</span>
+    </a>
+    
+    
+    <a href="/posts/2014/10/07/entornos-de-desarrollo-principios-de-la-informatica-y-la-programacion/" class="post-nav-link post-nav-next">
+      <span class="nav-dir">Siguiente &rarr;</span>
+      <span class="nav-title">Entornos de desarrollo. Principios de la informática y la programación</span>
+    </a>
+    
+  </nav>
+  
 
   
 
@@ -287,6 +331,16 @@ En las relaciones:</p>
 
     </main>
   </div>
+
+  <footer class="site-footer">
+  <p class="footer-text">
+    &copy; 2026 Inazio Claver
+    &middot;
+    <a href="/feed.xml" class="footer-link">RSS</a>
+    &middot;
+    <a href="https://github.com/inazense" class="footer-link" target="_blank" rel="noopener">GitHub</a>
+  </p>
+</footer>
 
   <script src="/assets/js/theme.js"></script>
   <script src="/assets/js/search.js"></script>

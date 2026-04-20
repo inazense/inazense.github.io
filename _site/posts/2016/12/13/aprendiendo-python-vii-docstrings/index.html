@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <title>Aprendiendo Python (VII). Docstrings | Programando a Pasitos</title>
 <meta name="description" content="Aprende a crear documentación automática en Python usando docstrings. Tutorial completo sobre cómo documentar clases, funciones y métodos con ejemplos prácticos y generación de API documentation.">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -12,6 +14,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="stylesheet" href="/assets/css/main.css">
 <link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+
 <script>
   // Aplicar tema guardado antes del primer render (evita flash)
   (function() {
@@ -35,12 +38,13 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Aprendiendo Python (VII). Docstrings" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2016-12-13T05:10:00+01:00","datePublished":"2016-12-13T05:10:00+01:00","description":"Aprende a crear documentación automática en Python usando docstrings. Tutorial completo sobre cómo documentar clases, funciones y métodos con ejemplos prácticos y generación de API documentation.","headline":"Aprendiendo Python (VII). Docstrings","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2016/12/13/aprendiendo-python-vii-docstrings/"},"url":"http://localhost:4000/posts/2016/12/13/aprendiendo-python-vii-docstrings/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2016-12-13T05:10:00+01:00","datePublished":"2016-12-13T05:10:00+01:00","description":"Aprende a crear documentación automática en Python usando docstrings. Tutorial completo sobre cómo documentar clases, funciones y métodos con ejemplos prácticos y generación de API documentation.","headline":"Aprendiendo Python (VII). Docstrings","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2016/12/13/aprendiendo-python-vii-docstrings/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/img/profile.png"},"name":"Inazio Claver"},"url":"http://localhost:4000/posts/2016/12/13/aprendiendo-python-vii-docstrings/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Saltar al contenido</a>
   <div class="topbar" id="topbar">
     <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
       <span></span>
@@ -48,6 +52,11 @@
       <span></span>
     </button>
     <span class="topbar-title">Programando a Pasitos</span>
+    <button class="topbar-search-btn" id="topbar-search-btn" aria-label="Buscar">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+    </button>
   </div>
 
   <div class="sidebar-overlay" id="sidebar-overlay"></div>
@@ -117,7 +126,25 @@
     <div class="divider"></div>
     <main class="content" id="main-content">
       
+      
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Aprendiendo Python (VII). Docstrings",
+  "description": "Aprende a crear documentación automática en Python usando docstrings. Tutorial completo sobre cómo documentar clases, funciones y métodos con ejemplos prácticos y generación de API documentation.",
+  "datePublished": "2016-12-13T05:10:00+01:00",
+  "dateModified": "2016-12-13T05:10:00+01:00",
+  "author": { "@type": "Person", "name": "Inazio Claver", "url": "https://github.com/inazense" },
+  "publisher": { "@type": "Organization", "name": "Programando a Pasitos", "url": "http://localhost:4000" },
+  "url": "http://localhost:4000/posts/2016/12/13/aprendiendo-python-vii-docstrings/",
+  "wordCount": 599,
+  "timeRequired": "PT3M",
+  "articleSection": "Python",
+  "keywords": "python, docstrings, documentacion, api, poo, help"
+}
+</script>
 
 <article class="post-full">
   <nav class="breadcrumb" aria-label="Miga de pan">
@@ -242,22 +269,39 @@ Nos vamos a la consola de comandos y lanzamos nuestro programa en modo interacci
     
       <div class="post-tags">
         
-          <span class="tag">#python</span>
+          <a href="/categorias/#python" class="tag">#python</a>
         
-          <span class="tag">#docstrings</span>
+          <a href="/categorias/#docstrings" class="tag">#docstrings</a>
         
-          <span class="tag">#documentacion</span>
+          <a href="/categorias/#documentacion" class="tag">#documentacion</a>
         
-          <span class="tag">#api</span>
+          <a href="/categorias/#api" class="tag">#api</a>
         
-          <span class="tag">#poo</span>
+          <a href="/categorias/#poo" class="tag">#poo</a>
         
-          <span class="tag">#help</span>
+          <a href="/categorias/#help" class="tag">#help</a>
         
       </div>
     
     <a href="/" class="back-link">&larr; Volver al blog</a>
   </footer>
+
+  
+  <nav class="post-nav" aria-label="Navegación entre entradas">
+    
+    <a href="/posts/2016/12/10/aprendiendo-python-3-vi-orientado-a-objetos-ii-inicializacion/" class="post-nav-link post-nav-prev">
+      <span class="nav-dir">&larr; Anterior</span>
+      <span class="nav-title">Aprendiendo Python (VI). Orientado a objetos (II). Inicialización</span>
+    </a>
+    
+    
+    <a href="/posts/2016/12/20/envio-de-emails-en-python/" class="post-nav-link post-nav-next">
+      <span class="nav-dir">Siguiente &rarr;</span>
+      <span class="nav-title">Envío de emails en Python</span>
+    </a>
+    
+  </nav>
+  
 
   
 
@@ -332,6 +376,16 @@ Nos vamos a la consola de comandos y lanzamos nuestro programa en modo interacci
 
     </main>
   </div>
+
+  <footer class="site-footer">
+  <p class="footer-text">
+    &copy; 2026 Inazio Claver
+    &middot;
+    <a href="/feed.xml" class="footer-link">RSS</a>
+    &middot;
+    <a href="https://github.com/inazense" class="footer-link" target="_blank" rel="noopener">GitHub</a>
+  </p>
+</footer>
 
   <script src="/assets/js/theme.js"></script>
   <script src="/assets/js/search.js"></script>

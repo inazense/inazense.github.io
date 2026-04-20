@@ -2,6 +2,34 @@
 
 html { font-size: 16px; scroll-behavior: smooth; }
 
+// Accesibilidad: skip link y focus visible
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  z-index: 9999;
+  background: var(--accent);
+  color: var(--bg);
+  padding: 0.5rem 1rem;
+  border-radius: $radius;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: top 0.2s;
+
+  &:focus {
+    top: 1rem;
+    color: var(--bg);
+    text-decoration: none;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) { outline: none; }
+
 body {
   margin: 0;
   background-color: var(--bg);
@@ -152,4 +180,23 @@ ul, ol {
   padding-left: 1.75rem;
   margin: 0.75rem 0 1.2rem;
   li { margin-bottom: 0.35rem; }
+}
+
+// Footer global
+.site-footer {
+  padding: 1rem 2rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  background: var(--sidebar-bg);
+}
+
+.footer-text {
+  font-size: 0.82rem;
+  color: var(--secondary);
+  margin: 0;
+}
+
+.footer-link {
+  color: var(--secondary);
+  &:hover { color: var(--accent); text-decoration: underline; }
 }

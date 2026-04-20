@@ -3,6 +3,23 @@ layout: default
 ---
 {% assign words = content | number_of_words %}
 {% assign read_time = words | divided_by: 200 | plus: 1 %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ page.title | jsonify }},
+  "description": {{ page.description | default: page.excerpt | strip_html | jsonify }},
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
+  "author": { "@type": "Person", "name": {{ site.author.name | jsonify }}, "url": {{ site.author.url | jsonify }} },
+  "publisher": { "@type": "Organization", "name": {{ site.title | jsonify }}, "url": {{ site.url | jsonify }} },
+  "url": "{{ page.url | absolute_url }}",
+  "wordCount": {{ words }},
+  "timeRequired": "PT{{ read_time }}M"{% if page.categories.size > 0 %},
+  "articleSection": {{ page.categories | first | jsonify }}{% endif %}{% if page.tags.size > 0 %},
+  "keywords": {{ page.tags | join: ", " | jsonify }}{% endif %}
+}
+</script>
 
 <article class="post-full">
   {% include breadcrumbs.html %}
@@ -32,12 +49,29 @@ layout: default
     {% if page.tags.size > 0 %}
       <div class="post-tags">
         {% for tag in page.tags %}
-          <span class="tag">#{{ tag }}</span>
+          <a href="{{ '/categorias/' | relative_url }}#{{ tag | slugify }}" class="tag">#{{ tag }}</a>
         {% endfor %}
       </div>
     {% endif %}
     <a href="{{ '/' | relative_url }}" class="back-link">&larr; Volver al blog</a>
   </footer>
+
+  {% if page.previous.url or page.next.url %}
+  <nav class="post-nav" aria-label="Navegación entre entradas">
+    {% if page.previous.url %}
+    <a href="{{ page.previous.url | relative_url }}" class="post-nav-link post-nav-prev">
+      <span class="nav-dir">&larr; Anterior</span>
+      <span class="nav-title">{{ page.previous.title }}</span>
+    </a>
+    {% endif %}
+    {% if page.next.url %}
+    <a href="{{ page.next.url | relative_url }}" class="post-nav-link post-nav-next">
+      <span class="nav-dir">Siguiente &rarr;</span>
+      <span class="nav-title">{{ page.next.title }}</span>
+    </a>
+    {% endif %}
+  </nav>
+  {% endif %}
 
   {% include related-posts.html %}
   {% include comments.html %}

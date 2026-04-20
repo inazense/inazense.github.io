@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <title>Entornos de desarrollo. Desarrollo de software (III) | Programando a Pasitos</title>
 <meta name="description" content="Lenguajes compilados vs interpretados, Java y la JVM, instalación de MinGW para compilar C en Windows, y configuración de la variable de entorno PATH.">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -12,6 +14,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="stylesheet" href="/assets/css/main.css">
 <link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+
 <script>
   // Aplicar tema guardado antes del primer render (evita flash)
   (function() {
@@ -35,12 +38,13 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Entornos de desarrollo. Desarrollo de software (III)" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver","url":"https://github.com/inazense"},"dateModified":"2014-10-13T08:44:00+02:00","datePublished":"2014-10-13T08:44:00+02:00","description":"Lenguajes compilados vs interpretados, Java y la JVM, instalación de MinGW para compilar C en Windows, y configuración de la variable de entorno PATH.","headline":"Entornos de desarrollo. Desarrollo de software (III)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2014/10/13/entornos-de-desarrollo-desarrollo-de-software-iii/"},"url":"http://localhost:4000/posts/2014/10/13/entornos-de-desarrollo-desarrollo-de-software-iii/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver","url":"https://github.com/inazense"},"dateModified":"2014-10-13T08:44:00+02:00","datePublished":"2014-10-13T08:44:00+02:00","description":"Lenguajes compilados vs interpretados, Java y la JVM, instalación de MinGW para compilar C en Windows, y configuración de la variable de entorno PATH.","headline":"Entornos de desarrollo. Desarrollo de software (III)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2014/10/13/entornos-de-desarrollo-desarrollo-de-software-iii/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/img/profile.png"},"name":"Inazio Claver"},"url":"http://localhost:4000/posts/2014/10/13/entornos-de-desarrollo-desarrollo-de-software-iii/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Saltar al contenido</a>
   <div class="topbar" id="topbar">
     <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
       <span></span>
@@ -48,6 +52,11 @@
       <span></span>
     </button>
     <span class="topbar-title">Programando a Pasitos</span>
+    <button class="topbar-search-btn" id="topbar-search-btn" aria-label="Buscar">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+    </button>
   </div>
 
   <div class="sidebar-overlay" id="sidebar-overlay"></div>
@@ -117,7 +126,25 @@
     <div class="divider"></div>
     <main class="content" id="main-content">
       
+      
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Entornos de desarrollo. Desarrollo de software (III)",
+  "description": "Lenguajes compilados vs interpretados, Java y la JVM, instalación de MinGW para compilar C en Windows, y configuración de la variable de entorno PATH.",
+  "datePublished": "2014-10-13T08:44:00+02:00",
+  "dateModified": "2014-10-13T08:44:00+02:00",
+  "author": { "@type": "Person", "name": "Inazio Claver", "url": "https://github.com/inazense" },
+  "publisher": { "@type": "Organization", "name": "Programando a Pasitos", "url": "http://localhost:4000" },
+  "url": "http://localhost:4000/posts/2014/10/13/entornos-de-desarrollo-desarrollo-de-software-iii/",
+  "wordCount": 452,
+  "timeRequired": "PT3M",
+  "articleSection": "Entornos de desarrollo",
+  "keywords": "desarrollo-software, compiladores, java, jvm, mingw, path, windows, gcc, entornos-desarrollo"
+}
+</script>
 
 <article class="post-full">
   <nav class="breadcrumb" aria-label="Miga de pan">
@@ -232,28 +259,45 @@
     
       <div class="post-tags">
         
-          <span class="tag">#desarrollo-software</span>
+          <a href="/categorias/#desarrollo-software" class="tag">#desarrollo-software</a>
         
-          <span class="tag">#compiladores</span>
+          <a href="/categorias/#compiladores" class="tag">#compiladores</a>
         
-          <span class="tag">#java</span>
+          <a href="/categorias/#java" class="tag">#java</a>
         
-          <span class="tag">#jvm</span>
+          <a href="/categorias/#jvm" class="tag">#jvm</a>
         
-          <span class="tag">#mingw</span>
+          <a href="/categorias/#mingw" class="tag">#mingw</a>
         
-          <span class="tag">#path</span>
+          <a href="/categorias/#path" class="tag">#path</a>
         
-          <span class="tag">#windows</span>
+          <a href="/categorias/#windows" class="tag">#windows</a>
         
-          <span class="tag">#gcc</span>
+          <a href="/categorias/#gcc" class="tag">#gcc</a>
         
-          <span class="tag">#entornos-desarrollo</span>
+          <a href="/categorias/#entornos-desarrollo" class="tag">#entornos-desarrollo</a>
         
       </div>
     
     <a href="/" class="back-link">&larr; Volver al blog</a>
   </footer>
+
+  
+  <nav class="post-nav" aria-label="Navegación entre entradas">
+    
+    <a href="/posts/2014/10/13/sistemas-informaticos-dispositivos-de-almacenamiento-i/" class="post-nav-link post-nav-prev">
+      <span class="nav-dir">&larr; Anterior</span>
+      <span class="nav-title">Sistemas informáticos. Dispositivos de almacenamiento (I)</span>
+    </a>
+    
+    
+    <a href="/posts/2014/10/14/programacion-resolucion-de-problemas-iii/" class="post-nav-link post-nav-next">
+      <span class="nav-dir">Siguiente &rarr;</span>
+      <span class="nav-title">Programación. Resolución de problemas (III)</span>
+    </a>
+    
+  </nav>
+  
 
   
 
@@ -325,6 +369,16 @@
 
     </main>
   </div>
+
+  <footer class="site-footer">
+  <p class="footer-text">
+    &copy; 2026 Inazio Claver
+    &middot;
+    <a href="/feed.xml" class="footer-link">RSS</a>
+    &middot;
+    <a href="https://github.com/inazense" class="footer-link" target="_blank" rel="noopener">GitHub</a>
+  </p>
+</footer>
 
   <script src="/assets/js/theme.js"></script>
   <script src="/assets/js/search.js"></script>

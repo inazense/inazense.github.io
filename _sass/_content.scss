@@ -86,7 +86,9 @@
 .featured-card {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 0.5rem;
+  min-height: 180px;
   padding: 1.25rem;
   background: var(--surface);
   border: 1px solid var(--border);
@@ -563,6 +565,14 @@
   color: var(--secondary);
   margin: 1rem 0 2rem;
   font-size: 1.1rem;
+}
+
+.error-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 2rem;
 }
 
 .btn-home {

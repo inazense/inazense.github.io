@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://inazense.github.io/sitemap.xml

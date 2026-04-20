@@ -1,3 +1,29 @@
+// ── Botón copiar código
+.copy-btn {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: $radius;
+  color: var(--secondary);
+  font-family: $font-stack;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s, color 0.2s, border-color 0.2s;
+
+  &:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+}
+
+pre:hover .copy-btn,
+pre:focus-within .copy-btn { opacity: 1; }
+
 // ── Syntax highlighting — Rouge token colors
 // Scoped bajo .highlight para no afectar inline code ni otros elementos
 

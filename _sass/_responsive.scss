@@ -23,6 +23,22 @@
     font-size: 0.95rem;
     font-weight: 700;
     color: var(--text);
+    flex: 1;
+  }
+
+  .topbar-search-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: $radius;
+    color: var(--secondary);
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.2s, border-color 0.2s;
+
+    &:hover { color: var(--accent); border-color: var(--accent); }
   }
 
   .hamburger {

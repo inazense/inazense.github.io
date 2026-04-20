@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <title>Procesos y servicios. RMI (III). El ejercicio de la hipoteca | Programando a Pasitos</title>
 <meta name="description" content="Implementación completa de una aplicación RMI para calcular la cuota mensual de una hipoteca, con interfaz remota, objeto remoto, servidor y cliente.">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -12,6 +14,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="stylesheet" href="/assets/css/main.css">
 <link rel="alternate" type="application/rss+xml" title="Programando a Pasitos" href="/feed.xml">
+
 <script>
   // Aplicar tema guardado antes del primer render (evita flash)
   (function() {
@@ -35,12 +38,13 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Procesos y servicios. RMI (III). El ejercicio de la hipoteca" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2016-03-04T11:24:00+01:00","datePublished":"2016-03-04T11:24:00+01:00","description":"Implementación completa de una aplicación RMI para calcular la cuota mensual de una hipoteca, con interfaz remota, objeto remoto, servidor y cliente.","headline":"Procesos y servicios. RMI (III). El ejercicio de la hipoteca","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2016/03/04/procesos-y-servicios-rmi-iii-el-ejercicio-de-la-hipoteca/"},"url":"http://localhost:4000/posts/2016/03/04/procesos-y-servicios-rmi-iii-el-ejercicio-de-la-hipoteca/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2016-03-04T11:24:00+01:00","datePublished":"2016-03-04T11:24:00+01:00","description":"Implementación completa de una aplicación RMI para calcular la cuota mensual de una hipoteca, con interfaz remota, objeto remoto, servidor y cliente.","headline":"Procesos y servicios. RMI (III). El ejercicio de la hipoteca","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2016/03/04/procesos-y-servicios-rmi-iii-el-ejercicio-de-la-hipoteca/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/img/profile.png"},"name":"Inazio Claver"},"url":"http://localhost:4000/posts/2016/03/04/procesos-y-servicios-rmi-iii-el-ejercicio-de-la-hipoteca/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Saltar al contenido</a>
   <div class="topbar" id="topbar">
     <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
       <span></span>
@@ -48,6 +52,11 @@
       <span></span>
     </button>
     <span class="topbar-title">Programando a Pasitos</span>
+    <button class="topbar-search-btn" id="topbar-search-btn" aria-label="Buscar">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+    </button>
   </div>
 
   <div class="sidebar-overlay" id="sidebar-overlay"></div>
@@ -117,7 +126,25 @@
     <div class="divider"></div>
     <main class="content" id="main-content">
       
+      
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Procesos y servicios. RMI (III). El ejercicio de la hipoteca",
+  "description": "Implementación completa de una aplicación RMI para calcular la cuota mensual de una hipoteca, con interfaz remota, objeto remoto, servidor y cliente.",
+  "datePublished": "2016-03-04T11:24:00+01:00",
+  "dateModified": "2016-03-04T11:24:00+01:00",
+  "author": { "@type": "Person", "name": "Inazio Claver", "url": "https://github.com/inazense" },
+  "publisher": { "@type": "Organization", "name": "Programando a Pasitos", "url": "http://localhost:4000" },
+  "url": "http://localhost:4000/posts/2016/03/04/procesos-y-servicios-rmi-iii-el-ejercicio-de-la-hipoteca/",
+  "wordCount": 928,
+  "timeRequired": "PT5M",
+  "articleSection": "Java",
+  "keywords": "java, rmi, procesos, servicios, distribuido, hipoteca, ejercicio"
+}
+</script>
 
 <article class="post-full">
   <nav class="breadcrumb" aria-label="Miga de pan">
@@ -320,24 +347,41 @@ java claver.creditos.Cliente
     
       <div class="post-tags">
         
-          <span class="tag">#java</span>
+          <a href="/categorias/#java" class="tag">#java</a>
         
-          <span class="tag">#rmi</span>
+          <a href="/categorias/#rmi" class="tag">#rmi</a>
         
-          <span class="tag">#procesos</span>
+          <a href="/categorias/#procesos" class="tag">#procesos</a>
         
-          <span class="tag">#servicios</span>
+          <a href="/categorias/#servicios" class="tag">#servicios</a>
         
-          <span class="tag">#distribuido</span>
+          <a href="/categorias/#distribuido" class="tag">#distribuido</a>
         
-          <span class="tag">#hipoteca</span>
+          <a href="/categorias/#hipoteca" class="tag">#hipoteca</a>
         
-          <span class="tag">#ejercicio</span>
+          <a href="/categorias/#ejercicio" class="tag">#ejercicio</a>
         
       </div>
     
     <a href="/" class="back-link">&larr; Volver al blog</a>
   </footer>
+
+  
+  <nav class="post-nav" aria-label="Navegación entre entradas">
+    
+    <a href="/posts/2016/03/04/procesos-y-servicios-rmi-ii/" class="post-nav-link post-nav-prev">
+      <span class="nav-dir">&larr; Anterior</span>
+      <span class="nav-title">Procesos y servicios. RMI (II)</span>
+    </a>
+    
+    
+    <a href="/posts/2016/03/06/acceso-a-datos-neodatis/" class="post-nav-link post-nav-next">
+      <span class="nav-dir">Siguiente &rarr;</span>
+      <span class="nav-title">Acceso a datos. Neodatis</span>
+    </a>
+    
+  </nav>
+  
 
   
 
@@ -409,6 +453,16 @@ java claver.creditos.Cliente
 
     </main>
   </div>
+
+  <footer class="site-footer">
+  <p class="footer-text">
+    &copy; 2026 Inazio Claver
+    &middot;
+    <a href="/feed.xml" class="footer-link">RSS</a>
+    &middot;
+    <a href="https://github.com/inazense" class="footer-link" target="_blank" rel="noopener">GitHub</a>
+  </p>
+</footer>
 
   <script src="/assets/js/theme.js"></script>
   <script src="/assets/js/search.js"></script>
