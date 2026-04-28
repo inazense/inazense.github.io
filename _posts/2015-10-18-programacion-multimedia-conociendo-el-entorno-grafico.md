@@ -1,8 +1,8 @@
 ---
 title: "Programación multimedia. Conociendo el entorno gráfico"
-description: Guía del entorno gráfico de Android Studio para empezar el desarrollo multimedia, incluyendo la paleta de componentes, el editor visual, la barra de herramientas y los desplegables de configuración.
+description: Guía del entorno gráfico de Android Studio para empezar el desarrollo multimedia, incluyendo la creación de proyectos, la paleta de componentes, la barra de herramientas y los desplegables de configuración.
 author: Inazio Claver
-date: 2015-10-18 12:00:00 +0800
+date: 2015-10-18 22:46:00 +0800
 categories: [Android]
 tags: [android, android-studio, interfaz-grafica, layouts, widgets, programacion-multimedia]
 pin: false
@@ -10,102 +10,132 @@ math: false
 mermaid: false
 ---
 
+Para empezar a orientarnos con el entorno gráfico, lo primero será generar un nuevo proyecto.
+
 ## Crear un nuevo proyecto
 
-Para comenzar, abrimos Android Studio y seleccionamos **Start a new Android Studio project**. Asignamos un nombre al proyecto (por ejemplo, "Vistas1"), elegimos la plataforma destino e indicamos la versión mínima del SDK requerida.
+Abrimos Android Studio y seleccionamos **Start a new Android Studio project**.
 
 ![Pantalla de inicio de Android Studio](/img/posts/20151018_1.png)
 
-![Configuración del nuevo proyecto](/img/posts/20151018_2.png)
+Le damos un nombre identificativo a nuestro proyecto (en el ejemplo "Vistas1").
 
-![Selección de versión mínima del SDK](/img/posts/20151018_3.png)
+![Nombrar el proyecto](/img/posts/20151018_2.png)
 
-![Selección de actividad inicial](/img/posts/20151018_4.png)
+Elegimos para qué plataforma queremos desarrollar (teléfono, Tablet, gafas, televisión, reloj…) e indicamos la versión mínima del SDK.
 
-## El editor de layouts
+![Selección de plataforma y versión mínima del SDK](/img/posts/20151018_3.png)
 
-Una vez creado el proyecto, se abre el editor visual del layout. En él podemos diseñar la interfaz mediante arrastrar y soltar componentes.
+Seleccionamos una plantilla por defecto para la aplicación.
 
-![Editor visual del layout](/img/posts/20151018_5.png)
+![Selección de plantilla de actividad](/img/posts/20151018_4.png)
 
-## La paleta de componentes
+Le damos un nombre a nuestra actividad, y un título que será el principal, y finalizamos.
 
-La paleta está organizada en secciones: **Layouts**, **Widgets**, **Text Fields**, etc. Desde aquí arrastramos los elementos al área de diseño.
+## El entorno principal
 
-![Paleta de componentes](/img/posts/20151018_6.png)
+Una vez creado el proyecto se nos abre el entorno principal de Android Studio.
 
-![Secciones de la paleta](/img/posts/20151018_7.png)
+![Vista general del entorno principal](/img/posts/20151018_5.png)
 
-## Añadir componentes
+Si vamos a la parte central inferior podremos modificar las pestañas para ver el diseño en modo gráfico o con el XML generado.
 
-El `LinearLayout` es el contenedor base sobre el cual se cargan los demás componentes. Sobre él podemos añadir elementos como `ToggleButton`, `CheckBox`, `ProgressBar` y `RatingBar`.
+![Pestañas de vista gráfica y XML](/img/posts/20151018_6.png)
 
-![Añadir componentes al layout](/img/posts/20151018_8.png)
+Yendo a la sección derecha podemos ver todos los componentes gráficos que tiene nuestra app, y en el menú inferior sus características configurables (en forma gráfica). `RelativeLayout` es la plantilla sobre la que se cargan todos los componentes.
 
-![Componentes añadidos sobre LinearLayout](/img/posts/20151018_9.png)
+![Panel de componentes y propiedades](/img/posts/20151018_7.png)
+
+## Crear un nuevo layout
+
+Borramos el `TextView` que aparece por defecto e insertamos un `LinearLayout` Vertical desde la paleta de componentes.
+
+![Insertar un LinearLayout Vertical](/img/posts/20151018_8.png)
+
+Ahora arrastramos desde la paleta los siguientes componentes sobre el `LinearLayout`:
+
+- `ToggleButton`
+- `CheckBox`
+- `ProgressBar`
+- `RatingBar`
+
+![Componentes añadidos sobre el LinearLayout](/img/posts/20151018_9.png)
 
 ## Las pestañas de vista
 
-En la parte superior del editor hay dos pestañas para cambiar entre:
-- **Design**: vista gráfica con los componentes representados visualmente
-- **Text**: vista del código XML del layout
+En la parte inferior central tenemos dos pestañas:
 
-![Pestaña Design](/img/posts/20151018_10.png)
+- **Design**: vista gráfica con los componentes representados visualmente.
+- **Text**: vista del código XML del layout generado.
 
-![Pestaña Text (XML)](/img/posts/20151018_11.png)
+![Vista Design](/img/posts/20151018_10.png)
 
-## La barra de herramientas superior
+![Vista Text (XML)](/img/posts/20151018_11.png)
 
-La barra superior del editor contiene botones para:
+## Los botones de control superiores
 
-- Escalado del dispositivo en el editor
-- Control del zoom
-- Posicionamiento (gravedad)
-- Expansión/contracción de elementos
-- Distribución del espacio entre elementos
+En la barra de herramientas del editor encontramos varios grupos de botones:
 
-![Barra de herramientas del editor](/img/posts/20151018_12.png)
+![Barra de herramientas completa](/img/posts/20151018_12.png)
 
-## Los desplegables de configuración
+**Escala y zoom**: Los dos primeros se encargan de la escala del Smartphone, y los dos últimos de realizar el zoom que nosotros queramos.
 
-Hay siete desplegables que permiten configurar la previsualización:
+![Botones de escala](/img/posts/20151018_13.png)
 
-1. **Dispositivo**: previsualizar en diferentes dispositivos (Nexus, Galaxy, etc.)
-2. **Tamaño/resolución de pantalla**
-3. **Orientación**: Portrait o Landscape
-4. **Tema visual**: aplicar el tema de la aplicación
-5. **Actividad**: navegar entre actividades del proyecto
-6. **Idioma**: cambiar el idioma de la previsualización
-7. **Versión del SDK**
+![Botones de zoom](/img/posts/20151018_14.png)
 
-![Desplegables de configuración](/img/posts/20151018_13.png)
+**Gravedad**: Se ocupa de la gravedad del botón con cuatro posiciones (left, center, right o fill). Esto es, el posicionamiento que tomará el objeto.
 
-![Selección de dispositivo](/img/posts/20151018_14.png)
+![Botón de gravedad](/img/posts/20151018_15.png)
 
-![Selección de orientación](/img/posts/20151018_15.png)
+**Expansión**: Estos dos botones se encargan de ensanchar y alargar respectivamente el botón a su máximo posible en pantalla.
 
-![Selección de tema](/img/posts/20151018_16.png)
+![Botones de expansión](/img/posts/20151018_16.png)
+
+**Distribución**: Se encargan de distribuir el tamaño del botón respecto al elemento que lo contiene y/o teniendo en cuenta los elementos que lo rodean.
+
+![Botones de distribución](/img/posts/20151018_17.png)
+
+## La barra de opciones superior
+
+La barra superior dispone de siete desplegables con las siguientes funciones:
+
+![Barra de opciones superior](/img/posts/20151018_18.png)
+
+1. **Previsualización en dispositivos de ejemplo**: podemos elegir entre diferentes dispositivos (Nexus, Galaxy, etc.) para ver cómo quedaría nuestra app.
+
+![Desplegable de dispositivos](/img/posts/20151018_19.png)
+
+2. **Tamaño de pantalla / resolución**: seleccionamos la resolución de pantalla para la previsualización.
+
+![Desplegable de resolución](/img/posts/20151018_20.png)
+
+3. **Orientación del dispositivo**: Portrait, Landscape y modos especiales (Card Dock, Night time).
+
+![Desplegable de orientación](/img/posts/20151018_21.png)
+
+4. **Tema**: aplicamos el tema de la aplicación a la previsualización.
+
+![Desplegable de tema](/img/posts/20151018_22.png)
+
+5. **Actividad**: para navegar entre las distintas actividades del proyecto.
+6. **Idioma**: para cambiar el idioma de la aplicación en la previsualización.
+7. **Versión del SDK**: seleccionamos la versión del SDK instalada.
 
 ## El panel de propiedades
 
-Al seleccionar un componente en el editor, el panel de propiedades de la derecha permite editar sus atributos, como `text`, `textSize` e `id`. El `id` es especialmente importante porque es el identificador que se usa para referenciar el componente desde el código Java.
+Si nos vamos a la parte derecha de nuevo, seleccionamos un elemento (por ejemplo, el `CheckBox`) y podemos ver sus propiedades.
 
-![Panel de propiedades](/img/posts/20151018_17.png)
+![Panel de propiedades de un elemento](/img/posts/20151018_23.png)
 
-![Editar propiedad id](/img/posts/20151018_18.png)
+Las propiedades más habituales son:
 
-## Ejecución
+- **text**: valor a mostrar por pantalla.
+- **textSize**: tamaño de la letra.
+- **id**: identificador del elemento para referenciarlo desde el código Java.
 
-Para ejecutar la aplicación, pulsamos el botón de ejecución (triángulo verde) y seleccionamos el destino: emulador o dispositivo físico conectado.
+## Ejecución de la aplicación
 
-![Botón de ejecución](/img/posts/20151018_19.png)
+Y por último, aunque ya lo había explicado en los capítulos anteriores, tenemos el botón que nos permite lanzar la previsualización de nuestra app ya sea simulándola en el ordenador o cargándola al Smartphone que tengamos conectado.
 
-![Selección de dispositivo o emulador](/img/posts/20151018_20.png)
-
-![Resultado en el emulador](/img/posts/20151018_21.png)
-
-![Vista completa del proyecto](/img/posts/20151018_22.png)
-
-![Estructura de carpetas del proyecto](/img/posts/20151018_23.png)
-
-![Proyecto en ejecución](/img/posts/20151018_24.png)
+![Botón de ejecución y selección de dispositivo](/img/posts/20151018_24.png)
