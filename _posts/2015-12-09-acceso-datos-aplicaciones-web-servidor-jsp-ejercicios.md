@@ -16,55 +16,39 @@ Doce ejercicios prácticos para aprender JSP y acceso a bases de datos, desde op
 
 Mostrar el navegador del cliente, la IP del servidor, el nombre del servidor, la información del servidor web y la IP del cliente.
 
-![Ejercicio 1 - información del servidor](/img/posts/20151209_1.png)
-
 ## Ejercicio 2: Imprimir texto formateado
 
 Recibir un nombre como parámetro e imprimirlo entre comillas precedido de la palabra "Nombre" en negrita.
-
-![Ejercicio 2 - texto formateado](/img/posts/20151209_2.png)
 
 ## Ejercicio 3: Primeros 100 números pares
 
 Imprimir los 100 primeros números pares comenzando por el 2 y a continuación mostrar su suma.
 
-![Ejercicio 3 - números pares y su suma](/img/posts/20151209_3.png)
-
 ## Ejercicio 4: Número palíndromo
 
 Determinar si un número entero recibido como parámetro es palíndromo (se lee igual de izquierda a derecha que de derecha a izquierda).
-
-![Ejercicio 4 - comprobación de palíndromo](/img/posts/20151209_4.png)
 
 ## Ejercicio 5: Cadena al revés
 
 Recibir una cadena de caracteres y mostrarla invertida.
 
-![Ejercicio 5 - cadena invertida](/img/posts/20151209_5.png)
-
 ## Ejercicio 6: Letra del DNI
 
 Calcular la letra correspondiente a un número de DNI mediante la división del número entre 23 y consulta en la tabla de letras.
 
-![Ejercicio 6 - cálculo letra DNI](/img/posts/20151209_6.png)
+![Ejercicio 2 - Letra dni](/img/posts/20151209_2.png)
 
 ## Ejercicio 7: Años completos entre fechas
 
 Calcular el número de años completos transcurridos entre dos fechas proporcionadas.
 
-![Ejercicio 7 - años entre fechas](/img/posts/20151209_7.png)
-
 ## Ejercicio 8: Desglose de billetes y monedas
 
 Dado un importe, desglosarlo en billetes de 50€, 20€, 10€, 5€, monedas de 2€, 1€ y céntimos.
 
-![Ejercicio 8 - desglose de billetes y monedas](/img/posts/20151209_8.png)
-
 ## Ejercicio 9: Conversión de divisas
 
 Convertir una cantidad fija de euros (337) a varias divisas utilizando las tasas de cambio almacenadas en un array.
-
-![Ejercicio 9 - conversión de divisas](/img/posts/20151209_9.png)
 
 ## Ejercicio 10: Notas de alumnos
 
