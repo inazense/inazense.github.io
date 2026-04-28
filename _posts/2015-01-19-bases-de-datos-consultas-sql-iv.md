@@ -20,6 +20,8 @@ Hemos realizado la hoja de ejercicios de la unidad 3, con sentencias de manipula
 
 **1.** Insertar los siguientes compradores y artículos.
 
+![Tablas con los datos insertados](/img/posts/20150119_1.png)
+
 ```sql
 insert into compradores (cif_comprador, nombre_social, domicilio_social, localidad, codigo_postal, telefono)
 values ('111111-L','TELARES ASUNCION', 'C. LA RUA 5', 'ALBACETE', '02002', '97223141'),
@@ -44,7 +46,6 @@ values (1, '01-LANA', 120),
        (2, '02-ALGODON', 50);
 ```
 
-![Tablas con los datos insertados](/img/posts/20150119_1.png)
 
 **2.** Insertar un nuevo artículo solo con referencia, precio e IVA.
 
@@ -100,8 +101,6 @@ update articulos set referencia_articulo='01-LANA90/10' where referencia_articul
 ```sql
 delete from facturas where factura_no=2;
 ```
-
-![Verificación del borrado en cascada](/img/posts/20150119_6.png)
 
 ## Ejercicios. Inserción, actualización y borrado (II)
 

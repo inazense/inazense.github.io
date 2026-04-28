@@ -28,11 +28,15 @@ Abrimos Linux y escribimos:
 sudo apt-get install lamp-server^
 ```
 
+![Install LAMP server](/img/posts/20150130_3.png)
+
 Una vez hecho eso configuramos la contraseña para MySQL.
+
+![Lamp server password](/img/posts/20150130_4.png)
 
 Y volverá a pensar otro rato. Cuando finalice la instalación probamos a ingresar desde el navegador a la dirección IP de la máquina donde hemos montado el servidor:
 
-![Página de bienvenida de Apache en LAMP](/img/posts/20150130_3.png)
+![Lamp server web](/img/posts/20150130_5.png)
 
 Si aparece un cartel como el de arriba, está funcionando correctamente.
 
@@ -40,13 +44,9 @@ Si aparece un cartel como el de arriba, está funcionando correctamente.
 
 Primero instalaremos la librería necesaria, `vcredist`.
 
-![Instalador de vcredist](/img/posts/20150130_4.png)
+![Pasos de instalación de WAMP](/img/posts/20150130_6.png)
 
 Posteriormente lanzamos el instalador del WAMP.
-
-![Instalador de WAMP](/img/posts/20150130_5.png)
-
-![Pasos de instalación de WAMP](/img/posts/20150130_6.png)
 
 ![Pasos de instalación de WAMP](/img/posts/20150130_7.png)
 
@@ -54,9 +54,11 @@ Posteriormente lanzamos el instalador del WAMP.
 
 ![Pasos de instalación de WAMP](/img/posts/20150130_9.png)
 
+![Pasos de instalación de WAMP](/img/posts/20150130_10.png)
+
 Y lo comprobamos accediendo a `localhost`.
 
-![Comprobación de WAMP en localhost](/img/posts/20150130_10.png)
+![Comprobación de WAMP en localhost](/img/posts/20150130_11.png)
 
 ## Comandos PHP
 
@@ -69,51 +71,161 @@ $variable
 Para escribir cadenas se hará con apóstrofes, y para imprimir usaremos el comando `echo`:
 
 ```php
-echo "Hello world";
+<?php 
+	$cadena = "Hola";
+	$entero = 3;
+	$decimal = 2.5;
+
+	echo $cadena;
+	echo $entero;
+	echo $decimal;
+	echo "Hello world!";
+?>
 ```
 
 Para concatenar lo impreso por pantalla, usaremos el punto.
 
-Si imprimimos con comillas simples nos imprimirá exactamente lo que escribimos, pero si lo hacemos con comillas dobles irá a buscar las variables. La diferencia sería de ver esto: `$cadena \n $entero \n $decimal` a ver esto: `Hola 3 2.5`.
+```php
+<?php 
+	$cadena = "Hola";
+	$entero = 3;
+	$decimal = 2.5;
 
-![Variables y echo en PHP](/img/posts/20150130_11.png)
+	echo $cadena . ' ' . $entero . ' ' . $decimal;
+?>
+```
 
-![Diferencia entre comillas simples y dobles](/img/posts/20150130_12.png)
+Si imprimimos con comillas simples nos imprimirá exactamente lo que escribimos, pero si lo hacemos con comillas dobles irá a buscar las variables. 
+
+```php
+<?php 
+	$cadena = "Hola";
+	$entero = 3;
+	$decimal = 2.5;
+
+	echo '$cadena \n $entero \n $decimal';
+	echo "$cadena \n $entero \n $decimal";
+?>
+```
+
+La diferencia sería de ver esto: 
+
+`$cadena \n $entero \n $decimal` 
+
+a ver esto: 
+
+`Hola 3 2.5`.
 
 ### If
 
-![Ejemplo de if en PHP](/img/posts/20150130_13.png)
+```php
+<?php 
+	$entero = 3;
+	if ($entero % 2 == 0) {
+		echo "el número $entero es par";
+	}
+	else {
+		echo "el número $entero es impar";
+	}
+?>
+```
 
 ### While
 
-![Ejemplo de while en PHP](/img/posts/20150130_14.png)
+```php
+<?php 
+	$entero = 3;
+	while ($entero >= 0) {
+		echo $entero;
+		$entero--;
+	}
+?>
+```
 
 ### Arrays
 
-![Ejemplo de arrays en PHP](/img/posts/20150130_15.png)
+### While
+
+```php
+<?php 
+	$entero = 3;
+	$decimal = 2.5;
+
+	while ($entero >= 0) {
+		echo "$entero...";
+		$lista[$entero] = $decimal
+		$entero--;
+	}
+
+	while ($entero <= 5) {
+		echo $lista[$entero].",";
+		$entero++;
+	}
+?>
+```
 
 Visualizando por pantalla lo siguiente: `3...2...1...0..., 2.5, 2.5, 2.5, 2.5, , ,`
 
 También podemos, dentro de un documento `index.php`, mezclar código HTML y PHP, por ejemplo, para hacer un listado del 0 al 100.
 
-![Mezcla de HTML y PHP en index.php](/img/posts/20150130_16.png)
+```php
+<html>
+	<head>
+		<meta charset="UTF-8"></meta>
+	</head>
+	<body>
+		<ol>
+			<?php 
+				$numero = 0;
+
+				while ($numero < 100) {
+					echo "<li>$numero</li>";
+					$numero++;
+				}
+			?>
+		</ol>
+	</body>
+</html>
+```
 
 ### For
 
-![Ejemplo de for en PHP](/img/posts/20150130_17.png)
+```php
+<?php 
+	$for ($i=0; $i<100; $i++) {
+		echo "<li>$i</li>";
+	}
+?>
+```
 
 ### Definir un array
 
-![Definición de un array en PHP](/img/posts/20150130_18.png)
+```php
+<?php 
+	$info = array(
+		"asignatura" => "lenguajes",
+		"aula" => "B.01",
+		"alumno" => "Inazio"
+	);
 
-### Definir un array asociativo
-
-![Array asociativo en PHP](/img/posts/20150130_19.png)
-
-![Resultado del array asociativo](/img/posts/20150130_20.png)
+	print_r($info)
+?>
+```
 
 ### Foreach (for especial para vectores)
 
-![Ejemplo de foreach en PHP](/img/posts/20150130_21.png)
+```php
+<?php 
+	$info = array(
+		"asignatura" => "lenguajes",
+		"aula" => "B.01",
+		"alumno" => "Inazio"
+	);
+
+	$foreach ($info as $etiqueta => $dato) {
+		echo "$etiqueta -----> $dato \n";
+	}
+?>
+```
 
 **¡Salud y coding!**
