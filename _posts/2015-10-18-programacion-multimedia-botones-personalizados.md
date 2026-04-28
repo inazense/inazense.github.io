@@ -2,63 +2,54 @@
 title: "Programación multimedia. Botones personalizados"
 description: Cómo crear botones personalizados en Android usando imágenes y un selector XML con estados (normal, pulsado, con foco) para dar sensación de movimiento.
 author: Inazio Claver
-date: 2015-10-18 23:55:00 +0800
+date: 2015-10-18 23:50:00 +0800
 categories: [Android]
-tags: [android, android-studio, button, drawable, selector, estados, programacion-multimedia]
+tags: [android, botones, drawable, selector, onclick, programacion-multimedia]
 pin: false
 math: false
 mermaid: false
 ---
 
-Los botones personalizados en Android se crean mediante un fichero XML de tipo **selector** que define diferentes imágenes según el estado del botón (normal, pulsado, con foco), generando así una sensación visual de movimiento al pulsarlo.
+Vamos a ver cómo se pueden personalizar los botones de nuestra aplicación, pero no modificando bordes del botón, tamaño y demás, estoy hablando de crear botones a partir de imágenes que consigan sensación de movimiento al realizar determinada acción. Veamos cómo.
 
-## Imágenes de estados
+Sobre un nuevo proyecto, creamos el fichero **boton.xml** en el directorio **res/drawable** y escribimos el siguiente código:
 
-Se necesitan tres imágenes que se colocan en `res/drawable/`:
+![boton.xml](/img/posts/20151018_76.png)
 
-- `botonnormal.png` — estado por defecto
-- `botonpulsado.png` — cuando el botón está siendo pulsado
-- `botonconfoco.png` — cuando el botón tiene el foco (seleccionado con teclado/D-pad)
+Este XML define un recurso único gráfico (_drawable_) que cambiará en función del estado del botón. El primer `<item>` define la imagen usada cuando se pulsa el botón, el segundo `<item>` define la imagen usada cuando el botón tiene el foco (cuando el botón está seleccionado con la rueda de desplazamiento o las teclas de dirección), el tercero la imagen en estado normal.
 
-![Imágenes de los tres estados del botón](/img/posts/20151018_77.png)
+El orden de los `<item>` es importante. Cuando se va a dibujar se recorren los ítems en orden hasta que se cumpla una condición. Debido a que "_botonnormal_" es el último, sólo se aplica cuando las condiciones `state_pressed` y `state_focused` no se cumplen.
 
-## Crear el selector (boton.xml)
+Las imágenes usadas para crear el botón son las siguientes
 
-Se crea el fichero `res/drawable/boton.xml` con la siguiente estructura:
+![botonnormal.png](/img/posts/20151018_77.png)
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="true" android:drawable="@drawable/botonpulsado" />
-    <item android:state_focused="true" android:drawable="@drawable/botonconfoco" />
-    <item android:drawable="@drawable/botonnormal" />
-</selector>
-```
+![botonpulsado.png](/img/posts/20151018_78.png)
 
-El orden importa: Android evalúa los estados de arriba hacia abajo y usa el primero que coincide. El último `item` sin condición es el estado por defecto.
+![botonconfoco.png](/img/posts/20151018_79.png)
 
-![Estructura del fichero boton.xml](/img/posts/20151018_76.png)
+Al escribir el código así de primeras saldrá error al escribir la ruta de las imágenes. Eso se arregla agregándolas a la carpeta **res/drawable** del proyecto.
 
-## Configurar el layout
+Ahora en el diseño del **Layout** eliminamos el **TextView** existente (como siempre) y especificamos que el **RelativeLayout** tenga la propiedad _Background_ blanca (#FFFFFF en hexadecimal).
 
-En el layout se coloca un `RelativeLayout` con fondo blanco (`#FFFFFF`) y un `Button`:
+![Layout con fondo blanco](/img/posts/20151018_80.png)
 
-- Propiedad `background`: `@drawable/boton`
-- Propiedad `text`: vacía (la imagen ya actúa como texto visual)
-- Propiedad `onClick`: nombre del método Java que se ejecutará al pulsar
+Dentro del RelativeLayout arrastramos un Button y le indicamos que su propiedad _Background_ sea _Drawable/boton_. Esa opción la encontraremos entrando en el selector de recursos (los puntos suspensivos)
 
-![Configuración del layout con el botón personalizado](/img/posts/20151018_78.png)
+![Selector de recursos](/img/posts/20151018_81.png)
 
-## Configurar el onClick
+Modificamos el atributo _Text_ para que no tenga ningún valor
 
-En el panel de propiedades del botón se asigna el nombre del método al atributo `onClick`. Este método debe declararse en la actividad con firma `public void nombreMetodo(View v)`.
+![Atributo Text vacío](/img/posts/20151018_82.png)
 
-![Asignación del método onClick en propiedades](/img/posts/20151018_79.png)
+Ve al fichero con las funciones programables java e introduce al final, antes de la última llave, el siguiente código
 
-## Código Java
+![Código Java sePulsa](/img/posts/20151018_83.png)
 
-```java
-public void sePulsa(View v) {
-    Toast.makeText(getApplicationContext(), "¡Botón pulsado!", Toast.LENGTH_SHORT).show();
-}
-```
+Vuelve al diseño del Layout y modifica la propiedad _onClick_ dándole el valor _sePulsa_.
+
+![Propiedad onClick](/img/posts/20151018_84.png)
+
+Y al ejecutar el programa podremos ver cómo se comporta nuestro botón, animándose y mostrando un mensaje cuando es pulsado.
+
+![Aplicación ejecutándose](/img/posts/20151018_85.png)
