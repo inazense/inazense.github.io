@@ -1,5 +1,5 @@
 ---
-title: Principios SOLID. cinco ideas para no pelearte con tu propio código
+title: Principios SOLID. Cinco ideas para no pelearte con tu propio código
 description: Aprende qué son los principios SOLID y cómo aplicarlos en Java con ejemplos sencillos sobre responsabilidad única, abierto/cerrado, sustitución de Liskov, segregación de interfaces e inversión de dependencias.
 author: Inazio Claver
 date: 2026-05-04 17:49:00 +0200
@@ -15,7 +15,7 @@ mermaid: false
 #  alt: Responsive rendering of Chirpy theme on multiple devices.
 ---
 
-# Principios SOLID: cinco ideas para no pelearte con tu propio código
+# Principios SOLID: Cinco ideas para no pelearte con tu propio código
 
 ![Cabecera sobre principios SOLID](/img/posts/20260504_1.png)
 
