@@ -140,7 +140,7 @@
   "author": { "@type": "Person", "name": "Inazio Claver", "url": "https://github.com/inazense" },
   "publisher": { "@type": "Organization", "name": "Programando a Pasitos", "url": "http://localhost:4000" },
   "url": "http://localhost:4000/posts/2015/01/19/bases-de-datos-consultas-sql-iv/",
-  "wordCount": 894,
+  "wordCount": 886,
   "timeRequired": "PT5M",
   "articleSection": "Bases de datos",
   "keywords": "bases-de-datos, sql, mysql"
@@ -183,6 +183,8 @@
 
 <p><strong>1.</strong> Insertar los siguientes compradores y artículos.</p>
 
+<p><img src="/img/posts/20150119_1.png" alt="Tablas con los datos insertados" /></p>
+
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">insert</span> <span class="k">into</span> <span class="n">compradores</span> <span class="p">(</span><span class="n">cif_comprador</span><span class="p">,</span> <span class="n">nombre_social</span><span class="p">,</span> <span class="n">domicilio_social</span><span class="p">,</span> <span class="n">localidad</span><span class="p">,</span> <span class="n">codigo_postal</span><span class="p">,</span> <span class="n">telefono</span><span class="p">)</span>
 <span class="k">values</span> <span class="p">(</span><span class="s1">'111111-L'</span><span class="p">,</span><span class="s1">'TELARES ASUNCION'</span><span class="p">,</span> <span class="s1">'C. LA RUA 5'</span><span class="p">,</span> <span class="s1">'ALBACETE'</span><span class="p">,</span> <span class="s1">'02002'</span><span class="p">,</span> <span class="s1">'97223141'</span><span class="p">),</span>
        <span class="p">(</span><span class="s1">'22222-J'</span><span class="p">,</span> <span class="s1">'TEXTIL LAGO'</span><span class="p">,</span> <span class="s1">'PLAZA MAYOR 2'</span><span class="p">,</span> <span class="s1">'ALMERIA'</span><span class="p">,</span> <span class="s1">'04131'</span><span class="p">,</span> <span class="s1">'95434567'</span><span class="p">);</span>
@@ -205,8 +207,6 @@
        <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">'01-LANA'</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span>
        <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">'02-ALGODON'</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
 </code></pre></div></div>
-
-<p><img src="/img/posts/20150119_1.png" alt="Tablas con los datos insertados" /></p>
 
 <p><strong>2.</strong> Insertar un nuevo artículo solo con referencia, precio e IVA.</p>
 
@@ -255,8 +255,6 @@
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">delete</span> <span class="k">from</span> <span class="n">facturas</span> <span class="k">where</span> <span class="n">factura_no</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
 </code></pre></div></div>
-
-<p><img src="/img/posts/20150119_6.png" alt="Verificación del borrado en cascada" /></p>
 
 <h2 id="ejercicios-inserción-actualización-y-borrado-ii">Ejercicios. Inserción, actualización y borrado (II)</h2>
 

@@ -289,7 +289,7 @@
 <lastmod>2015-01-19T11:09:00+01:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/posts/2015/01/21/entornos-de-desarrollo-amsn/</loc>
+<loc>http://localhost:4000/posts/2015/01/21/entornos-de-desarrollo-resolucion-dependencias-amsn/</loc>
 <lastmod>2015-01-21T03:09:00+01:00</lastmod>
 </url>
 <url>
@@ -609,10 +609,6 @@
 <lastmod>2015-10-17T09:55:00+02:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/posts/2015/10/18/programacion-multimedia-conociendo-el-entorno-grafico/</loc>
-<lastmod>2015-10-18T06:00:00+02:00</lastmod>
-</url>
-<url>
 <loc>http://localhost:4000/posts/2015/10/18/programacion-multimedia-vistas-de-entrada-de-texto/</loc>
 <lastmod>2015-10-18T06:10:00+02:00</lastmod>
 </url>
@@ -623,6 +619,10 @@
 <url>
 <loc>http://localhost:4000/posts/2015/10/18/programacion-multimedia-segunda-aplicacion-transparencia/</loc>
 <lastmod>2015-10-18T13:00:00+02:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/posts/2015/10/18/programacion-multimedia-conociendo-el-entorno-grafico/</loc>
+<lastmod>2015-10-18T16:46:00+02:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/posts/2015/10/18/programacion-multimedia-recursos-alternativos-orientacion/</loc>
@@ -642,7 +642,7 @@
 </url>
 <url>
 <loc>http://localhost:4000/posts/2015/10/18/programacion-multimedia-botones-personalizados/</loc>
-<lastmod>2015-10-18T17:55:00+02:00</lastmod>
+<lastmod>2015-10-18T17:50:00+02:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/posts/2015/10/22/acceso-datos-ejercicios-iv-ficheros-xml/</loc>
@@ -953,6 +953,14 @@
 <lastmod>2020-12-03T04:33:00+01:00</lastmod>
 </url>
 <url>
+<loc>http://localhost:4000/posts/2026/05/04/principios-solid-explicados-para-java/</loc>
+<lastmod>2026-05-04T17:49:00+02:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/posts/2026/05/07/postgrest-en-spring-boot/</loc>
+<lastmod>2026-05-07T16:17:00+02:00</lastmod>
+</url>
+<url>
 <loc>http://localhost:4000/anecdotario/</loc>
 </url>
 <url>
@@ -969,6 +977,9 @@
 </url>
 <url>
 <loc>http://localhost:4000/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/CLAUDE/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/page/2/</loc>

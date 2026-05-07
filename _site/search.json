@@ -1,6 +1,24 @@
 [
   
   {
+    "title": "PostRest + Spring boot. API Rest sin escribir controladores",
+    "url": "/posts/2026/05/07/postgrest-en-spring-boot/",
+    "date": "07 May 2026",
+    "categories": "Java",
+    "tags": "spring-boot, postgrest, postgresql, api-rest, webclient, jwt, backend, sql, java",
+    "excerpt": "Aprende qué es PostgREST y cómo integrarlo con Spring Boot para exponer PostgreSQL como API REST, consumir endpoints con WebClient..."
+  },
+  
+  {
+    "title": "Principios SOLID. Cinco ideas para no pelearte con tu propio código",
+    "url": "/posts/2026/05/04/principios-solid-explicados-para-java/",
+    "date": "04 May 2026",
+    "categories": "Java",
+    "tags": "java, solid, programacion-orientada-a-objetos, oop, patrones, buenas-practicas, clean-code",
+    "excerpt": "Aprende qué son los principios SOLID y cómo aplicarlos en Java con ejemplos sencillos sobre responsabilidad única, abierto/cerrado, sustitución de..."
+  },
+  
+  {
     "title": "Java. Ordenar un HashMap por key o value",
     "url": "/posts/2020/12/03/java-ordenar-un-hashmap-por-key-o-value/",
     "date": "03 Dec 2020",
@@ -698,7 +716,7 @@
     "url": "/posts/2015/10/18/programacion-multimedia-botones-personalizados/",
     "date": "18 Oct 2015",
     "categories": "Android",
-    "tags": "android, android-studio, button, drawable, selector, estados, programacion-multimedia",
+    "tags": "android, botones, drawable, selector, onclick, programacion-multimedia",
     "excerpt": "Cómo crear botones personalizados en Android usando imágenes y un selector XML con estados (normal, pulsado, con foco) para dar..."
   },
   
@@ -739,6 +757,15 @@
   },
   
   {
+    "title": "Programación multimedia. Conociendo el entorno gráfico",
+    "url": "/posts/2015/10/18/programacion-multimedia-conociendo-el-entorno-grafico/",
+    "date": "18 Oct 2015",
+    "categories": "Android",
+    "tags": "android, android-studio, interfaz-grafica, layouts, widgets, programacion-multimedia",
+    "excerpt": "Guía del entorno gráfico de Android Studio para empezar el desarrollo multimedia, incluyendo la creación de proyectos, la paleta de..."
+  },
+  
+  {
     "title": "Programación multimedia. Segunda aplicación. Transparentando una imagen",
     "url": "/posts/2015/10/18/programacion-multimedia-segunda-aplicacion-transparencia/",
     "date": "18 Oct 2015",
@@ -763,15 +790,6 @@
     "categories": "Android",
     "tags": "android, android-studio, textfield, edittext, teclado, programacion-multimedia",
     "excerpt": "Componentes de entrada de texto en Android Studio (TextFields), sus tipos y cómo el teclado se adapta según el tipo..."
-  },
-  
-  {
-    "title": "Programación multimedia. Conociendo el entorno gráfico",
-    "url": "/posts/2015/10/18/programacion-multimedia-conociendo-el-entorno-grafico/",
-    "date": "18 Oct 2015",
-    "categories": "Android",
-    "tags": "android, android-studio, interfaz-grafica, layouts, widgets, programacion-multimedia",
-    "excerpt": "Guía del entorno gráfico de Android Studio para empezar el desarrollo multimedia, incluyendo la paleta de componentes, el editor visual,..."
   },
   
   {
@@ -1487,7 +1505,7 @@
   
   {
     "title": "Entornos de desarrollo. Resolución de dependencias",
-    "url": "/posts/2015/01/21/entornos-de-desarrollo-amsn/",
+    "url": "/posts/2015/01/21/entornos-de-desarrollo-resolucion-dependencias-amsn/",
     "date": "21 Jan 2015",
     "categories": "Entornos de desarrollo",
     "tags": "entornos-de-desarrollo, linux, make, c",

@@ -140,8 +140,8 @@
   "author": { "@type": "Person", "name": "Inazio Claver", "url": "https://github.com/inazense" },
   "publisher": { "@type": "Organization", "name": "Programando a Pasitos", "url": "http://localhost:4000" },
   "url": "http://localhost:4000/posts/2015/01/30/lenguajes-de-marcas-php-i/",
-  "wordCount": 446,
-  "timeRequired": "PT3M",
+  "wordCount": 907,
+  "timeRequired": "PT5M",
   "articleSection": "Lenguajes de marcas",
   "keywords": "lenguajes-de-marcas, php, mysql, linux"
 }
@@ -169,7 +169,7 @@
         
       
       <span class="meta-sep">&mdash;</span>
-      <span class="read-time">3 min de lectura</span>
+      <span class="read-time">5 min de lectura</span>
     </div>
     
       <p class="post-description">Introducción a PHP. Instalación de LAMP y WAMP, variables, echo, estructuras de control (if, while, for, foreach) y arrays.</p>
@@ -190,11 +190,15 @@
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get install lamp-server^
 </code></pre></div></div>
 
+<p><img src="/img/posts/20150130_3.png" alt="Install LAMP server" /></p>
+
 <p>Una vez hecho eso configuramos la contraseña para MySQL.</p>
+
+<p><img src="/img/posts/20150130_4.png" alt="Lamp server password" /></p>
 
 <p>Y volverá a pensar otro rato. Cuando finalice la instalación probamos a ingresar desde el navegador a la dirección IP de la máquina donde hemos montado el servidor:</p>
 
-<p><img src="/img/posts/20150130_3.png" alt="Página de bienvenida de Apache en LAMP" /></p>
+<p><img src="/img/posts/20150130_5.png" alt="Lamp server web" /></p>
 
 <p>Si aparece un cartel como el de arriba, está funcionando correctamente.</p>
 
@@ -202,13 +206,9 @@
 
 <p>Primero instalaremos la librería necesaria, <code class="language-plaintext highlighter-rouge">vcredist</code>.</p>
 
-<p><img src="/img/posts/20150130_4.png" alt="Instalador de vcredist" /></p>
+<p><img src="/img/posts/20150130_6.png" alt="Pasos de instalación de WAMP" /></p>
 
 <p>Posteriormente lanzamos el instalador del WAMP.</p>
-
-<p><img src="/img/posts/20150130_5.png" alt="Instalador de WAMP" /></p>
-
-<p><img src="/img/posts/20150130_6.png" alt="Pasos de instalación de WAMP" /></p>
 
 <p><img src="/img/posts/20150130_7.png" alt="Pasos de instalación de WAMP" /></p>
 
@@ -216,9 +216,11 @@
 
 <p><img src="/img/posts/20150130_9.png" alt="Pasos de instalación de WAMP" /></p>
 
+<p><img src="/img/posts/20150130_10.png" alt="Pasos de instalación de WAMP" /></p>
+
 <p>Y lo comprobamos accediendo a <code class="language-plaintext highlighter-rouge">localhost</code>.</p>
 
-<p><img src="/img/posts/20150130_10.png" alt="Comprobación de WAMP en localhost" /></p>
+<p><img src="/img/posts/20150130_11.png" alt="Comprobación de WAMP en localhost" /></p>
 
 <h2 id="comandos-php">Comandos PHP</h2>
 
@@ -229,52 +231,153 @@
 
 <p>Para escribir cadenas se hará con apóstrofes, y para imprimir usaremos el comando <code class="language-plaintext highlighter-rouge">echo</code>:</p>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">echo</span> <span class="s2">"Hello world"</span><span class="p">;</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> 
+	<span class="nv">$cadena</span> <span class="o">=</span> <span class="s2">"Hola"</span><span class="p">;</span>
+	<span class="nv">$entero</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+	<span class="nv">$decimal</span> <span class="o">=</span> <span class="mf">2.5</span><span class="p">;</span>
+
+	<span class="k">echo</span> <span class="nv">$cadena</span><span class="p">;</span>
+	<span class="k">echo</span> <span class="nv">$entero</span><span class="p">;</span>
+	<span class="k">echo</span> <span class="nv">$decimal</span><span class="p">;</span>
+	<span class="k">echo</span> <span class="s2">"Hello world!"</span><span class="p">;</span>
+<span class="cp">?&gt;</span>
 </code></pre></div></div>
 
 <p>Para concatenar lo impreso por pantalla, usaremos el punto.</p>
 
-<p>Si imprimimos con comillas simples nos imprimirá exactamente lo que escribimos, pero si lo hacemos con comillas dobles irá a buscar las variables. La diferencia sería de ver esto: <code class="language-plaintext highlighter-rouge">$cadena \n $entero \n $decimal</code> a ver esto: <code class="language-plaintext highlighter-rouge">Hola 3 2.5</code>.</p>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> 
+	<span class="nv">$cadena</span> <span class="o">=</span> <span class="s2">"Hola"</span><span class="p">;</span>
+	<span class="nv">$entero</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+	<span class="nv">$decimal</span> <span class="o">=</span> <span class="mf">2.5</span><span class="p">;</span>
 
-<p><img src="/img/posts/20150130_11.png" alt="Variables y echo en PHP" /></p>
+	<span class="k">echo</span> <span class="nv">$cadena</span> <span class="mf">.</span> <span class="s1">' '</span> <span class="mf">.</span> <span class="nv">$entero</span> <span class="mf">.</span> <span class="s1">' '</span> <span class="mf">.</span> <span class="nv">$decimal</span><span class="p">;</span>
+<span class="cp">?&gt;</span>
+</code></pre></div></div>
 
-<p><img src="/img/posts/20150130_12.png" alt="Diferencia entre comillas simples y dobles" /></p>
+<p>Si imprimimos con comillas simples nos imprimirá exactamente lo que escribimos, pero si lo hacemos con comillas dobles irá a buscar las variables.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> 
+	<span class="nv">$cadena</span> <span class="o">=</span> <span class="s2">"Hola"</span><span class="p">;</span>
+	<span class="nv">$entero</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+	<span class="nv">$decimal</span> <span class="o">=</span> <span class="mf">2.5</span><span class="p">;</span>
+
+	<span class="k">echo</span> <span class="s1">'$cadena \n $entero \n $decimal'</span><span class="p">;</span>
+	<span class="k">echo</span> <span class="s2">"</span><span class="nv">$cadena</span><span class="s2"> </span><span class="se">\n</span><span class="s2"> </span><span class="nv">$entero</span><span class="s2"> </span><span class="se">\n</span><span class="s2"> </span><span class="nv">$decimal</span><span class="s2">"</span><span class="p">;</span>
+<span class="cp">?&gt;</span>
+</code></pre></div></div>
+
+<p>La diferencia sería de ver esto:</p>
+
+<p><code class="language-plaintext highlighter-rouge">$cadena \n $entero \n $decimal</code></p>
+
+<p>a ver esto:</p>
+
+<p><code class="language-plaintext highlighter-rouge">Hola 3 2.5</code>.</p>
 
 <h3 id="if">If</h3>
 
-<p><img src="/img/posts/20150130_13.png" alt="Ejemplo de if en PHP" /></p>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> 
+	<span class="nv">$entero</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+	<span class="k">if</span> <span class="p">(</span><span class="nv">$entero</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">echo</span> <span class="s2">"el número </span><span class="nv">$entero</span><span class="s2"> es par"</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">else</span> <span class="p">{</span>
+		<span class="k">echo</span> <span class="s2">"el número </span><span class="nv">$entero</span><span class="s2"> es impar"</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre></div></div>
 
 <h3 id="while">While</h3>
 
-<p><img src="/img/posts/20150130_14.png" alt="Ejemplo de while en PHP" /></p>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> 
+	<span class="nv">$entero</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+	<span class="k">while</span> <span class="p">(</span><span class="nv">$entero</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">echo</span> <span class="nv">$entero</span><span class="p">;</span>
+		<span class="nv">$entero</span><span class="o">--</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre></div></div>
 
 <h3 id="arrays">Arrays</h3>
 
-<p><img src="/img/posts/20150130_15.png" alt="Ejemplo de arrays en PHP" /></p>
+<h3 id="while-1">While</h3>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> 
+	<span class="nv">$entero</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+	<span class="nv">$decimal</span> <span class="o">=</span> <span class="mf">2.5</span><span class="p">;</span>
+
+	<span class="k">while</span> <span class="p">(</span><span class="nv">$entero</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">echo</span> <span class="s2">"</span><span class="nv">$entero</span><span class="s2">..."</span><span class="p">;</span>
+		<span class="nv">$lista</span><span class="p">[</span><span class="nv">$entero</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$decimal</span>
+		<span class="nv">$entero</span><span class="o">--</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="k">while</span> <span class="p">(</span><span class="nv">$entero</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">echo</span> <span class="nv">$lista</span><span class="p">[</span><span class="nv">$entero</span><span class="p">]</span><span class="mf">.</span><span class="s2">","</span><span class="p">;</span>
+		<span class="nv">$entero</span><span class="o">++</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre></div></div>
 
 <p>Visualizando por pantalla lo siguiente: <code class="language-plaintext highlighter-rouge">3...2...1...0..., 2.5, 2.5, 2.5, 2.5, , ,</code></p>
 
 <p>También podemos, dentro de un documento <code class="language-plaintext highlighter-rouge">index.php</code>, mezclar código HTML y PHP, por ejemplo, para hacer un listado del 0 al 100.</p>
 
-<p><img src="/img/posts/20150130_16.png" alt="Mezcla de HTML y PHP en index.php" /></p>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
+	<span class="nt">&lt;head&gt;</span>
+		<span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;&lt;/meta&gt;</span>
+	<span class="nt">&lt;/head&gt;</span>
+	<span class="nt">&lt;body&gt;</span>
+		<span class="nt">&lt;ol&gt;</span>
+			<span class="cp">&lt;?php</span> 
+				<span class="nv">$numero</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+				<span class="k">while</span> <span class="p">(</span><span class="nv">$numero</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">echo</span> <span class="s2">"&lt;li&gt;</span><span class="nv">$numero</span><span class="s2">&lt;/li&gt;"</span><span class="p">;</span>
+					<span class="nv">$numero</span><span class="o">++</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="cp">?&gt;</span>
+		<span class="nt">&lt;/ol&gt;</span>
+	<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
 
 <h3 id="for">For</h3>
 
-<p><img src="/img/posts/20150130_17.png" alt="Ejemplo de for en PHP" /></p>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> 
+	<span class="nv">$for</span> <span class="p">(</span><span class="nv">$i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span><span class="o">&lt;</span><span class="mi">100</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">echo</span> <span class="s2">"&lt;li&gt;</span><span class="nv">$i</span><span class="s2">&lt;/li&gt;"</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre></div></div>
 
 <h3 id="definir-un-array">Definir un array</h3>
 
-<p><img src="/img/posts/20150130_18.png" alt="Definición de un array en PHP" /></p>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> 
+	<span class="nv">$info</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+		<span class="s2">"asignatura"</span> <span class="o">=&gt;</span> <span class="s2">"lenguajes"</span><span class="p">,</span>
+		<span class="s2">"aula"</span> <span class="o">=&gt;</span> <span class="s2">"B.01"</span><span class="p">,</span>
+		<span class="s2">"alumno"</span> <span class="o">=&gt;</span> <span class="s2">"Inazio"</span>
+	<span class="p">);</span>
 
-<h3 id="definir-un-array-asociativo">Definir un array asociativo</h3>
-
-<p><img src="/img/posts/20150130_19.png" alt="Array asociativo en PHP" /></p>
-
-<p><img src="/img/posts/20150130_20.png" alt="Resultado del array asociativo" /></p>
+	<span class="nb">print_r</span><span class="p">(</span><span class="nv">$info</span><span class="p">)</span>
+<span class="cp">?&gt;</span>
+</code></pre></div></div>
 
 <h3 id="foreach-for-especial-para-vectores">Foreach (for especial para vectores)</h3>
 
-<p><img src="/img/posts/20150130_21.png" alt="Ejemplo de foreach en PHP" /></p>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> 
+	<span class="nv">$info</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+		<span class="s2">"asignatura"</span> <span class="o">=&gt;</span> <span class="s2">"lenguajes"</span><span class="p">,</span>
+		<span class="s2">"aula"</span> <span class="o">=&gt;</span> <span class="s2">"B.01"</span><span class="p">,</span>
+		<span class="s2">"alumno"</span> <span class="o">=&gt;</span> <span class="s2">"Inazio"</span>
+	<span class="p">);</span>
+
+	<span class="nv">$foreach</span> <span class="p">(</span><span class="nv">$info</span> <span class="k">as</span> <span class="nv">$etiqueta</span> <span class="o">=&gt;</span> <span class="nv">$dato</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">echo</span> <span class="s2">"</span><span class="nv">$etiqueta</span><span class="s2"> -----&gt; </span><span class="nv">$dato</span><span class="s2"> </span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre></div></div>
 
 <p><strong>¡Salud y coding!</strong></p>
 

@@ -140,7 +140,7 @@
   "author": { "@type": "Person", "name": "Inazio Claver", "url": "https://github.com/inazense" },
   "publisher": { "@type": "Organization", "name": "Programando a Pasitos", "url": "http://localhost:4000" },
   "url": "http://localhost:4000/posts/2016/02/23/acceso-datos-oracle-database-sintaxis-y-ejemplos/",
-  "wordCount": 486,
+  "wordCount": 590,
   "timeRequired": "PT3M",
   "articleSection": "Acceso a datos",
   "keywords": "oracle, sql, plsql, bases-de-datos, objetos, herencia"
@@ -181,79 +181,99 @@
   <div class="post-content">
     <p>La sintaxis de Oracle está basada en lenguaje SQL, con la puntualización de que permite declarar objetos y almacenarlos como tal, arrays de objetos, etc.</p>
 
+<p>A continuación veremos unos cuantos ejemplos de la sintaxis que emplearemos en esta tecnología:</p>
+
 <h2 id="tipos-de-objetos">Tipos de objetos</h2>
 
-<p>Con Oracle podemos declarar tipos de objetos mediante <code class="language-plaintext highlighter-rouge">CREATE TYPE</code>:</p>
+<p><img src="/img/posts/20160223_1.png" alt="" /></p>
 
-<p><img src="/img/posts/20160223_1.png" alt="Tipos de objetos en Oracle - definición básica" /></p>
+<p><img src="/img/posts/20160223_2.png" alt="" /></p>
 
-<p><img src="/img/posts/20160223_2.png" alt="Tipos de objetos en Oracle - atributos" /></p>
+<p><img src="/img/posts/20160223_3.png" alt="" /></p>
 
-<p><img src="/img/posts/20160223_3.png" alt="Tipos de objetos en Oracle - ejemplo completo" /></p>
+<p><img src="/img/posts/20160223_4.png" alt="" /></p>
 
-<p><img src="/img/posts/20160223_4.png" alt="Tipos de objetos en Oracle - tipos anidados" /></p>
-
-<p><img src="/img/posts/20160223_5.png" alt="Tipos de objetos en Oracle - instanciación" /></p>
+<p><img src="/img/posts/20160223_5.png" alt="" /></p>
 
 <h2 id="métodos">Métodos</h2>
 
-<p>Inicialmente solo especificamos el esqueleto de los métodos en la definición del tipo. Para programar el código operativo utilizamos <code class="language-plaintext highlighter-rouge">CREATE OR REPLACE TYPE BODY</code>:</p>
+<p>¿Qué sucede? Que hasta ahora, solo hemos estado especificando el esqueleto de estos métodos. Para programar el código que hará las operaciones deberemos agregar un cuerpo al método, con la sentencia CREATE OR REPLACE TYPE BODY.</p>
 
-<p><img src="/img/posts/20160223_6.png" alt="Métodos en tipos Oracle - definición del esqueleto" /></p>
+<p>En el siguiente ejemplo veremos como hacer el cuerpo de una función que actúe como constructor, en el tipo Rectangulo.</p>
 
-<p><img src="/img/posts/20160223_7.png" alt="Métodos en tipos Oracle - CREATE OR REPLACE TYPE BODY" /></p>
+<p><img src="/img/posts/20160223_6.png" alt="" /></p>
 
-<p><img src="/img/posts/20160223_8.png" alt="Métodos en tipos Oracle - implementación de la lógica" /></p>
+<p><img src="/img/posts/20160223_7.png" alt="" /></p>
 
-<p><img src="/img/posts/20160223_9.png" alt="Métodos en tipos Oracle - ejemplo de uso" /></p>
+<p><img src="/img/posts/20160223_8.png" alt="" /></p>
+
+<p><img src="/img/posts/20160223_9.png" alt="" /></p>
 
 <h2 id="tablas-de-objetos">Tablas de objetos</h2>
 
-<p>Los tipos de objetos no sirven para almacenar datos de forma permanente. Para ello creamos tablas basadas en los tipos definidos previamente. Un aspecto importante: al insertar objetos con tipos anidados, hay que referenciar el <strong>TIPO</strong> del campo (no su nombre asignado). Por ejemplo, usamos <code class="language-plaintext highlighter-rouge">DIRECCION(...)</code> en lugar del nombre del campo <code class="language-plaintext highlighter-rouge">DIREC(...)</code>.</p>
+<p>Para almacenar los datos y que permanezcan guardados hay que crear tablas, los tipos de objetos no sirven para ello. Lo que sí podremos hacer es tablas que estén basadas en objetos creados previamente.</p>
 
-<p><img src="/img/posts/20160223_10.png" alt="Tablas de objetos - creación basada en tipos" /></p>
+<p>Pero, ¿Cómo realizo una inserción si dentro del objeto PERSONA tengo un objeto DIRECCION? Como si fuese un constructor como los vistos anteriormente, y haciendo referencia al TIPO de campo que vamos a insertar, y no al nombre del campo como se halla llamado en el objeto que lo almacene. Es decir, insertaremos DIRECCION(…) y no DIREC(…).</p>
 
-<p><img src="/img/posts/20160223_11.png" alt="Tablas de objetos - inserción de datos" /></p>
+<p>Por lo demás, es un INSERT INTO como todos en SQL.</p>
 
-<p><img src="/img/posts/20160223_12.png" alt="Tablas de objetos - inserción con objetos anidados" /></p>
+<p>Ahora bien, para hacer referencia a los campos de la dirección de una persona, en acciones como consultar, eliminar o actualizar datos por ejemplo, la cosa se mantiene como si hiciésemos llamadas a las propiedades y métodos públicos de una clase en Java, para que se entienda el símil. Vamos a ver varios ejemplos</p>
 
-<p><img src="/img/posts/20160223_13.png" alt="Tablas de objetos - consultas sobre objetos" /></p>
+<p><img src="/img/posts/20160223_10.png" alt="" /></p>
 
-<p><img src="/img/posts/20160223_14.png" alt="Tablas de objetos - acceso a atributos anidados" /></p>
+<p><img src="/img/posts/20160223_11.png" alt="" /></p>
+
+<p><img src="/img/posts/20160223_12.png" alt="" /></p>
+
+<p><img src="/img/posts/20160223_13.png" alt="" /></p>
+
+<p><img src="/img/posts/20160223_14.png" alt="" /></p>
 
 <h2 id="varrays">Varrays</h2>
 
-<p>Los varrays son arrays del tipo que nosotros le indiquemos y de un tamaño definido previamente. Una limitación importante es que <strong>no se puede modificar su información en solitario</strong>: al actualizar un elemento hay que reguardar todos los elementos del array.</p>
+<p>Los varrays son arrays del objeto que nosotros le indicamos y de un tamaño definido previamente.</p>
 
-<p><img src="/img/posts/20160223_15.png" alt="Varrays en Oracle - definición" /></p>
+<p>La pega de los varrays es que no se puede modificar su información en solitario. Es decir, que si actualizo el segundo campo de un array de tres posiciones, deberé volver a guardar también las posiciones 0 y 2 (la segunda posición sería la 1).</p>
 
-<p><img src="/img/posts/20160223_16.png" alt="Varrays en Oracle - inserción de datos" /></p>
+<p><img src="/img/posts/20160223_15.png" alt="" /></p>
 
-<p><img src="/img/posts/20160223_17.png" alt="Varrays en Oracle - consultas" /></p>
+<p><img src="/img/posts/20160223_16.png" alt="" /></p>
 
-<p><img src="/img/posts/20160223_18.png" alt="Varrays en Oracle - actualización (todos los elementos)" /></p>
+<p><img src="/img/posts/20160223_17.png" alt="" /></p>
 
-<p><img src="/img/posts/20160223_19.png" alt="Varrays en Oracle - ejemplo completo" /></p>
+<p><img src="/img/posts/20160223_18.png" alt="" /></p>
+
+<p><img src="/img/posts/20160223_19.png" alt="" /></p>
 
 <h2 id="herencia-de-tipos">Herencia de tipos</h2>
 
-<p>La herencia de tipos en Oracle funciona como la herencia de programación orientada a objetos. Un tipo base puede heredarse a un subtipo utilizando la sintaxis <code class="language-plaintext highlighter-rouge">UNDER</code>:</p>
+<p>La herencia de tipos funciona como la herencia de programación de objetos. Podemos crear un objeto base, por ejemplo ANIMALES, con la característica de VIVIR, y de él que desciendan los tipos VERTEBRADOS e INVERTEBRADOS, que además de sus propiedades llevarán incorporada la de VIVIR del tipo que han heredado. Y a su vez estos pueden ser campos que hereden otros subcampos. MAMIFEROS heredará de VERTEBRADOS, por ejemplo, y al final de varias herencias, podríamos tener el tipo PERRO, un tipo final que no podrá otorgar una herencia a ningún tipo más.</p>
 
-<p><img src="/img/posts/20160223_20.png" alt="Herencia de tipos - tipo base" /></p>
+<p>Es un ejemplo, pero sirve para hacernos una breve idea.</p>
 
-<p><img src="/img/posts/20160223_21.png" alt="Herencia de tipos - subtipo con UNDER" /></p>
+<p>La forma de implementar la herencia en Oracle es tal que así:</p>
 
-<p><img src="/img/posts/20160223_22.png" alt="Herencia de tipos - NOT FINAL para permitir herencia" /></p>
+<p>Lo primero es definir el tipo que servirá para la herencia. Persona en mi caso.</p>
 
-<p><img src="/img/posts/20160223_23.png" alt="Herencia de tipos - tablas con herencia" /></p>
+<p><img src="/img/posts/20160223_20.png" alt="" /></p>
 
-<p><img src="/img/posts/20160223_24.png" alt="Herencia de tipos - inserción en subtipos" /></p>
+<p>Y a continuación el tipo que va a heredar. Alumno</p>
 
-<p><img src="/img/posts/20160223_25.png" alt="Herencia de tipos - consultas polimórficas" /></p>
+<p><img src="/img/posts/20160223_21.png" alt="" /></p>
 
-<p><img src="/img/posts/20160223_26.png" alt="Herencia de tipos - ejemplo completo con PERSONA y ALUMNO" /></p>
+<p><img src="/img/posts/20160223_22.png" alt="" /></p>
 
-<p><img src="/img/posts/20160223_27.png" alt="Herencia de tipos - resumen" /></p>
+<p><img src="/img/posts/20160223_23.png" alt="" /></p>
+
+<p><img src="/img/posts/20160223_24.png" alt="" /></p>
+
+<p>Podemos hacer algunas declaraciones que sirvan para testear si la herencia se está recibiendo correctamente.</p>
+
+<p><img src="/img/posts/20160223_25.png" alt="" /></p>
+
+<p><img src="/img/posts/20160223_26.png" alt="" /></p>
+
+<p><img src="/img/posts/20160223_27.png" alt="" /></p>
 
   </div>
 

@@ -29,7 +29,7 @@ No son magia, ni una receta universal, ni mucho menos algo que haya que meter co
 
 ## Entonces, ¿qué es SOLID?
 
-SOLID es el nombre que se le da a cinco principios de diseño orientado a objetos pensados para que el código sea más fácil de mantener, más flexible y menos acoplado [1][2]. El blog ha publicado durante años contenido práctico sobre clases, objetos, paquetes y patrones en Java y Python, así que este tema encaja muy bien con esa línea de explicaciones paso a paso [1][3][2].
+SOLID es el nombre que se le da a cinco principios de diseño orientado a objetos pensados para que el código sea más fácil de mantener, más flexible y menos acoplado. El blog ha publicado durante años contenido práctico sobre clases, objetos, paquetes y patrones en Java y Python, así que este tema encaja muy bien con esa línea de explicaciones paso a paso.
 
 Las siglas corresponden a esto:
 

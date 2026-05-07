@@ -1,4 +1,342 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="es" /><updated>2026-04-20T15:28:07+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Programando a Pasitos</title><subtitle>Blog de programación por Inazio Claver</subtitle><author><name>Inazio Claver</name></author><entry><title type="html">Java. Ordenar un HashMap por key o value</title><link href="http://localhost:4000/posts/2020/12/03/java-ordenar-un-hashmap-por-key-o-value/" rel="alternate" type="text/html" title="Java. Ordenar un HashMap por key o value" /><published>2020-12-03T04:33:00+01:00</published><updated>2020-12-03T04:33:00+01:00</updated><id>http://localhost:4000/posts/2020/12/03/java-ordenar-un-hashmap-por-key-o-value</id><content type="html" xml:base="http://localhost:4000/posts/2020/12/03/java-ordenar-un-hashmap-por-key-o-value/"><![CDATA[<p>Hace DEMASIADO tiempo que no actualizo este blog, vamos a quitarle las telarañas con una entrada corta, didáctica y que puede ser útil en más de una ocasión.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="es" /><updated>2026-05-07T16:33:45+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Programando a Pasitos</title><subtitle>Blog de programación por Inazio Claver</subtitle><author><name>Inazio Claver</name></author><entry><title type="html">PostRest + Spring boot. API Rest sin escribir controladores</title><link href="http://localhost:4000/posts/2026/05/07/postgrest-en-spring-boot/" rel="alternate" type="text/html" title="PostRest + Spring boot. API Rest sin escribir controladores" /><published>2026-05-07T16:17:00+02:00</published><updated>2026-05-07T16:17:00+02:00</updated><id>http://localhost:4000/posts/2026/05/07/postgrest-en-spring-boot</id><content type="html" xml:base="http://localhost:4000/posts/2026/05/07/postgrest-en-spring-boot/"><![CDATA[<h1 id="postrest--spring-boot-api-rest-sin-escribir-controladores">PostRest + Spring boot. API Rest sin escribir controladores</h1>
+
+<p><img src="/img/posts/20260505_1.png" alt="PostRest + Spring boot" /></p>
+
+<p>Hay muchas formas de montar una API en Spring Boot. La más habitual es crear controladores, servicios, repositorios, entidades y toda la capa intermedia que ya conocemos. Funciona bien, pero no siempre hace falta construir tanto cuando lo único que queremos es exponer datos de PostgreSQL de forma rápida, consistente y sin demasiada ceremonia.</p>
+
+<p>Ahí es donde entra <strong>PostgREST</strong>. Si ya trabajas con PostgreSQL y no quieres escribir media aplicación solo para servir CRUD, PostgREST puede ahorrarte bastante tiempo. Y si lo combinas con Spring Boot de forma sensata, puedes separar muy bien responsabilidades: PostgreSQL expone los datos, PostgREST los convierte en una API REST y Spring Boot se encarga de la lógica que realmente aporta valor.</p>
+
+<h2 id="qué-es-postgrest">Qué es PostgREST</h2>
+
+<p>PostgREST es una herramienta que genera una API REST a partir de un esquema de PostgreSQL. No inventa un modelo intermedio ni obliga a definir controladores por cada recurso. Lee tablas, vistas, funciones y permisos, y con eso construye endpoints automáticamente.</p>
+
+<p>En la práctica, eso significa que una tabla puede convertirse en un recurso, una vista puede actuar como una consulta ya preparada y una función puede usarse para operaciones más específicas. Todo ello respetando los permisos de base de datos, que es una de las partes más interesantes del enfoque.</p>
+
+<p>La idea no es nueva, pero sí muy útil cuando tienes un dominio bastante claro y quieres evitar repetir lógica trivial en la capa Java.</p>
+
+<h2 id="cuándo-tiene-sentido-usarlo">Cuándo tiene sentido usarlo</h2>
+
+<p>No lo usaría para todo. Si tu aplicación necesita reglas de negocio complejas, agregados, workflows o integración pesada con otros sistemas, Spring Boot seguirá siendo el corazón de la solución.</p>
+
+<p>Pero PostgREST encaja muy bien en estos casos:</p>
+
+<ul>
+  <li>CRUDs bastante directos.</li>
+  <li>Backends internos.</li>
+  <li>Prototipos serios que luego quieres mantener.</li>
+  <li>APIs donde PostgreSQL ya concentra buena parte de la lógica.</li>
+  <li>Sistemas donde prefieres empujar permisos y acceso a datos al propio motor.</li>
+</ul>
+
+<p>En otras palabras: cuando la API está muy pegada a datos y poco a comportamiento, PostgREST tiene mucho sentido.</p>
+
+<h2 id="cómo-encaja-con-spring-boot">Cómo encaja con Spring Boot</h2>
+
+<p>Aquí viene la parte importante. Spring Boot no sustituye a PostgREST ni PostgREST sustituye a Spring Boot. Lo útil es combinarlos con cabeza.</p>
+
+<p>La arquitectura típica sería esta:</p>
+
+<ul>
+  <li>PostgreSQL como base de datos principal.</li>
+  <li>PostgREST como capa REST automática sobre el esquema.</li>
+  <li>Spring Boot como aplicación que consume esa API, añade lógica de negocio, autenticación, orquestación o integración con otros servicios.</li>
+</ul>
+
+<p>Eso te permite separar bastante bien responsabilidades. Spring Boot deja de actuar como simple intermediario de datos y pasa a hacer lo que mejor sabe hacer: coordinar procesos, validar reglas, integrar servicios y ofrecer endpoints propios cuando hace falta.</p>
+
+<h2 id="preparar-postgresql">Preparar PostgreSQL</h2>
+
+<p>Antes de montar nada, conviene tener claro qué tablas, vistas o funciones vas a exponer. No todo debería salir por la API por defecto.</p>
+
+<p>Un ejemplo simple podría ser una tabla de pedidos:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">create</span> <span class="k">table</span> <span class="n">pedidos</span> <span class="p">(</span>
+    <span class="n">id</span> <span class="n">bigserial</span> <span class="k">primary</span> <span class="k">key</span><span class="p">,</span>
+    <span class="n">cliente</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
+    <span class="n">total</span> <span class="nb">numeric</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
+    <span class="n">creado_en</span> <span class="nb">timestamp</span> <span class="k">not</span> <span class="k">null</span> <span class="k">default</span> <span class="n">now</span><span class="p">()</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p>Si PostgREST va a exponer esto, también debes pensar en permisos y roles. La gracia de PostgREST es que no se basa solo en “abrir” una tabla, sino en exponer lo que PostgreSQL permita realmente consultar o modificar.</p>
+
+<h2 id="configurar-postgrest">Configurar PostgREST</h2>
+
+<p>PostgREST suele configurarse con un fichero bastante simple. Ahí defines conexión, esquema expuesto, rol anónimo y algunas opciones más.</p>
+
+<p>Un ejemplo mínimo:</p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">db-uri</span> <span class="p">=</span> <span class="s">"postgres://app_user:secret@localhost:5432/tienda"</span>
+<span class="py">db-schema</span> <span class="p">=</span> <span class="s">"public"</span>
+<span class="py">db-anon-role</span> <span class="p">=</span> <span class="s">"anon"</span>
+<span class="py">server-port</span> <span class="p">=</span> <span class="s">3000</span>
+</code></pre></div></div>
+
+<p>Con eso ya puedes arrancarlo y empezar a probar endpoints sobre el esquema configurado. Si hay permisos bien definidos, la API responderá solo con lo que ese rol pueda ver o modificar.</p>
+
+<h2 id="exponer-vistas-y-funciones">Exponer vistas y funciones</h2>
+
+<p>Aquí es donde PostgREST gana bastante. Si una consulta es compleja o quieres devolver un resultado ya preparado, no hace falta meter esa lógica en Spring Boot.</p>
+
+<p>Puedes crear una vista:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">create</span> <span class="k">view</span> <span class="n">pedidos_resumen</span> <span class="k">as</span>
+<span class="k">select</span>
+    <span class="n">id</span><span class="p">,</span>
+    <span class="n">cliente</span><span class="p">,</span>
+    <span class="n">total</span><span class="p">,</span>
+    <span class="n">creado_en</span>
+<span class="k">from</span> <span class="n">pedidos</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>O una función:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">create</span> <span class="k">function</span> <span class="n">crear_pedido</span><span class="p">(</span><span class="n">p_cliente</span> <span class="nb">varchar</span><span class="p">,</span> <span class="n">p_total</span> <span class="nb">numeric</span><span class="p">)</span>
+<span class="k">returns</span> <span class="n">pedidos</span>
+<span class="k">language</span> <span class="k">sql</span>
+<span class="k">as</span> <span class="err">$$</span>
+    <span class="k">insert</span> <span class="k">into</span> <span class="n">pedidos</span><span class="p">(</span><span class="n">cliente</span><span class="p">,</span> <span class="n">total</span><span class="p">)</span>
+    <span class="k">values</span> <span class="p">(</span><span class="n">p_cliente</span><span class="p">,</span> <span class="n">p_total</span><span class="p">)</span>
+    <span class="n">returning</span> <span class="o">*</span><span class="p">;</span>
+<span class="err">$$</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Eso te da bastante flexibilidad sin ensuciar la capa Java con consultas que en realidad pertenecen a la base de datos.</p>
+
+<h2 id="consumir-postgrest-desde-spring-boot">Consumir PostgREST desde Spring Boot</h2>
+
+<p>Spring Boot puede consumir PostgREST como cualquier otra API REST. La diferencia es que aquí la API no la has escrito tú a mano, sino que la ha generado PostgreSQL a través de PostgREST.</p>
+
+<p>Con <code class="language-plaintext highlighter-rouge">WebClient</code>, por ejemplo, puedes hacerlo así:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Service</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PedidosClient</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">WebClient</span> <span class="n">webClient</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">PedidosClient</span><span class="o">(</span><span class="nc">WebClient</span><span class="o">.</span><span class="na">Builder</span> <span class="n">builder</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">webClient</span> <span class="o">=</span> <span class="n">builder</span>
+                <span class="o">.</span><span class="na">baseUrl</span><span class="o">(</span><span class="s">"http://localhost:3000"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Mono</span><span class="o">&lt;</span><span class="nc">PedidoDto</span><span class="o">[]&gt;</span> <span class="nf">obtenerPedidos</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">webClient</span><span class="o">.</span><span class="na">get</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="s">"/pedidos"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">retrieve</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">bodyToMono</span><span class="o">(</span><span class="nc">PedidoDto</span><span class="o">[].</span><span class="na">class</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Y si prefieres bloquearte en un flujo tradicional, también puedes usar <code class="language-plaintext highlighter-rouge">RestTemplate</code>, aunque hoy en día <code class="language-plaintext highlighter-rouge">WebClient</code> suele encajar mejor si quieres una integración más moderna.</p>
+
+<p>La clave está en no pensar en PostgREST como un atajo raro, sino como una API externa más, igual que tratarías con Stripe, GitHub o cualquier otro servicio [web:76].</p>
+
+<h2 id="autenticación-y-permisos">Autenticación y permisos</h2>
+
+<p>Aquí es donde muchas implementaciones se hacen bien o mal. PostgREST no debería exponer datos solo porque “están en la base de datos”. Lo correcto es controlar permisos en PostgreSQL y, si hace falta, usar JWT para identificar el rol o el contexto del usuario.</p>
+
+<p>Eso permite algo muy potente: que la base de datos decida qué puede hacer cada perfil. Spring Boot puede encargarse de emitir o validar el token, pero la autorización fina la puede seguir imponiendo PostgreSQL.</p>
+
+<p>Esta separación suele quedar bastante limpia en sistemas medianos. Spring Boot autentica, PostgREST sirve la API y PostgreSQL aplica el filtro real.</p>
+
+<h2 id="ventajas-reales">Ventajas reales</h2>
+
+<p>Las ventajas más claras de este enfoque son bastante prácticas:</p>
+
+<ul>
+  <li>Menos código repetido.</li>
+  <li>Menos capas innecesarias para CRUDs.</li>
+  <li>Aprovechar la potencia de PostgreSQL.</li>
+  <li>Mejor separación entre acceso a datos y lógica de negocio.</li>
+  <li>Control de permisos muy cercano al dato.</li>
+</ul>
+
+<p>Además, si vienes de proyectos donde todo termina en un montón de repositorios casi idénticos, este enfoque se agradece bastante. Hay menos ruido y más intención.</p>
+
+<h2 id="lo-que-debes-vigilar">Lo que debes vigilar</h2>
+
+<p>No todo son ventajas. Si abusas de PostgREST, puedes acabar moviendo demasiada responsabilidad a la base de datos y perdiendo claridad. Tampoco conviene esconder lógica de negocio importante dentro de funciones SQL sin criterio.</p>
+
+<p>Yo lo vería así: PostgreSQL debe resolver bien el acceso, las consultas, las validaciones cercanas al dato y las operaciones simples. Spring Boot debe quedarse con la coordinación, la integración, la seguridad de alto nivel y las reglas que de verdad pertenecen a la aplicación.</p>
+
+<p>Cuando separas eso bien, la solución se vuelve más limpia. Cuando lo mezclas todo, aparece el clásico backend que nadie quiere tocar.</p>
+
+<h2 id="ejemplo-de-uso-razonable">Ejemplo de uso razonable</h2>
+
+<p>Un escenario bastante sensato sería este:</p>
+
+<ul>
+  <li>PostgreSQL guarda pedidos, clientes y productos.</li>
+  <li>PostgREST expone tablas y vistas.</li>
+  <li>Spring Boot usa esa API para construir casos de uso más grandes, mandar correos, aplicar reglas de negocio y conectar con otros sistemas.</li>
+</ul>
+
+<p>Así no obligas a Spring Boot a hacer de simple proxy de base de datos. Y tampoco conviertes PostgreSQL en una especie de aplicación oculta sin control.</p>
+
+<h2 id="conclusión">Conclusión</h2>
+
+<p>PostgREST no viene a reemplazar Spring Boot. Viene a quitar trabajo mecánico cuando la API está muy ligada a PostgreSQL y no merece la pena escribir toda la capa REST a mano.</p>
+
+<p>Si lo usas con criterio, puede darte una arquitectura bastante elegante: datos bien modelados, permisos cerca del motor y Spring Boot reservado para la lógica que realmente aporta valor. Y eso, al final, es una de las cosas que más agradeces en proyectos que tienen que durar.</p>
+
+<p><strong>¡Salud y coding!</strong></p>]]></content><author><name>Inazio Claver</name></author><category term="Java" /><category term="spring-boot" /><category term="postgrest" /><category term="postgresql" /><category term="api-rest" /><category term="webclient" /><category term="jwt" /><category term="backend" /><category term="sql" /><category term="java" /><summary type="html"><![CDATA[Aprende qué es PostgREST y cómo integrarlo con Spring Boot para exponer PostgreSQL como API REST, consumir endpoints con WebClient y mantener una arquitectura más simple.]]></summary></entry><entry><title type="html">Principios SOLID. Cinco ideas para no pelearte con tu propio código</title><link href="http://localhost:4000/posts/2026/05/04/principios-solid-explicados-para-java/" rel="alternate" type="text/html" title="Principios SOLID. Cinco ideas para no pelearte con tu propio código" /><published>2026-05-04T17:49:00+02:00</published><updated>2026-05-04T17:49:00+02:00</updated><id>http://localhost:4000/posts/2026/05/04/principios-solid-explicados-para-java</id><content type="html" xml:base="http://localhost:4000/posts/2026/05/04/principios-solid-explicados-para-java/"><![CDATA[<h1 id="principios-solid-cinco-ideas-para-no-pelearte-con-tu-propio-código">Principios SOLID: Cinco ideas para no pelearte con tu propio código</h1>
+
+<p><img src="/img/posts/20260504_1.png" alt="Cabecera sobre principios SOLID" /></p>
+
+<p>Hay temas que cuando empiezas a programar te suenan a teoría pura. A algo que está bien saber, pero que tampoco parece urgente. Con SOLID me pasó un poco eso.</p>
+
+<p>Al principio bastante tenemos con sacar el ejercicio, hacer que compile y conseguir que no explote nada por sitios raros. Pero en cuanto empiezas a tocar proyectos algo más grandes, o simplemente vuelves a tu código de hace unos meses, te das cuenta de que no todo consiste en que funcione. También importa que se entienda, que se pueda cambiar sin miedo y que no te obligue a romper tres cosas cada vez que quieres añadir una cuarta.</p>
+
+<p>Ahí es donde entran los principios SOLID.</p>
+
+<p>No son magia, ni una receta universal, ni mucho menos algo que haya que meter con calzador en cualquier clase de veinte líneas. Pero sí vienen muy bien como guía para diseñar mejor las clases y evitar algunos errores bastante típicos cuando trabajamos con orientación a objetos.</p>
+
+<h2 id="entonces-qué-es-solid">Entonces, ¿qué es SOLID?</h2>
+
+<p>SOLID es el nombre que se le da a cinco principios de diseño orientado a objetos pensados para que el código sea más fácil de mantener, más flexible y menos acoplado. El blog ha publicado durante años contenido práctico sobre clases, objetos, paquetes y patrones en Java y Python, así que este tema encaja muy bien con esa línea de explicaciones paso a paso.</p>
+
+<p>Las siglas corresponden a esto:</p>
+
+<ul>
+  <li><strong>S</strong>: Single Responsibility Principle.</li>
+  <li><strong>O</strong>: Open/Closed Principle.</li>
+  <li><strong>L</strong>: Liskov Substitution Principle.</li>
+  <li><strong>I</strong>: Interface Segregation Principle.</li>
+  <li><strong>D</strong>: Dependency Inversion Principle.</li>
+</ul>
+
+<p>Visto así parece el típico listado que uno memoriza para un examen y luego olvida. Pero si lo bajas a ejemplos del día a día, tiene bastante más sentido del que parece.</p>
+
+<h2 id="s-una-clase-una-responsabilidad">S: una clase, una responsabilidad</h2>
+
+<p>Este es seguramente el más fácil de entender. La idea es que una clase debería tener un único motivo para cambiar. O dicho de forma menos solemne: mejor que cada clase se dedique a una cosa y no a siete a la vez.</p>
+
+<p>Por ejemplo, imaginemos una clase <code class="language-plaintext highlighter-rouge">Usuario</code> que valida datos, guarda información en base de datos, genera informes y además manda correos. ¿Se puede hacer? Sí. ¿Es buena idea? Más bien no.</p>
+
+<p>Cuando mezclamos responsabilidades, el código se vuelve más difícil de mantener. Un cambio en la validación puede afectar al guardado, una modificación en base de datos puede romper otra parte y al final todo queda demasiado atado.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Usuario</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nombre</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">email</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">ValidadorUsuario</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">validar</span><span class="o">(</span><span class="nc">Usuario</span> <span class="n">usuario</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">usuario</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">usuario</span><span class="o">.</span><span class="na">getEmail</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">UsuarioRepository</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">guardar</span><span class="o">(</span><span class="nc">Usuario</span> <span class="n">usuario</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// guardar usuario</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">EmailService</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">enviarBienvenida</span><span class="o">(</span><span class="nc">Usuario</span> <span class="n">usuario</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// enviar correo</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Aquí no hay nada especialmente sofisticado, pero sí una idea clara: separar tareas suele hacer la vida bastante más fácil.</p>
+
+<h2 id="o-abierto-a-crecer-cerrado-a-tocar-lo-que-ya-funciona">O: abierto a crecer, cerrado a tocar lo que ya funciona</h2>
+
+<p>El principio abierto/cerrado dice que una clase debería estar abierta a extensión, pero cerrada a modificación. Es decir, deberíamos poder añadir comportamiento nuevo sin andar reescribiendo una clase estable cada dos por tres.</p>
+
+<p>Esto se nota mucho cuando empiezan a aparecer condicionales por todos lados. El típico caso: una clase que procesa pagos, y según si el pago es con tarjeta, PayPal, transferencia o lo que toque, metemos otro <code class="language-plaintext highlighter-rouge">if</code> más. Hoy son dos casos, mañana cinco, pasado mañana nueve.</p>
+
+<p>Una alternativa bastante mejor es apoyarse en abstracciones.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">interface</span> <span class="nc">MetodoPago</span> <span class="o">{</span>
+    <span class="kt">void</span> <span class="nf">pagar</span><span class="o">(</span><span class="kt">double</span> <span class="n">importe</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">PagoTarjeta</span> <span class="kd">implements</span> <span class="nc">MetodoPago</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">pagar</span><span class="o">(</span><span class="kt">double</span> <span class="n">importe</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// lógica de tarjeta</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">PagoPaypal</span> <span class="kd">implements</span> <span class="nc">MetodoPago</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">pagar</span><span class="o">(</span><span class="kt">double</span> <span class="n">importe</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// lógica de paypal</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>De esta forma, si mañana aparece otro método de pago, se añade una nueva implementación y listo. Menos riesgo de cargarse lo que ya estaba funcionando.</p>
+
+<h2 id="l-si-hereda-que-se-comporte-como-se-espera">L: si hereda, que se comporte como se espera</h2>
+
+<p>El principio de sustitución de Liskov es de esos que suenan más aparatosos de lo que realmente son. Viene a decir que si una clase hereda de otra, deberíamos poder usar la hija en lugar de la padre sin que el programa empiece a hacer cosas raras.</p>
+
+<p>Parece de sentido común, pero no siempre se respeta. A veces se hereda solo por reutilizar código, aunque la relación no tenga demasiado sentido. Y ahí empiezan los problemas.</p>
+
+<p>El ejemplo clásico suele ser el de una clase <code class="language-plaintext highlighter-rouge">Ave</code> con un método <code class="language-plaintext highlighter-rouge">volar()</code>, y luego aparece <code class="language-plaintext highlighter-rouge">Pinguino</code> heredando de <code class="language-plaintext highlighter-rouge">Ave</code>. Claro, el pingüino ave es, pero volar, lo que se dice volar, no vuela demasiado.</p>
+
+<p>Cuando pasa algo así, normalmente no falla solo el diseño: también nos está avisando de que quizá la jerarquía no está bien planteada.</p>
+
+<h2 id="i-interfaces-pequeñas-mejor-que-monstruos-de-veinte-métodos">I: interfaces pequeñas, mejor que monstruos de veinte métodos</h2>
+
+<p>Este principio dice que una clase no debería verse obligada a implementar métodos que no necesita. O, dicho de otra forma, mejor varias interfaces pequeñas y concretas que una gigantesca para todo.</p>
+
+<p>Es algo bastante habitual cuando uno intenta “dejarlo todo preparado” y acaba creando una interfaz enorme con métodos para imprimir, exportar, validar, serializar, conectar, enviar y cocinar croquetas. Luego llega una clase que solo necesita dos de esos métodos y toca implementar el resto porque sí.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">interface</span> <span class="nc">Imprimible</span> <span class="o">{</span>
+    <span class="kt">void</span> <span class="nf">imprimir</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">interface</span> <span class="nc">Exportable</span> <span class="o">{</span>
+    <span class="kt">void</span> <span class="nf">exportar</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>No tiene mucho misterio: si algo solo necesita imprimir, que implemente <code class="language-plaintext highlighter-rouge">Imprimible</code>. Si además exporta, que implemente también <code class="language-plaintext highlighter-rouge">Exportable</code>. Y si no, mejor no inventarse obligaciones.</p>
+
+<h2 id="d-depender-de-abstracciones-da-bastante-aire">D: depender de abstracciones da bastante aire</h2>
+
+<p>La D corresponde a inversión de dependencias. Aquí la idea es que el código importante de la aplicación no dependa directamente de implementaciones concretas, sino de abstracciones.</p>
+
+<p>Dicho así parece una frase de libro, pero en realidad se ve rápido con un ejemplo. Si una clase depende directamente de <code class="language-plaintext highlighter-rouge">EmailService</code>, queda atada a esa forma de notificar. Si mañana queremos mandar avisos por SMS o por Telegram, ya toca modificar esa clase.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">interface</span> <span class="nc">Notificador</span> <span class="o">{</span>
+    <span class="kt">void</span> <span class="nf">enviar</span><span class="o">(</span><span class="nc">String</span> <span class="n">mensaje</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">EmailNotificador</span> <span class="kd">implements</span> <span class="nc">Notificador</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">enviar</span><span class="o">(</span><span class="nc">String</span> <span class="n">mensaje</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// enviar email</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">ServicioPedidos</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Notificador</span> <span class="n">notificador</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">ServicioPedidos</span><span class="o">(</span><span class="nc">Notificador</span> <span class="n">notificador</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">notificador</span> <span class="o">=</span> <span class="n">notificador</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">confirmar</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">notificador</span><span class="o">.</span><span class="na">enviar</span><span class="o">(</span><span class="s">"Pedido confirmado"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>La diferencia está en que <code class="language-plaintext highlighter-rouge">ServicioPedidos</code> no necesita saber cómo se envía el mensaje. Solo necesita que exista alguien capaz de enviarlo.</p>
+
+<h2 id="lo-importante-de-verdad">Lo importante de verdad</h2>
+
+<p>Con SOLID pasa como con muchas buenas prácticas: entendido con sentido común, ayuda. Aplicado de forma rígida a cualquier cosa, puede acabar complicando más de la cuenta.</p>
+
+<p>No hace falta convertir una utilidad pequeña en una arquitectura espacial. Pero tampoco está de más acostumbrarse a detectar ciertas señales: clases que hacen demasiadas cosas, dependencias demasiado fuertes, interfaces infladas o herencias que chirrían.</p>
+
+<p>Al final, lo bueno de estos principios no es que tengan nombre en inglés ni que queden elegantes en una entrevista. Lo útil es que te obligan a parar un momento y pensar si el código que estás escribiendo hoy te lo vas a agradecer mañana o te vas a acordar de toda tu ascendencia cuando tengas que tocarlo dentro de seis meses.</p>
+
+<p><strong>¡Salud y coding!</strong></p>]]></content><author><name>Inazio Claver</name></author><category term="Java" /><category term="java" /><category term="solid" /><category term="programacion-orientada-a-objetos" /><category term="oop" /><category term="patrones" /><category term="buenas-practicas" /><category term="clean-code" /><summary type="html"><![CDATA[Aprende qué son los principios SOLID y cómo aplicarlos en Java con ejemplos sencillos sobre responsabilidad única, abierto/cerrado, sustitución de Liskov, segregación de interfaces e inversión de dependencias.]]></summary></entry><entry><title type="html">Java. Ordenar un HashMap por key o value</title><link href="http://localhost:4000/posts/2020/12/03/java-ordenar-un-hashmap-por-key-o-value/" rel="alternate" type="text/html" title="Java. Ordenar un HashMap por key o value" /><published>2020-12-03T04:33:00+01:00</published><updated>2020-12-03T04:33:00+01:00</updated><id>http://localhost:4000/posts/2020/12/03/java-ordenar-un-hashmap-por-key-o-value</id><content type="html" xml:base="http://localhost:4000/posts/2020/12/03/java-ordenar-un-hashmap-por-key-o-value/"><![CDATA[<p>Hace DEMASIADO tiempo que no actualizo este blog, vamos a quitarle las telarañas con una entrada corta, didáctica y que puede ser útil en más de una ocasión.
 En esta ocasión vamos a ver cómo llevar a cabo una de las cosas más tontas del mundo, ordenar algo. Pero que puede ser un poco enrevesado según lo que te toque hacer.</p>
 
 <h2 id="qué-es-un-map-o-hashmap-en-java">¿Qué es un Map o HashMap en Java?</h2>
@@ -854,652 +1192,4 @@ Bien, hay varios sitios y Google lo sabe todo, pero así más concretamente hay 
   <li><a href="https://maven.apache.org/pom.html">Apache Maven POM</a></li>
 </ul>
 
-<p><strong>¡Salud y coding!</strong></p>]]></content><author><name>Inazio Claver</name></author><category term="Java" /><category term="java" /><category term="maven" /><category term="eclipse" /><category term="pom" /><category term="dependencias" /><category term="plugins" /><category term="arquetipos" /><category term="jdk" /><summary type="html"><![CDATA[Aprende a usar Maven en Eclipse desde cero paso a paso. Tutorial completo sobre creación de proyectos, configuración del POM.xml, gestión de dependencias, plugins, arquetipos y solución de errores JDK/JRE con ejemplos prácticos.]]></summary></entry><entry><title type="html">Resolver sudokus en Java</title><link href="http://localhost:4000/posts/2017/07/19/resolver-sudokus-con-java/" rel="alternate" type="text/html" title="Resolver sudokus en Java" /><published>2017-07-19T06:10:00+02:00</published><updated>2017-07-19T06:10:00+02:00</updated><id>http://localhost:4000/posts/2017/07/19/resolver-sudokus-con-java</id><content type="html" xml:base="http://localhost:4000/posts/2017/07/19/resolver-sudokus-con-java/"><![CDATA[<p>El otro día estaba haciendo el <strong>sudoku</strong> del periódico y me plantee la siguiente duda. ¿Cómo sería un <strong>programa que te resolviese el sudoku</strong> automáticamente?</p>
-
-<p>Para el que no lo sepa, un <strong>sudoku</strong> es un pasatiempo japonés consistente en rellenar un tablero de 9x9, que a su vez está divido en secciones de 3x3, con números del 1 al nueve de tal manera que ninguno de ellos puede estar repetido en ninguna fila, columna o secciones.
-Como curiosidad, sabed que el problema de un <strong>sudoku</strong> sólo se considera bien planteado si su solución es única, consiguiéndose esto sólo si, como mínimo, hay ya preestablecidas 17 cifras dentro del tablero <a href="https://es.wikipedia.org/wiki/Sudoku">(Wikipedia intensified)</a>.</p>
-
-<p>Dicho esto, vayamos a la resolución del problema.
-La idea que se me ocurrió, y que luego he ido leyendo que es la más sencilla de implementar, es la del <strong>algoritmo de marcha atrás</strong>.</p>
-
-<p>Es decir, leeremos el tablero y, dejando siempre fijas las posiciones que ya están preestablecidas, iremos casilla por casilla aumentando su valor en uno. Si el valor de esa casilla cumple con las reglas del <strong>sudoku</strong> (ya sabéis, no repetirse ni en su fila, columna ni sección) la dejamos tal cual y saltamos a la siguiente.
-Si no se cumple, incrementará el valor de dicha casilla hasta que esa condición se cumpla o hasta sobrepasar el valor de 9.
-En ese caso de sobrepasar dicho valor, lo que haremos será retroceder a la anterior casilla modificable e incrementar su valor en 1, repitiendo el proceso anterior.</p>
-
-<p>De este modo, solucionaríamos un <strong>sudoku</strong> cuando todas las casillas estén completamente validadas, y sería irresoluble si la primera casilla editable supera el valor de 9.</p>
-
-<p>Es decir, que el método empleado lo podemos considerar como un ataque de fuerza bruta. Costoso en tiempos computacionales, pero era la solución más sencilla de implementar que se me ocurrió. Probablemente haya muchas mejores formas de hacerlo, podéis decirme las vuestras en los comentarios.</p>
-
-<h2 id="a-programar">¡A programar!</h2>
-
-<p>Sabiendo esto, vamos a pasar al código. Lo primero que debéis saber es que aquí sólo voy a mostrar la lógica de la resolución. Puedes acceder al código completo en <a href="https://github.com/inazense/SudokuSolver">mi repositorio de Github</a>. Incluye la interfaz gráfica entre otras mejoras que me encuentro desarrollando actualmente.</p>
-
-<h3 id="participantes">Participantes</h3>
-
-<p>El primer paso será definir los participantes que necesitaremos para <strong>solucionar el sudoku</strong>, que serán un tablero, las casillas que lo compongan y las secciones en las que lo dividiremos.</p>
-
-<p>Así pues, vamos a ir de menos a más.
-Lo primero será definir las secciones, en una enumeración.</p>
-
-<p><strong>Enum Sector</strong></p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="nc">Sector</span>
-<span class="o">{</span>
- <span class="no">PRIMERO</span><span class="o">,</span> <span class="no">SEGUNDO</span><span class="o">,</span> <span class="no">TERCERO</span><span class="o">,</span>
- <span class="no">CUARTO</span><span class="o">,</span> <span class="no">QUINTO</span><span class="o">,</span> <span class="no">SEXTO</span><span class="o">,</span>
- <span class="no">SEPTIMO</span><span class="o">,</span> <span class="no">OCTAVO</span><span class="o">,</span> <span class="no">NOVENO</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Como podemos ver, es una enumeración sencilla en la que nos limitamos a nombrar los nueve sectores de nuestro tablero.</p>
-
-<p><strong>Casilla</strong></p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Casilla</span> <span class="o">{</span>
-
- <span class="c1">/// PROPIEDADES</span>
- <span class="kd">private</span> <span class="kt">int</span> <span class="n">valor</span><span class="o">;</span>
- <span class="kd">private</span> <span class="kt">int</span> <span class="n">posX</span><span class="o">;</span>
- <span class="kd">private</span> <span class="kt">int</span> <span class="n">posY</span><span class="o">;</span>
- <span class="kd">private</span> <span class="nc">Sector</span> <span class="n">sector</span><span class="o">;</span>
- <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">editable</span><span class="o">;</span>
- 
- <span class="c1">/// CONSTRUCTORES</span>
- <span class="cm">/**
-  * Inicializa una casilla vacía
-  */</span>
- <span class="kd">public</span> <span class="nf">Casilla</span><span class="o">()</span> <span class="o">{}</span>
- 
- <span class="cm">/**
-  * 
-  * @param valor
-  * @param posX
-  * @param posY
-  * @param sector
-  * @param editable
-  */</span>
- <span class="kd">public</span> <span class="nf">Casilla</span><span class="o">(</span><span class="kt">int</span> <span class="n">valor</span><span class="o">,</span> <span class="kt">int</span> <span class="n">posX</span><span class="o">,</span> <span class="kt">int</span> <span class="n">posY</span><span class="o">,</span> <span class="nc">Sector</span> <span class="n">sector</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">editable</span><span class="o">)</span> <span class="o">{</span>
-  
-  <span class="k">this</span><span class="o">.</span><span class="na">valor</span>   <span class="o">=</span> <span class="n">valor</span><span class="o">;</span>
-  <span class="k">this</span><span class="o">.</span><span class="na">posX</span>   <span class="o">=</span> <span class="n">posX</span><span class="o">;</span>
-  <span class="k">this</span><span class="o">.</span><span class="na">posY</span>   <span class="o">=</span> <span class="n">posY</span><span class="o">;</span>
-  <span class="k">this</span><span class="o">.</span><span class="na">sector</span>  <span class="o">=</span> <span class="n">sector</span><span class="o">;</span>
-  <span class="k">this</span><span class="o">.</span><span class="na">editable</span>  <span class="o">=</span> <span class="n">editable</span><span class="o">;</span>
- <span class="o">}</span>
- 
- <span class="c1">/// METODOS</span>
- 
- <span class="cm">/**
-  * Establece el sector dependiendo de la posición X e Y de la casilla
-  */</span>
- <span class="kd">public</span> <span class="kt">void</span> <span class="nf">establecerSectorSegunPosicion</span><span class="o">()</span> <span class="o">{</span>
-  <span class="k">switch</span><span class="o">(</span><span class="n">posX</span><span class="o">)</span> <span class="o">{</span>
-  
-  <span class="k">case</span> <span class="mi">0</span><span class="o">:</span>
-  <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
-  <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
-   <span class="k">switch</span><span class="o">(</span><span class="n">posY</span><span class="o">)</span> <span class="o">{</span>
-   <span class="k">case</span> <span class="mi">0</span><span class="o">:</span>
-   <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
-   <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">setSector</span><span class="o">(</span><span class="nc">Sector</span><span class="o">.</span><span class="na">PRIMERO</span><span class="o">);</span>
-    <span class="k">break</span><span class="o">;</span>
-   <span class="k">case</span> <span class="mi">3</span><span class="o">:</span>
-   <span class="k">case</span> <span class="mi">4</span><span class="o">:</span>
-   <span class="k">case</span> <span class="mi">5</span><span class="o">:</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">setSector</span><span class="o">(</span><span class="nc">Sector</span><span class="o">.</span><span class="na">SEGUNDO</span><span class="o">);</span>
-    <span class="k">break</span><span class="o">;</span>
-   <span class="k">case</span> <span class="mi">6</span><span class="o">:</span>
-   <span class="k">case</span> <span class="mi">7</span><span class="o">:</span> 
-   <span class="k">case</span> <span class="mi">8</span><span class="o">:</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">setSector</span><span class="o">(</span><span class="nc">Sector</span><span class="o">.</span><span class="na">TERCERO</span><span class="o">);</span>
-    <span class="k">break</span><span class="o">;</span>
-   <span class="k">default</span><span class="o">:</span>
-    <span class="k">break</span><span class="o">;</span>
-   <span class="o">}</span>
-   <span class="k">break</span><span class="o">;</span>
-  <span class="k">case</span> <span class="mi">3</span><span class="o">:</span>
-  <span class="k">case</span> <span class="mi">4</span><span class="o">:</span>
-  <span class="k">case</span> <span class="mi">5</span><span class="o">:</span>
-   <span class="k">switch</span><span class="o">(</span><span class="n">posY</span><span class="o">)</span> <span class="o">{</span>
-   <span class="k">case</span> <span class="mi">0</span><span class="o">:</span>
-   <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
-   <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">setSector</span><span class="o">(</span><span class="nc">Sector</span><span class="o">.</span><span class="na">CUARTO</span><span class="o">);</span>
-    <span class="k">break</span><span class="o">;</span>
-   <span class="k">case</span> <span class="mi">3</span><span class="o">:</span>
-   <span class="k">case</span> <span class="mi">4</span><span class="o">:</span>
-   <span class="k">case</span> <span class="mi">5</span><span class="o">:</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">setSector</span><span class="o">(</span><span class="nc">Sector</span><span class="o">.</span><span class="na">QUINTO</span><span class="o">);</span>
-    <span class="k">break</span><span class="o">;</span>
-   <span class="k">case</span> <span class="mi">6</span><span class="o">:</span>
-   <span class="k">case</span> <span class="mi">7</span><span class="o">:</span> 
-   <span class="k">case</span> <span class="mi">8</span><span class="o">:</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">setSector</span><span class="o">(</span><span class="nc">Sector</span><span class="o">.</span><span class="na">SEXTO</span><span class="o">);</span>
-    <span class="k">break</span><span class="o">;</span>
-   <span class="k">default</span><span class="o">:</span>
-    <span class="k">break</span><span class="o">;</span>
-   <span class="o">}</span>
-   <span class="k">break</span><span class="o">;</span>
-  <span class="k">case</span> <span class="mi">6</span><span class="o">:</span>
-  <span class="k">case</span> <span class="mi">7</span><span class="o">:</span>
-  <span class="k">case</span> <span class="mi">8</span><span class="o">:</span>
-   <span class="k">switch</span><span class="o">(</span><span class="n">posY</span><span class="o">)</span> <span class="o">{</span>
-   <span class="k">case</span> <span class="mi">0</span><span class="o">:</span>
-   <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
-   <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">setSector</span><span class="o">(</span><span class="nc">Sector</span><span class="o">.</span><span class="na">SEPTIMO</span><span class="o">);</span>
-    <span class="k">break</span><span class="o">;</span>
-   <span class="k">case</span> <span class="mi">3</span><span class="o">:</span>
-   <span class="k">case</span> <span class="mi">4</span><span class="o">:</span>
-   <span class="k">case</span> <span class="mi">5</span><span class="o">:</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">setSector</span><span class="o">(</span><span class="nc">Sector</span><span class="o">.</span><span class="na">OCTAVO</span><span class="o">);</span>
-    <span class="k">break</span><span class="o">;</span>
-   <span class="k">case</span> <span class="mi">6</span><span class="o">:</span>
-   <span class="k">case</span> <span class="mi">7</span><span class="o">:</span> 
-   <span class="k">case</span> <span class="mi">8</span><span class="o">:</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">setSector</span><span class="o">(</span><span class="nc">Sector</span><span class="o">.</span><span class="na">NOVENO</span><span class="o">);</span>
-    <span class="k">break</span><span class="o">;</span>
-   <span class="k">default</span><span class="o">:</span>
-    <span class="k">break</span><span class="o">;</span>
-   <span class="o">}</span>
-   <span class="k">break</span><span class="o">;</span>
-  <span class="o">}</span>
- <span class="o">}</span>
-
- <span class="cm">/**
-  * Devuelve el valor de la casilla
-  * @return Entero entre 0 y 9
-  */</span>
- <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getValor</span><span class="o">()</span> <span class="o">{</span>
-  <span class="k">return</span> <span class="n">valor</span><span class="o">;</span>
- <span class="o">}</span>
-
- <span class="cm">/**
-  * Establece el valor de la casilla
-  * @param valor Entero entre 0 y 9
-  */</span>
- <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setValor</span><span class="o">(</span><span class="kt">int</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span>
-  <span class="k">this</span><span class="o">.</span><span class="na">valor</span> <span class="o">=</span> <span class="n">valor</span><span class="o">;</span>
- <span class="o">}</span>
-
- <span class="cm">/**
-  * Devuelve la posición horizontal
-  * @return Entero entre 0 y 8
-  */</span>
- <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getPosX</span><span class="o">()</span> <span class="o">{</span>
-  <span class="k">return</span> <span class="n">posX</span><span class="o">;</span>
- <span class="o">}</span>
-
- <span class="cm">/**
-  * Establece la posición horizontal
-  * @param posX Entero entre 0 y 8
-  */</span>
- <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPosX</span><span class="o">(</span><span class="kt">int</span> <span class="n">posX</span><span class="o">)</span> <span class="o">{</span>
-  <span class="k">this</span><span class="o">.</span><span class="na">posX</span> <span class="o">=</span> <span class="n">posX</span><span class="o">;</span>
- <span class="o">}</span>
-
- <span class="cm">/**
-  * Devuelve la posición vertical
-  * @return Entero entre 0 y 8
-  */</span>
- <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getPosY</span><span class="o">()</span> <span class="o">{</span>
-  <span class="k">return</span> <span class="n">posY</span><span class="o">;</span>
- <span class="o">}</span>
-
- <span class="cm">/**
-  * Establece la posición vertical
-  * @param posY Entero entre 0 y 8
-  */</span>
- <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPosY</span><span class="o">(</span><span class="kt">int</span> <span class="n">posY</span><span class="o">)</span> <span class="o">{</span>
-  <span class="k">this</span><span class="o">.</span><span class="na">posY</span> <span class="o">=</span> <span class="n">posY</span><span class="o">;</span>
- <span class="o">}</span>
-
- <span class="cm">/**
-  * Devuelve el sector de la casilla
-  * @return Sector preestablecido en Enum Sector
-  */</span>
- <span class="kd">public</span> <span class="nc">Sector</span> <span class="nf">getSector</span><span class="o">()</span> <span class="o">{</span>
-  <span class="k">return</span> <span class="n">sector</span><span class="o">;</span>
- <span class="o">}</span>
-
- <span class="cm">/**
-  * Establece el sector de la casilla
-  * @param sector Propiedad del enum Sector
-  */</span>
- <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSector</span><span class="o">(</span><span class="nc">Sector</span> <span class="n">sector</span><span class="o">)</span> <span class="o">{</span>
-  <span class="k">this</span><span class="o">.</span><span class="na">sector</span> <span class="o">=</span> <span class="n">sector</span><span class="o">;</span>
- <span class="o">}</span>
-
- <span class="cm">/**
-  * Devuelve si la casilla tiene un valor fijo o no
-  * @return True -&gt; Valor fijo. False -&gt; Valor modificable
-  */</span>
- <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEditable</span><span class="o">()</span> <span class="o">{</span>
-  <span class="k">return</span> <span class="n">editable</span><span class="o">;</span>
- <span class="o">}</span>
-
- <span class="cm">/**
-  * Establece la opción de editar la casilla
-  * @param editable True -&gt; editable. False -&gt; no editable
-  */</span>
- <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setEditable</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">editable</span><span class="o">)</span> <span class="o">{</span>
-  <span class="k">this</span><span class="o">.</span><span class="na">editable</span> <span class="o">=</span> <span class="n">editable</span><span class="o">;</span>
- <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>En esta clase establecemos las propiedades de cada una de nuestras casillas.
-Su posición horizontal y vertical, su valor, el sector al que pertenece y si es o no editable.
-En los métodos creamos los <strong>getters</strong> y <strong>setters</strong> y un método más, el de establecerSectorSegunPosicion() que usaremos para indicar a que sector pertenece nuestra casilla.</p>
-
-<p><strong>Tablero</strong></p>
-
-<p>Esta clase vamos a comentarla un poco más, aunque también es muy sencillita.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Tablero</span> <span class="o">{</span>
-
- <span class="c1">/// PROPIEDADES </span>
- 
- <span class="kd">private</span> <span class="nc">Casilla</span><span class="o">[][]</span> <span class="n">casillas</span><span class="o">;</span>
- 
- <span class="c1">/// CONSTRUCTOR</span>
- 
- <span class="cm">/**
-  * Genera un tablero de sudoku básico de 9x9
-  */</span>
- <span class="kd">public</span> <span class="nf">Tablero</span><span class="o">()</span> <span class="o">{</span>
-  <span class="k">this</span><span class="o">.</span><span class="na">casillas</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Casilla</span><span class="o">[</span><span class="mi">9</span><span class="o">][</span><span class="mi">9</span><span class="o">];</span>
- <span class="o">}</span>
- 
- <span class="c1">/// METODOS</span>
- 
- <span class="cm">/**
-  * Devuelve las casillas del tablero
-  * @return
-  */</span>
- <span class="kd">public</span> <span class="nc">Casilla</span><span class="o">[][]</span> <span class="nf">getCasillas</span><span class="o">()</span> <span class="o">{</span>
-  <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">casillas</span><span class="o">;</span>
- <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Lo primero, vemos que la definición de las propiedades y del constructor no tiene mucha miga. Simplemente establecemos una matriz de casillas y en su constructor la inicializamos. Además generamos un getter para nuestras casillas.</p>
-
-<p>Hecho esto, vamos a ver los diferentes métodos que podemos emplear:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
- * Inicializa el tablero estableciendo por defecto los valores:
- * Valor  = 0
- * PosX  = i
- * PosY  = j
- * Editable = true
- * Sector  = Según posición
- */</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">inicializarTablero</span><span class="o">()</span> <span class="o">{</span>
- 
- <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="o">.</span><span class="na">casillas</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-  <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="k">this</span><span class="o">.</span><span class="na">casillas</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">length</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
-   <span class="nc">Casilla</span> <span class="n">casilla</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Casilla</span><span class="o">();</span>
-   <span class="n">casilla</span><span class="o">.</span><span class="na">setValor</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
-   <span class="n">casilla</span><span class="o">.</span><span class="na">setPosX</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
-   <span class="n">casilla</span><span class="o">.</span><span class="na">setPosY</span><span class="o">(</span><span class="n">j</span><span class="o">);</span>
-   <span class="n">casilla</span><span class="o">.</span><span class="na">setEditable</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
-   <span class="n">casilla</span><span class="o">.</span><span class="na">establecerSectorSegunPosicion</span><span class="o">();</span>
-   
-   <span class="k">this</span><span class="o">.</span><span class="na">casillas</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">casilla</span><span class="o">;</span>
-  <span class="o">}</span>
- <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Este método es el encargado de inicializar una por una nuestras casillas. Recorremos la matriz y establecemos su posición, calculamos su sector, le indicamos que es editable y establecemos un valor por defecto de 0.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
- * Establece una nueva casilla en la posición que tenga configurada la misma
- * @param casilla
- */</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">editarCasilla</span><span class="o">(</span><span class="nc">Casilla</span> <span class="n">casilla</span><span class="o">)</span> <span class="o">{</span>
- <span class="k">this</span><span class="o">.</span><span class="na">casillas</span><span class="o">[</span><span class="n">casilla</span><span class="o">.</span><span class="na">getPosX</span><span class="o">()][</span><span class="n">casilla</span><span class="o">.</span><span class="na">getPosY</span><span class="o">()]</span> <span class="o">=</span> <span class="n">casilla</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Aquí le indicamos que copie la casilla pasada  por parámetro a la casilla que está en el tablero con su misma posición, horizontal y vertical.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
- * Reestablece el valor de la casilla según su posición
- * @param x Posición horizontal
- * @param y Posición vertical
- */</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">reestablecerCasillaPorPosicion</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">y</span><span class="o">)</span> <span class="o">{</span>
- <span class="k">this</span><span class="o">.</span><span class="na">casillas</span><span class="o">[</span><span class="n">x</span><span class="o">][</span><span class="n">y</span><span class="o">].</span><span class="na">setValor</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>En este método reseteamos el valor de una casilla pasando por parámetro su posición dentro de la matriz.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
- * Inserta los valores de la matriz en la misma casilla respecto a su posición
- * Ha tenido que inicializarse la matriz de casillas previamente
- * @param matriz Matriz de enteros entre 0 y 9
- */</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">insertarValores</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">matriz</span><span class="o">)</span> <span class="o">{</span>
- 
- <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">matriz</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-  <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">matriz</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">length</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
-   <span class="k">if</span> <span class="o">(</span><span class="n">matriz</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">casillas</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">].</span><span class="na">setEditable</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
-   <span class="o">}</span>
-   <span class="k">this</span><span class="o">.</span><span class="na">casillas</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">].</span><span class="na">setValor</span><span class="o">(</span><span class="n">matriz</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]);</span>
-  <span class="o">}</span>
- <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Y por último, con este método rellenamos nuestra matriz de casillas usando la matriz de enteros pasada por parámetro. Copiamos los valores en las mismas posiciones. También indicamos que si ese valor es 0, la casilla siga como editable y si no, que pase a ser no editable.
-Éste método ha de usarse SIEMPRE una vez que ha inicializado todas las casillas</p>
-
-<p><strong>Solucionador</strong></p>
-
-<p>Esta clase la vamos a tratar igual que Tablero, yendo paso a paso por sus métodos. Es una clase exclusivamente dedicada a operar para resolver el sudoku y no tiene ninguna propiedad suya ni ningún constructor personalizado, así que la definimos simplemente así:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Solucionador</span> <span class="o">{</span>
-
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Hecho esto, vamos a ver los métodos uno por uno.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
- * Devuelve un array con todas las casillas en las que la propiedad editable es verdadera
- * @param casillas Matriz de casillas
- * @return Array con las casillas editables
- */</span>
-<span class="kd">private</span> <span class="nc">ArrayList</span> <span class="nf">extraerCasillasEditables</span><span class="o">(</span><span class="nc">Casilla</span><span class="o">[][]</span> <span class="n">casillas</span><span class="o">)</span> <span class="o">{</span>
- <span class="nc">ArrayList</span> <span class="n">editables</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">();</span>
- 
- <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">casillas</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++</span> <span class="o">)</span> <span class="o">{</span>
-  <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">casillas</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">length</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
-   <span class="k">if</span> <span class="o">(</span><span class="n">casillas</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">].</span><span class="na">isEditable</span><span class="o">())</span> <span class="o">{</span>
-    <span class="n">editables</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">casillas</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]);</span>
-   <span class="o">}</span>
-  <span class="o">}</span>
- <span class="o">}</span>
- 
- <span class="k">return</span> <span class="n">editables</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Éste método es utilizado para permitirnos saber que casillas hemos de recorrer incrementando su valor, es decir, que casillas son editables por nuestro programa. Así podremos avanzar / retroceder entre ellas sin tenernos que preocupar de controlar los dos niveles de una matriz.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
- * Extrae las casillas que contengan la misma fila, columna o sector que la casilla actual
- * @param tablero Tablero de 9x9
- * @param actual Casilla actual
- * @return ArrayList que contiene tres arrayList de casillas. Fila, columna y sector
- */</span>
-<span class="kd">private</span> <span class="nc">ArrayList</span><span class="o">&gt;</span> <span class="nf">extraerCasillasComparables</span><span class="o">(</span><span class="nc">Tablero</span> <span class="n">tablero</span><span class="o">,</span> <span class="nc">Casilla</span> <span class="n">actual</span><span class="o">)</span> <span class="o">{</span>
- 
- <span class="nc">ArrayList</span> <span class="n">fila</span>  <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">();</span>
- <span class="nc">ArrayList</span> <span class="n">columna</span>  <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">();</span>
- <span class="nc">ArrayList</span> <span class="n">sector</span>  <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">();</span>
- 
- <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">tablero</span><span class="o">.</span><span class="na">getCasillas</span><span class="o">().</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-  <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">tablero</span><span class="o">.</span><span class="na">getCasillas</span><span class="o">()[</span><span class="n">i</span><span class="o">].</span><span class="na">length</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
-   <span class="k">if</span> <span class="o">(</span><span class="n">tablero</span><span class="o">.</span><span class="na">getCasillas</span><span class="o">()[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">].</span><span class="na">getPosX</span><span class="o">()</span> <span class="o">==</span> <span class="n">actual</span><span class="o">.</span><span class="na">getPosX</span><span class="o">())</span> <span class="o">{</span>
-    <span class="n">fila</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">tablero</span><span class="o">.</span><span class="na">getCasillas</span><span class="o">()[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]);</span>
-   <span class="o">}</span>
-   
-   <span class="k">if</span> <span class="o">(</span><span class="n">tablero</span><span class="o">.</span><span class="na">getCasillas</span><span class="o">()[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">].</span><span class="na">getPosY</span><span class="o">()</span> <span class="o">==</span> <span class="n">actual</span><span class="o">.</span><span class="na">getPosY</span><span class="o">())</span> <span class="o">{</span>
-    <span class="n">columna</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">tablero</span><span class="o">.</span><span class="na">getCasillas</span><span class="o">()[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]);</span>
-   <span class="o">}</span>
-   
-   <span class="k">if</span> <span class="o">(</span><span class="n">tablero</span><span class="o">.</span><span class="na">getCasillas</span><span class="o">()[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">].</span><span class="na">getSector</span><span class="o">()</span> <span class="o">==</span> <span class="n">actual</span><span class="o">.</span><span class="na">getSector</span><span class="o">())</span> <span class="o">{</span>
-    <span class="n">sector</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">tablero</span><span class="o">.</span><span class="na">getCasillas</span><span class="o">()[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]);</span>
-   <span class="o">}</span>
-  <span class="o">}</span>
- <span class="o">}</span>
- 
- <span class="nc">ArrayList</span><span class="o">&gt;</span> <span class="n">resultado</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&gt;();</span>
- <span class="n">resultado</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">fila</span><span class="o">);</span>
- <span class="n">resultado</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">columna</span><span class="o">);</span>
- <span class="n">resultado</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">sector</span><span class="o">);</span>
- 
- <span class="k">return</span> <span class="n">resultado</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Aquí lo que hacemos es extraer todas las casillas que coincidan con la fila, columna o sector de la casilla que pasamos como parámetro y que esté dentro del tablero (valga la redundancia, ¿verdad?) para usarla como comparativas y validar si es correcto.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
- * Valida la fila, columna y sector. Si no se repite ningun numero (sin contar el 0)
- * es una lista válida
- * @param listas ArrayList de arraylist de casillas
- * @return True si validacion correcta. False en caso contrario
- */</span>
-<span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">validacionFCS</span><span class="o">(</span><span class="nc">ArrayList</span><span class="o">&gt;</span> <span class="n">listas</span><span class="o">)</span> <span class="o">{</span>
- 
- <span class="k">for</span> <span class="o">(</span><span class="nc">ArrayList</span> <span class="n">lista</span> <span class="o">:</span> <span class="n">listas</span><span class="o">)</span> <span class="o">{</span>
-  
-  <span class="nc">ArrayList</span> <span class="n">valores</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-  <span class="n">valores</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">();</span>
-  
-  <span class="k">for</span> <span class="o">(</span><span class="nc">Casilla</span> <span class="n">casilla</span> <span class="o">:</span> <span class="n">lista</span><span class="o">)</span> <span class="o">{</span>
-   <span class="k">if</span> <span class="o">(</span><span class="n">casilla</span><span class="o">.</span><span class="na">getValor</span><span class="o">()</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">valores</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">casilla</span><span class="o">.</span><span class="na">getValor</span><span class="o">()))</span> <span class="o">{</span>
-     <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-    <span class="o">}</span>
-    <span class="k">else</span> <span class="o">{</span>
-     <span class="n">valores</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">casilla</span><span class="o">.</span><span class="na">getValor</span><span class="o">());</span>
-    <span class="o">}</span>
-   <span class="o">}</span>
-  <span class="o">}</span>
- <span class="o">}</span>
- 
- <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Habiendo extraido los valores de fila, columan y sector con el método anterior, pasaremos esos arraylist (uno a uno) a este método, que se encargará de validar si en esa lista tenemos valores repetidos o no. Nos servirá para realizar la validación de las reglas del <strong>sudoku</strong>.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
- * Método que controla las operaciones necesarias para solucionar el sudoku
- * @param tablero Tablero que contiene las casillas del sudoku
- * @return boolean. True = Sudoku solucionado. False = Sudoku sin solucionar
- */</span>
-<span class="kd">public</span> <span class="nc">Tablero</span> <span class="nf">solucionarSudoku</span><span class="o">(</span><span class="nc">Tablero</span> <span class="n">tablero</span><span class="o">)</span> <span class="o">{</span>
- 
- <span class="nc">ArrayList</span> <span class="n">editables</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">extraerCasillasEditables</span><span class="o">(</span><span class="n">tablero</span><span class="o">.</span><span class="na">getCasillas</span><span class="o">());</span>
- <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
- 
- <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">editables</span><span class="o">.</span><span class="na">size</span><span class="o">())</span> <span class="o">{</span>
-  
-  <span class="c1">// Control de salida. Si el primer resultado es igual a 0 y su valor superior al máximo permitido por el sudoku, </span>
-  <span class="c1">// error al solucionar el sudoku</span>
-  <span class="nc">Casilla</span> <span class="n">actual</span> <span class="o">=</span> <span class="n">editables</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
-  <span class="k">if</span> <span class="o">(</span><span class="n">actual</span><span class="o">.</span><span class="na">getValor</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">9</span><span class="o">)</span> <span class="o">{</span>
-   <span class="n">tablero</span><span class="o">.</span><span class="na">reestablecerCasillaPorPosicion</span><span class="o">(</span><span class="n">actual</span><span class="o">.</span><span class="na">getPosX</span><span class="o">(),</span> <span class="n">actual</span><span class="o">.</span><span class="na">getPosY</span><span class="o">());</span>
-   <span class="n">i</span><span class="o">--;</span>
-   
-   <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-   <span class="o">}</span>
-   <span class="k">else</span> <span class="o">{</span>
-    <span class="n">actual</span> <span class="o">=</span> <span class="n">editables</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
-    <span class="n">actual</span><span class="o">.</span><span class="na">setValor</span><span class="o">(</span><span class="n">actual</span><span class="o">.</span><span class="na">getValor</span><span class="o">()</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
-    <span class="n">tablero</span><span class="o">.</span><span class="na">editarCasilla</span><span class="o">(</span><span class="n">actual</span><span class="o">);</span>
-   <span class="o">}</span>
-  <span class="o">}</span>
-  <span class="k">else</span> <span class="o">{</span>
-   <span class="k">if</span> <span class="o">(</span><span class="n">actual</span><span class="o">.</span><span class="na">getValor</span><span class="o">()</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">actual</span><span class="o">.</span><span class="na">setValor</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
-   <span class="o">}</span>
-   
-   <span class="nc">ArrayList</span><span class="o">&gt;</span> <span class="n">listasParaValidar</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">extraerCasillasComparables</span><span class="o">(</span><span class="n">tablero</span><span class="o">,</span> <span class="n">actual</span><span class="o">);</span>
-   
-   <span class="c1">// Validar si listas cumplen reglas de Sudoku (salvo valor sin rellenar)</span>
-   <span class="k">if</span> <span class="o">(</span><span class="n">validacionFCS</span><span class="o">(</span><span class="n">listasParaValidar</span><span class="o">))</span> <span class="o">{</span>
-    <span class="n">tablero</span><span class="o">.</span><span class="na">editarCasilla</span><span class="o">(</span><span class="n">actual</span><span class="o">);</span>
-    <span class="n">i</span><span class="o">++;</span>
-   <span class="o">}</span>
-   <span class="k">else</span>
-   <span class="o">{</span>
-    <span class="n">actual</span><span class="o">.</span><span class="na">setValor</span><span class="o">(</span><span class="n">actual</span><span class="o">.</span><span class="na">getValor</span><span class="o">()</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">actual</span><span class="o">.</span><span class="na">getValor</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">9</span><span class="o">)</span> <span class="o">{</span>
-     <span class="n">tablero</span><span class="o">.</span><span class="na">reestablecerCasillaPorPosicion</span><span class="o">(</span><span class="n">actual</span><span class="o">.</span><span class="na">getPosX</span><span class="o">(),</span> <span class="n">actual</span><span class="o">.</span><span class="na">getPosY</span><span class="o">());</span>
-     <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
-      <span class="n">i</span><span class="o">--;</span>
-      <span class="n">actual</span> <span class="o">=</span> <span class="n">editables</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
-      <span class="n">actual</span><span class="o">.</span><span class="na">setValor</span><span class="o">(</span><span class="n">actual</span><span class="o">.</span><span class="na">getValor</span><span class="o">()</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
-      <span class="n">tablero</span><span class="o">.</span><span class="na">editarCasilla</span><span class="o">(</span><span class="n">actual</span><span class="o">);</span>
-     <span class="o">}</span>
-     <span class="k">else</span> <span class="o">{</span>
-      <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-     <span class="o">}</span>
-    <span class="o">}</span>
-   <span class="o">}</span>
-  <span class="o">}</span>
-  
- <span class="o">}</span>
- 
- <span class="k">return</span> <span class="n">tablero</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Y aquí tenemos al método padre. El método principal que se encarga de gestionar los anteriormente descritos.
-Le pasamos un tablero como parámetro, y su tarea es entrar en un bucle que recorra todas las casillas editables, del que sólo saldrá si ya no podemos darle más valor a la primera casilla editable, devolviendo un nulo, o si hemos llegado al final del <strong>sudoku</strong> completando todas las casillas, devolviendo el tablero ya resuelto.</p>
-
-<p>De esta forma, dependiendo del resultado nosotros podremos pintar el tablero ya resulto o mostrar un mensaje de “imposible resolver” o algo similar</p>
-
-<p><img src="/img/posts/20170719_1.png" alt="sudoku solved" /></p>
-
-<p><img src="/img/posts/20170719_2.png" alt="sudoku unsolved" /></p>
-
-<p>Como ya dije previamente, éste post solo muestra la <strong>lógica resolutiva del sudoku</strong>. Si quieres ver como está hecha la interfaz gráfica, como volcar un sudoku desde un CSV, una imagen… te recomiendo que revises el repositorio de <a href="https://github.com/inazense/SudokuSolver"><strong>SudokuSolver</strong> en GitHub</a>.</p>
-
-<p><strong>¡Salud y coding!</strong></p>]]></content><author><name>Inazio Claver</name></author><category term="Java" /><category term="java" /><category term="sudoku" /><category term="algoritmos" /><category term="backtracking" /><category term="swing" /><category term="interfaz-grafica" /><category term="recursividad" /><summary type="html"><![CDATA[Aprende a crear un programa que resuelve sudokus automáticamente en Java con algoritmo de backtracking. Tutorial completo paso a paso con código, interfaz gráfica Swing, validación de reglas y ejemplos prácticos de fuerza bruta.]]></summary></entry><entry><title type="html">Cómo leer ficheros CSV con Java</title><link href="http://localhost:4000/posts/2017/04/16/como-leer-ficheros-csv-con-java/" rel="alternate" type="text/html" title="Cómo leer ficheros CSV con Java" /><published>2017-04-16T06:10:00+02:00</published><updated>2017-04-16T06:10:00+02:00</updated><id>http://localhost:4000/posts/2017/04/16/como-leer-ficheros-csv-con-java</id><content type="html" xml:base="http://localhost:4000/posts/2017/04/16/como-leer-ficheros-csv-con-java/"><![CDATA[<p>Un <strong>CSV</strong> es un fichero de texto plano que consta de varios valores separados por comas (o punto y coma, según el caso), de modo que para procesar este tipo de ficheros en <strong>Java</strong> en principio debería bastar con leer el archivo línea a línea y partir las cadenas de texto por el separador correspondiente.</p>
-
-<p>Por ejemplo, si tenemos la siguiente línea, sería bastante sencillo de procesarlo:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Programando, a, pasitos
-</code></pre></div></div>
-
-<p>Pero sin embargo, si nos encontramos alguna de las siguientes entradas:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"Programando a pasitos", "Claver, Inazio", "CSV, Java"
-</code></pre></div></div>
-
-<p>ya es más complicado, al formar las comas parte de la cadena de texto que queremos extraer. Y si además tenemos en cuenta que las comillas también pueden ser parte de ese valor, se complicaría, teniendo que poner dobles comillas para indicar que es parte del valor de una cadena.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"Programando a pasitos", "Claver, Inazio", """Leyendo CSV"" en Java"
-</code></pre></div></div>
-
-<p>Vamos a ver como procesar los dos tipos de <strong>CSV</strong> anteriores, el sencillo y el complejo.</p>
-
-<h2 id="lectura-de-csv-sencillo">Lectura de CSV sencillo</h2>
-
-<p>El primer ejemplo va a ser la lectura de un .csv sencillo, en la que no tenemos que eliminar comillas y que el caracter del separador sólo se usa para delimitar los campos del .csv. Por ejemplo, este:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Inazio, Programando a pasitos, Tutorial
-Lectura, CSV, Java
-</code></pre></div></div>
-
-<p>Usaremos la coma como separador, quedándo nuestro código tal que así</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">SEPARADOR</span> <span class="o">=</span> <span class="s">","</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
- 
- <span class="nc">BufferedReader</span> <span class="n">bufferLectura</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
- <span class="k">try</span> <span class="o">{</span>
-  <span class="c1">// Abrir el .csv en buffer de lectura</span>
-  <span class="n">bufferLectura</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileReader</span><span class="o">(</span><span class="s">"archivo.csv"</span><span class="o">));</span>
-  
-  <span class="c1">// Leer una linea del archivo</span>
-  <span class="nc">String</span> <span class="n">linea</span> <span class="o">=</span> <span class="n">bufferLectura</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
-  
-  <span class="k">while</span> <span class="o">(</span><span class="n">linea</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-   <span class="c1">// Sepapar la linea leída con el separador definido previamente</span>
-   <span class="nc">String</span><span class="o">[]</span> <span class="n">campos</span> <span class="o">=</span> <span class="n">linea</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="no">SEPARADOR</span><span class="o">);</span> 
-   
-   <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">campos</span><span class="o">));</span>
-   
-   <span class="c1">// Volver a leer otra línea del fichero</span>
-   <span class="n">linea</span> <span class="o">=</span> <span class="n">bufferLectura</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
-  <span class="o">}</span>
- <span class="o">}</span> 
- <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-  <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
- <span class="o">}</span>
- <span class="k">finally</span> <span class="o">{</span>
-  <span class="c1">// Cierro el buffer de lectura</span>
-  <span class="k">if</span> <span class="o">(</span><span class="n">bufferLectura</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-   <span class="k">try</span> <span class="o">{</span>
-    <span class="n">bufferLectura</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
-   <span class="o">}</span> 
-   <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-   <span class="o">}</span>
-  <span class="o">}</span>
- <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Yendo por pasos</p>
-
-<ol>
-  <li>Debemos abrir el archivo .csv. Como queremos recorrerlo línea a línea, la clase <code class="language-plaintext highlighter-rouge">BufferedReader</code> es la más adecuada, porque nos permite usar el método <code class="language-plaintext highlighter-rouge">readLines()</code>.</li>
-  <li>Después de eso, armaremos un bucle que seguirá leyendo líneas de nuestro buffer hasta que devuelva null.</li>
-  <li>Dividiremos la cadena en un array de strings usando el método <code class="language-plaintext highlighter-rouge">split()</code> con el parámetro del separador.</li>
-  <li>Por último, si el buffer de léctura se ha abierto (que salvo que haya saltado alguna excepción a la hora de abrir el archivo, así será) deberemos cerrarlo en el bloque <code class="language-plaintext highlighter-rouge">finally</code>.</li>
-</ol>
-
-<h2 id="lectura-de-csv-complejo">Lectura de CSV complejo</h2>
-
-<p>A la hora de leer un CSV complejo, como el que sigue:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"Programando a pasitos", "Claver, Inazio", "CSV, Java"
-</code></pre></div></div>
-
-<p>echaremos mano de la librería <a href="https://opencsv.sourceforge.net/">OpenCSV</a>. Nos descargamos el jar desde aquí, y escribiremos el siguiente código:</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">char</span> <span class="no">SEPARADOR</span> <span class="o">=</span> <span class="sc">';'</span><span class="o">;</span>
-<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">char</span> <span class="no">COMILLAS</span> <span class="o">=</span> <span class="sc">'"'</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
- 
- <span class="nc">CSVReader</span> <span class="n">lector</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
- 
- <span class="k">try</span> <span class="o">{</span>
-  <span class="c1">// Abrir el .csv</span>
-  <span class="n">lector</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CSVReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileReader</span><span class="o">(</span><span class="s">"archivo.csv"</span><span class="o">),</span> <span class="no">SEPARADOR</span><span class="o">,</span> <span class="no">COMILLAS</span><span class="o">);</span>
-  
-  <span class="c1">// Definir el string de la línea leída</span>
-  <span class="nc">String</span> <span class="n">linea</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-  
-  <span class="k">while</span> <span class="o">((</span><span class="n">linea</span> <span class="o">=</span> <span class="n">lector</span><span class="o">.</span><span class="na">readNext</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-   <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">linea</span><span class="o">));</span>
-  <span class="o">}</span>
- <span class="o">}</span> 
- <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-  <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
- <span class="o">}</span>
- <span class="k">finally</span> <span class="o">{</span>
-  <span class="c1">// Cierro el buffer de lectura</span>
-  <span class="k">if</span> <span class="o">(</span><span class="n">lector</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-   <span class="k">try</span> <span class="o">{</span>
-    <span class="n">lector</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
-   <span class="o">}</span> 
-   <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-   <span class="o">}</span>
-  <span class="o">}</span>
- <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>El proceso es muy similar al anterior, salvo que en vez de un <code class="language-plaintext highlighter-rouge">BufferedReader</code> creamos un objeto de <code class="language-plaintext highlighter-rouge">CSVReader</code>.</p>
-
-<p>Puedes descargarte una clase con los ejemplos completos en <a href="https://github.com/inazense/scripts/blob/master/scripts/java/LectorCSV.java">mi github</a>.</p>
-
-<p><strong>¡Salud y coding!</strong></p>]]></content><author><name>Inazio Claver</name></author><category term="Java" /><category term="java" /><category term="csv" /><category term="opencsv" /><category term="bufferedreader" /><category term="archivos" /><category term="parsing" /><category term="delimitadores" /><summary type="html"><![CDATA[Aprende a leer archivos CSV en Java con BufferedReader y OpenCSV. Tutorial completo paso a paso para procesar CSV simples y complejos, manejar comillas, separadores y caracteres especiales con ejemplos de código.]]></summary></entry></feed>
+<p><strong>¡Salud y coding!</strong></p>]]></content><author><name>Inazio Claver</name></author><category term="Java" /><category term="java" /><category term="maven" /><category term="eclipse" /><category term="pom" /><category term="dependencias" /><category term="plugins" /><category term="arquetipos" /><category term="jdk" /><summary type="html"><![CDATA[Aprende a usar Maven en Eclipse desde cero paso a paso. Tutorial completo sobre creación de proyectos, configuración del POM.xml, gestión de dependencias, plugins, arquetipos y solución de errores JDK/JRE con ejemplos prácticos.]]></summary></entry></feed>

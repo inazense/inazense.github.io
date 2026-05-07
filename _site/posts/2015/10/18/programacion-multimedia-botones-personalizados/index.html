@@ -34,11 +34,11 @@
 <meta property="og:url" content="http://localhost:4000/posts/2015/10/18/programacion-multimedia-botones-personalizados/" />
 <meta property="og:site_name" content="Programando a Pasitos" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2015-10-18T17:55:00+02:00" />
+<meta property="article:published_time" content="2015-10-18T17:50:00+02:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Programación multimedia. Botones personalizados" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-10-18T17:55:00+02:00","datePublished":"2015-10-18T17:55:00+02:00","description":"Cómo crear botones personalizados en Android usando imágenes y un selector XML con estados (normal, pulsado, con foco) para dar sensación de movimiento.","headline":"Programación multimedia. Botones personalizados","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/10/18/programacion-multimedia-botones-personalizados/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/img/profile.png"},"name":"Inazio Claver"},"url":"http://localhost:4000/posts/2015/10/18/programacion-multimedia-botones-personalizados/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Inazio Claver"},"dateModified":"2015-10-18T17:50:00+02:00","datePublished":"2015-10-18T17:50:00+02:00","description":"Cómo crear botones personalizados en Android usando imágenes y un selector XML con estados (normal, pulsado, con foco) para dar sensación de movimiento.","headline":"Programación multimedia. Botones personalizados","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/2015/10/18/programacion-multimedia-botones-personalizados/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/img/profile.png"},"name":"Inazio Claver"},"url":"http://localhost:4000/posts/2015/10/18/programacion-multimedia-botones-personalizados/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -135,15 +135,15 @@
   "@type": "BlogPosting",
   "headline": "Programación multimedia. Botones personalizados",
   "description": "Cómo crear botones personalizados en Android usando imágenes y un selector XML con estados (normal, pulsado, con foco) para dar sensación de movimiento.",
-  "datePublished": "2015-10-18T17:55:00+02:00",
-  "dateModified": "2015-10-18T17:55:00+02:00",
+  "datePublished": "2015-10-18T17:50:00+02:00",
+  "dateModified": "2015-10-18T17:50:00+02:00",
   "author": { "@type": "Person", "name": "Inazio Claver", "url": "https://github.com/inazense" },
   "publisher": { "@type": "Organization", "name": "Programando a Pasitos", "url": "http://localhost:4000" },
   "url": "http://localhost:4000/posts/2015/10/18/programacion-multimedia-botones-personalizados/",
-  "wordCount": 344,
+  "wordCount": 378,
   "timeRequired": "PT2M",
   "articleSection": "Android",
-  "keywords": "android, android-studio, button, drawable, selector, estados, programacion-multimedia"
+  "keywords": "android, botones, drawable, selector, onclick, programacion-multimedia"
 }
 </script>
 
@@ -161,7 +161,7 @@
   <header class="post-header">
     <h1 class="post-title">Programación multimedia. Botones personalizados</h1>
     <div class="post-meta">
-      <time datetime="2015-10-18T17:55:00+02:00">18 Oct 2015</time>
+      <time datetime="2015-10-18T17:50:00+02:00">18 Oct 2015</time>
       
         <span class="meta-sep">&mdash;</span>
         
@@ -177,60 +177,49 @@
   </header>
 
   <div class="post-content">
-    <p>Los botones personalizados en Android se crean mediante un fichero XML de tipo <strong>selector</strong> que define diferentes imágenes según el estado del botón (normal, pulsado, con foco), generando así una sensación visual de movimiento al pulsarlo.</p>
+    <p>Vamos a ver cómo se pueden personalizar los botones de nuestra aplicación, pero no modificando bordes del botón, tamaño y demás, estoy hablando de crear botones a partir de imágenes que consigan sensación de movimiento al realizar determinada acción. Veamos cómo.</p>
 
-<h2 id="imágenes-de-estados">Imágenes de estados</h2>
+<p>Sobre un nuevo proyecto, creamos el fichero <strong>boton.xml</strong> en el directorio <strong>res/drawable</strong> y escribimos el siguiente código:</p>
 
-<p>Se necesitan tres imágenes que se colocan en <code class="language-plaintext highlighter-rouge">res/drawable/</code>:</p>
+<p><img src="/img/posts/20151018_76.png" alt="boton.xml" /></p>
 
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">botonnormal.png</code> — estado por defecto</li>
-  <li><code class="language-plaintext highlighter-rouge">botonpulsado.png</code> — cuando el botón está siendo pulsado</li>
-  <li><code class="language-plaintext highlighter-rouge">botonconfoco.png</code> — cuando el botón tiene el foco (seleccionado con teclado/D-pad)</li>
-</ul>
+<p>Este XML define un recurso único gráfico (<em>drawable</em>) que cambiará en función del estado del botón. El primer <code class="language-plaintext highlighter-rouge">&lt;item&gt;</code> define la imagen usada cuando se pulsa el botón, el segundo <code class="language-plaintext highlighter-rouge">&lt;item&gt;</code> define la imagen usada cuando el botón tiene el foco (cuando el botón está seleccionado con la rueda de desplazamiento o las teclas de dirección), el tercero la imagen en estado normal.</p>
 
-<p><img src="/img/posts/20151018_77.png" alt="Imágenes de los tres estados del botón" /></p>
+<p>El orden de los <code class="language-plaintext highlighter-rouge">&lt;item&gt;</code> es importante. Cuando se va a dibujar se recorren los ítems en orden hasta que se cumpla una condición. Debido a que “<em>botonnormal</em>” es el último, sólo se aplica cuando las condiciones <code class="language-plaintext highlighter-rouge">state_pressed</code> y <code class="language-plaintext highlighter-rouge">state_focused</code> no se cumplen.</p>
 
-<h2 id="crear-el-selector-botonxml">Crear el selector (boton.xml)</h2>
+<p>Las imágenes usadas para crear el botón son las siguientes</p>
 
-<p>Se crea el fichero <code class="language-plaintext highlighter-rouge">res/drawable/boton.xml</code> con la siguiente estructura:</p>
+<p><img src="/img/posts/20151018_77.png" alt="botonnormal.png" /></p>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
-<span class="nt">&lt;selector</span> <span class="na">xmlns:android=</span><span class="s">"http://schemas.android.com/apk/res/android"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;item</span> <span class="na">android:state_pressed=</span><span class="s">"true"</span> <span class="na">android:drawable=</span><span class="s">"@drawable/botonpulsado"</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;item</span> <span class="na">android:state_focused=</span><span class="s">"true"</span> <span class="na">android:drawable=</span><span class="s">"@drawable/botonconfoco"</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;item</span> <span class="na">android:drawable=</span><span class="s">"@drawable/botonnormal"</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;/selector&gt;</span>
-</code></pre></div></div>
+<p><img src="/img/posts/20151018_78.png" alt="botonpulsado.png" /></p>
 
-<p>El orden importa: Android evalúa los estados de arriba hacia abajo y usa el primero que coincide. El último <code class="language-plaintext highlighter-rouge">item</code> sin condición es el estado por defecto.</p>
+<p><img src="/img/posts/20151018_79.png" alt="botonconfoco.png" /></p>
 
-<p><img src="/img/posts/20151018_76.png" alt="Estructura del fichero boton.xml" /></p>
+<p>Al escribir el código así de primeras saldrá error al escribir la ruta de las imágenes. Eso se arregla agregándolas a la carpeta <strong>res/drawable</strong> del proyecto.</p>
 
-<h2 id="configurar-el-layout">Configurar el layout</h2>
+<p>Ahora en el diseño del <strong>Layout</strong> eliminamos el <strong>TextView</strong> existente (como siempre) y especificamos que el <strong>RelativeLayout</strong> tenga la propiedad <em>Background</em> blanca (#FFFFFF en hexadecimal).</p>
 
-<p>En el layout se coloca un <code class="language-plaintext highlighter-rouge">RelativeLayout</code> con fondo blanco (<code class="language-plaintext highlighter-rouge">#FFFFFF</code>) y un <code class="language-plaintext highlighter-rouge">Button</code>:</p>
+<p><img src="/img/posts/20151018_80.png" alt="Layout con fondo blanco" /></p>
 
-<ul>
-  <li>Propiedad <code class="language-plaintext highlighter-rouge">background</code>: <code class="language-plaintext highlighter-rouge">@drawable/boton</code></li>
-  <li>Propiedad <code class="language-plaintext highlighter-rouge">text</code>: vacía (la imagen ya actúa como texto visual)</li>
-  <li>Propiedad <code class="language-plaintext highlighter-rouge">onClick</code>: nombre del método Java que se ejecutará al pulsar</li>
-</ul>
+<p>Dentro del RelativeLayout arrastramos un Button y le indicamos que su propiedad <em>Background</em> sea <em>Drawable/boton</em>. Esa opción la encontraremos entrando en el selector de recursos (los puntos suspensivos)</p>
 
-<p><img src="/img/posts/20151018_78.png" alt="Configuración del layout con el botón personalizado" /></p>
+<p><img src="/img/posts/20151018_81.png" alt="Selector de recursos" /></p>
 
-<h2 id="configurar-el-onclick">Configurar el onClick</h2>
+<p>Modificamos el atributo <em>Text</em> para que no tenga ningún valor</p>
 
-<p>En el panel de propiedades del botón se asigna el nombre del método al atributo <code class="language-plaintext highlighter-rouge">onClick</code>. Este método debe declararse en la actividad con firma <code class="language-plaintext highlighter-rouge">public void nombreMetodo(View v)</code>.</p>
+<p><img src="/img/posts/20151018_82.png" alt="Atributo Text vacío" /></p>
 
-<p><img src="/img/posts/20151018_79.png" alt="Asignación del método onClick en propiedades" /></p>
+<p>Ve al fichero con las funciones programables java e introduce al final, antes de la última llave, el siguiente código</p>
 
-<h2 id="código-java">Código Java</h2>
+<p><img src="/img/posts/20151018_83.png" alt="Código Java sePulsa" /></p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">sePulsa</span><span class="o">(</span><span class="nc">View</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
-    <span class="nc">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">getApplicationContext</span><span class="o">(),</span> <span class="s">"¡Botón pulsado!"</span><span class="o">,</span> <span class="nc">Toast</span><span class="o">.</span><span class="na">LENGTH_SHORT</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
-<span class="o">}</span>
-</code></pre></div></div>
+<p>Vuelve al diseño del Layout y modifica la propiedad <em>onClick</em> dándole el valor <em>sePulsa</em>.</p>
+
+<p><img src="/img/posts/20151018_84.png" alt="Propiedad onClick" /></p>
+
+<p>Y al ejecutar el programa podremos ver cómo se comporta nuestro botón, animándose y mostrando un mensaje cuando es pulsado.</p>
+
+<p><img src="/img/posts/20151018_85.png" alt="Aplicación ejecutándose" /></p>
 
   </div>
 
@@ -240,15 +229,13 @@
         
           <a href="/categorias/#android" class="tag">#android</a>
         
-          <a href="/categorias/#android-studio" class="tag">#android-studio</a>
-        
-          <a href="/categorias/#button" class="tag">#button</a>
+          <a href="/categorias/#botones" class="tag">#botones</a>
         
           <a href="/categorias/#drawable" class="tag">#drawable</a>
         
           <a href="/categorias/#selector" class="tag">#selector</a>
         
-          <a href="/categorias/#estados" class="tag">#estados</a>
+          <a href="/categorias/#onclick" class="tag">#onclick</a>
         
           <a href="/categorias/#programacion-multimedia" class="tag">#programacion-multimedia</a>
         
