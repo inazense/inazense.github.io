@@ -13,7 +13,7 @@ mermaid: false
 
 # PostRest + Spring boot. API Rest sin escribir controladores
 
-![PostRest + Spring boot](/img/posts/20260505_1.png)
+![PostRest + Spring boot](/img/posts/20260507_1.png)
 
 Hay muchas formas de montar una API en Spring Boot. La más habitual es crear controladores, servicios, repositorios, entidades y toda la capa intermedia que ya conocemos. Funciona bien, pero no siempre hace falta construir tanto cuando lo único que queremos es exponer datos de PostgreSQL de forma rápida, consistente y sin demasiada ceremonia.
 
