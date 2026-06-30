@@ -96,10 +96,36 @@ Pasamos a la siguiente opción. `Primary VNIC`(virtual network interface card) e
 
 ¿Qué es lo que vamos a hacer nosotros aquí? Basicamente dejarlo todo en automático para intentar romper el menor número posible de cosas.
 
-Como __Primary Network__ vamos a elegir `Create new virutal cloud network`y mantenemos los valores que nos dé por defecto.
+Como __Primary Network__ vamos a elegir `Select existing virutal cloud network` y elegimos la **VCN** que creamos en pasos anteriores. Como __subnet__ hacemos exactamente lo mismo.
 
 ![Oracle Cloud Always Free paso a paso](/img/posts/20260629_15.png)
 
-Con la __Subnet__ hacemos lo mismo, que la cree automáticamente (que tampoco tenemos opción, vaya) y, por último, como __asignación de IPv4__ seleccionamos la opción `Automatically assign public IPv4 address`
+Llegados a este punto sólo nos queda configurar las IPv4, tanto pública como privada. Vamos a dejar las opciones por defecto, en `Private IPv4 address assignment` nos aseguramos de que esté seleccionada la opción de `Automatically assign private IPv4 address` y en `Public IPv4 address assignment` nos aseguramos que esté marcado el check de `Automatically assign public IPv4 address`
+
+![Oracle Cloud Always Free paso a paso](/img/posts/20260629_16.png)
+
+Lo siguiente va a ser generar nuestras claves pública y privada para conectarnos con **ssh** a la **máquina virtual**. Nos aseguramos de tener marcada la opción de `Generate a ket pair for me` dentro de `Add SSH keys` y nos descargamos ambos ficheros, el de clave privada y el de pública, y pulsamos `next`. **Nota importante:** El fichero de clave privada sólo podrás descargarlo en esta pantalla, nunca más. ¡NO LO PIERDAS!
+
+![Oracle Cloud Always Free paso a paso](/img/posts/20260629_17.png)
+
+Vamos con la sección de **Storage** ahora. A no ser que tu proyecto necesite más de 46.6 GB que es el tamaño por defecto del **volumen**, puedes dejar la configuración por defecto. En mi caso el docker ocupa menos de 1GB, la **base de datos** pocos megas (y no tiene visos de crecer mucho más). Haciendo una estimación contando la **imagen del sistema operativo**, no voy a necesitar más de 15GB y eso siendo muy generoso.
+
+![Oracle Cloud Always Free paso a paso](/img/posts/20260629_18.png)
+
+Una vez finalizado todo, pasaremos a ver una pantalla de resumen y podremos pulsar `Create`para generar nuestra **instancia** de **máquina virtual**.
+
+### Problemas a tener en cuenta
+
+Es muy posible que, al terminar la configuración de la máquina virtual y tratar de crearla te de este error:
+
+```
+Out of capacity for shape VM.Standard.A1.Flex in availability domain AD-1. Create the instance in a different availability domain or try again later.If you specified a fault domain, try creating the instance without specifying a fault domain. If that doesn’t work, please try again later.Learn more about host capacity.
+```
+
+Es un error muy común en Oracle Free Tier. Las VMs ARM Ampere A1 son muy demandadas y la capacidad es limitada por zona. Aquí hay dos posibilidades:
+
+- Cambiar de availability domain, que es lo más rápido. En la sección de `placement`de la instancia, cambiar de **AD-1** a **AD-2** o **AD-3** si tu región los tiene.
+- Reintenta más tarde. Oracle liberar capacidad de forma impredecible. Reintenta crear la máquina en otros momentos del día.
+
 
 **¡Salud y coding!**
