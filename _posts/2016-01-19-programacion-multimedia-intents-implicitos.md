@@ -1,12 +1,14 @@
 ---
-title: "Programación multimedia. Intents implícitos"
-description: Tutorial de Android para implementar intents implícitos y acceder a funcionalidades del sistema operativo como el navegador, el teléfono, la cámara, Google Maps y el correo electrónico.
+title: "Intents implícitos en Android con ejemplos prácticos"
+description: "Cómo usar intents implícitos en Android para abrir el navegador, Google Maps, el teléfono, la cámara o el correo, con los permisos necesarios."
 date: 2016-01-19 12:00:00 +0800
 categories: [Android]
 tags: [android, intents, programacion-multimedia, java, action-view, action-call]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2016/01/programacion-multimedia-intents.html
 ---
 
 En esta entrada se explica cómo usar **intents implícitos** en Android para acceder a funcionalidades del sistema operativo desde una aplicación propia.

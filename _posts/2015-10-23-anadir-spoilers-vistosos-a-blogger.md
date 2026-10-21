@@ -8,6 +8,8 @@ tags: [blogger, jquery, html, css, spoiler, cms]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/10/anadir-spoilers-vistosos-blogger.html
 ---
 
 Cuando las entradas del blog son muy largas y contienen muchos bloques de código, la lectura se vuelve tediosa. Una solución es usar botones de tipo spoiler que muestran u ocultan el contenido al pulsar, mejorando la legibilidad sin eliminar información.

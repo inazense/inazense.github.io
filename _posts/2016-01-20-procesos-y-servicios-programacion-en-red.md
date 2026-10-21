@@ -7,6 +7,8 @@ tags: [java, redes, programacion-de-servicios-y-procesos, inetaddress, url, urlc
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2016/01/procesos-y-servicios-programacion-en-red.html
 ---
 
 ## TCP/IP

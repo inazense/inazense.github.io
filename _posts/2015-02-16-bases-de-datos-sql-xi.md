@@ -8,6 +8,8 @@ tags: [bases-de-datos, sql, mysql]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/02/bases-de-datos-sql-xi.html
 ---
 
 ## Práctica 12. Índices

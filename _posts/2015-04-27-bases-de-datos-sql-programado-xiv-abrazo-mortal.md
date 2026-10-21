@@ -1,6 +1,6 @@
 ---
-title: Bases de datos. SQL programado (XIV). Abrazo mortal
-description: Explicación del DeadLock o abrazo mortal en MySQL y cómo evitarlo usando cursores de actualización CURSOR FOR UPDATE.
+title: "Deadlocks en MySQL: qué son y cómo evitarlos"
+description: "Qué es un deadlock (abrazo mortal) en MySQL, por qué ocurre entre transacciones y cómo evitarlo con cursores de actualización (CURSOR FOR UPDATE)."
 author: Inazio Claver
 date: 2015-04-27 12:00:00 +0800
 categories: [Bases de datos]
@@ -8,7 +8,11 @@ tags: [bases-de-datos, sql, mysql, deadlock, transacciones, cursor]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/04/bases-de-datos-programacion-sql-xiv.html
 ---
+
+*Parte de la serie «SQL programado» (XIV).*
 
 Lo primero de todo, dejar claro que con DeadLock no me refiero a ellos:
 

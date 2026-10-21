@@ -2,10 +2,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@400;700&display=swap">
 <title>
-  {%- if page.title -%}{{ page.title }} | {{ site.title }}{%- else -%}{{ site.title }}{%- endif -%}
+  {%- if page.title -%}{{ page.title }} | {{ site.title }}
+  {%- elsif paginator and paginator.page > 1 -%}Página {{ paginator.page }} de {{ paginator.total_pages }} | {{ site.title }}
+  {%- else -%}{{ site.title }} | {{ site.home_title }}{%- endif -%}
 </title>
-<meta name="description" content="{{ page.description | default: site.description | escape }}">
+{% if paginator and paginator.page > 1 %}<meta name="robots" content="noindex, follow">{% endif %}
 <link rel="apple-touch-icon" sizes="180x180" href="{{ '/apple-touch-icon.png' | relative_url }}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ '/favicon-32x32.png' | relative_url }}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ '/favicon-16x16.png' | relative_url }}">
@@ -14,8 +17,8 @@
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ '/feed.xml' | relative_url }}">
 {% if paginator %}
-  {% if paginator.previous_page %}<link rel="prev" href="{{ paginator.previous_page_path | prepend: site.url }}">{% endif %}
-  {% if paginator.next_page %}<link rel="next" href="{{ paginator.next_page_path | prepend: site.url }}">{% endif %}
+  {% if paginator.previous_page %}<link rel="prev" href="{{ paginator.previous_page_path | absolute_url }}">{% endif %}
+  {% if paginator.next_page %}<link rel="next" href="{{ paginator.next_page_path | absolute_url }}">{% endif %}
 {% endif %}
 <script>
   // Aplicar tema guardado antes del primer render (evita flash)
@@ -24,4 +27,4 @@
     document.documentElement.setAttribute('data-theme', t);
   })();
 </script>
-{% seo %}
+{% seo title=false %}

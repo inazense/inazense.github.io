@@ -15,8 +15,6 @@ mermaid: false
 #  alt: Responsive rendering of Chirpy theme on multiple devices.
 ---
 
-# Principios SOLID: Cinco ideas para no pelearte con tu propio código
-
 ![Cabecera sobre principios SOLID](/img/posts/20260504_1.png)
 
 Hay temas que cuando empiezas a programar te suenan a teoría pura. A algo que está bien saber, pero que tampoco parece urgente. Con SOLID me pasó un poco eso.

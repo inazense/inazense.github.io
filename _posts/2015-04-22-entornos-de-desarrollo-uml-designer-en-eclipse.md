@@ -8,6 +8,8 @@ tags: [entornos-de-desarrollo, eclipse, uml, diagramas, clases]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/04/entornos-de-desarrollo-uml-designer-en.html
 ---
 
 Para trabajar con diagramas UML en Eclipse necesitaremos instalar el plugin UML Designer. Enlace al marketplace: http://marketplace.eclipse.org/content/uml-designer-eclipse-luna-version

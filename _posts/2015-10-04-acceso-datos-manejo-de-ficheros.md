@@ -1,12 +1,15 @@
 ---
-title: "Acceso a datos. Manejo de ficheros"
-description: Manejo de ficheros en Java con el paquete java.io, incluyendo streams de bytes y caracteres, FileInputStream, FileOutputStream, FileReader, FileWriter, BufferedReader, DataInputStream y DataOutputStream.
+title: "Manejo de ficheros en Java con java.io: streams y ejemplos"
+description: "Cómo leer y escribir ficheros en Java con java.io: streams de bytes y de caracteres, FileReader, BufferedReader, PrintWriter y DataOutputStream."
 date: 2015-10-04 12:00:00 +0800
 categories: [Java]
 tags: [java, ficheros, streams, io, acceso-a-datos, fileInputStream, bufferedreader]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/10/acceso-datos-ejercicios-i-manejo-de.html
+  - /2015/10/acceso-datos-manejo-de-ficheros.html
 ---
 
 ## Entrada / salida estándar

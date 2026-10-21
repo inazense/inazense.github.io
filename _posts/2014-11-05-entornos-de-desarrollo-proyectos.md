@@ -11,6 +11,8 @@ mermaid: false
 #  path: /commons/devices-mockup.png
 #  lqip: data:image/webp;base64,...
 #  alt: Image alt text.
+redirect_from:
+  - /2014/11/entornos-de-desarrollo-proyectos.html
 ---
 
 Estamos creando un proyecto en CodeBlocks, el juego de Conecta 4. Posteriormente subiré el código completo, pero ahora voy a centrarme en lo nuevo que hemos visto.

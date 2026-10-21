@@ -1,12 +1,15 @@
 ---
-title: "Acceso a datos. Introducción a los JavaBeans"
-description: Introducción a los componentes JavaBeans en Java, sus características, tipos de propiedades, eventos, y cómo crear y empaquetar beans con NetBeans.
+title: "JavaBeans en Java: qué son, propiedades y eventos"
+description: "Qué es un JavaBean, qué reglas cumple, tipos de propiedades (simples, indexadas, ligadas y restringidas), eventos y cómo crear y empaquetar beans."
 date: 2015-11-03 15:00:00 +0800
 categories: [Java]
 tags: [java, javabeans, componentes, propiedades, eventos, acceso-a-datos, serializable]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/11/acceso-datos-introduccion-los-javabeans.html
+  - /posts/2015/11/03/acceso-datos-introduccion-los-javabeans/
 ---
 
 ## ¿Qué son los componentes software?
@@ -103,7 +106,7 @@ public int getNumeros(int indice) {
 
 ### Propiedades ligadas (bound)
 
-Notifican a otros objetos cuando su valor cambia, permitiendo que esos objetos reaccionen al cambio.
+Notifican a otros objetos cuando su valor cambia, permitiendo que esos objetos reaccionen al cambio. Se implementan con `PropertyChangeSupport`.
 
 ### Propiedades restringidas (constrained)
 
@@ -111,7 +114,7 @@ Similar a las ligadas, pero los listeners pueden **vetar** el cambio propuesto, 
 
 ## Eventos
 
-Los beans se comunican entre sí mediante eventos. Una fuente de eventos notifica a sus listeners cuando se produce un cambio. Los listeners implementan la interfaz correspondiente para reaccionar.
+Los beans se comunican entre sí mediante eventos. Una fuente de eventos notifica a sus listeners cuando se produce un cambio. Los listeners implementan la interfaz correspondiente para reaccionar, se registran con métodos `addXxxListener()` y se eliminan con `removeXxxListener()`.
 
 ## Ejemplo completo: Asalariado y Hacienda
 
@@ -193,6 +196,8 @@ public class ProyectoxHacienda {
     }
 }
 ```
+
+Cuando se cambia el sueldo del `Asalariado`, el bean notifica automáticamente a `Hacienda` mediante el evento `propertyChange`.
 
 ## Crear JavaBeans con NetBeans
 

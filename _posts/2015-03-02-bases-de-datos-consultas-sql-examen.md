@@ -8,6 +8,8 @@ tags: [bases-de-datos, sql, mysql]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/03/bases-de-datos-consultas-sql-examen.html
 ---
 
 Hoy se ha corregido el examen de consultas SQL. La tabla empleada la puedes descargar [aquí](https://drive.google.com/file/d/0Bz9hbleXTdM-bzVtWjB1N0FiUzg/view?usp=sharing).

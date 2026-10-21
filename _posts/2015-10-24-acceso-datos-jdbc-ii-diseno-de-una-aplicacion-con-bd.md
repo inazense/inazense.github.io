@@ -1,6 +1,6 @@
 ---
-title: "Acceso a datos. JDBC (II). Diseño de una aplicación con BD"
-description: Diseño de una aplicación Java con base de datos aplicando el patrón DAO (Data Access Object) para separar la lógica de acceso a datos del resto de la aplicación.
+title: "Patrón DAO en Java con JDBC: ejemplo de aplicación"
+description: "Cómo aplicar el patrón DAO (Data Access Object) en Java con JDBC para separar el acceso a datos del resto de la aplicación, con un ejemplo de gestión de libros."
 author: Inazio Claver
 date: 2015-10-24 12:30:00 +0800
 categories: [Java]
@@ -8,7 +8,11 @@ tags: [java, acceso-a-datos, jdbc, mysql, dao, patron-diseno, base-de-datos]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/10/acceso-datos-jdbc-diseno-de-una.html
 ---
+
+*Parte de la serie «JDBC» (II).*
 
 ## Patrón DAO (Data Access Object)
 

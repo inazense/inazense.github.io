@@ -1,6 +1,6 @@
 ---
-title: "Procesos y servicios. Hilos"
-description: Concepto de hilo en Java, diferencias con los procesos, implementación extendiendo Thread o implementando Runnable, y métodos principales como start(), run() y sleep().
+title: "Hilos en Java: Thread y Runnable con ejemplos"
+description: "Qué es un hilo en Java y en qué se diferencia de un proceso, cómo crearlo extendiendo Thread o implementando Runnable y sus métodos start, run y sleep."
 author: Inazio Claver
 date: 2015-10-22 17:18:00 +0800
 categories: [Java]
@@ -8,6 +8,8 @@ tags: [java, hilos, threads, runnable, concurrencia, procesos-y-servicios]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/10/procesos-y-servicios-hilos.html
 ---
 
 Un **hilo** (_thread_) es una secuencia de código en ejecución dentro del contexto de un proceso.

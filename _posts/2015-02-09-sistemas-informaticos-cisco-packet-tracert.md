@@ -8,6 +8,8 @@ tags: [cisco, packet tracer, redes, router, switch]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/02/sistemas-informaticos-cisco-packet.html
 ---
 
 Vamos a comenzar a usar el Packet Tracert, para hacer planeamientos de red.

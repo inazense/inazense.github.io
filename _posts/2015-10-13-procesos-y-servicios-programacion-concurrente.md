@@ -8,6 +8,8 @@ tags: [procesos, concurrencia, paralelismo, distribuido, sockets, rpc, rmi]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/10/procesos-y-servicios-programacion.html
 ---
 
 ## Definiciones

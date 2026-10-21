@@ -7,6 +7,8 @@ tags: [acceso-a-datos, php, pdo, crud, mysql]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2016/01/acceso-datos-aplicaciones-web-servidor.html
 ---
 
 En esta entrada se presenta un ejercicio práctico de acceso a datos usando la interfaz **PDO** (PHP Data Objects) en PHP. El proyecto se llama **PracticaPDO** y consiste en construir una aplicación web completa con operaciones CRUD sobre una base de datos MySQL.

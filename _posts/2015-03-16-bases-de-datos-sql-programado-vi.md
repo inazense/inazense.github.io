@@ -1,6 +1,6 @@
 ---
-title: Bases de datos. SQL programado (VI). Cursores
-description: Uso de cursores en MySQL para recorrer conjuntos de resultados fila a fila, con control de errores y cursores anidados.
+title: "Cursores en MySQL: recorrer resultados fila a fila"
+description: "Cómo usar cursores en MySQL para recorrer un SELECT fila a fila dentro de un procedimiento: DECLARE, OPEN, FETCH, CLOSE, cursores con parámetros y anidados."
 author: Inazio Claver
 date: 2015-03-16 12:00:00 +0800
 categories: [Bases de datos]
@@ -8,7 +8,11 @@ tags: [bases-de-datos, sql, mysql, cursores, procedimientos]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/03/bases-de-datos-sql-programado-vi.html
 ---
+
+*Parte de la serie «SQL programado» (VI).*
 
 ## Cursores
 

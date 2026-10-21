@@ -8,6 +8,8 @@ tags: [c, procesos, pipe, servicios-y-procesos]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/09/servicios-y-procesos-procesos-en-c-ii.html
 ---
 
 ## ¿Qué es una PIPE?

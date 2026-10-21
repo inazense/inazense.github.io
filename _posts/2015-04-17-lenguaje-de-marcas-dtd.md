@@ -8,6 +8,8 @@ tags: [lenguajes-de-marcas, xml, dtd]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/04/lenguaje-de-marcas-dtd.html
 ---
 
 El DTD (Definición de Tipo de Documento) es un archivo que se usa para especificar como está estructurado un documento XML. Consultar DTD en W3schools [aquí](http://www.w3schools.com/dtd/).

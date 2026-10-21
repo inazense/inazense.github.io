@@ -8,6 +8,8 @@ tags: [android, android-studio, interfaz-grafica, layouts, widgets, programacion
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/10/programacion-multimedia-conociendo-el.html
 ---
 
 Para empezar a orientarnos con el entorno gráfico, lo primero será generar un nuevo proyecto.

@@ -8,6 +8,8 @@ tags: [acceso-a-datos, xampp, mysql, jdk, eclipse, netbeans]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/09/acceso-datos-preparacion-de-los-equipos.html
 ---
 
 El primer día de clase del módulo de Acceso a datos lo hemos dedicado a conocer los contenidos que veremos durante los próximos seis meses y a preparar las herramientas que vamos a necesitar. Todo el software es gratuito y debe instalarse en el orden indicado.

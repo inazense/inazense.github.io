@@ -8,6 +8,8 @@ tags: [java, hilos, threads, concurrencia, productor-consumidor, prioridad]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/12/procesos-y-servicios-prioridad-de-los.html
 ---
 
 En el lenguaje de programación Java, cada hilo tiene una prioridad. Por defecto un hilo hereda la prioridad del hilo padre que lo crea.

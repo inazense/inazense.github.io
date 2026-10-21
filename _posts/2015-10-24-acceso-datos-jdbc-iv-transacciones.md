@@ -1,6 +1,6 @@
 ---
-title: "Acceso a datos. JDBC (IV). Transacciones"
-description: Introducción a las transacciones en JDBC, su importancia para garantizar la integridad de los datos y los métodos setAutoCommit, commit, rollback y Savepoint.
+title: "Transacciones en JDBC: commit, rollback y savepoints"
+description: "Cómo gestionar transacciones en Java con JDBC: setAutoCommit, commit, rollback y Savepoint para garantizar la integridad de los datos, con ejemplos."
 author: Inazio Claver
 date: 2015-10-24 14:00:00 +0800
 categories: [Java]
@@ -8,7 +8,11 @@ tags: [java, acceso-a-datos, jdbc, mysql, transacciones, sql]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/10/acceso-datos-jdbc-iv-transacciones.html
 ---
+
+*Parte de la serie «JDBC» (IV).*
 
 ![Transacciones JDBC Java](/img/posts/20151024_5.png)
 

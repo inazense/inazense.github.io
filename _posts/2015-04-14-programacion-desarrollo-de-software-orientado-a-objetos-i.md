@@ -8,6 +8,8 @@ tags: [java, programación, orientado-a-objetos, mvc, streams, api, calendar]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/04/programacion-desarrollo-de-software.html
 ---
 
 ## Una arquitectura basada en capas

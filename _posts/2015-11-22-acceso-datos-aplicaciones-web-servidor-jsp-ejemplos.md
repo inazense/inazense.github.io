@@ -7,6 +7,8 @@ tags: [java, jsp, acceso-a-datos, web, ejemplos, scriptlet, expresiones]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/11/acceso-datos-aplicaciones-web-servidor_22.html
 ---
 
 Colección de ejemplos prácticos de JSP para comprender los distintos elementos del lenguaje.

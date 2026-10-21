@@ -1,6 +1,6 @@
 ---
-title: Acceso a datos. Neodatis
-description: "Tutorial completo de Neodatis ODB: base de datos orientada a objetos para Java. Aprende instalación, configuración, inserción, consultas, modificación y borrado con ejemplos prácticos de código."
+title: "NeoDatis ODB: base de datos orientada a objetos en Java"
+description: "Tutorial de NeoDatis ODB, base de datos orientada a objetos para Java: instalación, conexión, inserción, consultas, modificación y borrado de objetos."
 date: 2016-03-06 12:10:00 +0800
 categories: [Java]
 tags: [acceso-datos, neodatis, odbms, bases-datos, persistencia, poo]
@@ -11,6 +11,8 @@ mermaid: false
 #  path: /commons/devices-mockup.png
 #  lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA
 #  alt: Responsive rendering of Chirpy theme on multiple devices.
+redirect_from:
+  - /2016/03/acceso-datos-neodatis.html
 ---
 
 **Neodatis ODB** es una **base de datos orientada a objetos** con licencia GNU muy simple que actualmente corre en los lenguajes **Java**, **.Net**, **Google Android**, **Groovy** y **Scala**.

@@ -8,6 +8,8 @@ tags: [programacion, ada, arboles, grafos, estructuras-de-datos]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/03/programacion-ada-tipos-abstractos-de.html
 ---
 
 ## Árbol binario

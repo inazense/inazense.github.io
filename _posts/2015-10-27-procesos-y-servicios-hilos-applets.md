@@ -8,6 +8,8 @@ tags: [java, procesos-y-servicios, hilos, threads, applet, runnable, awt]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/10/procesos-y-servicios-hilos-applets.html
 ---
 
 Un Applet es una aplicación Java embebida en una página HTML, aunque los navegadores por defecto no permiten su ejecución por motivos de seguridad.

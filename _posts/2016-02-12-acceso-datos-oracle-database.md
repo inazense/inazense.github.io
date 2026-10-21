@@ -1,6 +1,6 @@
 ---
-title: Acceso a datos. Oracle Database. Instalación de Oracle Database Express Edition y SQL Developer
-description: Guía de instalación de Oracle Database Express Edition y SQL Developer para empezar a trabajar con bases de datos Oracle.
+title: "Instalar Oracle Database Express Edition y SQL Developer"
+description: "Guía paso a paso para instalar Oracle Database Express Edition (XE) y SQL Developer y crear la primera conexión para empezar a trabajar con Oracle."
 author: Inazio Claver
 date: 2016-02-12 12:00:00 +0800
 categories: [Acceso a datos, Bases de datos]
@@ -8,6 +8,8 @@ tags: [oracle, sql, bases-de-datos, sql-developer]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2016/02/acceso-datos-oracle-database.html
 ---
 
 Oracle Database es un sistema de gestión de base de datos de tipo objeto-relacional. Destaca por su soporte de transacciones, estabilidad, escalabilidad y compatibilidad multiplataforma.

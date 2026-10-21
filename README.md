@@ -4,7 +4,7 @@
 
 Blog personal de programación de [Inazio Claver](https://github.com/inazense), funcionando desde 2014. Empezó como cuaderno de apuntes durante el grado superior de DAM y acabó convirtiéndose en un archivo con más de 230 entradas sobre desarrollo de software.
 
-**[inazense.github.io](https://inazense.github.io)**
+**[programandoapasitos.com](https://programandoapasitos.com)**
 
 ---
 

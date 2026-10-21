@@ -8,6 +8,8 @@ tags: [java, acceso-a-datos, file, randomaccessfile, ficheros, io]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/10/clase-file-no-sirve-para-leer-ni-para.html
 ---
 
 ## Clase File

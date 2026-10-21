@@ -8,6 +8,8 @@ tags: [sistemas-informaticos, windows-server, active-directory, ubuntu-server, d
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/05/sistemas-apuntes-3-evaluacion-segundo.html
 ---
 
 ## PRIMERA PARTE. SERVER 2008

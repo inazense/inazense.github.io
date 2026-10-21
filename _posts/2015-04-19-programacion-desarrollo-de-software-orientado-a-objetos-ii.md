@@ -8,6 +8,8 @@ tags: [programacion, java, ficheros, serializacion, colecciones, orientado-a-obj
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/04/programacion-desarrollo-de-software_19.html
 ---
 
 ## Ficheros en Java

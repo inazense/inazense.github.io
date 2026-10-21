@@ -1,6 +1,6 @@
 ---
-title: Bases de datos. SQL programado (XIII). Transacciones (II)
-description: Instrucciones de manejo de transacciones en MySQL&#58; START TRANSACTION, COMMIT, ROLLBACK, SAVEPOINT y LOCK TABLES, con ejemplos prácticos.
+title: "START TRANSACTION, SAVEPOINT y LOCK TABLES en MySQL"
+description: "Instrucciones para manejar transacciones en MySQL: START TRANSACTION, COMMIT, ROLLBACK, SAVEPOINT y bloqueo de tablas con LOCK TABLES, con ejemplos."
 author: Inazio Claver
 date: 2015-04-17 12:00:00 +0800
 categories: [Bases de datos]
@@ -8,7 +8,11 @@ tags: [bases-de-datos, sql, mysql, transacciones, commit, rollback, savepoint]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/04/bases-de-datos-sql-programado-xiii.html
 ---
+
+*Parte de la serie «SQL programado» (XIII).*
 
 ## Instrucciones de manejo de transacciones
 

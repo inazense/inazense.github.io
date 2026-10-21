@@ -1,6 +1,6 @@
 ---
-title: Bases de datos. SQL programado (III)
-description: Sentencias preparadas y SQL dinámico en MySQL para mejorar el rendimiento y prevenir inyecciones SQL.
+title: "Sentencias preparadas y SQL dinámico en MySQL"
+description: "Qué son las sentencias preparadas en MySQL (PREPARE, EXECUTE, DEALLOCATE) y cómo usar SQL dinámico para ganar rendimiento y evitar la inyección SQL."
 author: Inazio Claver
 date: 2015-03-09 09:29:00 +0800
 categories: [Bases de datos]
@@ -8,7 +8,11 @@ tags: [bases-de-datos, sql, mysql, procedimientos]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/03/bases-de-datos-sql-programado-iii.html
 ---
+
+*Parte de la serie «SQL programado» (III).*
 
 ## Sentencias preparadas
 

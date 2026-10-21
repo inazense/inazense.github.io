@@ -8,6 +8,8 @@ tags: [programacion, poo, objetos, uml, java]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/03/programacion-introduccion-la.html
 ---
 
 ## Deficiencias de la programación estructurada

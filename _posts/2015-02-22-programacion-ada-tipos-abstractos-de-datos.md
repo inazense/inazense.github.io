@@ -8,6 +8,8 @@ tags: [programacion, ada]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/02/programacion-ada-tipos-abstractos-de.html
 ---
 
 ## Concepto de abstracción

@@ -1,12 +1,14 @@
 ---
-title: "Programación multimedia. Procesos"
-description: Gestión de procesos en Android y ciclo de vida de las actividades, con los siete métodos del ciclo de vida y un ejemplo práctico usando Toast para observar cada transición.
+title: "Ciclo de vida de una Activity en Android con ejemplos"
+description: "Cómo gestiona Android los procesos y el ciclo de vida de una Activity: estados, los siete métodos (onCreate, onStart, onResume…) y un ejemplo con Toast."
 date: 2015-11-03 12:00:00 +0800
 categories: [Android]
 tags: [android, procesos, ciclo-de-vida, activity, programacion-multimedia]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/11/programacion-multimedia-procesos.html
 ---
 
 ## Gestión de procesos en Android

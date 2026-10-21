@@ -8,6 +8,8 @@ tags: [entornos-de-desarrollo, java, mvc, modelo-vista-controlador, swing]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/05/entornos-de-desarrollo-modelo-vista.html
 ---
 
 El **modelo–vista–controlador (MVC)** es un patrón de arquitectura de software que separa los datos y la lógica de negocio de una aplicación de la interfaz de usuario y el módulo encargado de gestionar los eventos y las comunicaciones.

@@ -1,6 +1,6 @@
 ---
-title: "Acceso a datos. JDBC (I). Introducción"
-description: Introducción a JDBC, la API de Java para acceder a bases de datos SQL, incluyendo arquitectura, configuración del driver MySQL, y ejemplo completo de conexión y consulta.
+title: "JDBC en Java: introducción y conexión a MySQL paso a paso"
+description: "Qué es JDBC, su arquitectura y clases principales, cómo configurar el driver de MySQL y los 5 pasos para conectar Java con una base de datos, con ejemplo."
 author: Inazio Claver
 date: 2015-10-24 12:00:00 +0800
 categories: [Java]
@@ -8,7 +8,11 @@ tags: [java, acceso-a-datos, jdbc, mysql, sql, base-de-datos, connection, result
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/10/acceso-datos-jdbc-introduccion.html
 ---
+
+*Parte de la serie «JDBC» (I).*
 
 **JDBC** (_Java DataBase Connectivity_) es la interfaz orientada a objetos de Java para SQL. Permite a las aplicaciones enviar sentencias SQL a sistemas gestores de bases de datos (SGBD). La API no mejora ni limita las capacidades de SQL: el desarrollador sigue escribiendo las consultas SQL directamente.
 

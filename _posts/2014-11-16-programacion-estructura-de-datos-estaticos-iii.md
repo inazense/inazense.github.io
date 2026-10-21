@@ -11,6 +11,8 @@ mermaid: false
 #  path: /commons/devices-mockup.png
 #  lqip: data:image/webp;base64,...
 #  alt: Image alt text.
+redirect_from:
+  - /2014/11/programacion-estructura-de-datos.html
 ---
 
 ## Operaciones con matrices

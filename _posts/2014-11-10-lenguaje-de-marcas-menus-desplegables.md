@@ -11,6 +11,8 @@ mermaid: false
 #  path: /commons/devices-mockup.png
 #  lqip: data:image/webp;base64,...
 #  alt: Image alt text.
+redirect_from:
+  - /2014/11/lenguaje-de-marcas-menus-desplegables.html
 ---
 
 Con CSS3 podemos crear menús desplegables sin necesidad de JavaScript ni jQuery. La idea es ocultar los submenús por defecto y mostrarlos al pasar el cursor (`:hover`).

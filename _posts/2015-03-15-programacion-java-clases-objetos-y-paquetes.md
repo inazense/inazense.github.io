@@ -8,6 +8,8 @@ tags: [java, programacion, clases, objetos, constructores]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/03/programacion-java-clases-objetos-y.html
 ---
 
 ## Definición de una clase

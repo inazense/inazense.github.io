@@ -8,6 +8,8 @@ tags: [c, procesos, senales, sincronizacion, linux, fork, kill]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/10/procesos-y-servicios-senales-y.html
 ---
 
 En un sistema operativo, los procesos que se ejecutan simultáneamente interactúan entre sí, incluso cuando son independientes. Esta interacción ocurre cuando varios procesos acceden a los mismos recursos, y el SO dispone de un gestor de procesos para determinar el orden de acceso.

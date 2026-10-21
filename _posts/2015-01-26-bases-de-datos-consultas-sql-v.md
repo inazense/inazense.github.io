@@ -1,6 +1,6 @@
 ---
-title: Bases de datos. Consultas SQL (V)
-description: Ejercicios de subconsultas SQL sobre las tablas de empleados, departamentos, pedidos, productos y clientes.
+title: "Ejercicios de subconsultas SQL resueltos"
+description: "Ejercicios resueltos de subconsultas en SQL con IN y ANY sobre tablas de empleados, departamentos, pedidos y clientes, comparando dos soluciones."
 author: Inazio Claver
 date: 2015-01-26 09:40:00 +0800
 categories: [Bases de datos]
@@ -12,7 +12,11 @@ mermaid: false
 #  path: /commons/devices-mockup.png
 #  lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA
 #  alt: Responsive rendering of Chirpy theme on multiple devices.
+redirect_from:
+  - /2015/01/bases-de-datos-consultas-sql-v.html
 ---
+
+*Parte de la serie «Consultas SQL» (V).*
 
 Hoja de ejercicios 8 de la unidad 3.
 

@@ -1,13 +1,17 @@
 ---
-title: "Procesos y servicios. Programación de sockets (III)"
-description: Transmisión de objetos Java serializables a través de sockets TCP usando ObjectInputStream y ObjectOutputStream, con un ejemplo práctico de intercambio de objetos Persona entre servidor y cliente.
+title: "Enviar objetos por sockets en Java con serialización"
+description: "Cómo enviar objetos Java serializables por sockets TCP y UDP con ObjectInputStream y ObjectOutputStream, con un ejemplo de intercambio entre servidor y cliente."
 date: 2016-01-30 12:00:00 +0800
 categories: [Java]
 tags: [java, sockets, tcp, serializacion, objectinputstream, programacion-de-servicios-y-procesos]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2016/01/procesos-y-servicios-programacion-de_30.html
 ---
+
+*Parte de la serie «Programación de sockets» (III).*
 
 ## Envío de objetos por sockets TCP
 

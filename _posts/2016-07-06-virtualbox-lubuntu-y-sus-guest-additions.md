@@ -12,6 +12,8 @@ mermaid: false
 #  path: /commons/devices-mockup.png
 #  lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA
 #  alt: Responsive rendering of Chirpy theme on multiple devices.
+redirect_from:
+  - /2016/07/virtualbox-lubuntu-y-sus-guest-additions.html
 ---
 
 Desde siempre me ha gustado trastear con Linux, más concretamente con Fedora y, por motivos de trabajo, con Ubuntu. Como en mi portatil tengo un Windows y no me apetece hacer una instalación dual, siempre he funcionado con máquinas virtuales, pero odio que aunque le asigne 2GB de RAM vayan absurdamente lentas, y más con las nuevas versiones de estos dos sistemas (aunque bueno, Fedora 24 es bastante pasable en cuanto a requisitos se refiere).

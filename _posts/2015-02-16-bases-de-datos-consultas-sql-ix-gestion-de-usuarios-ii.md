@@ -1,6 +1,6 @@
 ---
-title: Bases de datos. Consultas SQL (IX) - Gestión de usuarios (II)
-description: Continuación de la gestión de usuarios en SQL con ejemplos de permisos a nivel de columna, creación de usuarios, cambio de contraseñas y revocación de permisos.
+title: "Permisos por columna, contraseñas y REVOKE en MySQL"
+description: "Más gestión de usuarios en MySQL: permisos a nivel de columna, creación de usuarios, cambio de contraseñas y revocación de privilegios con ejemplos."
 author: Inazio Claver
 date: 2015-02-16 12:00:00 +0800
 categories: [Bases de datos]
@@ -8,7 +8,11 @@ tags: [bases-de-datos, sql, mysql]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/02/bases-de-datos-consultas-sql-ix-gestion.html
 ---
+
+*Parte de la serie «Consultas SQL» (IX).*
 
 Continuamos con la gestión de usuarios en SQL.
 

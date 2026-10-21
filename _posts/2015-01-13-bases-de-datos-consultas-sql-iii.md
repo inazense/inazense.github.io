@@ -1,6 +1,6 @@
 ---
-title: Bases de datos. Consultas SQL (III)
-description: Ejercicios de creación y modificación de tablas en SQL con restricciones, claves primarias, foráneas y restricciones CHECK.
+title: "Ejercicios SQL: CREATE TABLE, ALTER TABLE y restricciones"
+description: "Ejercicios resueltos de creación y modificación de tablas en SQL: claves primarias y foráneas, restricciones CHECK y cambios con ALTER TABLE."
 author: Inazio Claver
 date: 2015-01-13 12:00:00 +0800
 categories: [Bases de datos]
@@ -12,7 +12,11 @@ mermaid: false
 #  path: /commons/devices-mockup.png
 #  lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA
 #  alt: Responsive rendering of Chirpy theme on multiple devices.
+redirect_from:
+  - /2015/01/bases-de-datos-consultas-sql-iii.html
 ---
+
+*Parte de la serie «Consultas SQL» (III).*
 
 Hemos realizado la hoja de ejercicios de la unidad 3, en la que creamos y modificamos tablas en MySQL con distintos tipos de restricciones.
 

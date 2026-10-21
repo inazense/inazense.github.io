@@ -7,6 +7,8 @@ tags: [java, hibernate, eclipse, orm, mysql, acceso-a-datos, jboss]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2016/01/instalacion-y-configuracion-de.html
 ---
 
 **Hibernate** es una herramienta de mapeo objeto-relacional (ORM) que facilita el mapeo de atributos entre una base de datos relacional y el modelo de objetos de una aplicación, mediante ficheros XML o anotaciones. Soluciona la brecha entre el modelado orientado a objetos en memoria y el esquema relacional de la base de datos.

@@ -1,6 +1,6 @@
 ---
-title: Bases de datos. SQL programado (V)
-description: Control de errores en procedimientos almacenados en MySQL, con validación de datos antes de realizar inserciones.
+title: "Control de errores en procedimientos almacenados MySQL"
+description: "Ejercicio de control de errores en un procedimiento almacenado de MySQL: validar los datos de un nuevo empleado antes de insertarlo y devolver el resultado."
 author: Inazio Claver
 date: 2015-03-10 12:00:00 +0800
 categories: [Bases de datos]
@@ -8,7 +8,11 @@ tags: [bases-de-datos, sql, mysql, procedimientos, errores]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/03/bases-de-datos-sql-programado-v.html
 ---
+
+*Parte de la serie «SQL programado» (V).*
 
 ## Control de errores
 

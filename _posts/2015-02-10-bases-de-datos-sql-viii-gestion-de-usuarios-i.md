@@ -1,6 +1,6 @@
 ---
-title: Bases de datos. Consultas SQL (VIII) - Gestión de usuarios (I)
-description: Sentencias SQL para la gestión de usuarios y privilegios en MySQL.
+title: "Gestión de usuarios y privilegios en MySQL con GRANT"
+description: "Cómo crear usuarios en MySQL y asignarles privilegios con GRANT a nivel global, de base de datos y de tabla, con ejemplos de cada sentencia."
 author: Inazio Claver
 date: 2015-02-10 12:00:00 +0800
 categories: [Bases de datos]
@@ -8,7 +8,11 @@ tags: [sql, bases de datos, usuarios, privilegios, mysql]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/02/bases-de-datos-sql-viii.html
 ---
+
+*Parte de la serie «Consultas SQL» (VIII).*
 
 Sentencias SQL para la gestión de usuarios y privilegios:
 

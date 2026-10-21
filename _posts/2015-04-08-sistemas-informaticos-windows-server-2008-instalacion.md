@@ -8,6 +8,8 @@ tags: [sistemas-informaticos, windows-server, virtualizacion, instalacion]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/04/sistemas-informaticos-windows-server.html
 ---
 
 Llegué tarde porque tuve que ir a que me desangrarán un poco (¿banco? no, fueron análisis en el médico) y me tuve que poner al día aprisa y corriendo.

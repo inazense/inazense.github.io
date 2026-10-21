@@ -1,6 +1,6 @@
 ---
-title: Acceso a datos. Oracle Database. Sintaxis y ejemplos
-description: Sintaxis de Oracle Database para tipos de objetos, métodos, tablas de objetos, varrays y herencia de tipos con ejemplos prácticos.
+title: "Objetos en Oracle: tipos, métodos, varrays y herencia"
+description: "Programación orientada a objetos en Oracle Database: tipos de objeto, métodos, tablas de objetos, VARRAY y herencia de tipos, con ejemplos prácticos."
 author: Inazio Claver
 date: 2016-02-23 12:00:00 +0800
 categories: [Acceso a datos, Bases de datos]
@@ -8,6 +8,8 @@ tags: [oracle, sql, plsql, bases-de-datos, objetos, herencia]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2016/02/acceso-datos-oracle-database-sintaxis-y.html
 ---
 
 La sintaxis de Oracle está basada en lenguaje SQL, con la puntualización de que permite declarar objetos y almacenarlos como tal, arrays de objetos, etc.

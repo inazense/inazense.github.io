@@ -1,11 +1,12 @@
 title: "Programando a Pasitos"
 tagline: "No es un bug, es una característica no documentada"
-description: "Blog de programación por Inazio Claver"
+description: "Tutoriales de programación en español: Java, SQL y bases de datos, Python, Android y desarrollo web, con ejemplos de código paso a paso."
+home_title: "Tutoriales de Java, SQL, Python y Android"
 author:
   name: Inazio Claver
   url: https://github.com/inazense
 
-url: "https://inazense.github.io"
+url: "https://programandoapasitos.com"
 baseurl: ""
 
 lang: es
@@ -19,18 +20,25 @@ defaults:
       type: "posts"
     values:
       layout: "post"
+      image: /img/profile.png
   - scope:
       path: "pages"
     values:
       layout: "page"
+      image: /img/profile.png
 
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-paginate
   - jekyll-sitemap
+  - jekyll-redirect-from
 
 logo: /img/profile.png
+
+# Imagen por defecto cuadrada: tarjeta pequeña en redes
+twitter:
+  card: summary
 
 paginate: 10
 paginate_path: "/page/:num/"
@@ -43,6 +51,7 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - README.md
+  - CLAUDE.md
 
 include:
   - pages

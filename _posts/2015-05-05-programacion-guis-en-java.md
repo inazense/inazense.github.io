@@ -8,6 +8,8 @@ tags: [java, programación, swing, awt, gui]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/05/programacion-guis-en-java.html
 ---
 
 La API de Java tiene dos librerías para desarrollar aplicaciones con interfaz gráfica.

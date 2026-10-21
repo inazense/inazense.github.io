@@ -7,6 +7,8 @@ tags: [java, jdbc, mysql, acceso-a-datos, preparedstatement, transacciones, data
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/11/acceso-datos-ejercicios-v-jdbc.html
 ---
 
 Serie de ejercicios prácticos de JDBC sobre la base de datos **demodb**.

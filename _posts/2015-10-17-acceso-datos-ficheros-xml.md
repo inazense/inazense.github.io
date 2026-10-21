@@ -1,6 +1,6 @@
 ---
-title: "Acceso a datos. Ficheros XML"
-description: Manejo de ficheros XML en Java usando DOM (Document Object Model) y JAXP, con ejemplos de lectura, recorrido, modificación y escritura de documentos XML.
+title: "Leer y escribir ficheros XML en Java con DOM"
+description: "Cómo leer, recorrer, modificar y crear ficheros XML en Java usando DOM y JAXP, con una clase de ejemplo completa y el código de cada operación."
 author: Inazio Claver
 date: 2015-10-17 15:55:00 +0800
 categories: [Java]
@@ -8,6 +8,8 @@ tags: [java, acceso-a-datos, xml, dom, jaxp, documentbuilder]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/10/acceso-datos-ficheros-xml.html
 ---
 
 ## DOM

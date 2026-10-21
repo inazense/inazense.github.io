@@ -8,6 +8,8 @@ tags: [bases-de-datos, sql, mysql, cursores, procedimientos, ejercicios, transac
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/03/bases-de-datos-sql-programado-viii.html
 ---
 
 Práctica 3 del tema 6/7. Se utilizan las tablas de la base de datos `primeros_pasos`.

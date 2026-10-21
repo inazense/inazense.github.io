@@ -1,12 +1,14 @@
 ---
-title: "Programación multimedia. Menús"
-description: Implementación de menús en Android, tipos de menú (principal, submenú y contextual), definición en XML y gestión en Java con onCreateOptionsMenu y onOptionsItemSelected.
+title: "Menús en Android: menú de opciones y menú contextual"
+description: "Cómo crear menús en Android: menú de opciones, submenús y menú contextual, definidos en XML o por código y gestionados con onOptionsItemSelected."
 date: 2015-11-09 12:00:00 +0800
 categories: [Android]
 tags: [android, menus, menu-contextual, programacion-multimedia, actionbar]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/11/programacion-multimedia-menus.html
 ---
 
 Desde la versión 3 de Android, los menús han sido relegados a un segundo plano en sustitución de la **ActionBar**. No obstante, siguen siendo una opción válida en muchas aplicaciones.

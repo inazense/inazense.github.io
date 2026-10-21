@@ -8,13 +8,15 @@ tags: [lenguajes-de-marcas, php, html, blog]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/02/lenguaje-de-marcas-blog.html
 ---
 
 Vamos a realizar un blog.
 
 Para ello, nos conectamos a PHPMyAdmin y generamos una tabla con los siguientes valores:
 
-![Tabla en PHPMyAdmin](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjn5Qla7-4xpikR-bOuvclJIFKs5QXZ9PtL29MOGNvDvLymRvJ3juh-hhkQ0hH8FVg8jFLfDmpK0B5gvkvCGK1-M1lOOSamU0LjXVhsfNHfV9xj5q_OmLe8adR1OWxjk8wnabP-92ATkBg/s1600/1.PNG)
+![Tabla en PHPMyAdmin](/img/posts/20150213_1.png)
 
 Abrimos NetBeans y creamos un proyecto nuevo. Necesitaremos los siguientes ficheros:
 
@@ -33,7 +35,7 @@ El resultado de ejecutar la consulta se mostrará en diferentes artículos. El c
 
 Será contenido dinámico dentro de código estático, usando un bucle para mostrar las distintas entradas.
 
-![Código index.php en NetBeans](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg87iAn1sMUaN9mVPjqm9fIHHDhNiVxTmLVl0cJ2Nw92EEo-6kG81qi6oWogVjqDVAWzbdkplDahlnS8SMtjF5OEjVsGaa3Vs1fnhGML3-N0ajJPr-hCrDDAwByxtHiozST3z8_YCOVNhA/s1600/2.PNG)
+![Código index.php en NetBeans](/img/posts/20150213_2.png)
 
 Estoy teniendo muchos problemas con el NetBeans. He tenido que reiniciar, me he desenganchado de la explicación, no puedo acceder al FTP para copiar lo que han hecho hasta ahora y ponerme al día y me está entrando muy mala hostia.
 

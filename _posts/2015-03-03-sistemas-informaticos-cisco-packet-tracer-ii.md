@@ -8,6 +8,8 @@ tags: [sistemas-informaticos, cisco, redes, dhcp, subnetting]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/03/sistemas-informaticos-cisco-packet.html
 ---
 
 En esta práctica de Cisco Packet Tracer hemos montado una red con cinco segmentos conectados a través de un router central, configurando un servidor DHCP centralizado con relay para todas las subredes.

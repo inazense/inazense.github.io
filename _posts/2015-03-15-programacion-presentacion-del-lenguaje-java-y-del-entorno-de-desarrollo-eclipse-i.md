@@ -8,6 +8,8 @@ tags: [java, programacion, eclipse, jvm, jdk, jre]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/03/programacion-presentacion-del-lenguaje.html
 ---
 
 ## Características de Java

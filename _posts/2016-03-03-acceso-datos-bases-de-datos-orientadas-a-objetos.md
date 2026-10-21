@@ -8,6 +8,8 @@ tags: [java, bases-de-datos, oo, hibernate, orm, dao, odmg, oql]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2016/03/acceso-datos-bases-de-datos-orientadas.html
 ---
 
 ## Condiciones en las que nacen los SGBDR (años 60-70)

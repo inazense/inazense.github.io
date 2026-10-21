@@ -8,6 +8,8 @@ tags: [java, rmi, procesos, servicios, distribuido, serializable]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2016/03/procesos-y-servicios-rmi-ii.html
 ---
 
 ## Introducción a las aplicaciones RMI

@@ -8,6 +8,8 @@ tags: [html5, css3, php, javascript, jquery, ajax, xml]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/06/lenguajes-de-marcas-practicas-y-teoria.html
 ---
 
 Este curso, mientras estudiaba por las mañanas, me apunté a un certificado profesional de creación de páginas web.

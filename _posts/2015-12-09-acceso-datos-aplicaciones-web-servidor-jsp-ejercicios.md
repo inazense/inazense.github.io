@@ -8,6 +8,8 @@ tags: [java, jsp, web, mysql, jdbc, ejercicios]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/12/acceso-datos-aplicaciones-web-servidor.html
 ---
 
 Doce ejercicios prácticos para aprender JSP y acceso a bases de datos, desde operaciones básicas hasta sistemas de gestión completos.

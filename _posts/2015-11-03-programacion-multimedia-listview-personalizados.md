@@ -1,12 +1,15 @@
 ---
-title: "Programación multimedia. ListView personalizados"
-description: Cómo personalizar un ListView en Android añadiendo iconos a cada ítem de la lista mediante un layout personalizado y ArrayAdapter.
+title: "ListView personalizado en Android con iconos y ArrayAdapter"
+description: "Cómo personalizar un ListView en Android con un layout propio para cada ítem, añadiendo iconos y usando ArrayAdapter, con el XML y el código Java."
 date: 2015-11-03 14:00:00 +0800
 categories: [Android]
 tags: [android, listview, adapter, programacion-multimedia, layout]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/11/programacion-multimedia-listview.html
+  - /posts/2015/11/03/programacion-multimedia-listview/
 ---
 
 En esta entrada se mejora un `ListView` añadiendo iconos a cada opción de la lista, mediante un layout personalizado para los ítems y un `ArrayAdapter`.
