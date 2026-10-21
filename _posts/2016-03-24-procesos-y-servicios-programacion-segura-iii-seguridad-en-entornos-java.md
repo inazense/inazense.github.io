@@ -2,7 +2,7 @@
 title: Procesos y servicios. Programación segura III. Seguridad en entornos Java
 description: Aprende seguridad en entornos Java con JVM, gestores de seguridad y políticas. Tutorial completo sobre JCA, JSSE, JAAS, verificación de bytecodes, permisos y configuración de archivos policy.
 date: 2016-03-24 12:10:00 +0800
-categories: [Java]
+categories: [Java, Programación de servicios y procesos]
 tags: [procesos-servicios, java, teoria, seguridad, jvm, jca, jsse, jaas, policy, permisos]
 pin: false
 math: false

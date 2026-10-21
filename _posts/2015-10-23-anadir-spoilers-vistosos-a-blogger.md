@@ -3,7 +3,7 @@ title: "Añadir spoilers vistosos a Blogger"
 description: Cómo implementar botones mostrar/ocultar (spoilers) en Blogger usando jQuery para mejorar la legibilidad de entradas largas con mucho código.
 author: Inazio Claver
 date: 2015-10-23 12:00:00 +0800
-categories: [CMS]
+categories: [Web]
 tags: [blogger, jquery, html, css, spoiler, cms]
 pin: false
 math: false

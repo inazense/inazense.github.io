@@ -3,7 +3,7 @@ title: Acceso a datos. Bases de datos orientadas a objetos
 description: Orígenes de los SGBDOO, estándar ODMG-93, lenguajes ODL y OQL, consultas con Criteria y Nativas, ORM con Hibernate y el patrón DAO.
 author: Inazio Claver
 date: 2016-03-03 12:00:00 +0800
-categories: [Acceso a datos, Java]
+categories: [Java]
 tags: [java, bases-de-datos, oo, hibernate, orm, dao, odmg, oql]
 pin: false
 math: false

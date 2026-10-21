@@ -2,7 +2,7 @@
 title: "Procesos y servicios. Programación en red"
 description: Introducción a la programación en red con Java usando el paquete java.net, incluyendo las clases InetAddress, URL y URLConnection con ejemplos prácticos.
 date: 2016-01-20 12:00:00 +0800
-categories: [Java]
+categories: [Java, Programación de servicios y procesos]
 tags: [java, redes, programacion-de-servicios-y-procesos, inetaddress, url, urlconnection]
 pin: false
 math: false

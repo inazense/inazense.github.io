@@ -86,6 +86,27 @@
 
 
 
+// ── Página de una categoría (/categorias/<slug>/)
+.ctg-intro {
+  max-width: 62ch;
+
+  p { margin: 0 0 0.75rem; }
+  p:last-child { margin-bottom: 0; }
+}
+
+// Enlace a la página propia dentro de cada categoría del acordeón
+.ctg-cat-link {
+  display: block;
+  padding: 0.65rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+
+  &:hover { text-decoration: underline; }
+}
+
 // ── Acordeón principal
 .ctg-accordion-section {
   display: flex;

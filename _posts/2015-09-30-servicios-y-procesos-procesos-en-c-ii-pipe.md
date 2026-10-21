@@ -3,7 +3,7 @@ title: Servicios y procesos. Procesos en C (II). PIPE
 description: Comunicación entre procesos padre e hijo en C mediante tuberías (PIPE), incluyendo un ejercicio con tres procesos (abuelo, padre e hijo).
 author: Inazio Claver
 date: 2015-09-30 12:00:00 +0800
-categories: [Programación]
+categories: [Programación, Programación de servicios y procesos]
 tags: [c, procesos, pipe, servicios-y-procesos]
 pin: false
 math: false

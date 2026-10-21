@@ -2,7 +2,7 @@
 title: "Servicios y procesos. Servicios en C (III). FIFOs"
 description: Comunicación entre procesos mediante FIFOs (tuberías con nombre) en C sobre Linux, con ejemplos de programa lector y escritor usando mknod y open.
 date: 2015-10-05 12:00:00 +0800
-categories: [Linux]
+categories: [Programación, Programación de servicios y procesos]
 tags: [c, linux, fifo, pipes, ipc, programacion-de-servicios-y-procesos]
 pin: false
 math: false

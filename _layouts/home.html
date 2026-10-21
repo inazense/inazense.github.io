@@ -36,7 +36,7 @@ layout: default
   <div class="category-chips">
     {% assign sorted_cats = site.categories | sort %}
     {% for cat in sorted_cats %}
-    <a href="{{ '/categorias/' | relative_url }}#{{ cat[0] | slugify }}" class="category-chip">
+    <a href="{{ cat[0] | slugify: 'latin' | prepend: '/categorias/' | append: '/' | relative_url }}" class="category-chip">
       {{ cat[0] }}<span class="chip-count">{{ cat[1].size }}</span>
     </a>
     {% endfor %}

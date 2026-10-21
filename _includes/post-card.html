@@ -9,7 +9,7 @@
     {% if post.categories.size > 0 %}
       <span class="meta-sep">&mdash;</span>
       {% for cat in post.categories %}
-        <a href="{{ '/categorias/' | relative_url }}#{{ cat | slugify }}" class="post-category">{{ cat }}</a>{% unless forloop.last %}, {% endunless %}
+        <a href="{{ cat | slugify: 'latin' | prepend: '/categorias/' | append: '/' | relative_url }}" class="post-category">{{ cat }}</a>{% unless forloop.last %}, {% endunless %}
       {% endfor %}
     {% endif %}
     <span class="meta-sep">&mdash;</span>

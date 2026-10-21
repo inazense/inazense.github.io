@@ -2,7 +2,7 @@
 title: "Acceso a datos. Aplicaciones web servidor. PHP (Ejercicio)"
 description: Ejercicio práctico de acceso a bases de datos en PHP usando PDO, con operaciones CRUD sobre una tabla de items.
 date: 2016-01-11 12:00:00 +0800
-categories: [PHP]
+categories: [Web]
 tags: [acceso-a-datos, php, pdo, crud, mysql]
 pin: false
 math: false

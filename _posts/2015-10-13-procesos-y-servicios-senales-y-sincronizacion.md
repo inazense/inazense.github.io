@@ -3,7 +3,7 @@ title: "Procesos y servicios. Señales y sincronización"
 description: Concepto de señales en sistemas operativos como mecanismo de comunicación entre procesos, funciones C para manejo de señales y sincronización padre-hijo.
 author: Inazio Claver
 date: 2015-10-13 12:05:00 +0800
-categories: [Sistemas]
+categories: [Sistemas, Programación de servicios y procesos]
 tags: [c, procesos, senales, sincronizacion, linux, fork, kill]
 pin: false
 math: false

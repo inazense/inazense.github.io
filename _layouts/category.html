@@ -1,0 +1,54 @@
+---
+layout: default
+---
+
+{% assign months_es = "ene,feb,mar,abr,may,jun,jul,ago,sep,oct,nov,dic" | split: "," %}
+{% assign cat_posts = site.categories[page.category] | sort: "date" | reverse %}
+
+<div class="categories-page">
+
+  <nav class="breadcrumb" aria-label="Miga de pan">
+    <a href="{{ '/' | relative_url }}" class="breadcrumb-link">Blog</a>
+    <span class="breadcrumb-sep" aria-hidden="true">›</span>
+    <a href="{{ '/categorias/' | relative_url }}" class="breadcrumb-link">Categorías</a>
+    <span class="breadcrumb-sep" aria-hidden="true">›</span>
+    <span class="breadcrumb-current" aria-current="page">{{ page.category }}</span>
+  </nav>
+
+  <section class="ctg-hero">
+    <div class="ctg-hero-main">
+      <span class="ctg-eyebrow">{{ page.category }} · {{ cat_posts.size }} entradas</span>
+      <h1 class="ctg-title">{{ page.title }}</h1>
+      <div class="ctg-subtitle ctg-intro">{{ content }}</div>
+    </div>
+  </section>
+
+  <section class="ctg-accordion-section">
+    <div class="ctg-item">
+      <ul class="ctg-post-list">
+        {% for post in cat_posts %}
+        {% assign m_idx = post.date | date: "%-m" | minus: 1 %}
+        <li class="ctg-post-entry">
+          <a href="{{ post.url | relative_url }}" class="ctg-post-link">{{ post.title }}</a>
+          <time datetime="{{ post.date | date_to_xmlschema }}" class="ctg-post-date">{{ post.date | date: "%-d" }} {{ months_es[m_idx] }} {{ post.date | date: "%Y" }}</time>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+
+  <footer class="ctg-footer">
+    <h2 class="ctg-footer-title">Otras categorías</h2>
+    <div class="category-chips ctg-footer-ctas">
+      {% assign sorted_cats = site.categories | sort %}
+      {% for cat in sorted_cats %}
+      {% unless cat[0] == page.category %}
+      <a href="{{ cat[0] | slugify: 'latin' | prepend: '/categorias/' | append: '/' | relative_url }}" class="category-chip">
+        {{ cat[0] }}<span class="chip-count">{{ cat[1].size }}</span>
+      </a>
+      {% endunless %}
+      {% endfor %}
+    </div>
+  </footer>
+
+</div>

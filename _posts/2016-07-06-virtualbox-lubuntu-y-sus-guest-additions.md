@@ -3,7 +3,7 @@ title: VirtualBox, Lubuntu y sus Guest Additions
 description: Guía paso a paso para instalar Guest Additions en VirtualBox con Lubuntu. Aprende a solucionar problemas de resolución, instalar gcc y make, y configurar máquinas virtuales Linux correctamente.
 author: Inazio Claver
 date: 2016-07-06 12:10:00 +0800
-categories: [Linux]
+categories: [Sistemas]
 tags: [virtualbox, lubuntu, guest-additions, linux, virtualizacion, gcc, make]
 pin: false
 math: false

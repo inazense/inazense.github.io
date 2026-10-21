@@ -3,7 +3,7 @@ title: Servicios y procesos. Procesos y C (I)
 description: Introducción a los procesos en sistemas operativos y cómo trabajar con ellos en C bajo Linux, usando execl, system, fork, wait, getpid y getppid.
 author: Inazio Claver
 date: 2015-09-29 12:00:00 +0800
-categories: [Programación]
+categories: [Programación, Programación de servicios y procesos]
 tags: [c, procesos, servicios-y-procesos, linux]
 pin: false
 math: false

@@ -2,7 +2,7 @@
 title: "Criptografía en Java: resúmenes, firmas digitales y claves"
 description: "Criptografía con JCA y JCE en Java: resúmenes de mensajes, firmas digitales con KeyPairGenerator y Signature, y cómo guardar claves públicas y privadas."
 date: 2016-03-25 12:10:00 +0800
-categories: [Java]
+categories: [Java, Programación de servicios y procesos]
 tags: [procesos-servicios, teoria, java, criptografia, jca, jce, seguridad, cifrado, rsa, aes]
 pin: false
 math: false
