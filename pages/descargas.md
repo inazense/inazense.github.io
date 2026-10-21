@@ -2,6 +2,7 @@
 layout: default
 title: Descargas
 permalink: /descargas/
+description: "Descarga gratis manuales en PDF de DAM: Programación en Java (DAM1), Acceso a Datos y Programación de Servicios y Procesos (DAM2)."
 ---
 <div class="downloads-page">
 
