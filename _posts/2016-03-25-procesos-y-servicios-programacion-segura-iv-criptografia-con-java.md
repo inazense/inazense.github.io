@@ -1,6 +1,6 @@
 ---
-title: Procesos y servicios. Programación segura IV. Criptografía con Java
-description: Aprende criptografía avanzada en Java con JCA y JCE. Tutorial completo sobre cifrado simétrico/asimétrico, firmas digitales, certificados, claves RSA/AES y ejemplos prácticos de seguridad.
+title: "Criptografía en Java: resúmenes, firmas digitales y claves"
+description: "Criptografía con JCA y JCE en Java: resúmenes de mensajes, firmas digitales con KeyPairGenerator y Signature, y cómo guardar claves públicas y privadas."
 date: 2016-03-25 12:10:00 +0800
 categories: [Java]
 tags: [procesos-servicios, teoria, java, criptografia, jca, jce, seguridad, cifrado, rsa, aes]
@@ -14,6 +14,8 @@ mermaid: false
 redirect_from:
   - /2016/03/procesos-y-servicios-programacion_25.html
 ---
+
+*Parte de la serie «Programación segura» (IV).*
 
 ## Proveedores de servicios criptográficos
 

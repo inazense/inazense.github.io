@@ -1,6 +1,6 @@
 ---
-title: "Procesos y servicios. Programación de Sockets (I)"
-description: Introducción a la programación de sockets TCP en Java con las clases ServerSocket y Socket, incluyendo ejemplos de servidor y cliente con DataInputStream y DataOutputStream.
+title: "Sockets TCP en Java: ServerSocket y Socket con ejemplos"
+description: "Introducción a los sockets TCP en Java con ServerSocket y Socket: cómo crear un servidor y un cliente que se comunican con DataInputStream y DataOutputStream."
 date: 2016-01-20 13:00:00 +0800
 categories: [Java]
 tags: [java, sockets, tcp, programacion-de-servicios-y-procesos, serversocket]
@@ -10,6 +10,8 @@ mermaid: false
 redirect_from:
   - /2016/01/procesos-y-servicios-programacion-de.html
 ---
+
+*Parte de la serie «Programación de sockets» (I).*
 
 ## ¿Qué son los sockets?
 

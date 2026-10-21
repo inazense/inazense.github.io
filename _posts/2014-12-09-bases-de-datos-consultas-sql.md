@@ -1,6 +1,6 @@
 ---
-title: Bases de datos. Consultas SQL (I)
-description: Ejercicios de consultas SQL sencillas sobre las tablas EMPLEADOS, DEPARTAMENTOS, CLIENTES, PRODUCTOS y PEDIDOS. Includes el script de creación e inserción de datos.
+title: "Ejercicios de consultas SQL básicas resueltos"
+description: "Ejercicios resueltos de consultas SQL sencillas con SELECT, WHERE y ORDER BY sobre tablas de empleados, departamentos, clientes, productos y pedidos."
 author: Inazio Claver
 date: 2014-12-09 12:25:00 +0800
 categories: [Bases de datos]
@@ -15,6 +15,8 @@ mermaid: false
 redirect_from:
   - /2014/12/bases-de-datos-consultas-sql.html
 ---
+
+*Parte de la serie «Consultas SQL» (I).*
 
 Vamos a realizar ejercicios de consultas SQL. Para poder realizarlas, usa el siguiente código SQL para cargar las tablas necesarias:
 

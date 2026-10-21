@@ -1,6 +1,6 @@
 ---
-title: Bases de datos. SQL programado (XII). Transacciones
-description: Introducción a las transacciones en MySQL con el principio ACID, niveles de aislamiento, COMMIT y ROLLBACK con ejemplos prácticos por línea de comandos.
+title: "Transacciones en MySQL: ACID, aislamiento, COMMIT y ROLLBACK"
+description: "Qué es una transacción en MySQL, el principio ACID, los niveles de aislamiento y cómo usar COMMIT y ROLLBACK, con ejemplos desde la línea de comandos."
 author: Inazio Claver
 date: 2015-04-14 12:00:00 +0800
 categories: [Bases de datos]
@@ -11,6 +11,8 @@ mermaid: false
 redirect_from:
   - /2015/04/bases-de-datos-sql-programado-xii.html
 ---
+
+*Parte de la serie «SQL programado» (XII).*
 
 La idea de transacción es un conjunto de operaciones SQL que, o se realizan todas, o no se realiza ninguna.
 

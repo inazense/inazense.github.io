@@ -1,6 +1,6 @@
 ---
-title: Bases de datos. SQL programado (II)
-description: Estructura detallada de los procedimientos almacenados en MySQL, con cláusulas opcionales, SELECT INTO y uso de parámetros.
+title: "Procedimientos almacenados en MySQL: estructura y parámetros"
+description: "Cómo crear procedimientos almacenados en MySQL: estructura, cláusulas opcionales, SELECT INTO, sentencias DDL y DML y parámetros IN y OUT."
 author: Inazio Claver
 date: 2015-03-06 12:00:00 +0800
 categories: [Bases de datos]
@@ -11,6 +11,8 @@ mermaid: false
 redirect_from:
   - /2015/03/bases-de-datos-sql-programado-ii.html
 ---
+
+*Parte de la serie «SQL programado» (II).*
 
 Continuamos con el SQL programado. En esta entrada vemos la estructura completa de un procedimiento almacenado y cómo usar `SELECT INTO` para obtener datos dentro de un procedimiento.
 

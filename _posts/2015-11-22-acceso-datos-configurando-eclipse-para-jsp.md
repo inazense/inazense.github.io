@@ -1,6 +1,6 @@
 ---
-title: "Acceso a datos. Configurando Eclipse para JSP"
-description: Configuración de Eclipse con Apache Tomcat para desarrollar aplicaciones JSP, incluyendo la instalación del servidor, el plugin de desarrollo web y la creación de proyectos web dinámicos.
+title: "Configurar Eclipse y Tomcat para desarrollar con JSP"
+description: "Cómo instalar Apache Tomcat, configurarlo como servidor en Eclipse y crear un proyecto web dinámico para desarrollar y desplegar aplicaciones JSP."
 date: 2015-11-22 13:00:00 +0800
 categories: [Java]
 tags: [java, jsp, eclipse, tomcat, acceso-a-datos, web, servlet]

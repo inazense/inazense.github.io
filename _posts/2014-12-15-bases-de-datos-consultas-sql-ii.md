@@ -1,6 +1,6 @@
 ---
-title: Bases de datos. Consultas SQL (II)
-description: Ejercicios de consultas SQL con agrupamiento y funciones de grupo. GROUP BY, HAVING, COUNT, AVG, SUM, MIN, MAX sobre las tablas de empleados, departamentos, pedidos, productos y clientes.
+title: "Ejercicios SQL de GROUP BY, HAVING y funciones de agregado"
+description: "Ejercicios resueltos de SQL con GROUP BY, HAVING y funciones de agregado (COUNT, AVG, SUM, MIN y MAX) sobre empleados, pedidos, productos y clientes."
 author: Inazio Claver
 date: 2014-12-15 10:24:00 +0800
 categories: [Bases de datos]
@@ -15,6 +15,8 @@ mermaid: false
 redirect_from:
   - /2014/12/bases-de-datos-consultas-sql-ii.html
 ---
+
+*Parte de la serie «Consultas SQL» (II).*
 
 Hemos realizado la hoja de ejercicios 5 de la unidad 3, en la que usamos la misma base de datos que en la anterior entrada.
 

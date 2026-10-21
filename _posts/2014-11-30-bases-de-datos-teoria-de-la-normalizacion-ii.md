@@ -1,6 +1,6 @@
 ---
-title: Bases de datos. Teoría de la normalización (II)
-description: Dependencias funcionales en bases de datos. Concepto de dependencia funcional y descomposición de tablas para eliminar redundancias.
+title: "Dependencias funcionales y descomposición de tablas"
+description: "Qué es una dependencia funcional en bases de datos y cómo descomponer tablas para eliminar redundancias, con un ejemplo explicado paso a paso."
 author: Inazio Claver
 date: 2014-11-30 00:05:00 +0800
 categories: [Bases de datos]
@@ -15,6 +15,8 @@ mermaid: false
 redirect_from:
   - /2014/11/bases-de-datos-teoria-de-la_29.html
 ---
+
+*Parte de la serie «Teoría de la normalización» (II).*
 
 ## Dependencias funcionales
 

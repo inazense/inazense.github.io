@@ -1,6 +1,6 @@
 ---
-title: Bases de datos. SQL programado (I)
-description: Introducción al SQL programado en MySQL, con procedimientos, funciones, triggers y declaración de variables.
+title: "SQL programado en MySQL: variables, tipos y procedimientos"
+description: "Introducción al SQL programado en MySQL: tipos de programas (procedimientos, funciones y triggers), declaración de variables y tipos de datos."
 author: Inazio Claver
 date: 2015-02-23 12:00:00 +0800
 categories: [Bases de datos]
@@ -11,6 +11,8 @@ mermaid: false
 redirect_from:
   - /2015/02/bases-de-datos-sql-programado-i.html
 ---
+
+*Parte de la serie «SQL programado» (I).*
 
 En MySQL hay ciertas operaciones SQL que requieren un enfoque de lenguaje de programación. Existen tres tipos de programas:
 

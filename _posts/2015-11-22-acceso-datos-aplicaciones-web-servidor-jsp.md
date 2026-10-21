@@ -1,6 +1,6 @@
 ---
-title: "Acceso a datos. Aplicaciones web servidor. JSP"
-description: Introducción a JavaServer Pages (JSP), sus elementos de script, objetos implícitos, acciones con JavaBeans y librerías de tags personalizadas.
+title: "JSP (JavaServer Pages): introducción y elementos básicos"
+description: "Introducción a JSP: expresiones, scriptlets, declaraciones, directivas, acciones, objetos implícitos, uso de JavaBeans y librerías de tags personalizadas."
 date: 2015-11-22 12:00:00 +0800
 categories: [Java]
 tags: [java, jsp, acceso-a-datos, javabeans, web, servlet]

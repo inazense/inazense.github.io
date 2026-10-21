@@ -1,6 +1,6 @@
 ---
-title: "Acceso a datos. Introducción a los JavaBeans"
-description: Introducción a los componentes JavaBeans en Java, sus características, tipos de propiedades, eventos, y cómo crear y empaquetar beans con NetBeans.
+title: "JavaBeans en Java: qué son, propiedades y eventos"
+description: "Qué es un JavaBean, qué reglas cumple, tipos de propiedades (simples, indexadas, ligadas y restringidas), eventos y cómo crear y empaquetar beans."
 date: 2015-11-03 15:00:00 +0800
 categories: [Java]
 tags: [java, javabeans, componentes, propiedades, eventos, acceso-a-datos, serializable]

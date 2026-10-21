@@ -1,6 +1,6 @@
 ---
-title: "Procesos y servicios. Programación multihilo"
-description: Ciclo de vida de los hilos en Java, estados New, Runnable, Dead y Blocked, y ejemplos prácticos con Thread, join, interrupt y patrones de suspensión segura.
+title: "Estados de un hilo en Java: join, interrupt y parada segura"
+description: "Estados de un hilo en Java (New, Runnable, Blocked y Dead) y cómo gestionarlos con join, interrupt y patrones para parar o suspender hilos de forma segura."
 date: 2015-11-04 12:00:00 +0800
 categories: [Java]
 tags: [java, hilos, threads, programacion-de-servicios-y-procesos, concurrencia, runnable]

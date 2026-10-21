@@ -1,6 +1,6 @@
 ---
-title: Acceso a datos. Neodatis
-description: "Tutorial completo de Neodatis ODB: base de datos orientada a objetos para Java. Aprende instalación, configuración, inserción, consultas, modificación y borrado con ejemplos prácticos de código."
+title: "NeoDatis ODB: base de datos orientada a objetos en Java"
+description: "Tutorial de NeoDatis ODB, base de datos orientada a objetos para Java: instalación, conexión, inserción, consultas, modificación y borrado de objetos."
 date: 2016-03-06 12:10:00 +0800
 categories: [Java]
 tags: [acceso-datos, neodatis, odbms, bases-datos, persistencia, poo]

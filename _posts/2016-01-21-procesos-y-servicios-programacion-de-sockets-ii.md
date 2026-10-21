@@ -1,6 +1,6 @@
 ---
-title: "Procesos y servicios. Programación de Sockets (II)"
-description: Programación avanzada de sockets en Java con soporte para múltiples clientes mediante hilos, comunicación UDP con DatagramSocket y DatagramPacket, y sockets multicast.
+title: "Sockets UDP y multicast en Java, y servidor multicliente"
+description: "Sockets avanzados en Java: servidor TCP con varios clientes mediante hilos, comunicación UDP con DatagramSocket y DatagramPacket y sockets multicast."
 date: 2016-01-21 12:00:00 +0800
 categories: [Java]
 tags: [java, sockets, udp, tcp, multicast, hilos, programacion-de-servicios-y-procesos]
@@ -10,6 +10,8 @@ mermaid: false
 redirect_from:
   - /2016/01/procesos-y-servicios-programacion-de_21.html
 ---
+
+*Parte de la serie «Programación de sockets» (II).*
 
 ## Múltiples clientes con hilos
 

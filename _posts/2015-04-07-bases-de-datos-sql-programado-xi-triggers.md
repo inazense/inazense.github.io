@@ -1,6 +1,6 @@
 ---
-title: Bases de datos. SQL programado (XI). Triggers
-description: Introducción a los triggers en MySQL con ejemplos de INSERT, DELETE y UPDATE sobre tablas sincronizadas y de auditoría.
+title: "Triggers en MySQL con ejemplos de INSERT, UPDATE y DELETE"
+description: "Qué es un trigger en MySQL y cómo crearlo, con ejemplos sobre INSERT, UPDATE y DELETE, uso de NEW y OLD y cómo replicar cambios en otra tabla."
 author: Inazio Claver
 date: 2015-04-07 12:00:00 +0800
 categories: [Bases de datos]
@@ -11,6 +11,8 @@ mermaid: false
 redirect_from:
   - /2015/04/bases-de-datos-sql-programado-xi.html
 ---
+
+*Parte de la serie «SQL programado» (XI).*
 
 Los Triggers son programas que se ejecutan automáticamente en respuesta a algún suceso ocurrido en la base de datos. En MySQL se corresponden con instrucciones DML (INSERT, UPDATE, DELETE).
 

@@ -1,6 +1,6 @@
 ---
-title: "Acceso a datos. JDBC (III). Conexiones y sentencias SQL"
-description: Los tres métodos de conexión JDBC con MySQL y los tres tipos de sentencias SQL en Java (Statement, PreparedStatement y CallableStatement) con ejemplos prácticos.
+title: "Statement, PreparedStatement y CallableStatement en JDBC"
+description: "Tres formas de conectar Java con MySQL mediante JDBC y diferencias entre Statement, PreparedStatement y CallableStatement, con ejemplos de cada una."
 author: Inazio Claver
 date: 2015-10-24 13:00:00 +0800
 categories: [Java]
@@ -11,6 +11,8 @@ mermaid: false
 redirect_from:
   - /2015/10/acceso-datos-jdbc-iii-conexiones-y.html
 ---
+
+*Parte de la serie «JDBC» (III).*
 
 ## Formas de crear una conexión
 

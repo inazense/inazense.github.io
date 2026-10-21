@@ -1,6 +1,6 @@
 ---
-title: "Acceso a datos. JDBC (V). Uso del ResultSet"
-description: Uso avanzado del objeto ResultSet en JDBC para navegar, actualizar, insertar y eliminar filas mediante el cursor y los modos de desplazamiento y concurrencia.
+title: "ResultSet en JDBC: navegar, actualizar e insertar filas"
+description: "Uso avanzado de ResultSet en JDBC: tipos de desplazamiento y concurrencia, mover el cursor y actualizar, insertar o borrar filas desde Java."
 author: Inazio Claver
 date: 2015-10-24 14:30:00 +0800
 categories: [Java]
@@ -11,6 +11,8 @@ mermaid: false
 redirect_from:
   - /2015/10/acceso-datos-jdbc-v-uso-del-resultset.html
 ---
+
+*Parte de la serie «JDBC» (V).*
 
 El objeto `ResultSet` representa los resultados de una consulta y no carga toda la información en memoria a la vez. Permite además actualizar, eliminar e insertar filas.
 

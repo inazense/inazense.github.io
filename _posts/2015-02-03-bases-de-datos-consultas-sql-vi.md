@@ -1,6 +1,6 @@
 ---
-title: Bases de datos. Consultas SQL (VI)
-description: Hoja de ejercicios 9 de la unidad 3. Consultas multitabla con las tablas EMPLEADOS, DEPARTAMENTOS, PEDIDOS, PRODUCTOS y CLIENTES.
+title: "Ejercicios de consultas SQL multitabla resueltos"
+description: "Ejercicios resueltos de consultas SQL multitabla con JOIN entre empleados, departamentos, pedidos, productos y clientes, con la solución de cada uno."
 author: Inazio Claver
 date: 2015-02-03 12:00:00 +0800
 categories: [Bases de datos]
@@ -11,6 +11,8 @@ mermaid: false
 redirect_from:
   - /2015/02/bases-de-datos-consultas-sql-vi.html
 ---
+
+*Parte de la serie «Consultas SQL» (VI).*
 
 Hoja de ejercicios 9 de la unidad 3
 

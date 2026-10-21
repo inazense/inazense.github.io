@@ -1,6 +1,6 @@
 ---
-title: "Programación multimedia. Comunicación entre Activities"
-description: Cómo comunicar dos Activities en Android usando Intent explícito e implícito, pasar datos con Bundle y putExtra, y cargar páginas web con WebView.
+title: "Pasar datos entre Activities en Android con Intent y Bundle"
+description: "Cómo comunicar Activities en Android con Intent explícito e implícito, pasar datos con putExtra y Bundle y cargar páginas web con WebView."
 author: Inazio Claver
 date: 2015-10-25 21:10:00 +0800
 categories: [Android]
