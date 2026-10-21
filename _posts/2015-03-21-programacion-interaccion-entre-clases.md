@@ -1,6 +1,6 @@
 ---
-title: Programación. Interacción entre clases
-description: Dependencia, asociación, multiplicidad, composición, agregación y herencia entre clases en Java orientado a objetos.
+title: "Relaciones entre clases en Java: asociación y herencia"
+description: "Tipos de relación entre clases en Java: dependencia, asociación y su multiplicidad, composición, agregación y herencia, con ejemplos de código."
 author: Inazio Claver
 date: 2015-03-21 12:00:00 +0800
 categories: [Java, Programación]
@@ -11,6 +11,8 @@ mermaid: false
 redirect_from:
   - /2015/03/programacion-interaccion-entre-clases.html
 ---
+
+*Parte de la serie «Interacción entre clases» (I).*
 
 ## La dependencia
 

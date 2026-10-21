@@ -1,6 +1,6 @@
 ---
-title: Programación. Estructura de datos estáticos (I)
-description:
+title: "Vectores, macros y tipos definidos por el usuario en C"
+description: "Macros con #define, precisión en printf, tipos definidos por el usuario y vectores: definición, uso, representación interna y operaciones, con un ejemplo."
 date: 2014-10-28 23:16:00 +0800
 categories: [Programación]
 tags: [programacion, c, vectores, arrays, datos estaticos, macros, printf]
@@ -14,6 +14,8 @@ mermaid: false
 redirect_from:
   - /2014/10/estructura-de-datos-estaticos-i.html
 ---
+
+*Parte de la serie «Estructura de datos estáticos» (I).*
 
 ## Macros
 

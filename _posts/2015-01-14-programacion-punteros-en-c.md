@@ -1,6 +1,6 @@
 ---
-title: Programación. Punteros en C
-description: Introducción a los punteros en C, operadores de dirección e indirección, gestión dinámica de memoria y uso con vectores, matrices y estructuras.
+title: "Punteros en C: qué son y cómo usarlos con ejemplos"
+description: "Introducción a los punteros en C: operadores & y *, memoria dinámica con malloc, paso por referencia y punteros con vectores, cadenas, matrices y estructuras."
 author: Inazio Claver
 date: 2015-01-14 12:00:00 +0800
 categories: [Programación]
@@ -15,6 +15,8 @@ mermaid: false
 redirect_from:
   - /2015/01/programacion-punteros-en-c.html
 ---
+
+*Parte de la serie «Punteros en C» (I).*
 
 ## Variables estáticas y dinámicas
 

@@ -1,6 +1,6 @@
 ---
-title: Programación. Codificación de Programas en C (III)
-description: Profundiza en printf y scanf, compilación en Linux, estructuras de control switch/for/do-while, tipos carácter y cadena, con ejemplos de algoritmos en pseudocódigo.
+title: "printf, scanf, switch y bucles for y do-while en C"
+description: "Formatos de printf y scanf, cómo compilar un programa C en Linux, switch, bucles for y do-while y los tipos carácter y cadena, con algoritmos de ejemplo."
 date: 2014-10-11 14:10:00 +0800
 categories: [Programación]
 tags: [programacion, c, printf, scanf, switch, for, do-while, caracteres, cadenas, linux]
@@ -14,6 +14,8 @@ mermaid: false
 redirect_from:
   - /2014/10/programacion-codificacion-de-programas_11.html
 ---
+
+*Parte de la serie «Codificación de programas en C» (III).*
 
 ## Printf
 

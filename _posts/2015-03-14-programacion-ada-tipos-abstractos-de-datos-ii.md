@@ -1,6 +1,6 @@
 ---
-title: Programación. ADA. Tipos abstractos de datos (II)
-description: Implementación estática y dinámica de árboles binarios, n-arios y de búsqueda, y representación de grafos.
+title: "Árboles y grafos: implementación estática y dinámica"
+description: "Cómo implementar árboles binarios, árboles n-arios y árboles de búsqueda con vectores o con punteros, y cómo representar grafos."
 author: Inazio Claver
 date: 2015-03-14 17:56:00 +0800
 categories: [Programación]
@@ -11,6 +11,8 @@ mermaid: false
 redirect_from:
   - /2015/03/programacion-ada-tipos-abstractos-de.html
 ---
+
+*Parte de la serie «Tipos abstractos de datos en ADA» (II).*
 
 ## Árbol binario
 

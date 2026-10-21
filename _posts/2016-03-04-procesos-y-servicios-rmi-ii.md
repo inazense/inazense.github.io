@@ -1,6 +1,6 @@
 ---
-title: Procesos y servicios. RMI (II)
-description: Elementos de una aplicación RMI, interfaces remotas, stubs, serialización, servicio rmiregistry y ejemplo completo con interfaz, servidor y cliente.
+title: "Aplicación RMI en Java: interfaz, servidor y cliente"
+description: "Elementos de una aplicación RMI en Java: interfaces y objetos remotos, stubs, paso de objetos, rmiregistry y un ejemplo completo con servidor y cliente."
 author: Inazio Claver
 date: 2016-03-04 12:00:00 +0800
 categories: [Java, Programación de servicios y procesos]
@@ -11,6 +11,8 @@ mermaid: false
 redirect_from:
   - /2016/03/procesos-y-servicios-rmi-ii.html
 ---
+
+*Parte de la serie «RMI» (II).*
 
 ## Introducción a las aplicaciones RMI
 

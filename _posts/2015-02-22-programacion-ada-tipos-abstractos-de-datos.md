@@ -1,6 +1,6 @@
 ---
-title: Programación. ADA. Tipos abstractos de datos
-description: Concepto de abstracción, encapsulación, diseño modular y tipos abstractos de datos (TAD) en ADA, con ejemplos de ordenación genérica, pilas y colas.
+title: "Tipos abstractos de datos (TAD) en ADA con ejemplos"
+description: "Abstracción, encapsulación y diseño modular en ADA: qué es un tipo abstracto de datos, un módulo genérico de ordenación paso a paso y pilas y colas como TAD."
 author: Inazio Claver
 date: 2015-02-22 12:00:00 +0800
 categories: [Programación]
@@ -11,6 +11,8 @@ mermaid: false
 redirect_from:
   - /2015/02/programacion-ada-tipos-abstractos-de.html
 ---
+
+*Parte de la serie «Tipos abstractos de datos en ADA» (I).*
 
 ## Concepto de abstracción
 

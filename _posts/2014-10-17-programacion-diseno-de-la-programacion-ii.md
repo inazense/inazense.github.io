@@ -1,6 +1,6 @@
 ---
-title: Programación. Diseño de la programación (II)
-description:
+title: "Procedimientos en pseudocódigo con ejemplos de primos"
+description: "Diferencia entre función y procedimiento, parámetros de entrada y salida, y ejemplos en pseudocódigo: números primos, intercambiar valores y ordenar números."
 date: 2014-10-17 20:55:00 +0800
 categories: [Programación]
 tags: [programacion, subprogramas, funciones, procedimientos, parametros, pseudocodigo]
@@ -14,6 +14,8 @@ mermaid: false
 redirect_from:
   - /2014/10/programacion-diseno-de-la-programacion.html
 ---
+
+*Parte de la serie «Diseño de la programación» (II).*
 
 ## Algoritmo primoEntreDosNumeros
 

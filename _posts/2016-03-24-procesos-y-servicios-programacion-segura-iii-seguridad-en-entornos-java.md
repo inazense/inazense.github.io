@@ -1,6 +1,6 @@
 ---
-title: Procesos y servicios. Programación segura III. Seguridad en entornos Java
-description: Aprende seguridad en entornos Java con JVM, gestores de seguridad y políticas. Tutorial completo sobre JCA, JSSE, JAAS, verificación de bytecodes, permisos y configuración de archivos policy.
+title: "Seguridad en Java: class loader, security manager y policy"
+description: "Cómo protege Java la ejecución: cargador de clases, verificador de bytecode y gestor de seguridad, APIs de seguridad y ficheros de políticas con PolicyTool."
 date: 2016-03-24 12:10:00 +0800
 categories: [Java, Programación de servicios y procesos]
 tags: [procesos-servicios, java, teoria, seguridad, jvm, jca, jsse, jaas, policy, permisos]
@@ -14,6 +14,8 @@ mermaid: false
 redirect_from:
   - /2016/03/procesos-y-servicios-programacion_24.html
 ---
+
+*Parte de la serie «Programación segura» (III).*
 
 Antes de que la **JVM** comience el proceso de interpretación y ejecución de los bytecodes (código objeto) debe realizar una serie de tareas para preparar el entorno en el que el programa se ejecutará. Este es el punto en el que se implementa la seguridad interna de Java.
 

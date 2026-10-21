@@ -1,6 +1,6 @@
 ---
-title: Programación. Interacción entre clases (II)
-description: Sobreescritura de métodos, herencia de constructores, instanceof, equals, toString, modificadores final y abstract, castings, polimorfismo e interfaces en Java.
+title: "Herencia y polimorfismo en Java: sobrescritura e interfaces"
+description: "Sobrescritura de métodos, constructores y herencia, instanceof, equals y toString, final y abstract, castings, polimorfismo e interfaces en Java."
 author: Inazio Claver
 date: 2015-03-31 12:00:00 +0800
 categories: [Java, Programación]
@@ -11,6 +11,8 @@ mermaid: false
 redirect_from:
   - /2015/03/programacion-interaccion-entre-clases-ii.html
 ---
+
+*Parte de la serie «Interacción entre clases» (II).*
 
 ## La sobreescritura de métodos
 

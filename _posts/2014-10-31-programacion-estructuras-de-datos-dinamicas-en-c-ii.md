@@ -1,6 +1,6 @@
 ---
-title: Programación. Estructuras de datos dinámicas en C (II)
-description:
+title: "Cadenas en C con string.h y ctype.h, y registros (struct)"
+description: "Funciones para trabajar con cadenas en C: conversión con stdlib.h, manipulación y búsqueda con string.h, caracteres con ctype.h, y cómo declarar registros."
 date: 2014-10-31 00:29:00 +0800
 categories: [Programación]
 tags: [programacion, c, cadenas, registros, structs, ctype]
@@ -14,6 +14,8 @@ mermaid: false
 redirect_from:
   - /2014/10/programacion-estructuras-de-datos_30.html
 ---
+
+*Parte de la serie «Estructuras de datos en C» (II).*
 
 ## Cadenas de caracteres en C
 

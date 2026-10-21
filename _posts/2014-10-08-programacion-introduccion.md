@@ -1,6 +1,6 @@
 ---
-title: Programación. Introducción
-description: "Guía introductoria a la programación para principiantes: conceptos clave, algoritmos, compilación vs interpretación, ciclo de vida del software y paradigmas de programación."
+title: "Qué es programar: algoritmos, compiladores y paradigmas"
+description: "Introducción a la programación para principiantes: qué es un lenguaje de programación, compilación e interpretación, ciclo de vida del software y paradigmas."
 date: 2014-10-08 14:10:00 +0800
 categories: [Programación]
 tags: [programacion, introduccion, algoritmos, compilacion, interpretacion, sistemas-operativos, paradigmas, fundamentos]

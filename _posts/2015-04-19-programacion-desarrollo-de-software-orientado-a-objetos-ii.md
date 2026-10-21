@@ -1,6 +1,6 @@
 ---
-title: Programación. Desarrollo de software orientado a objetos (II)
-description: Manejo de ficheros en Java con FileReader, FileWriter, DataInputStream y serialización de objetos. Introducción al framework Collection.
+title: "Ficheros, serialización y colecciones en Java"
+description: "Persistencia en Java: leer y escribir ficheros con FileReader, FileWriter y streams de datos, serializar objetos e introducción al framework de colecciones."
 author: Inazio Claver
 date: 2015-04-19 12:00:00 +0800
 categories: [Programación]
@@ -11,6 +11,8 @@ mermaid: false
 redirect_from:
   - /2015/04/programacion-desarrollo-de-software_19.html
 ---
+
+*Parte de la serie «Desarrollo de software orientado a objetos» (II).*
 
 ## Ficheros en Java
 

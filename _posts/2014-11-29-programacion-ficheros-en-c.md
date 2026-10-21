@@ -1,6 +1,6 @@
 ---
-title: Programación. Ficheros en C
-description: Operaciones sobre ficheros en C. fopen, fprintf, fscanf, fread, fwrite, fclose y feof con ejemplos de código y ejercicios resueltos.
+title: "Ficheros en C: fopen, fread, fwrite y fclose con ejemplos"
+description: "Cómo trabajar con ficheros en C: abrir con fopen, leer y escribir en modo texto y binario, cerrar con fclose y detectar el final con feof, con ejercicios."
 author: Inazio Claver
 date: 2014-11-29 22:34:00 +0800
 categories: [Programación]

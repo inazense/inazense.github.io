@@ -1,6 +1,6 @@
 ---
-title: Programación. Recursividad (I)
-description: Introducción a la recursividad en programación. Algoritmos recursivos lineales y múltiples, casos triviales, ley de recurrencia y ejemplos de factorial y MCD.
+title: "Recursividad en programación: qué es y ejemplos"
+description: "Qué es la recursividad y cómo pensar algoritmos recursivos: caso trivial, ley de recurrencia, recursividad lineal y múltiple, con ejemplos de factorial y MCD."
 author: Inazio Claver
 date: 2014-12-11 18:26:00 +0800
 categories: [Programación]

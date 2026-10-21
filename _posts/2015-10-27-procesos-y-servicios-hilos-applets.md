@@ -1,6 +1,6 @@
 ---
-title: "Procesos y servicios. Hilos. Applets"
-description: Creación de Applets Java con hilos usando Runnable e inner classes Thread, con ejemplos de reloj analógico, contador con botones y contador dual con hilos independientes.
+title: "Hilos en Applets Java: reloj y contadores con Runnable"
+description: "Tres ejemplos de Applets Java que usan hilos con Runnable y clases internas Thread: un reloj que se actualiza cada segundo y dos contadores con botones."
 author: Inazio Claver
 date: 2015-10-27 19:22:00 +0800
 categories: [Java, Programación de servicios y procesos]

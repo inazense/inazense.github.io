@@ -1,6 +1,6 @@
 ---
-title: Programación. GUIs en Java
-description: Introducción al desarrollo de interfaces gráficas en Java con AWT y Swing, incluyendo layouts, eventos y look and feel.
+title: "Interfaces gráficas en Java con Swing y AWT"
+description: "Introducción a las interfaces gráficas en Java: contenedores, componentes Swing, layout managers, look and feel, eventos y cómo exportar un JAR ejecutable."
 author: Inazio Claver
 date: 2015-05-05 12:00:00 +0800
 categories: [Java, Programación]

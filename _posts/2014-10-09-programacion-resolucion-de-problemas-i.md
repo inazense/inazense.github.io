@@ -1,6 +1,6 @@
 ---
-title: Programación. Resolución de problemas I
-description: 
+title: "Algoritmos en pseudocódigo: tipos, variables y expresiones"
+description: "Cómo escribir algoritmos en pseudocódigo: palabras clave e identificadores, tipos escalares, constantes, variables, asignación y evaluación de expresiones."
 date: 2014-10-09 14:10:00 +0800
 categories: [Programación]
 tags: [programacion]
@@ -14,6 +14,8 @@ mermaid: false
 redirect_from:
   - /2014/10/programacion-resolucion-de-problemas-i.html
 ---
+
+*Parte de la serie «Resolución de problemas» (I).*
 
 ## Elementos de un programa
 

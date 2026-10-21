@@ -1,6 +1,6 @@
 ---
-title: Procesos y servicios. RMI (III). El ejercicio de la hipoteca
-description: Implementación completa de una aplicación RMI para calcular la cuota mensual de una hipoteca, con interfaz remota, objeto remoto, servidor y cliente.
+title: "Ejercicio RMI en Java: calcular la cuota de una hipoteca"
+description: "Ejercicio resuelto de RMI en Java: una aplicación cliente-servidor que calcula la cuota mensual de una hipoteca, con el código y cómo ejecutarla."
 author: Inazio Claver
 date: 2016-03-04 18:24:00 +0800
 categories: [Java, Programación de servicios y procesos]
@@ -11,6 +11,8 @@ mermaid: false
 redirect_from:
   - /2016/03/procesos-y-servicios-rmi-iii-el.html
 ---
+
+*Parte de la serie «RMI» (III).*
 
 Ejercicio práctico de RMI: un programa distribuido cliente-servidor que calcula la cuota mensual de una hipoteca de forma remota.
 

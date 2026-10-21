@@ -1,6 +1,6 @@
 ---
-title: Programación. Introducción a ADA
-description: Introducción al lenguaje de programación ADA, sus características, tipos de datos, estructuras de control y vectores.
+title: "Introducción al lenguaje ADA: tipos y estructuras de control"
+description: "Primeros pasos con ADA: características, compilación, entrada y salida simple, tipos escalares, subtipos, enumerados, atributos y estructuras de control."
 author: Inazio Claver
 date: 2015-02-13 12:00:00 +0800
 categories: [Programación]

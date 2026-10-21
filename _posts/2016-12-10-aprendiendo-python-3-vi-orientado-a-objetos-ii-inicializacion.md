@@ -1,6 +1,6 @@
 ---
-title: Aprendiendo Python (VI). Orientado a objetos (II). Inicialización
-description: Aprende a usar el método __init__ en Python para inicializar objetos. Tutorial completo sobre constructores, parámetros por defecto, valores None y manejo de errores en programación orientada a objetos.
+title: "El método __init__ en Python: inicializar objetos"
+description: "Cómo usar el método __init__ en Python para inicializar los atributos de un objeto, evitar errores con parámetros por defecto y usar None como valor nulo."
 author: Inazio Claver
 date: 2016-12-10 12:10:00 +0800
 categories: [Python]
@@ -15,6 +15,8 @@ mermaid: false
 redirect_from:
   - /2016/12/aprendiendo-python-3-vi-orientado.html
 ---
+
+*Parte de la serie «Aprendiendo Python» (VI).*
 
 Python, a diferencia de la mayoría de lenguajes orientados a objetos, no tiene un constructor que cree e inicialice los objetos, sino que los tiene separados, por una parte el constructor que no suele usarse salvo en casos puntuales, y por otra el inicializador.
 En este último es en el que vamos a centrarnos en esta entrada.

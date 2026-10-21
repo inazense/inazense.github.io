@@ -1,6 +1,6 @@
 ---
-title: Programación. Control de errores. Las excepciones
-description: Manejo de excepciones en Java con try/catch/finally, excepciones comprobadas y no comprobadas, propagación y creación de excepciones de usuario.
+title: "Excepciones en Java: try, catch y finally con ejemplos"
+description: "Cómo manejar errores con excepciones en Java: try, catch y finally, excepciones comprobadas y no comprobadas, su propagación y cómo crear excepciones propias."
 author: Inazio Claver
 date: 2015-04-14 12:00:00 +0800
 categories: [Java, Programación]
