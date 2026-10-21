@@ -3,7 +3,7 @@ title: Acceso a datos. Oracle Database. Ejercicios
 description: 21 ejercicios prácticos sobre Oracle Database con tipos de objetos, herencia, referencias REF y colecciones VARRAY.
 author: Inazio Claver
 date: 2016-02-25 12:00:00 +0800
-categories: [Acceso a datos, Bases de datos]
+categories: [Bases de datos]
 tags: [oracle, sql, plsql, bases-de-datos, objetos, herencia, varray, ref]
 pin: false
 math: false

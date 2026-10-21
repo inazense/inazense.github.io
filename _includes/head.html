@@ -8,7 +8,7 @@
   {%- elsif paginator and paginator.page > 1 -%}Página {{ paginator.page }} de {{ paginator.total_pages }} | {{ site.title }}
   {%- else -%}{{ site.title }} | {{ site.home_title }}{%- endif -%}
 </title>
-{% if paginator and paginator.page > 1 %}<meta name="robots" content="noindex, follow">{% endif %}
+{% if page.noindex or paginator and paginator.page > 1 %}<meta name="robots" content="noindex, follow">{% endif %}
 <link rel="apple-touch-icon" sizes="180x180" href="{{ '/apple-touch-icon.png' | relative_url }}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ '/favicon-32x32.png' | relative_url }}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ '/favicon-16x16.png' | relative_url }}">

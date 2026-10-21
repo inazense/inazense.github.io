@@ -3,7 +3,7 @@ title: Acceso a datos. Hibernate. Ejercicios
 description: Dos ejercicios prácticos de Hibernate con Java y MySQL trabajando con las tablas EMPLEADOS y DEPARTAMENTOS.
 author: Inazio Claver
 date: 2016-02-12 12:00:00 +0800
-categories: [Acceso a datos, Java]
+categories: [Java]
 tags: [java, hibernate, mysql, swing, crud, hql]
 pin: false
 math: false

@@ -1,6 +1,6 @@
 ---
-title: Procesos y servicios. Procesos concurrentes
-description: Requisitos de exclusión mutua, algoritmos de Dekker y Peterson para sincronización de procesos concurrentes, con ejercicio práctico en Java.
+title: "Exclusión mutua: algoritmos de Dekker y Peterson"
+description: "Requisitos de la exclusión mutua, los algoritmos de Dekker y Peterson para sincronizar procesos concurrentes y un ejercicio en Java con una cuenta compartida."
 author: Inazio Claver
 date: 2015-12-15 12:00:00 +0800
 categories: [Java, Programación de servicios y procesos]

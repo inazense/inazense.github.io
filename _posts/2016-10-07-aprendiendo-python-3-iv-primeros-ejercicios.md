@@ -1,6 +1,6 @@
 ---
-title: Aprendiendo Python (IV). Primeros ejercicios
-description: Colección de 30 ejercicios prácticos de Python para principiantes con soluciones completas. Aprende programación básica, estructuras de control, bucles, funciones y algoritmos fundamentales paso a paso.
+title: "30 ejercicios de Python para principiantes resueltos"
+description: "30 ejercicios de Python resueltos para practicar entrada de datos, condicionales y bucles, desde el área de un triángulo hasta un marcador de tenis."
 author: Inazio Claver
 date: 2016-10-07 12:10:00 +0800
 categories: [Python]
@@ -15,6 +15,8 @@ mermaid: false
 redirect_from:
   - /2016/10/aprendiendo-python-3-iv-primeros.html
 ---
+
+*Parte de la serie «Aprendiendo Python» (IV).*
 
 Como primeros ejercicios en **Python** para familiarizarnos con la sintaxis propongo que realicemos los mismos problemas que cuando, hace dos años, comencé a estudiar programación en el lenguaje **C**. Tal vez no sean los más afinados para empezar con este lenguaje, pero creo que nos darán cierta soltura a la hora de prácticar **Python**.
 

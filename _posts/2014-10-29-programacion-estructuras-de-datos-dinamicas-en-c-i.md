@@ -1,6 +1,6 @@
 ---
-title: Programación. Estructuras de datos dinámicas en C (I)
-description:
+title: "Vectores y cadenas de caracteres en C"
+description: "Cómo declarar y recorrer vectores en C, por qué los índices empiezan en 0 y cómo funcionan las cadenas de caracteres terminadas en '\0', con ejemplos."
 date: 2014-10-29 22:44:00 +0800
 categories: [Programación]
 tags: [programacion, c, vectores, arrays, cadenas]
@@ -14,6 +14,8 @@ mermaid: false
 redirect_from:
   - /2014/10/programacion-estructuras-de-datos.html
 ---
+
+*Parte de la serie «Estructuras de datos en C» (I).*
 
 ## Vectores en C
 

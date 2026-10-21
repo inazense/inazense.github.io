@@ -1,8 +1,8 @@
 ---
-title: Procesos y servicios. Programación segura V. Comunicación segura con Java
-description: Aprende programación segura en Java con JSSE y JAAS. Tutorial completo sobre SSL/TLS, autenticación, autorización, certificados digitales y comunicación segura entre cliente-servidor con ejemplos de código.
+title: "Comunicación segura en Java con SSL (JSSE) y JAAS"
+description: "Comunicación segura en Java: servidor y cliente SSL con JSSE, y autenticación y autorización con JAAS, con ejemplos de código y ficheros de políticas."
 date: 2016-03-26 12:10:00 +0800
-categories: [Java]
+categories: [Java, Programación de servicios y procesos]
 tags: [java, jsse, jaas, ssl, tls, seguridad, autenticacion, autorizacion, certificados]
 pin: false
 math: false
@@ -14,6 +14,8 @@ mermaid: false
 redirect_from:
   - /2016/03/procesos-y-servicios-programacion_26.html
 ---
+
+*Parte de la serie «Programación segura» (V).*
 
 ## JSSE
 

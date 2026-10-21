@@ -3,38 +3,9 @@ layout: default
 title: Categorías
 permalink: /categorias/
 redirect_from:
-  - "/search/label/ADA"
-  - "/search/label/Acceso a datos"
-  - "/search/label/Android"
-  - "/search/label/Apache"
-  - "/search/label/Bases de datos"
-  - "/search/label/C"
-  - "/search/label/CMS"
-  - "/search/label/CSS"
-  - "/search/label/Cisco"
-  - "/search/label/Desarrollo de interfaces"
-  - "/search/label/Entornos de desarrollo"
-  - "/search/label/Git"
-  - "/search/label/HTML"
-  - "/search/label/Hibernate"
-  - "/search/label/JSP"
-  - "/search/label/Java"
-  - "/search/label/JavaScript"
-  - "/search/label/Lenguaje de marcas"
   - "/search/label/Libros"
-  - "/search/label/Linux"
-  - "/search/label/MySQL"
-  - "/search/label/Oracle Database"
-  - "/search/label/PHP"
-  - "/search/label/Programación"
-  - "/search/label/Programación de servicios y procesos"
-  - "/search/label/Programación multimedia y dispositivos móviles"
-  - "/search/label/Python"
   - "/search/label/Sistemas de gestión empresarial"
-  - "/search/label/Sistemas informáticos"
   - "/search/label/Varios"
-  - "/search/label/Virtualizacion"
-  - "/search/label/XML"
 description: "Explora los tutoriales del blog por tecnología: Java, bases de datos y SQL, Android, Python, desarrollo web, entornos de desarrollo y sistemas."
 ---
 
@@ -69,6 +40,7 @@ description: "Explora los tutoriales del blog por tecnología: Java, bases de da
           </svg>
         </div>
       </summary>
+      <a href="{{ cat_name | slugify: 'latin' | prepend: '/categorias/' | append: '/' | relative_url }}" class="ctg-cat-link">Ver la página de {{ cat_name }} &rarr;</a>
       <ul class="ctg-post-list">
         {% assign cat_posts = cat[1] | sort: "date" | reverse %}
         {% for post in cat_posts %}

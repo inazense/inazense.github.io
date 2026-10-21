@@ -3,7 +3,7 @@ title: Head First. Excelente metodología de aprendizaje
 description: Descubre la metodología Head First de O'Reilly para aprender programación de forma visual y práctica. Reseña completa de libros técnicos sobre Java, patrones de diseño, JavaScript y desarrollo de software.
 author: Inazio Claver
 date: 2016-06-19 11:10:00 +0800
-categories: [Libros]
+categories: [Varios]
 tags: [libros, head-first, oreilly, programacion, aprendizaje, java, patrones-diseño]
 pin: false
 math: false

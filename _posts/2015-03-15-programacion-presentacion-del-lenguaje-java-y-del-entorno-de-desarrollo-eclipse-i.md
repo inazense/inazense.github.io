@@ -1,6 +1,6 @@
 ---
-title: Programación. Presentación del lenguaje Java y del entorno de desarrollo Eclipse (I)
-description: Características principales de Java, motivos de su éxito y descripción de la plataforma de desarrollo Java SE con Eclipse.
+title: "Qué es Java: características y plataforma de desarrollo"
+description: "Características principales del lenguaje Java, por qué tuvo tanto éxito y cómo se organiza la plataforma Java SE para empezar a programar con Eclipse."
 author: Inazio Claver
 date: 2015-03-15 09:00:00 +0800
 categories: [Java, Programación]
@@ -11,6 +11,8 @@ mermaid: false
 redirect_from:
   - /2015/03/programacion-presentacion-del-lenguaje.html
 ---
+
+*Parte de la serie «Presentación de Java y Eclipse» (I).*
 
 ## Características de Java
 

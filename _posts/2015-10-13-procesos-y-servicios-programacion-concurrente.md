@@ -1,9 +1,9 @@
 ---
-title: "Procesos y servicios. Programación concurrente"
-description: Conceptos de programación concurrente, paralela y distribuida, con sus ventajas, inconvenientes y modelos de comunicación entre procesos.
+title: "Programación concurrente, paralela y distribuida"
+description: "Diferencias entre programación concurrente, paralela y distribuida, ventajas e inconvenientes de cada una y modelos de comunicación entre procesos."
 author: Inazio Claver
 date: 2015-10-13 12:10:00 +0800
-categories: [Sistemas]
+categories: [Sistemas, Programación de servicios y procesos]
 tags: [procesos, concurrencia, paralelismo, distribuido, sockets, rpc, rmi]
 pin: false
 math: false

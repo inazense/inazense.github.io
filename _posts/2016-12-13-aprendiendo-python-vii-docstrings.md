@@ -1,6 +1,6 @@
 ---
-title: Aprendiendo Python (VII). Docstrings
-description: Aprende a crear documentación automática en Python usando docstrings. Tutorial completo sobre cómo documentar clases, funciones y métodos con ejemplos prácticos y generación de API documentation.
+title: "Docstrings en Python: cómo documentar tu código"
+description: "Qué son los docstrings en Python y cómo usarlos para documentar clases, funciones y métodos, y consultar esa documentación con help()."
 author: Inazio Claver
 date: 2016-12-13 12:10:00 +0800
 categories: [Python]
@@ -15,6 +15,8 @@ mermaid: false
 redirect_from:
   - /2016/12/aprendiendo-python-vii-orientado.html
 ---
+
+*Parte de la serie «Aprendiendo Python» (VII).*
 
 **Python** es un lenguaje que se considera autodocumentado por su sencillez a la hora de ser leído. Ahora bien, cuando trabajamos en un proyecto que va creciendo en dificultad, los comentarios son dios y nosotros sus fieles y acérrimos seguidores. Nunca se pasa tan mal como cuando heredas un proyecto sin una línea de comentarios, ni un punto y coma de documentación.
 

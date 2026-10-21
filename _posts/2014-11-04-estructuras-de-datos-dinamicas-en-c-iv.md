@@ -1,6 +1,6 @@
 ---
-title: Estructuras de datos dinámicas en C (IV)
-description:
+title: "Vectores de registros y paso de structs por referencia en C"
+description: "Cómo combinar vectores y registros en C (vectores de structs y structs con vectores) y cómo pasar un registro por referencia a una función, con un ejemplo."
 date: 2014-11-04 19:13:00 +0800
 categories: [Programación]
 tags: [programacion, c, estructuras de datos, registros, vectores]
@@ -14,6 +14,8 @@ mermaid: false
 redirect_from:
   - /2014/11/estructuras-de-datos-dinamicas-en-c-iv.html
 ---
+
+*Parte de la serie «Estructuras de datos en C» (IV).*
 
 ## Vectores con registros. Registros con vectores
 

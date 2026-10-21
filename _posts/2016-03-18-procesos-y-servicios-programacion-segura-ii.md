@@ -1,8 +1,8 @@
 ---
-title: Procesos y servicios. Programación segura II
-description: "Aprende criptografía y seguridad informática: algoritmos simétricos/asimétricos, firmas digitales, certificados X.509 y control de acceso. Guía completa sobre DES, AES, RSA, autenticación y autorización."
+title: "Criptografía simétrica y asimétrica, firma digital y X.509"
+description: "Conceptos básicos de seguridad: cifrado simétrico y asimétrico, firma digital, certificados X.509 y control de acceso con identificación y autenticación."
 date: 2016-03-18 12:10:00 +0800
-categories: [Java]
+categories: [Java, Programación de servicios y procesos]
 tags: [procesos-servicios, java, teoria, criptografia, seguridad, algoritmos, certificados, rsa, aes, autenticacion]
 pin: false
 math: false
@@ -14,6 +14,8 @@ mermaid: false
 redirect_from:
   - /2016/03/procesos-y-servicios-programacion_18.html
 ---
+
+*Parte de la serie «Programación segura» (II).*
 
 ## Proceso general de cifrado y descrifrado de mensajes.
 

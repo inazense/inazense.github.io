@@ -1,6 +1,6 @@
 ---
-title: Aprendiendo Python (I). Introducción e instalación
-description: "Guía completa para principiantes sobre Python 3: instalación paso a paso en Windows, Linux y Mac, configuración del intérprete, primer programa Hola Mundo y diferencias entre Python 2 y 3."
+title: "Aprender Python: introducción e instalación de Python 3"
+description: "Qué es Python, diferencias entre Python 2 y 3, cómo instalar Python 3 en Windows, Linux y Mac y qué editor usar para empezar a programar."
 author: Inazio Claver
 date: 2016-09-19 12:10:00 +0800
 categories: [Python]
@@ -15,6 +15,8 @@ mermaid: false
 redirect_from:
   - /2016/09/aprendiendo-python-3-i-introduccion-e.html
 ---
+
+*Parte de la serie «Aprendiendo Python» (I).*
 
 Antes de nada más que un **tutorial sobre Python** esto va a ser un diario de aprendizaje. Iremos conociendo este lenguaje de la mano, intentaré explicar todo que vaya aprendiendo y espero que os resulte productivo.
 

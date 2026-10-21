@@ -1,6 +1,6 @@
 ---
-title: Procesos y servicios. Prioridad de los hilos
-description: Explicación de la prioridad de hilos en Java con setPriority() y getPriority(), y cuatro ejercicios del problema productor-consumidor.
+title: "Prioridad de hilos en Java y problema productor-consumidor"
+description: "Cómo funciona la prioridad de los hilos en Java con setPriority y getPriority, y cuatro ejercicios del problema productor-consumidor, como un ping-pong."
 author: Inazio Claver
 date: 2015-12-14 12:00:00 +0800
 categories: [Java, Programación de servicios y procesos]

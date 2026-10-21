@@ -2,7 +2,7 @@
 title: "Sockets TCP en Java: ServerSocket y Socket con ejemplos"
 description: "Introducción a los sockets TCP en Java con ServerSocket y Socket: cómo crear un servidor y un cliente que se comunican con DataInputStream y DataOutputStream."
 date: 2016-01-20 13:00:00 +0800
-categories: [Java]
+categories: [Java, Programación de servicios y procesos]
 tags: [java, sockets, tcp, programacion-de-servicios-y-procesos, serversocket]
 pin: false
 math: false

@@ -3,7 +3,7 @@ title: ReactJS I. Instalar React en Windows
 description: "Guía completa para instalar React en Windows 10 paso a paso: descarga Node.js, configuración de npm, instalación de create-react-app y creación de tu primer proyecto ReactJS con ejemplos prácticos."
 author: Inazio Claver
 date: 2019-04-04 11:33:00 +0800
-categories: [JavaScript]
+categories: [Web]
 tags: [react, reactjs, javascript, windows, nodejs, npm, create-react-app, instalacion]
 pin: false
 math: false

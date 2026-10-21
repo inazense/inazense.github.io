@@ -2,7 +2,7 @@
 title: "Sockets UDP y multicast en Java, y servidor multicliente"
 description: "Sockets avanzados en Java: servidor TCP con varios clientes mediante hilos, comunicación UDP con DatagramSocket y DatagramPacket y sockets multicast."
 date: 2016-01-21 12:00:00 +0800
-categories: [Java]
+categories: [Java, Programación de servicios y procesos]
 tags: [java, sockets, udp, tcp, multicast, hilos, programacion-de-servicios-y-procesos]
 pin: false
 math: false

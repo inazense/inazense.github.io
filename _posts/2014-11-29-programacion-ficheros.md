@@ -1,6 +1,6 @@
 ---
-title: Programación. Ficheros
-description: Teoría sobre ficheros secuenciales y ficheros de texto en programación. Operadores elementales, comunicación con el sistema de ficheros y algoritmos de ejemplo en pseudocódigo.
+title: "Ficheros secuenciales y de texto: teoría y algoritmos"
+description: "Teoría de ficheros secuenciales y de texto: operaciones de lectura y escritura, relación con el sistema de ficheros y algoritmos en pseudocódigo."
 author: Inazio Claver
 date: 2014-11-29 22:31:00 +0800
 categories: [Programación]
@@ -14,6 +14,8 @@ mermaid: false
 #  alt: Responsive rendering of Chirpy theme on multiple devices.
 redirect_from:
   - /2014/11/programacion-ficheros.html
+  - /2014/11/programacion-ficheros-i.html
+  - /posts/2014/11/16/programacion-ficheros-i/
 ---
 
 ## Uso de ficheros

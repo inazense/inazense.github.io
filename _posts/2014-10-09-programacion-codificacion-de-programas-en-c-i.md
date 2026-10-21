@@ -1,6 +1,6 @@
 ---
-title: Programación. Codificación de Programas en C (I)
-description:
+title: "Tipos de datos, variables y conversión de tipos en C"
+description: "Primeros pasos en C: tipos de datos básicos y estructurados, cómo declarar variables y cómo convertir entre tipos, con ejemplos de código para empezar."
 date: 2014-10-09 16:10:00 +0800
 categories: [Programación]
 tags: [programacion, c, tipos-de-datos, variables, conversion-tipos]
@@ -14,6 +14,8 @@ mermaid: false
 redirect_from:
   - /2014/10/programacion-codificacion-de-programas.html
 ---
+
+*Parte de la serie «Codificación de programas en C» (I).*
 
 ## Advertencias
 

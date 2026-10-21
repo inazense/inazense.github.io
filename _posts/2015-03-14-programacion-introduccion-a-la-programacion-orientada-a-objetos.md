@@ -1,6 +1,6 @@
 ---
-title: Programación. Introducción a la programación orientada a objetos
-description: Deficiencias de la programación estructurada, los cuatro principios de la POO, diagramas UML y arquitectura en tres capas.
+title: "Introducción a la programación orientada a objetos (POO)"
+description: "Por qué nace la programación orientada a objetos, sus cuatro principios fundamentales, los diagramas de clases UML y la arquitectura en tres capas."
 author: Inazio Claver
 date: 2015-03-14 12:00:00 +0800
 categories: [Programación]

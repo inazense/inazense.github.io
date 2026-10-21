@@ -1,6 +1,6 @@
 ---
-title: Programación. Resolución de problemas (III)
-description:
+title: "Ejercicios con números reales en pseudocódigo"
+description: "Tres ejercicios resueltos en pseudocódigo con el tipo real: longitud de una circunferencia, ecuación de segundo grado y cálculo de la potencia xⁿ."
 date: 2014-10-14 20:25:00 +0800
 categories: [Programación]
 tags: [programacion, c, tipos-datos, reales, pseudocodigo, algoritmos]
@@ -14,6 +14,8 @@ mermaid: false
 redirect_from:
   - /2014/10/programacion-resolucion-de-problemas-iii.html
 ---
+
+*Parte de la serie «Resolución de problemas» (III).*
 
 ## Tipo real
 

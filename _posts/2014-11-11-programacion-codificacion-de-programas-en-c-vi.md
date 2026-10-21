@@ -1,6 +1,6 @@
 ---
-title: Programación. Codificación de programas en C (VI)
-description:
+title: "Variables locales y globales en C: ámbito y visibilidad"
+description: "Ámbito de las variables en C: diferencia entre variables locales y globales, por qué conviene evitar las globales y qué pasa cuando comparten nombre."
 date: 2014-11-11 23:25:00 +0800
 categories: [Programación]
 tags: [programacion, c, variables, visibilidad, variables globales, variables locales]
@@ -14,6 +14,8 @@ mermaid: false
 redirect_from:
   - /2014/11/programacion-codificacion-de-programas.html
 ---
+
+*Parte de la serie «Codificación de programas en C» (VI).*
 
 ## Visibilidad de variables
 

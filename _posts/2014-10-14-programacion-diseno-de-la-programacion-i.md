@@ -1,6 +1,6 @@
 ---
-title: Programación. Diseño de la programación (I)
-description:
+title: "Diseño descendente, subprogramas y funciones"
+description: "Diseño descendente y abstracción para dividir un problema en subproblemas: subprogramas, parámetros actuales y formales, y cómo declarar y llamar funciones."
 date: 2014-10-14 21:22:00 +0800
 categories: [Programación]
 tags: [programacion, c, subprogramas, funciones, procedimientos, parametros]
@@ -14,6 +14,8 @@ mermaid: false
 redirect_from:
   - /2014/10/programacion-diseno-de-la-programacion-i.html
 ---
+
+*Parte de la serie «Diseño de la programación» (I).*
 
 ## Diseño descendente
 

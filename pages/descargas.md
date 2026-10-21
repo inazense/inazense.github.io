@@ -40,7 +40,7 @@ description: "Descarga gratis manuales en PDF de DAM: Programación en Java (DAM
     <p class="dl-closing-text">Espero que estos materiales te resulten útiles y puedas aprovecharlos tanto como yo. Si los compartes, recuerda mencionar de dónde los descargaste. El conocimiento es libre, pero el reconocimiento siempre se agradece.</p>
     <div class="dl-closing-ctas">
       <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="dl-btn dl-btn--secondary">Volver arriba</a>
-      <a href="/blog/" class="dl-btn dl-btn--secondary">Explorar el blog</a>
+      <a href="/" class="dl-btn dl-btn--secondary">Explorar el blog</a>
     </div>
   </section>
 

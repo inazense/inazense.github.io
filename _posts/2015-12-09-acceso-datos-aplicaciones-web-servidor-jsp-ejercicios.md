@@ -3,7 +3,7 @@ title: Acceso a datos. Aplicaciones web servidor. JSP. Ejercicios
 description: 12 ejercicios prácticos de JSP que van desde mostrar información del servidor hasta sistemas CRUD completos con base de datos.
 author: Inazio Claver
 date: 2015-12-09 12:00:00 +0800
-categories: [Acceso a datos, Web]
+categories: [Web]
 tags: [java, jsp, web, mysql, jdbc, ejercicios]
 pin: false
 math: false

@@ -1,6 +1,6 @@
 ---
-title: Aprendiendo Python (V). Orientado a objetos
-description: Aprende programación orientada a objetos en Python desde cero. Tutorial completo sobre clases, objetos, métodos, atributos y self con ejemplos prácticos paso a paso para principiantes.
+title: "Programación orientada a objetos en Python: clases y self"
+description: "Introducción a la programación orientada a objetos en Python: cómo crear clases, instanciar objetos, definir atributos y métodos, y para qué sirve self."
 author: Inazio Claver
 date: 2016-11-01 12:10:00 +0800
 categories: [Python]
@@ -15,6 +15,8 @@ mermaid: false
 redirect_from:
   - /2016/11/aprendiendo-python-3-v-orientado-objetos.html
 ---
+
+*Parte de la serie «Aprendiendo Python» (V).*
 
 Una vez vista la sintaxis (de forma muy básica) de **Python** y haber realizado los primeros ejercicios, vamos a introducirnos en la forma de programar de **Python orientado a objetos**.
 Por si os interesa el tema y no queréis esperar, estoy siguiendo [este fantástico tutorial de Jesus Conde](https://www.youtube.com/playlist?list=PLEtcGQaT56cj70Vl_C1qfUinyMELunL-N).

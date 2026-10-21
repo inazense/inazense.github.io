@@ -1,6 +1,6 @@
 ---
-title: Programación. Resolución de problemas (V)
-description:
+title: "Invariante de bucle: cómo evitar errores en algoritmos"
+description: "Qué es el invariante de un bucle, cuándo debe cumplirse y cómo usarlo para comprobar que un algoritmo iterativo es correcto, con ejemplos en pseudocódigo."
 date: 2014-10-20 18:05:00 +0800
 categories: [Programación]
 tags: [programacion, algoritmos, invariante, bucle]
@@ -14,6 +14,8 @@ mermaid: false
 redirect_from:
   - /2014/10/programacion-resolucion-de-problemas-v.html
 ---
+
+*Parte de la serie «Resolución de problemas» (V).*
 
 ## Evitando errores. Invariante del bucle
 

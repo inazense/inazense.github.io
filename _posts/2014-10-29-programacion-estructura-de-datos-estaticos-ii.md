@@ -1,6 +1,6 @@
 ---
-title: Programación. Estructura de datos estáticos (II)
-description:
+title: "Ejercicios de matrices: suma, traspuesta y producto"
+description: "Ejercicios resueltos de matrices en pseudocódigo: procedimientos para sumar dos matrices, obtener la traspuesta de una matriz cuadrada y multiplicar matrices."
 date: 2014-10-29 22:39:00 +0800
 categories: [Programación]
 tags: [programacion, vectores, matrices, datos estaticos, pseudocodigo]
@@ -14,6 +14,8 @@ mermaid: false
 redirect_from:
   - /2014/10/programacion-estructura-de-datos.html
 ---
+
+*Parte de la serie «Estructura de datos estáticos» (II).*
 
 ## Ejercicios
 

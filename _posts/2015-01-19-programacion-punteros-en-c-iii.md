@@ -1,6 +1,6 @@
 ---
-title: Programación. Punteros en C (III)
-description: Pilas y colas como estructuras de datos dinámicas especiales. Operaciones, aplicaciones y notación postfija.
+title: "Pilas como estructura de datos y notación postfija"
+description: "Pilas y colas como casos particulares de una lista, las operaciones de una pila y sus aplicaciones, como evaluar expresiones en notación postfija."
 author: Inazio Claver
 date: 2015-01-19 18:09:00 +0800
 categories: [Programación]
@@ -15,6 +15,8 @@ mermaid: false
 redirect_from:
   - /2015/01/programacion-punteros-en-c-iii.html
 ---
+
+*Parte de la serie «Punteros en C» (III).*
 
 ## Particularizando en la EDD lista
 

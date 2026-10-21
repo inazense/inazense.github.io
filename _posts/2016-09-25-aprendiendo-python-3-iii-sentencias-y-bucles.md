@@ -1,6 +1,6 @@
 ---
-title: Aprendiendo Python (III). Sentencias y bucles
-description: Aprende sentencias condicionales if-elif-else y bucles while-for en Python 3. Tutorial completo con ejemplos prácticos sobre control de flujo, captura de datos, range() y estructuras de control fundamentales.
+title: "if, elif, else y bucles while y for en Python"
+description: "Control de flujo en Python 3: leer datos con input, condicionales if, elif y else, bucles while y for con range, y break y continue, con ejemplos."
 author: Inazio Claver
 date: 2016-09-25 12:10:00 +0800
 categories: [Python]
@@ -15,6 +15,8 @@ mermaid: false
 redirect_from:
   - /2016/09/aprendiendo-python-3-iii-sentencias-y.html
 ---
+
+*Parte de la serie «Aprendiendo Python» (III).*
 
 Prometo que esta será, de principio, la última entrada de pura teoría sobre **Python**. En este post quiero tratar las sentencias de condición y los bucles.
 

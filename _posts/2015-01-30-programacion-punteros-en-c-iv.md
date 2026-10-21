@@ -1,6 +1,6 @@
 ---
-title: Programación. Punteros en C (IV)
-description: Introducción a los árboles como EDD no lineal. Árboles binarios, operaciones habituales y recorridos inorden, preorden y postorden.
+title: "Árboles binarios en C: estructura, operaciones y recorridos"
+description: "Los árboles como estructura de datos no lineal: árboles binarios en C, operaciones habituales, recorridos inorden, preorden y postorden, y sus aplicaciones."
 author: Inazio Claver
 date: 2015-01-30 12:00:00 +0800
 categories: [Programación]
@@ -15,6 +15,8 @@ mermaid: false
 redirect_from:
   - /2015/01/programacion-punteros-en-c-iv.html
 ---
+
+*Parte de la serie «Punteros en C» (IV).*
 
 ## Introducción a los árboles
 

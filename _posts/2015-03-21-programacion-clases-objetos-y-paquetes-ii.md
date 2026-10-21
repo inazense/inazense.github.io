@@ -1,6 +1,6 @@
 ---
-title: Programación. Clases, objetos y paquetes (II)
-description: Ocultación y encapsulamiento, getters y setters, referencia this, sobrecarga, modificador static y paquetes en Java.
+title: "Encapsulamiento, this, static y paquetes en Java"
+description: "Encapsulamiento con getters y setters, la referencia this, sobrecarga de métodos, el modificador static y cómo organizar e importar clases en paquetes."
 author: Inazio Claver
 date: 2015-03-21 19:06:00 +0800
 categories: [Java, Programación]
@@ -11,6 +11,8 @@ mermaid: false
 redirect_from:
   - /2015/03/programacion-clases-objetos-y-paquetes.html
 ---
+
+*Parte de la serie «Clases, objetos y paquetes en Java» (II).*
 
 ## La ocultación y el encapsulamiento
 

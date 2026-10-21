@@ -1,6 +1,6 @@
 ---
-title: Programación. Punteros en C (II)
-description: Estructuras de datos dinámicas en C. Implementación de listas enlazadas con operaciones de inserción, borrado, búsqueda y cálculo de tamaño.
+title: "Listas enlazadas en C: insertar, borrar y buscar"
+description: "Cómo implementar una lista enlazada en C con punteros: insertar al principio, al final o en una posición, eliminar, buscar y contar elementos, con un ejemplo."
 author: Inazio Claver
 date: 2015-01-16 16:00:00 +0800
 categories: [Programación]
@@ -15,6 +15,8 @@ mermaid: false
 redirect_from:
   - /2015/01/programacion-punteros-en-c-ii.html
 ---
+
+*Parte de la serie «Punteros en C» (II).*
 
 ## Estructuras de datos (ED)
 

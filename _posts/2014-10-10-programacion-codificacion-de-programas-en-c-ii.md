@@ -1,6 +1,6 @@
 ---
-title: Programación. Codificación de Programas en C (II)
-description:
+title: "Operadores y estructuras de control en C"
+description: "Operadores aritméticos, lógicos y de bits en C, estructuras condicionales e iterativas, la función main y la entrada y salida básica, con ejemplos de código."
 date: 2014-10-10 14:10:00 +0800
 categories: [Programación]
 tags: [programacion, c, operadores, estructuras-control, funciones, entrada-salida]
@@ -14,6 +14,8 @@ mermaid: false
 redirect_from:
   - /2014/10/programacion-codificacion-de-programas_9.html
 ---
+
+*Parte de la serie «Codificación de programas en C» (II).*
 
 ## Operadores
 

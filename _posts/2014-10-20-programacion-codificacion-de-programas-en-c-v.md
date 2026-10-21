@@ -1,6 +1,6 @@
 ---
-title: Programación. Codificación de programas en C (V)
-description:
+title: "Tipos enumerados (enum) y la librería math.h en C"
+description: "Cómo definir tipos enumerados con enum en C para limitar los valores de una variable, con un ejemplo completo, y cómo compilar programas que usan math.h."
 date: 2014-10-20 18:23:00 +0800
 categories: [Programación]
 tags: [programacion, c, enum, tipos, math]
@@ -14,6 +14,8 @@ mermaid: false
 redirect_from:
   - /2014/10/programacion-codificacion-de-programas_20.html
 ---
+
+*Parte de la serie «Codificación de programas en C» (V).*
 
 ## Tipos escalares definidos por enumeración
 

@@ -1,6 +1,6 @@
 ---
-title: Programación. Estructura de datos estáticos (III)
-description:
+title: "Determinante, matriz adjunta e inversa de una matriz 3x3"
+description: "Cómo calcular el determinante de una matriz 3x3 con la regla de Sarrus, su matriz adjunta y su inversa, y cómo comprobar el resultado con la matriz identidad."
 date: 2014-11-16 00:00:00 +0800
 categories: [Programación]
 tags: [programacion, matrices, determinante, adjunta, inversa, sarrus]
@@ -14,6 +14,8 @@ mermaid: false
 redirect_from:
   - /2014/11/programacion-estructura-de-datos.html
 ---
+
+*Parte de la serie «Estructura de datos estáticos» (III).*
 
 ## Operaciones con matrices
 

@@ -3,7 +3,7 @@ title: Acceso a datos. Aplicaciones web servidor. JSP. Ejemplos (II)
 description: Ejemplos prácticos de JSP con includes, sesiones, cookies y acceso a base de datos con MySQL.
 author: Inazio Claver
 date: 2015-12-09 12:00:00 +0800
-categories: [Acceso a datos, Web]
+categories: [Web]
 tags: [java, jsp, web, sesiones, cookies, mysql, jdbc]
 pin: false
 math: false

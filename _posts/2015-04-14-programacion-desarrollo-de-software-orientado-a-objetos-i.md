@@ -1,6 +1,6 @@
 ---
-title: Programación. Desarrollo de software orientado a objetos (I)
-description: Arquitectura en capas, ingeniería del software orientada a objetos, la API de Java con Calendar, clases envoltorio de tipos primitivos y streams de entrada/salida.
+title: "Arquitectura en capas, fechas y clases envoltorio en Java"
+description: "Aplicaciones Java en capas (presentación, negocio y persistencia), un repaso a la API con fechas y Calendar, clases envoltorio y streams de entrada y salida."
 author: Inazio Claver
 date: 2015-04-14 12:00:00 +0800
 categories: [Java, Programación]
@@ -11,6 +11,8 @@ mermaid: false
 redirect_from:
   - /2015/04/programacion-desarrollo-de-software.html
 ---
+
+*Parte de la serie «Desarrollo de software orientado a objetos» (I).*
 
 ## Una arquitectura basada en capas
 

@@ -3,7 +3,7 @@ title: Instalación y configuración de Git en Windows
 description: Guía completa para instalar y configurar Git en Windows paso a paso. Aprende a descargar Git, configurar usuario, email, editor y herramientas de merge con comandos esenciales y capturas de pantalla.
 author: Inazio Claver
 date: 2016-08-21 12:10:00 +0800
-categories: [Git]
+categories: [Entornos de desarrollo]
 tags: [git, windows, instalacion, configuracion, control-versiones, git-config]
 pin: false
 math: false

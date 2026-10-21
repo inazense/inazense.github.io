@@ -1,6 +1,6 @@
 ---
-title: Estructuras de datos dinámicas en C (III)
-description:
+title: "Ejercicios de registros: operaciones con números complejos"
+description: "Ejercicios resueltos con registros en pseudocódigo: procedimientos para crear, sumar y multiplicar números complejos con una estructura tipoComplejo."
 date: 2014-11-04 19:02:00 +0800
 categories: [Programación]
 tags: [programacion, c, estructuras de datos, registros, numeros complejos]
@@ -14,6 +14,8 @@ mermaid: false
 redirect_from:
   - /2014/11/estructuras-de-datos-dinamicas-en-c-iii.html
 ---
+
+*Parte de la serie «Estructuras de datos en C» (III).*
 
 ## Ejercicios con números complejos
 

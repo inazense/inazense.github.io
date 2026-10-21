@@ -2,7 +2,7 @@
 title: "RMI en Java: invocación de métodos remotos paso a paso"
 description: "Qué es RMI (Remote Method Invocation) en Java y cómo implementarlo paso a paso: interfaz remota, servidor, registro del objeto y cliente."
 date: 2016-01-30 13:00:00 +0800
-categories: [Java]
+categories: [Java, Programación de servicios y procesos]
 tags: [java, rmi, remote-method-invocation, programacion-de-servicios-y-procesos, sockets]
 pin: false
 math: false

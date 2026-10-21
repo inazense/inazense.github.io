@@ -1,6 +1,6 @@
 ---
-title: Programación. Java. Clases, objetos y paquetes
-description: Definición de clases y métodos en Java, constructores, instanciación de objetos y el método main.
+title: "Clases y objetos en Java: constructores y método main"
+description: "Cómo definir una clase en Java con sus propiedades y métodos, escribir constructores, instanciar objetos y usar el método main, con ejemplos de código."
 author: Inazio Claver
 date: 2015-03-15 15:35:00 +0800
 categories: [Java, Programación]
@@ -11,6 +11,8 @@ mermaid: false
 redirect_from:
   - /2015/03/programacion-java-clases-objetos-y.html
 ---
+
+*Parte de la serie «Clases, objetos y paquetes en Java» (I).*
 
 ## Definición de una clase
 

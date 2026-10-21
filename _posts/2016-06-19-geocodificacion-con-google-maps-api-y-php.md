@@ -3,7 +3,7 @@ title: Geocodificación con Google Maps API y PHP
 description: Aprende a convertir direcciones en coordenadas con Google Maps API y PHP. Tutorial completo sobre geocodificación paso a paso con código, manejo de JSON y ejemplos prácticos para mapas web.
 author: Inazio Claver
 date: 2016-06-19 12:10:00 +0800
-categories: [PHP]
+categories: [Web]
 tags: [php, google-maps-api, geocodificacion, coordenadas, json, latitud-longitud]
 pin: false
 math: false

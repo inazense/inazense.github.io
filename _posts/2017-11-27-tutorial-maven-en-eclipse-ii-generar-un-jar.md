@@ -16,7 +16,7 @@ redirect_from:
   - /2017/11/tutorial-maven-en-eclipse-ii-generar-un.html
 ---
 
-En la anterior entrada del [**Tutorial Maven en Eclipse**](/posts/2017-07-28-tutorial-maven-en-eclipse.md) aprendimos qué es **Maven**, como **crear un proyecto Maven en Eclipse**, a configurarlo y a manejar las **dependencias de librerías**.
+En la anterior entrada del [**Tutorial Maven en Eclipse**]({% post_url 2017-07-28-tutorial-maven-en-eclipse %}) aprendimos qué es **Maven**, como **crear un proyecto Maven en Eclipse**, a configurarlo y a manejar las **dependencias de librerías**.
 
 ¿Cuál sería el siguiente paso lógico? Aprender como **generar los archivos JAR con Maven** y agregarle todas los recursos necesarias, para poder usar nuestro proyecto en cualquier máquina en que queramos ejecutarlo.
 

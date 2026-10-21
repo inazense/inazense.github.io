@@ -1,6 +1,6 @@
 ---
-title: Programación. Codificación de programas en C (IV)
-description:
+title: "Funciones en C: paso de parámetros por valor y referencia"
+description: "Cómo declarar funciones en C y pasar parámetros por valor y por referencia, más números aleatorios, sizeof, switch y bucles for, con un ejercicio práctico."
 date: 2014-10-17 21:34:00 +0800
 categories: [Programación]
 tags: [programacion, c, funciones, parametros, punteros, subprogramas]
@@ -14,6 +14,8 @@ mermaid: false
 redirect_from:
   - /2014/10/programacion-codificacion-de-programas_17.html
 ---
+
+*Parte de la serie «Codificación de programas en C» (IV).*
 
 ## Subprogramas en C
 

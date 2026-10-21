@@ -1,6 +1,6 @@
 ---
-title: Programación. Resolución de problemas (II)
-description: El tipo real en programación, representación binaria de decimales, coma fija, coma flotante (mantisa-exponente), operaciones y funciones de biblioteca para reales.
+title: "Números reales en programación: coma fija y coma flotante"
+description: "Cómo representa un ordenador los números reales: binario con decimales, coma fija, mantisa y exponente, coma flotante, operaciones y funciones de biblioteca."
 date: 2014-10-13 13:54:00 +0800
 categories: [Programación]
 tags: [programacion, c, tipos-datos, reales, binario, coma-flotante, mantisa]
@@ -14,6 +14,8 @@ mermaid: false
 redirect_from:
   - /2014/10/programacion-resolucion-de-problemas-ii.html
 ---
+
+*Parte de la serie «Resolución de problemas» (II).*
 
 ## Tipo real
 
