@@ -8,6 +8,8 @@ tags: [programacion, ada]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/02/programacion-introduccion-ada.html
 ---
 
 ## Características generales
@@ -71,7 +73,7 @@ Para compilar, escribe este comando:
 
 ADA tiene 69 palabras reservadas.
 
-![Palabras reservadas de ADA](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhY21W84l40Ca4KFWp3TDbLN1Bkt3n1M-QGP20EXOv7UDFbiG0iKjqpoPZa_YhObUYF8JjAwxbybTuVWuzSBa_dIeUgK2SWzWRpjOSJZ2S-v08COMgBDkO5pCVWRpYWVhtNHE_jGlkifIw/s1600/Sin+t%C3%ADtulo.png)
+![Palabras reservadas de ADA](/img/posts/20150213_3.png)
 
 ## Tipos escalables
 
@@ -118,7 +120,7 @@ a,b,c,d:boolean;
 ((not a) and b) or (c xor d);
 ```
 
-![Tabla de operadores booleanos en ADA](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhGAqeL4VkZ9XgBdlZI9rodDbHniWh41EXHAtUuwFNWkJPDBSg6Selozdq55dzMTqI1inrB9elqEgyWxISFf5TvIYJ43X0AerEq0Dvefz6JkWlv0R_GT7z9_L89G4QqGcArGsjMxcD8EIQ/s1600/aa.png)
+![Tabla de operadores booleanos en ADA](/img/posts/20150213_4.png)
 
 ## Tipos enteros
 

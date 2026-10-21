@@ -12,6 +12,8 @@ mermaid: false
 #  path: /commons/devices-mockup.png
 #  lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA
 #  alt: Responsive rendering of Chirpy theme on multiple devices.
+redirect_from:
+  - /2016/07/java-y-mysql-patron-singleton.html
 ---
 
 ¿Necesitas una conexión en tu aplicación Java? ¿Harto de abrir varias instancias cada vez que quieres conectarte a **MySQL**? ¿Estás leyendo esto con voz de anuncio?

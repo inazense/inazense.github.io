@@ -8,6 +8,8 @@ tags: [java, concurrencia, exclusion-mutua, dekker, peterson, hilos, sincronizac
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/12/procesos-y-servicios-procesos.html
 ---
 
 ## Requisitos para la exclusión mutua

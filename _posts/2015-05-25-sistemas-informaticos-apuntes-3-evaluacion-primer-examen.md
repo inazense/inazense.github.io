@@ -8,6 +8,8 @@ tags: [sistemas-informaticos, redes, tcp-ip, seguridad, vpn, iptables]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/05/sistemas-apuntes-3-evaluacion-primer.html
 ---
 
 Son apuntes cogidos de diversas web (Wikipedia principalmente). Cualquier modificación, agregación... se agradecería un comentario para complementarlos.

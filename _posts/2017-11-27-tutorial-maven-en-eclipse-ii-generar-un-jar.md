@@ -12,6 +12,8 @@ mermaid: false
 #  path: /commons/devices-mockup.png
 #  lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA
 #  alt: Responsive rendering of Chirpy theme on multiple devices.
+redirect_from:
+  - /2017/11/tutorial-maven-en-eclipse-ii-generar-un.html
 ---
 
 En la anterior entrada del [**Tutorial Maven en Eclipse**](/posts/2017-07-28-tutorial-maven-en-eclipse.md) aprendimos qué es **Maven**, como **crear un proyecto Maven en Eclipse**, a configurarlo y a manejar las **dependencias de librerías**.

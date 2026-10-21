@@ -7,6 +7,8 @@ tags: [java, sockets, tcp, serializacion, objectinputstream, programacion-de-ser
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2016/01/procesos-y-servicios-programacion-de_30.html
 ---
 
 ## Envío de objetos por sockets TCP

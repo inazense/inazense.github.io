@@ -8,6 +8,8 @@ tags: [java, acceso-a-datos, xml, dom, jaxp, documentbuilder]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/10/acceso-datos-ficheros-xml.html
 ---
 
 ## DOM

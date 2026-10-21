@@ -8,6 +8,8 @@ tags: [oracle, sql, plsql, bases-de-datos, objetos, herencia, varray, ref]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2016/02/acceso-datos-oracle-database-ejercicios.html
 ---
 
 A continuación se presentan 21 ejercicios progresivos sobre Oracle Database que cubren tipos de objetos, herencia de tipos, referencias entre objetos y colecciones VARRAY.

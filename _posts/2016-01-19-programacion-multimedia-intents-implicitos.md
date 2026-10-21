@@ -7,6 +7,8 @@ tags: [android, intents, programacion-multimedia, java, action-view, action-call
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2016/01/programacion-multimedia-intents.html
 ---
 
 En esta entrada se explica cómo usar **intents implícitos** en Android para acceder a funcionalidades del sistema operativo desde una aplicación propia.

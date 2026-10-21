@@ -8,6 +8,8 @@ tags: [android, android-studio, aplicacion, conversor, edittext, button, program
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/10/programacion-multimedia-primera.html
 ---
 
 Primera aplicación Android completa: un conversor de divisas entre euros y dólares. La tasa de cambio usada es 1 euro = 1,13 dólares.

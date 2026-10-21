@@ -8,6 +8,8 @@ tags: [bases-de-datos, sql, mysql, procedimientos, triggers, transacciones, sql-
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/05/bases-de-datos-sql-programado-xvii.html
 ---
 
 Voy a compartir la parte práctica del examen del tercer trimestre de bases de datos. Para la prueba hemos usado el script `mayo15.sql`, que puedes descargarlo pulsando [aquí](https://drive.google.com/open?id=0Bz9hbleXTdM-dUYxUzljSWdhdk0&authuser=0).

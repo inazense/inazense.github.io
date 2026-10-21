@@ -8,6 +8,8 @@ tags: [bases-de-datos, sql, mysql, procedimientos, funciones, triggers, transacc
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/05/bases-de-datos-sql-programado-xvi.html
 ---
 
 Para practicar previa realización del examen, vamos a realizar el del tercer trimestre del año pasado. Para ello hay que cargar el `.sql eval3`, que puedes descargar desde [aquí](https://drive.google.com/file/d/0Bz9hbleXTdM-eVZlR2NtUXZ5NGc/view?usp=sharing).

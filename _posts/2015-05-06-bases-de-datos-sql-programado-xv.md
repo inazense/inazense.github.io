@@ -8,6 +8,8 @@ tags: [bases-de-datos, sql, mysql, procedimientos, cursores, transacciones]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/05/bases-de-datos-sql-programado-xv.html
 ---
 
 Ejercicios correspondientes a la hoja número siete. Se han realizado sobre el script `primerospasos.sql`, que puedes descargar haciendo clic [aquí](https://drive.google.com/open?id=0Bz9hbleXTdM-UTFOOWVBTEE1b2M&authuser=0).

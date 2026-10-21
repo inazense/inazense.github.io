@@ -8,6 +8,8 @@ tags: [oracle, sql, plsql, bases-de-datos, objetos, herencia]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2016/02/acceso-datos-oracle-database-sintaxis-y.html
 ---
 
 La sintaxis de Oracle está basada en lenguaje SQL, con la puntualización de que permite declarar objetos y almacenarlos como tal, arrays de objetos, etc.

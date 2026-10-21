@@ -8,6 +8,8 @@ tags: [android, android-studio, textfield, edittext, teclado, programacion-multi
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/10/programacion-multimedia-vistas-de.html
 ---
 
 Para este ejercicio se parte del proyecto creado anteriormente, eliminando todos los componentes del layout excepto el `LinearLayout` base.

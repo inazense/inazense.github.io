@@ -8,6 +8,8 @@ tags: [java, programacion, clases, encapsulamiento, paquetes, static]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/03/programacion-clases-objetos-y-paquetes.html
 ---
 
 ## La ocultación y el encapsulamiento

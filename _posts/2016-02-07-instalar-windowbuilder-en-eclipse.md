@@ -8,6 +8,8 @@ tags: [java, eclipse, windowbuilder, swing, gui]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2016/02/instalar-windowbuilder-en-eclipse.html
 ---
 
 WindowBuilder es uno de los plugins preferidos para desarrollar interfaces gráficas Java en Eclipse. Su interfaz es muy intuitiva y nos permite configurar múltiples líneas de código simplemente con clics. Eso sí, hay que tener en cuenta que a veces, según los cambios que realices en el código a mano, al abrir otra vez la perspectiva WindowBuilder ésta puede quedarse atascada.

@@ -8,6 +8,8 @@ tags: [php, netbeans, mysql, mysqli]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/02/entornos-de-desarrollo-php-con-netbeans.html
 ---
 
 Vamos a crear nuestra primera página en PHP con NetBeans. Lo primero, si no lo tenemos instalado, será instalar el pluggin de PHP.

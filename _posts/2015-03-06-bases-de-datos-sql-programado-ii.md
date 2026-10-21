@@ -8,6 +8,8 @@ tags: [bases-de-datos, sql, mysql, procedimientos]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/03/bases-de-datos-sql-programado-ii.html
 ---
 
 Continuamos con el SQL programado. En esta entrada vemos la estructura completa de un procedimiento almacenado y cómo usar `SELECT INTO` para obtener datos dentro de un procedimiento.

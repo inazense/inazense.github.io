@@ -7,6 +7,8 @@ tags: [c, linux, fifo, pipes, ipc, programacion-de-servicios-y-procesos]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/10/servicios-y-procesos-servicios-en-c-iii.html
 ---
 
 ## ¿Qué son los FIFOs?

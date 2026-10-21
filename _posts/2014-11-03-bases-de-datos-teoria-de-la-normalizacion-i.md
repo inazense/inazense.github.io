@@ -11,6 +11,8 @@ mermaid: false
 #  path: /commons/devices-mockup.png
 #  lqip: data:image/webp;base64,...
 #  alt: Image alt text.
+redirect_from:
+  - /2014/11/bases-de-datos-teoria-de-la.html
 ---
 
 La teoría de la normalización sirve para verificar si las tablas están correctamente diseñadas para soportar la información.

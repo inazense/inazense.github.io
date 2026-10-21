@@ -8,6 +8,8 @@ tags: [android, android-studio, estilos, styles, herencia, programacion-multimed
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/10/programacion-multimedia-estilos.html
 ---
 
 Los estilos en Android permiten definir un conjunto de propiedades visuales (color, tamaño, padding...) y aplicarlas a múltiples elementos de la interfaz de forma consistente, de manera análoga a las hojas de estilo CSS en web.

@@ -8,6 +8,8 @@ tags: [java, acceso-a-datos, file, randomaccessfile, ficheros, ejercicios]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/10/acceso-datos-ejercicios-i-clases-file-y.html
 ---
 
 ## Ejercicio 1: Listar archivos y directorios

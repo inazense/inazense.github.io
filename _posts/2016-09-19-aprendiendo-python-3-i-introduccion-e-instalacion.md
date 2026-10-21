@@ -12,6 +12,8 @@ mermaid: false
 #  path: /commons/devices-mockup.png
 #  lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA
 #  alt: Responsive rendering of Chirpy theme on multiple devices.
+redirect_from:
+  - /2016/09/aprendiendo-python-3-i-introduccion-e.html
 ---
 
 Antes de nada más que un **tutorial sobre Python** esto va a ser un diario de aprendizaje. Iremos conociendo este lenguaje de la mano, intentaré explicar todo que vaya aprendiendo y espero que os resulte productivo.

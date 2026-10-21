@@ -8,6 +8,8 @@ tags: [sql, bases de datos, usuarios, privilegios, mysql]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/02/bases-de-datos-sql-viii.html
 ---
 
 Sentencias SQL para la gestión de usuarios y privilegios:

@@ -8,6 +8,8 @@ tags: [java, programacion, eclipse, tipos-de-datos, operadores, estructuras-de-c
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/03/programacion-presentacion-del-lenguaje_14.html
 ---
 
 ## Comentarios

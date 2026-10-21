@@ -8,6 +8,8 @@ tags: [eclipse, netbeans, ssh]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/02/entornos-de-desarrollo-conexiones.html
 ---
 
 Vamos a escribir código que nos conecte remotamente a la carpeta de nuestro servidor.

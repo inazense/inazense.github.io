@@ -7,6 +7,8 @@ tags: [android, menus, menu-contextual, programacion-multimedia, actionbar]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/11/programacion-multimedia-menus.html
 ---
 
 Desde la versión 3 de Android, los menús han sido relegados a un segundo plano en sustitución de la **ActionBar**. No obstante, siguen siendo una opción válida en muchas aplicaciones.

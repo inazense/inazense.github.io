@@ -8,6 +8,8 @@ tags: [java, programación, excepciones, try-catch, finally, errores]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/04/programacion-control-de-errores-las.html
 ---
 
 ## Concepto

@@ -7,6 +7,8 @@ tags: [java, hilos, threads, programacion-de-servicios-y-procesos, concurrencia,
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/11/procesos-y-servicios-programacion.html
 ---
 
 ## Estados de un hilo

@@ -7,6 +7,9 @@ tags: [java, ficheros, streams, io, acceso-a-datos, fileInputStream, bufferedrea
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/10/acceso-datos-ejercicios-i-manejo-de.html
+  - /2015/10/acceso-datos-manejo-de-ficheros.html
 ---
 
 ## Entrada / salida estándar

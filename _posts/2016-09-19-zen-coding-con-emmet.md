@@ -12,6 +12,8 @@ mermaid: false
 #  path: /commons/devices-mockup.png
 #  lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA
 #  alt: Responsive rendering of Chirpy theme on multiple devices.
+redirect_from:
+  - /2016/09/zen-coding-con-emmet.html
 ---
 
 Cada vez que desarrollo una página web lo que más pesado se me hace es escribir siempre la estructura básica de la misma, y tener que abrir y cerrar etiquetas constantemente. Puede parecer una tontería, pero siento como que se pierde un montón de tiempo en algo tan banal como crear dos listas anidadas en **HTML**, definir la estructura de un **HTML5**, etc.

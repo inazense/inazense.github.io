@@ -8,6 +8,8 @@ tags: [java, acceso-a-datos, jdbc, mysql, sql, base-de-datos, connection, result
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/10/acceso-datos-jdbc-introduccion.html
 ---
 
 **JDBC** (_Java DataBase Connectivity_) es la interfaz orientada a objetos de Java para SQL. Permite a las aplicaciones enviar sentencias SQL a sistemas gestores de bases de datos (SGBD). La API no mejora ni limita las capacidades de SQL: el desarrollador sigue escribiendo las consultas SQL directamente.

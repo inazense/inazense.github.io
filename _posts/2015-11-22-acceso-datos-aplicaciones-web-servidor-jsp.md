@@ -7,6 +7,8 @@ tags: [java, jsp, acceso-a-datos, javabeans, web, servlet]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/11/acceso-datos-aplicaciones-web-servidor.html
 ---
 
 ## ¿Qué es una JSP?

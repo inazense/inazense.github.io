@@ -8,6 +8,8 @@ tags: [android, java, programacion-multimedia, intent, bundle, webview, activity
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/10/en-este-apartado-trataremos-como.html
 ---
 
 Este apartado trata cómo comunicar dos activities dentro del mismo proyecto Android. Para generar una nueva actividad se hace click derecho en la sección Project → New → Activity.

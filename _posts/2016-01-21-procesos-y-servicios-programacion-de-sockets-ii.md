@@ -7,6 +7,8 @@ tags: [java, sockets, udp, tcp, multicast, hilos, programacion-de-servicios-y-pr
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2016/01/procesos-y-servicios-programacion-de_21.html
 ---
 
 ## Múltiples clientes con hilos

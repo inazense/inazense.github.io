@@ -8,6 +8,8 @@ tags: [java, programacion, poo, herencia, polimorfismo, interfaces, abstract]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/03/programacion-interaccion-entre-clases-ii.html
 ---
 
 ## La sobreescritura de métodos

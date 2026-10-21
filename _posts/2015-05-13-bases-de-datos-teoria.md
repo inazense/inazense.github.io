@@ -8,6 +8,8 @@ tags: [bases-de-datos, teoría, ficheros, sgbd, arquitectura]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/05/bases-de-datos-teoria.html
 ---
 
 Ignorantón de mí, pensaba que en bases de datos haríamos, ya en el tercer trimestre, sólo práctica. ¡Pues no! también hay que estudiar teoría para el examen.

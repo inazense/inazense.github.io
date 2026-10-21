@@ -8,6 +8,8 @@ tags: [java, acceso-a-datos, jdbc, mysql, statement, preparedstatement, callable
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/10/acceso-datos-jdbc-iii-conexiones-y.html
 ---
 
 ## Formas de crear una conexión

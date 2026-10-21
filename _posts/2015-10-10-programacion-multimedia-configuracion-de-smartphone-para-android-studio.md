@@ -8,6 +8,8 @@ tags: [android, android-studio, smartphone, depuracion-usb, programacion-multime
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/10/programacion-multimedia-configuracion.html
 ---
 
 Para ejecutar nuestras aplicaciones Android en un dispositivo físico en lugar del emulador, necesitamos configurar el smartphone correctamente. A continuación se explica el proceso usando un Samsung Galaxy Trend Plus con Android 4.2.2.

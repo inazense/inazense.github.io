@@ -8,6 +8,8 @@ tags: [bases-de-datos, sql, mysql, transacciones, acid, commit, rollback]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/04/bases-de-datos-sql-programado-xii.html
 ---
 
 La idea de transacción es un conjunto de operaciones SQL que, o se realizan todas, o no se realiza ninguna.

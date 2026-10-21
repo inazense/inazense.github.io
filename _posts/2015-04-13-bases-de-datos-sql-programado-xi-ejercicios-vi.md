@@ -8,6 +8,8 @@ tags: [bases-de-datos, sql, mysql, triggers, ejercicios]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/04/bases-de-datos-sql-programado-xi_13.html
 ---
 
 Hoja de ejercicios seis del tema 6/7.

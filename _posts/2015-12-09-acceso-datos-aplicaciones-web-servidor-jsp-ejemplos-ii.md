@@ -8,6 +8,8 @@ tags: [java, jsp, web, sesiones, cookies, mysql, jdbc]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/12/acceso-datos-aplicaciones-web-servudor.html
 ---
 
 Continuación de los ejemplos prácticos de JSP, cubriendo includes, manejo de sesiones, cookies y acceso a base de datos.

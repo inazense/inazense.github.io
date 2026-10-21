@@ -8,6 +8,8 @@ tags: [android, botones, drawable, selector, onclick, programacion-multimedia]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/10/programacion-multimedia-botones.html
 ---
 
 Vamos a ver cómo se pueden personalizar los botones de nuestra aplicación, pero no modificando bordes del botón, tamaño y demás, estoy hablando de crear botones a partir de imágenes que consigan sensación de movimiento al realizar determinada acción. Veamos cómo.

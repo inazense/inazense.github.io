@@ -8,6 +8,8 @@ tags: [entornos-de-desarrollo, svn, subversion, ubuntu, control-de-versiones]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/05/entornos-de-desarrollo-svn-en-ubuntu.html
 ---
 
 Vamos a empezar a trabajar en Ubuntu con las SVN. Para ello necesitamos el paquete subversion:

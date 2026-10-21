@@ -8,6 +8,8 @@ tags: [c, procesos, servicios-y-procesos, linux]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/09/servicios-y-procesos-procesos-y-c-i.html
 ---
 
 ## ¿Qué es un proceso?

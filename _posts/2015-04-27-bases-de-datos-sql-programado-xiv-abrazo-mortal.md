@@ -8,6 +8,8 @@ tags: [bases-de-datos, sql, mysql, deadlock, transacciones, cursor]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/04/bases-de-datos-programacion-sql-xiv.html
 ---
 
 Lo primero de todo, dejar claro que con DeadLock no me refiero a ellos:

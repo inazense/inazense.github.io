@@ -8,6 +8,8 @@ tags: [sql, bases de datos, consultas, vistas, subconsultas]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/02/bases-de-datos-consultas-sql-vii.html
 ---
 
 Hoja de ejercicios 10 de la unidad 3

@@ -8,6 +8,8 @@ tags: [sql, bases de datos, consultas, multitabla]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/02/bases-de-datos-consultas-sql-vi.html
 ---
 
 Hoja de ejercicios 9 de la unidad 3

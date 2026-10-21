@@ -8,6 +8,8 @@ tags: [java, hibernate, mysql, swing, crud, hql]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2016/02/acceso-datos-hibernate-ejercicios.html
 ---
 
 En esta entrada vamos a trabajar con dos ejercicios de Hibernate sobre una base de datos MySQL con las tablas `DEPARTAMENTOS` y `EMPLEADOS`.

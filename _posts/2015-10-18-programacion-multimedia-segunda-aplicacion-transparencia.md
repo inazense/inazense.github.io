@@ -8,6 +8,8 @@ tags: [android, android-studio, imageview, transparencia, alpha, color, programa
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/10/programacion-multimedia-segunda.html
 ---
 
 Segunda aplicación Android: modifica la transparencia de una imagen a partir de un porcentaje (0-100) introducido por el usuario, convirtiéndolo a la escala de transparencia de Android (0-255). Incluye además un botón para cambiar el color de fondo aleatoriamente.

@@ -8,6 +8,8 @@ tags: [java, acceso-a-datos, jdbc, mysql, resultset, sql]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/10/acceso-datos-jdbc-v-uso-del-resultset.html
 ---
 
 El objeto `ResultSet` representa los resultados de una consulta y no carga toda la información en memoria a la vez. Permite además actualizar, eliminar e insertar filas.

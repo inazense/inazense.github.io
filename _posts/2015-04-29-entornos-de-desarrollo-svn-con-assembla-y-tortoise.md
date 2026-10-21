@@ -8,6 +8,8 @@ tags: [entornos-de-desarrollo, svn, control-de-versiones, assembla, tortoisesvn]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/04/entornos-de-desarrollo-svn.html
 ---
 
 SVN es el control de versiones. Nos permite compaginar diferentes programadores, ramas de desarrollo y versiones finales.

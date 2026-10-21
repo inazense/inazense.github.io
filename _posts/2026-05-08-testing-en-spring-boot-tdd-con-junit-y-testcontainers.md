@@ -11,8 +11,6 @@ math: false
 mermaid: false
 ---
 
-# Testing en Spring Boot. TDD con JUnit 5 y Testcontainers
-
 ![Testing en Spring boot. Tdd con Junit y Testcontainers](/img/posts/20260508_1.png)
 
 Cuando uno empieza a programar con Spring Boot, es bastante fácil centrarse solo en que el código funcione. Haces el controlador, el servicio, el repositorio y tiras millas. El problema viene después, cuando algo cambia, cuando corriges un detalle y se rompe otra cosa, o cuando vuelves al proyecto semanas más tarde y ya no recuerdas qué hacía exactamente cada parte.

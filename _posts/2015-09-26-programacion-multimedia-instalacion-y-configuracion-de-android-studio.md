@@ -8,6 +8,8 @@ tags: [android, android-studio, programacion-multimedia, emulador]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/09/programacion-multimedia-instalacion-y.html
 ---
 
 En el módulo de programación multimedia y dispositivos móviles aprenderemos a programar aplicaciones para dispositivos móviles y videojuegos. Utilizaremos **Android Studio**, la herramienta oficial y gratuita de Google para el desarrollo de aplicaciones Android, que ha ido ganando estabilidad y ha reemplazado al antiguo método basado en plugins de Eclipse.

@@ -8,6 +8,8 @@ tags: [bases-de-datos, sql, mysql]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/02/bases-de-datos-sql-programado-i.html
 ---
 
 En MySQL hay ciertas operaciones SQL que requieren un enfoque de lenguaje de programación. Existen tres tipos de programas:

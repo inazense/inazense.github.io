@@ -8,6 +8,8 @@ tags: [programacion, ada, c, java, manual]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/06/programacion-manual-completo-del-modulo.html
 ---
 
 Por fin puedo decirlo. Ha sido un año trabajando duro, pero he conseguido aprobar el módulo (bueno, el curso completo, que coño) de programación, y lo que es aún más importante, aprender y no poco.

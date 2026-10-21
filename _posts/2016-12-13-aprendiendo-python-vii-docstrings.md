@@ -12,6 +12,8 @@ mermaid: false
 #  path: /commons/devices-mockup.png
 #  lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA
 #  alt: Responsive rendering of Chirpy theme on multiple devices.
+redirect_from:
+  - /2016/12/aprendiendo-python-vii-orientado.html
 ---
 
 **Python** es un lenguaje que se considera autodocumentado por su sencillez a la hora de ser leído. Ahora bien, cuando trabajamos en un proyecto que va creciendo en dificultad, los comentarios son dios y nosotros sus fieles y acérrimos seguidores. Nunca se pasa tan mal como cuando heredas un proyecto sin una línea de comentarios, ni un punto y coma de documentación.

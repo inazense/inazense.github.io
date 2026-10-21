@@ -8,6 +8,8 @@ tags: [java, hilos, threads, runnable, concurrencia, procesos-y-servicios]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/10/procesos-y-servicios-hilos.html
 ---
 
 Un **hilo** (_thread_) es una secuencia de código en ejecución dentro del contexto de un proceso.

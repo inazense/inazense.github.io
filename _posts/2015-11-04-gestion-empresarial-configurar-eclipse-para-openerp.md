@@ -7,6 +7,8 @@ tags: [openerp, eclipse, pydev, python, xml, gestion-empresarial]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/11/gestion-empresarial-configurar-eclipse.html
 ---
 
 En esta entrada se explica cómo configurar **Eclipse Mars EE** para desarrollar módulos de **OpenERP** usando Python y XML.

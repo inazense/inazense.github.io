@@ -7,6 +7,8 @@ tags: [java, sockets, tcp, programacion-de-servicios-y-procesos, serversocket]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2016/01/procesos-y-servicios-programacion-de.html
 ---
 
 ## ¿Qué son los sockets?

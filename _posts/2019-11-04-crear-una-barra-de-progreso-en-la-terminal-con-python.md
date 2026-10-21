@@ -13,6 +13,8 @@ mermaid: false
 #  path: /commons/devices-mockup.png
 #  lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA
 #  alt: Responsive rendering of Chirpy theme on multiple devices.
+redirect_from:
+  - /2019/11/crear-barra-de-progreso-terminal-python-tqdm.html
 ---
 
 Cuando trabajamos con **Python** pintando resultados en la **terminal**, puede quedar un poco feo dejar el cursor esperando mientras procesamos ciertas acciones que van a tardar un tiempo en completarse. Esto es así aquí y en la China. El cursor parpadeando pone nervioso a todo el mundo.

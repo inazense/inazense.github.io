@@ -8,6 +8,8 @@ tags: [java, acceso-a-datos, jdbc, mysql, dao, patron-diseno, base-de-datos]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/10/acceso-datos-jdbc-diseno-de-una.html
 ---
 
 ## Patrón DAO (Data Access Object)

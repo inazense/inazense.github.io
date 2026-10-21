@@ -8,6 +8,8 @@ tags: [android, android-studio, orientacion, layout, landscape, portrait, progra
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/10/programacion-mutimedia-recursos.html
 ---
 
 Cuando se gira el dispositivo, Android recarga la actividad y busca el layout más adecuado según la orientación actual. Si solo existe un layout (el de portrait), la interfaz puede quedar mal distribuida en horizontal.

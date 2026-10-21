@@ -8,6 +8,8 @@ tags: [entornos-de-desarrollo, netbeans, php]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/03/entornos-de-desarrollo-netbeans.html
 ---
 
 Esta práctica tenía como objetivo crear una web PHP en un servidor remoto utilizando NetBeans. Surgieron algunas complicaciones técnicas durante su realización.

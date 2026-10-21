@@ -8,6 +8,8 @@ tags: [java, rmi, procesos, servicios, distribuido, hipoteca, ejercicio]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2016/03/procesos-y-servicios-rmi-iii-el.html
 ---
 
 Ejercicio práctico de RMI: un programa distribuido cliente-servidor que calcula la cuota mensual de una hipoteca de forma remota.

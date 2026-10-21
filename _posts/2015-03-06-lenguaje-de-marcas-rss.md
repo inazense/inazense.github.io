@@ -8,6 +8,8 @@ tags: [lenguaje-de-marcas, rss, xml]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/03/lenguaje-de-marcas-rss.html
 ---
 
 RSS son las siglas de **Really Simple Syndication**. Es un formato basado en XML que permite distribuir el contenido web actualizado de una página a miles de páginas web diferentes en todo el mundo, facilitando la navegación rápida por noticias y novedades.

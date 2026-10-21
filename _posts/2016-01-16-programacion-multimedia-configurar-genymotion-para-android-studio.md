@@ -7,6 +7,8 @@ tags: [android, genymotion, android-studio, emulador, programacion-multimedia]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2016/01/programacion-multimedia-configurar.html
 ---
 
 El emulador de smartphones de Android Studio va bastante lento. Una alternativa mucho más rápida es **GenyMotion**, una máquina virtual basada en VirtualBox que ofrece dispositivos Android preconfigurados con un rendimiento notablemente superior.

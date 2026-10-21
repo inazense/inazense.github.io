@@ -8,6 +8,8 @@ tags: [bases-de-datos, sql, mysql, procedimientos, ejercicios]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/03/practica-1-de-la-hoja-56-1.html
 ---
 
 Ejercicios de procedimientos almacenados en MySQL.

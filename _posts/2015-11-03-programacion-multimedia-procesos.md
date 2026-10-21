@@ -7,6 +7,8 @@ tags: [android, procesos, ciclo-de-vida, activity, programacion-multimedia]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/11/programacion-multimedia-procesos.html
 ---
 
 ## Gestión de procesos en Android

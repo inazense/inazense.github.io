@@ -10,8 +10,6 @@ math: false
 mermaid: false
 ---
 
-# Desplegar una web con Oracle Cloud paso a paso
-
 Durante los últimos meses hemos estado programando un buscador centralizado de gasolineras en España, pudiendo filtrar por distancia, precios de combustibles, nombres de gasolinera, ubicación, ciudad, código postal.
 
 Aprovecho para presentaros __[AhorroGasolina.com](http://ahorrogasolina.com)__
@@ -24,9 +22,9 @@ Y claro, una vez programado, testeado, recontracomprobado todo, comprado incluso
 
 Así que para rematar toda la odisea que ha sido programar una web como __[AhorroGasolina.com](http://ahorrogasolina.com)__, os dejo un tutorial sobre __como desplegar una web en Oracle Cloud paso a paso__.
 
-# Crear el entorno en Oracle Cloud
+## Crear el entorno en Oracle Cloud
 
-## Requisitos previos
+### Requisitos previos
 
 Para esta tarea, voy a partir de dos supuestos. El primero, que vuestra aplicación web está dockerizada para poder implementar __Coolify__, tanto el backend como el frontend.
 
@@ -34,7 +32,7 @@ El segundo supuesto, y aún más importante si cabe, que os habéis creado ya un
 
 A partir de ahora, ya podremos trabajar para levantar tranquilamente una máquina virtual en nuestra instancia de Oracle.
 
-## Crear VCN (Virtual Cloud Network)
+### Crear VCN (Virtual Cloud Network)
 
 Lo primero de todo, antes de crear cualquier instancia, va a ser comprobar que tenemos una VCN que sea capaz de suministrarnos posteriormente una IP pública a la que enlazaremos nuestro dominio web.
 
@@ -56,7 +54,7 @@ Pasaremos a una zona de `Review and Create` donde debemos comprobar que se ha ge
 
 ![Oracle Cloud Always Free paso a paso](/img/posts/20260629_6.png)
 
-## Creación de instancia de máquina virtual
+### Creación de instancia de máquina virtual
 
 Para el segundo paso, que será crear una __máquina virtual__ donde alojar nuestra aplicación dockerizada.
 
@@ -114,7 +112,7 @@ Vamos con la sección de **Storage** ahora. A no ser que tu proyecto necesite m�
 
 Una vez finalizado todo, pasaremos a ver una pantalla de resumen y podremos pulsar `Create`para generar nuestra **instancia** de **máquina virtual**.
 
-### Problemas a tener en cuenta
+#### Problemas a tener en cuenta
 
 Es muy posible que, al terminar la configuración de la máquina virtual y tratar de crearla te de este error:
 

@@ -8,6 +8,8 @@ tags: [android, android-studio, spinner, listview, arrayadapter, listadapter, pr
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/10/programacion-multimedia-controles-de.html
 ---
 
 Android proporciona varios controles para que el usuario seleccione una opción de una lista:

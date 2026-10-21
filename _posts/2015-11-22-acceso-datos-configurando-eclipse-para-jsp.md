@@ -7,6 +7,8 @@ tags: [java, jsp, eclipse, tomcat, acceso-a-datos, web, servlet]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/11/acceso-datos-configurando-eclipse-para.html
 ---
 
 Para desarrollar aplicaciones JSP en Eclipse es necesario configurar el servidor **Apache Tomcat** e instalar las herramientas de desarrollo web.

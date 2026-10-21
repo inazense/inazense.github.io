@@ -8,6 +8,8 @@ tags: [android, android-studio, internacionalizacion, i18n, strings, recursos, p
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/10/programacion-multimedia-recursos.html
 ---
 
 Android utiliza sufijos de directorio para gestionar recursos alternativos según la orientación del dispositivo, el idioma, la región, la densidad de píxeles y otros parámetros. En esta entrada vemos cómo aplicarlo a la internacionalización de cadenas de texto.

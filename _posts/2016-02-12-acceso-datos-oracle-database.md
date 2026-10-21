@@ -8,6 +8,8 @@ tags: [oracle, sql, bases-de-datos, sql-developer]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2016/02/acceso-datos-oracle-database.html
 ---
 
 Oracle Database es un sistema de gestión de base de datos de tipo objeto-relacional. Destaca por su soporte de transacciones, estabilidad, escalabilidad y compatibilidad multiplataforma.

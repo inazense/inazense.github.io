@@ -7,6 +7,9 @@ tags: [android, listview, adapter, programacion-multimedia, layout]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/11/programacion-multimedia-listview.html
+  - /posts/2015/11/03/programacion-multimedia-listview/
 ---
 
 En esta entrada se mejora un `ListView` añadiendo iconos a cada opción de la lista, mediante un layout personalizado para los ítems y un `ArrayAdapter`.

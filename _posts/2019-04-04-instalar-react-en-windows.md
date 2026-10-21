@@ -12,6 +12,8 @@ mermaid: false
 #  path: /img/posts/reactjs-install-placeholder.png
 #  lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VLIAAAA
 #  alt: ReactJS tutorial para Windows.
+redirect_from:
+  - /2019/04/instalar-react-en-windows.html
 ---
 
 **ReactJS** (o React a secas) es una **librería JavaScript** de código abierto creada por **Facebook** para diseñar interfaces de usuario. No os voy a aburrir con más teoría porque eso es muy fácil de encontrar, así que os enlazo directamente con [el artículo de Wikipedia](https://es.wikipedia.org/wiki/React) y si os apetece podéis leerlo tranquilamente. 

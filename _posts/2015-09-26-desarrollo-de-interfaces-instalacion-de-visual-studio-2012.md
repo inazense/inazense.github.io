@@ -8,6 +8,8 @@ tags: [visual-studio, visual-basic, desarrollo-de-interfaces]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/09/desarrollo-de-interfacesinstalacion-de.html
 ---
 
 En el módulo de Desarrollo de interfaces nos ocuparemos de... ¡las interfaces! Que poder de deducción tenéis, jodios. Bueno, esta aplicación la usaremos para programar en Visual Basic, lenguaje que aprendí a los doce años y lo dejé a los trece (descubrí el mundo de las redes y los sistemas y me engancharon muchísimo más).

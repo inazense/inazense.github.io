@@ -8,6 +8,8 @@ tags: [java, acceso-a-datos, persistencia, serializacion, serializable, external
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/10/acceso-datos-persistencia.html
 ---
 
 ## Persistencia

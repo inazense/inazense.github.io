@@ -8,6 +8,8 @@ tags: [bases-de-datos, sql, mysql, funciones, ejercicios]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/03/bases-de-datos-sql-programado-x.html
 ---
 
 Práctica 5 del tema 6/7. Se utiliza el script `primeros_pasos`.

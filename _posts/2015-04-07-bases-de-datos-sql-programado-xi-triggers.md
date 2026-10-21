@@ -8,6 +8,8 @@ tags: [bases-de-datos, sql, mysql, triggers]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/04/bases-de-datos-sql-programado-xi.html
 ---
 
 Los Triggers son programas que se ejecutan automáticamente en respuesta a algún suceso ocurrido en la base de datos. En MySQL se corresponden con instrucciones DML (INSERT, UPDATE, DELETE).

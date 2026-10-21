@@ -8,6 +8,8 @@ tags: [bases-de-datos, sql, mysql, transacciones, commit, rollback, savepoint]
 pin: false
 math: false
 mermaid: false
+redirect_from:
+  - /2015/04/bases-de-datos-sql-programado-xiii.html
 ---
 
 ## Instrucciones de manejo de transacciones
