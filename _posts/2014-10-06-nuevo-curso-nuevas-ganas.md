@@ -2,7 +2,7 @@
 title: Nuevo curso, nuevas ganas
 description: Presentación oficial del blog
 date: 2014-10-06 12:10:00 +0800
-categories: [Java]
+categories: [Varios]
 tags: [varios]
 redirect_from:
   - /2014/10/nuevo-curso-nuevas-ganas.html

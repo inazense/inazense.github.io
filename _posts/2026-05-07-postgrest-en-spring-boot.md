@@ -1,5 +1,5 @@
 ---
-title: PostRest + Spring boot. API Rest sin escribir controladores
+title: PostgREST + Spring Boot. API REST sin escribir controladores
 description: Aprende qué es PostgREST y cómo integrarlo con Spring Boot para exponer PostgreSQL como API REST, consumir endpoints con WebClient y mantener una arquitectura más simple.
 author: Inazio Claver
 date: 2026-05-07 16:17:00 +0200
@@ -8,7 +8,7 @@ tags: [spring-boot, postgrest, postgresql, api-rest, webclient, jwt, backend, sq
 featured: true
 ---
 
-![PostRest + Spring boot](/img/posts/20260507_1.png)
+![El elefante de PostgreSQL envía datos REST a Spring Boot: PostgREST + Spring Boot = APIs fáciles](/img/posts/20260507_1.png)
 
 Hay muchas formas de montar una API en Spring Boot. La más habitual es crear controladores, servicios, repositorios, entidades y toda la capa intermedia que ya conocemos. Funciona bien, pero no siempre hace falta construir tanto cuando lo único que queremos es exponer datos de PostgreSQL de forma rápida, consistente y sin demasiada ceremonia.
 
@@ -138,9 +138,9 @@ public class PedidosClient {
 }
 ```
 
-Y si prefieres bloquearte en un flujo tradicional, también puedes usar `RestTemplate`, aunque hoy en día `WebClient` suele encajar mejor si quieres una integración más moderna.
+Si tu aplicación no es reactiva y prefieres un flujo bloqueante tradicional, usa `RestClient` (disponible desde Spring Framework 6.1), que es el sustituto moderno de `RestTemplate`.
 
-La clave está en no pensar en PostgREST como un atajo raro, sino como una API externa más, igual que tratarías con Stripe, GitHub o cualquier otro servicio [web:76].
+La clave está en no pensar en PostgREST como un atajo raro, sino como una API externa más, igual que tratarías con Stripe, GitHub o cualquier otro servicio.
 
 ## Autenticación y permisos
 
