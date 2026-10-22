@@ -4,15 +4,10 @@ description:
 date: 2014-10-17 17:18:00 +0800
 categories: [Programación]
 tags: [programacion, algoritmos, pseudocodigo, raiz cuadrada]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,...
-#  alt: Image alt text.
 redirect_from:
   - /2014/10/programacion-resolucion-de-problemas-iv.html
+noindex: true
+sitemap: false
 ---
 
 Planteamiento de resolución para raíces cuadradas.

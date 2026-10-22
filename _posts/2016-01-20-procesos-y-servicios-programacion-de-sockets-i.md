@@ -4,9 +4,6 @@ description: "Introducción a los sockets TCP en Java con ServerSocket y Socket:
 date: 2016-01-20 13:00:00 +0800
 categories: [Java, Programación de servicios y procesos]
 tags: [java, sockets, tcp, programacion-de-servicios-y-procesos, serversocket]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2016/01/procesos-y-servicios-programacion-de.html
 ---

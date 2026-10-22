@@ -1,13 +1,10 @@
 ---
-title: "Programación multimedia. Configuración de smartphone para Android Studio"
-description: Cómo conectar un smartphone físico Android a Android Studio para ejecutar aplicaciones directamente en el dispositivo en lugar de usar el emulador.
+title: "Ejecutar apps en un móvil Android desde Android Studio"
+description: "Cómo activar las opciones de desarrollador y la depuración USB en un móvil Android, instalar el software necesario y ejecutar tus apps desde Android Studio."
 author: Inazio Claver
 date: 2015-10-10 12:00:00 +0800
 categories: [Android]
 tags: [android, android-studio, smartphone, depuracion-usb, programacion-multimedia]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/10/programacion-multimedia-configuracion.html
 ---

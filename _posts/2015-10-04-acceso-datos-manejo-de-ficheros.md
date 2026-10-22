@@ -4,9 +4,6 @@ description: "Cómo leer y escribir ficheros en Java con java.io: streams de byt
 date: 2015-10-04 12:00:00 +0800
 categories: [Java]
 tags: [java, ficheros, streams, io, acceso-a-datos, fileInputStream, bufferedreader]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/10/acceso-datos-ejercicios-i-manejo-de.html
   - /2015/10/acceso-datos-manejo-de-ficheros.html

@@ -1,13 +1,10 @@
 ---
-title: Acceso a datos. Preparación de los equipos
-description: Lista de herramientas necesarias para el módulo de Acceso a datos, con instrucciones de instalación para XAMPP, MySQL Workbench, JDK, Eclipse Mars y NetBeans.
+title: "Instalar XAMPP, JDK, Eclipse y NetBeans para programar"
+description: "Software necesario para un curso de acceso a datos y en qué orden instalarlo: XAMPP, .NET, vcredist, MySQL Workbench, JDK, Eclipse Mars y NetBeans."
 author: Inazio Claver
 date: 2015-09-23 12:30:00 +0800
 categories: [Bases de datos]
 tags: [acceso-a-datos, xampp, mysql, jdk, eclipse, netbeans]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/09/acceso-datos-preparacion-de-los-equipos.html
 ---

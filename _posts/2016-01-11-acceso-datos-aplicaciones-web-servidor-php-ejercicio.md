@@ -1,12 +1,9 @@
 ---
-title: "Acceso a datos. Aplicaciones web servidor. PHP (Ejercicio)"
-description: Ejercicio práctico de acceso a bases de datos en PHP usando PDO, con operaciones CRUD sobre una tabla de items.
+title: "CRUD en PHP con PDO y MySQL: ejercicio completo"
+description: "Ejercicio completo de acceso a datos con PHP y PDO: conexión a MySQL y operaciones de consulta, consulta con parámetros, inserción, actualización y borrado."
 date: 2016-01-11 12:00:00 +0800
 categories: [Web]
 tags: [acceso-a-datos, php, pdo, crud, mysql]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2016/01/acceso-datos-aplicaciones-web-servidor.html
 ---

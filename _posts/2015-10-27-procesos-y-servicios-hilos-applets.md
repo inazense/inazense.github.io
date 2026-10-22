@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-10-27 19:22:00 +0800
 categories: [Java, Programación de servicios y procesos]
 tags: [java, procesos-y-servicios, hilos, threads, applet, runnable, awt]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/10/procesos-y-servicios-hilos-applets.html
 ---

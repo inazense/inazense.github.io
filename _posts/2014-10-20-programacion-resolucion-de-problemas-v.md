@@ -4,13 +4,6 @@ description: "Qué es el invariante de un bucle, cuándo debe cumplirse y cómo 
 date: 2014-10-20 18:05:00 +0800
 categories: [Programación]
 tags: [programacion, algoritmos, invariante, bucle]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,...
-#  alt: Image alt text.
 redirect_from:
   - /2014/10/programacion-resolucion-de-problemas-v.html
 ---

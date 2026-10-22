@@ -22,18 +22,6 @@
   transition: color 0.2s, background 0.2s, border-color 0.2s;
   cursor: pointer;
 
-  &--primary {
-    background: var(--accent);
-    color: var(--bg);
-    border: 1px solid var(--accent);
-    &:hover {
-      background: var(--link-hover);
-      border-color: var(--link-hover);
-      color: #fff;
-      text-decoration: none;
-    }
-  }
-
   &--secondary {
     border: 1px solid var(--border);
     color: var(--text);
@@ -83,8 +71,6 @@
   margin: 0 0 1.5rem;
   max-width: 50ch;
 }
-
-
 
 // ── Página de una categoría (/categorias/<slug>/)
 .ctg-intro {
@@ -162,12 +148,6 @@
   font-weight: 700;
   color: var(--text);
   line-height: 1.2;
-}
-
-.ctg-summary-desc {
-  font-size: 0.78rem;
-  color: var(--secondary);
-  line-height: 1.4;
 }
 
 .ctg-summary-meta {

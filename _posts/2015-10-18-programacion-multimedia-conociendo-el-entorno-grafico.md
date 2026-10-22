@@ -1,13 +1,10 @@
 ---
-title: "Programación multimedia. Conociendo el entorno gráfico"
-description: Guía del entorno gráfico de Android Studio para empezar el desarrollo multimedia, incluyendo la creación de proyectos, la paleta de componentes, la barra de herramientas y los desplegables de configuración.
+title: "El editor de interfaces de Android Studio paso a paso"
+description: "Recorrido por el entorno gráfico de Android Studio: crear un proyecto y un layout, pestañas de vista, paleta, barra de opciones, propiedades y ejecución."
 author: Inazio Claver
 date: 2015-10-18 22:46:00 +0800
 categories: [Android]
 tags: [android, android-studio, interfaz-grafica, layouts, widgets, programacion-multimedia]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/10/programacion-multimedia-conociendo-el.html
 ---

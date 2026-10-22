@@ -4,9 +4,6 @@ description: "Cómo enviar objetos Java serializables por sockets TCP y UDP con 
 date: 2016-01-30 12:00:00 +0800
 categories: [Java, Programación de servicios y procesos]
 tags: [java, sockets, tcp, serializacion, objectinputstream, programacion-de-servicios-y-procesos]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2016/01/procesos-y-servicios-programacion-de_30.html
 ---

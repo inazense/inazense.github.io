@@ -4,9 +4,6 @@ description: "Cómo crear menús en Android: menú de opciones, submenús y men�
 date: 2015-11-09 12:00:00 +0800
 categories: [Android]
 tags: [android, menus, menu-contextual, programacion-multimedia, actionbar]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/11/programacion-multimedia-menus.html
 ---

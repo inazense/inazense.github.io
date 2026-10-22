@@ -4,13 +4,6 @@ description: "Cómo declarar funciones en C y pasar parámetros por valor y por 
 date: 2014-10-17 21:34:00 +0800
 categories: [Programación]
 tags: [programacion, c, funciones, parametros, punteros, subprogramas]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,...
-#  alt: Image alt text.
 redirect_from:
   - /2014/10/programacion-codificacion-de-programas_17.html
 ---

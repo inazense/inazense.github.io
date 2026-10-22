@@ -1,12 +1,9 @@
 ---
-title: "Programación multimedia. Mejoras en diseño"
-description: Elementos para mejorar el diseño de aplicaciones Android, iconos del sistema, recursos gráficos, y creación de una interfaz con pestañas usando TabHost.
+title: "Pestañas con TabHost e iconos en Android"
+description: "Elementos para mejorar el diseño de una app Android (lanzador, barra de estado, menú, ActionBar e iconos) y cómo crear una interfaz con pestañas con TabHost."
 date: 2015-11-03 13:00:00 +0800
 categories: [Android]
 tags: [android, diseno, tabhost, iconos, programacion-multimedia]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/11/programacion-multimedia-mejoras-en.html
   - /posts/2015/11/03/programacion-multimedia-mejoras-en-disenyo/

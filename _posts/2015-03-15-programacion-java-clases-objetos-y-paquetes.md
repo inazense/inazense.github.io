@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-03-15 15:35:00 +0800
 categories: [Java, Programación]
 tags: [java, programacion, clases, objetos, constructores]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/03/programacion-java-clases-objetos-y.html
 ---

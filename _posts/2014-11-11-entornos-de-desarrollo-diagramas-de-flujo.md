@@ -1,19 +1,14 @@
 ---
-title: Entornos de desarrollo. Diagramas de flujo
-description:
+title: "Diagramas de flujo: qué son y ejemplos resueltos"
+description: "Qué es un diagrama de flujo y para qué sirve, con tres ejemplos dibujados paso a paso: comprobar la mayoría de edad, calcular el IVA y validar una fecha."
 date: 2014-11-11 23:55:00 +0800
 categories: [Entornos de desarrollo]
 tags: [entornos de desarrollo, diagramas de flujo, algoritmos]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,...
-#  alt: Image alt text.
 redirect_from:
   - /2014/11/entornos-de-desarrollo-diagramas-de.html
 ---
+
+*Parte de la serie «Diagramas de flujo» (I).*
 
 Los diagramas de flujo son una representación gráfica de un algoritmo que permite visualizarlo con mayor claridad. Se construyen usando diferentes formas geométricas, cada una con un significado específico.
 

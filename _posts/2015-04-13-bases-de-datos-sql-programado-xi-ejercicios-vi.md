@@ -1,16 +1,15 @@
 ---
-title: Bases de datos. SQL programado (XI). Ejercicios (VI)
-description: Ejercicios de triggers en MySQL para sincronizar tablas réplica y realizar auditorías de operaciones INSERT, UPDATE y DELETE.
+title: "Ejercicios de triggers en MySQL: réplicas y auditoría"
+description: "Ejercicios resueltos de triggers en MySQL para mantener sincronizada una tabla réplica en modificaciones y borrados y para auditar operaciones."
 author: Inazio Claver
 date: 2015-04-13 12:00:00 +0800
 categories: [Bases de datos]
 tags: [bases-de-datos, sql, mysql, triggers, ejercicios]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/04/bases-de-datos-sql-programado-xi_13.html
 ---
+
+*Parte de la serie «Ejercicios de SQL programado» (VI).*
 
 Hoja de ejercicios seis del tema 6/7.
 

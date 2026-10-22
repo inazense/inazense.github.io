@@ -1,17 +1,10 @@
 ---
-title: Entornos de desarrollo. Principios de la informática y la programación
-description: "Aprende los fundamentos de la informática: máquina de Von Neumann, arquitectura de computadoras, operaciones lógicas AND/OR/NOT, registros, memoria y componentes básicos de un ordenador."
+title: "Máquina de Von Neumann y operaciones lógicas AND, OR y NOT"
+description: "Principios de la informática: cómo funciona la máquina de Von Neumann, qué componentes básicos tiene un ordenador y las operaciones lógicas AND, OR y NOT."
 date: 2014-10-07 16:10:00 +0800
 categories: [Entornos de desarrollo]
 tags: [informatica, von-neumann, arquitectura, operaciones-logicas, programacion, entornos-desarrollo]
 
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA
-#  alt: Responsive rendering of Chirpy theme on multiple devices.
 redirect_from:
   - /2014/10/entornos-de-desarrollo-principios-de-la.html
 ---

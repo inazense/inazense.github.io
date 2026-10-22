@@ -1,13 +1,10 @@
 ---
-title: "Entornos de desarrollo. NetBeans. Creación de web PHP en servidor remoto (práctica)"
-description: Práctica de creación de web PHP en servidor remoto con NetBeans, con vídeo demostrativo realizado en máquina virtual.
+title: "Práctica: web PHP en un servidor remoto con NetBeans"
+description: "Práctica de creación de una web PHP en un servidor remoto con NetBeans, explicada en dos vídeos grabados, uno de ellos en una máquina virtual."
 author: Inazio Claver
 date: 2015-03-02 12:00:00 +0800
 categories: [Entornos de desarrollo]
 tags: [entornos-de-desarrollo, netbeans, php]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/03/entornos-de-desarrollo-netbeans.html
 ---

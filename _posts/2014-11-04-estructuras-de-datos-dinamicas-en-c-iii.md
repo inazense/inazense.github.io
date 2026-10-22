@@ -4,15 +4,10 @@ description: "Ejercicios resueltos con registros en pseudocódigo: procedimiento
 date: 2014-11-04 19:02:00 +0800
 categories: [Programación]
 tags: [programacion, c, estructuras de datos, registros, numeros complejos]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,...
-#  alt: Image alt text.
 redirect_from:
   - /2014/11/estructuras-de-datos-dinamicas-en-c-iii.html
+noindex: true
+sitemap: false
 ---
 
 *Parte de la serie «Estructuras de datos en C» (III).*

@@ -1,17 +1,10 @@
 ---
-title: Entornos de desarrollo. Resolución de dependencias
-description: Cómo instalar un programa compilándolo en la máquina virtual (aMSN) y cómo crear ficheros Makefile para gestionar dependencias de compilación en C.
+title: "Compilar programas en Linux con make y Makefile"
+description: "Cómo instalar un programa en Linux compilándolo desde el código fuente con make (el ejemplo es aMSN) y cómo escribir un Makefile para un proyecto en C."
 author: Inazio Claver
 date: 2015-01-21 10:09:00 +0800
 categories: [Entornos de desarrollo]
 tags: [entornos-de-desarrollo, linux, make, c]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA
-#  alt: Responsive rendering of Chirpy theme on multiple devices.
 redirect_from:
   - /2015/01/entornos-de-desarrollo-amsn.html
 ---

@@ -4,9 +4,6 @@ description: "Cómo usar intents implícitos en Android para abrir el navegador,
 date: 2016-01-19 12:00:00 +0800
 categories: [Android]
 tags: [android, intents, programacion-multimedia, java, action-view, action-call]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2016/01/programacion-multimedia-intents.html
 ---

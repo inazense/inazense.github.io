@@ -1,20 +1,15 @@
 ---
-title: Lenguajes de marcas. CSS (IV)
-description: Cómo incrustar fuentes personalizadas en páginas web usando la regla @font-face de CSS.
+title: "Fuentes personalizadas en CSS con @font-face"
+description: "Cómo usar fuentes personalizadas en una web con la regla @font-face de CSS: dónde descargar fuentes gratuitas y cómo declararlas y aplicarlas."
 author: Inazio Claver
 date: 2015-01-09 13:33:00 +0800
 categories: [Lenguajes de marcas]
 tags: [css, lenguajes-de-marcas]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA
-#  alt: Responsive rendering of Chirpy theme on multiple devices.
 redirect_from:
   - /2015/01/lenguajes-de-marcas-css-iv.html
 ---
+
+*Parte de la serie «CSS» (IV).*
 
 Vamos a ver cómo podemos incrustar texto con diversas fuentes en nuestra página web. Antes se usaban "fuentes seguras", como Helvética, Arial, y en todo caso a lo mejor `sans-serif`:
 

@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-12-15 12:00:00 +0800
 categories: [Java, Programación de servicios y procesos]
 tags: [java, concurrencia, exclusion-mutua, dekker, peterson, hilos, sincronizacion]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/12/procesos-y-servicios-procesos.html
 ---

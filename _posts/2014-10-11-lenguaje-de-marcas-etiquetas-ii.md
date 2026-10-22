@@ -4,15 +4,10 @@ description: Estructura básica de la etiqueta HTML <table> con sus secciones th
 date: 2014-10-11 15:41:00 +0800
 categories: [Lenguajes de marcas]
 tags: [html, etiquetas, tablas, lenguaje-marcas]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA
-#  alt: Responsive rendering of Chirpy theme on multiple devices.
 redirect_from:
   - /2014/10/lenguaje-de-marcas-etiquetas-ii.html
+noindex: true
+sitemap: false
 ---
 
 ## Etiqueta `<table>`

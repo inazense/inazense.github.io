@@ -1,16 +1,15 @@
 ---
-title: Sistemas informáticos. Windows Server 2008. Primeras configuraciones
-description: Configuraciones básicas de red en Windows Server 2008 recién instalado, incluyendo zona horaria, IPv4 estática y nombre NetBIOS.
+title: "Windows Server 2008: zona horaria, IP estática y NetBIOS"
+description: "Primeras configuraciones de Windows Server 2008 tras instalarlo: zona horaria, dirección IPv4 estática en la interfaz de red y nombre NetBIOS del equipo."
 author: Inazio Claver
 date: 2015-04-08 12:00:00 +0800
 categories: [Sistemas]
 tags: [sistemas-informaticos, windows-server, red, configuracion, netbios]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/04/sistemas-informaticos-windows-server_8.html
 ---
+
+*Parte de la serie «Windows Server 2008» (II).*
 
 Ya tenemos nuestro servidor instalado, limpito y listo para que lo configuremos.
 

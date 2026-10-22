@@ -5,13 +5,6 @@ author: Inazio Claver
 date: 2016-09-19 12:10:00 +0800
 categories: [Python]
 tags: [python, instalacion, principiantes, python3, tutorial, hola-mundo]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA
-#  alt: Responsive rendering of Chirpy theme on multiple devices.
 redirect_from:
   - /2016/09/aprendiendo-python-3-i-introduccion-e.html
 ---
@@ -38,11 +31,11 @@ Puedes acceder pulsando [aquí](https://www.python.org/downloads/).
 
 Ya lo tenemos descargado, ahora simplemente lo ejecutamos y veremos una pantalla como esta
 
-![instalación de python paso a paso 1](/img/posts/20160919_2.png)
+![Instalador de Python 3.5 en Windows con la opción Add Python 3.5 to PATH](/img/posts/20160919_2.png)
 
 Marca la casilla de ```Add Python 3.5 to PATH``` y elige ```Install Now```. El proceso se completará automáticamente, momento en el que veremos la siguiente ventana.
 
-![instalación de python paso a paso 1](/img/posts/20160919_3.png)
+![Instalación de Python completada: Setup was successful](/img/posts/20160919_3.png)
 
 Ahora vamos a comprobar si nos funciona correctamente. Puedes abrir una terminal, escribir ```python``` y pulsar Enter, o bien abrir la aplicación **Python 3.5**. El resultado deberá ser el mismo, ver la siguiente terminal
 

@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-03-14 12:00:00 +0800
 categories: [Programación]
 tags: [programacion, poo, objetos, uml, java]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/03/programacion-introduccion-la.html
 ---

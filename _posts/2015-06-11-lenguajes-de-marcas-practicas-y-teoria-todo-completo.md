@@ -5,11 +5,10 @@ author: Inazio Claver
 date: 2015-06-11 20:05:00 +0800
 categories: [Lenguajes de marcas]
 tags: [html5, css3, php, javascript, jquery, ajax, xml]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/06/lenguajes-de-marcas-practicas-y-teoria.html
+noindex: true
+sitemap: false
 ---
 
 Este curso, mientras estudiaba por las mañanas, me apunté a un certificado profesional de creación de páginas web.

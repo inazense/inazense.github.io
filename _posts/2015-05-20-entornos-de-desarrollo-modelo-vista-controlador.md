@@ -1,13 +1,10 @@
 ---
-title: Entornos de desarrollo. Modelo - Vista - Controlador (con ejemplo de conversor)
-description: Explicación del patrón de arquitectura MVC implementado en Java con un ejemplo práctico de conversor de divisas.
+title: "Patrón MVC en Java con un ejemplo de conversor de divisas"
+description: "Qué es el patrón modelo-vista-controlador y cómo aplicarlo en Java, con un conversor de divisas separado en paquetes de modelo, vista y controlador."
 author: Inazio Claver
 date: 2015-05-20 12:00:00 +0800
 categories: [Entornos de desarrollo, Java]
 tags: [entornos-de-desarrollo, java, mvc, modelo-vista-controlador, swing]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/05/entornos-de-desarrollo-modelo-vista.html
 ---

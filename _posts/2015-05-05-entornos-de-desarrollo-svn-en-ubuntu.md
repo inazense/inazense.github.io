@@ -1,16 +1,15 @@
 ---
-title: Entornos de desarrollo. SVN en Ubuntu. Subversion
-description: Cómo usar Subversion (SVN) en Ubuntu para gestionar el control de versiones de un proyecto con Assembla.
+title: "Subversion (SVN) en Ubuntu desde la terminal"
+description: "Cómo instalar Subversion en Ubuntu y trabajar desde la terminal con un repositorio de Assembla: svn checkout, add, commit y update."
 author: Inazio Claver
 date: 2015-05-05 12:00:00 +0800
 categories: [Entornos de desarrollo]
 tags: [entornos-de-desarrollo, svn, subversion, ubuntu, control-de-versiones]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/05/entornos-de-desarrollo-svn-en-ubuntu.html
 ---
+
+*Parte de la serie «SVN» (II).*
 
 Vamos a empezar a trabajar en Ubuntu con las SVN. Para ello necesitamos el paquete subversion:
 

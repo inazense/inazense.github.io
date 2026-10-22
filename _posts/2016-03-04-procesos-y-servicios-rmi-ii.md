@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2016-03-04 12:00:00 +0800
 categories: [Java, Programación de servicios y procesos]
 tags: [java, rmi, procesos, servicios, distribuido, serializable]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2016/03/procesos-y-servicios-rmi-ii.html
 ---

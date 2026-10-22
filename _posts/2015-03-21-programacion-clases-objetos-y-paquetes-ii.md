@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-03-21 19:06:00 +0800
 categories: [Java, Programación]
 tags: [java, programacion, clases, encapsulamiento, paquetes, static]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/03/programacion-clases-objetos-y-paquetes.html
 ---

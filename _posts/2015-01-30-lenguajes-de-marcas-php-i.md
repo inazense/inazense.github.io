@@ -1,17 +1,10 @@
 ---
-title: Lenguajes de marcas. PHP (I)
-description: Introducción a PHP. Instalación de LAMP y WAMP, variables, echo, estructuras de control (if, while, for, foreach) y arrays.
+title: "Introducción a PHP: LAMP, WAMP, variables y bucles"
+description: "Primeros pasos con PHP: instalar un servidor LAMP en Linux o WAMP en Windows, variables y echo, if, while y for, y cómo recorrer arrays con foreach."
 author: Inazio Claver
 date: 2015-01-30 18:00:00 +0800
 categories: [Lenguajes de marcas]
 tags: [lenguajes-de-marcas, php, mysql, linux]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA
-#  alt: Responsive rendering of Chirpy theme on multiple devices.
 redirect_from:
   - /2015/01/lenguajes-de-marcas-php-i.html
 ---
@@ -46,17 +39,17 @@ Si aparece un cartel como el de arriba, está funcionando correctamente.
 
 Primero instalaremos la librería necesaria, `vcredist`.
 
-![Pasos de instalación de WAMP](/img/posts/20150130_6.png)
+![Instalación de Microsoft Visual C++ 2012 Redistributable, requisito de WAMP](/img/posts/20150130_6.png)
 
 Posteriormente lanzamos el instalador del WAMP.
 
-![Pasos de instalación de WAMP](/img/posts/20150130_7.png)
+![Asistente de instalación de WampServer 2.5](/img/posts/20150130_7.png)
 
-![Pasos de instalación de WAMP](/img/posts/20150130_8.png)
+![WampServer pide elegir el navegador por defecto (explorer.exe)](/img/posts/20150130_8.png)
 
-![Pasos de instalación de WAMP](/img/posts/20150130_9.png)
+![Alerta del Firewall de Windows para permitir Apache HTTP Server](/img/posts/20150130_9.png)
 
-![Pasos de instalación de WAMP](/img/posts/20150130_10.png)
+![Parámetros de correo de PHP (SMTP) en la instalación de WampServer](/img/posts/20150130_10.png)
 
 Y lo comprobamos accediendo a `localhost`.
 

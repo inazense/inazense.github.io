@@ -1,16 +1,15 @@
 ---
-title: Bases de datos. SQL programado (VII). Ejercicios (II)
-description: Ejercicios del 9 al 18 de procedimientos almacenados en MySQL, usando subconsultas, cursores, sentencias preparadas y validación de errores.
+title: "Procedimientos almacenados con SQL dinámico: ejercicios"
+description: "Ejercicios 9 a 18 de procedimientos almacenados en MySQL: consultas de empleados, departamentos y centros, SQL dinámico y altas con control de errores."
 author: Inazio Claver
 date: 2015-03-17 10:15:00 +0800
 categories: [Bases de datos]
 tags: [bases-de-datos, sql, mysql, procedimientos, ejercicios]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/03/bases-de-datos-sql-programado-vii.html
 ---
+
+*Parte de la serie «Ejercicios de SQL programado» (II).*
 
 Práctica 2 del tema 6/7. Se utilizan las tablas de empleados, departamentos y centros.
 

@@ -1,13 +1,10 @@
 ---
-title: "Programación multimedia. Segunda aplicación. Transparentando una imagen"
-description: Aplicación Android que modifica la transparencia de una imagen a partir de un porcentaje introducido por el usuario, y cambia el color de fondo aleatoriamente.
+title: "App Android para cambiar la transparencia de una imagen"
+description: "Segunda aplicación Android: cambia la transparencia de una imagen según un porcentaje con setImageAlpha, y el color de fondo de forma aleatoria."
 author: Inazio Claver
 date: 2015-10-18 19:00:00 +0800
 categories: [Android]
 tags: [android, android-studio, imageview, transparencia, alpha, color, programacion-multimedia]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/10/programacion-multimedia-segunda.html
 ---

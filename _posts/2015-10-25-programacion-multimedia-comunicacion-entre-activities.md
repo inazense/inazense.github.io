@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-10-25 21:10:00 +0800
 categories: [Android]
 tags: [android, java, programacion-multimedia, intent, bundle, webview, activity]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/10/en-este-apartado-trataremos-como.html
 ---

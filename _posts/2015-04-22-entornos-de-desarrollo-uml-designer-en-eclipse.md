@@ -1,13 +1,10 @@
 ---
-title: Entornos de desarrollo. UML Designer en Eclipse
-description: Cómo instalar y usar el plugin UML Designer en Eclipse para crear diagramas de clases UML, con explicación de asociaciones, herencia, atributos y métodos.
+title: "Diagramas de clases UML en Eclipse con UML Designer"
+description: "Cómo instalar el plugin UML Designer en Eclipse y crear diagramas de clases: asociaciones, herencia, atributos, operaciones y visibilidad."
 author: Inazio Claver
 date: 2015-04-22 12:00:00 +0800
 categories: [Entornos de desarrollo]
 tags: [entornos-de-desarrollo, eclipse, uml, diagramas, clases]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/04/entornos-de-desarrollo-uml-designer-en.html
 ---

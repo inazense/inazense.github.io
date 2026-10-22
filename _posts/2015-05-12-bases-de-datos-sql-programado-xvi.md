@@ -1,13 +1,10 @@
 ---
-title: Bases de datos. SQL programado (XVI). Ejercicios (VII)
-description: Examen de práctica del tercer trimestre de bases de datos con funciones, procedimientos con transacciones y triggers en MySQL.
+title: "Examen de MySQL: funciones, transacciones y triggers"
+description: "Examen de práctica de bases de datos resuelto: una función, un procedimiento con transacciones y un trigger en MySQL sobre una base de datos de municipios."
 author: Inazio Claver
 date: 2015-05-12 12:00:00 +0800
 categories: [Bases de datos]
 tags: [bases-de-datos, sql, mysql, procedimientos, funciones, triggers, transacciones]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/05/bases-de-datos-sql-programado-xvi.html
 ---

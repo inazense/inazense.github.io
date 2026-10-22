@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-03-14 17:56:00 +0800
 categories: [Programación]
 tags: [programacion, ada, arboles, grafos, estructuras-de-datos]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/03/programacion-ada-tipos-abstractos-de.html
 ---

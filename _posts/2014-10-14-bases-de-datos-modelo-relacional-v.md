@@ -4,15 +4,10 @@ description:
 date: 2014-10-14 21:26:00 +0800
 categories: [Bases de datos]
 tags: [bases de datos, modelo relacional, entidades, interrelaciones]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,...
-#  alt: Image alt text.
 redirect_from:
   - /2014/10/bases-de-datos-modelo-relacional-v.html
+noindex: true
+sitemap: false
 ---
 
 ## Dependencia en existencia

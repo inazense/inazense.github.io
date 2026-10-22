@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-04-27 12:00:00 +0800
 categories: [Bases de datos]
 tags: [bases-de-datos, sql, mysql, deadlock, transacciones, cursor]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/04/bases-de-datos-programacion-sql-xiv.html
 ---

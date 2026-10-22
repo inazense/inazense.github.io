@@ -1,13 +1,10 @@
 ---
-title: Entornos de desarrollo. PHP con NetBeans
-description: Cómo crear una primera página PHP con NetBeans conectada a un servidor remoto y a una base de datos MySQL mediante mysqli.
+title: "Proyecto PHP en servidor remoto con NetBeans y MySQL"
+description: "Cómo crear un proyecto PHP en NetBeans que trabaja sobre un servidor remoto y conectar tu primera página a una base de datos MySQL con mysqli."
 author: Inazio Claver
 date: 2015-02-04 12:00:00 +0800
 categories: [Entornos de desarrollo]
 tags: [php, netbeans, mysql, mysqli]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/02/entornos-de-desarrollo-php-con-netbeans.html
 ---
@@ -15,6 +12,8 @@ redirect_from:
 Vamos a crear nuestra primera página en PHP con NetBeans. Lo primero, si no lo tenemos instalado, será instalar el pluggin de PHP.
 
 Hecho eso, nos vamos a `File` - `New Project` y elegimos `PHP Application from Remote Server`.
+
+![Menú File > New Project de NetBeans](/img/posts/20150204_1.png)
 
 ![PHP Application from Remote Server](/img/posts/20150204_2.png)
 
@@ -157,11 +156,11 @@ foreach ($fila as $campo => $valor)
 
 Básicamente lo que haremos será generar la estructura de una tabla y automatizar el mostrado tanto del nombre de la columna como de los campos. Tal que así:
 
-![Código tabla con foreach](/img/posts/20150204_1.png)
+![Código PHP que genera la tabla con foreach](/img/posts/20150204_19.png)
 
 Visualizando así el resultado:
 
-![Resultado tabla](/img/posts/20150204_2.png)
+![Resultado: tabla de usuarios generada con PHP](/img/posts/20150204_20.png)
 
 Código de nuevo completo, utilizado hasta este momento y que reemplaza al anterior mostrado:
 

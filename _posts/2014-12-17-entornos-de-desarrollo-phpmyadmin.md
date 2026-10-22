@@ -1,20 +1,15 @@
 ---
-title: Entornos de desarrollo. PHPMyAdmin
-description: Creación de base de datos en PHPMyAdmin para el proyecto Conecta4. Tablas Partida y Movimientos, inserción de datos con NOW() y conexión desde C con mysql-connector.
+title: "Base de datos MySQL para un juego en C con phpMyAdmin"
+description: "Diseño en phpMyAdmin de la base de datos del juego Conecta 4 (tablas de partidas y movimientos) y conexión desde C en Windows con MySQL Connector."
 author: Inazio Claver
 date: 2014-12-17 09:24:00 +0800
 categories: [Entornos de desarrollo]
 tags: [entornos-de-desarrollo, phpmyadmin, mysql, c]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA
-#  alt: Responsive rendering of Chirpy theme on multiple devices.
 redirect_from:
   - /2014/12/entornos-de-desarrollo-phpmyadmin.html
 ---
+
+*Parte de la serie «MySQL desde C» (III).*
 
 Accedemos al servidor phpMyAdmin en `192.168.2.25/phpmyadmin` con las credenciales `dam1:dam1mysql` para crear la base de datos del proyecto Conecta4.
 

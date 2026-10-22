@@ -1,13 +1,10 @@
 ---
-title: "Programación multimedia. Recursos alternativos. Internacionalización"
-description: Cómo gestionar la internacionalización en Android creando ficheros strings.xml alternativos por idioma y región, y vincularlos a los elementos de la interfaz.
+title: "Traducir una app Android con strings.xml por idioma"
+description: "Cómo internacionalizar una aplicación Android creando ficheros strings.xml en carpetas por idioma y región, y cómo vincular las cadenas a la interfaz."
 author: Inazio Claver
 date: 2015-10-18 23:16:00 +0800
 categories: [Android]
 tags: [android, android-studio, internacionalizacion, i18n, strings, recursos, programacion-multimedia]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/10/programacion-multimedia-recursos.html
 ---

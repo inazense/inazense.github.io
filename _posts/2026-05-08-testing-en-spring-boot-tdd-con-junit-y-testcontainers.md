@@ -5,10 +5,7 @@ author: Inazio Claver
 date: 2026-05-08 17:43:00 +0200
 categories: [Java]
 tags: [spring-boot, java, junit5, testcontainers, tdd, testing, integration-testing, postgresql]
-pin: false
 featured: true
-math: false
-mermaid: false
 ---
 
 ![Testing en Spring boot. Tdd con Junit y Testcontainers](/img/posts/20260508_1.png)

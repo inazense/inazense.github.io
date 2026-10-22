@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-04-19 12:00:00 +0800
 categories: [Programación]
 tags: [programacion, java, ficheros, serializacion, colecciones, orientado-a-objetos]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/04/programacion-desarrollo-de-software_19.html
 ---

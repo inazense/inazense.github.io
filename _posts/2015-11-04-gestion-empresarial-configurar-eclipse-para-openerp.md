@@ -1,12 +1,9 @@
 ---
-title: "Gestión empresarial. Configurar Eclipse para OpenERP"
-description: Pasos para configurar Eclipse con PyDev, herramientas XML y plantillas para desarrollar módulos de OpenERP en Python y XML.
+title: "Configurar Eclipse para desarrollar módulos de OpenERP"
+description: "Cómo preparar Eclipse para desarrollar módulos de OpenERP en Python y XML: instalar PyDev, configurar el intérprete de Python, herramientas XML y plantillas."
 date: 2015-11-04 13:00:00 +0800
 categories: [Python]
 tags: [openerp, eclipse, pydev, python, xml, gestion-empresarial]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/11/gestion-empresarial-configurar-eclipse.html
 ---

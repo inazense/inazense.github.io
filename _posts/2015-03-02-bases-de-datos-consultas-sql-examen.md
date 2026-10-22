@@ -1,13 +1,10 @@
 ---
-title: Bases de datos. Consultas SQL (Examen)
-description: Corrección del examen de consultas SQL con ejercicios de ALTER TABLE, SELECT, UPDATE, vistas, índices y gestión de usuarios.
+title: "Examen de consultas SQL resuelto"
+description: "Solución de un examen de consultas SQL con siete ejercicios: ALTER TABLE, consultas con SELECT, UPDATE, vistas, índices y gestión de usuarios."
 author: Inazio Claver
 date: 2015-03-02 12:00:00 +0800
 categories: [Bases de datos]
 tags: [bases-de-datos, sql, mysql]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/03/bases-de-datos-consultas-sql-examen.html
 ---

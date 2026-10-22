@@ -1,13 +1,10 @@
 ---
-title: Entornos de desarrollo. Conexiones remotas en Eclipse
-description: Cómo configurar conexiones remotas SSH en Eclipse y NetBeans mediante plugins
+title: "Conexiones remotas por SSH en Eclipse y NetBeans"
+description: "Cómo instalar Remote System Explorer en Eclipse para trabajar por SSH con los ficheros de un servidor, y cómo configurar lo mismo en NetBeans."
 author: Inazio Claver
 date: 2015-02-03 12:00:00 +0800
 categories: [Entornos de desarrollo]
 tags: [eclipse, netbeans, ssh]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/02/entornos-de-desarrollo-conexiones.html
 ---

@@ -4,13 +4,6 @@ description: "Ámbito de las variables en C: diferencia entre variables locales 
 date: 2014-11-11 23:25:00 +0800
 categories: [Programación]
 tags: [programacion, c, variables, visibilidad, variables globales, variables locales]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,...
-#  alt: Image alt text.
 redirect_from:
   - /2014/11/programacion-codificacion-de-programas.html
 ---

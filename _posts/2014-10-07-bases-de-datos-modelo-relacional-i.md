@@ -1,19 +1,14 @@
 ---
-title: Bases de datos. Modelo relacional (I)
-description: "Aprende el modelo relacional de bases de datos: tablas, tuplas, atributos y claves primarias. Guía completa sobre teoría de Codd, estructura de datos, dominios, cardinalidad y fundamentos de bases de datos relacionales."
+title: "El modelo relacional de bases de datos: qué es y objetivos"
+description: "Qué es el modelo relacional de Codd, por qué casi todas las bases de datos actuales lo siguen y cuáles son los objetivos de un sistema de bases de datos."
 date: 2014-10-07 15:10:00 +0800
 categories: [Bases de datos]
 tags: [bases-datos, modelo-relacional, sql, tablas, claves-primarias, codd]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA
-#  alt: Responsive rendering of Chirpy theme on multiple devices.
 redirect_from:
   - /2014/10/bases-de-datos-modelo-relacional-i.html
 ---
+
+*Parte de la serie «Modelo relacional» (I).*
 
 ## Modelo relacional. 
 

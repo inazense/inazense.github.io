@@ -4,13 +4,6 @@ description: "Ejercicios resueltos de matrices en pseudocódigo: procedimientos 
 date: 2014-10-29 22:39:00 +0800
 categories: [Programación]
 tags: [programacion, vectores, matrices, datos estaticos, pseudocodigo]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,...
-#  alt: Image alt text.
 redirect_from:
   - /2014/10/programacion-estructura-de-datos.html
 ---

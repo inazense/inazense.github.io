@@ -1,16 +1,9 @@
 ---
-title: Bases de datos. WorkBench
-description:
+title: "MySQL Workbench: primeros pasos para crear un modelo"
+description: "Notas rápidas para empezar con MySQL Workbench: crear un modelo y un diagrama, añadir tablas con sus campos y relacionarlas entre sí paso a paso."
 date: 2014-10-14 21:39:00 +0800
 categories: [Bases de datos]
 tags: [bases de datos, workbench, mysql]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,...
-#  alt: Image alt text.
 redirect_from:
   - /2014/10/bases-de-datos-workbench.html
 ---

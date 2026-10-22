@@ -1,20 +1,15 @@
 ---
-title: Entornos de desarrollo / Lenguaje de marcas. PHPMyAdmin (I)
-description: Configuración inicial de PHPMyAdmin en Hostinger y Ubuntu. Creación de base de datos MySQL, importación de datos y conexión desde C con la API de MySQL.
+title: "Conectar C con MySQL: base de datos en Hostinger y Ubuntu"
+description: "Cómo crear una base de datos MySQL con phpMyAdmin en un hosting (Hostinger) y en Ubuntu, importar datos y conectarte a ella desde un programa en C."
 author: Inazio Claver
 date: 2014-12-09 13:34:00 +0800
 categories: [Entornos de desarrollo]
 tags: [entornos-de-desarrollo, phpmyadmin, mysql, c, ubuntu]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA
-#  alt: Responsive rendering of Chirpy theme on multiple devices.
 redirect_from:
   - /2014/12/entornos-de-desarrollo-lenguaje-de.html
 ---
+
+*Parte de la serie «MySQL desde C» (I).*
 
 Vamos a ver como conectar una base de datos con un programa hecho en C. Pero primero, necesitamos algunos pasos previos.
 

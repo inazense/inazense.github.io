@@ -4,9 +4,6 @@ description: "Cómo gestiona Android los procesos y el ciclo de vida de una Acti
 date: 2015-11-03 12:00:00 +0800
 categories: [Android]
 tags: [android, procesos, ciclo-de-vida, activity, programacion-multimedia]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/11/programacion-multimedia-procesos.html
 ---

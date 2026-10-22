@@ -1,13 +1,10 @@
 ---
-title: "Programación multimedia. Primera aplicación. Conversor de euros - dólares"
-description: Primera aplicación Android completa, un conversor de euros a dólares y viceversa, con botones de conversión y cierre y manejo de errores de entrada.
+title: "Primera app Android: conversor de euros a dólares"
+description: "Primera aplicación Android completa: un conversor de euros a dólares y viceversa con dos EditText, botones de conversión y un ImageButton para salir."
 author: Inazio Claver
 date: 2015-10-18 18:00:00 +0800
 categories: [Android]
 tags: [android, android-studio, aplicacion, conversor, edittext, button, programacion-multimedia]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/10/programacion-multimedia-primera.html
 ---

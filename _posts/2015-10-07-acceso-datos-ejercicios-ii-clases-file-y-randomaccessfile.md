@@ -1,16 +1,15 @@
 ---
-title: "Acceso a datos. Ejercicios (II). Clases File y RandomAccessFile"
-description: Siete ejercicios prácticos sobre manipulación de archivos y directorios en Java usando las clases File y RandomAccessFile.
+title: "Ejercicios de File y RandomAccessFile en Java"
+description: "Siete ejercicios resueltos de ficheros en Java: listar y filtrar archivos, copiar ficheros y directorios y leer y actualizar precios con RandomAccessFile."
 author: Inazio Claver
 date: 2015-10-07 16:39:00 +0800
 categories: [Java]
 tags: [java, acceso-a-datos, file, randomaccessfile, ficheros, ejercicios]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/10/acceso-datos-ejercicios-i-clases-file-y.html
 ---
+
+*Parte de la serie «Ejercicios de acceso a datos» (II).*
 
 ## Ejercicio 1: Listar archivos y directorios
 

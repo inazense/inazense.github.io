@@ -1,13 +1,10 @@
 ---
-title: "Acceso a datos. Clases File y RandomAccessFile"
-description: Uso de las clases File y RandomAccessFile en Java para manejo de archivos y directorios, incluyendo filtros de archivos y acceso aleatorio.
+title: "File y RandomAccessFile en Java con ejemplos"
+description: "Cómo usar la clase File de Java para listar, crear y borrar ficheros y directorios, filtros de archivos y acceso aleatorio con RandomAccessFile."
 author: Inazio Claver
 date: 2015-10-07 16:34:00 +0800
 categories: [Java]
 tags: [java, acceso-a-datos, file, randomaccessfile, ficheros, io]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/10/clase-file-no-sirve-para-leer-ni-para.html
 ---

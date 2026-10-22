@@ -1,19 +1,14 @@
 ---
-title: Bases de datos. Modelo relacional (II)
-description:
+title: "Dominios, claves primarias e integridad referencial"
+description: "Conceptos clave del modelo relacional: dominios, relaciones y sus tipos, valor nulo, claves primarias y reglas de integridad de entidades y referencial."
 date: 2014-10-09 15:10:00 +0800
 categories: [Bases de datos]
 tags: [bases-datos, modelo-relacional, dominios, relaciones, valor-nulo, integridad-referencial, claves]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA
-#  alt: Responsive rendering of Chirpy theme on multiple devices.
 redirect_from:
   - /2014/10/bases-de-datos-modelo-relacional-ii.html
 ---
+
+*Parte de la serie «Modelo relacional» (II).*
 
 ## Dominios
 

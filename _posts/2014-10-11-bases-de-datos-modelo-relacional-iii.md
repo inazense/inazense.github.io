@@ -1,19 +1,14 @@
 ---
-title: Bases de datos. Modelo relacional (III)
-description: Parámetros de claves ajenas (Restrict, Cascade, SET_NULL, SET DEFAULT) e introducción al modelo entidad-relación con entidades y atributos.
+title: "Claves ajenas: CASCADE, RESTRICT y SET NULL"
+description: "Opciones de las claves ajenas al borrar o modificar (RESTRICT, CASCADE, SET NULL y SET DEFAULT) y primeros pasos del modelo entidad-relación."
 date: 2014-10-11 15:34:00 +0800
 categories: [Bases de datos]
 tags: [bases-de-datos, modelo-relacional, claves-ajenas, entidad-relacion, sql]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA
-#  alt: Responsive rendering of Chirpy theme on multiple devices.
 redirect_from:
   - /2014/10/bases-de-datos-modelo-relacional-iii.html
 ---
+
+*Parte de la serie «Modelo relacional» (III).*
 
 ## Claves ajenas
 

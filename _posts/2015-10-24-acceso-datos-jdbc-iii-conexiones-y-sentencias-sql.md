@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-10-24 13:00:00 +0800
 categories: [Java]
 tags: [java, acceso-a-datos, jdbc, mysql, statement, preparedstatement, callablestatement, sql]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/10/acceso-datos-jdbc-iii-conexiones-y.html
 ---

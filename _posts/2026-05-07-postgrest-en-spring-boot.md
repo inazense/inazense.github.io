@@ -5,10 +5,7 @@ author: Inazio Claver
 date: 2026-05-07 16:17:00 +0200
 categories: [Java]
 tags: [spring-boot, postgrest, postgresql, api-rest, webclient, jwt, backend, sql, java]
-pin: false
 featured: true
-math: false
-mermaid: false
 ---
 
 ![PostRest + Spring boot](/img/posts/20260507_1.png)

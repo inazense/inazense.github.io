@@ -4,15 +4,10 @@ description:
 date: 2014-10-15 23:41:00 +0800
 categories: [Lenguajes de marcas]
 tags: [lenguaje de marcas, html, html5, audio, video, etiquetas]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,...
-#  alt: Image alt text.
 redirect_from:
   - /2014/10/lenguaje-de-marcas-etiquetas-iii.html
+noindex: true
+sitemap: false
 ---
 
 ## Etiqueta `<audio>` → HTML5

@@ -4,9 +4,6 @@ description: "Qué es RMI (Remote Method Invocation) en Java y cómo implementar
 date: 2016-01-30 13:00:00 +0800
 categories: [Java, Programación de servicios y procesos]
 tags: [java, rmi, remote-method-invocation, programacion-de-servicios-y-procesos, sockets]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2016/01/procesos-y-servicios-rmi-i.html
 ---

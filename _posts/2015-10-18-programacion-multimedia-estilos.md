@@ -1,13 +1,10 @@
 ---
-title: "Programación multimedia. Estilos"
-description: Cómo crear y aplicar estilos personalizados en Android Studio editando styles.xml, incluyendo herencia de estilos para reutilizar propiedades visuales.
+title: "Estilos en Android: styles.xml y herencia de estilos"
+description: "Cómo definir estilos en Android en el fichero styles.xml, aplicarlos a los elementos de la interfaz y reutilizar propiedades con la herencia de estilos."
 author: Inazio Claver
 date: 2015-10-18 23:30:00 +0800
 categories: [Android]
 tags: [android, android-studio, estilos, styles, herencia, programacion-multimedia]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/10/programacion-multimedia-estilos.html
 ---

@@ -4,13 +4,6 @@ description: "Tres ejercicios resueltos en pseudocódigo con el tipo real: longi
 date: 2014-10-14 20:25:00 +0800
 categories: [Programación]
 tags: [programacion, c, tipos-datos, reales, pseudocodigo, algoritmos]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,...
-#  alt: Image alt text.
 redirect_from:
   - /2014/10/programacion-resolucion-de-problemas-iii.html
 ---

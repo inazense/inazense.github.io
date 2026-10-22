@@ -1,15 +1,14 @@
 ---
-title: "Acceso a datos. Ejercicios (V). JDBC"
-description: Ejercicios prácticos de JDBC sobre la base de datos demodb, incluyendo consultas, sentencias preparadas, transacciones, procedimientos almacenados y metadatos con DatabaseMetaData.
+title: "Ejercicios de JDBC en Java con MySQL resueltos"
+description: "Ejercicios de JDBC resueltos: consultas, actualizaciones con y sin sentencias preparadas, transacciones y una clase de acceso a datos completa."
 date: 2015-11-01 21:00:00 +0800
 categories: [Java]
 tags: [java, jdbc, mysql, acceso-a-datos, preparedstatement, transacciones, databasemetadata]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/11/acceso-datos-ejercicios-v-jdbc.html
 ---
+
+*Parte de la serie «Ejercicios de acceso a datos» (V).*
 
 Serie de ejercicios prácticos de JDBC sobre la base de datos **demodb**.
 

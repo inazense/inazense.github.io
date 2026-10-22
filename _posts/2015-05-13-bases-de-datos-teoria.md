@@ -1,13 +1,10 @@
 ---
-title: Bases de datos. Teoría
-description: Apuntes teóricos de bases de datos sobre tipos de ficheros, organización, arquitectura ANSI/X3/SPARC y comparativa de SGBD libres y comerciales.
+title: "Tipos de ficheros, arquitectura ANSI/SPARC y tipos de SGBD"
+description: "Apuntes de teoría de bases de datos: tipos y organización de ficheros, arquitectura ANSI/X3/SPARC con sus niveles y SGBD libres, comerciales y distribuidos."
 author: Inazio Claver
 date: 2015-05-13 12:00:00 +0800
 categories: [Bases de datos]
 tags: [bases-de-datos, teoría, ficheros, sgbd, arquitectura]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/05/bases-de-datos-teoria.html
 ---

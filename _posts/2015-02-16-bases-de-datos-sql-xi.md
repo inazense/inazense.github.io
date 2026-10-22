@@ -1,13 +1,10 @@
 ---
-title: Bases de datos. SQL (XI)
-description: Práctica 12 sobre índices en MySQL, creando tablas con distintos tipos de índices y eliminándolos posteriormente.
+title: "Ejercicio de índices en MySQL: crear y eliminar"
+description: "Práctica de índices en MySQL: clave primaria, índice ordinario e índice único compuesto al crear la tabla o con ALTER TABLE, y cómo eliminarlos."
 author: Inazio Claver
 date: 2015-02-16 12:00:00 +0800
 categories: [Bases de datos]
 tags: [bases-de-datos, sql, mysql]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/02/bases-de-datos-sql-xi.html
 ---
