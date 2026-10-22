@@ -18,6 +18,8 @@ Doce ejercicios prácticos para aprender JSP y acceso a bases de datos, desde op
 
 Mostrar el navegador del cliente, la IP del servidor, el nombre del servidor, la información del servidor web y la IP del cliente.
 
+![Salida del ejercicio con el navegador del cliente y los datos del servidor](/img/posts/20151209_1.png)
+
 ## Ejercicio 2: Imprimir texto formateado
 
 Recibir un nombre como parámetro e imprimirlo entre comillas precedido de la palabra "Nombre" en negrita.
@@ -38,7 +40,7 @@ Recibir una cadena de caracteres y mostrarla invertida.
 
 Calcular la letra correspondiente a un número de DNI mediante la división del número entre 23 y consulta en la tabla de letras.
 
-![Ejercicio 2 - Letra dni](/img/posts/20151209_2.png)
+![Tabla de letras del DNI según el resto de dividir entre 23](/img/posts/20151209_2.png)
 
 ## Ejercicio 7: Años completos entre fechas
 
@@ -52,13 +54,19 @@ Dado un importe, desglosarlo en billetes de 50€, 20€, 10€, 5€, monedas d
 
 Convertir una cantidad fija de euros (337) a varias divisas utilizando las tasas de cambio almacenadas en un array.
 
+![Conversión de 337 euros a varias divisas en JSP](/img/posts/20151209_3.png)
+
 ## Ejercicio 10: Notas de alumnos
 
 Mostrar las notas de los alumnos por asignatura y calcular la media redondeada a partir de datos almacenados en un fichero.
 
+![Boletín de notas por asignatura con la nota media](/img/posts/20151209_4.png)
+
 ## Ejercicio 11: Formulario de registro de clientes
 
 Aplicación con formulario de alta de clientes con validación de datos y inserción en base de datos.
+
+![Formulario JSP de alta de clientes](/img/posts/20151209_5.png)
 
 **Campos del formulario:**
 - Código de cliente (máx. 10 caracteres)
@@ -101,3 +109,13 @@ public class Agenda {
 ```
 
 **AccionesAgenda.java** gestiona las operaciones de base de datos: conectar/desconectar, insertar nuevos contactos y buscar contactos por múltiples criterios, devolviendo un `ArrayList` de resultados.
+
+Ejemplos de ejecución de la agenda: el menú principal, el alta de un contacto, la búsqueda y el listado completo.
+
+![Menú principal de la agenda con las opciones Nuevo, Buscar y Mostrar todos](/img/posts/20151209_6.png)
+
+![Formulario de alta de un nuevo contacto en la agenda](/img/posts/20151209_7.png)
+
+![Formulario de búsqueda de contactos por cada campo](/img/posts/20151209_8.png)
+
+![Listado de todos los contactos con opciones para editar y borrar](/img/posts/20151209_9.png)

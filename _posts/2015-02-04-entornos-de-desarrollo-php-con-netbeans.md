@@ -16,6 +16,8 @@ Vamos a crear nuestra primera página en PHP con NetBeans. Lo primero, si no lo 
 
 Hecho eso, nos vamos a `File` - `New Project` y elegimos `PHP Application from Remote Server`.
 
+![Menú File > New Project de NetBeans](/img/posts/20150204_1.png)
+
 ![PHP Application from Remote Server](/img/posts/20150204_2.png)
 
 ![Siguiente pantalla](/img/posts/20150204_3.png)
@@ -157,11 +159,11 @@ foreach ($fila as $campo => $valor)
 
 Básicamente lo que haremos será generar la estructura de una tabla y automatizar el mostrado tanto del nombre de la columna como de los campos. Tal que así:
 
-![Código tabla con foreach](/img/posts/20150204_1.png)
+![Código PHP que genera la tabla con foreach](/img/posts/20150204_19.png)
 
 Visualizando así el resultado:
 
-![Resultado tabla](/img/posts/20150204_2.png)
+![Resultado: tabla de usuarios generada con PHP](/img/posts/20150204_20.png)
 
 Código de nuevo completo, utilizado hasta este momento y que reemplaza al anterior mostrado:
 

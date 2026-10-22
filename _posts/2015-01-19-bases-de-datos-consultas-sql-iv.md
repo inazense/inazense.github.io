@@ -106,6 +106,8 @@ update articulos set referencia_articulo='01-LANA90/10' where referencia_articul
 delete from facturas where factura_no=2;
 ```
 
+![Tabla de facturas tras borrar la factura 2](/img/posts/20150119_4.png)
+
 ## Ejercicios. Inserción, actualización y borrado (II)
 
 **1.** Insertar compradores y artículos adicionales, y verificar el contenido.
