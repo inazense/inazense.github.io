@@ -14,7 +14,7 @@ Cuando uno empieza a programar con Spring Boot, es bastante fácil centrarse sol
 
 Ahí es donde las pruebas empiezan a dejar de ser “algo opcional” y pasan a ser una herramienta básica de trabajo. Y si además las acompañas de **TDD**, JUnit y Testcontainers, puedes montar una base bastante sólida para desarrollar con más tranquilidad.
 
-> Todo el código de esta entrada está en GitHub: [inazense/spring-boot-testcontainers-tdd](https://github.com/inazense/spring-boot-testcontainers-tdd). Está probado con **Java 21, Spring Boot 4.1.1, Testcontainers 2.0.5, JUnit Jupiter 6.0.3 y PostgreSQL 18**. Para ejecutarlo solo necesitas Docker y lanzar `./mvnw test`.
+> El código de esta entrada está completo y probado con **Java 21, Spring Boot 4.1.1, Testcontainers 2.0.5, JUnit Jupiter 6.0.3 y PostgreSQL 18**. Si copias cada fichero en su sitio y tienes Docker arrancado, `./mvnw test` debería salir en verde.
 
 ## Por qué merece la pena testear
 
@@ -64,18 +64,76 @@ Testcontainers resuelve eso levantando servicios reales dentro de contenedores D
 
 Eso te permite probar con PostgreSQL real, Redis real o cualquier otro servicio que necesites, sin depender de una instalación manual en tu máquina de desarrollo.
 
-## Dependencias básicas
+## El proyecto de ejemplo
 
-Con Spring Boot 4 no tienes que indicar versiones: el `spring-boot-starter-parent` ya gestiona las de JUnit, Mockito, AssertJ y Testcontainers.
+Vamos a montar una mini aplicación de clientes con un email único, y a probarla en tres niveles: un test unitario del servicio, un test del repositorio contra PostgreSQL y un test de integración de la aplicación completa.
+
+Puedes generar el esqueleto con [Spring Initializr](https://start.spring.io) (así te viene ya el `mvnw`) o crearlo a mano. Al final tendrás esta estructura:
+
+```
+src
+├── main
+│   ├── java/com/inazense/customers
+│   │   ├── CustomersApplication.java
+│   │   ├── Customer.java
+│   │   ├── CustomerRepository.java
+│   │   ├── CustomerService.java
+│   │   └── EmailAlreadyRegisteredException.java
+│   └── resources
+│       ├── application.properties
+│       └── schema.sql
+└── test
+    └── java/com/inazense/customers
+        ├── CustomerServiceTest.java
+        ├── CustomerRepositoryTest.java
+        ├── TestcontainersConfiguration.java
+        └── CustomerServiceIntegrationTest.java
+```
+
+`CustomersApplication` es la clase principal de siempre, sin nada especial:
+
+```java
+package com.inazense.customers;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class CustomersApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(CustomersApplication.class, args);
+    }
+}
+```
+
+## Dependencias
+
+Con Spring Boot 4 no tienes que indicar versiones: el `spring-boot-starter-parent` ya gestiona las de Hibernate, el driver de PostgreSQL, JUnit, Mockito, AssertJ y Testcontainers.
 
 ```xml
 <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>4.1.1</version>
+    <relativePath/>
 </parent>
 
+<properties>
+    <java.version>21</java.version>
+</properties>
+
 <dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.postgresql</groupId>
+        <artifactId>postgresql</artifactId>
+        <scope>runtime</scope>
+    </dependency>
+
     <!-- JUnit, Mockito, AssertJ y @DataJpaTest -->
     <dependency>
         <groupId>org.springframework.boot</groupId>
@@ -95,7 +153,6 @@ Con Spring Boot 4 no tienes que indicar versiones: el `spring-boot-starter-paren
         <artifactId>testcontainers-junit-jupiter</artifactId>
         <scope>test</scope>
     </dependency>
-
     <dependency>
         <groupId>org.testcontainers</groupId>
         <artifactId>testcontainers-postgresql</artifactId>
@@ -111,11 +168,96 @@ Si vienes de versiones anteriores, ojo con dos cambios:
 
 Si sigues en Spring Boot 3.x, usa `spring-boot-starter-test`, los artefactos sin prefijo y `org.testcontainers.containers.PostgreSQLContainer<?>`. `@ServiceConnection` funciona desde Spring Boot 3.1.
 
-## Un ejemplo práctico
+Y como varios paquetes han cambiado, fíjate bien en los `import` de los ejemplos. Si el IDE te propone el de la versión antigua, el código no compila.
 
-Supongamos que tienes una entidad `Customer` con un email único y un repositorio JPA:
+## Configuración y esquema
+
+Este es el paso que más se olvida. Con una base de datos en memoria, Spring Boot crea las tablas por ti, pero con PostgreSQL no: Hibernate no toca el esquema por defecto y los scripts SQL solo se ejecutan solos contra bases de datos embebidas. Si te lo saltas, los tests contra PostgreSQL fallarán con un `ERROR: relation "customers" does not exist`.
+
+En `src/main/resources/application.properties`:
+
+```properties
+spring.application.name=customers
+
+spring.sql.init.mode=always
+spring.jpa.hibernate.ddl-auto=validate
+spring.jpa.open-in-view=false
+```
+
+- `spring.sql.init.mode=always` ejecuta `schema.sql` también contra PostgreSQL.
+- `spring.jpa.hibernate.ddl-auto=validate` hace que Hibernate compruebe al arrancar que la entidad encaja con la tabla. Así los tests también detectan un mapeo mal hecho.
+
+Y en `src/main/resources/schema.sql`:
+
+```sql
+create table if not exists customers (
+    id    bigint generated always as identity primary key,
+    name  varchar(100) not null,
+    email varchar(255) not null unique
+);
+```
+
+En un proyecto real seguramente gestionarás el esquema con Flyway o Liquibase. La idea es la misma: los tests arrancan contra un PostgreSQL vacío y el esquema se crea igual que en producción.
+
+## La entidad y el repositorio
+
+La entidad `Customer`:
 
 ```java
+package com.inazense.customers;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "customers")
+public class Customer {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    protected Customer() {
+    }
+
+    public Customer(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+}
+```
+
+Y su repositorio:
+
+```java
+package com.inazense.customers;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
     Optional<Customer> findByEmail(String email);
@@ -124,9 +266,25 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
 }
 ```
 
+## Probar el repositorio con PostgreSQL real
+
 Lo razonable es escribir un test que compruebe que guardar y leer funciona de verdad con PostgreSQL, y que la restricción de unicidad del esquema está donde debe:
 
 ```java
+package com.inazense.customers;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
+import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.postgresql.PostgreSQLContainer;
+
 @DataJpaTest
 @Testcontainers
 class CustomerRepositoryTest {
@@ -160,67 +318,36 @@ class CustomerRepositoryTest {
 
 Fíjate en lo que **no** hay: ni `@DynamicPropertySource` ni propiedades `spring.datasource.*`. `@ServiceConnection` sabe que es un contenedor de PostgreSQL, saca de él la URL JDBC, el usuario y la contraseña, y Spring Boot crea el `DataSource` con esos datos.
 
+`@Testcontainers` y `@Container` se encargan del ciclo de vida: el contenedor arranca antes del primer test de la clase y se para al terminar el último. Al ser un campo `static`, todos los tests de la clase comparten el mismo PostgreSQL.
+
 `@DataJpaTest` arranca solo la capa JPA, no la aplicación entera, y deshace la transacción al acabar cada test, así que cada prueba empieza con la tabla limpia. Desde Spring Boot 3.4 tampoco intenta sustituir tu `DataSource` por una base de datos en memoria cuando viene de `@ServiceConnection`. En versiones anteriores tenías que añadir `@AutoConfigureTestDatabase(replace = Replace.NONE)`.
 
 `@DynamicPropertySource` sigue siendo útil para servicios que Spring Boot no sabe conectar solo, como un `GenericContainer` con una imagen propia. Para PostgreSQL, MySQL, Redis, Kafka, MongoDB y compañía, `@ServiceConnection` es más corto y más difícil de equivocar.
 
 La parte importante no es solo que el test pase. Lo importante es que estás usando la misma clase de base de datos que usarás en producción o en un entorno muy parecido.
 
-## Reutilizar el contenedor en varios tests
-
-Declarar el contenedor en cada clase de test funciona, pero en cuanto tienes varias acabas copiando lo mismo. Lo más limpio es definirlo una vez como bean:
-
-```java
-@TestConfiguration(proxyBeanMethods = false)
-public class TestcontainersConfiguration {
-
-    @Bean
-    @ServiceConnection
-    PostgreSQLContainer postgresContainer() {
-        return new PostgreSQLContainer("postgres:18-alpine");
-    }
-}
-```
-
-Y luego importarlo donde lo necesites:
-
-```java
-@SpringBootTest
-@Import(TestcontainersConfiguration.class)
-class CustomerServiceIntegrationTest {
-
-    @Autowired
-    private CustomerService customerService;
-
-    @Autowired
-    private CustomerRepository customerRepository;
-
-    @BeforeEach
-    void limpiarDatos() {
-        customerRepository.deleteAll();
-    }
-
-    @Test
-    void noPermiteRegistrarDosVecesElMismoEmail() {
-        customerService.register("Ana", "ana@mail.com");
-
-        assertThatThrownBy(() -> customerService.register("Ana", "ANA@mail.com"))
-                .isInstanceOf(EmailAlreadyRegisteredException.class);
-    }
-}
-```
-
-Al ser un bean, Spring arranca el contenedor con el contexto y lo para cuando lo cierra. Como Spring cachea los contextos entre clases de test con la misma configuración, todas las que importen `TestcontainersConfiguration` comparten el mismo PostgreSQL en lugar de levantar uno por clase.
-
-Fíjate también en el `@BeforeEach`: a diferencia de `@DataJpaTest`, `@SpringBootTest` no envuelve cada test en una transacción, así que la limpieza es cosa tuya.
-
-## Tests de servicio
+## Tests de servicio con TDD
 
 No todo debe probarse con base de datos. Los servicios suelen ser buenos candidatos para tests unitarios con mocks, sobre todo cuando la lógica está más en el comportamiento que en el almacenamiento. Ahí entra Mockito, que suele encajar muy bien con JUnit y Spring Boot.
 
 Y aquí es donde TDD se ve más claro. Queremos un servicio que registre clientes y rechace emails repetidos, así que empezamos por el test:
 
 ```java
+package com.inazense.customers;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
 @ExtendWith(MockitoExtension.class)
 class CustomerServiceTest {
 
@@ -242,9 +369,43 @@ class CustomerServiceTest {
 }
 ```
 
-Al principio ni compila, porque `CustomerService` no existe: ese es el rojo. Escribimos lo mínimo para que pase (el verde) y, con un segundo test que pide guardar el email en minúsculas, acabamos en esto:
+Al principio ni compila, porque `CustomerService` y `EmailAlreadyRegisteredException` no existen: ese es el rojo. La excepción es lo más sencillo:
 
 ```java
+package com.inazense.customers;
+
+public class EmailAlreadyRegisteredException extends RuntimeException {
+
+    public EmailAlreadyRegisteredException(String email) {
+        super("Ya existe un cliente con el email " + email);
+    }
+}
+```
+
+Con un `register` que solo comprueba si el email existe, el test ya pasa: el verde. Después añadimos un segundo test a `CustomerServiceTest` que pide guardar el email limpio y en minúsculas, aunque llegue con espacios y mayúsculas:
+
+```java
+@Test
+void registraElClienteConElEmailNormalizado() {
+    when(customerRepository.existsByEmail("ana@mail.com")).thenReturn(false);
+    when(customerRepository.save(any(Customer.class))).thenAnswer(invocation -> invocation.getArgument(0));
+
+    Customer customer = customerService.register("Ana", "  Ana@Mail.com ");
+
+    assertThat(customer.getEmail()).isEqualTo("ana@mail.com");
+}
+```
+
+Vuelve a fallar, lo hacemos pasar y refactorizamos. El servicio acaba así:
+
+```java
+package com.inazense.customers;
+
+import java.util.Locale;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 @Service
 public class CustomerService {
 
@@ -267,9 +428,95 @@ public class CustomerService {
 }
 ```
 
-Este test no arranca Spring ni Docker y tarda milisegundos. El de integración de antes comprueba lo mismo, pero contra PostgreSQL de verdad.
+Estos tests no arrancan Spring ni Docker y tardan milisegundos. La idea es simple: si el test necesita una base de datos, probablemente sea un test de integración. Si solo necesitas comprobar decisiones lógicas, mejor un test unitario.
 
-La idea es simple: si el test necesita una base de datos, probablemente sea un test de integración. Si solo necesitas comprobar decisiones lógicas, mejor un test unitario.
+## Test de integración reutilizando el contenedor
+
+Ahora queremos probar lo mismo con la aplicación completa y PostgreSQL de verdad. Podríamos declarar otro `@Container` en la nueva clase, pero en cuanto tienes varias acabas copiando lo mismo. Lo más limpio es definir el contenedor una vez como bean, en `src/test/java`:
+
+```java
+package com.inazense.customers;
+
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
+import org.springframework.context.annotation.Bean;
+import org.testcontainers.postgresql.PostgreSQLContainer;
+
+@TestConfiguration(proxyBeanMethods = false)
+public class TestcontainersConfiguration {
+
+    @Bean
+    @ServiceConnection
+    PostgreSQLContainer postgresContainer() {
+        return new PostgreSQLContainer("postgres:18-alpine");
+    }
+}
+```
+
+Y luego importarlo donde lo necesites:
+
+```java
+package com.inazense.customers;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
+
+@SpringBootTest
+@Import(TestcontainersConfiguration.class)
+class CustomerServiceIntegrationTest {
+
+    @Autowired
+    private CustomerService customerService;
+
+    @Autowired
+    private CustomerRepository customerRepository;
+
+    @BeforeEach
+    void limpiarDatos() {
+        customerRepository.deleteAll();
+    }
+
+    @Test
+    void registraUnClienteEnPostgres() {
+        Customer customer = customerService.register("Ana", "Ana@Mail.com");
+
+        assertThat(customer.getId()).isNotNull();
+        assertThat(customerRepository.findByEmail("ana@mail.com")).isPresent();
+    }
+
+    @Test
+    void noPermiteRegistrarDosVecesElMismoEmail() {
+        customerService.register("Ana", "ana@mail.com");
+
+        assertThatThrownBy(() -> customerService.register("Ana", "ANA@mail.com"))
+                .isInstanceOf(EmailAlreadyRegisteredException.class);
+    }
+}
+```
+
+Aquí no hacen falta `@Testcontainers` ni `@Container`. Al ser un bean, Spring arranca el contenedor con el contexto y lo para cuando lo cierra. Como Spring cachea los contextos entre clases de test con la misma configuración, todas las que importen `TestcontainersConfiguration` comparten el mismo PostgreSQL en lugar de levantar uno por clase.
+
+Fíjate también en el `@BeforeEach`: a diferencia de `@DataJpaTest`, `@SpringBootTest` no envuelve cada test en una transacción, así que la limpieza es cosa tuya.
+
+## Ejecutar los tests
+
+Con Docker arrancado:
+
+```bash
+./mvnw test
+```
+
+La primera vez tardará un poco más porque Testcontainers descarga la imagen `postgres:18-alpine`. En el log verás líneas como `Container postgres:18-alpine started` y, al final, los seis tests en verde: dos unitarios, dos del repositorio y dos de integración.
+
+También verás un `WARN` de Hibernate con `duplicate key value violates unique constraint "customers_email_key"`. No te alarmes: es el test de emails duplicados haciendo su trabajo.
+
+Si en lugar de eso ves un error de que no encuentra un entorno Docker válido, el problema no está en tu código: Docker no está arrancado o Testcontainers no tiene acceso a él.
 
 ## Cómo organizar la pirámide
 
@@ -306,8 +553,6 @@ Ese enfoque suele ser mucho más sostenible que intentar montar una suite enorme
 Testear en Spring Boot no va solo de usar JUnit o de levantar contenedores Docker. Va de construir una aplicación en la que puedas confiar cuando haces cambios.
 
 TDD ayuda a pensar mejor el diseño. JUnit te da una base muy sólida para expresar comportamiento. Y Testcontainers, con `@ServiceConnection`, te permite comprobar cosas importantes con servicios reales sin pelearte con la configuración.
-
-Si quieres trastear con todo esto, clona [el repositorio del ejemplo](https://github.com/inazense/spring-boot-testcontainers-tdd), arranca Docker y lanza `./mvnw test`.
 
 Si lo haces con un poco de orden, las pruebas dejan de ser una carga y pasan a ser una de las mejores partes del proyecto.
 
