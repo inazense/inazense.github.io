@@ -67,7 +67,10 @@
 
   .layout {
     flex-direction: column;
+    padding-left: 0;
   }
+
+  .site-footer { margin-left: 0; }
 
   .divider { display: none; }
 
@@ -92,6 +95,8 @@
     transition: transform 0.3s ease;
     box-shadow: 4px 0 24px rgba(0, 0, 0, 0.4);
     border-right: none;
+    // El scroll del drawer no arrastra la página de detrás
+    overscroll-behavior: contain;
 
     &.open { transform: translateX(0); }
   }
