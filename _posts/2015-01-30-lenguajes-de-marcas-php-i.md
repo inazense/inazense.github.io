@@ -46,17 +46,17 @@ Si aparece un cartel como el de arriba, está funcionando correctamente.
 
 Primero instalaremos la librería necesaria, `vcredist`.
 
-![Pasos de instalación de WAMP](/img/posts/20150130_6.png)
+![Instalación de Microsoft Visual C++ 2012 Redistributable, requisito de WAMP](/img/posts/20150130_6.png)
 
 Posteriormente lanzamos el instalador del WAMP.
 
-![Pasos de instalación de WAMP](/img/posts/20150130_7.png)
+![Asistente de instalación de WampServer 2.5](/img/posts/20150130_7.png)
 
-![Pasos de instalación de WAMP](/img/posts/20150130_8.png)
+![WampServer pide elegir el navegador por defecto (explorer.exe)](/img/posts/20150130_8.png)
 
-![Pasos de instalación de WAMP](/img/posts/20150130_9.png)
+![Alerta del Firewall de Windows para permitir Apache HTTP Server](/img/posts/20150130_9.png)
 
-![Pasos de instalación de WAMP](/img/posts/20150130_10.png)
+![Parámetros de correo de PHP (SMTP) en la instalación de WampServer](/img/posts/20150130_10.png)
 
 Y lo comprobamos accediendo a `localhost`.
 
