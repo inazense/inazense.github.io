@@ -21,11 +21,16 @@ defaults:
     values:
       layout: "post"
       image: /img/profile.png
+      # Imagen por defecto cuadrada: tarjeta pequeña en redes
+      twitter:
+        card: summary
   - scope:
       path: "pages"
     values:
       layout: "page"
       image: /img/profile.png
+      twitter:
+        card: summary
 
 plugins:
   - jekyll-feed
@@ -35,10 +40,6 @@ plugins:
   - jekyll-redirect-from
 
 logo: /img/profile.png
-
-# Imagen por defecto cuadrada: tarjeta pequeña en redes
-twitter:
-  card: summary
 
 paginate: 10
 paginate_path: "/page/:num/"
