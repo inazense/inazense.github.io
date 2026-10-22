@@ -44,6 +44,8 @@ body {
 .layout {
   display: flex;
   min-height: 100vh;
+  // Hueco del sidebar fijo
+  padding-left: $sidebar-width;
 }
 
 .divider {
@@ -188,6 +190,7 @@ ul, ol {
   border-top: 1px solid var(--border);
   text-align: center;
   background: var(--sidebar-bg);
+  margin-left: $sidebar-width;
 }
 
 .footer-text {

@@ -5,12 +5,14 @@
   border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
-  position: sticky;
+  // Fijo: no se mueve con el scroll ni lo empuja el footer
+  position: fixed;
   top: 0;
+  left: 0;
   height: 100vh;
+  // Solo hace scroll si la ventana es más baja que el contenido compactado
   overflow-y: auto;
   overflow-x: hidden;
-  flex-shrink: 0;
   transition: background-color 0.25s ease;
   scrollbar-width: thin;
   scrollbar-color: var(--border) transparent;
@@ -227,6 +229,27 @@
     border-color: var(--accent);
     background: rgba(var(--accent-rgb), 0.08);
   }
+}
+
+// Pantallas bajas: compactar para que el sidebar quepa sin scroll
+@media (min-width: #{$breakpoint-lg + 1}) and (max-height: 820px) {
+  .sidebar-inner {
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+
+  .profile-photo {
+    width: 120px;
+    margin-bottom: 0.75rem;
+  }
+
+  .blog-tagline { margin-bottom: 0.75rem; }
+
+  .nav-item { padding-block: 0.35rem; }
+}
+
+@media (min-width: #{$breakpoint-lg + 1}) and (max-height: 660px) {
+  .profile-photo { width: 90px; }
 }
 
 [data-theme="dark"]  .icon-sun           { display: none; }
