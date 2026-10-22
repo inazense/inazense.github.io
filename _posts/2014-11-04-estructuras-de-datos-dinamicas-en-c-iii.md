@@ -13,6 +13,8 @@ mermaid: false
 #  alt: Image alt text.
 redirect_from:
   - /2014/11/estructuras-de-datos-dinamicas-en-c-iii.html
+noindex: true
+sitemap: false
 ---
 
 *Parte de la serie «Estructuras de datos en C» (III).*

@@ -13,6 +13,8 @@ mermaid: false
 #  alt: Image alt text.
 redirect_from:
   - /2014/10/bases-de-datos-modelo-relacional-v.html
+noindex: true
+sitemap: false
 ---
 
 ## Dependencia en existencia

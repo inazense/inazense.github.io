@@ -13,6 +13,8 @@ mermaid: false
 #  alt: Responsive rendering of Chirpy theme on multiple devices.
 redirect_from:
   - /2014/10/lenguaje-de-marcas-introduccion.html
+noindex: true
+sitemap: false
 ---
 
 Los lenguajes de marcas son adaptables a nuestras necesidades. Yo puedo generar un lenguaje de marcas adaptado a mis necesidades. Por ejemplo, si nos inventamos un leguaje llamado noticias:

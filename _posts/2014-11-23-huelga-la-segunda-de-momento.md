@@ -14,6 +14,8 @@ mermaid: false
 #  alt: Responsive rendering of Chirpy theme on multiple devices.
 redirect_from:
   - /2014/11/huelga-la-segunda-de-momento.html
+noindex: true
+sitemap: false
 ---
 
 El día antes de la huelga del 20 de noviembre el profesor nos dijo lo siguiente:

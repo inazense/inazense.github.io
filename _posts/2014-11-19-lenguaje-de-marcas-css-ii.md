@@ -14,6 +14,8 @@ mermaid: false
 #  alt: Responsive rendering of Chirpy theme on multiple devices.
 redirect_from:
   - /2014/11/lenguaje-de-marcas-css-ii.html
+noindex: true
+sitemap: false
 ---
 
 ## Atributo position

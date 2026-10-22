@@ -14,6 +14,8 @@ mermaid: false
 #  alt: Responsive rendering of Chirpy theme on multiple devices.
 redirect_from:
   - /2014/11/me-cago-en-todo-lo-cagable.html
+noindex: true
+sitemap: false
 ---
 
 He descubierto que los ejercicios 6, 8, 12, 13, 17, 18 y 20 de la tercera hoja de programación se han corrompido.

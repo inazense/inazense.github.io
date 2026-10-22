@@ -14,6 +14,8 @@ mermaid: false
 #  alt: Responsive rendering of Chirpy theme on multiple devices.
 redirect_from:
   - /2015/01/entornos-de-desarrollo-instalacion-de.html
+noindex: true
+sitemap: false
 ---
 
 ![Entornos de desarrollo](/img/posts/20150116_1.jpg)

@@ -13,6 +13,8 @@ mermaid: false
 #  alt: Image alt text.
 redirect_from:
   - /2014/10/programacion-resolucion-de-problemas-iv.html
+noindex: true
+sitemap: false
 ---
 
 Planteamiento de resolución para raíces cuadradas.

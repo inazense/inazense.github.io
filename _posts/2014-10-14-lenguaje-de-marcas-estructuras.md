@@ -13,6 +13,8 @@ mermaid: false
 #  alt: Image alt text.
 redirect_from:
   - /2014/10/lenguaje-de-marcas-estructuras.html
+noindex: true
+sitemap: false
 ---
 
 ## Estructura general HTML

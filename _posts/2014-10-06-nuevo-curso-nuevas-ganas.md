@@ -13,6 +13,8 @@ mermaid: false
 #  alt: Responsive rendering of Chirpy theme on multiple devices.
 redirect_from:
   - /2014/10/nuevo-curso-nuevas-ganas.html
+noindex: true
+sitemap: false
 ---
 
 Después de haber estudiado dos años en el grado medio de Microinformática y Redes (y aprobarlo con matricula de honor, ¡yuhu!), estuve trabajando todo el verano en una empresa a la que aquí llamaremos Trajeaditos, S.L.

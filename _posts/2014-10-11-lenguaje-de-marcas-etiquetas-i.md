@@ -13,6 +13,8 @@ mermaid: false
 #  alt: Responsive rendering of Chirpy theme on multiple devices.
 redirect_from:
   - /2014/10/lenguaje-de-marcas-etiquetas-i.html
+noindex: true
+sitemap: false
 ---
 
 Realmente no vimos prácticamente nada ese día, pero aún así lo pongo. Quien sabe...
