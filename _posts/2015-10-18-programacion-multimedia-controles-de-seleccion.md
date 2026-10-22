@@ -1,6 +1,6 @@
 ---
-title: "Programación multimedia. Controles de selección"
-description: Controles de selección en Android (Spinner, ListView, GridView, Gallery) y uso de adaptadores como ArrayAdapter para vincular datos con listas.
+title: "Spinner, ListView y ArrayAdapter en Android"
+description: "Controles de selección en Android (Spinner, ListView, GridView y Gallery) y cómo vincularles datos con adaptadores como ArrayAdapter, con un ejemplo."
 author: Inazio Claver
 date: 2015-10-18 23:44:00 +0800
 categories: [Android]

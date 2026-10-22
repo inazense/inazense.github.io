@@ -1,6 +1,6 @@
 ---
-title: Bases de datos. SQL programado (XV). Ejercicios (VI)
-description: Ejercicios avanzados de SQL programado en MySQL con cursores de actualización, transacciones, manejadores de error y estrategia optimista.
+title: "Cursores de actualización y transacciones: ejercicios"
+description: "Ejercicios avanzados de SQL programado en MySQL: cursores de actualización (FOR UPDATE), transacciones, manejadores de error y estrategia optimista."
 author: Inazio Claver
 date: 2015-05-06 12:00:00 +0800
 categories: [Bases de datos]
@@ -11,6 +11,8 @@ mermaid: false
 redirect_from:
   - /2015/05/bases-de-datos-sql-programado-xv.html
 ---
+
+*Parte de la serie «Ejercicios de SQL programado» (VII).*
 
 Ejercicios correspondientes a la hoja número siete. Se han realizado sobre el script `primerospasos.sql`, que puedes descargar haciendo clic [aquí](https://drive.google.com/open?id=0Bz9hbleXTdM-UTFOOWVBTEE1b2M&authuser=0).
 

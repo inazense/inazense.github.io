@@ -1,6 +1,6 @@
 ---
-title: "Acceso a datos. Persistencia"
-description: Conceptos de persistencia y serialización de objetos en Java, incluyendo la interfaz Serializable, el modificador transient, herencia serializable y la interfaz Externalizable.
+title: "Serialización de objetos en Java: Serializable y transient"
+description: "Persistencia en Java: serializar con la interfaz Serializable, el modificador transient, la serialización con herencia y la interfaz Externalizable."
 author: Inazio Claver
 date: 2015-10-12 12:00:00 +0800
 categories: [Java]

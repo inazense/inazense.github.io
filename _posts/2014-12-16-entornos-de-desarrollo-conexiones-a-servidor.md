@@ -1,6 +1,6 @@
 ---
-title: Entornos de desarrollo. Conexiones a servidor
-description: Conexión SSH a servidor con PuTTY y transferencia de archivos con WinSCP. Cambio de contraseña y verificación de permisos de directorios.
+title: "Conectar a un servidor con PuTTY (SSH) y WinSCP"
+description: "Cómo conectarse por SSH a un servidor con PuTTY, cambiar la contraseña, transferir archivos con WinSCP y comprobar los permisos de los directorios."
 author: Inazio Claver
 date: 2014-12-16 13:11:00 +0800
 categories: [Entornos de desarrollo]

@@ -1,6 +1,6 @@
 ---
-title: "Acceso a datos. Aplicaciones web servidor. JSP. Ejemplos"
-description: Colección de ejemplos prácticos de JSP, desde el Hola Mundo hasta el manejo de parámetros, expresiones, scriptlets, comentarios, contador de accesos y control de errores.
+title: "Ejemplos de JSP: scriptlets, expresiones y parámetros"
+description: "Ejemplos prácticos de JSP desde un Hola mundo: comentarios, declaraciones, scriptlets, expresiones, parámetros, formularios y control de errores."
 date: 2015-11-22 14:00:00 +0800
 categories: [Java]
 tags: [java, jsp, acceso-a-datos, web, ejemplos, scriptlet, expresiones]
@@ -10,6 +10,8 @@ mermaid: false
 redirect_from:
   - /2015/11/acceso-datos-aplicaciones-web-servidor_22.html
 ---
+
+*Parte de la serie «Ejemplos de JSP» (I).*
 
 Colección de ejemplos prácticos de JSP para comprender los distintos elementos del lenguaje.
 

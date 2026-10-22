@@ -1,6 +1,6 @@
 ---
-title: Lenguaje de marcas. Blog
-description: Ejercicio de creación de un blog dinámico con PHP y PHPMyAdmin.
+title: "Crear un blog sencillo con PHP y MySQL"
+description: "Ejercicio para crear un blog dinámico con PHP: tabla de entradas en phpMyAdmin, formulario para publicar e index.php que muestra los artículos."
 author: Inazio Claver
 date: 2015-02-13 12:00:00 +0800
 categories: [Lenguajes de marcas]

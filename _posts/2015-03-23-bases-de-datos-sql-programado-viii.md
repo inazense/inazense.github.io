@@ -1,6 +1,6 @@
 ---
-title: Bases de datos. SQL programado (VIII). Ejercicios (III)
-description: Ejercicios 19 y 20 de SQL programado en MySQL, con cursores para listar empleados y actualizar salarios en transacciones.
+title: "Cursores en MySQL: ejercicios resueltos"
+description: "Dos ejercicios de procedimientos con cursores en MySQL: listar empleados por rango de departamento y subir el sueldo a quien cobra menos que la media."
 author: Inazio Claver
 date: 2015-03-23 12:00:00 +0800
 categories: [Bases de datos]
@@ -11,6 +11,8 @@ mermaid: false
 redirect_from:
   - /2015/03/bases-de-datos-sql-programado-viii.html
 ---
+
+*Parte de la serie «Ejercicios de SQL programado» (III).*
 
 Práctica 3 del tema 6/7. Se utilizan las tablas de la base de datos `primeros_pasos`.
 

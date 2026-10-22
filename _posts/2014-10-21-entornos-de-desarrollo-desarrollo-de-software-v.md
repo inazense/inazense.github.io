@@ -1,6 +1,6 @@
 ---
-title: Entornos de desarrollo. Desarrollo de software (V)
-description:
+title: "Proyectos y depurador en Code::Blocks"
+description: "Cómo crear un proyecto de consola en Code::Blocks para organizar programas en C de varios ficheros y cómo usar su depurador paso a paso."
 date: 2014-10-21 23:36:00 +0800
 categories: [Entornos de desarrollo]
 tags: [entornos de desarrollo, codeblocks, c, debugger, proyectos]
@@ -14,6 +14,8 @@ mermaid: false
 redirect_from:
   - /2014/10/entornos-de-desarrollo-desarrollo-de_21.html
 ---
+
+*Parte de la serie «Desarrollo de software» (V).*
 
 ## Proyectos en Code Blocks
 

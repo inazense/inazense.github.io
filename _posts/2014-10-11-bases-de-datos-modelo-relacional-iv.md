@@ -1,6 +1,6 @@
 ---
-title: Bases de datos. Modelo relacional (IV)
-description: "Introducción al modelo entidad-relación básico: entidades regulares y débiles, tipos de relaciones, cardinalidad, roles y atributos con ejemplos visuales."
+title: "Modelo entidad-relación: entidades, relaciones, cardinalidad"
+description: "Modelo entidad-relación básico: entidades regulares y débiles, relaciones y su grado, cardinalidad máxima, roles y atributos, con el ejemplo de un colegio."
 date: 2014-10-11 15:41:00 +0800
 categories: [Bases de datos]
 tags: [bases-de-datos, modelo-relacional, entidad-relacion, cardinalidad, atributos]
@@ -14,6 +14,8 @@ mermaid: false
 redirect_from:
   - /2014/10/bases-de-datos-modelo-relacional-iv.html
 ---
+
+*Parte de la serie «Modelo relacional» (IV).*
 
 ## Modelo entidad-relación básico
 

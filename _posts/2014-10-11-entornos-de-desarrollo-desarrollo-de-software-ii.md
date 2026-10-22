@@ -1,6 +1,6 @@
 ---
-title: Entornos de desarrollo. Desarrollo de software II
-description: Aprende sobre distribución de software (shareware, freeware, adware), tipos de licencias (libre, propietario, dominio público), licencias GPL y clasificación de lenguajes de programación por nivel de abstracción.
+title: "Licencias de software y tipos de lenguajes de programación"
+description: "Formas de distribuir software (shareware, freeware…), tipos de licencias y la GPL, clasificación de lenguajes por nivel y un extra sobre el editor Vim."
 date: 2014-10-11 12:10:00 +0800
 categories: [Entornos de desarrollo]
 tags: [desarrollo-software, licencias, gpl, lenguajes-programacion, entornos-desarrollo, vim]
@@ -14,6 +14,8 @@ mermaid: false
 redirect_from:
   - /2014/10/entornos-de-desarrollo-desarrollo-de_10.html
 ---
+
+*Parte de la serie «Desarrollo de software» (II).*
 
 ## Distribución de software
 

@@ -1,6 +1,6 @@
 ---
-title: Sistemas informáticos. Cisco Packet Tracert
-description: Introducción al uso de Cisco Packet Tracer para hacer planeamientos de red con switches, hosts y routers.
+title: "Cisco Packet Tracer: primeros pasos para montar una red"
+description: "Primeros pasos con Cisco Packet Tracer: añadir switches, equipos y routers, conectarlos con el cableado automático y configurar las direcciones de la red."
 author: Inazio Claver
 date: 2015-02-09 12:00:00 +0800
 categories: [Sistemas]
@@ -11,6 +11,8 @@ mermaid: false
 redirect_from:
   - /2015/02/sistemas-informaticos-cisco-packet.html
 ---
+
+*Parte de la serie «Cisco Packet Tracer» (I).*
 
 Vamos a comenzar a usar el Packet Tracert, para hacer planeamientos de red.
 

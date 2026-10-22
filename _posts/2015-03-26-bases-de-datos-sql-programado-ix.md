@@ -1,6 +1,6 @@
 ---
-title: Bases de datos. SQL programado (IX). Ejercicios (IV)
-description: Ejercicios 21 y 22 de SQL programado en MySQL, con manejadores de errores definidos por el usuario mediante condiciones nombradas.
+title: "Manejadores de errores en MySQL: ejercicios"
+description: "Ejercicios de procedimientos almacenados con manejadores de errores (DECLARE HANDLER) y condiciones con nombre para dar de alta alumnos y empleados."
 author: Inazio Claver
 date: 2015-03-26 20:06:00 +0800
 categories: [Bases de datos]
@@ -11,6 +11,8 @@ mermaid: false
 redirect_from:
   - /2015/03/bases-de-datos-sql-programado-ix.html
 ---
+
+*Parte de la serie «Ejercicios de SQL programado» (IV).*
 
 Práctica 4 del tema 6/7.
 

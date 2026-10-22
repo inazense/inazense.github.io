@@ -1,6 +1,6 @@
 ---
-title: Bases de datos. Consultas SQL (VII)
-description: Hoja de ejercicios 10 de la unidad 3. Consultas dentro de otras instrucciones, creación de tablas, vistas y actualización de datos.
+title: "Ejercicios SQL de subconsultas en UPDATE, INSERT y vistas"
+description: "Ejercicios resueltos de consultas dentro de otras instrucciones SQL: actualizar, insertar y crear tablas a partir de una consulta, y crear vistas."
 author: Inazio Claver
 date: 2015-02-10 12:00:00 +0800
 categories: [Bases de datos]
@@ -11,6 +11,8 @@ mermaid: false
 redirect_from:
   - /2015/02/bases-de-datos-consultas-sql-vii.html
 ---
+
+*Parte de la serie «Consultas SQL» (VII).*
 
 Hoja de ejercicios 10 de la unidad 3
 

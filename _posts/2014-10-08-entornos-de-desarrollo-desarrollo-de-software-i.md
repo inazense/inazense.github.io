@@ -1,6 +1,6 @@
 ---
-title: Entornos de desarrollo. Desarrollo de software I
-description: "Aprende los fundamentos del desarrollo de software: tipos de software (sistema, aplicación, programación), arquitectura hardware-software, estándares y primeros pasos con PHP. Guía completa para principiantes."
+title: "Qué es el software y qué tipos existen"
+description: "Qué es el software según la RAE y el IEEE, los niveles entre usuario y hardware, los tipos de software (sistema, aplicación y programación) y un extra de PHP."
 date: 2014-10-08 12:10:00 +0800
 categories: [Entornos de desarrollo]
 tags: [desarrollo-software, tipos-software, php, programacion, entornos-desarrollo, principiantes]
@@ -14,6 +14,8 @@ mermaid: false
 redirect_from:
   - /2014/10/entornos-de-desarrollo-desarrollo-de.html
 ---
+
+*Parte de la serie «Desarrollo de software» (I).*
 
 ## Ordenador
 - Hardware. Parte física y tangible

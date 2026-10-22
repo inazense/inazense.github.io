@@ -1,6 +1,6 @@
 ---
-title: Lenguajes de marcas. Formularios HTML5+PHP+BD
-description: Cómo crear formularios HTML5 conectados a PHP y a una base de datos MySQL mediante mysqli, usando los métodos GET y POST.
+title: "Formularios HTML5 con PHP y MySQL: GET y POST"
+description: "Cómo enviar un formulario HTML5 a PHP con GET o POST, recoger los datos con $_GET y $_POST y guardarlos en una base de datos MySQL con mysqli."
 author: Inazio Claver
 date: 2015-02-06 12:00:00 +0800
 categories: [Lenguajes de marcas]

@@ -1,6 +1,6 @@
 ---
-title: Desarrollo de interfaces. Instalación de Visual Studio 2012
-description: Guía de instalación de Visual Studio 2012 para el módulo de Desarrollo de interfaces, con el que programaremos en Visual Basic.
+title: "Cómo instalar Visual Studio 2012 paso a paso"
+description: "Instalación de Visual Studio 2012 paso a paso para programar en Visual Basic: selección de características, descarga, activación y configuración inicial."
 author: Inazio Claver
 date: 2015-09-26 12:30:00 +0800
 categories: [Entornos de desarrollo]

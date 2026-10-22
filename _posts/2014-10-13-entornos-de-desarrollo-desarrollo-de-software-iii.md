@@ -1,6 +1,6 @@
 ---
-title: Entornos de desarrollo. Desarrollo de software (III)
-description: Lenguajes compilados vs interpretados, Java y la JVM, instalación de MinGW para compilar C en Windows, y configuración de la variable de entorno PATH.
+title: "Lenguajes compilados e interpretados, MinGW y el PATH"
+description: "Diferencias entre lenguajes compilados e interpretados y el caso de Java, cómo instalar MinGW para compilar C en Windows y cómo configurar la variable PATH."
 date: 2014-10-13 14:44:00 +0800
 categories: [Entornos de desarrollo]
 tags: [desarrollo-software, compiladores, java, jvm, mingw, path, windows, gcc, entornos-desarrollo]
@@ -14,6 +14,8 @@ mermaid: false
 redirect_from:
   - /2014/10/entornos-de-desarrollo-desarrollo-de_13.html
 ---
+
+*Parte de la serie «Desarrollo de software» (III).*
 
 ## Lenguajes
 

@@ -1,6 +1,6 @@
 ---
-title: Sistemas informáticos. Explotación de sistemas informáticos I
-description: "Aprende arquitectura de computadoras: procesador, memoria, buses y periféricos. Guía completa sobre UC, ALU, registros, canales de comunicación, tipos de instrucciones y componentes fundamentales de sistemas informáticos."
+title: "Arquitectura de un ordenador: procesador, UC, ALU y buses"
+description: "Arquitectura de un ordenador explicada: niveles funcionales, procesador, unidad de control, unidad aritmético-lógica, buses y tipos de instrucciones."
 date: 2014-10-07 13:10:00 +0800
 categories: [Sistemas]
 tags: [arquitectura, procesador, memoria, buses, sistemas-informaticos, hardware]

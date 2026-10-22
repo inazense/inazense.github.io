@@ -1,6 +1,6 @@
 ---
-title: Sistemas informáticos. Resumen temario para examen teórico
-description: Resumen del temario teórico de sistemas informáticos. Arquitectura Von Neumann, disco duro, tipos de ordenadores, ciclo de vida de procesos, estructura de directorios Ubuntu, comandos Windows y permisos NTFS.
+title: "Resumen de sistemas informáticos: hardware, procesos y SO"
+description: "Resumen teórico de sistemas informáticos: arquitectura Von Neumann, discos, tipos de ordenadores, planificación de procesos, directorios de Ubuntu y NTFS."
 author: Inazio Claver
 date: 2014-11-26 21:32:00 +0800
 categories: [Sistemas]

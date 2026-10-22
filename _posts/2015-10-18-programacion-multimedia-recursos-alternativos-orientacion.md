@@ -1,6 +1,6 @@
 ---
-title: "Programación multimedia. Recursos alternativos. Orientación"
-description: Cómo crear layouts alternativos en Android para que la interfaz se adapte automáticamente al cambiar la orientación del dispositivo entre vertical y horizontal.
+title: "Layout horizontal en Android con la carpeta layout-land"
+description: "Cómo crear un layout alternativo en la carpeta layout-land para que tu aplicación Android se adapte bien al girar el dispositivo a horizontal."
 author: Inazio Claver
 date: 2015-10-18 23:05:00 +0800
 categories: [Android]

@@ -1,6 +1,6 @@
 ---
-title: Acceso a datos. Aplicaciones web servidor. JSP. Ejercicios
-description: 12 ejercicios prácticos de JSP que van desde mostrar información del servidor hasta sistemas CRUD completos con base de datos.
+title: "12 ejercicios de JSP resueltos"
+description: "Doce ejercicios de JSP resueltos, desde mostrar datos del servidor o calcular la letra del DNI hasta formularios con base de datos y una agenda completa."
 author: Inazio Claver
 date: 2015-12-09 12:00:00 +0800
 categories: [Web]

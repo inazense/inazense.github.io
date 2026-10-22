@@ -1,6 +1,6 @@
 ---
-title: Sistemas Informáticos. Sistemas Numéricos
-description:
+title: "Binario, complemento a dos y conversión entre bases"
+description: "Cómo representar números negativos en binario con el complemento a dos, ejercicios de conversión entre sistemas numéricos y unidades de tamaño de datos."
 date: 2014-10-11 12:10:00 +0800
 categories: [Sistemas]
 tags: [sistemas-informaticos, sistemas-numericos, binario, complemento, coma-flotante, representacion-informacion]

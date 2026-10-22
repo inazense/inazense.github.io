@@ -1,6 +1,6 @@
 ---
-title: Entornos de desarrollo. Proyectos
-description:
+title: "Proyectos en C con varios ficheros y una librería propia"
+description: "Cómo organizar un proyecto en C en varios ficheros (main.c, cabecera .h e implementación), incluir una librería propia y compilarlo, con el juego Conecta 4."
 date: 2014-11-05 00:00:00 +0800
 categories: [Entornos de desarrollo]
 tags: [entornos de desarrollo, codeblocks, c, proyectos, gcc]

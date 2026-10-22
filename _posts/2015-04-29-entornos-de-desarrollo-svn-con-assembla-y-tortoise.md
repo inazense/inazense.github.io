@@ -1,6 +1,6 @@
 ---
-title: Entornos de desarrollo. SVN con Assembla y Tortoise
-description: Introducción a SVN como sistema de control de versiones, con tutorial paso a paso para crear un repositorio en Assembla y conectarlo con TortoiseSVN.
+title: "Control de versiones con SVN: Assembla y TortoiseSVN"
+description: "Qué es SVN y cómo funciona (trunk y branches), sus operaciones principales y cómo crear un repositorio en Assembla y trabajar con él desde TortoiseSVN."
 author: Inazio Claver
 date: 2015-04-29 12:00:00 +0800
 categories: [Entornos de desarrollo]
@@ -11,6 +11,8 @@ mermaid: false
 redirect_from:
   - /2015/04/entornos-de-desarrollo-svn.html
 ---
+
+*Parte de la serie «SVN» (I).*
 
 SVN es el control de versiones. Nos permite compaginar diferentes programadores, ramas de desarrollo y versiones finales.
 

@@ -1,6 +1,6 @@
 ---
-title: Lenguaje de marcas. CSS(III)
-description: Creación de botones redondeados, efectos hover, transiciones CSS y estilos para tablas con ejemplos de código HTML y CSS.
+title: "Botones redondeados, hover y transiciones en CSS"
+description: "Cómo crear botones redondeados con CSS, efectos hover con opacidad y transiciones de color, y cómo dar estilo a una tabla con bordes redondeados."
 author: Inazio Claver
 date: 2014-11-28 13:42:00 +0800
 categories: [Lenguajes de marcas]
@@ -15,6 +15,8 @@ mermaid: false
 redirect_from:
   - /2014/11/lenguaje-de-marcas-cssiii.html
 ---
+
+*Parte de la serie «CSS» (III).*
 
 En esta entrada vamos a ver cómo crear botones redondeados, efectos hover y transiciones en CSS, además de cómo estilizar tablas.
 

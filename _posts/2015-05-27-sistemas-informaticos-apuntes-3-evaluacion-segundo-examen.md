@@ -1,6 +1,6 @@
 ---
-title: Sistemas informáticos. Apuntes 3 evaluación. Segundo exámen
-description: Apuntes del segundo examen de la tercera evaluación de sistemas informáticos sobre Windows Server 2008, Active Directory, DHCP, DNS, LAMP y CMS en Ubuntu Server.
+title: "Apuntes de Windows Server 2008 y Ubuntu Server"
+description: "Apuntes de servidores: dominios y Active Directory en Windows Server 2008, y DHCP, DNS con Bind, LAMP y sitios virtuales de Apache en Ubuntu Server."
 author: Inazio Claver
 date: 2015-05-27 12:00:00 +0800
 categories: [Sistemas]

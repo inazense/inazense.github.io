@@ -1,6 +1,6 @@
 ---
-title: Programación multimedia. Instalación y configuración de Android Studio
-description: Guía paso a paso para instalar y configurar Android Studio, crear un emulador Android y optimizar el rendimiento con Intel HAXM.
+title: "Instalar Android Studio y configurar el emulador"
+description: "Cómo instalar Android Studio, crear un proyecto de prueba, descargar versiones del SDK, crear un emulador con AVD Manager y acelerarlo con Intel HAXM."
 author: Inazio Claver
 date: 2015-09-26 12:00:00 +0800
 categories: [Programación]

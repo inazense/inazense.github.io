@@ -1,6 +1,6 @@
 ---
-title: Lenguaje de marcas. DTD
-description: Introducción al DTD (Definición de Tipo de Documento) para validar la estructura de documentos XML, con ejemplos de elementos, atributos y tipos de datos.
+title: "DTD en XML: cómo validar la estructura de un documento"
+description: "Qué es un DTD y cómo usarlo para definir la estructura de un documento XML: declaración de elementos, atributos y el significado de #PCDATA."
 author: Inazio Claver
 date: 2015-04-17 12:10:00 +0800
 categories: [Lenguajes de marcas]

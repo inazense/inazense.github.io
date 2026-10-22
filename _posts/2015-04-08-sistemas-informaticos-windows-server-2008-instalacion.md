@@ -1,6 +1,6 @@
 ---
-title: Sistemas informáticos. Windows Server 2008. Instalación
-description: Guía paso a paso para crear una máquina virtual con Windows Virtual PC e instalar Windows Server 2008 Enterprise.
+title: "Instalar Windows Server 2008 en una máquina virtual"
+description: "Cómo crear una máquina virtual con Windows Virtual PC e instalar Windows Server 2008 paso a paso, desde la configuración del equipo hasta el primer arranque."
 author: Inazio Claver
 date: 2015-04-08 12:00:00 +0800
 categories: [Sistemas]
@@ -11,6 +11,8 @@ mermaid: false
 redirect_from:
   - /2015/04/sistemas-informaticos-windows-server.html
 ---
+
+*Parte de la serie «Windows Server 2008» (I).*
 
 Llegué tarde porque tuve que ir a que me desangrarán un poco (¿banco? no, fueron análisis en el médico) y me tuve que poner al día aprisa y corriendo.
 

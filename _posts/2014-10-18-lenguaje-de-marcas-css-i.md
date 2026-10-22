@@ -1,6 +1,6 @@
 ---
-title: Lenguaje de marcas. CSS (I)
-description:
+title: "CSS básico: selectores, margin, padding y visibilidad"
+description: "Primeros pasos con CSS: diferencia entre visibility:hidden y display:none, tipos de selectores para aplicar estilos y cómo funcionan margin y padding."
 date: 2014-10-18 22:37:00 +0800
 categories: [Lenguajes de marcas]
 tags: [lenguaje de marcas, css, selectores, html, margin, padding]
@@ -14,6 +14,8 @@ mermaid: false
 redirect_from:
   - /2014/10/lenguaje-de-marcas-css-i.html
 ---
+
+*Parte de la serie «CSS» (I).*
 
 ## Visibilidad de los elementos
 

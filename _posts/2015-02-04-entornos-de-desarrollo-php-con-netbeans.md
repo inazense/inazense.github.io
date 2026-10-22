@@ -1,6 +1,6 @@
 ---
-title: Entornos de desarrollo. PHP con NetBeans
-description: Cómo crear una primera página PHP con NetBeans conectada a un servidor remoto y a una base de datos MySQL mediante mysqli.
+title: "Proyecto PHP en servidor remoto con NetBeans y MySQL"
+description: "Cómo crear un proyecto PHP en NetBeans que trabaja sobre un servidor remoto y conectar tu primera página a una base de datos MySQL con mysqli."
 author: Inazio Claver
 date: 2015-02-04 12:00:00 +0800
 categories: [Entornos de desarrollo]

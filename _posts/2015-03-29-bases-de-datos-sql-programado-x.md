@@ -1,6 +1,6 @@
 ---
-title: Bases de datos. SQL programado (X). Ejercicios (V)
-description: Ejercicios 23 y 24 de SQL programado en MySQL, creando funciones para comprobar existencia de departamentos y calcular suma de salarios.
+title: "Funciones almacenadas en MySQL: ejercicios"
+description: "Dos ejercicios de funciones almacenadas en MySQL: comprobar si existe un departamento y sumar los salarios de un departamento reutilizando la anterior."
 author: Inazio Claver
 date: 2015-03-29 12:00:00 +0800
 categories: [Bases de datos]
@@ -11,6 +11,8 @@ mermaid: false
 redirect_from:
   - /2015/03/bases-de-datos-sql-programado-x.html
 ---
+
+*Parte de la serie «Ejercicios de SQL programado» (V).*
 
 Práctica 5 del tema 6/7. Se utiliza el script `primeros_pasos`.
 

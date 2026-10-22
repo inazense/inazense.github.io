@@ -1,6 +1,6 @@
 ---
-title: "Programación multimedia. Botones personalizados"
-description: Cómo crear botones personalizados en Android usando imágenes y un selector XML con estados (normal, pulsado, con foco) para dar sensación de movimiento.
+title: "Botones personalizados con imágenes en Android"
+description: "Cómo crear botones con imágenes en Android usando un selector XML en res/drawable con estados normal, pulsado y con foco para dar sensación de movimiento."
 author: Inazio Claver
 date: 2015-10-18 23:50:00 +0800
 categories: [Android]

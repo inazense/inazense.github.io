@@ -1,6 +1,6 @@
 ---
-title: Lenguajes de marcas. PHP (I)
-description: Introducción a PHP. Instalación de LAMP y WAMP, variables, echo, estructuras de control (if, while, for, foreach) y arrays.
+title: "Introducción a PHP: LAMP, WAMP, variables y bucles"
+description: "Primeros pasos con PHP: instalar un servidor LAMP en Linux o WAMP en Windows, variables y echo, if, while y for, y cómo recorrer arrays con foreach."
 author: Inazio Claver
 date: 2015-01-30 18:00:00 +0800
 categories: [Lenguajes de marcas]

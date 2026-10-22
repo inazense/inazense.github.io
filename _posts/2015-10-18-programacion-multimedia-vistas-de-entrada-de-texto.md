@@ -1,6 +1,6 @@
 ---
-title: "Programación multimedia. Vistas de entrada de texto"
-description: Componentes de entrada de texto en Android Studio (TextFields), sus tipos y cómo el teclado se adapta según el tipo de campo en un dispositivo físico.
+title: "Campos de texto en Android: tipos de EditText y teclado"
+description: "Tipos de campos de entrada de texto en Android Studio (texto, nombre, contraseña…) y cómo cambia el teclado del móvil según el tipo de campo elegido."
 author: Inazio Claver
 date: 2015-10-18 12:10:00 +0800
 categories: [Android]

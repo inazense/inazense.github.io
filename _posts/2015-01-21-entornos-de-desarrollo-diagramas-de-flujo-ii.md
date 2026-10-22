@@ -1,6 +1,6 @@
 ---
-title: Entornos de desarrollo. Diagramas de flujo (II)
-description: Cómo crear diagramas de flujo con LibreOffice Draw, usando conectores, figuras y la función de exportación a imagen.
+title: "Cómo hacer diagramas de flujo con LibreOffice Draw"
+description: "Cómo dibujar diagramas de flujo con LibreOffice Draw: dónde están los símbolos y los conectores, cómo unirlos y cómo exportar el diagrama a imagen."
 author: Inazio Claver
 date: 2015-01-21 12:00:00 +0800
 categories: [Entornos de desarrollo]
@@ -15,6 +15,8 @@ mermaid: false
 redirect_from:
   - /2015/01/entornos-de-desarrollo-diagramas-de.html
 ---
+
+*Parte de la serie «Diagramas de flujo» (II).*
 
 En la anterior entrada sobre este tema ([ver aquí](../entornos-de-desarrollo-diagramas-de-flujo)) hice los diagramas a mano, en mi cuaderno.
 

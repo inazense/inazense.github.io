@@ -1,6 +1,6 @@
 ---
-title: Lenguaje de marcas. Introducción (II)
-description:
+title: "Qué son los lenguajes de marcas y cómo es un documento XML"
+description: "Qué es un lenguaje de marcas, qué tipos hay según su orientación (presentación, procedimientos o descripción) y cómo se compone un documento XML."
 date: 2014-10-09 12:10:00 +0800
 categories: [Lenguajes de marcas]
 tags: [lenguajes-marcas, xml, html, etiquetas, atributos, sintaxis, markup]

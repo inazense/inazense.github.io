@@ -1,6 +1,6 @@
 ---
-title: Bases de datos. SQL programado (IV) - Ejercicios
-description: Ocho ejercicios prácticos de procedimientos almacenados en MySQL, desde operaciones básicas hasta desglose de moneda.
+title: "Ejercicios de procedimientos almacenados en MySQL"
+description: "Ocho ejercicios resueltos de procedimientos almacenados en MySQL: sumar números, invertir cadenas, trabajar con fechas, filtrar caracteres y desglosar moneda."
 author: Inazio Claver
 date: 2015-03-09 09:30:00 +0800
 categories: [Bases de datos]
@@ -11,6 +11,8 @@ mermaid: false
 redirect_from:
   - /2015/03/practica-1-de-la-hoja-56-1.html
 ---
+
+*Parte de la serie «Ejercicios de SQL programado» (I).*
 
 Ejercicios de procedimientos almacenados en MySQL.
 

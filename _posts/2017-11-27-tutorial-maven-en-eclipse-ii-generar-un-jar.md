@@ -1,6 +1,6 @@
 ---
-title: Tutorial Maven en Eclipse (II). Generar un JAR
-description: Aprende a generar archivos JAR con Maven en Eclipse y copiar recursos automáticamente. Tutorial completo sobre maven-resources-plugin, configuración del POM, mvn install y gestión de dependencias paso a paso.
+title: "Generar un JAR con Maven en Eclipse"
+description: "Cómo generar un JAR con Maven en Eclipse usando mvn install y cómo copiar los recursos del proyecto a target con maven-resources-plugin."
 author: Inazio Claver
 date: 2017-11-27 13:00:00 +0800
 categories: [Java]
@@ -15,6 +15,8 @@ mermaid: false
 redirect_from:
   - /2017/11/tutorial-maven-en-eclipse-ii-generar-un.html
 ---
+
+*Parte de la serie «Tutorial Maven en Eclipse» (II).*
 
 En la anterior entrada del [**Tutorial Maven en Eclipse**]({% post_url 2017-07-28-tutorial-maven-en-eclipse %}) aprendimos qué es **Maven**, como **crear un proyecto Maven en Eclipse**, a configurarlo y a manejar las **dependencias de librerías**.
 

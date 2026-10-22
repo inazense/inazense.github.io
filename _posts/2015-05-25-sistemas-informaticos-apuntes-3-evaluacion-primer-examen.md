@@ -1,6 +1,6 @@
 ---
-title: Sistemas informáticos. Apuntes 3 evaluación. Primer exámen
-description: Apuntes del primer examen de la tercera evaluación de sistemas informáticos sobre redes, protocolos TCP/IP, dispositivos de interconexión y seguridad.
+title: "Apuntes de redes: TCP/IP, interconexión y seguridad"
+description: "Apuntes de redes: monitorización, protocolos TCP/IP, configuración de interfaces, dispositivos de interconexión y seguridad en redes cableadas e inalámbricas."
 author: Inazio Claver
 date: 2015-05-25 12:00:00 +0800
 categories: [Sistemas]

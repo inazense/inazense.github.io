@@ -1,6 +1,6 @@
 ---
-title: Lenguaje de marcas. RSS
-description: Introducción a RSS (Really Simple Syndication), formato XML para distribuir contenido web actualizado, con sus versiones, estructura y elementos principales.
+title: "Qué es RSS y cómo es un feed en XML"
+description: "Qué es RSS, para qué sirve y qué versiones existen, la estructura de un feed en XML con sus elementos channel e item y cómo publicarlo."
 author: Inazio Claver
 date: 2015-03-06 12:00:00 +0800
 categories: [Lenguajes de marcas]

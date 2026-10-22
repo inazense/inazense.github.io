@@ -1,6 +1,6 @@
 ---
-title: Acceso a datos. Bases de datos orientadas a objetos
-description: Orígenes de los SGBDOO, estándar ODMG-93, lenguajes ODL y OQL, consultas con Criteria y Nativas, ORM con Hibernate y el patrón DAO.
+title: "Bases de datos orientadas a objetos, ODMG y ORM"
+description: "Por qué surgen las bases de datos orientadas a objetos, el estándar ODMG-93 con ODL y OQL, consultas Criteria y nativas, y el mapeo ORM con Hibernate y DAO."
 author: Inazio Claver
 date: 2016-03-03 12:00:00 +0800
 categories: [Java]

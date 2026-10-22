@@ -1,6 +1,6 @@
 ---
-title: "Acceso a datos. Ejercicios (IV). Ficheros XML"
-description: Ejercicios prácticos de manipulación de ficheros XML en Java con DOM, SAX, XStream y JDOM, combinando serialización binaria y generación de XML.
+title: "Ejercicios de XML en Java con DOM, SAX, XStream y JDOM"
+description: "Ejercicios resueltos de ficheros XML en Java: exportar objetos con DOM, leer con SAX, convertir con XStream y aplicar XSLT, y trabajar con JDOM."
 author: Inazio Claver
 date: 2015-10-22 12:00:00 +0800
 categories: [Java]
@@ -11,6 +11,8 @@ mermaid: false
 redirect_from:
   - /2015/10/acceso-datos-ejercicios-iv-ficheros-xml.html
 ---
+
+*Parte de la serie «Ejercicios de acceso a datos» (IV).*
 
 ## Ejercicio 1: Serialización y XML con DOM
 

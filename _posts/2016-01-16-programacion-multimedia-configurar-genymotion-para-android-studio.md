@@ -1,6 +1,6 @@
 ---
-title: "Programación multimedia. Configurar GenyMotion para Android Studio"
-description: Tutorial paso a paso para instalar y configurar GenyMotion como emulador de Android alternativo al de Android Studio, con integración mediante plugin.
+title: "Instalar GenyMotion como emulador en Android Studio"
+description: "Cómo instalar GenyMotion, un emulador de Android basado en VirtualBox más rápido que el de Android Studio, y conectarlo mediante su plugin."
 date: 2016-01-16 12:00:00 +0800
 categories: [Android]
 tags: [android, genymotion, android-studio, emulador, programacion-multimedia]

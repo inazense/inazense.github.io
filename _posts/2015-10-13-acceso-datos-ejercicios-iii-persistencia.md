@@ -1,6 +1,6 @@
 ---
-title: "Acceso a datos. Ejercicios (III). Persistencia"
-description: Dos ejercicios prácticos sobre persistencia de objetos en Java usando Serializable y Externalizable para almacenar datos de vehículos.
+title: "Ejercicios de serialización en Java con Externalizable"
+description: "Dos ejercicios resueltos de persistencia en Java: guardar vehículos en un fichero con Serializable y transient, y hacer lo mismo con Externalizable."
 author: Inazio Claver
 date: 2015-10-13 12:00:00 +0800
 categories: [Java]
@@ -11,6 +11,8 @@ mermaid: false
 redirect_from:
   - /2015/10/acceso-datos-ejercicios-iii-persistencia.html
 ---
+
+*Parte de la serie «Ejercicios de acceso a datos» (III).*
 
 ## Ejercicio 1: Serialización de vehículos
 
