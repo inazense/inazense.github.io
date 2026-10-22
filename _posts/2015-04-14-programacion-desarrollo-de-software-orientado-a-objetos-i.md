@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-04-14 12:00:00 +0800
 categories: [Java, Programación]
 tags: [java, programación, orientado-a-objetos, mvc, streams, api, calendar]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/04/programacion-desarrollo-de-software.html
 ---

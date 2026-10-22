@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-03-06 12:00:00 +0800
 categories: [Lenguajes de marcas]
 tags: [lenguaje-de-marcas, rss, xml]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/03/lenguaje-de-marcas-rss.html
 ---

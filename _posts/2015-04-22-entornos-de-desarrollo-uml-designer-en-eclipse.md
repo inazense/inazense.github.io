@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-04-22 12:00:00 +0800
 categories: [Entornos de desarrollo]
 tags: [entornos-de-desarrollo, eclipse, uml, diagramas, clases]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/04/entornos-de-desarrollo-uml-designer-en.html
 ---

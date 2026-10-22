@@ -4,9 +4,6 @@ description: "Sockets avanzados en Java: servidor TCP con varios clientes median
 date: 2016-01-21 12:00:00 +0800
 categories: [Java, Programación de servicios y procesos]
 tags: [java, sockets, udp, tcp, multicast, hilos, programacion-de-servicios-y-procesos]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2016/01/procesos-y-servicios-programacion-de_21.html
 ---

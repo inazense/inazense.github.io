@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-05-20 12:00:00 +0800
 categories: [Entornos de desarrollo, Java]
 tags: [entornos-de-desarrollo, java, mvc, modelo-vista-controlador, swing]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/05/entornos-de-desarrollo-modelo-vista.html
 ---

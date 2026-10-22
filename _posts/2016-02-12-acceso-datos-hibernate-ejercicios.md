@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2016-02-12 12:00:00 +0800
 categories: [Java]
 tags: [java, hibernate, mysql, swing, crud, hql]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2016/02/acceso-datos-hibernate-ejercicios.html
 ---

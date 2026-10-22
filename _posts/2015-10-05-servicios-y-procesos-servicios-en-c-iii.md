@@ -4,9 +4,6 @@ description: "Qué son los FIFOs o named pipes, cómo crearlos desde la terminal
 date: 2015-10-05 12:00:00 +0800
 categories: [Programación, Programación de servicios y procesos]
 tags: [c, linux, fifo, pipes, ipc, programacion-de-servicios-y-procesos]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/10/servicios-y-procesos-servicios-en-c-iii.html
 ---

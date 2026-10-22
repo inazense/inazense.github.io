@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-12-14 12:00:00 +0800
 categories: [Java, Programación de servicios y procesos]
 tags: [java, hilos, threads, concurrencia, productor-consumidor, prioridad]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/12/procesos-y-servicios-prioridad-de-los.html
 ---

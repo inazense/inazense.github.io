@@ -4,13 +4,6 @@ description: "Cómo organizar un proyecto en C en varios ficheros (main.c, cabec
 date: 2014-11-05 00:00:00 +0800
 categories: [Entornos de desarrollo]
 tags: [entornos de desarrollo, codeblocks, c, proyectos, gcc]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,...
-#  alt: Image alt text.
 redirect_from:
   - /2014/11/entornos-de-desarrollo-proyectos.html
 ---

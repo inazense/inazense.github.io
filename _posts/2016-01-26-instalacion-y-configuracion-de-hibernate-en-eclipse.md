@@ -4,9 +4,6 @@ description: Guía completa para instalar y configurar Hibernate ORM en Eclipse,
 date: 2016-01-26 12:00:00 +0800
 categories: [Java]
 tags: [java, hibernate, eclipse, orm, mysql, acceso-a-datos, jboss]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2016/01/instalacion-y-configuracion-de.html
 ---

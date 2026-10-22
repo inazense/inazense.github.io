@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-10-22 12:00:00 +0800
 categories: [Java]
 tags: [java, acceso-a-datos, xml, dom, sax, xstream, jdom, serializable, ejercicios]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/10/acceso-datos-ejercicios-iv-ficheros-xml.html
 ---

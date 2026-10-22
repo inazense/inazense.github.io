@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-10-22 17:18:00 +0800
 categories: [Java, Programación de servicios y procesos]
 tags: [java, hilos, threads, runnable, concurrencia, procesos-y-servicios]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/10/procesos-y-servicios-hilos.html
 ---

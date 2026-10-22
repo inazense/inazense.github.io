@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-10-23 12:00:00 +0800
 categories: [Web]
 tags: [blogger, jquery, html, css, spoiler, cms]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/10/anadir-spoilers-vistosos-blogger.html
 ---

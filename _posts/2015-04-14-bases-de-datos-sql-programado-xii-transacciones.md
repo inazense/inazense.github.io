@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-04-14 12:00:00 +0800
 categories: [Bases de datos]
 tags: [bases-de-datos, sql, mysql, transacciones, acid, commit, rollback]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/04/bases-de-datos-sql-programado-xii.html
 ---

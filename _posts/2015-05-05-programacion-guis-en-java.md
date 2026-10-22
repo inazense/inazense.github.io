@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-05-05 12:00:00 +0800
 categories: [Java, Programación]
 tags: [java, programación, swing, awt, gui]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/05/programacion-guis-en-java.html
 ---

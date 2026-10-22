@@ -4,13 +4,6 @@ description: "Diseño descendente y abstracción para dividir un problema en sub
 date: 2014-10-14 21:22:00 +0800
 categories: [Programación]
 tags: [programacion, c, subprogramas, funciones, procedimientos, parametros]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,...
-#  alt: Image alt text.
 redirect_from:
   - /2014/10/programacion-diseno-de-la-programacion-i.html
 ---

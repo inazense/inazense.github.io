@@ -5,14 +5,7 @@ author: Inazio Claver
 date: 2026-05-04 17:49:00 +0200
 categories: [Java]
 tags: [java, solid, programacion-orientada-a-objetos, oop, patrones, buenas-practicas, clean-code]
-pin: false
 featured: true
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA
-#  alt: Responsive rendering of Chirpy theme on multiple devices.
 ---
 
 ![Cabecera sobre principios SOLID](/img/posts/20260504_1.png)

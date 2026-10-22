@@ -4,9 +4,6 @@ description: "Elementos para mejorar el diseño de una app Android (lanzador, ba
 date: 2015-11-03 13:00:00 +0800
 categories: [Android]
 tags: [android, diseno, tabhost, iconos, programacion-multimedia]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/11/programacion-multimedia-mejoras-en.html
   - /posts/2015/11/03/programacion-multimedia-mejoras-en-disenyo/

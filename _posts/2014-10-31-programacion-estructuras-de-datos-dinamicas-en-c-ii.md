@@ -4,13 +4,6 @@ description: "Funciones para trabajar con cadenas en C: conversión con stdlib.h
 date: 2014-10-31 00:29:00 +0800
 categories: [Programación]
 tags: [programacion, c, cadenas, registros, structs, ctype]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,...
-#  alt: Image alt text.
 redirect_from:
   - /2014/10/programacion-estructuras-de-datos_30.html
 ---

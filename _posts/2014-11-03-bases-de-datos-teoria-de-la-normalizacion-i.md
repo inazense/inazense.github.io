@@ -4,13 +4,6 @@ description: "Qué es la normalización de bases de datos y cómo llevar una tab
 date: 2014-11-03 00:00:00 +0800
 categories: [Bases de datos]
 tags: [bases de datos, normalizacion, 1fn]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,...
-#  alt: Image alt text.
 redirect_from:
   - /2014/11/bases-de-datos-teoria-de-la.html
 ---

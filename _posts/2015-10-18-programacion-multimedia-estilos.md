@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-10-18 23:30:00 +0800
 categories: [Android]
 tags: [android, android-studio, estilos, styles, herencia, programacion-multimedia]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/10/programacion-multimedia-estilos.html
 ---

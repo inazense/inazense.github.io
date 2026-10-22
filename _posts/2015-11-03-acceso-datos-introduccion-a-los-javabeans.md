@@ -4,9 +4,6 @@ description: "Qué es un JavaBean, qué reglas cumple, tipos de propiedades (sim
 date: 2015-11-03 15:00:00 +0800
 categories: [Java]
 tags: [java, javabeans, componentes, propiedades, eventos, acceso-a-datos, serializable]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/11/acceso-datos-introduccion-los-javabeans.html
   - /posts/2015/11/03/acceso-datos-introduccion-los-javabeans/

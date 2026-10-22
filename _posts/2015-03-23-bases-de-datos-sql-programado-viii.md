@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-03-23 12:00:00 +0800
 categories: [Bases de datos]
 tags: [bases-de-datos, sql, mysql, cursores, procedimientos, ejercicios, transacciones]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/03/bases-de-datos-sql-programado-viii.html
 ---

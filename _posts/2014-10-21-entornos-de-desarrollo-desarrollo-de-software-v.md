@@ -4,13 +4,6 @@ description: "Cómo crear un proyecto de consola en Code::Blocks para organizar 
 date: 2014-10-21 23:36:00 +0800
 categories: [Entornos de desarrollo]
 tags: [entornos de desarrollo, codeblocks, c, debugger, proyectos]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,...
-#  alt: Image alt text.
 redirect_from:
   - /2014/10/entornos-de-desarrollo-desarrollo-de_21.html
 ---

@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-03-02 12:00:00 +0800
 categories: [Entornos de desarrollo]
 tags: [entornos-de-desarrollo, netbeans, php]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/03/entornos-de-desarrollo-netbeans.html
 ---

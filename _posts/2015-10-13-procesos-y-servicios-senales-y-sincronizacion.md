@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-10-13 12:05:00 +0800
 categories: [Sistemas, Programación de servicios y procesos]
 tags: [c, procesos, senales, sincronizacion, linux, fork, kill]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/10/procesos-y-servicios-senales-y.html
 ---

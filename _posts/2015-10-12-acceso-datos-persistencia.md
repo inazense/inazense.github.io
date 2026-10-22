@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-10-12 12:00:00 +0800
 categories: [Java]
 tags: [java, acceso-a-datos, persistencia, serializacion, serializable, externalizable]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/10/acceso-datos-persistencia.html
 ---

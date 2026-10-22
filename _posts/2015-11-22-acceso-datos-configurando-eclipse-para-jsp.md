@@ -4,9 +4,6 @@ description: "Cómo instalar Apache Tomcat, configurarlo como servidor en Eclips
 date: 2015-11-22 13:00:00 +0800
 categories: [Java]
 tags: [java, jsp, eclipse, tomcat, acceso-a-datos, web, servlet]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/11/acceso-datos-configurando-eclipse-para.html
 ---

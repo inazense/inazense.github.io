@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-10-18 23:05:00 +0800
 categories: [Android]
 tags: [android, android-studio, orientacion, layout, landscape, portrait, programacion-multimedia]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/10/programacion-mutimedia-recursos.html
 ---

@@ -4,9 +4,6 @@ description: "Introducción a la programación en red en Java: TCP y UDP, el paq
 date: 2016-01-20 12:00:00 +0800
 categories: [Java, Programación de servicios y procesos]
 tags: [java, redes, programacion-de-servicios-y-procesos, inetaddress, url, urlconnection]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2016/01/procesos-y-servicios-programacion-en-red.html
 ---

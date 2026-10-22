@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-02-09 12:00:00 +0800
 categories: [Sistemas]
 tags: [cisco, packet tracer, redes, router, switch]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/02/sistemas-informaticos-cisco-packet.html
 ---

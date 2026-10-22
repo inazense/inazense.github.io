@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-03-26 20:06:00 +0800
 categories: [Bases de datos]
 tags: [bases-de-datos, sql, mysql, procedimientos, errores, ejercicios]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/03/bases-de-datos-sql-programado-ix.html
 ---

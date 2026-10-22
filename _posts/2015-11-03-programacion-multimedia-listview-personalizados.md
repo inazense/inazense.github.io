@@ -4,9 +4,6 @@ description: "Cómo personalizar un ListView en Android con un layout propio par
 date: 2015-11-03 14:00:00 +0800
 categories: [Android]
 tags: [android, listview, adapter, programacion-multimedia, layout]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/11/programacion-multimedia-listview.html
   - /posts/2015/11/03/programacion-multimedia-listview/

@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2016-02-07 12:00:00 +0800
 categories: [Java]
 tags: [java, eclipse, windowbuilder, swing, gui]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2016/02/instalar-windowbuilder-en-eclipse.html
 ---

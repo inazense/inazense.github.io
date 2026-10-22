@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-02-06 12:00:00 +0800
 categories: [Lenguajes de marcas]
 tags: [html5, php, formularios, mysql]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/02/lenguajes-de-marcas-formularios.html
 ---

@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-10-24 14:30:00 +0800
 categories: [Java]
 tags: [java, acceso-a-datos, jdbc, mysql, resultset, sql]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/10/acceso-datos-jdbc-v-uso-del-resultset.html
 ---

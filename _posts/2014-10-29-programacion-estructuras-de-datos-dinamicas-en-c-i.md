@@ -4,13 +4,6 @@ description: "Cómo declarar y recorrer vectores en C, por qué los índices emp
 date: 2014-10-29 22:44:00 +0800
 categories: [Programación]
 tags: [programacion, c, vectores, arrays, cadenas]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,...
-#  alt: Image alt text.
 redirect_from:
   - /2014/10/programacion-estructuras-de-datos.html
 ---

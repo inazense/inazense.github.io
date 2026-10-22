@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-05-27 12:00:00 +0800
 categories: [Sistemas]
 tags: [sistemas-informaticos, windows-server, active-directory, ubuntu-server, dhcp, dns, apache, lamp]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/05/sistemas-apuntes-3-evaluacion-segundo.html
 ---

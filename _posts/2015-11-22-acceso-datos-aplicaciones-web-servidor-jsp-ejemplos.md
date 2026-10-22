@@ -4,9 +4,6 @@ description: "Ejemplos prácticos de JSP desde un Hola mundo: comentarios, decla
 date: 2015-11-22 14:00:00 +0800
 categories: [Java]
 tags: [java, jsp, acceso-a-datos, web, ejemplos, scriptlet, expresiones]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/11/acceso-datos-aplicaciones-web-servidor_22.html
 ---

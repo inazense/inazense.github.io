@@ -4,9 +4,6 @@ description: "Estados de un hilo en Java (New, Runnable, Blocked y Dead) y cómo
 date: 2015-11-04 12:00:00 +0800
 categories: [Java, Programación de servicios y procesos]
 tags: [java, hilos, threads, programacion-de-servicios-y-procesos, concurrencia, runnable]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/11/procesos-y-servicios-programacion.html
 ---

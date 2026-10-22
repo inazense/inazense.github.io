@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2026-06-29 18:00:00 +0200
 categories: [Web,Sistemas]
 tags: [web,sistemas,oracle,deploy,redes]
-pin: false
-math: false
-mermaid: false
 ---
 
 Durante los últimos meses hemos estado programando un buscador centralizado de gasolineras en España, pudiendo filtrar por distancia, precios de combustibles, nombres de gasolinera, ubicación, ciudad, código postal.

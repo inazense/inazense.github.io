@@ -4,9 +4,6 @@ description: "Cómo instalar GenyMotion, un emulador de Android basado en Virtua
 date: 2016-01-16 12:00:00 +0800
 categories: [Android]
 tags: [android, genymotion, android-studio, emulador, programacion-multimedia]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2016/01/programacion-multimedia-configurar.html
 ---

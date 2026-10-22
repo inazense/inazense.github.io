@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-02-16 12:00:00 +0800
 categories: [Bases de datos]
 tags: [bases-de-datos, sql, mysql]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/02/bases-de-datos-sql-xi.html
 ---

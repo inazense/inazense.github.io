@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-09-26 12:30:00 +0800
 categories: [Entornos de desarrollo]
 tags: [visual-studio, visual-basic, desarrollo-de-interfaces]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/09/desarrollo-de-interfacesinstalacion-de.html
 ---

@@ -4,13 +4,6 @@ description: "Cómo calcular el determinante de una matriz 3x3 con la regla de S
 date: 2014-11-16 00:00:00 +0800
 categories: [Programación]
 tags: [programacion, matrices, determinante, adjunta, inversa, sarrus]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,...
-#  alt: Image alt text.
 redirect_from:
   - /2014/11/programacion-estructura-de-datos.html
 ---

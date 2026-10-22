@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2016-03-03 12:00:00 +0800
 categories: [Java]
 tags: [java, bases-de-datos, oo, hibernate, orm, dao, odmg, oql]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2016/03/acceso-datos-bases-de-datos-orientadas.html
 ---

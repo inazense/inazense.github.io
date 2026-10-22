@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-09-23 12:00:00 +0800
 categories: [Varios]
 tags: [varios]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/09/segundas-partes-nunca-fueron-buenas.html
 noindex: true

@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-06-12 12:00:00 +0800
 categories: [Programación]
 tags: [programacion, ada, c, java, manual]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/06/programacion-manual-completo-del-modulo.html
 noindex: true

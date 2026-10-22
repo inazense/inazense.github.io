@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-04-17 12:10:00 +0800
 categories: [Lenguajes de marcas]
 tags: [lenguajes-de-marcas, xml, dtd]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/04/lenguaje-de-marcas-dtd.html
 ---

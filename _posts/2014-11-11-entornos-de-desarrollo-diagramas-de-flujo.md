@@ -4,13 +4,6 @@ description: "Qué es un diagrama de flujo y para qué sirve, con tres ejemplos 
 date: 2014-11-11 23:55:00 +0800
 categories: [Entornos de desarrollo]
 tags: [entornos de desarrollo, diagramas de flujo, algoritmos]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,...
-#  alt: Image alt text.
 redirect_from:
   - /2014/11/entornos-de-desarrollo-diagramas-de.html
 ---

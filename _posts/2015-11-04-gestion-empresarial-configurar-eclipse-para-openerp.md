@@ -4,9 +4,6 @@ description: "Cómo preparar Eclipse para desarrollar módulos de OpenERP en Pyt
 date: 2015-11-04 13:00:00 +0800
 categories: [Python]
 tags: [openerp, eclipse, pydev, python, xml, gestion-empresarial]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/11/gestion-empresarial-configurar-eclipse.html
 ---

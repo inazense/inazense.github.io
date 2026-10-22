@@ -4,9 +4,6 @@ description: "Introducción a JSP: expresiones, scriptlets, declaraciones, direc
 date: 2015-11-22 12:00:00 +0800
 categories: [Java]
 tags: [java, jsp, acceso-a-datos, javabeans, web, servlet]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/11/acceso-datos-aplicaciones-web-servidor.html
 ---

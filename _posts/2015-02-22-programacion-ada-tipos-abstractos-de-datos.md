@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-02-22 12:00:00 +0800
 categories: [Programación]
 tags: [programacion, ada]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/02/programacion-ada-tipos-abstractos-de.html
 ---

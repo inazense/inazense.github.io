@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-05-05 12:00:00 +0800
 categories: [Entornos de desarrollo]
 tags: [entornos-de-desarrollo, svn, subversion, ubuntu, control-de-versiones]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/05/entornos-de-desarrollo-svn-en-ubuntu.html
 ---

@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-04-08 12:00:00 +0800
 categories: [Sistemas]
 tags: [sistemas-informaticos, windows-server, red, configuracion, netbios]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/04/sistemas-informaticos-windows-server_8.html
 ---

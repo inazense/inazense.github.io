@@ -4,13 +4,6 @@ description:
 date: 2014-10-14 21:51:00 +0800
 categories: [Lenguajes de marcas]
 tags: [lenguaje de marcas, html, html5, estructura, css, javascript, php]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,...
-#  alt: Image alt text.
 redirect_from:
   - /2014/10/lenguaje-de-marcas-estructuras.html
 noindex: true

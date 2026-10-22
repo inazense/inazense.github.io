@@ -4,13 +4,6 @@ description: "Diferencia entre función y procedimiento, parámetros de entrada 
 date: 2014-10-17 20:55:00 +0800
 categories: [Programación]
 tags: [programacion, subprogramas, funciones, procedimientos, parametros, pseudocodigo]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,...
-#  alt: Image alt text.
 redirect_from:
   - /2014/10/programacion-diseno-de-la-programacion.html
 ---

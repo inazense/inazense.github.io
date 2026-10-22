@@ -4,9 +4,6 @@ description: "Ejercicios de JDBC resueltos: consultas, actualizaciones con y sin
 date: 2015-11-01 21:00:00 +0800
 categories: [Java]
 tags: [java, jdbc, mysql, acceso-a-datos, preparedstatement, transacciones, databasemetadata]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/11/acceso-datos-ejercicios-v-jdbc.html
 ---

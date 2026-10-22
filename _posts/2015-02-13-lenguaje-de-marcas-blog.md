@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-02-13 12:00:00 +0800
 categories: [Lenguajes de marcas]
 tags: [lenguajes-de-marcas, php, html, blog]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/02/lenguaje-de-marcas-blog.html
 ---

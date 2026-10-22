@@ -4,13 +4,6 @@ description: "Del código fuente al ejecutable: código objeto, enlazado y libre
 date: 2014-10-15 23:27:00 +0800
 categories: [Entornos de desarrollo]
 tags: [entornos de desarrollo, codeblocks, c, compilacion, compilador, gcc]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,...
-#  alt: Image alt text.
 redirect_from:
   - /2014/10/entornos-de-desarrollo-desarrollo-de_15.html
 ---

@@ -4,9 +4,6 @@ description: "Ejercicio completo de acceso a datos con PHP y PDO: conexión a My
 date: 2016-01-11 12:00:00 +0800
 categories: [Web]
 tags: [acceso-a-datos, php, pdo, crud, mysql]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2016/01/acceso-datos-aplicaciones-web-servidor.html
 ---

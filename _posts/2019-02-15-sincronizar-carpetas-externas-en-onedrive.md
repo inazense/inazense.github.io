@@ -5,13 +5,6 @@ author: Inazio Claver
 date: 2019-02-15 11:33:00 +0800
 categories: [Sistemas]
 tags: [onedrive, windows, enlaces-simbolicos, mklink, sincronizacion, backup, cloud]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /img/posts/20190215_onedrive.png
-#  lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VLIAAAA
-#  alt: OneDrive sincronización de carpetas externas.
 redirect_from:
   - /2019/02/sincronizar-carpetas-externas-en-onedrive.html
 ---

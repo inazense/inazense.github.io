@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-05-25 12:00:00 +0800
 categories: [Sistemas]
 tags: [sistemas-informaticos, redes, tcp-ip, seguridad, vpn, iptables]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/05/sistemas-apuntes-3-evaluacion-primer.html
 ---

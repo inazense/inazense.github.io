@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-12-09 12:00:00 +0800
 categories: [Web]
 tags: [java, jsp, web, sesiones, cookies, mysql, jdbc]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/12/acceso-datos-aplicaciones-web-servudor.html
 ---

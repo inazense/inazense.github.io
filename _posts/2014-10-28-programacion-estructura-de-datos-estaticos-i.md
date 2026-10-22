@@ -4,13 +4,6 @@ description: "Macros con #define, precisión en printf, tipos definidos por el u
 date: 2014-10-28 23:16:00 +0800
 categories: [Programación]
 tags: [programacion, c, vectores, arrays, datos estaticos, macros, printf]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,...
-#  alt: Image alt text.
 redirect_from:
   - /2014/10/estructura-de-datos-estaticos-i.html
 ---

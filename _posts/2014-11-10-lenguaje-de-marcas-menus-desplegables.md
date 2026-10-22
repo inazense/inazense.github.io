@@ -4,13 +4,6 @@ description: "Cómo crear un menú desplegable solo con HTML y CSS3, usando list
 date: 2014-11-10 00:00:00 +0800
 categories: [Lenguajes de marcas]
 tags: [html, css, menus desplegables, lenguaje de marcas]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,...
-#  alt: Image alt text.
 redirect_from:
   - /2014/11/lenguaje-de-marcas-menus-desplegables.html
 ---

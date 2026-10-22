@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-02-04 12:00:00 +0800
 categories: [Entornos de desarrollo]
 tags: [php, netbeans, mysql, mysqli]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/02/entornos-de-desarrollo-php-con-netbeans.html
 ---

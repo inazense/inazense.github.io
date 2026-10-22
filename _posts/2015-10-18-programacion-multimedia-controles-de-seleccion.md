@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-10-18 23:44:00 +0800
 categories: [Android]
 tags: [android, android-studio, spinner, listview, arrayadapter, listadapter, programacion-multimedia]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/10/programacion-multimedia-controles-de.html
 ---

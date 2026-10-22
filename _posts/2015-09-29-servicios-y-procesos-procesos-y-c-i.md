@@ -5,9 +5,6 @@ author: Inazio Claver
 date: 2015-09-29 12:00:00 +0800
 categories: [Programación, Programación de servicios y procesos]
 tags: [c, procesos, servicios-y-procesos, linux]
-pin: false
-math: false
-mermaid: false
 redirect_from:
   - /2015/09/servicios-y-procesos-procesos-y-c-i.html
 ---

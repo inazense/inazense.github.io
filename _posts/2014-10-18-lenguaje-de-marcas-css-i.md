@@ -4,13 +4,6 @@ description: "Primeros pasos con CSS: diferencia entre visibility:hidden y displ
 date: 2014-10-18 22:37:00 +0800
 categories: [Lenguajes de marcas]
 tags: [lenguaje de marcas, css, selectores, html, margin, padding]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,...
-#  alt: Image alt text.
 redirect_from:
   - /2014/10/lenguaje-de-marcas-css-i.html
 ---

@@ -4,13 +4,6 @@ description: "Cómo combinar vectores y registros en C (vectores de structs y st
 date: 2014-11-04 19:13:00 +0800
 categories: [Programación]
 tags: [programacion, c, estructuras de datos, registros, vectores]
-pin: false
-math: false
-mermaid: false
-#image:
-#  path: /commons/devices-mockup.png
-#  lqip: data:image/webp;base64,...
-#  alt: Image alt text.
 redirect_from:
   - /2014/11/estructuras-de-datos-dinamicas-en-c-iv.html
 ---
