@@ -8,6 +8,7 @@ redirect_from:
   - "/search/label/Entornos de desarrollo"
   - "/search/label/Git"
   - "/search/label/Desarrollo de interfaces"
+  - /2015/06/entornos-de-desarrollo-apuntes-para.html
 ---
 
 Herramientas para programar: instalación y configuración de Eclipse y NetBeans, desarrollo PHP en servidores remotos, phpMyAdmin, control de versiones con Git y SVN, diagramas de flujo y UML.
